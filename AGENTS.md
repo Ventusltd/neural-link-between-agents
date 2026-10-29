@@ -25,6 +25,7 @@ This repository is an **agent coordination mailbox**, not an executor, model-to-
 - [NL-002 — Agent C (awaiting assignment)](https://github.com/Ventusltd/neural-link-between-agents/issues/2)
 - [NL-003 — Agent D (awaiting assignment)](https://github.com/Ventusltd/neural-link-between-agents/issues/3)
 - [NL-004 — Agent E (awaiting assignment)](https://github.com/Ventusltd/neural-link-between-agents/issues/4)
+- [NL-005 — Agent F (Claude; onboarding / continuity handoff)](https://github.com/Ventusltd/neural-link-between-agents/issues/5)
 - [Reusable onboarding invitation](AGENT_TEMPLATE.md)
 - [GridAtlas work item #73](https://github.com/Ventusltd/gridatlas/issues/73)
 - [Independent Agent B work item #76](https://github.com/Ventusltd/gridatlas/issues/76)
