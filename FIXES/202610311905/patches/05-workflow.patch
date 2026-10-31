@@ -1,0 +1,77 @@
+From 685b7e8678f02cc266f2ce65b215df0772b483d4 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 31 Oct 2026 21:39:09 +0000
+Subject: [PATCH] ci: run the data-centre Chromium smoke on every preview/ PR,
+ generation 202610312138, upload-artifact pinned (NL-007 P5)
+
+.github/workflows/pr-file-size-guard.yml, job dc-browser-smoke, per
+FIXES/202610311905-datacentre-baseline.md section 4.2 (neural-link):
+
+- :158  if: github.event.pull_request.number == 75
+     -> if: startsWith(github.event.pull_request.head.ref, 'preview/')
+- :177  DC_SMOKE_GENERATION: '202610292044'
+     -> DC_SMOKE_GENERATION: '202610312138'
+- :181  uses: actions/upload-artifact@v4
+     -> uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
+- :154-156 comment: the job now runs on every preview/ PR for the
+  generation named at :177 (was "Issue #73: one-off").
+
+on: pull_request: (:16) is unchanged; the job fires on opened and
+synchronize for any preview/ head ref, no label needed.
+
+Tag evidence (2026-10-31):
+  git ls-remote https://github.com/actions/upload-artifact \
+    refs/tags/v4.6.2 'refs/tags/v4.6.2^{}'
+  ea165f8d65b6e75b540449e92b4886f43607fa02  refs/tags/v4.6.2
+No ^{} line is returned: v4.6.2 is a lightweight tag, so the ref line
+itself names the commit (git cat-file -t on a depth-1 fetch: commit,
+"Merge pull request #685", 2025-03-19T10:34:59-07:00).
+
+Checks: grep -c 'number == 75' -> 0; grep -c '@v4$' -> 0;
+node tools/scope/loop.mjs lint -> scope-ledger=PASS active=none
+master=done; loop.mjs state --stdout | diff - STATE.md -> empty.
+G = 202610312138 (later than S = 202610312133, M = 01a4491).
+
+Co-Authored-By: Claude Opus <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_015ELZDBhAFNgtcsrTUSi1vm
+---
+ .github/workflows/pr-file-size-guard.yml | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/.github/workflows/pr-file-size-guard.yml b/.github/workflows/pr-file-size-guard.yml
+index 7e5595d..ca7321e 100644
+--- a/.github/workflows/pr-file-size-guard.yml
++++ b/.github/workflows/pr-file-size-guard.yml
+@@ -151,11 +151,11 @@ jobs:
+           BASE_SHA: ${{ github.event.pull_request.base.sha }}
+         run: node tools/ci/pr-gate.mjs --base "$BASE_SHA"
+ 
+-  # Issue #73: one-off real Chromium check on the draft preview. This does
+-  # not deploy, change the live pointer or use secrets. Remove the job after
+-  # its browser report has been reviewed; keep the reusable script.
++  # Real Chromium check on every preview/ PR (NL-007), for the generation
++  # named in DC_SMOKE_GENERATION at line 177. This does not deploy, change
++  # the live pointer or use secrets; keep the reusable script.
+   dc-browser-smoke:
+-    if: github.event.pull_request.number == 75
++    if: startsWith(github.event.pull_request.head.ref, 'preview/')
+     runs-on: ubuntu-24.04
+     timeout-minutes: 15
+     steps:
+@@ -174,11 +174,11 @@ jobs:
+           npx playwright install --with-deps chromium
+       - name: Test Slough tap, four tabs, link reveal and CSV in Chromium
+         env:
+-          DC_SMOKE_GENERATION: '202610292044'
++          DC_SMOKE_GENERATION: '202610312138'
+         run: node tools/ci/offtakers/browser-dc-smoke.mjs
+       - name: Preserve screenshots for review
+         if: always()
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
+         with:
+           name: dc-browser-smoke-${{ github.run_id }}
+           path: ${{ runner.temp }}/gridatlas-dc-browser/
+-- 
+2.43.0
+
