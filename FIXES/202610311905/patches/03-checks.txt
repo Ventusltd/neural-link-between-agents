@@ -3,7 +3,7 @@
 # HEAD: 75ab8ae54e95b90bb59e306b4ca3a08042430ce5  (base b57c94d4e964df2de0dea2786781c6d07a967ea1 + 2 commits: f8258a0 P1, 75ab8ae P2)
 # tree: a180aa31555ef3f0f077ec89d035f1f7b43f1d38
 # python: Python 3.13.18; git: git version 2.43.0
-# reproduce.py run.at (from /tmp/r.json): 2026-10-31T21:22:35Z
+# reproduce.py run.at (from <scratch>): 2026-10-31T21:22:35Z
 # all commands run from the repository root; stdout and stderr combined; worktree clean before and after (git status --short empty);
 # __pycache__ directories created by the runs were removed afterwards.
 # reproduce.py was read before running: it writes only the --json file and a tempfile.mkdtemp scratch copy it removes;
@@ -33,7 +33,7 @@ OK
 exit code: 0
 
 ## 3
-$ python3 reproduce.py check --json /tmp/r.json
+$ python3 reproduce.py check --json <scratch>
 datacentres: 0 committed data files
   osm-datacentres            open=yes        fetcher=placeholder
   wikidata-datacentres       open=yes        fetcher=placeholder
@@ -56,15 +56,15 @@ conventional: 0 committed data files
   lane dc-a6                 open=yes        rebuilt=skipped_missing_input
 summary_sha256 720a435c23ac7302e0952452a2575f7e684aad4432544b69d8899f48dad1168e
 exit code: 0
-/tmp/r.json: mismatches = [], summary_sha256 = 720a435c23ac7302e0952452a2575f7e684aad4432544b69d8899f48dad1168e
+<scratch> mismatches = [], summary_sha256 = 720a435c23ac7302e0952452a2575f7e684aad4432544b69d8899f48dad1168e
 
 ## 4
-$ git bundle create /home/user/neural-link-between-agents/FIXES/202610311905/patches/03-data-grid-gb.bundle b57c94d4e964df2de0dea2786781c6d07a967ea1..fix/nl007-operator-canon
+$ git bundle create <neural-link>/FIXES/202610311905/patches/03-data-grid-gb.bundle b57c94d4e964df2de0dea2786781c6d07a967ea1..fix/nl007-operator-canon
 (no output)
 exit code: 0
 
-$ git bundle verify /home/user/neural-link-between-agents/FIXES/202610311905/patches/03-data-grid-gb.bundle
-/home/user/neural-link-between-agents/FIXES/202610311905/patches/03-data-grid-gb.bundle is okay
+$ git bundle verify <neural-link>/FIXES/202610311905/patches/03-data-grid-gb.bundle
+<neural-link>/FIXES/202610311905/patches/03-data-grid-gb.bundle is okay
 The bundle contains this ref:
 75ab8ae54e95b90bb59e306b4ca3a08042430ce5 refs/heads/fix/nl007-operator-canon
 The bundle requires this ref:

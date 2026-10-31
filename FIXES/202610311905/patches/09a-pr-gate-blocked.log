@@ -203,7 +203,7 @@ not ok 20 - DC1: data centres: the pinned pipeline file once, every site that pa
   ---
   duration_ms: 102.055114
   type: 'test'
-  location: '/home/user/estate/gridatlas/tools/ci/offtakers/overlay-offtakers.test.mjs:386:1'
+  location: '<clone>/tools/ci/offtakers/overlay-offtakers.test.mjs:386:1'
   failureType: 'testCodeFailure'
   error: |-
     one unplaced planning record (Ebbsfleet) remains in the source, never drawn
@@ -216,7 +216,7 @@ not ok 20 - DC1: data centres: the pinned pipeline file once, every site that pa
   actual: 2
   operator: 'strictEqual'
   stack: |-
-    TestContext.<anonymous> (file:///home/user/estate/gridatlas/tools/ci/offtakers/overlay-offtakers.test.mjs:389:56)
+    TestContext.<anonymous> (file://<clone>/tools/ci/offtakers/overlay-offtakers.test.mjs:389:56)
     async Test.run (node:internal/test_runner/test:1054:7)
     async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
   ...
