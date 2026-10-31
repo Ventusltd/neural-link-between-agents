@@ -1,0 +1,79 @@
+# 03-checks.txt: FIX 202610311905 step P3-I (NL-007)
+# repository: Ventusltd/data-grid-gb, local clone, branch fix/nl007-operator-canon
+# HEAD: 75ab8ae54e95b90bb59e306b4ca3a08042430ce5  (base b57c94d4e964df2de0dea2786781c6d07a967ea1 + 2 commits: f8258a0 P1, 75ab8ae P2)
+# tree: a180aa31555ef3f0f077ec89d035f1f7b43f1d38
+# python: Python 3.13.18; git: git version 2.43.0
+# reproduce.py run.at (from /tmp/r.json): 2026-10-31T21:22:35Z
+# all commands run from the repository root; stdout and stderr combined; worktree clean before and after (git status --short empty);
+# __pycache__ directories created by the runs were removed afterwards.
+# reproduce.py was read before running: it writes only the --json file and a tempfile.mkdtemp scratch copy it removes;
+# it uses no network (lane dc-a6 is skipped_missing_input locally; CI's requirements leg downloads its inputs, so CI's
+# summary_sha256 for that leg may differ from the local one).
+
+## 1
+$ python3 ci/verify.py
+verify datacentres: registry ok (8 sources, 0 ready, 0 snapshot-only)
+verify datacentres: raw ok (no snapshots yet)
+verify datacentres: outputs ok (0 files, 0 records)
+verify datacentres: lanes ok (6 vendored lanes, every file pinned)
+verify conventional: registry ok (3 sources, 0 ready, 1 snapshot-only)
+verify conventional: raw ok (no snapshots yet)
+verify conventional: outputs ok (0 files, 0 records)
+verify conventional: lanes ok (1 vendored lanes, every file pinned)
+exit code: 0
+ok lines: 8 (plan: 8)
+
+## 2
+$ python3 -m unittest discover -s tests
+...................................
+----------------------------------------------------------------------
+Ran 35 tests in 2.590s
+
+OK
+exit code: 0
+
+## 3
+$ python3 reproduce.py check --json /tmp/r.json
+datacentres: 0 committed data files
+  osm-datacentres            open=yes        fetcher=placeholder
+  wikidata-datacentres       open=yes        fetcher=placeholder
+  planning-data-gov-uk       open=unverified fetcher=placeholder
+  neso-connections           open=unverified fetcher=placeholder
+  dno-ecr                    open=unverified fetcher=placeholder
+  dsit-ai-growth-zones       open=unverified fetcher=placeholder
+  local-planning-portals     open=no         fetcher=none       
+  company-disclosures        open=no         fetcher=none       
+  lane dc-a1-neso            open=unverified rebuilt=no offline build (fetch and build are one step)
+  lane dc-a2-planning        open=yes        rebuilt=identical
+  lane dc-a3-gov             open=yes        rebuilt=identical
+  lane dc-a4-osm-wikidata    open=yes        rebuilt=identical
+  lane dc-a5-dno             open=unverified rebuilt=no offline build (fetch and build are one step)
+  lane dc-a7-merge           open=yes        rebuilt=identical
+conventional: 0 committed data files
+  dukes-5-11                 open=yes        fetcher=snapshot   
+  wri-gppd                   open=yes        fetcher=placeholder
+  osm-power-plants           open=yes        fetcher=placeholder
+  lane dc-a6                 open=yes        rebuilt=skipped_missing_input
+summary_sha256 720a435c23ac7302e0952452a2575f7e684aad4432544b69d8899f48dad1168e
+exit code: 0
+/tmp/r.json: mismatches = [], summary_sha256 = 720a435c23ac7302e0952452a2575f7e684aad4432544b69d8899f48dad1168e
+
+## 4
+$ git bundle create /home/user/neural-link-between-agents/FIXES/202610311905/patches/03-data-grid-gb.bundle b57c94d4e964df2de0dea2786781c6d07a967ea1..fix/nl007-operator-canon
+(no output)
+exit code: 0
+
+$ git bundle verify /home/user/neural-link-between-agents/FIXES/202610311905/patches/03-data-grid-gb.bundle
+/home/user/neural-link-between-agents/FIXES/202610311905/patches/03-data-grid-gb.bundle is okay
+The bundle contains this ref:
+75ab8ae54e95b90bb59e306b4ca3a08042430ce5 refs/heads/fix/nl007-operator-canon
+The bundle requires this ref:
+b57c94d4e964df2de0dea2786781c6d07a967ea1 
+The bundle uses this hash algorithm: sha1
+exit code: 0
+
+bundle sha256 928e291ee02dff345ef326a4e02966a51f29c82fe4b82bfe084abf3da936b4c6, 4,985 B
+The bundle is thin: it requires b57c94d4e964df2de0dea2786781c6d07a967ea1 (data-grid-gb main at plan time) as prerequisite, so the
+geojson is stored as a delta against the 227-record file and the bundle is a few kB, not the ~0.9 MB of 02-rebuild.patch.
+Fetched into a scratch bare repository holding only b57c94d: tip 75ab8ae54e95b90bb59e306b4ca3a08042430ce5,
+tree a180aa31555ef3f0f077ec89d035f1f7b43f1d38 = tree of the local branch HEAD; git fsck clean.
