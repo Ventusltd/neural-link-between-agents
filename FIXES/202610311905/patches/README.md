@@ -12,13 +12,13 @@ secret or a credential; every file is a plain-text diff, a git bundle or a text 
 | `01-dcmerge.patch` | P1 | `git format-patch` | data-grid-gb `b57c94d` |
 | `02-rebuild.patch` | P2 | `git format-patch` | after 01 |
 | `03-checks.txt`, `03-data-grid-gb.bundle`, `03-pr-body.md` | P3 | report, `git bundle`, PR body | data-grid-gb `b57c94d` (the bundle holds commits 01+02) |
-| `04-merge-evidence.md` | P4 | report (M, S, sha256, bytes, CI run URLs) | — |
+| `04-merge-evidence.md` | P4 | report (M, S, sha256, bytes, CI run URLs); STATUS UNVERIFIED until OWNER PUSH 1 | — |
 | `05-workflow.patch` | P5 | `git format-patch` | gridatlas `cacb69a` |
 | `06-repin.patch` | P6 | `git format-patch` | after 05 |
 | `07-tests.patch` | P7 | `git format-patch` | after 06 |
 | `08-cut.patch` | P8 | `git format-patch` | after 07 |
 | `09-pr-gate.log`, `09-gridatlas.bundle`, `09-pr-body.md` | P9 | log, `git bundle`, PR body | gridatlas `cacb69a` (the bundle holds 05–08) |
-| `10-ci-evidence.md` | P10 | report (run URLs, viewports, artifact names) | — |
+| `10-ci-evidence.md` | P10 | report (run URLs, viewports, artifact names); STATUS UNVERIFIED until OWNER PUSH 2 | — |
 
 ## Applying a patch series (owner, or a verifier)
 
@@ -31,6 +31,11 @@ git log --oneline b57c94d..HEAD          # two commits, authorship preserved
 ```
 
 `git am` keeps the implementer's author line, date and message (and the `Co-Authored-By` and `Claude-Session` trailers).
+
+**Author addresses.** Every patch's `From:` line, and every `Co-Authored-By:` trailer, must carry a no-reply address
+(`noreply@anthropic.com` or `<login>@users.noreply.github.com`), never a personal mailbox: this repository is public and
+`git am` copies the address into the destination repository's history. The verifier of each step checks
+`grep -n '^From:\|^Co-Authored-By:' patches/NN-*.patch` before REVIEW PASS; the owner refuses a patch that fails it.
 `--3way` lets a patch apply if main has moved under it; if it still fails, stop and post a BLOCKER on NL-007 with both refs
 rather than resolving by hand.
 
