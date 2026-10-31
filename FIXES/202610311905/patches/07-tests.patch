@@ -1,0 +1,79 @@
+From f162c947fd82851934085cbd5264c2a98fc4bf10 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 31 Oct 2026 21:48:37 +0000
+Subject: [PATCH] offtakers tests and source doc: 226 records, one unplaced;
+ smoke default generation 202610312138 (NL-007 P7)
+
+- overlay-offtakers.test.mjs:389 DC1: unplaced records 2 -> 1, message names
+  Ebbsfleet only (SDC M40 is now merged into Wapseys Wood).
+- browser-dc-smoke.mjs:16 default generation 202610292044 -> 202610312138;
+  :67 message says 226 source records, one unplaced (Ebbsfleet); the
+  asserted 225 at :55 and :67 is unchanged.
+- docs/OFFTAKERS-SOURCE.md:36: 226 sites (225 mappable) at data-grid-gb
+  01a4491 from generation 202610312138, Wapseys Wood one site.
+
+Suite: OFFTAKERS_MODULE=atlas/modules/202610312138-uk-offtakers-overlay.js
+LIGHTNING_MODULE=$PWD/atlas/modules/202610291043-uk-lightning-overlay.js
+node --test --test-reporter=tap tools/ci/offtakers/overlay-offtakers.test.mjs
+-> # tests 30 / # pass 30 / # fail 0 / # skipped 0.
+node tools/scope/loop.mjs lint -> scope-ledger=PASS.
+
+Co-Authored-By: Claude Opus <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_015ELZDBhAFNgtcsrTUSi1vm
+---
+ docs/OFFTAKERS-SOURCE.md                      | 2 +-
+ tools/ci/offtakers/browser-dc-smoke.mjs       | 4 ++--
+ tools/ci/offtakers/overlay-offtakers.test.mjs | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/docs/OFFTAKERS-SOURCE.md b/docs/OFFTAKERS-SOURCE.md
+index fa0af26..c46692f 100644
+--- a/docs/OFFTAKERS-SOURCE.md
++++ b/docs/OFFTAKERS-SOURCE.md
+@@ -33,7 +33,7 @@ Data centres are their own class: violet, a status ring (operational, under cons
+ connection request, announced, refused/withdrawn, not stated), sized by the stated IT load, else the stated grid connection
+ (faint when neither is stated; an unlabelled MW is quoted with its label and never sizes a dot or adds to either), with their
+ own chip row and legend. They come from a second pinned file, `data/uk_datacentre_pipeline_<stamp>.geojson` (the open UK
+-data-centre pipeline, data-grid-gb PR #3 (corrected 227 sites, operator-separated), `dc_pipeline.schema.json`; committed verbatim), read after the other sites are drawn;
++data-centre pipeline, data-grid-gb PR #3 (operator-separated); from 202610312138 the file at data-grid-gb `01a4491`, 226 sites (225 mappable), Wapseys Wood one site, `dc_pipeline.schema.json`; committed verbatim), read after the other sites are drawn;
+ if it fails, the offtakers file's data centres are drawn and the status line says why.
+ 
+ A data-centre tap opens a half-height card with four tabs, Area · Substations · REPD · Conventional (hardening DC-B2's
+diff --git a/tools/ci/offtakers/browser-dc-smoke.mjs b/tools/ci/offtakers/browser-dc-smoke.mjs
+index 658632c..3100b91 100644
+--- a/tools/ci/offtakers/browser-dc-smoke.mjs
++++ b/tools/ci/offtakers/browser-dc-smoke.mjs
+@@ -13,7 +13,7 @@ import { chromium } from 'playwright';
+ import { gunzipSync } from 'node:zlib';
+ 
+ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+-const G = process.env.DC_SMOKE_GENERATION || '202610292044';
++const G = process.env.DC_SMOKE_GENERATION || '202610312138';
+ const OUT = path.join(process.env.RUNNER_TEMP || '/tmp', 'gridatlas-dc-browser');
+ fs.mkdirSync(OUT, { recursive: true });
+ const FIXTURE = JSON.parse(gunzipSync(fs.readFileSync(path.join(ROOT, 'tools/ci/lightning/fixtures/repd-master-v8-oracle.json.gz'))));
+@@ -64,7 +64,7 @@ async function run(width,height){
+     throw new Error(String(error)+'; DC state '+JSON.stringify(diagnosis));
+   }
+   const n=await page.evaluate(()=>window.__GRIDATLAS_MODULES__.ukOfftakers.state.data.dots.filter(d=>d.k==='c').length);
+-  assert.equal(n,225,'227 source records, of which two planning sites have unknown coordinates and must not be mapped');
++  assert.equal(n,225,'226 source records, of which one planning site (Ebbsfleet) has unknown coordinates and must not be mapped');
+   await page.evaluate(()=>{const S=window.__GRIDATLAS_MODULES__.ukOfftakers.state,m=window.__GRIDATLAS_V9_MAP__;
+     const d=S.data.dots.find(x=>x.k==='c'&&/Digital Realty LHR26/.test(x.n))||S.data.dots.find(x=>x.k==='c'&&/Slough/.test(x.n));
+     if(!d)throw Error('No Slough data centre');window.__DC_SMOKE_SITE__=d;m.jumpTo({center:d.a,zoom:15});});
+diff --git a/tools/ci/offtakers/overlay-offtakers.test.mjs b/tools/ci/offtakers/overlay-offtakers.test.mjs
+index 1f17b2d..3aa6939 100644
+--- a/tools/ci/offtakers/overlay-offtakers.test.mjs
++++ b/tools/ci/offtakers/overlay-offtakers.test.mjs
+@@ -386,7 +386,7 @@ const sloughDC = x => x.S.data.dots.filter(d => d.k === 'c').sort((a, b) => hav(
+ test('DC1: data centres: the pinned pipeline file once, every site that passes the schema checks, one operator per origin; Slough ≥16 origins within 3 km', { skip: DSKIP }, async () => {
+   const x = await dcBoot(); const dc = x.S.data.dots.filter(d => d.k === 'c');
+   assert.equal(x.log.xhr.filter(u => u === DCURL).length, 1); assert.ok(SRC.includes(`DCFSHA='${sha(fs.readFileSync(REPO + DCREL))}'`), 'DC file pin');
+-  assert.equal(dc.length, DCD_MAPPABLE.length); assert.equal(DCD.features.length - DCD_MAPPABLE.length, 2, 'two unplaced planning records (SDC M40 and Ebbsfleet) remain in the source, never drawn'); assert.ok(dc.length >= 178, 'at least the operational OSM sites');
++  assert.equal(dc.length, DCD_MAPPABLE.length); assert.equal(DCD.features.length - DCD_MAPPABLE.length, 1, 'one unplaced planning record (Ebbsfleet) remains in the source, never drawn'); assert.ok(dc.length >= 178, 'at least the operational OSM sites');
+   assert.ok(dc.every(d => d.dc && d.p.site_kind !== 'cable_landing_station'));
+   // one operator per origin: a single operator string (or none); a source naming another operator must be flagged by the file
+   // (operator_alternatives, or an operator_disagreement conflict). The pipeline's members trace to DC-A4, where one origin merges two
+-- 
+2.43.0
+
