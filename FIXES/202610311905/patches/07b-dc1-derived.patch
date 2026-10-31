@@ -1,0 +1,55 @@
+From 5ec7f62f213e2d20a02e86427daa182c0f38e4a4 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 31 Oct 2026 22:07:23 +0000
+Subject: [PATCH] offtakers test DC1: derive the unplaced count from the file
+ the module pins, so the gate holds for 202610292044 and 202610312138 (NL-007
+ P7b)
+
+DC1 no longer asserts a literal number of unplaced planning records. It finds
+the file under data/ whose sha256 equals the module's DCFSHA, counts its
+features with null geometry, and asserts that the module's skipped count
+(S.data.pl.bad) and the source-minus-drawn count both equal that number, that
+Ebbsfleet is among the unplaced and that none of them is drawn. 202610292044
+pins 176c1b2e... (2 unplaced: Ebbsfleet, Wapseys Wood); 202610312138 pins
+87337db5... (1: Ebbsfleet). The rest of DC1 is unchanged.
+
+OFFTAKERS_MODULE=atlas/modules/202610312138-uk-offtakers-overlay.js
+LIGHTNING_MODULE=atlas/modules/202610291043-uk-lightning-overlay.js
+node --test --test-reporter=tap: # tests 30 # pass 30 # fail 0
+
+OFFTAKERS_MODULE=atlas/modules/202610292044-uk-offtakers-overlay.js
+LIGHTNING_MODULE=atlas/modules/202610291043-uk-lightning-overlay.js
+node --test --test-reporter=tap: # tests 30 # pass 30 # fail 0
+
+node tools/scope/loop.mjs lint: scope-ledger=PASS
+
+Co-Authored-By: Claude Opus <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_015ELZDBhAFNgtcsrTUSi1vm
+---
+ tools/ci/offtakers/overlay-offtakers.test.mjs | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/tools/ci/offtakers/overlay-offtakers.test.mjs b/tools/ci/offtakers/overlay-offtakers.test.mjs
+index 3aa6939..24c685d 100644
+--- a/tools/ci/offtakers/overlay-offtakers.test.mjs
++++ b/tools/ci/offtakers/overlay-offtakers.test.mjs
+@@ -386,7 +386,15 @@ const sloughDC = x => x.S.data.dots.filter(d => d.k === 'c').sort((a, b) => hav(
+ test('DC1: data centres: the pinned pipeline file once, every site that passes the schema checks, one operator per origin; Slough ≥16 origins within 3 km', { skip: DSKIP }, async () => {
+   const x = await dcBoot(); const dc = x.S.data.dots.filter(d => d.k === 'c');
+   assert.equal(x.log.xhr.filter(u => u === DCURL).length, 1); assert.ok(SRC.includes(`DCFSHA='${sha(fs.readFileSync(REPO + DCREL))}'`), 'DC file pin');
+-  assert.equal(dc.length, DCD_MAPPABLE.length); assert.equal(DCD.features.length - DCD_MAPPABLE.length, 1, 'one unplaced planning record (Ebbsfleet) remains in the source, never drawn'); assert.ok(dc.length >= 178, 'at least the operational OSM sites');
++  assert.equal(dc.length, DCD_MAPPABLE.length);
++  // NL-007 P7b: the unplaced records (null geometry) are counted in the file whose sha256 equals the module's DCFSHA, not written as
++  // a literal, so the test holds for every pin (the live 202610292044 pins a file with two, 202610312138 one); Ebbsfleet is one of them
++  const PINNED = SRC.match(/DCFSHA='([0-9a-f]{64})'/)[1], PFILE = fs.readdirSync(REPO + 'data').filter(n => /\.geojson$/.test(n)).find(n => sha(fs.readFileSync(REPO + 'data/' + n)) === PINNED);
++  assert.ok(PFILE, 'a file under data/ matches DCFSHA ' + PINNED); const UNPLACED = JSON.parse(fs.readFileSync(REPO + 'data/' + PFILE, 'utf8')).features.filter(f => f.geometry == null);
++  assert.ok(UNPLACED.length > 0, 'the pinned file keeps its unplaced planning records'); assert.equal(x.S.data.pl.bad, UNPLACED.length, 'the module skips exactly the unplaced records of ' + PFILE);
++  assert.equal(DCD.features.length - DCD_MAPPABLE.length, UNPLACED.length, 'every unplaced record remains in the source, never drawn');
++  assert.ok(UNPLACED.some(f => /Ebbsfleet/.test(f.properties.name)), 'Ebbsfleet is among the unplaced'); assert.ok(!dc.some(d => UNPLACED.some(f => f.properties.id === d.p.id)), 'no unplaced record is drawn');
++  assert.ok(dc.length >= 178, 'at least the operational OSM sites');
+   assert.ok(dc.every(d => d.dc && d.p.site_kind !== 'cable_landing_station'));
+   // one operator per origin: a single operator string (or none); a source naming another operator must be flagged by the file
+   // (operator_alternatives, or an operator_disagreement conflict). The pipeline's members trace to DC-A4, where one origin merges two
+-- 
+2.43.0
+

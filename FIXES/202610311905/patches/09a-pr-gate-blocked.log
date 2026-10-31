@@ -1,0 +1,302 @@
+base cacb69a7c4abc3b1a90fd75807ce8ef8cbc46d9e; 13 changed path(s)
+generations under test: 202610292044, 202610312138 (touched: 202610312138; live: 202610292044)
+scope-ledger=PASS active=none master=done
+PASS lint
+PASS state-parity
+PASS composition 202610292044
+202610292044 uk-lightning-overlay: sld-sandbox is the original 202609241334 (435218 B); overlay = atlas/modules/202610291043-uk-lightning-overlay.js (63707 B <= 64781); loader v2; arrival parity with 202610291043: 5 scripts, sld+'\n'+overlay == 202610291043 sld-sandbox, document identical but for the overlay tag. PASS
+PASS proof 202610292044-uk-lightning-overlay.proof.mjs
+202610292044 uk-offtakers-overlay: atlas/modules/202610292044-uk-offtakers-overlay.js (71191 B <= 80000), historical (source: 2f80729 (main, PR #73 lane DC-B1)); after uk-lightning-overlay; loader v2; 6 scripts composed, every other cartridge unchanged. PASS
+PASS proof 202610292044-uk-offtakers-overlay.proof.mjs
+PASS composition 202610312138
+202610312138 uk-lightning-overlay: sld-sandbox is the original 202609241334 (435218 B); overlay = atlas/modules/202610291043-uk-lightning-overlay.js (63707 B <= 64781); loader v2; arrival parity with 202610291043: 5 scripts, sld+'\n'+overlay == 202610291043 sld-sandbox, document identical but for the overlay tag. PASS
+PASS proof 202610312138-uk-lightning-overlay.proof.mjs
+202610312138 uk-offtakers-overlay: atlas/modules/202610312138-uk-offtakers-overlay.js (71191 B <= 80000), rebuilt from source; after uk-lightning-overlay; loader v2; 6 scripts composed, every other cartridge unchanged. PASS
+PASS proof 202610312138-uk-offtakers-overlay.proof.mjs
+
+=== streaming-parquet-bridge 202609241251 ===
+{
+  "status": "PASS",
+  "generation": "202609241251",
+  "composed_sha256": "60be8215ba873ac2886786bf6e3fd51e5764e7c5e26684fde71ebe9974a329a2",
+  "response_establishment_ms": 2.808,
+  "map_ready_requests": 1,
+  "streamed_responses": 1,
+  "duckdb_started_before_body": false,
+  "metro_partition": "partitions/uk_metros_trams_local_unwired.parquet",
+  "metro_rows_reconstructed": 1
+}
+
+=== uk-gazetteer-flyto 202609071213 ===
+{
+  "status": "PASS",
+  "generation": "202609071213",
+  "composed_sha256": "15f324e5c279050882f7e3ce83a915c070b6ed19095efcac4ae20af4ef19fdfa",
+  "resolved_identity": {
+    "repd_ref": "12588",
+    "technology": "solar",
+    "capacity_mw": 840,
+    "longitude": -1.3489728,
+    "latitude": 51.8132088
+  },
+  "terminal_states": [
+    "RESOLVED",
+    "NOT_IN_ACTIVE_REGISTER",
+    "ABSENT",
+    "FAILED"
+  ],
+  "mismatched_identity": "NOT_IN_ACTIVE_REGISTER"
+}
+
+=== substation-intelligence 202609062358 ===
+Published engine byte integrity and syntax PASS; browser coverage runs separately.
+
+=== sld-sandbox 202609241334 ===
+SLD exact delta, SHA-256 and syntax PASS; browser layout regression runs separately.
+
+=== uk-lightning-overlay 202610292044 ===
+202610292044 uk-lightning-overlay: sld-sandbox is the original 202609241334 (435218 B); overlay = atlas/modules/202610291043-uk-lightning-overlay.js (63707 B <= 64781); loader v2; arrival parity with 202610291043: 5 scripts, sld+'\n'+overlay == 202610291043 sld-sandbox, document identical but for the overlay tag. PASS
+
+=== uk-offtakers-overlay 202610292044 ===
+202610292044 uk-offtakers-overlay: atlas/modules/202610292044-uk-offtakers-overlay.js (71191 B <= 80000), historical (source: 2f80729 (main, PR #73 lane DC-B1)); after uk-lightning-overlay; loader v2; 6 scripts composed, every other cartridge unchanged. PASS
+
+proofs run: 6
+every composed cartridge passed its generation-matched proof
+PASS run-current
+{"composition":"PASS","generation":"202610292044","release_id":"202608300453-atlas-v9","immutable_releases":8,"cartridges":["streaming-parquet-bridge","uk-gazetteer-flyto","substation-intelligence","sld-sandbox","uk-lightning-overlay","uk-offtakers-overlay"]}
+PASS verify-compose
+PASS loader-registry  53 served loader(s) registered (v2 6, v1 47); each supports its own composition
+served loaders: 53 route(s), v1 47, v2 6; each supports the slots of its own current.json
+equivalence: 47 replace-script-only composition(s) compose byte-identically under v1 and v2; 6 modular composition(s) refused by v1, as designed
+after-cartridge: order kept; v1 refuses it; 5 malformed compositions fail closed under v2 with nothing written
+loader registry, equivalence and fail-closed PASS
+PASS loader-equivalence
+ok   202610291043 layers: 63707 B sha256 15ff1e37890770efc42b75651fac2fcc98a16c71a694481c79778ae0a6d818db rebuilt byte for byte
+PASS lightning-source
+hist 202610290400: historical, built from 1acd1a5 (main 94009a2); not rebuilt from the current source
+hist 202610290949: historical, built from 1fb2122 (main, PR #68); not rebuilt from the current source
+hist 202610291044: historical, built from 6bd84eb (main f0f449b, PR #70); not rebuilt from the current source
+hist 202610292044: historical, built from 2f80729 (main, PR #73 lane DC-B1); not rebuilt from the current source
+ok   202610312138: 71191 B sha256 1be368f53b04f4f451c0559ca6c534d3f8301ad9df158cc6dd94308517c5cf46 rebuilt byte for byte
+PASS offtakers-source
+overlay-engine.test.mjs on 202610291043: pass 207 fail 0 skipped 10 in 52.7 s
+PASS lightning 202610291043 overlay-engine.test.mjs  pass 207 fail 0 skipped 10 52.7 s
+overlay-latest.test.mjs on 202610291043: pass 8 fail 0 skipped 0 in 0.2 s
+PASS lightning 202610291043 overlay-latest.test.mjs  pass 8 fail 0 skipped 0 0.2 s
+TAP version 13
+# Subtest: P0: the module pins the committed OT-filter file (sha256)
+ok 1 - P0: the module pins the committed OT-filter file (sha256)
+  ---
+  duration_ms: 4.71727
+  type: 'test'
+  ...
+# Subtest: T3/T4: classes on the pinned OT-filter file; power stations kept (incl. closed); no small water by default; Offshore never
+ok 2 - T3/T4: classes on the pinned OT-filter file; power stations kept (incl. closed); no small water by default; Offshore never
+  ---
+  duration_ms: 42.532104
+  type: 'test'
+  ...
+# Subtest: T1: arrival identity: OFF adds no request, source, layer or listener; the group sits before lightning's; OFF by default
+ok 3 - T1: arrival identity: OFF adds no request, source, layer or listener; the group sits before lightning's; OFF by default
+  ---
+  duration_ms: 18.897214
+  type: 'test'
+  ...
+# Subtest: T2a: switch-on fetches exactly the pinned data file once; copper-to-teal palette; small water off; legend
+ok 4 - T2a: switch-on fetches exactly the pinned data file once; copper-to-teal palette; small water off; legend
+  ---
+  duration_ms: 216.144857
+  type: 'test'
+  ...
+# Subtest: T2b: a SHA-256 mismatch shows "data check failed" and draws nothing
+ok 5 - T2b: a SHA-256 mismatch shows "data check failed" and draws nothing
+  ---
+  duration_ms: 79.831252
+  type: 'test'
+  ...
+# Subtest: T2c: class and power-status chips filter the drawn and tappable layers; All resets; hollow ring for closed
+ok 6 - T2c: class and power-status chips filter the drawn and tappable layers; All resets; hollow ring for closed
+  ---
+  duration_ms: 256.125953
+  type: 'test'
+  ...
+# Subtest: T6a: a tap lists the 15 nearest REPD sites (≤40 km, ties kept), equal to an independent haversine reference, and draws 15 REPD links + 5 substation links
+ok 7 - T6a: a tap lists the 15 nearest REPD sites (≤40 km, ties kept), equal to an independent haversine reference, and draws 15 REPD links + 5 substation links
+  ---
+  duration_ms: 611.547938
+  type: 'test'
+  ...
+# Subtest: T6b: ties at the 15th site distance are kept; "Only n REPD sites within 40 km" for a sparse point; chips re-rank; MW not stated is never 0
+ok 8 - T6b: ties at the 15th site distance are kept; "Only n REPD sites within 40 km" for a sparse point; chips re-rank; MW not stated is never 0
+  ---
+  duration_ms: 207.889926
+  type: 'test'
+  ...
+# Subtest: T7: substations are exactly the 5 from nearestSubstations; beyondRadiusNearest is named when none lies within 40 km
+ok 9 - T7: substations are exactly the 5 from nearestSubstations; beyondRadiusNearest is named when none lies within 40 km
+  ---
+  duration_ms: 452.27819
+  type: 'test'
+  ...
+# Subtest: T8: full REPD record (M5 join, copied unchanged): joined rows show ref, address, postcode; unjoined read "address not in register"
+ok 10 - T8: full REPD record (M5 join, copied unchanged): joined rows show ref, address, postcode; unjoined read "address not in register"
+  ---
+  duration_ms: 569.132941
+  type: 'test'
+  ...
+# Subtest: T9: wording lint: banned words, no tCO2e and no "%" in the card; every text block tiered; no distance tiered Record; first line ≤ 90 chars; Unknown never a name
+ok 11 - T9: wording lint: banned words, no tCO2e and no "%" in the card; every text block tiered; no distance tiered Record; first line ≤ 90 chars; Unknown never a name
+  ---
+  duration_ms: 2348.511352
+  type: 'test'
+  ...
+# Subtest: T10: CSV vicinity sheet: header with generation and caveat; one row per listed project and substation; licence filled
+ok 12 - T10: CSV vicinity sheet: header with generation and caveat; one row per listed project and substation; licence filled
+  ---
+  duration_ms: 309.085621
+  type: 'test'
+  ...
+# Subtest: T12: cleanup: OFF removes every offtakers source, layer, card, map listener and animation; ON again redraws; repeated cycles leave nothing
+ok 13 - T12: cleanup: OFF removes every offtakers source, layer, card, map listener and animation; ON again redraws; repeated cycles leave nothing
+  ---
+  duration_ms: 798.181484
+  type: 'test'
+  ...
+# Subtest: T13: both ON: no interference with the lightning overlay (ids disjoint, lightning layers untouched, one card at a time, offtakers above)
+ok 14 - T13: both ON: no interference with the lightning overlay (ids disjoint, lightning layers untouched, one card at a time, offtakers above)
+  ---
+  duration_ms: 656.789288
+  type: 'test'
+  ...
+# Subtest: T11: isolation: an offtakers error (throwing measure, a top-level throw) leaves lightning installed and working
+ok 15 - T11: isolation: an offtakers error (throwing measure, a top-level throw) leaves lightning installed and working
+  ---
+  duration_ms: 375.004908
+  type: 'test'
+  ...
+# Subtest: T14: a row flies to the REPD site with its own substations; ◀ back restores the offtaker card; Escape and × close
+ok 16 - T14: a row flies to the REPD site with its own substations; ◀ back restores the offtaker card; Escape and × close
+  ---
+  duration_ms: 562.420169
+  type: 'test'
+  ...
+# Subtest: T15: power station card: closed coal (Ratcliffe) shows MW, the curated status with its source, the merged records and the combustion indicator
+ok 17 - T15: power station card: closed coal (Ratcliffe) shows MW, the curated status with its source, the merged records and the combustion indicator
+  ---
+  duration_ms: 316.327799
+  type: 'test'
+  ...
+# Subtest: Z: no unhandled rejections
+ok 18 - Z: no unhandled rejections
+  ---
+  duration_ms: 69.456993
+  type: 'test'
+  ...
+# Subtest: T13b: both ON, in either handler order: the offtaker hit claims the tap, lightning ignores it, the same-tap map popup closes
+ok 19 - T13b: both ON, in either handler order: the offtaker hit claims the tap, lightning ignores it, the same-tap map popup closes
+  ---
+  duration_ms: 727.251921
+  type: 'test'
+  ...
+# Subtest: DC1: data centres: the pinned pipeline file once, every site that passes the schema checks, one operator per origin; Slough ≥16 origins within 3 km
+not ok 20 - DC1: data centres: the pinned pipeline file once, every site that passes the schema checks, one operator per origin; Slough ≥16 origins within 3 km
+  ---
+  duration_ms: 102.055114
+  type: 'test'
+  location: '/home/user/estate/gridatlas/tools/ci/offtakers/overlay-offtakers.test.mjs:386:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    one unplaced planning record (Ebbsfleet) remains in the source, never drawn
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///home/user/estate/gridatlas/tools/ci/offtakers/overlay-offtakers.test.mjs:389:56)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: DC2: a Slough tap: 30 substations = gridScope = independent haversine, first 5 = nearestSubstations; 30 REPD; 30 conventional; nearest 10 drawn, Show all, Draw all; labels ≤ 6
+ok 21 - DC2: a Slough tap: 30 substations = gridScope = independent haversine, first 5 = nearestSubstations; 30 REPD; 30 conventional; nearest 10 drawn, Show all, Draw all; labels ≤ 6
+  ---
+  duration_ms: 676.6165
+  type: 'test'
+  ...
+# Subtest: DC3: default: nearest 10 of each set drawn; "Draw all" draws every listed link within reach; tab keys move the selection
+ok 22 - DC3: default: nearest 10 of each set drawn; "Draw all" draws every listed link within reach; tab keys move the selection
+  ---
+  duration_ms: 383.985646
+  type: 'test'
+  ...
+# Subtest: DC4: a remote site: conventional always lists 30 (any distance) and draws only ≤100 km; short substation and REPD sets say so
+ok 23 - DC4: a remote site: conventional always lists 30 (any distance) and draws only ≤100 km; short substation and REPD sets say so
+  ---
+  duration_ms: 310.449748
+  type: 'test'
+  ...
+# Subtest: DC5: CSV: four comment lines and the header; the site, every listed substation, REPD project and conventional site; licences; drawn flag; no formula cells
+ok 24 - DC5: CSV: four comment lines and the header; the site, every listed substation, REPD project and conventional site; licences; drawn flag; no formula cells
+  ---
+  duration_ms: 450.950154
+  type: 'test'
+  ...
+# Subtest: DC6: cleanup: OFF removes every data-centre source, layer, ring and card; cycles leave nothing; no error noted
+ok 25 - DC6: cleanup: OFF removes every data-centre source, layer, ring and card; cycles leave nothing; no error noted
+  ---
+  duration_ms: 862.372852
+  type: 'test'
+  ...
+# Subtest: DC7: a failed data-centre file keeps the offtakers data centres and says why; a failed conventional file falls back to the power-station class and says so
+ok 26 - DC7: a failed data-centre file keeps the offtakers data centres and says why; a failed conventional file falls back to the power-station class and says so
+  ---
+  duration_ms: 655.892176
+  type: 'test'
+  ...
+# Subtest: DC8: isolation: no gridScope → "not loaded yet" (no throw); lightning stays installed and working; non-data-centre taps keep 15 REPD + 5 substations
+ok 27 - DC8: isolation: no gridScope → "not loaded yet" (no throw); lightning stays installed and working; non-data-centre taps keep 15 REPD + 5 substations
+  ---
+  duration_ms: 615.279189
+  type: 'test'
+  ...
+# Subtest: DC9: rows open their own card; ◀ back to data centre restores the tab
+ok 28 - DC9: rows open their own card; ◀ back to data centre restores the tab
+  ---
+  duration_ms: 1030.706584
+  type: 'test'
+  ...
+# Subtest: DC10: schema checks and the URL allow-list: bad records are skipped and counted, never repaired; Marchwood is gas
+ok 29 - DC10: schema checks and the URL allow-list: bad records are skipped and counted, never repaired; Marchwood is gas
+  ---
+  duration_ms: 303.865761
+  type: 'test'
+  ...
+# Subtest: DC11: MW wording: IT load and grid connection apart, never derived or added; an unlabelled MW is quoted with its own label and never sizes the dot
+ok 30 - DC11: MW wording: IT load and grid connection apart, never derived or added; an unlabelled MW is quoted with its own label and never sizes the dot
+  ---
+  duration_ms: 727.856461
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 29
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 42504.564422
+FAIL offtakers 202610292044 + lightning 202610291043 overlay-offtakers.test.mjs  pass 29 fail 1 skipped 0 42.6 s; atlas/current.json  exit 1
+overlay-offtakers.test.mjs on 202610312138 + 202610291043: pass 30 fail 0 skipped 0 in 42.3 s
+PASS offtakers 202610312138 + lightning 202610291043 overlay-offtakers.test.mjs  pass 30 fail 0 skipped 0 42.3 s; atlas/v/202610312138/current.json
+PASS release-tools  15 script(s) parse; 2 test file(s): pass 16 fail 0
+
+18/19 checks passed
+  FAIL offtakers 202610292044 + lightning 202610291043 overlay-offtakers.test.mjs
+
+real	2m26.924s
+user	0m31.284s
+sys	0m4.211s
