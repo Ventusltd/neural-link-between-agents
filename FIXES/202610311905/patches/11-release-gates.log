@@ -1,0 +1,116 @@
+
+### loop.mjs lint  ->  PASS  scope-ledger=PASS active=none master=done
+scope-ledger=PASS active=none master=done
+
+### loop.mjs state --stdout == STATE.md  ->  PASS  STATE_PARITY_OK
+scope-ledger=PASS active=none master=done
+
+### verify-compose  ->  PASS  composition=PASS generation=202610312138
+{"composition":"PASS","generation":"202610312138","release_id":"202608300453-atlas-v9","immutable_releases":8,"cartridges":["streaming-parquet-bridge","uk-gazetteer-flyto","substation-intelligence","sld-sandbox","uk-lightning-overlay","uk-offtakers-overlay"]}
+
+### run-current  ->  PASS  every composed cartridge passed its generation-matched proof
+
+=== streaming-parquet-bridge 202609241251 ===
+{
+  "status": "PASS",
+  "generation": "202609241251",
+  "composed_sha256": "60be8215ba873ac2886786bf6e3fd51e5764e7c5e26684fde71ebe9974a329a2",
+  "response_establishment_ms": 2.013,
+  "map_ready_requests": 1,
+  "streamed_responses": 1,
+  "duckdb_started_before_body": false,
+  "metro_partition": "partitions/uk_metros_trams_local_unwired.parquet",
+  "metro_rows_reconstructed": 1
+}
+
+=== uk-gazetteer-flyto 202609071213 ===
+{
+  "status": "PASS",
+  "generation": "202609071213",
+  "composed_sha256": "15f324e5c279050882f7e3ce83a915c070b6ed19095efcac4ae20af4ef19fdfa",
+  "resolved_identity": {
+    "repd_ref": "12588",
+    "technology": "solar",
+    "capacity_mw": 840,
+    "longitude": -1.3489728,
+    "latitude": 51.8132088
+  },
+  "terminal_states": [
+    "RESOLVED",
+    "NOT_IN_ACTIVE_REGISTER",
+    "ABSENT",
+    "FAILED"
+  ],
+  "mismatched_identity": "NOT_IN_ACTIVE_REGISTER"
+}
+
+=== substation-intelligence 202609062358 ===
+Published engine byte integrity and syntax PASS; browser coverage runs separately.
+
+=== sld-sandbox 202609241334 ===
+SLD exact delta, SHA-256 and syntax PASS; browser layout regression runs separately.
+
+=== uk-lightning-overlay 202610312138 ===
+202610312138 uk-lightning-overlay: sld-sandbox is the original 202609241334 (435218 B); overlay = atlas/modules/202610291043-uk-lightning-overlay.js (63707 B <= 64781); loader v2; arrival parity with 202610291043: 5 scripts, sld+'\n'+overlay == 202610291043 sld-sandbox, document identical but for the overlay tag. PASS
+
+=== uk-offtakers-overlay 202610312138 ===
+202610312138 uk-offtakers-overlay: atlas/modules/202610312138-uk-offtakers-overlay.js (71191 B <= 80000), rebuilt from source; after uk-lightning-overlay; loader v2; 6 scripts composed, every other cartridge unchanged. PASS
+
+proofs run: 6
+every composed cartridge passed its generation-matched proof
+
+### tools/proofs/202610312138-uk-lightning-overlay.proof.mjs  ->  PASS  exit 0
+202610312138 uk-lightning-overlay: sld-sandbox is the original 202609241334 (435218 B); overlay = atlas/modules/202610291043-uk-lightning-overlay.js (63707 B <= 64781); loader v2; arrival parity with 202610291043: 5 scripts, sld+'\n'+overlay == 202610291043 sld-sandbox, document identical but for the overlay tag. PASS
+
+### tools/proofs/202610312138-uk-offtakers-overlay.proof.mjs  ->  PASS  exit 0
+202610312138 uk-offtakers-overlay: atlas/modules/202610312138-uk-offtakers-overlay.js (71191 B <= 80000), rebuilt from source; after uk-lightning-overlay; loader v2; 6 scripts composed, every other cartridge unchanged. PASS
+
+### data-contract parity (no new FAIL rows)  ->  PASS  3 FAIL row(s), 0 new
+
+data-contract parity for 202610312138-gridatlas-v9.188 (6 cartridges)
+
+streaming-parquet-bridge 202609241251: bytes name 0 product(s), entry declares 0
+uk-gazetteer-flyto 202609071213: bytes name 0 product(s), entry declares 0
+sld-sandbox 202609241334: bytes name 0 product(s), entry declares 2
+  FAIL sld-sandbox: declared source derived/gb-transmission-network.v1.json is named by the bytes
+  FAIL sld-sandbox: declared source derived/price-decade-rollup.json is named by the bytes
+substation-intelligence 202609062358: bytes name 0 product(s), entry declares 1
+  FAIL substation-intelligence: declared source derived/connection-points.v3.json is named by the bytes
+  PASS substation-intelligence: capability connection-points-v3-consumed agrees with a declared schema
+uk-lightning-overlay 202610312138: bytes name 2 product(s), entry declares 2
+  PASS uk-lightning-overlay: data/history/ fetched by the bytes is declared on the entry
+  PASS uk-lightning-overlay: data/history/ schema in the bytes is the schema the entry requires
+  PASS uk-lightning-overlay: data/uk_lightning.geojson fetched by the bytes is declared on the entry
+  PASS uk-lightning-overlay: data/uk_lightning.geojson schema in the bytes is the schema the entry requires
+  PASS uk-lightning-overlay: declared source data/uk_lightning.geojson is named by the bytes
+  PASS uk-lightning-overlay: declared source data/history/ is named by the bytes
+uk-offtakers-overlay 202610312138: bytes name 0 product(s), entry declares 0
+  PASS the composition manifest is the current generation
+  PASS streaming-parquet-bridge: the composition manifest declares the same sources as current.json
+  PASS uk-gazetteer-flyto: the composition manifest declares the same sources as current.json
+  PASS sld-sandbox: the composition manifest declares the same sources as current.json
+  PASS substation-intelligence: the composition manifest declares the same sources as current.json
+  PASS uk-lightning-overlay: the composition manifest declares the same sources as current.json
+  PASS uk-offtakers-overlay: the composition manifest declares the same sources as current.json
+
+14/17 checks passed
+FAILURES
+  sld-sandbox: declared source derived/gb-transmission-network.v1.json is named by the bytes
+  sld-sandbox: declared source derived/price-decade-rollup.json is named by the bytes
+  substation-intelligence: declared source derived/connection-points.v3.json is named by the bytes
+
+### rollback.mjs --to 202610292044 --dry-run  ->  PASS  exit 0
+  MATCH           streaming-parquet-bridge     atlas/cartridges/202609241251-streaming-parquet-bridge-v9-5.js
+  MATCH           uk-gazetteer-flyto           atlas/cartridges/202609071213-place-global-search-v9-5.js
+  MATCH           sld-sandbox                  atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+  MATCH           substation-intelligence      atlas/cartridges/202609062358-substation-intelligence-v9-63.js
+  MATCH           uk-lightning-overlay         atlas/modules/202610291043-uk-lightning-overlay.js
+  MATCH           uk-offtakers-overlay         atlas/modules/202610292044-uk-offtakers-overlay.js
+  PRESENT         shell:index.html             atlas/releases/202608300453-atlas-v9/index.html
+
+  from        202610312138  v9.188
+  restoring   202610292044  v9.187   (1 generation back)
+  as          202610312250  202610312250-gridatlas-v9.187
+  cartridges  6 verified against committed bytes
+
+--dry-run: nothing written

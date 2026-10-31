@@ -1,0 +1,84 @@
+{
+ "tool": "release-generation",
+ "generation": "202610312138",
+ "root": "<release worktree>",
+ "started_utc": "2026-10-31T22:50:48.078Z",
+ "base": {
+  "ref": "origin/main",
+  "sha": "285148aa096a9dea8bd62d183b9301d7514fc34c"
+ },
+ "live_before": "202610292044",
+ "predecessor": "202610292044",
+ "loader": {
+  "live": "v2",
+  "preview": "v2",
+  "moves": false,
+  "live_missing_slots": []
+ },
+ "before": {
+  "atlas/current.json": "dc3c0363c195e55a8f712f4e4d866a144155edc6d4fd2294c75b94a3374e891c",
+  "STATE.md": "197e0fd239706957fcbee3cf38d1cbdae06c23594986a7de7c3ea3a781d044fd"
+ },
+ "parity_baseline": [
+  "sld-sandbox: declared source derived/gb-transmission-network.v1.json is named by the bytes",
+  "sld-sandbox: declared source derived/price-decade-rollup.json is named by the bytes",
+  "substation-intelligence: declared source derived/connection-points.v3.json is named by the bytes"
+ ],
+ "branch": "release/202610312138-gridatlas-v9.188",
+ "prep_commits": [],
+ "gates": [
+  {
+   "gate": "loop.mjs lint",
+   "ok": true,
+   "detail": "scope-ledger=PASS active=none master=done"
+  },
+  {
+   "gate": "loop.mjs state --stdout == STATE.md",
+   "ok": true,
+   "detail": "STATE_PARITY_OK"
+  },
+  {
+   "gate": "verify-compose",
+   "ok": true,
+   "detail": "composition=PASS generation=202610312138"
+  },
+  {
+   "gate": "run-current",
+   "ok": true,
+   "detail": "every composed cartridge passed its generation-matched proof"
+  },
+  {
+   "gate": "tools/proofs/202610312138-uk-lightning-overlay.proof.mjs",
+   "ok": true,
+   "detail": "exit 0"
+  },
+  {
+   "gate": "tools/proofs/202610312138-uk-offtakers-overlay.proof.mjs",
+   "ok": true,
+   "detail": "exit 0"
+  },
+  {
+   "gate": "data-contract parity (no new FAIL rows)",
+   "ok": true,
+   "detail": "3 FAIL row(s), 0 new"
+  },
+  {
+   "gate": "rollback.mjs --to 202610292044 --dry-run",
+   "ok": true,
+   "detail": "exit 0"
+  }
+ ],
+ "parity_after": [
+  "sld-sandbox: declared source derived/gb-transmission-network.v1.json is named by the bytes",
+  "sld-sandbox: declared source derived/price-decade-rollup.json is named by the bytes",
+  "substation-intelligence: declared source derived/connection-points.v3.json is named by the bytes"
+ ],
+ "after": {
+  "atlas/current.json": "a8157114bbde14e2acd5bc6808acfd3e8807dedf103e20923760d30338713c7a",
+  "STATE.md": "91c126077c70695306620887c3ccda13442f69742d4803835f49b8192c6fc31d"
+ },
+ "release_commit": "ddbf51d028c1366f3e4679a345bada24d6dce8ab",
+ "release_tree": "bdd24db2855550b907a86bc070a213ef55627724",
+ "finished_utc": "2026-10-31T22:50:49.970Z",
+ "exit": 0
+}
