@@ -19,6 +19,18 @@ is one record in `data/layers.json`, registered at run time in the layer registr
 the only surface a module may touch. Where this file and Team 5's draft differ (module file names, step 4 below), the
 difference is stated for Team 5B to consolidate, not left for the Opus teams to discover.
 
+Round 2 (after REVIEW.md round 1, 14 points), where each is answered: 1 the pointer drops `?layers=` → 3.6 (FINDING, Team
+5's pointer law, test 6); 2 the shell waited on the wafer → 4.2 `wafer` hook, 4.6 loader timing, 3.5, step 4 test 7;
+3 `KY.admitting` on a frozen table → 4.4 (loader closure); 4 the admissible set → 4.2 (one rule, the 28 names, `KY.names`),
+4.9 E6; 5 the stamp in three places → 4.3 (two places: file name and `generation`), 4.4, 4.6, test 4; 6 editions beyond
+the rim → 3.7 row and test 2; 7 the panel's name → WAFER adopted (3.3, 3.8, tests), SCOPE/EDIT as proxies via
+`KY.layers.value`; 8 module names → 4.3 (identity = `generation` + `sha256`, default `<module-stamp>-<name>.js`, Team 1
+already uses it); 9 other teams' files and formats → 3.7 rows (owning team names the file; the registry admits two
+formats and refuses others in words); 10 NL-009 05-lines → 3.3 and test 2; 11 two `requires` lists → 3.1
+(`build_layers.py` subset check); 12 `repos`/`periods` with no value → 3.3 `value`, test 3; 13 wording → 4.1; 14 the card
+→ 3.3 last bullet (Team 1's `line-card` module, admitted first). Cross-team line numbers (team-1/4/5 STEPS.md) are as
+read at 21:24 UTC on 1 Nov 2026; those files are still being revised.
+
 What the two steps rest on, in one paragraph. GridAtlas keeps 63 layer switches behind one Grid menu that proxies the
 engine's own 63 inputs and installs nothing until all 63 exist (gridatlas@5ec7f62 atlas/modules/202609031958-menu-bar.js:
 8-21, :32-34, :122-127); its cartridges are stamped, hashed files admitted in an explicit order by a 124-line composer
