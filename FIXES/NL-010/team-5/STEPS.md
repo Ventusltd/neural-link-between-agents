@@ -1,4 +1,4 @@
-REVIEW: OPEN
+REVIEW: PASS
 
 # Team 5 "law and proof": steps 9 and 10 of the NL-010 roadmap
 
