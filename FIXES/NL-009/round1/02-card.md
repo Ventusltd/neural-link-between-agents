@@ -35,7 +35,7 @@ the spark still lands in the clear space: Pixel 7 spark centre y = 377 between b
    the screen position of another spark changed the selection: title went from "Bytes on disk are the bytes that
    ship" to "Successors wrap the pinned base by import and do not edit it" (Pixel 7, wafer zoomed out so sparks lie
    under the card; `hidden2.cjs`). After: the picker returns unless `e.target === cv` (the wafer canvas), so taps on the
-   card, the bar or a panel never pick. STATUS: HIDDEN2_AFTER_PLACEHOLDER
+   card, the bar or a panel never pick. STATUS: PASS (same synthetic tap on the patched page: title unchanged, `selection_jumped:false`).
 4. **MAJOR · opening a panel while the card is open stacks them.** With details open, LINES bottom 597 px vs card top
    548 px on Pixel 7 = 49.5 px overlap (S24 51.9 px, 360x640 57.5 px): the card covers the last rows of the list
    (img/02-before-pixel7-lines-over-card.png). After: `setPanel` is wrapped so the card gets `.behind`
