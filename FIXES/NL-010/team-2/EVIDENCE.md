@@ -347,5 +347,19 @@ ones a layer registry must answer (keys are into this repository's files, not th
 | D4 | MAJOR: WebGL unavailable gives a blank black screen (FABLE-09) | neural-link-between-agents FIXES/NL-009/round1/09-robust.md:18 | Registry admission must fail loudly when a hook (`gl`, `o2`) is absent, as A3.7–A3.9 and A4.16 |
 | D5 | BLOCKER (owner): See Through is unreachable from Edition 4 (FABLE-06) | neural-link-between-agents FIXES/NL-009/round1/06-seethrough.md:11 | The See Through stars layer and its button are Team 3's step; Team 2's registry must carry the layer record and its deep link, not a second button |
 | D6 | Auditors agree the fix is a `(pointer:coarse)` rule with `min-height:44px` titles and the edition name shrinking to a mark (FABLE-01) | neural-link-between-agents FIXES/NL-009/round1/01-bar.md:51 | The Grid-like LAYERS panel inherits the same touch rule |
+| D7 | MAJOR: the LINES panel scrolls as one block, not the list inside it (FABLE-05) | neural-link-between-agents FIXES/NL-009/round1/05-lines.md:16 | The LAYERS panel's list must scroll inside the panel |
+| D8 | MAJOR: toggle labels 21 px tall with 13×13 px checkboxes (FABLE-05) | neural-link-between-agents FIXES/NL-009/round1/05-lines.md:25 | Rows ≥44 px, as A2.10 |
+| D9 | MAJOR: a filter cannot be cleared (FABLE-05) | neural-link-between-agents FIXES/NL-009/round1/05-lines.md:40 | A clear control on the layer filter |
+| D10 | MINOR: the count of rows is shown nowhere; no grouping; panel not full width (FABLE-05) | neural-link-between-agents FIXES/NL-009/round1/05-lines.md:54 | A count line, group titles (A1.18), full width on a phone |
 
-Re-read before REVIEW; REVIEW.md names the state then.
+Two facts measured during the review of STEPS.md (round 1), kept here because the steps depend on them:
+
+| # | fact | key | fragment |
+|---|---|---|---|
+| D11 | The editions pointer forwards only the hash; a `?layers=` query parameter would be dropped (GridAtlas's root forwards `search` and `hash`, gridatlas@5ec7f62f213e index.html:2) | kuiper-belt@018b46aed50f editions/index.html:12 | `location.replace('202611012027/' + location.hash)` |
+| D12 | The wafer's last commit is 1793539112 (2026-11-01 13:18:32 UTC); edition stamps 202611012022 and 202611012027 are after it, so "the first commit at or after the stamp" does not exist for them | kuiper-belt@018b46aed50f cosmos/wafer-meta.json:9 | `"last_unix": 1793539112` |
+| D13 | Team 1 maps GRID → WAFER and names the layer registry as its content | neural-link-between-agents FIXES/NL-010/team-1/STEPS.md:146 | `WAFER` |
+| D14 | Team 4 writes `data/elements.json` and `data/graphs/overview.json` | neural-link-between-agents FIXES/NL-010/team-4/STEPS.md:186 | `data/elements.json` |
+| D15 | Team 5 and Team 4 name modules `modules/NN-<name>.js` | neural-link-between-agents FIXES/NL-010/team-4/STEPS.md:17 | `modules/NN-<name>.js` |
+
+Re-read before each REVIEW round; REVIEW.md names the state then.

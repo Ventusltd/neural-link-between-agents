@@ -51,8 +51,12 @@ Numbers that come from a measurement say so; everything else is a line of source
 | durable state | gridatlas@5ec7f62 STATE.md:5 | composition `202610292044 · 202608300453-atlas-v9 · streaming-parquet-bridge → … → uk-offtakers-overlay` |
 
 The menu bar exists twice in the repository: as the module `atlas/modules/202609031958-menu-bar.js` (1,805 lines) and
-verbatim inside the cartridge the composer actually loads, `atlas/cartridges/202609062358-substation-intelligence-v9-63.js`
-lines 4,376–6,131 (keys for both are given below; the module key is the readable one, the cartridge key is the live one).
+inside the cartridge the composer actually loads, `atlas/cartridges/202609062358-substation-intelligence-v9-63.js`
+lines 4,346–6,151 (keys for both are given below; the module key is the readable one, the cartridge key is the live one).
+`diff` of the module's `install()` (:1647-1746) against the cartridge's (:5996-6105) shows ONE difference: the cartridge
+does not move the search bar into File (cartridge :6011-6016, "The search bar is NOT moved. It is the one control a person
+needs before they know which menu to open … It stays in .map-container"); everything else is the same text. The live
+bytes rule where they differ.
 
 ### A2. The immutable shell (the v8 page the bar is installed into)
 
@@ -99,27 +103,27 @@ nothing. **The Ventus "logo" on GridAtlas is not an image file. It is the typogr
 | **the six names** | :31 | :4380 | `var MENUS = ['File', 'Edit', 'View', 'Scope', 'Grid', 'About'];` |
 | expected inventory | :32-35 | :4381-4384 | 60 engine + 3 Pipeline News = 63; `MAX_TRIES = 160` × 250 ms = 40 s |
 | public state | :40-57 | :4389-4406 | `window.__GRIDATLAS_MODULES__.menuBar` {installed, controls_moved, layer_controls, panel_counts, failure, closed_at_rest, one_identity_surface…} |
-| inventory() | :106-124 | :4456-4474 | counts `input[type=checkbox][data-layer-id]` and `[data-pn-layer]` under `#scada-ui-container`; complete only at 60 + 3 = 63 unique non-empty keys |
-| required() | :138-160 | :4490-4512 | the nodes the bar needs: `.map-container`, `.map-controls`, `.search-bar-wrapper`, `.hud-header`, `#btn-export`, `#btn-status`, `#btn-fullscreen`, `#btn-radius`, `#btn-radius-area`, `#btn-zonedraw`, `#btn-measure`; else `missing.push('63 unique layer controls')` |
+| inventory() | :107-124 | :4456-4474 | counts `input[type=checkbox][data-layer-id]` and `[data-pn-layer]` under `#scada-ui-container`; complete only at 60 + 3 = 63 unique non-empty keys |
+| required() | :141-159 | :4490-4509 | the nodes the bar needs: `.map-container`, `.map-controls`, `.search-bar-wrapper`, `.hud-header`, `#btn-export`, `#btn-status`, `#btn-fullscreen`, `#btn-radius`, `#btn-radius-area`, `#btn-zonedraw`, `#btn-measure`; else `missing.push('63 unique layer controls')` |
 | buildBar(): three zones | :481-503 | :4830-4852 | `<nav id=gridatlas-menu-bar aria-label="Atlas menu">` = `.gm-side-left` + `.gm-brand-slot` + `.gm-side-right`; prose: "Fusing the brand into the CENTRE of the same 36px strip … no extra row and therefore no map height stolen on a phone" |
 | buildBar(): a title and its panel | :505-516 | :4854-4865 | `<button class=gm-title>` with `aria-haspopup=menu`, `aria-expanded`, `aria-controls`; `<div class=gm-panel role=group hidden>` |
 | Grid panel head/body | :517-536 | :4866-4885 | the Grid panel is `.gm-panel-grid` with `.gm-panel-head` (the real `.scada-brand` + `.status-legend`) over a scrollable `.gm-panel-body` |
 | **left three / right three** | :544 | :4894 | `(index < 3 ? left : right).appendChild(menu)` → File Edit View left, Scope Grid About right |
 | keyboard | :554-583 | :4903-4932 | Escape closes; ←/→ move between titles; Home/End; ↓ opens and focuses the first control |
-| closed at rest | :405-416, :1733 | — | `closeAll()`; `state.closed_at_rest = true`; install ends with `closeAll()` |
+| closed at rest | :405-416, :1730 | — | `closeAll()`; `state.closed_at_rest = true`; install ends with `closeAll()` |
 | one open at a time | :468-479 | — | `openMenu()` closes all, toggles, syncs Grid, clamps the panel into the viewport |
 | clampPanel | :447-466 | — | JS-measured guarantee that no panel resolves outside the viewport (margin 4 px) |
 
-What each menu holds, and where it came from (every move is the same DOM node, `move()` at :1490-1497 / :5842):
+What each menu holds, and where it came from (every move is the same DOM node, `move()` at :1490-1497 / :5839):
 
 | menu | contents | key |
 |---|---|---|
-| File | the search bar; Export CSV; the engine's modules fetched from `ventus-grid-engine/genome/engine-graph.json`; Export group (print as slide / save image / write PDF / print source code) | :1660-1661 (`move(panels.File, ready.nodes.search)`, `exportButton`); :629-641 `ENGINE_GRAPH_URL`, `appendEngineModules`; :1350 `appendExport`; :1034 `printView`; prose :614-627 "we are heading towards a grid OS … the menus must be neat, it should allow AI and humans to develop and use" (the architect, 2026-09-05) |
-| Edit | Status Colours | :1662 `move(panels.Edit, ready.nodes.statusButton)` |
-| View | Fullscreen; Exit full screen; GB conditions; Studies (GB electricity price and grid constraint series) | :1663, :1556-1558, :777 `appendStudies` |
-| Scope | Radius Search, Radius Area, Poly Zone, Measure, Grid Finding Scope (`#btn-gridpoint`); mobile-tray "clear/scope" chips | :1664-1667, :1578 (module) ; `trayRoute` :1498-1503 |
+| File | Export CSV; the engine's modules fetched from `ventus-grid-engine/genome/engine-graph.json`; Export group (print as slide / save image / write PDF / print source code). (The module file also moves the search bar here, :1662; the LIVE cartridge does not, :6011-6016, and keeps it on the map.) | :1663 (`exportButton`); cartridge :6017; :629-641 `ENGINE_GRAPH_URL`, `appendEngineModules`; :1350 `appendExport`; :1034 `printView`; prose :614-627 "we are heading towards a grid OS … the menus must be neat, it should allow AI and humans to develop and use" (the architect, 2026-09-05) |
+| Edit | Status Colours | :1664 `move(panels.Edit, ready.nodes.statusButton)` |
+| View | Fullscreen; Exit full screen; GB conditions; Studies (GB electricity price and grid constraint series) | :1665, :1556-1558, :1588 `appendStudies(panels.View)` (function at :777) |
+| Scope | Radius Search, Radius Area, Poly Zone, Measure, Grid Finding Scope (`#btn-gridpoint`); mobile-tray "clear/scope" chips | :1666-1669, :1578 (module); `trayRoute` :1499-1503 |
 | Grid | the 63 layer controls, proxied, grouped by the engine's `.key-group` titles, each a 44 px `.gm-layer` row whose own `<input>` covers the label; head = the real `.scada-brand` + `.status-legend`; the fullscreen layer curtain tab | :1428-1488 `buildLayerControls` (proxy `data-gridatlas-layer-proxy`, forwards `original.click()`), :1685-1686 `move(gridHead, …)`, :1560-1566 curtain; CSS :253-269 |
-| About | version ledger `#gridatlas-version-ledger`; disclaimer; podcast shout-out; Estate links (Grid engine · the maths, Federation map, Spider printer); the map attribution LAST in small print | :1557, :1580-1583, :605-613 `ESTATE_LINKS`, :1392 `appendEstateLinks`, :1590-1611 attribution ("Attribution bar clashes move that to about and in small print at the bottom" — the architect, quoted :1598-1600) |
+| About | version ledger `#gridatlas-version-ledger`; disclaimer; podcast shout-out; Estate links (Grid engine · the maths, Federation map, Spider printer); the map attribution LAST in small print | :1557, :1580-1583, :605-613 `ESTATE_LINKS`, :1585 `appendEstateLinks(panels.About)` (function at :1392), :1590-1611 attribution ("Attribution bar clashes move that to about and in small print at the bottom" — the architect, quoted :1598-1600) |
 
 Two layer chips, GRID and SUBS, are deliberately left ON THE MAP at every width, not inside a menu:
 `chipStaysOnMap()` :1521-1552 (returns `true` unconditionally; prose quotes the architect "in mobile view the Grid and
@@ -130,15 +134,15 @@ subs buttons are nice show them on desktop TOO"; ledger v9.131 at A8).
 | step | key | what it says |
 |---|---|---|
 | install refuses while anything is missing | module :1647-1656 / cartridge :5996-6005 | `var ready = required(doc); … if (ready.missing.length) { state.waiting_for = ready.missing.slice(); return false; }` |
-| only then: style, bar, proxies, moves | :1658-1667 / :6007-6016 | `installStyle; bar = buildBar; buildLayerControls(ready.found);` then the eight `move(panels.…)` calls |
-| the masthead is moved into the bar's centre | :1669-1679 / :6033 | `move(brandSlot, ready.nodes.header)` — the SAME `.hud-header` node, "never a closed panel" |
+| only then: style, bar, proxies, moves | :1658-1669 / :6007-6023 (the cartridge omits the search move and says why at :6011-6016) | `installStyle; bar = buildBar; buildLayerControls(ready.found);` then the eight `move(panels.…)` calls |
+| the masthead is moved into the bar's centre | :1671-1679 / :6033 | `move(brandSlot, ready.nodes.header)` — the SAME `.hud-header` node, "never a closed panel" |
 | the bar is inserted as the map container's first child | :1688-1689 / :6042-6043 | `ready.nodes.host.insertBefore(bar, ready.nodes.host.firstChild); documentElement.classList.add('gridatlas-menu-hosted')` |
 | bar height is measured, not assumed | :387-402 | `syncAttribClearance`: reads `bar.getBoundingClientRect().height`, sets `--gridatlas-menu-bar-clear = height + 8`; ResizeObserver :1690-1697 |
-| one click + one change listener, installed once | :1713-1731 | "The retry path cannot multiply effects" |
-| late adoption | :1554-1645, :1738-1744 | `adoptLate()` from a MutationObserver re-homes late nodes; the `lastElementChild` guard at :1612-1618 prevents the feedback loop that "crashed the renderer outright under the 393x852 arrival gate" |
+| one click + one change listener, installed once | :1711-1727 | "The retry path cannot multiply effects" |
+| late adoption | :1554-1645, :1739-1745 | `adoptLate()` from a MutationObserver re-homes late nodes; the `lastElementChild` guard at :1612-1618 prevents the feedback loop that "crashed the renderer outright under the 393x852 arrival gate" |
 | retry loop | :1770-1797 / :6124-6151 | `start()`: refuses a partial DOM; `install()` now, else every 250 ms; after 160 tries `loudFailure` |
 | **loud failure** | :1752-1768 / :6106-6122 | `console.error('[GRIDATLAS MENU] menu not installed: expected 60 engine + 3 Pipeline News layer controls; found a + b')` and a fixed `role=alert` strip: "… Original controls remain available." |
-| identity surface | :1735 | `state.one_identity_surface = true` (the v8 wordmark nodes are moved, never cloned; `#fs-letterhead` hidden at :371 `.gridatlas-menu-hosted #fs-letterhead{display:none!important}`) |
+| identity surface | :1734 | `state.one_identity_surface = true` (the v8 wordmark nodes are moved, never cloned; `#fs-letterhead` hidden at :371 `.gridatlas-menu-hosted #fs-letterhead{display:none!important}`) |
 
 ### A5. The logo: which file, its pixel size, its position, what it links to
 
@@ -174,7 +178,7 @@ subs buttons are nice show them on desktop TOO"; ledger v9.131 at A8).
 | **phone rule** | :372-382 / :4721-4731 | `@media(max-width:700px){#bar{height:34px} .gm-title{min-height:34px;padding:0 6px;font-size:9px;letter-spacing:.025em} .gm-brand-slot{max-width:48%} … .gm-panel{position:fixed;top:34px;left:4px!important;right:4px!important;width:auto;max-width:none;max-height:calc(100dvh - 40px);padding-bottom:calc(6px + env(safe-area-inset-bottom))} .gm-panel-grid{max-width:none}}` |
 | the v8 layers panel stays under the map on desktop, collapsed on a phone | :293-330 | `.gridatlas-menu-hosted .scada-wrapper{display:flex!important}`; `#gridatlas-dash-toggle{display:inline-flex!important}`; prose: "restore v8 panels but keep dropdowns file, edit, scope, grid, about" (the architect, 2026-09-04) |
 | sheet stacking | :333-334 | `html.gridatlas-sheet-open #bar{z-index:10020;pointer-events:auto}` |
-| what is left ON the map at rest (measured, A9) | module :1660 moves the shell's `.search-bar-wrapper` into File, but the live page's gazetteer cartridge (`atlas/current.json:58-65`, id `uk-gazetteer-flyto`, `202609071213-place-global-search-v9-5.js`, replace-script for `202608291818-place-postcode-search.js`) draws its own search box on the map: at 1280×800 "Search project, address, postcode" + GO at the top right, 36 px under the bar (partner's measurement (981.8,77) 283×24; my screenshot `ga-desktop1280.png`); on a phone it is a 44 px row (partner: (135.8,77) 261×44 on Pixel 7). Also on the map: the GRID and SUBS chips (A9) and, on a phone, the v8 `LAYERS` toggle and the sandbox's collapsed "Tools ▸" strip. | the sld-sandbox cartridge adapts to the bar: `atlas/cartridges/202609241334-sld-sandbox-v9-8.js:3907` (`top = max(bounds.top, #gridatlas-menu-bar bottom)`), `:5834` (`stack.classList.add('gm-tools-collapsed')`), `:8611` (reads the bar's rect) |
+| what is left ON the map at rest (measured, A9) | the live cartridge keeps the shell's search bar in `.map-container` (cartridge :6011-6016; the module file's :1662 move is the one line the cartridge dropped); the gazetteer cartridge (`atlas/current.json:58-65`, id `uk-gazetteer-flyto`, `202609071213-place-global-search-v9-5.js`, replace-script for `202608291818-place-postcode-search.js`) gives it its placeholder and results; measured on the map: at 1280×800 "Search project, address, postcode" + GO at the top right, 36 px under the bar (partner's measurement (981.8,77) 283×24; my screenshot `ga-desktop1280.png`); on a phone it is a 44 px row (partner: (135.8,77) 261×44 on Pixel 7). Also on the map: the GRID and SUBS chips (A9) and, on a phone, the v8 `LAYERS` toggle and the sandbox's collapsed "Tools ▸" strip. | the sld-sandbox cartridge adapts to the bar: `atlas/cartridges/202609241334-sld-sandbox-v9-8.js:3907` (`top = max(bounds.top, #gridatlas-menu-bar bottom)`), `:5834` (`stack.classList.add('gm-tools-collapsed')`), `:8611` (reads the bar's rect) |
 
 ### A7. The palette the shell draws with (for "consistent UI")
 

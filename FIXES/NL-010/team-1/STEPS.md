@@ -3,7 +3,10 @@ REVIEW: OPEN
 # NL-010 team 1 ("the shell"): steps 1 and 2
 
 Architect FABLE-T1A; evidence officer FABLE-T1B (EVIDENCE.md, REVIEW.md in this folder). Channel: issue #10.
-Keys: `gridatlas@5ec7f62` is `/home/user/estate/gridatlas` at 5ec7f62f213e2d20a02e86427daa182c0f38e4a4 (main, 31 Oct 2026);
+Keys: `gridatlas@5ec7f62` is `/home/user/estate/gridatlas` at 5ec7f62f213e2d20a02e86427daa182c0f38e4a4 (the clone is checked
+out on `preview/202610312138-gridatlas-v9.188`; the shell, the menu module and the substation-intelligence cartridge are
+byte-identical on local `main` `cacb69a` and on `origin/main` `41729af`, whose pointer names the live generation
+202610312138; EVIDENCE.md header table and C5);
 `kuiper-belt@018b46a` is `/home/user/estate/kuiper-belt` at 018b46aed50f28f7b1882a0dcaba6593ce522beb (main, Edition 4);
 `nl@FIXES/NL-009/round1/...` are the Android audit files in this repository, read at 20:55 UTC and again before posting.
 
@@ -54,7 +57,7 @@ module file; the same text sits in the cartridge at lines 4515–4731.
 | where labels and commands sit relative to the map | after install **nothing floats on the map except the search box**: `.search-bar-wrapper` (981.8, 77) 283×24 (right, 36 px under the bar) and the v8 `HIDE LAYERS` toggle at the bottom-right (1135.6, 744) 132×44 of the desktop's lower SCADA panel. Moved into the menus as the same nodes: `.map-controls` (Export, Radius search, Radius area, Poly zone, Status, Measure: `display:none` at rest), `#btn-fullscreen`, `.custom-map-attrib`, `.disclaimer-box`, `.podcast-shoutout`, `.scada-brand`; `controls_moved: 17`, `layer_controls: 63 (60+3)`, `panel_counts {File:8, Edit:1, View:5, Scope:4, Grid:3, About:8}` | three things, all 44 px tall: `.search-bar-wrapper` (135.8, 77) 261×44 (right edge 397, 10 px in from the bar's), a collapsed phone tools strip `.map-controls.gm-tools-collapsed` "Tools ▸ ⚡ Grid ◉ Subs" (15, 756) 135×44 bottom-left, and the v8 `▴ LAYERS` toggle (308.5, 783) 91.5×44 bottom-right above a collapsed SCADA wrapper (height 0); `controls_moved: 20`, `panel_counts {File:8, Edit:1, View:5, Scope:7, Grid:3, About:8}`; the Grid panel holds 63 checkboxes in 13 groups. Open panels sit at (9, 39) 394 px wide, `fixed`; File 373 px tall with 7 rows of 44 px and 20 px group headings, Grid 799 px and scrolls (`panels-pixel7.json`) | search (83.8, 77) 261×44; toggle (256.5, 684) 91.5×44; otherwise the same | `required() :141-160`, `install :1647-1689` (`move(panels.File, ready.nodes.search)` `:1662`), state `NS.menuBar` `:40-57` |
 | panels | `.gm-panel` `top:100%` of its title, `min-width:240px; max-width:min(92vw,420px); max-height:min(72dvh,620px)`, `rgba(4,10,13,.98)`, border `1px solid rgba(80,220,240,.32)` no top; right-group panels `right:0`; every row `min-height:44px`, `11px/1.35` same mono, `#cfeef6`, hover `rgba(80,220,240,.14)`; group headings `.gm-layer-group` 10px `#6fa2ae` uppercase `.08em` | all six panels `position:fixed` (`top:34px; left:4px; right:4px; max-height:calc(100dvh - 40px)`) | same (`fixed`); in landscape 863×360 the bar is 36 px again and the panels `absolute`, because the rule is on width, not on the device | `:206-213`, `:218-224`, `:245-247`, `:379-382` |
 | one open at a time, closed at rest | `closed_at_rest:true`; Escape closes; ArrowLeft/Right between titles; ArrowDown opens | same | same | `:405-416`, `:468-479`, `:554-583` |
-| admission rule | installs nothing until the 63 controls and 11 named nodes exist; otherwise publishes `#gridatlas-menu-bar-failure` and leaves the old interface reachable (measured, see limitation) | same | same | `:1-21`, `:30`, `inventory :107-124`, `required :141-160`, `install :1647-1656`, `loudFailure :1752-1768` |
+| admission rule | installs nothing until the 63 controls and 11 named nodes exist; otherwise publishes `#gridatlas-menu-bar-failure` and leaves the old interface reachable (measured, see limitation) | same | same | `:1-21`, `:30-35`, `inventory :107-124`, `required :141-160`, `install :1647-1656`, `loudFailure :1752-1768` |
 
 Note on the search box: the module file moves it into File (`menu-bar.js:1662`), but the live cartridge does not: its
 install says "The search bar is NOT moved. It is the one control a person needs before they know which menu to open,
@@ -125,8 +128,11 @@ C2 Zones: `.gm-side.gm-side-left` (`flex:1 1 0`), `.gm-brand-slot` (`flex:0 1 au
 C3 The logo: the brand slot holds `div.hud-header > div.ventus-brand > div.ventus-main` "Ventus" + `div.ventus-sub`
 "Cables &amp; Connectivity&reg;" with GridAtlas's classes and CSS copied verbatim (`.ventus-main` 14px 800 `.2em` #fff
 uppercase; `.ventus-sub` 5.5px `.14em` #888 uppercase; phone 11px/4.5px; `line-height:1.05`; centred). No image file is
-introduced, because GridAtlas has none. The clock and the 2050 counter are not copied: they are GridAtlas's HUD, not its
-logo, and GridAtlas itself hides them on a phone. Not a link, as in GridAtlas. Acceptance compares the wordmark's
+introduced, because GridAtlas has none. Above 700 px the whole lockup is copied as GridAtlas shows it, flanks included: SYSTEM TIME with the
+clock and the date on the left, 2050 TARGET with the days to 2050-01-01 in `#ff9d00` on the right (the engine's own
+arithmetic, `ventus-corev8engine.js:604-607`; both are estate facts, not GridAtlas's), the `.hud-header` CSS of
+`:195-202` verbatim; at `max-width:700px` the two flanks are hidden as GridAtlas hides them (`:375-376`). Nothing is
+dropped at any width, so the word "exactly" holds on a desktop and on a phone alike. Not a link, as in GridAtlas. Acceptance compares the wordmark's
 computed style and rendered box to GridAtlas's at the same viewport within 1 px.
 C4 Titles: `button.gm-title[aria-haspopup=menu][aria-expanded][aria-controls]`, uppercase, `.05em`, `#cfeef6`,
 `padding:0 11px`, `min-height` = bar height; hover/open `rgba(80,220,240,.16)` + `#fff`; focus `2px solid #6bebff` inset;
@@ -134,22 +140,26 @@ phone 9 px `.025em` `0 6px`. Left group index 0–2, right group 3–5. Decision
 44 px target NL-009 asks for (01-bar F2); the Kuiper keeps GridAtlas's visible numbers exactly and pays the target with an
 invisible `::after` hit box that extends each title to 44 px below the bar on a coarse pointer; measured by
 `elementFromPoint(x, 40)` resolving to the title. The departure from "exactly" is nil on screen and 10 px in the hit test,
-and the README says so.
+and the README says so. The extension is removed while any panel is open (`#kuiper-menu-bar[data-open] .gm-title::after
+{display:none}`), so it never covers the first row of a panel that hangs from the bar's bottom; A6 tests both states.
 C5 The six names, mapped. The Kuiper keeps GridAtlas's six words where the meaning carries and changes one:
 
-| GridAtlas | holds there (measured `panel_counts`) | Kuiper name | holds in the Kuiper (owner of the content) |
+| GridAtlas | holds there (key, and the measured panel at 1280) | Kuiper name | holds in the Kuiper (owner of the content) |
 |---|---|---|---|
-| FILE | the engine's modules fetched from the engine graph, export CSV, the study link (8 rows) | FILE | open a key, open an edition, open an app, copy a link, the hash deep-link grammar (step 6, team 3); the edition's README, NOTICE, keys.json, proof as rows |
-| EDIT | the search box (1 row) | EDIT | the find box `/` (a key, a repository, a period), the LINES filter, clear the selection (`Backspace`) |
-| VIEW | fullscreen, status, measure, the SLD sandbox (5 rows) | VIEW | readout on/off, whole wafer, random line `r`, new code `n`, next/previous verified line `e`/`E`, reduced motion |
-| SCOPE | radius, radius area, polygon zone, clear (4 rows) | SCOPE | the focus: all repositories / gridatlas + data centres (today's `#lyFocus`), one repository, one period, one commit |
-| GRID | the 63 layer switches with the SCADA brand head and legend (3 groups) | WAFER | the layer registry: verified lines, repositories, periods, editions, See Through stars, elements, spider graphs (steps 3–4, team 2). "Grid" is GridAtlas's subject; the Kuiper's subject is the wafer, so the word changes and the position and the proxy rule do not |
-| ABOUT | the estate links, versions, attribution, disclaimer (8 rows) | ABOUT | the edition's name and stamp, the laws (`LAWS.md`), licences (`NOTICE.md`), the estate links (See Through, Learn the Kuiper, GridAtlas, the homepage), the attribution of the data |
+| FILE | the search node (module `:1662`; the live cartridge leaves it on the map, `:6010-6016`), Export CSV (`:1663`), the Export group print / PDF / image / source (`appendExport :1350`), the engine's modules fetched from the engine graph (`appendEngineModules :641`; 0 rows offline); measured 8 rows | FILE | the find box `/` as a row ("find a key, a repository, a period"; the box itself stays on the wafer as the search does, C6), open a key, open an edition, open an app, copy a link, the hash deep-link grammar (step 6, team 3); the edition's README, NOTICE, keys.json and proof as rows; save the view as an image |
+| EDIT | Status Colours only (`:1664`; measured 1 row "◑ Status Colours") | EDIT | what colours mean and what is lit: the SCADA legend (`PALETTE.md`), focus colouring on/off (bright green for gridatlas + data centres), clear the lit repository and the selection (`Backspace`) |
+| VIEW | fullscreen (`:1665`), Exit full screen (`:1556-1558`), GB conditions, Studies (`appendStudies`); measured 5 rows | VIEW | fullscreen, the readout on/off (today's READOUT), whole wafer (home), next / previous verified line (`e`/`E`), reduced motion; Studies → Learn the Kuiper |
+| SCOPE | Radius Search, Radius Area, Poly Zone, Measure (`:1666-1669`), Grid Finding Scope (`:1578`), the tray's clear/scope chips on a phone; measured 4 rows at 1280, 7 on Pixel 7 | SCOPE | the focus: all repositories / gridatlas + data centres (today's `#lyFocus`), one repository, one period (a ring), one commit, new code `n`, random line `r`, clear scope |
+| GRID | the 63 layer switches proxied, under the real `.scada-brand` head and legend (`buildLayerControls :1428-1488`, `:1685-1686`); 3 groups measured | WAFER | the layer registry: verified lines, repositories, periods, editions, See Through stars, elements, spider graphs (steps 3–4, team 2). "Grid" is GridAtlas's subject; the Kuiper's subject is the wafer, so the word changes and the position and the proxy rule do not |
+| ABOUT | the Versions ledger (`:1557`), disclaimer and shout-out (`:1580-1583`), the Estate links (`:605-613`), the attribution last in small print (`:1590-1611`); measured 8 rows | ABOUT | the card law sentence first (K3), the edition's name and stamp, the laws (`LAWS.md`), licences (`NOTICE.md`), the estate links (See Through, Learn the Kuiper, GridAtlas, the homepage), the attribution of the data last |
 
-The star slot: See Through is "the star player" (step 5, team 3). The shell reserves the first position of the left
-group for it, before FILE, as `a.gm-title[href="../../see-through/"]` in the same face; whether it is a seventh title
-or the first row of FILE is step 5's decision; the width budget at 360 px for a seventh title is given in the
-acceptance test so the decision is measured, not argued. Edition 4's four names map as: EDITION → ABOUT (the text) and
+The star slot: See Through is "the star player" (step 5, team 3). The shell's width rule for it is fixed here so that
+A2 can run and step 5 chooses the content within it: from 393 px up the star entry is the seventh title, first in the
+left group before FILE, `a.gm-title[href="../../see-through/"]` in the same face (slack 393 − 302 = 91 px ≥ the 72 px it
+needs); at `max-width:380px` it leaves the bar and takes the bottom-left 44 px strip that GridAtlas itself gives its two
+most-used controls on a phone (the GRID/SUBS chips, `chipStaysOnMap :1521-1552`, measured (15,697) 65.7×44 at 360 px by
+the evidence officer), same face, same colours. Step 5 may change the words and the target, not the rule; one row at
+360 px is never traded. Edition 4's four names map as: EDITION → ABOUT (the text) and
 the brand slot (the name), READOUT → VIEW, LINES → WAFER + SCOPE + EDIT (switch, focus, filter), COMMANDS → VIEW + EDIT.
 C6 Labels and commands: every command is a 44 px row inside a panel (`button`, `a[role=button]`, or a layer row with a
 20 px box), `11px/1.35` mono `#cfeef6`, hover `rgba(80,220,240,.14)`; group headings `.gm-layer-group` 10 px `#6fa2ae`
@@ -169,8 +179,12 @@ C8 Admission rule (the shell is a Kuiper cartridge in team 2's sense): the modul
 hooks exist and are unique — `#c`, `#o`, `#top`, `#hud`, `#foot`, `#keys` with its five `data-k` buttons, `#lines`
 with `#lyAll #lyFocus #lyFind #lineslist`, `#card`, and the functions `safeBox`, `draw`, `edCard`, `edFly`, `edNext`,
 `setPanel` — then moves the existing nodes into the panels as the same nodes (listeners kept) and collapses the old
-containers only after the complete inventory is built. A missing hook leaves Edition 4's bar reachable and writes
-`#kuiper-menu-bar-failure` (`role=alert`, GridAtlas's strip) naming what is missing. `window.__KUIPER_MODULES__.menuBar`
+containers only after the complete inventory is built. Two conditions are asynchronous and are waited for, not failed on: `keys.json`
+(`loadEdition :628-631`, so `edPlaced.length > 0` or `edMeta.error` set) and the wafer (`cosmos/wafer.tsv`, the engine's
+own load); as GridAtlas retries every 250 ms up to 160 times (`:35`, `:1770-1797`), the shell retries on the same clock,
+writing "waiting for keys.json" on the strip meanwhile and, after the limit or on `edMeta.error`, the error's own words
+(09-robust F4). A missing synchronous hook leaves Edition 4's bar reachable and writes `#kuiper-menu-bar-failure`
+(`role=alert`, GridAtlas's strip) naming what is missing. `window.__KUIPER_MODULES__.menuBar`
 publishes `{schema:'kuiper.menu-bar.v1', installed, controls_moved, failure, panel_counts}` for the test.
 C9 One row at 360 px: the shell is accepted only when every `.gm-title` and the brand share one `y` at 360, 393, 412
 and 430 px portrait and in landscape, with the measured slack written in the README. The names are chosen to fit:
@@ -185,16 +199,21 @@ and the date measured, as GridAtlas's module does (`:1-21`).
 
 **Module.** `editions/<stamp>/modules/<stamp>-kuiper-shell.js` (one file, stamp, sha256 in the edition's cartridge list
 per step 3), schema `kuiper.menu-bar.v1`, loaded by `index.html` after the engine; its CSS installed by the module into
-`<style id="kuiper-menu-bar-css">` so the bar's values live in one place with their keys. Touches: `index.html` (one
-script tag, removal of the Edition 3 bar block `:693-726` once the module has installed), nothing in `cosmos/`,
-`keys.json`, `tools/key.py`, or the placement law.
+`<style id="kuiper-menu-bar-css">` so the bar's values live in one place with their keys. Touches: `index.html`: one script tag; the module supersedes Edition 4's `:697-703` (the bar), `:704-708`
+(the LINES panel markup, whose `#lyAll #lyFocus #lyFind #lineslist` nodes move into the WAFER, SCOPE and EDIT panels as
+the same nodes) and `:710-723` (`PANELS`, `placePanels`, `setPanel` and the three closers), which are removed once it has
+installed; `:726` (the `safeBox` wrap) stays and is pointed at the new bar; `:728-749` (the layer switches, `fillLines`,
+the draw and step wrappers) stay and are team 2's to change. Nothing in `cosmos/`, `keys.json`, `tools/key.py`, or the
+placement law.
 
 **Acceptance test on Android** (`/tmp/nl010/team-1/accept-step1.cjs`, to be committed with the edition as
 `proof/accept-shell.cjs`): Playwright Chromium with the harness flags, `devices['Pixel 7']`, `Galaxy S24` (360×780),
 Pixel 7 at 393 and 430 px, `Pixel 7 landscape`, 1280×800; serve the kuiper-belt root; 8 s settle. PASS when all hold:
 A1 `#kuiper-menu-bar` rect `y=0`, `x=0`, width = viewport, height 34 (≤700 px) / 36; `installed:true`, `failure:null`.
 A2 six `.gm-title` (plus the star entry if step 5 makes it a title), texts FILE EDIT VIEW SCOPE WAFER ABOUT, all with the
-same rounded `y`, last right edge ≤ viewport − safe inset; `scrollWidth === clientWidth` (no horizontal scroll) at 360.
+same rounded `y`, last right edge ≤ viewport − safe inset; `scrollWidth === clientWidth` (no horizontal scroll) at 360; then the same at a 1.3× system font scale (01-bar's
+method): the six titles plus the slot measure ≈ 393 px, so the expected result is still one row, `overflow-x:auto`,
+`scrollWidth > clientWidth`, and the last title reachable by a horizontal scroll (`scrollIntoView` then tap opens it).
 A3 the wordmark: `#kuiper-menu-bar .ventus-main` computed `font-size 11px` (≤700) / `14px`, `font-weight 800`, colour
 `rgb(255,255,255)`, `text-transform uppercase`; `.ventus-sub` `4.5px`/`5.5px`, `rgb(136,136,136)`; `.ventus-brand`
 centre within 1 px of the viewport centre and of the bar's vertical centre; `closest('a')` null; rendered box within
@@ -207,7 +226,8 @@ A5 every panel row `getBoundingClientRect().height ≥ 44`; `touchscreen.tap` on
 `top ≥ bar bottom` and `right ≤ viewport`, a second tap closes it, Escape closes it, `page.goBack()` closes it and stays
 on the page; tapping a VIEW row "next verified line" lands the selected spark between the bar's bottom and the card's
 top (Edition 4's `edFly` law, NL-009 01 F7 numbers).
-A6 `elementFromPoint(titleCentreX, 40)` is that title on a coarse pointer (the 44 px hit box).
+A6 `elementFromPoint(titleCentreX, 40)` is that title on a coarse pointer with every panel closed (the 44 px hit box);
+with a panel open, `elementFromPoint(x, panelFirstRowTop + 4)` is that row, not the title.
 A7 zero `pageerror`, zero console errors; `node --check` of the module.
 A8 the admission rule: with `#keys` removed before load, `installed:false`, `#kuiper-menu-bar-failure` visible with text
 naming `#keys`, Edition 4's `#bar` still clickable.
@@ -215,7 +235,8 @@ A9 the same script against GridAtlas at `http://127.0.0.1:8201/atlas/` (basemap 
 table for `#gridatlas-menu-bar`, so the two shells are compared number to number in one run.
 
 **Licence note.** GridAtlas is Apache-2.0 (`gridatlas@5ec7f62 LICENSE:1-2`, `NOTICE:1-12`, Copyright 2026 Ventus Ltd);
-the CSS values and the menu module's structure copied into the Kuiper (Apache-2.0, `kuiper-belt@018b46a NOTICE.md`)
+the CSS values and the menu module's structure copied into the Kuiper (Apache-2.0, `kuiper-belt@018b46a LICENSE:1-3`, `README.md:150-160`: "Code is licensed under Apache-2.0 … documentation
+and generated data under CC BY 4.0")
 carry GridAtlas's NOTICE line in the shell module's header and in the edition's `NOTICE.md`. The words "Ventus" and
 "Cables & Connectivity®" are the owner's mark, used here by the owner's instruction; the ® is kept as GridAtlas writes
 it. No third-party asset is added (no logo file exists to add). MapLibre is not part of the shell.
@@ -295,8 +316,10 @@ after the shell has installed; touches `index.html` (script tag), `README.md` (t
 **Acceptance test on Android** (`proof/accept-card.cjs`): Pixel 7 and 360×780, touch; after `touchscreen.tap` on
 VIEW → next verified line, and for ten random `edPlaced[i]` opened by `edCard(i)`:
 B1 `#card` first element child is `header.ch`, its `<code>` text equals `edPlaced[i].line_text` byte for byte (over all
-344 bodies, not ten, by calling `edCard(i)` in a loop: 344/344, of which 4 empty with the "empty line at key" words,
-and 212 where a `.cq` "register quote" row follows, 7 of them with `quote_key`);
+344 bodies, not ten, by calling `edCard(i)` in a loop: 344/344, of which 4 empty with the "empty line at key" words; a `.cq`
+"register quote" row follows for every body whose `quote` differs from `line_text`: 216 = 212 non-empty + the 4 empty,
+of which 7 carry `quote_key` (the evidence officer's recount: exact 128 + trimmed 147 + fragment 31 + quote marks 31 +
+not-at-line 7 = 344));
 B2 the second row's text contains `repo`, the 7-character commit, `path:line` and the key number, and its link's `href`
 equals `destination`;
 B3 the title appears only after the second row; `card.getBoundingClientRect().top` ≥ the selected spark's `y` + 14 and
