@@ -227,6 +227,12 @@ indistinguishable on a phone (`gridatlas@5ec7f62 atlas/modules/202609031958-menu
 for the Kuiper: the header of a card is the source's own text at the key, never the finder's title for it. And the
 Kuiper's own first law: a statement with a key is a fact, without one a candidate (`kuiper-belt@018b46a README.md:29-40`);
 a title is a candidate, the line at the key is the fact, so the fact leads.
+Measured in Edition 4's own `keys.json` (`kuiper-belt@018b46a editions/202611012027/keys.json`, 344 placed bodies): every
+placed body carries `line_text`, the bytes at the key as `tools/edition_keys.py:251` writes them; 4 of them are the empty
+string (a blank line at the key, the register pointing one line above its quote); of the 340 non-empty, the register's
+`quote`, which Edition 4's card shows (`index.html:661`), equals `line_text` byte for byte for **128**, and differs for
+212 (147 only in leading whitespace, the rest a fragment, dropped quote marks or a truncation; `quote_check` names which).
+So today's card shows the bytes at the key for 128 of 344 lines; the law makes it 344 of 344.
 
 **Kuiper change.**
 K1 The card (`#card`, Edition 4 `index.html:655-666`) is rebuilt in this order and no other:
@@ -236,8 +242,13 @@ K1 The card (`#card`, Edition 4 `index.html:655-666`) is rebuilt in this order a
    row 2, the key: `repo@commit7 path:line` and the wafer key number, `#cde`, as a link to the GitHub blob at the commit;
    row 3 onward, the names: the title from the register, "n of 344", the pattern, the finder, the position, behind the
    existing "details" toggle (a `button[aria-expanded]`, NL-009 09 F7);
-   when the register's quote is not the line at the key (7 of 346, `keys.json summary.quote_not_at_line`), a row 2b
-   shows the quote with its own `quote_key` and the words "quoted one line below"; the header is never the quote.
+   when the register's quote differs from the line at the key (212 bodies, see the lesson), the quote is a row under the
+   key, marked "register quote", never the header; when the line at the key is empty (4 bodies) or the quote sits on
+   the next line (7 bodies, `keys.json summary.quote_not_at_line`), the header row shows the empty or other line as it
+   is, with the dim words "empty line at key" where it is empty, and row 2b shows the quote with its own `quote_key`
+   and the words "quoted one line below". The header is never the quote and never the title.
+K0 `keys.json` is not changed: `line_text` is already there for all 344 placed bodies; the card refuses with the words
+   "no text at key" only for a body that lacks the field (the 2 star-maker bodies, which are never placed).
 K2 The card's `aria-label` is the header text; `aria-live=polite` announces it on `e`.
 K3 The law is written in the page, in the ABOUT panel, first paragraph, exact wording:
    "The line of code is the header. Every card opens with the line itself, verbatim from the key; the key is the second
@@ -267,8 +278,9 @@ after the shell has installed; touches `index.html` (script tag), `README.md` (t
 
 **Acceptance test on Android** (`proof/accept-card.cjs`): Pixel 7 and 360×780, touch; after `touchscreen.tap` on
 VIEW → next verified line, and for ten random `edPlaced[i]` opened by `edCard(i)`:
-B1 `#card` first element child is `header.ch`, its `textContent` equals `edPlaced[i].line_text` exactly (and, for the
-7 `quote_not_at_line` bodies, differs from `quote` while a `.cq` row shows the quote with `quote_key`);
+B1 `#card` first element child is `header.ch`, its `<code>` text equals `edPlaced[i].line_text` byte for byte (over all
+344 bodies, not ten, by calling `edCard(i)` in a loop: 344/344, of which 4 empty with the "empty line at key" words,
+and 212 where a `.cq` "register quote" row follows, 7 of them with `quote_key`);
 B2 the second row's text contains `repo`, the 7-character commit, `path:line` and the key number, and its link's `href`
 equals `destination`;
 B3 the title appears only after the second row; `card.getBoundingClientRect().top` ≥ the selected spark's `y` + 14 and

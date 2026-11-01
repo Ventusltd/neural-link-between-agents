@@ -209,7 +209,19 @@ Recorded in `/tmp/nl010/team-1/B/ga-<viewport>.json` and screenshots beside them
 `getBoundingClientRect` after the bar installed through its own admission rule (`installed:true`, `layer_controls:63`,
 `panel_counts {File 8, Edit 1, View 5, Scope 4, Grid 3, About 8}` in the partner's state dump).
 
-MEASURED-GA-PLACEHOLDER
+| viewport | measurement | value |
+|---|---|---|
+| 1280×800 | composition | `__GRIDATLAS_ATLAS__` generation `202610292044` (the clone's pointer); `menuBar.installed true`, `layer_controls 63`, `panel_counts {File 8, Edit 1, View 5, Scope 4, Grid 3, About 8}`, 0 page errors |
+| 1280×800 | `#gridatlas-menu-bar` | x 5 y 5, **1270 × 36 px**; `position:absolute`; font `11px/11px ui-monospace, SFMono-Regular, Menlo, monospace`; background `rgba(4,10,13,.95)`; border-bottom `1px solid rgba(80,220,240,.3)`; z 10020; `.map-container` 1272 × 458 at (4,4), so the bar is the top 36 px OF the map |
+| 1280×800 | titles (text x,y w×h) | File 5,5 51×36 · Edit 56,5 51×36 · View 106,5 51×36 · Scope 1109,5 58×36 · Grid 1166,5 51×36 · About 1217,5 58×36; computed `11px`, `letter-spacing 0.55px`, uppercase, `rgb(207,238,246)` (= `#cfeef6`) |
+| 1280×800 | `.gm-brand-slot` | x 516 y 5, 247 × 35 px (centred: 511 px of bar either side) |
+| 1280×800 | **`.ventus-main` in the bar** | rect x 607 y 12, **76 × 15 px**; computed `14px`, weight `800`, `letter-spacing 2.8px` (= .2em), `-apple-system, sans-serif`, `rgb(255,255,255)`, uppercase; `insideAnchor:false`, no `onclick` |
+| 1280×800 | **`.ventus-sub` in the bar** | rect x 600 y 27, **90 × 6 px**; `5.5px`, `letter-spacing 0.77px`, `rgb(136,136,136)` |
+| 1280×800 | `.hud-header` parent | `gm-brand-slot` (the v8 node was moved, A4); `#fs-letterhead` computed `display:none` |
+| 1280×800 | panels when opened (x,y w×h) | File 5,40 240×373 · Edit 56,40 240×60 · View 106,40 240×181 · Scope 926,40 240×201 · Grid 841,40 376×576 · About 1035,40 240×438 — every panel's top is 40 = bar bottom (5 + 36 − 1); left-group panels hang from their title's left edge, right-group panels end at the bar's right edge (A6 :219) |
+| 1280×800 | panel contents seen | File: Export CSV, Export this view, Print/PDF, Print source code, Save PDF, Save image · Edit: Status Colours · View: ⛶, GB prices historic, Exit, Studies · Scope: Radius Search, Radius Area, Poly Zone, Measure · Grid: group headings (Topology, Assets, Supermarkets…) with `400kV [OK]`-style rows · About: Versions v9.138, Estate (Grid engine · the maths, Federation map, Spider printer), OpenStreetMap / Open Charge Map credit |
+| 1280×800 | screenshots | `/tmp/nl010/team-1/B/ga-desktop1280.png`, `ga-desktop1280-menu0..5.png` (File … About open) |
+| 360×780 and Pixel 7 | | MEASURED-GA-PHONE-PLACEHOLDER |
 
 Caveat on one number in the partner's dump: its `ventusMain` block (`font-size 15px, letter-spacing 5px, rect 0×0`)
 is the hidden `#fs-letterhead .ventus-main` (first match in document order, ventusv8.css:104), not the wordmark in the
