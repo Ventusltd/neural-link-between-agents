@@ -1,0 +1,99 @@
+--- editions/202611012027/index.html
++++ editions/202611012027/index.html
+@@ -2,7 +2,7 @@
+ <html lang="en">
+ <head>
+ <meta charset="utf-8">
+-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
++<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+ <title>Kuiper Edition 4</title>
+ <style>
+   :root{--bg:#090c13;--ink:#d5dcea;--dim:#7d8799;--line:#1a2030;--hot:#e8b36a}
+@@ -82,6 +82,12 @@
+   @media (max-width:640px){ #card{left:6px;right:6px;bottom:6px!important;max-height:34vh;font-size:11px} }
+   @media (max-width:640px){ #bar{flex-wrap:wrap;white-space:normal;overflow:visible} #barname{font-size:11px;margin-right:4px} #bar .gm-title{padding:5px 8px}
+     #top,#hud,#foot,#lines{top:calc(var(--barh,46px) + 0px);left:0;right:0;max-width:none;max-height:62vh} #hud{text-align:left} }
++  /* EDITION 5, TOUCH: the wafer owns every gesture on the canvas (touch-action:none, above); everything else may
++     pan but never pinch-zoom or double-tap-zoom the page, so the browser's zoom cannot wreck the layout. The
++     canvas and the bar are not text: no selection handles, no callout, no context menu on a long press. */
++  html,body{touch-action:pan-x pan-y}
++  #bar,#top,#hud,#foot,#lines,#card,#goto,#bar .gm-title,#keys button,#linesctl button,#card .cx{touch-action:pan-x pan-y}
++  canvas,#bar{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+ </style>
+ </head>
+ <body>
+@@ -569,13 +575,18 @@
+ // on a desktop land on the same key.
+ const ZMAX = 60;
+ let drag = null, moved = 0, pinch = null;
++// TAP OR DRAG (Edition 5): a finger jitters, so a tap is movement under a slop (10 px for touch, Android's
++// own, 4 px for a mouse) measured from the point it went down, and for touch a press shorter than 700 ms, so
++// a long press is not a tap. tapUp is the verdict of the last pointerup, read by the edition layer.
++let down = null, slop = 4, tapUp = false;
++function isTap(e){ return !!down && moved < slop && (e.pointerType !== 'touch' || e.timeStamp - down[2] < 700); }
+ const pts = new Map();
+ function pinchNow(){ const v = [...pts.values()], a = v[0], b = v[1];
+   return { d:Math.hypot(a.x-b.x, a.y-b.y), mx:(a.x+b.x)/2, my:(a.y+b.y)/2 }; }
+ cv.addEventListener('pointerdown', e => {
+   pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
+   if (pts.size === 2) { const s = pinchNow(), w = toWorld(s.mx, s.my); pinch = { d0:s.d, z0:zoom, wx:w[0], wy:w[1] }; drag = null; moved = 99; }
+-  else if (pts.size === 1) { drag = [e.clientX, e.clientY]; moved = 0; }
++  else if (pts.size === 1) { drag = [e.clientX, e.clientY]; down = [e.clientX, e.clientY, e.timeStamp]; slop = e.pointerType === 'touch' ? 10 : 4; moved = 0; }
+ });
+ addEventListener('pointermove', e => {
+   if (pts.has(e.pointerId)) pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
+@@ -583,12 +594,13 @@
+       zoom = Math.max(1e-4, Math.min(ZMAX, pinch.z0 * s.d / pinch.d0));
+       cx = pinch.wx - (s.mx - innerWidth/2)/zoom; cy = pinch.wy + (s.my - innerHeight/2)/zoom;
+       atHome = false; tween = null; dirty = true; } return; }
+-  if (!drag) return; moved += Math.abs(e.clientX-drag[0]) + Math.abs(e.clientY-drag[1]);
++  if (!drag) return; moved = Math.max(moved, Math.hypot(e.clientX-down[0], e.clientY-down[1]));
+   cx -= (e.clientX-drag[0])/zoom; cy += (e.clientY-drag[1])/zoom; drag = [e.clientX, e.clientY];
+   atHome = false; tween = null; dirty = true; });
+ function pointerGone(e){ pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (pts.size === 0) drag = null; }
+ addEventListener('pointerup', e => {
+-  if (drag && moved < 4 && N) { const [wx, wy] = toWorld(e.clientX, e.clientY), r = Math.hypot(wx, wy);
++  tapUp = !!drag && isTap(e);
++  if (tapUp && N) { const [wx, wy] = toWorld(e.clientX, e.clientY), r = Math.hypot(wx, wy);
+     if (r*r < SPACE) { let k = zoom >= POINTS_FROM ? keyAt(wx, wy) : -1; const exact = k >= 0; if (!exact) k = Math.floor(r*r);
+       target = exact ? { x:keyPlace(k)[0], y:keyPlace(k)[1] } : null; show(address(k)); } }
+   pointerGone(e); });
+@@ -670,7 +682,7 @@
+   if (e.target.closest('.cx')) { card.style.display = 'none'; edSel = -1; target = null; dirty = true; e.stopPropagation(); return; }
+   if (e.target.closest('.ct')) { card.classList.toggle('open'); e.stopPropagation(); return; }
+   if (e.target.closest('a')) { e.stopPropagation(); return; }
+-  e.stopPropagation();                                           // a tap on the card body keeps it open
++  e.stopImmediatePropagation();                                  // a tap on the card body keeps it open (also from the engine's own close-on-click)
+ }, true);
+ // fly so that the spark lands in the clear space: under the bar, above the card
+ function edFly(b){
+@@ -683,7 +695,7 @@
+   const b = edPlaced[edSel]; edCard(edSel); edFly(b); }
+ // a tap within 9 px of a spark opens that line (runs after the engine's own tap handler)
+ addEventListener('pointerup', e => {
+-  if (!edPlaced.length || moved >= 4 || pts.size > 0) return;
++  if (!edPlaced.length || !tapUp || pts.size > 0) return;          // tapUp: the press began on the canvas and was a tap
+   let best = -1, bd = 81;
+   for (let i = 0; i < edPlaced.length; i++) { const [x, y] = edScreen(edPlaced[i]); const d = (x - e.clientX)**2 + (y - e.clientY)**2; if (d < bd) { bd = d; best = i; } }
+   if (best >= 0) { edCard(best); edFly(edPlaced[best]); }
+@@ -719,8 +731,18 @@
+   dirty = true;
+ }
+ bar.addEventListener('click', e => { const b = e.target.closest('.gm-title'); if (b) { e.stopPropagation(); setPanel(b.dataset.panel); } });
+-addEventListener('keydown', e => { if (e.key === 'Escape' && openPanel) setPanel(openPanel); });
+-cv.addEventListener('pointerdown', () => { if (openPanel) setPanel(openPanel); });
++addEventListener('keydown', e => { if (e.key !== 'Escape') return;
++  if (openPanel) setPanel(openPanel); else if (card.style.display === 'block') { card.style.display = 'none'; edSel = -1; target = null; dirty = true; } });
++cv.addEventListener('pointerdown', () => { if (openPanel) { setPanel(openPanel); moved = 99; } });   // the dismissing tap does nothing else
++for (const el of [cv, ov, bar]) el.addEventListener('contextmenu', e => e.preventDefault());        // a long press on the wafer or the bar is not a menu
++// ANDROID BACK (Edition 5). While a panel or the card is open the page holds one extra history entry, so the
++// back gesture closes the layer instead of leaving the page; with nothing open, back leaves as it should. The
++// entry follows the state on every redraw (every open or close sets dirty), so no close path is forgotten.
++let edHist = false;
++addEventListener('popstate', () => { edHist = false; if (openPanel) setPanel(openPanel); if (card.style.display === 'block') { card.style.display = 'none'; edSel = -1; target = null; dirty = true; } });
++{ const _draw = draw; draw = function(){ _draw(); const open = !!openPanel || card.style.display === 'block';
++    if (open && !edHist) { try { history.pushState({ kuiper:1 }, ''); edHist = true; } catch (e) {} }
++    else if (!open && edHist) { edHist = false; if (history.state && history.state.kuiper) history.back(); } }; }
+ elTop.classList.add('open');                                   // the long subtitle is readable once the panel is open
+ // the safe rectangle now starts under the bar, and the hidden panels take no room
+ { const _safe = safeBox; safeBox = function(){ const s = _safe(); s.y0 = Math.max(s.y0, bar.getBoundingClientRect().bottom + 8); s.y1 = Math.max(s.y0 + 24, innerHeight - 8); return s; }; }

@@ -1,0 +1,215 @@
+{
+ "mode": "before",
+ "device": "Pixel 7",
+ "results": {
+  "viewport": {
+   "W": 412,
+   "H": 839,
+   "meta": "width=device-width,initial-scale=1,viewport-fit=cover"
+  },
+  "touch_action": {
+   "canvas": "none | user-select=auto",
+   "overlay": "none | user-select=auto",
+   "bar": "auto | user-select=auto",
+   "barBtn": "manipulation | user-select=auto",
+   "lines": "auto | user-select=auto",
+   "top": "auto | user-select=auto",
+   "card": "auto | user-select=auto",
+   "html": "auto | user-select=auto"
+  },
+  "T1_drag": {
+   "dcx_px": 100,
+   "dcy_px": 60,
+   "expected": [
+    100,
+    60
+   ],
+   "cancel": 0,
+   "vv_before": {
+    "scale": 1,
+    "pageTop": 0,
+    "offsetTop": 0,
+    "scrollY": 0,
+    "scrollX": 0
+   },
+   "vv_after": {
+    "scale": 1,
+    "pageTop": 0,
+    "offsetTop": 0,
+    "scrollY": 0,
+    "scrollX": 0
+   },
+   "card_after": "",
+   "pts": 0
+  },
+  "T2_pinch_canvas": {
+   "zoom_ratio": 2,
+   "expected": 2,
+   "centre_world_drift": 0,
+   "vv": {
+    "scale": 1,
+    "pageTop": 0,
+    "offsetTop": 0,
+    "scrollY": 0,
+    "scrollX": 0
+   },
+   "pts": 0,
+   "pinch": false
+  },
+  "T2b_pinch_bar": {
+   "vv": {
+    "scale": 5,
+    "pageTop": 15,
+    "offsetTop": 15,
+    "scrollY": 0,
+    "scrollX": 0
+   },
+   "state": 0.001258768102581439
+  },
+  "T2c_pinch_lines_panel": {
+   "lines_rect": [
+    0,
+    77,
+    396,
+    520
+   ],
+   "vv": {
+    "scale": 5,
+    "pageTop": 15,
+    "offsetTop": 15,
+    "scrollY": 0,
+    "scrollX": 0
+   },
+   "openPanel": "lines"
+  },
+  "T3_tap_vs_drag": {
+   "clean_tap_opens_card": true,
+   "clean_down_to_up_ms": 60,
+   "held_900ms_opens_card": true,
+   "held_down_to_up_ms": 900.1,
+   "jittered_tap_6px_opens_card": false,
+   "jitter_moved": 12,
+   "jitter_down_to_up_ms": 80,
+   "drag_30px_opens_card": false,
+   "drag_moved": 30
+  },
+  "T4_double_tap": {
+   "vv_after_double_tap_canvas": {
+    "scale": 1,
+    "pageTop": 0,
+    "offsetTop": 0,
+    "scrollY": 0,
+    "scrollX": 0
+   },
+   "vv_after_double_tap_panel": {
+    "scale": 1,
+    "pageTop": 0,
+    "offsetTop": 0,
+    "scrollY": 0,
+    "scrollX": 0
+   },
+   "pointerup_to_click_ms": 1.3,
+   "targets": {
+    "up": [
+     97834.69999999972,
+     "BUTTON"
+    ],
+    "click": [
+     97836,
+     "BUTTON"
+    ]
+   },
+   "openPanel": "hud"
+  },
+  "T5a_tap_bar_button_over_spark": {
+   "spark_screen": [
+    323.4,
+    20.5
+   ],
+   "button_centre": [
+    323.4,
+    20.5
+   ],
+   "panel_opened": "lines",
+   "card_opened_by_spark": true,
+   "edSel": 5,
+   "verdict": "BUG: bar tap reached the canvas"
+  },
+  "T5b_tap_card_close_over_spark": {
+   "spark_screen": [
+    386,
+    688.6
+   ],
+   "x_centre": [
+    386,
+    688.6
+   ],
+   "card_after": "block",
+   "edSel_after": 7,
+   "verdict": "BUG: x close reopened another line"
+  },
+  "T5c_tap_details": {
+   "card_after": "block",
+   "details_open": true,
+   "verdict": "ok"
+  },
+  "T5d_tap_card_body": {
+   "card_after": "block"
+  },
+  "T5f_tap_card_padding": {
+   "card_after": "block",
+   "verdict": "ok"
+  },
+  "T5e_tap_wafer_with_panel_open": {
+   "panel_after": null,
+   "card_after": "block",
+   "verdict": "tap also acted on the wafer (card opened)"
+  },
+  "T6_goback_error": "TimeoutError: page.goBack: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for navigation until \"commit\"\u001b[22m\n",
+  "T6a_back_with_panel_open": {
+   "history_before": 2,
+   "history_after_open": 2,
+   "url_after_back": "about:blank",
+   "page_alive": false,
+   "openPanel_after": null,
+   "verdict": "BUG: back left the page"
+  },
+  "T6b_back_with_card_open": {
+   "page_alive": false,
+   "card_after": null,
+   "verdict": "BUG"
+  },
+  "T6c_back_with_nothing_open": {
+   "openPanel": null,
+   "card": "",
+   "page_left": true,
+   "verdict": "ok: back leaves the page"
+  },
+  "T6d_escape_with_card_open": {
+   "card_after": "block",
+   "verdict": "BUG: Escape does not close the card"
+  },
+  "T6e_escape_with_panel_open": {
+   "openPanel_after": null
+  },
+  "T7_long_press": {
+   "canvas": {
+    "ctx": 0,
+    "prevented": 0,
+    "sel": 0,
+    "card": "block"
+   },
+   "bar_button": {
+    "ctx": 0,
+    "prevented": 0,
+    "sel": 0,
+    "openPanel": "top"
+   },
+   "synthetic": {
+    "canvas_contextmenu_prevented": false,
+    "bar_contextmenu_prevented": false
+   }
+  },
+  "console_errors": []
+ }
+}

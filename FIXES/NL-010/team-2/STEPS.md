@@ -209,9 +209,9 @@ keeps its parameters. Step 3 test 6 opens through `editions/`, not only the date
 | `repos` | `layer:repos` | repositories · THE WAFER | the lit repository's commits, green, by the shader uniform `u_litRepo` (index.html:350, :154) and the point hot flag (:360) | `cosmos/repos.tsv`, 98 repositories (`wc -l` 99 with its header; kuiper-belt@018b46a cosmos/wafer-meta.json:7 `"repositories": 98`); `litRepo` (:243) becomes the layer's `value`; the readout's lit-repository lines (:371-378) become this row's suffix | Apache-2.0 (kuiper-belt); repository names only | OK when the wafer is; the `repo:<name>` self-test (:463-515) is its proof |
 | `editions` | `layer:editions` | editions · THE WAFER | one amber ring at the radius of the first commit at or after each edition's cut stamp (`findBy('unix', …)` as `lightTime` does, :556), labelled with the number; tap opens that edition (Team 3's File: open an edition). An edition cut after the wafer's last commit has no such commit: it is counted and named on the row, drawn as an amber tick at the rim (`sqrt(SPACE)`) with the words `beyond the wafer's last commit`, never placed inside (the seventh law). Measured at kuiper-belt@018b46a: `last_unix` 1793539112 = 2026-11-01T13:18:32Z (cosmos/wafer-meta.json:9), so Editions 3 (202611012022) and 4 (202611012027) are beyond the rim and Editions 1 and 2 are placed | `data/editions.json`, built from `editions/README.md` (kuiper-belt@018b46a editions/README.md:12-24: 4 editions, stamps 202610311905, 202611010114, 202611012022, 202611012027) and the pointer (editions/index.html:7, :11, :12) | CC BY 4.0 (kuiper-belt data) | at the wafer of kuiper-belt@018b46a: `OK · 2 of 4 placed, 2 beyond the rim`; Edition 5 itself is a third beyond the rim until `cosmos/` is re-harvested |
 | `lines` | `layer:lines` | verified lines · THE EVIDENCE | green sparks at their keys, bright green for `class: focus`, magenta when selected (index.html:645-648) | `keys.json`, 346 bodies, 344 on the wafer, hashed in `proof/edition-sha256.txt` (kuiper-belt@018b46a editions/202611012027/proof/edition-sha256.txt:4; E:B5.16) | Apache-2.0; each quoted line keeps its repository's licence (editions/202611012027/NOTICE.md:7-10) | OK · 344 of 346 (the two star-maker lines counted, not placed, README.md:48); `preload: true` |
-| `see-through` | `layer:see-through` | See Through stars · THE APPS | cyan stars (the instrument) at the keys Team 3's step 5 assigns; tap deep-links into See Through | `data/see-through.json`, `code-feature-collection.v1`, written by Team 3's step 5; today See Through's stars are "a line of code today, not a substation" placed by the same law (kuiper-belt@018b46a see-through/202610050609/descent.js:11; kuiper-law.js:7-10; E:B6.5) and the app reads no URL parameter (`grep -n 'location\.'` over descent.js and index.html at see-through/202610050609 finds nothing; Team 3 EVIDENCE.md:35-36) | CERN-OHL-S v2 for the app (see-through/202610050609/LICENSE.md:6; E:B6.3); ODbL for the substations (grid-data.js:7; E:B6.9) | first row of THE APPS and the largest label in the panel (the star player); `EMPTY · awaiting step 5 features` until Team 3's file exists, never absent from the list |
-| `elements` | `layer:elements` | periodic table · THE APPS | one mark per `block:<Sym>` at the key of its first function line, grey (the record), amber when `state: UNSETTLED` (elements@f7a92fb ELEMENTS.md:7-13) | `data/elements.json`, `code-feature-collection.v1`, written by Team 4's step 7; the catalogue keys its functions by `line:<n>` of the 250,174-line numbered database (elements@f7a92fb README.md:16-17, ELEMENTS.md:3), which is galaxies-wafers' key space, not the Kuiper's 63,340,120,796-key address space (cosmos/wafer-meta.json:4); the mapping `line:<n>` → `repo@commit path:line` → Kuiper key by `tools/edition_keys.py` (:12) is Team 4's to build and prove | **unsettled**: no LICENSE file at elements@f7a92fb (`ls`: APPS.md CATALOGUE.md ELEMENTS.md README.md SURFACES.md build catalogue functions inputs tests; E:B6.17), Team 5's register | `REFUSED · licence unsettled (elements@f7a92fb has no LICENSE)` until Team 5 settles it; then `EMPTY · awaiting step 7 keys` until the mapping exists; listed from Edition 5 |
-| `spider` | `layer:spider` | spider graphs · THE APPS | nodes as grey marks, edges as `LineString` key pairs drawn as chords, one graph at a time, the graph being the layer's `value` | `data/spider.json`, `code-feature-collection.v1` per graph, written by Team 4's step 7 from the receiver manifest (testcode@d09c185 spider/20260914T143049Z-v5-linkify-frontdoor-brandfaithful/spider/manifest.json:2 `receiver-manifest-v1`, 16 graphs incl. `periodic-table` at :57); node ids `family:N` and `block:<Sym>` need the same key mapping as elements | Apache-2.0 (testcode@d09c185 LICENSE:1); the graphs' own data is read live over https from other repositories, each named in the manifest entry | `EMPTY · awaiting step 7 keys`; the `?graph=<id>&focus=` grammar (v5 index.html:212) is the tap's deep link into the spider |
+| `see-through` | `layer:see-through` | See Through stars · THE APPS | cyan stars (the instrument) at the keys Team 3's step 5 assigns; tap deep-links into See Through | the record's `source.file`, `format` and `features` are Team 3's to write in step 5 (the registry names no other team's file); the registry admits `edition-keys.v1` and `code-feature-collection.v1` and refuses any other format in words (`REFUSED · format <x> not admitted`); today See Through's stars are "a line of code today, not a substation" placed by the same law (kuiper-belt@018b46a see-through/202610050609/descent.js:11; kuiper-law.js:7-10; E:B6.5) and the app reads no URL parameter (`grep -n 'location\.'` over descent.js and index.html at see-through/202610050609 finds nothing; Team 3 EVIDENCE.md:35-36) | CERN-OHL-S v2 for the app (see-through/202610050609/LICENSE.md:6; E:B6.3); ODbL for the substations (grid-data.js:7; E:B6.9) | first row of THE APPS and the largest label in the panel (the star player); `EMPTY · awaiting step 5 features` until Team 3's file exists, never absent from the list |
+| `elements` | `layer:elements` | periodic table · THE APPS | one mark per `block:<Sym>` at the key of its first function line, grey (the record), amber when `state: UNSETTLED` (elements@f7a92fb ELEMENTS.md:7-13) | Team 4's step 7 writes the file and names it (its draft: `data/elements.json`, team-4/STEPS.md:186); the registry admits it when its `format` is `code-feature-collection.v1` and refuses any other in words on the row; the catalogue keys its functions by `line:<n>` of the 250,174-line numbered database (elements@f7a92fb README.md:16-17, ELEMENTS.md:3), which is galaxies-wafers' key space, not the Kuiper's 63,340,120,796-key address space (cosmos/wafer-meta.json:4); the mapping `line:<n>` → `repo@commit path:line` → Kuiper key by `tools/edition_keys.py` (:12) is Team 4's to build and prove | **unsettled**: no LICENSE file at elements@f7a92fb (`ls`: APPS.md CATALOGUE.md ELEMENTS.md README.md SURFACES.md build catalogue functions inputs tests; E:B6.17), Team 5's register | `REFUSED · licence unsettled (elements@f7a92fb has no LICENSE)` until Team 5 settles it; then `EMPTY · awaiting step 7 keys` until the mapping exists; listed from Edition 5 |
+| `spider` | `layer:spider` | spider graphs · THE APPS | nodes as grey marks, edges as `LineString` key pairs drawn as chords, one graph at a time, the graph being the layer's `value` | Team 4's step 7 writes the files and names them (its draft: `data/graphs/overview.json`, `data/graphs/periodic-table.json` in `receiver-graph-v1` node/edge JSON, team-4/STEPS.md:166, :186); the registry admits a graph only as `code-feature-collection.v1` (nodes as Points with keys, edges as LineStrings with key pairs) and shows `REFUSED · format receiver-graph-v1 not admitted` otherwise, so the conversion is Team 4's or a later edition adds the format to the registry, and the disagreement surfaces on the row, not in a merge; built from the receiver manifest (testcode@d09c185 spider/20260914T143049Z-v5-linkify-frontdoor-brandfaithful/spider/manifest.json:2 `receiver-manifest-v1`, 16 graphs incl. `periodic-table` at :57); node ids `family:N` and `block:<Sym>` need the same key mapping as elements | Apache-2.0 (testcode@d09c185 LICENSE:1); the graphs' own data is read live over https from other repositories, each named in the manifest entry | `EMPTY · awaiting step 7 keys`; the `?graph=<id>&focus=` grammar (v5 index.html:212) is the tap's deep link into the spider |
 
 Two layers above (`periods`, `repos`) have no file: their source is the wafer itself, their proof is `ci_check` K2
 (kuiper-belt@018b46a tools/ci_check.py:9) and the engine's own self-tests (`?selftest=2026-07` at index.html:220-235,
@@ -221,16 +221,17 @@ Two layers above (`periods`, `repos`) have no file: their source is the wafer it
 not store x,y in any file (the format forbids coordinates; the Edition 4 `Object.assign({}, b, {x,y})` at :633 stays
 as the run-time place and nothing else). It does not add bar titles: FABLE-01 measured the bar at 416.6 px of content
 against 344-414 px available, two rows on every phone (neural-link FIXES/NL-009/round1/01-bar.md:13-17); the layers
-live behind ONE title, as GridAtlas keeps 63 behind Grid, and that title's name is Team 1's (Grid → LAYERS is this
-team's proposal, since on the Kuiper the wafer is the grid). It does not decide licences (Team 5), deep links (Team 3)
+live behind ONE title, as GridAtlas keeps 63 behind Grid; that title is WAFER, Team 1's mapping of GRID
+(team-1/STEPS.md:146-153), adopted here for the owner's "keep it consistent". It does not decide licences (Team 5), deep links (Team 3)
 or which app keys exist (Team 4); it refuses what they have not yet settled, in words, on the row.
 
-**Module.** `editions/<stamp>/modules/<stamp>-layers.js` (the registry, the LAYERS panel, the verified-lines layer's
-draw and card moved in from the page), `editions/<stamp>/data/layers.json`, `editions/<stamp>/data/editions.json`;
-`tools/build_layers.py` (writes `layers.json` records' `bytes`, `features`, `sha256` from the files, refuses a key
-outside `SPACE` or a colour outside PALETTE.md, as galaxies-wafers' builder "refuses to write a key the numbered database
-does not contain", README.md:18); `tools/edition_check.py` E2/E6 of Team 5's step 9 extended to `data/*.json` hashes.
-Opus team 3 in Team 5's plan (`modules/03-layers.js` there; the name is reconciled in step 4).
+**Module.** `editions/<stamp>/modules/<module-stamp>-layers.js` (the registry, the WAFER panel, the verified-lines
+layer's draw, list, filter, stepping and `edFly` moved in from the page; the card stays Team 1's), `editions/<stamp>/
+data/layers.json`, `editions/<stamp>/data/editions.json`; `tools/build_layers.py` (writes `layers.json` records' `bytes`,
+`features`, `sha256` from the files, refuses a key outside `SPACE`, a colour outside PALETTE.md, or a record `requires`
+not within its module's, as galaxies-wafers' builder "refuses to write a key the numbered database does not contain",
+README.md:18); `tools/edition_check.py` E2/E6 of Team 5's step 9 extended to `data/*.json` hashes. Opus team 3 in Team
+5's plan (`modules/03-layers.js` there; the name is reconciled in 4.3).
 
 **Acceptance test on Android** (Playwright, pre-installed Chromium, `--use-gl=angle --use-angle=swiftshader
 --enable-unsafe-swiftshader --ignore-gpu-blocklist`, `devices['Pixel 7']` and `devices['Galaxy S24']`, `hasTouch`,
@@ -239,20 +240,33 @@ FIXES/NL-009/round1/BRIEF.md:11-20):
 1. Open `editions/<stamp>/`. `KY.layers.inspect()` returns `layers: 7, unique: 7, complete: true`; `#layers` holds 7
    `input[data-ky-layer]`, every value distinct and of the form `layer:<id>`; `document.querySelectorAll('[data-layer-id],
    [data-pn-layer]').length === 0`.
-2. Tap the LAYERS title: the panel opens under the bar (`placePanels`), each row's `getBoundingClientRect().height >= 44`
-   on both devices, each row shows a state tag, and the `lines` row reads `OK · 344 of 346`.
+2. Tap the WAFER title: the panel opens under the bar (`placePanels`), its rect spans the viewport width on both
+   devices (`left <= 0.5`, `right >= innerWidth - 0.5`; 05-lines.md:83), each layer row's
+   `getBoundingClientRect().height >= 44` and its input's rect covers the row (05-lines.md:25), each row shows a state
+   tag, the `lines` row reads `OK · 344 of 346`, the `editions` row reads `OK · 2 of 4 placed, 2 beyond the rim` at
+   kuiper-belt@018b46a's `cosmos/` (3 beyond once Edition 5 is in `editions.json`), and the lines list scrolls inside
+   the panel: with 344 rows the panel's own `scrollHeight` equals its `clientHeight` and the list element's does not
+   (05-lines.md:16); a count line reads `344 of 344 rows`, and after typing `gridatlas` in the filter it reads the
+   filtered count and the clear control empties the field and restores 344 (05-lines.md:40, :54).
 3. `page.touchscreen.tap` at the centre of the `lines` row (not on the checkbox): `KY.layers.get('lines').on === false`,
    the readout gains `verified lines layer off`, and the overlay pixel at `edScreen(edPlaced[0])` is no longer green
-   (read `o2.getImageData` at that point: G < 120 or not > R + 40); tap again: back to `OK`, green returns.
+   (read `o2.getImageData` at that point: G < 120 or not > R + 40); tap again: back to `OK`, green returns. Tap the
+   `repos` row with no value: it reads `OK · none lit`, nothing new is drawn, no error.
 4. Serve `keys.json` as HTTP 404: the `lines` row reads `FAIL · keys.json HTTP 404`, `#big` text contains `KEYS.JSON
    DID NOT LOAD`, `#refuse[role=alert]` is visible, the wafer canvas centre pixel is not black (the engine still draws),
    `pageerror` count 0, and `e` does not move the camera (no fly).
 5. Serve a `keys.json` with one byte changed: row `FAIL · sha256 mismatch`, zero sparks drawn (no green pixel at any
    `edScreen` of the original 344 places), alert visible.
-6. Open `?layers=lines,periods`: `inspect().on` equals `['periods','lines']` in `order` order; untick `periods`: the
-   URL becomes `?layers=lines` without a reload (`history.replaceState`).
-7. `KY.layers.set('repos', true)` after `/` + `gridatlas` + Enter: the `repos` row reads `OK · gridatlas` and the pixel
-   test of `?selftest=repo:gridatlas` (index.html:463-515) still passes, `window.__selftest.PASS === true`.
+6. Open `editions/?layers=lines,periods` (through the pointer, not the dated folder) and `editions/<stamp>/?layers=
+   lines,periods`: in both, `inspect().on` equals `['periods','lines']` in `order` order; untick `periods`: the URL
+   becomes `?layers=lines` without a reload (`history.replaceState`). The first case passes only once the pointer
+   forwards `location.search` (3.6, Team 5's step 9); until then it is recorded FAIL with that key.
+7. `/` + `gridatlas` + Enter (which calls `KY.layers.value('repos', 'gridatlas')` and `set('repos', true)`): the `repos`
+   row reads `OK · gridatlas` and the pixel test of `?selftest=repo:gridatlas` (index.html:463-515) still passes,
+   `window.__selftest.PASS === true`; SCOPE's "one repository" control shows `gridatlas` ticked (it reads `get`, it owns
+   nothing).
+7b. Serve `../../cosmos/wafer.tsv` as HTTP 404: every row reads `REFUSED · the wafer refused: ../../cosmos/wafer.tsv did
+   not load…`, the bar and the alert strip are present, `pageerror` 0.
 8. The `see-through`, `elements` and `spider` rows are present with `EMPTY` or `REFUSED` and a non-empty `why`; no row is
    blank; the `see-through` row is the first of THE APPS and its label's font-size is the largest in the panel
    (computed style, measured).
@@ -265,9 +279,10 @@ Team 5's register; a record with an empty or unsettled licence is listed `REFUSE
 nothing (elements, until Team 5 settles it). See Through's layer names CERN-OHL-S v2 and ODbL on its row; the spider's
 names Apache-2.0 and the licences of the graphs it draws.
 
-**Opus team brief** (one team of four, step 3). You own `modules/<stamp>-layers.js`, `data/layers.json`,
-`data/editions.json`, `tools/build_layers.py`, and the move of the verified-lines draw, card, list, filter and `e`/`E`
-from the page into the module (index.html:626-692, :705-709, :728-749), keeping every behaviour NL-009 patched. You
+**Opus team brief** (one team of four, step 3). You own `modules/<module-stamp>-layers.js`, `data/layers.json`,
+`data/editions.json`, `tools/build_layers.py`, and the move of the verified-lines draw, list, filter, `edFly` and `e`/`E`
+from the page into the module (index.html:626-654, :676-692, :705-709, :728-749; the card :655-674 goes to Team 1's
+card module), keeping every behaviour NL-009 patched. You
 touch `index.html` only to delete what you moved; the hook table is step 4's and you file a REQUEST on #10 for any hook
 you need that it lacks. You do not touch `keys.json`, `cosmos/`, the placement law, the bar's titles (Team 1), the
 link grammar beyond `?layers=` (Team 3), or any app's data (Team 4). You prove tests 1-9 on Pixel 7 and Galaxy S24,
@@ -337,8 +352,9 @@ each is small enough to hold in your head.
 **Kuiper change.**
 
 4.1 **Where the boundary is today, measured.** The Edition 4 page is the engine plus an inline edition layer. The
-script of kuiper-belt@018b46a index.html:102-594 and editions/202611012027/index.html:130-619 differ on exactly three
-lines (`diff` of those ranges): the two `cosmos` paths (engine :173 / edition :201 and :212 / :240) and the call
+script of kuiper-belt@018b46a index.html:102-590 and editions/202611012027/index.html:130-619 differ in exactly three
+hunks (`diff` of those ranges; the engine's :591-594 are `requestAnimationFrame(frame)` and the closing tags, which the
+edition repeats at :750-753): the two `cosmos` paths (engine :173 / edition :201 and :212 / :240) and the call
 `loadEdition()` appended at engine :191 / edition :219. Everything from edition :620 to :749 is the edition layer, in
 the engine's scope, reaching the engine by wrapping its functions (`draw` :654, `safeBox` :726, `drawEdition` :745,
 `edNext` :747) and by writing its module-level variables directly (`litRepo` :665, `target` :666, `dirty` :666). A
@@ -353,7 +369,8 @@ window.KY = Object.freeze({
   hooks: Object.freeze({                 // read-only functions and elements of the engine
     keyPlace, address, describe, findBy, flyTo, home, homeCamera, safeBox, lightTime, showNew, goKey, fmt, words, esc,
     cv, ov, o2, hud, big, sub, card, gbox, gin,
-    get SPACE(){ return SPACE }, get N(){ return N }, get repos(){ return repos }, get commits(){ return commits } }),
+    get SPACE(){ return SPACE }, get N(){ return N }, get repos(){ return repos }, get commits(){ return commits },
+    wafer /* a Promise: resolves {N, SPACE} right after index.html:208; rejects with the refusal's words (:207, :240) */ }),
   cam: { get x(){return cx}, get y(){return cy}, get zoom(){return zoom}, get atHome(){return atHome} },
   lit: { get repo(){return litRepo}, set repo(v){ litRepo = v; dirty = true },
          get K(){return litK}, get Ci(){return litCi}, set period(p){ /* lightTime result or null */ } },
@@ -362,12 +379,21 @@ window.KY = Object.freeze({
   draw: { add(fn, order){ /* one wrap of draw, owned by the page; fns run after o2.clearRect in ascending order */ } },
   panels: { add(name, el, title){ /* PANELS[name] = el; the bar title is Team 1's; setPanel/placePanels as Edition 4 */ },
             set: setPanel, place: placePanels },
-  register(module){ /* 4.4 */ }, modules: {}, inspect(){ /* 4.6 */ } });
+  names: Object.freeze([ /* the admissible set, 4.2 */ ]),
+  register(module){ /* 4.4: a closure of the loader, see there */ }, modules: {}, inspect(){ /* 4.6 */ } });
+window.__KUIPER_MODULES__ = KY.modules;   // the alias Team 1's modules probe (team-1/STEPS.md:339)
 ```
-Every name in `hooks`, `cam`, `lit`, `sel`, `draw`, `panels` is a key the manifest's `requires` may name. The page's
-hook table is the Kuiper's `inventory()`: the loader computes `Object.keys` of it once and admits modules against it.
-Adding a hook is an edition change by the integrator; removing one is forbidden while any module in `modules.json`
-requires it (checked by E7 below). Hooks named here that exist in Edition 4: `keyPlace` :278, `address` :282,
+One rule for what `requires` may name, applied by the loader and by E6 alike: the admissible set is
+`Object.keys(KY.hooks)` ∪ `['cam', 'lit', 'sel', 'redraw', 'draw', 'panels']` ∪ the `provides` of modules admitted
+earlier in `order`, and nothing else. `Object.keys(KY.hooks)` at Edition 5 is this list, in this order, and test 7
+asserts it: `keyPlace, address, describe, findBy, flyTo, home, homeCamera, safeBox, lightTime, showNew, goKey, fmt,
+words, esc, cv, ov, o2, hud, big, sub, card, gbox, gin, SPACE, N, repos, commits, wafer` (28 names). `KY.names` is that
+set without the `provides`, frozen, so a module can read what it may ask for. The page's hook table is the Kuiper's
+`inventory()`: the loader computes the set once and admits modules against it. Adding a hook is an edition change by
+the integrator; removing one is forbidden while any module in `modules.json` requires it (checked by E6 below). The
+`wafer` hook is how the wafer's admission becomes a dependency a data module declares and the shell does not (point 2
+of REVIEW.md round 1): the bar and the card never wait on the 535,037-byte `cosmos/wafer.tsv` (`ls -l` at
+kuiper-belt@018b46a) and are present when it refuses. Hooks named here that exist in Edition 4: `keyPlace` :278, `address` :282,
 `describe` :284, `findBy` :280, `flyTo` :253, `home` :277, `homeCamera` :272, `safeBox` :262 (wrapped at :726; the
 wrap moves into the page so the hook is the wrapped one), `lightTime` :554, `showNew` :420, `goKey` :416, `fmt`/`words`
 :126, `esc` :681, `cv`/`ov`/`o2` :121, `hud`/`big`/`sub` :123, `card` (:91 `#card`), `gbox`/`gin` :604, `cx cy zoom

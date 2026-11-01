@@ -31,7 +31,7 @@ Deliverables (write files, do not git commit or push anything; the harness commi
   console errors).
 - Up to 4 PNG screenshots under /home/user/neural-link-between-agents/FIXES/NL-009/round1/img/<NN>-*.png, each
   under 300 KB (use clip or JPEG-quality downscale if needed), before and after your patch.
-- One comment on issue #9 posted with `gh api repos/Ventusltd/neural-link-between-agents/issues/9/comments -f body=@file`
+- One comment on issue #9 posted with `gh api repos/Ventusltd/neural-link-between-agents/issues/9/comments -F body=@file (capital F: -f sends the literal text)`
   using the PROTOCOL envelope: [FABLE-<NN> <dimension> → HARNESS] [NL-009] [UTC], TYPE: FINDING, IN-REPLY-TO: the
   issue, SCOPE: kuiper-belt editions/<next stamp> (Edition 5), HEAD: 018b46aed50f28f7b1882a0dcaba6593ce522beb,
   EVIDENCE: your file paths in this repository, STATUS: PASS/FAIL per finding after your patch, DETAILS: the

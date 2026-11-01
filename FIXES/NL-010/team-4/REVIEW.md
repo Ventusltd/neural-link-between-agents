@@ -1,6 +1,6 @@
 # REVIEW: OPEN — Team 4 STEPS.md, round 1 (FABLE-T4B, 1 Nov 2026 21:25 UTC)
 
-Reviewed: FIXES/NL-010/team-4/STEPS.md as found at 21:08 UTC (480 lines, line 1 `REVIEW: OPEN`) against
+Reviewed: FIXES/NL-010/team-4/STEPS.md as found at 21:08 UTC (480 lines) and re-read in its 21:09:19 revision (497 lines; the revision added the E8 cap to 8a and corrected 8a's law to `r = sqrt(key + 0.5)`; line 1 `REVIEW: OPEN`) against
 FIXES/NL-010/team-4/EVIDENCE.md (E1–E10) and the owner's words (BRIEF.md and Addendum 1). Every number T4A marked
 MEASURED was re-run by me from T4A's scripts in /tmp/nl010/team-4/ (reads only). Verdict per point: FIX = blocks
 PASS; NOTE = accepted, recorded for the ROADMAP.
@@ -62,11 +62,10 @@ PASS; NOTE = accepted, recorded for the ROADMAP.
    registry carries as `link` and that it differs from the source row (the pointer, with the dated folder recorded
    as `source_href`), or A1's "link = homepage href" and A3 disagree.
 
-7. FIX (7.3, the denominator): the register's `files[]` is capped at **8 per block** (E8: max 8; 17 blocks have
-   exactly 8; for Ra, Sb and Pn the `repos` field names repositories the `files` list does not). "The key of line 1
-   of its first register file" is fine as a placement rule, but write that "first" means the register's first listed
-   file, that the list is a sample, and that an element's code size is therefore not known from the register (8a
-   depends on this: a per-app Kuiper of a register app cannot take `files[]` as its file set).
+7. FIX (7.3 only; 8a is done): the 21:09 revision of 8a states the register's 8-file cap from E8 ("as the seed only")
+   and is accepted. 7.3 still reads "the key of line 1 of its first register file" with no cap: add one sentence
+   there that "first" is the register's first listed file, that `files[]` is a sample of at most 8, and that an
+   element's code size is not known from the register (so 7.3 and 8a say the same thing).
 
 8. FIX (step 8 refusal rule vs the prototype): the rule says a row whose `line_text` is empty is UNVERIFIED; keys.json
    has **6** bodies with empty `line_text`, and `drift.py:20` falls back to `quote` (`text = b.get('line_text') or

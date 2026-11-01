@@ -7,9 +7,9 @@ Heads this file is keyed to: kuiper-belt `018b46aed50f28f7b1882a0dcaba6593ce522b
 `f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf`, testcode `d09c185c8dacbc5c73afb2b0d0d8dad40745a544`, stars
 `cbca125bb5eeb7d0ffb02f4546d60eb5d47dadc9`, globalgrid2050 `c66759f0d7ac3489df9158da6eaa1330a37c069f`, galaxies-wafers
 `fff6fc6ad4f93a15fe8f6456942a1b44e5547105`, gridatlas `5ec7f62f213e2d20a02e86427daa182c0f38e4a4`,
-neural-link-between-agents `7f7f49db2838a7f42749d0a8e08ea37b4602bd36`. Short form `kb@018b46a` = kuiper-belt at that
+neural-link-between-agents `56958f2b20ed4c00b16b48ca5332726e25a3e3b8` (this repository moves as the teams write; the nl keys below are against that head). Short form `kb@018b46a` = kuiper-belt at that
 head, `el@f7a92fb` = elements, `tc@d09c185` = testcode, `gg@c66759f` = globalgrid2050, `gw@fff6fc6` = galaxies-wafers,
-`ga@5ec7f62` = gridatlas, `nl@7f7f49d` = this repository. Every key is `repo@sha path:line`. No claim without a key.
+`ga@5ec7f62` = gridatlas, `nl@56958f2` = this repository. Every key is `repo@sha path:line`. No claim without a key.
 Every number that is not in a keyed file was measured by a script in `/tmp/nl010/team-4/` named beside it, and is
 marked MEASURED; a number nobody has measured is written UNMEASURED, never guessed.
 
@@ -17,16 +17,16 @@ Vocabulary (shared with Team 5's STEPS.md): **the edition** is the next dated fo
 **a module** is one file `modules/NN-<name>.js` in that folder, admitted by `modules.json`; **a data file** is one JSON
 under `data/` in that folder; **the wafer** is the engine `index.html` copies, its keys from `cosmos/wafer.tsv`.
 Team 5's Opus plan already reserves `modules/07-apps.js` + `data/apps.json` for step 7 and
-`modules/08-<algorithm>.js` + `data/<algorithm>.json` for step 8 (nl@7f7f49d FIXES/NL-010/team-5/STEPS.md:218,
-:250-251); the names below fill those slots: `08-drift.js`, `data/drift.json`.
+`modules/08-<algorithm>.js` + `data/<algorithm>.json` for step 8 (nl@56958f2 FIXES/NL-010/team-5/STEPS.md:233-234,
+:268-269; its line 1 reads `REVIEW: PASS`); the names below fill those slots: `08-drift.js`, `data/drift.json`.
 
 **For FABLE-T4B (evidence keys requested, Addendum 1).** Please key in EVIDENCE.md: (a) galaxies-wafers' law and
-counts: gw@fff6fc6 wafer.mjs:11-14 (the law), :27 (342,795), :46-51 (`SUBSTRATE` frozen 2026-09-15T15:00:00Z),
-gg@c66759f testcode/202609142202/data/all-lines.meta.json:11-16 (250,174 lines, min 1, max 342,795),
+counts: gw@fff6fc6 wafer.mjs:11-14 (the law), :28 (342,795), :44-49 (`SUBSTRATE` frozen 2026-09-15T15:00:00Z),
+gg@c66759f testcode/202609142202/data/all-lines.meta.json:10-16 (250,174 lines, min 1, max 342,795),
 gg@c66759f testcode/202609151339/README.md:9-15; (b) the live wafer's totals: kb@018b46a cosmos/wafer-meta.json:2-12
 (issued 45,735,836,396; unissued 17,604,284,400; address space 63,340,120,796; 13,344 commits; 98 repositories; the law
 line), tools/ci_check.py:9 and :53-60 (K2 re-sums wafer.tsv and equals wafer-meta.json and repos.tsv),
-tools/wafer_keys.py:10-11 and :37-38 (600 keys per second, 14-day cap), tools/count_lines.py:14 and :60-61 (the
+tools/wafer_keys.py:10-11 and :33-34 (600 keys per second, 14-day cap), tools/count_lines.py:14 and :60-61 (the
 binary rule), :122 and :151 (`--all`: every ref of the clone); (c) the one-wafer intermediate: kb@018b46a NEXT.md:8-13.
 Also re-run `/tmp/nl010/team-4/drift.py`, `elements_on_wafer.py`, `app_sizes.py`, `unique_lines.py` and
 `spider-pixel7.cjs` (serve `/home/user/estate/testcode` on port 8204) and key their outputs.
@@ -41,7 +41,7 @@ code and the spider sandbox each become an app row and a layer on the wafer. No 
 engine: one baby step the owner can see on a phone.
 
 **What "OS of the estate" means in the owner's vocabulary.** The owner's words: "Turn the kuiper into the OS of the
-estate in baby steps" (nl@7f7f49d FIXES/NL-010/BRIEF.md:8-9). The estate already uses the word: globalgrid2050 calls
+estate in baby steps" (nl@56958f2 FIXES/NL-010/BRIEF.md:8-9). The estate already uses the word: globalgrid2050 calls
 itself "a modular operating system built on ventus-core.js, ventus.css, Python ETL scripts, GitHub Actions, feature
 manifests, GridBot automation and versioned application cartridges" (gg@c66759f ARCHITECTURE.md:22), its platform
 line is "Ventus OS Modular Pipeline" (:9) and its eighth system is "Versioned App Cartridges" (:848); the Kuiper's
@@ -63,7 +63,7 @@ yet: windows, processes, a kernel. A baby step adds one of these at a time and p
   (application, engine, reference, catalogue, drawing), a link and one line of purpose: gg@c66759f
   homepage_versions/homepage_v134.html:31 (the table, "All apps and their current versions. Select an app to open it"),
   :32-56 (25 rows; MEASURED by `/tmp/nl010/team-4/` parse of the row regex `<tr data-entity-id=`). The homepage opens
-  every app in the same tab (nl@7f7f49d FIXES/NL-009/round1/06-seethrough.md:16-17, "0 `target="_blank"`").
+  every app in the same tab (nl@56958f2 FIXES/NL-009/round1/06-seethrough.md:16-17, "0 `target="_blank"`").
 - The periodic table's key grammar is already the estate's: el@f7a92fb README.md:9 ("Every element, app and function
   with more than 10 lines of code has a unique key. Each key is one the estate already uses and never reuses. None is
   invented here"), :13 (`block:<Sym>` element), :14 (app = register block of kind app), :15 (`surface:<url>` = the
@@ -75,9 +75,9 @@ editions/202611012027/index.html:201-205); every key resolves to repository, com
 and places through `keyPlace` (:633); the edition layer is a list of records filtered by the admission predicate
 `on_wafer && verified && key < SPACE` (:632-633); a tap within 9 px opens the nearest spark (:685-690); the bar is four
 titles and a name (:699-703) and NL-009 measured it already two rows wide on a 412 px phone, 439 px of content against
-412 (nl@7f7f49d FIXES/NL-009/round1/06-seethrough.md:24-30). So **the launcher adds no bar entry**; it is a panel that
-Team 3's File menu opens ("open an app (step 7's registry)", nl@7f7f49d FIXES/NL-010/team-5/STEPS.md:249), and Team 3's
-own evidence hands the registry to this step (nl@7f7f49d FIXES/NL-010/team-3/EVIDENCE.md:246-247).
+412 (nl@56958f2 FIXES/NL-009/round1/06-seethrough.md:24-30). So **the launcher adds no bar entry**; it is a panel that
+Team 3's File menu opens ("open an app (step 7's registry)", nl@56958f2 FIXES/NL-010/team-5/STEPS.md:267), and Team 3's
+own evidence hands the registry to this step (nl@56958f2 FIXES/NL-010/team-3/EVIDENCE.md:246-247).
 
 **Kuiper change.** One baby step, four parts, all data-first.
 
@@ -89,12 +89,12 @@ own evidence hands the registry to this step (nl@7f7f49d FIXES/NL-010/team-3/EVI
 
     | field | rule | source of the value |
     |---|---|---|
-    | `key` | the estate's own grammar, never invented: `block:<Sym>` where the app is a register block (7 rows); otherwise `surface:<url>` where `<url>` is the folder of the app's stable address (el@f7a92fb README.md:15 is the grammar; the homepage row's `href` is the address) | APPS.md column 1; homepage `href` |
-    | `id` | the homepage `data-entity-id` where one exists, else the block symbol in lower case, else `spider-sandbox` / `periodic-table` | homepage_v134.html:32-56 |
+    | `key` | a key the estate already uses, never invented here: `block:<Sym>` where the app is a register block (7 rows, el@f7a92fb README.md:13-14); the homepage's own permanent key `data-entity-id` where the app is a homepage entity (25 rows, gg@c66759f homepage_versions/homepage_v134.html:32-56, the `entity-key` the homepage prints beside each name). `surface:<url>` is **not** used: el@f7a92fb README.md:15 defines a surface as a folder the register records, and SURFACES.md records none of the 25 homepage folders except `https://globalgrid2050.com/` (SURFACES.md:7). The two rows neither source holds (the spider, the periodic table) get the ids `spider-sandbox` and `periodic-table`, and the registry says in the record (`issued_by: data/apps.json`) that it is their issuing file; they are candidates until the homepage or the register names them (kb@018b46a README.md:33-36: a statement without a key is a candidate, written as one) | APPS.md column 1; homepage `data-entity-id`; this file for 2 rows |
+    | `key_source` | one of `register`, `homepage`, `issued-here`, so a reader never mistakes an issued id for an estate key | the tool writes it |
     | `name` | the source's own title | APPS.md column 2; homepage link text |
     | `kind` | `app` (register) or the homepage type: application, engine, reference, catalogue, drawing | APPS.md column 3; homepage `entity-type` summary |
     | `purpose` | one line, the source's own words, never written here | APPS.md column 7; homepage "Intended purpose" cell |
-    | `link` | the stable link: the homepage `href`; for register apps the first `live` URL of `catalogue/apps.json`; for the spider the GitHub tree link at tc@d09c185 until a served address is keyed (none is recorded in el@f7a92fb SURFACES.md; UNVERIFIED) | as stated |
+    | `link` | the stable link: the homepage `href`, except where the target repository keeps a pointer above its dated folders, in which case the pointer is the link and the dated `href` is kept as `source_href` (See Through: `https://ventusltd.github.io/kuiper-belt/see-through/`, source_href `…/see-through/202610050609/`, homepage_v134.html:35; Learn the Kuiper likewise, :34; NL-009's decision 5c, 06-seethrough.md:55-57: the pointer opens the newest, the dated link does not); for register apps the first `live` URL of `catalogue/apps.json`; for the spider the GitHub tree link at tc@d09c185 until a served address is keyed (none is recorded in el@f7a92fb SURFACES.md; UNVERIFIED) | as stated |
     | `licence` | the licence file of the repository the link lands in, quoted by key; `not stated` when no LICENSE, NOTICE or licence sentence exists at that head | see 7.5 |
     | `source` | `repo@sha path:line` of the row this record was built from | the tool writes it |
     | `wafer` | `{repo, commit, path}` of the app's first register file whose commit is a row of `cosmos/wafer.tsv`, or `null` with a reason | `catalogue/apps.json` `files[]` against wafer.tsv `sha12` (MEASURED: all 50 file rows of the 7 apps are on the wafer, `/tmp/nl010/team-4/elements_on_wafer.py`) |
@@ -108,23 +108,25 @@ own evidence hands the registry to this step (nl@7f7f49d FIXES/NL-010/team-3/EVI
 7.2 **The launcher `modules/07-apps.js`.** A panel, not a bar title: one more entry in the engine's `PANELS`, opened
     by `setPanel('apps')` and placed under the bar by `placePanels()` (kb@018b46a editions/202611012027/index.html:712-714),
     with no `.gm-title` added, because the bar's content already measures 439 px against 412 px on a Pixel 7 and 360 px
-    on a Galaxy S24 (nl@7f7f49d FIXES/NL-009/round1/06-seethrough.md:24-30; step 1 owns that budget). It registers one
+    on a Galaxy S24 (nl@56958f2 FIXES/NL-009/round1/06-seethrough.md:24-30; step 1 owns that budget). It registers one
     File-menu entry "open an app" with Team 3's module and one layer record with Team 2's registry, then draws the list from `data/apps.json` only
     after the wafer has admitted its own data (the hook is the `loadEdition()` call site, kb@018b46a
     editions/202611012027/index.html:219). Each row obeys the card law of step 1: **the header of the row is the key
-    line** (`block:Pn` / `surface:https://…`), then name, one-line purpose, licence, and the link. A tap on the link
+    line** (`block:Pn` / `see-through`), then name, one-line purpose, licence, and the link. A tap on the link
     navigates in the same tab (NL-009's decision, 06-seethrough.md:51-57: on Android Chrome a `_blank` tab is
     invisible and two WebGL pages on one phone evict each other); a tap on the key, when `wafer` is not null, flies the
     camera to the app's first line on the wafer through `keyPlace`/`edFly` and opens the card (:676-680). The GitHub
     link alone keeps `_blank`, as the edition's card does (:662). A row whose `link` fails `fetch(HEAD)` is drawn with
-    GridAtlas' `FAIL` state in its label, never hidden (Team 2's review bar, nl@7f7f49d FIXES/NL-010/team-2/EVIDENCE.md:316-317).
+    GridAtlas' `FAIL` state in its label, never hidden (Team 2's review bar, nl@56958f2 FIXES/NL-010/team-2/EVIDENCE.md:316-317).
     Rows are 44 px tall on a phone (NL-009's hit-target dimension: today's buttons are 29 px, 06-seethrough.md:70).
     **No window manager**: the launcher opens exactly one thing, by navigation, and the back gesture is the way home
     (06-seethrough.md:20-21 and :51-54 measured it).
 
 7.3 **The periodic table: a layer and an app.** *Layer:* every element of el@f7a92fb catalogue/elements.json placed at
-    its own key on the wafer. The key of an element is the key of line 1 of its first register file at the register's
-    recorded commit, computed exactly as `tools/edition_keys.py` computes a verified line's key (kb@018b46a
+    its own key on the wafer. The key of an element is the key of line 1 of the first file the register lists for it (`files[0]`), at the
+    register's recorded commit; the register lists at most 8 files per block (FABLE-T4B's E8: max 8, 17 blocks at
+    exactly 8, 139 at 1), so `files[]` is a sample, a placement seed, and an element's code size is not known from the
+    register (8a says what is), computed exactly as `tools/edition_keys.py` computes a verified line's key (kb@018b46a
     editions/202611012027/README.md:28-35: the commit's first key from wafer.tsv, plus the lines of every text blob
     before that file in `git ls-tree -r <commit>` order, plus the line number, refused when the walk does not land where
     the wafer says the commit ends). MEASURED (`/tmp/nl010/team-4/elements_on_wafer.py`, reads only): of 244 elements,
@@ -135,8 +137,8 @@ own evidence hands the registry to this step (nl@7f7f49d FIXES/NL-010/team-3/EVI
     (attention, kb@018b46a PALETTE.md:12), the rest as the record (grey-blue, :9); the selected element magenta (:13).
     The card of an element: header = the line at its key (card law), then `block:<Sym>`, title, kind, category, state,
     the register description in the source's words, and the GitHub link at the recorded commit. *App:* a row in
-    `data/apps.json` with key `surface:https://ventusltd.github.io/stars/blocks/` (the folder of the register the
-    catalogue was built from, el@f7a92fb catalogue/provenance.json:10) and a panel that lists the 244 elements by
+    `data/apps.json` with the issued id `periodic-table`, `key_source: issued-here`, its `link` the register folder the
+    catalogue was built from, el@f7a92fb catalogue/provenance.json:10, and a panel that lists the 244 elements by
     category and number like el@f7a92fb ELEMENTS.md, each row's header its key, tap = fly to it. The edition folder
     carries its own copy `data/elements.json` (the 244 records with their computed keys and sha256 of the source), so it
     loads offline like `keys.json` does. Precedent on the pre-Kuiper wafer: gw@fff6fc6 iterations/05-periodic-table/
@@ -155,12 +157,13 @@ own evidence hands the registry to this step (nl@7f7f49d FIXES/NL-010/team-3/EVI
     emulation served from `/home/user/estate/testcode` on port 8204 (`/tmp/nl010/team-4/spider-pixel7.cjs`, results in
     `spider-pixel7.json`, screenshot `spider-pixel7-default.png`): the page renders its hard-coded Federation snapshot
     (7 cards, "5 dependencies · 1 dependents", tag `SNAPSHOT`), fits the phone (scrollWidth 412 = viewport, scrollHeight
-    839 = viewport), 0 page errors; it makes 24 requests of which 21 fail: 6 local 404s (`./spider/federation_radial.css`,
-    `./spider/data/nodes.json`, `edges.json`, `contents/manifest.json`, `contents/nodes.json`, `contents/edges.json`,
-    which the v5 folder does not contain: it holds only `index.html`, `spider/identity.json`, `spider/manifest.json`,
-    `spider/overview-graph.json`) and 15 remote fetches (`estate-menu.js` from `ventusltd.github.io/spiders`, and the 14
-    graphs of `spider/manifest.json` on `ventusltd.github.io/{ventus-grid-engine,spiders,stars,code-generator}`) blocked
-    by the sandbox proxy; the 12 visible controls are all under 44 px. The deep link `?graph=overview&focus=…` did not
+    839 = viewport), 0 page errors; it makes 24 requests of which 21 fail, logged as 21 failure entries: 7 entries for 6 distinct local URLs
+    (`./spider/federation_radial.css`, logged twice as `HTTP 404` and `net::ERR_ABORTED`; `./spider/data/nodes.json`,
+    `edges.json`, `contents/manifest.json`, `contents/nodes.json`, `contents/edges.json`, which the v5 folder does not
+    contain: it holds only `index.html`, `spider/identity.json`, `spider/manifest.json`, `spider/overview-graph.json`)
+    and 14 remote fetches (`estate-menu.js` from `ventusltd.github.io/spiders`, and 13 of the 16 graphs of
+    `spider/manifest.json`, on `ventusltd.github.io/{ventus-grid-engine,spiders,stars,code-generator}`; `federation`
+    and `globalgrid2050-contents` are `BUILT_IN` and read locally, `overview` is local) blocked by the sandbox proxy; the 12 visible controls are all under 44 px. The deep link `?graph=overview&focus=…` did not
     reach the overview within 8 s because the manifest graphs are fetched one after another and each remote fetch had
     to fail first. So: the spider **needs its data beside it** to be an app of an offline-capable edition, exactly as
     the edition needs `keys.json` beside it. *Graph layer:* the spider's graphs are `receiver-graph-v1` node/edge JSON
@@ -179,7 +182,7 @@ own evidence hands the registry to this step (nl@7f7f49d FIXES/NL-010/team-3/EVI
     Apache-2.0 (ga@5ec7f62 LICENSE:1-3); the spider Apache-2.0 under testcode's root licence (tc@d09c185 LICENSE:1-3,
     NOTICE:10-11; the spider folder has no licence file of its own); the periodic table: **`not stated`**, because
     neither el@f7a92fb nor stars@cbca125 tracks a LICENSE or NOTICE file (`git ls-files | grep -i licen` returns nothing
-    in both; Team 2 found the same, nl@7f7f49d FIXES/NL-010/team-2/EVIDENCE.md:292). The registry writes `not stated`
+    in both; Team 2 found the same, nl@56958f2 FIXES/NL-010/team-2/EVIDENCE.md:292). The registry writes `not stated`
     and the launcher shows it; Team 5's licence register (step 9) carries the decision to the owner. No row is dropped
     for a missing licence; a missing fact is shown, not filled.
 
@@ -189,9 +192,10 @@ applied to register files) at the kuiper-belt root in the release PR; entries in
 9.5); one paragraph in the edition README and the licence lines in NOTICE.md.
 
 **Acceptance test on Android (Pixel 7 and a 360 px device, Playwright touch, served from the kuiper-belt root).**
-A1 `data/apps.json` has 34 records, every `key` matches `^(block:[A-Za-z0-9]+|surface:https://)`, every record has
-non-empty `name`, `purpose`, `link`, `licence`, `source`; the 7 `block:` keys equal el@f7a92fb APPS.md:7-13 and the 25
-homepage ids equal the `data-entity-id` set of homepage_v134.html:32-56 (a script compares, not a reader).
+A1 `data/apps.json` has 34 records; every record has non-empty `name`, `purpose`, `link`, `licence`, `source`,
+`key_source`; the provenance rule holds: the 7 keys with `key_source: register` equal el@f7a92fb APPS.md:7-13 exactly,
+the 25 with `key_source: homepage` equal the `data-entity-id` set of homepage_v134.html:32-56 exactly, and the only
+`issued-here` keys are `spider-sandbox` and `periodic-table` (a script compares, not a reader).
 A2 the bar is unchanged in width (no new title; `#bar .gm-title` count equals step 1's); File → "open an app" opens the
 launcher panel under the bar; each row ≥ 44 px tall; the first row's header text is a key.
 A3 tapping the See Through row navigates in the same tab to `../../see-through/` (HTTP 200, title "See Through");
@@ -216,7 +220,7 @@ and Team 3's File hook, with A2, A3, A5; one owns the Android journey and the of
 folder. Touch only the files named under Module. Never a bar title. Never a licence written from memory.
 
 **Baby step 2 (not in this edition).** The apps answer back: each app of the family (See Through, Learn the Kuiper, the
-spider, the periodic table) exposes a probe object like GridAtlas' `menuBar.inspect()` (nl@7f7f49d
+spider, the periodic table) exposes a probe object like GridAtlas' `menuBar.inspect()` (nl@56958f2
 FIXES/NL-010/team-2/EVIDENCE.md:49-50, :326) naming its stamp, its licence and the deep-link grammar it accepts; the
 launcher reads the probe and shows `WAIT/LOAD/OK/FAIL` per row; and every app links back to the Kuiper at a key
 (See Through's `window.KGModules` is the existing hook, team-2/EVIDENCE.md:281). Two-way links, still no windows.
@@ -234,8 +238,10 @@ entanglement drift between GitHub and GitLab heads, reconciled under L10, LAWS.m
 report about repositories into an algorithm about lines.
 
 **The question it answers.** Every verified line of the edition is keyed to a commit (kb@018b46a
-editions/202611012027/keys.json `commit`, `path`, `line`, `line_text`). The estate moves on: 23 repositories have
-moved since Edition 1 was cut, gridatlas alone from `cacb69a7` to `5ec7f62f`. Is what the edition says about a line
+editions/202611012027/keys.json `commit`, `path`, `line`, `line_text`). The estate moves on: keys.json keys its 346
+lines to 22 repositories (MEASURED, distinct `repo` values) and to commits that are not the heads: the gridatlas rows
+alone are keyed to 13 distinct commits (`cacb69a7` among them, proof/keys-summary.json round trip 1) while gridatlas
+main is `5ec7f62f`. Is what the edition says about a line
 still true at the head? The algorithm answers per line, with a key, and never by plausibility.
 
 **Why this one, of the four candidates.**
@@ -292,13 +298,18 @@ panel gains a filter by class. No new bar title.
 **MEASURED today, as a prototype, not as the deliverable** (`/tmp/nl010/team-4/drift.py`, output `drift.json` there;
 heads = the local clones at the heads listed at the top of this file, plus pipelinenews at
 `2c0c8564532c` on `/home/user/pipelinenews`): 346 bodies → **333 SAME, 10 MOVED, 3 GONE, 0 FILE_GONE, 0 UNVERIFIED**
-(all 23 repositories had a clone). The 3 GONE: ga@5ec7f62 `atlas/current.json` lines 14 and 576 (the pointer moved
-from generation 202610292044's predecessor; the quoted lines are no longer in it), kb@018b46a
+(all 22 repositories had a clone). The 3 GONE: ga@5ec7f62 `atlas/current.json` lines 14 and 576 (the pointer moved
+the pointer now reads generation 202610292044, ga@5ec7f62 atlas/current.json:3; the quoted lines are no longer in it), kb@018b46a
 `learn-the-kuiper/202610050144/NOTICE.md:6`. The 10 MOVED: 5 in data-grid-gb `datacentres/lanes/dc-a7-merge/dcmerge.py`
 (+6 lines each: the NL-007 `_op_core` patch landed above them), 2 in gridatlas, 1 each in data-centres-gb,
 globalgrid2050 (the diary line 89→90) and kuiper-belt. The prototype compares `line_text` (the text at the edition's
-commit), so an Edition 1 off-by-one (keys.json `quote_not_at_line`, 7 rows) does not count as drift. FABLE-T4B
-re-runs it; the numbers above stand only once EVIDENCE.md keys them.
+commit) and, where `line_text` is empty (6 bodies, MEASURED), falls back to `quote` (`drift.py:20`), which the
+deliverable will not do: run strictly (`/tmp/nl010/team-4/drift_strict.py`, output `drift_strict.json`) the result is
+**331 SAME, 7 MOVED, 2 GONE, 0 FILE_GONE, 6 UNVERIFIED (reason `empty line_text`)**, and those are the numbers the
+rule above produces. Two of the MOVED rows, kuiper-belt README.md 33→34 and globalgrid2050 diary 89→90, are two of
+the rows keys.json `quote_not_at_line` flags; they are genuine at head (`line_text` is found one line lower), not an
+artefact of that flag. FABLE-T4B re-ran the first run byte-identical (REVIEW.md round 1); the strict numbers stand
+once EVIDENCE.md keys them.
 
 **How it is proven.** P1 determinism: two runs against the same recorded heads produce byte-identical `drift.json`.
 P2 the refusal: with one clone removed, every row of that repository is `UNVERIFIED` and the summary's denominator
@@ -348,15 +359,17 @@ catalogue/apps.json) **as the seed only**: the register never lists more than 8 
 17 blocks at exactly 8, 139 at 1, and for `Ra`, `Sb`, `Pn` the `repos` field names repositories the `files` list does
 not), so a register app's denominator is the folder set the tool measures from those seeds (the folders of the seed
 files at their commits), printed, never the 8 files; for a folder app (See Through, Learn the Kuiper, the spider, an edition), every text blob under
-its folder in every commit of its repository that is a row of `cosmos/wafer.tsv`. The app key is the **rank** of the
-overarching key among the app's keys in wafer order (dense, from 0), and silence between the app's commits is left
-unissued by the same rule as the wafer (kb@018b46a tools/wafer_keys.py:10-11: 600 keys per second of the gap between
-consecutive app commits, capped at 14 days), so an app's Kuiper has rings that are its own nights. The placement law
+its folder in every commit of its repository that is a row of `cosmos/wafer.tsv`. App keys are issued exactly as the wafer issues its own (kb@018b46a
+editions/202611012027/index.html:202-205; tools/wafer_keys.py:10-11, :33-34): the app's commits in wafer order, and
+per commit `app_k0 = previous app_k1 + gap_before` (600 keys per second of the gap since the app's previous commit,
+capped at 14 days, left unissued) and `app_k1 = app_k0 + lines` (the app's text lines in that commit's tree); a line's
+app key is `app_k0 + lines_before + (line − 1)`, the `edition_keys.py` walk restricted to the app's files. So an app's
+Kuiper has rings that are its own nights, and "rank" holds only among issued app keys, never across the gaps. The placement law
 is the wafer's, unchanged: `r = sqrt(key + 0.5), theta = 2π frac(key × 2654435769 / 2^32)` (kb@018b46a
 editions/202611012027/index.html:278 as drawn; cosmos/wafer-meta.json:12 as declared).
 
 **The mapping, written down and provable.** `data/app-keys/<id>.tsv`: rows `wafer_k0  app_k0  run_length  commit_sha12
-path` — one row per contiguous run of the app's lines inside one file at one commit (a file's lines are contiguous in
+path` plus one row per app commit `unix  lines  sha12  gap_before` (the app's own `wafer.tsv`) — one row per contiguous run of the app's lines inside one file at one commit (a file's lines are contiguous in
 the wafer, README.md:28-35 of the edition). Both directions are a binary search over `wafer_k0` or `app_k0`. Proof:
 for 12 sampled app keys, `app → wafer → tools/key.py` returns a path under the app's folder with the same text as
 `git show <commit>:<path>` at the computed line; for 12 sampled wafer keys outside the app, `wafer → app` refuses.
@@ -369,6 +382,12 @@ Edition 4 folder 9 files (3 binary), 1,217; the spider v5 folder 4 files, 6,539;
 `atlas/releases/202608300453-atlas-v9` 23 files, 3,113; GridAtlas `atlas/cartridges` 165 files, 1,088,335 lines (the
 61 stamped copies of the substation-intelligence cartridge alone, ga@5ec7f62 atlas/cartridges/, are most of it: a
 per-app Kuiper of GridAtlas is dominated by its own history, which is the point of drawing it).
+
+**GridAtlas lesson (with key).** A cartridge is admitted alone, by its own hash, and knows nothing of the others
+(ga@5ec7f62 atlas/current.json:5, :14-21; kb@018b46a SPEC.md:3-5 "one small module, its own data, its own proof,
+loaded on demand … it does not know about any other cartridge"): a per-app Kuiper is that cartridge idea applied to
+an address space. **Opus team brief.** Phase 2: written after the owner's ACCEPT of steps 1–10; one team of four per
+app, starting with See Through, owning `tools/app_keys.py` and `apps/<id>/`, with the round trips as the test.
 
 **First algorithm on a per-app Kuiper.** The drift (step 8) over See Through's app keys: how many of its lines at the
 edition's cut are `SAME` at `see-through/` head. Then the register drift of the periodic table.
@@ -400,7 +419,12 @@ the app's repository; the TSVs CC BY 4.0.
   totals" (tools/count_lines.py:14, :60-61; the same test in tools/key.py:40). A text blob's lines are newlines plus
   one if it does not end in a newline (:60).
 - The silence rule: 600 unissued keys per second between consecutive commits, capped at 14 days
-  (tools/wafer_keys.py:37-38).
+  (tools/wafer_keys.py:33-34).
+
+**GridAtlas lesson (with key).** The register UI counts what it found and publishes the exact counts rather than a
+summary (ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:34, :122-124, :157): EVERYTHING is a count with its
+denominator printed, never a word. **Opus team brief.** Phase 2, after the owner's ACCEPT of 1–10: one team of four on
+`tools/count_lines.py`, `cosmos/binaries.tsv`, `wafer-meta.json` and the K2 sums; the owner decides item 1 first.
 
 **What EVERYTHING adds, each as a denominator the readout must print.**
 1. Private repositories: today named by digest only; EVERYTHING counts their lines into the issued total under the same
@@ -433,9 +457,9 @@ stated here so it can be argued with.
 
 **The wafer that predates the Kuiper (keyed).** gw@fff6fc6 README.md:5: "every permanently numbered line of the
 estate placed by one frozen law, `r = sqrt(key)`, `theta = key x golden angle`"; the law in full, wafer.mjs:11-14,
-frozen 2026-09-15T15:00:00Z (:46-51), inherited unchanged from gg@c66759f testcode/202609151339 (README.md:5 of gw;
+frozen 2026-09-15T15:00:00Z (:44-49), inherited unchanged from gg@c66759f testcode/202609151339 (README.md:5 of gw;
 gg README.md:9-15). Its keys are the numbered database: 250,174 distinct lines numbered 1 to 342,795, no duplicate
-rows, 128,369 in a function family (gg@c66759f testcode/202609142202/data/all-lines.meta.json:11-16; the source
+rows, 128,369 in a function family (gg@c66759f testcode/202609142202/data/all-lines.meta.json:10-16; the source
 header, el@f7a92fb catalogue/provenance.json:42, "250,174 unique lines, numbered 1 to 342,795. Generated
 2026-09-14T19:56:58.242Z by the modular star"). Extent sqrt(342,795) ≈ 585.5 units. Between it and the live wafer sat
 the one-wafer of 19 September: 19,257 bodies (one per distinct blob SHA) from 66 repositories, drawn with the 250,174
@@ -446,11 +470,17 @@ numbered lines, 245,170 placed (kb@018b46a NEXT.md:8-13).
 different angle, so **no key lands in the same place on the two wafers**, which is why they are two substrates and not
 one. Key ranges: 1…342,795 against 0…63,340,120,795. Count: 250,174 distinct lines against 45,735,836,396 line
 occurrences, a ratio of about 1.8 × 10⁵, which is the expected effect of counting every line in every commit.
-Silence: 92,621 never-issued numbers of 342,795 (27.0 %, from all-lines.meta.json:11 and :15) against 17,604,284,400
+Silence: 92,621 never-issued numbers of 342,795 (27.0 %, from all-lines.meta.json:10 and :14) against 17,604,284,400
 of 63,340,120,796 (27.79 %, wafer-meta.json:5). Radius: `sqrt(key)` against `sqrt(key + 0.5)` (gw wafer.mjs:11,
 kb index.html:278). The two keys do not share a space: a pre-Kuiper key is one distinct numbered line of a snapshot,
 a Kuiper key is one line of one blob in one commit (kb@018b46a tools/key.py:8-9); so "what moved" is **a change of
 unit, not a renumbering**, and the comparison file must say so in its first line.
+
+**GridAtlas lesson (with key).** A basemap is never redrawn to suit a layer; a different arrangement is a new
+substrate beside the old one (gw@fff6fc6 wafer.mjs:3-7, :40-43, GridAtlas' Carto basemap as the precedent): the
+unique-lines wafer is a second substrate with a second name, compared, never merged. **Opus team brief.** Phase 2,
+after the owner's ACCEPT of 1–10: one team of four on `tools/unique_lines.py`, `cosmos/unique.tsv`, `unique.html` and
+`proof/unique-vs-numbered.json`, run on the harvest machine, with K2u as the test.
 
 **The unique-lines Kuiper.** `tools/unique_lines.py` walks every text blob of every commit the wafer holds (the same
 `rev-list --all` set), hashes each LF-normalised line, and issues one key per distinct line in the order of its
@@ -465,9 +495,10 @@ of each in both spaces; (iii) the law constants side by side; (iv) what moved an
 the old wafer and on the unique wafer, with the reason "different angle law" or "different key".
 
 **MEASURED today as a lower-bound prototype, HEAD only, 25 local clones, not the wafer's 98 repositories and not all
-commits (`/tmp/nl010/team-4/unique_lines.py`, output `unique_lines.json`):** see the table FABLE-T4B keys from that
-file (the run was still in progress when this draft was written; the final totals are appended at the end of this file
-under "Measurements appended" and must agree with the JSON). The number the owner asked for, distinct lines across all
+commits (`/tmp/nl010/team-4/unique_lines.py`, output `unique_lines.json`):** the run is **partial**: 8 of 25 repositories done
+when this revision was written (it stalls on globalgrid2050's tree), the per-repository rows as they stand are in
+"Measurements appended" below, copied from `/tmp/nl010/team-4/unique_lines.log`; no total is claimed; FABLE-T4B's
+re-run (`unique_lines.rerun.log`) will be keyed in EVIDENCE.md E11 if it completes. The number the owner asked for, distinct lines across all
 commits of all 98 repositories, is UNMEASURED until the tool runs on the harvest machine.
 
 **Module.** `tools/unique_lines.py`, `cosmos/unique.tsv`, `cosmos/unique-meta.json`, `proof/unique-vs-numbered.json`,
@@ -481,8 +512,8 @@ shows none), disclosed to Team 5.
 
 ## Limits of this file
 
-- The 34-row registry, the 221/23 element placement, the spider's 24/21 request count, the drift's 333/10/3 and the
-  HEAD line counts were measured on this machine against the heads at the top; FABLE-T4B re-runs them, and only the
+- The 34-row registry, the 221/23 element placement, the spider's 24/21 request count, the drift's 331/7/2/6 (strict) and
+  333/10/3 (with the quote fallback) and the HEAD line counts were measured on this machine against the heads at the top; FABLE-T4B re-runs them, and only the
   keyed re-run counts. None of them is a number about the live GitHub Pages site, which this sandbox cannot fetch.
 - Served addresses for the spider and the periodic table are not recorded in el@f7a92fb SURFACES.md; the registry
   carries GitHub links until a surface is keyed.
@@ -493,5 +524,23 @@ shows none), disclosed to Team 5.
 
 ## Measurements appended
 
-(FABLE-T4A appends the final `unique_lines.json` totals here when the run completes; until then the entry reads
-UNMEASURED.)
+Partial output of `/tmp/nl010/team-4/unique_lines.py` (HEAD of the local clones, by the wafer's binary rule; distinct =
+exact LF-normalised bytes within that repository). 8 of 25 repositories done; the remaining 17 (globalgrid2050,
+grid-distance-maths, gridatlas, gridmachine1, kuiper-belt, kuiper-drawing-engine, kuiper-ship, maths,
+particle-physics-drawing-engine, star-maker, stars, substations, testcode, time-stone, trillion-loop, ventus-grid-engine,
+worlds-) are UNMEASURED here. No estate-wide distinct count is claimed from this table.
+
+| repository | head | files | binary | text lines | distinct lines | distinct / lines |
+|---|---|---|---|---|---|---|
+| code-generator | `857ea8124484` | 59 | 0 | 43,201 | 17,045 | 0.395 |
+| cvaa | `877bf380202b` | 77 | 0 | 8,846 | 5,183 | 0.586 |
+| data-centres-gb | `f9f47286fae6` | 33 | 0 | 5,286 | 3,442 | 0.651 |
+| data-grid-gb | `75ab8ae54e95` | 102 | 0 | 364,592 | 90,702 | 0.249 |
+| data-gridatlas | `8bf88da9e210` | 133 | 65 | 24,140 | 9,081 | 0.376 |
+| elements | `f7a92fb085c3` | 25 | 0 | 129,931 | 39,177 | 0.302 |
+| energy-transition-simulator | `a6b5ae63cc0e` | 156 | 38 | 27,537 | 23,314 | 0.847 |
+| galaxies-wafers | `fff6fc6ad4f9` | 735 | 0 | 114,966 | 27,849 | 0.242 |
+
+The row for `elements` (129,931 lines, 39,177 distinct) is the catalogue's own JSON and Markdown, where the same line
+recurs across `ELEMENTS.md`, `catalogue/*.json` and `inputs/`; `data-grid-gb` (364,592 lines, 90,702 distinct) is data.
+Both are what 8c's per-repository code/data/prose readout (8b item 3) exists to separate.
