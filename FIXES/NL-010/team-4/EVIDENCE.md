@@ -441,3 +441,54 @@ owner's acceptance of steps 1–10.
    sums 45,735,836,396); the comparison per E7 with the unit change stated.
 9. Line 1 of STEPS.md is "REVIEW: PASS" or "REVIEW: OPEN"; the format follows the ROADMAP format in BRIEF.md (goal,
    GridAtlas lesson with key, Kuiper change, module, acceptance test on Android, licence note, Opus team brief).
+
+## E11. Keys established during the round-1 review of STEPS.md (1 Nov 2026, 21:10–21:25 UTC)
+
+- kuiper-belt@018b46ae tools/wafer_keys.py:10–11 "issued keys: one per line in every file in every commit. Their count
+  is the measurement. unissued keys: GAP_KEYS_PER_SECOND x the seconds of silence, capped at CAP_SECONDS";
+  :33 `GAP_KEYS_PER_SECOND = 600`; :34 `CAP_SECONDS = 14 * 86400`.
+- kuiper-belt@018b46ae tools/count_lines.py:14 "A blob with a NUL byte in its first 8,000 is binary: counted as a
+  blob, excluded from line totals"; :60–61 the same test in code; :122 `git log --all --numstat`; :151
+  `git rev-list --all` (every ref of the clone, not only main). tools/harvest.py:7–9 "asks GitHub which repositories
+  of this account are PUBLIC". tools/ci_check.py:8 K1 (private names redacted); cosmos/repos.tsv:8, 10, 26, 28, 66, 67
+  are `unnamed-01…06` (7,923; 205,096; 2,423; 135,245; 1,863; 2 lines).
+- kuiper-belt@018b46ae README.md:6–8 "a navigation instrument, not a picture … a body you cannot open is a body that
+  has failed"; :39 "Every time carries its offset"; :40 "A check that examines nothing refuses. It does not pass."
+  DRIFT.md:1–4 (host entanglement run 20260919T125001Z, 71 bodies). LAWS.md:139 L10. PALETTE.md:9 grey-blue record,
+  :11 green, :12 amber attention, :13 magenta selected. NEXT.md:8–13 the one-wafer of 19 Sep: 19,257 bodies, 66
+  repositories, 250,174 numbered lines, 245,170 placed. editions/202611012027/README.md:28–35 how a line gets its
+  spark; :64–67 licence "code Apache-2.0, text and data CC BY 4.0"; NOTICE.md:12–14 Vogel 1979 and Knuth's multiplier.
+  proof/keys-summary.json carries `text_eq_git_line`.
+- keys.json (Edition 4): 22 distinct repositories (cvaa, data-centres-gb, data-grid-gb, data-gridatlas, elements,
+  energy-transition-simulator, galaxies-wafers, globalgrid2050, grid-distance-maths, gridatlas, gridmachine1,
+  kuiper-belt, kuiper-drawing-engine, maths, particle-physics-drawing-engine, pipelinenews, star-maker, stars,
+  time-stone, trillion-loop, ventus-grid-engine, worlds-); 13 gridatlas commits (08b5caea … cacb69a7 … efb844b9);
+  body 1 `blob_lines` 72, `commit_lines_wafer` 5286; 6 bodies with empty `line_text`; the 2 bodies not on the wafer
+  are star-maker.
+- globalgrid2050@c66759f0 testcode/202609142202/data/all-lines.meta.json:7 header "250,174 unique lines, numbered 1 to
+  342,795. Generated 2026-09-14T19:56:58.242Z by the modular star", :10 `lines` 250174, :11 `distinct` 250174, :12
+  `duplicate_rows` 0, :13 `min` 1, :14 `max` 342795, :15 `in_a_family` 128369; the source :4 is
+  `https://ventusltd.github.io/stars/LINES.md`. testcode/202609151339/README.md:9–15 the same count and law.
+  ARCHITECTURE.md:9 "Platform: Ventus OS Modular Pipeline"; :22 "a modular operating system built on ventus-core.js…";
+  :848 "System 8: Versioned App Cartridges". LICENSE.txt:1 CERN-OHL-S v2.
+- gridatlas@5ec7f62f LICENSE:1–3 Apache-2.0; atlas/current.json:3 `"generation": "202610292044"`, :5
+  `IMMUTABLE_SHELL_PLUS_HASHED_CARTRIDGES`, :14–21 `cartridge_order` (6 cartridges); menu-bar.js:34
+  `EXPECTED_LAYER_CONTROLS = 63`, :157 `missing.push('63 unique layer controls')`.
+- galaxies-wafers@fff6fc6a: `git ls-files | grep -i 'licen\|notice'` → nothing (no licence file). wafer.mjs:28 is the
+  342,795 sentence; :44–49 is SUBSTRATE (STEPS.md round 1 cited :27 and :46–51).
+- elements@f7a92fb catalogue/provenance.json:10–12 the register URL, generated time and sha256; :42 the LINES.md
+  header; catalogue/elements.json: 426 file rows over 244 elements, 23 with no files. SURFACES.md holds no folder of
+  any homepage_v134 row except `surface:https://globalgrid2050.com/` (:7) and no `stars/blocks/` surface.
+- stars@cbca125b blocks/blocks.json: 606 blocks; kinds auto 543, engine 19, constant 12, layer 11, cartridge 8,
+  app 7, tool 5, deeplink 1; the 7 apps are the same seven symbols as APPS.md.
+- neural-link-between-agents HEAD d837d9772c16d9cc4ffedb9f929f4c907f9444f6 at review time: team-5/STEPS.md:233–234
+  reserve `07-apps.js` (team 7) and `08-<algorithm>.js` (team 8); :267–269 the step table rows for 6, 7, 8; its line 1
+  is `REVIEW: PASS`. team-3/EVIDENCE.md:246–247 hands "open an app" to Team 4. team-2/EVIDENCE.md:49–50
+  `menuBar.inspect()`, :281 `window.KGModules`, :292 elements has no LICENSE, :316–317 layer load/FAIL label, :326 probe.
+- Re-runs of T4A's scripts (reads only), 21:10–21:16 UTC: `drift.py` → drift.json byte-identical (333 SAME, 10 MOVED,
+  3 GONE, 0 FILE_GONE, 0 UNVERIFIED, 22 heads); `elements_on_wafer.py` → 221 placeable / 23 not (12 constant, 4
+  engine, 6 layer, 1 cartridge), 426/426 file rows, 30 commits, 31 repositories; `app_sizes.py` → 3,013; 10,387;
+  1,217; 6,539; 3,113; 1,088,335 text lines. `spider-pixel7.json` → 24 requests, 21 failures = 7 entries for 6 local
+  URLs (federation_radial.css twice) + 14 remote (estate-menu.js + 13 manifest graphs); 12 controls under 44 px;
+  overview deep link left the crumbs at "Federation". `unique_lines.py` first run wrote no JSON (log ends at
+  galaxies-wafers, 8 of 25 clones); re-run in progress.

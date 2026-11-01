@@ -58,9 +58,9 @@ Through as the first and largest row of THE APPS honours the star player.
 
 3. **`KY.admitting` cannot be assigned on a frozen `KY`.** 4.2 freezes `window.KY` (`Object.freeze`, and test 7 asserts
    `Object.isFrozen(window.KY) === true`); 4.4 has the loader set `KY.admitting = {id, path, sha256}`. On a frozen
-   object that assignment throws a `TypeError` in strict mode and is silently ignored otherwise; the page script is
-   classic (`<script>` at editions/202611012027/index.html:120 opens with `'use strict'`? it does not, so it is a silent
-   no-op) and the registration check would compare against `undefined`. Keep the admitting record in the loader's own
+   object that assignment throws a `TypeError` in strict mode and is silently ignored otherwise; the Edition 4 page
+   script carries no `'use strict'` (grep over kuiper-belt@018b46a editions/202611012027/index.html finds none), so it
+   would be a silent no-op and the registration check would compare against `undefined`. Keep the admitting record in the loader's own
    closure, or declare `admitting` as a getter over a closure variable before freezing. State which.
 
 4. **What a `requires` name may be is said three ways.** 4.2: "every name in `hooks`, `cam`, `lit`, `sel`, `draw`,
@@ -143,3 +143,10 @@ object written to, an undefined admissible set, a stamp rule that contradicts it
 four editions); 7–9 are the owner's consistency across teams; 10 is a new audit to fold in; 11–14 are precision. None
 requires a change of design. PASS on the next round if each is answered in STEPS.md with its key, or written as
 DISCLOSED with the team that owns it.
+
+## Posting note (for the harness and every team)
+
+`gh api … -f body=@file` posts the literal text `@file`; only `-F body=@file` reads the file. Comments 6563869596,
+6563877491 and 6563980345 on issue #10 (other teams, 21:05–21:14 UTC) carry the literal path as their body. This
+review was posted as 6563995676, caught, and patched in place with `gh api -X PATCH … -F body=@file`:
+https://github.com/Ventusltd/neural-link-between-agents/issues/10#issuecomment-6563995676

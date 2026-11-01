@@ -1,0 +1,318 @@
+{
+ "st_first": {
+  "vw": 412,
+  "vh": 839,
+  "dpr": 2.625,
+  "buttons": [
+   {
+    "t": "GO",
+    "r": [
+     348,
+     56,
+     56,
+     44
+    ],
+    "aria": "go to this substation"
+   },
+   {
+    "t": "X",
+    "r": [
+     360,
+     8,
+     44,
+     44
+    ],
+    "aria": "back"
+   },
+   {
+    "t": "♪",
+    "r": [
+     308,
+     8,
+     44,
+     44
+    ],
+    "aria": "mute"
+   },
+   {
+    "t": "GRID",
+    "r": [
+     8,
+     761,
+     66,
+     44
+    ],
+    "aria": "grid lines"
+   },
+   {
+    "t": "SUBS",
+    "r": [
+     78,
+     761,
+     72,
+     44
+    ],
+    "aria": "substations"
+   },
+   {
+    "t": "SPIDER",
+    "r": [
+     153,
+     761,
+     88,
+     44
+    ],
+    "aria": "spider arrows"
+   },
+   {
+    "t": "KUIPER",
+    "r": [
+     71,
+     713,
+     89,
+     44
+    ],
+    "aria": "kuiper view"
+   },
+   {
+    "t": "MAP",
+    "r": [
+     166,
+     713,
+     63,
+     44
+    ],
+    "aria": "map view"
+   },
+   {
+    "t": "SAT",
+    "r": [
+     235,
+     713,
+     56,
+     44
+    ],
+    "aria": "sat view"
+   },
+   {
+    "t": "3D",
+    "r": [
+     297,
+     713,
+     45,
+     44
+    ],
+    "aria": "3d view"
+   },
+   {
+    "t": "▲",
+    "r": [
+     312,
+     761,
+     44,
+     44
+    ],
+    "aria": "ascend"
+   },
+   {
+    "t": "▼",
+    "r": [
+     360,
+     761,
+     44,
+     44
+    ],
+    "aria": "descend"
+   }
+  ],
+  "input": {
+   "ph": "Substation name",
+   "r": [
+    8,
+    56,
+    332,
+    44
+   ]
+  },
+  "state": {
+   "D": 0,
+   "Dgoal": 0,
+   "T": -1,
+   "name": "",
+   "view": "map",
+   "mapState": "loading",
+   "mapVis": false,
+   "tileOK": 0,
+   "tileErr": 1,
+   "z": 3.601046165678342,
+   "W": 412,
+   "H": 839,
+   "Rpx": 193.64,
+   "NP": 12900,
+   "cap": "SEE THROUGH",
+   "note": "",
+   "mN": 0,
+   "mTotal": 0,
+   "card": "",
+   "att": "",
+   "lite": false,
+   "grid": false,
+   "subs": true,
+   "in3d": false
+  },
+  "hash": "#sub=Drax",
+  "links": [],
+  "title": "See Through",
+  "space": 59637070538
+ },
+ "st_find": {
+  "drax": 1182,
+  "draxSub": {
+   "name": "Drax",
+   "lat": 53.73622,
+   "lon": -0.99249,
+   "volt": "400 kV",
+   "op": "National Grid"
+  },
+  "T_before": -1
+ },
+ "st_falling": {
+  "D": 1.8396049319260772,
+  "Dgoal": 1.8396049319260772,
+  "T": 1182,
+  "name": "Drax",
+  "view": "map",
+  "mapState": "loading",
+  "mapVis": false,
+  "tileOK": 0,
+  "tileErr": 1,
+  "z": 3.601046165678342,
+  "W": 412,
+  "H": 839,
+  "Rpx": 193.64,
+  "NP": 12900,
+  "cap": "DOWN TO THE SUBSTATION",
+  "note": "",
+  "mN": 0,
+  "mTotal": 0,
+  "card": "",
+  "att": "Substations and lines © OpenStreetMap contributors, ODbL",
+  "flight": "down",
+  "spider": null,
+  "lite": false,
+  "grid": false,
+  "subs": true,
+  "in3d": false
+ },
+ "st_arrived": {
+  "D": 8,
+  "Dgoal": 8,
+  "T": 1182,
+  "name": "Drax",
+  "view": "sat",
+  "mapState": "loading",
+  "mapVis": false,
+  "tileOK": 0,
+  "tileErr": 1,
+  "z": 16,
+  "W": 412,
+  "H": 839,
+  "Rpx": 193.64,
+  "NP": 12900,
+  "cap": "MAP LOADING",
+  "note": "",
+  "mN": 0,
+  "mTotal": 0,
+  "card": "Drax · 400 kV",
+  "att": "Substations and lines © OpenStreetMap contributors, ODbL",
+  "flight": null,
+  "spider": null,
+  "lite": false,
+  "grid": false,
+  "subs": true,
+  "in3d": false
+ },
+ "st_kuiper": {
+  "D": 8,
+  "Dgoal": 8,
+  "T": 1182,
+  "name": "Drax",
+  "view": "kuiper",
+  "mapState": "loading",
+  "mapVis": false,
+  "tileOK": 0,
+  "tileErr": 1,
+  "z": 16,
+  "W": 412,
+  "H": 839,
+  "Rpx": 193.64,
+  "NP": 12900,
+  "cap": "THE STARS ONLY",
+  "note": "",
+  "mN": 0,
+  "mTotal": 0,
+  "card": "Drax · 400 kV",
+  "att": "Substations and lines © OpenStreetMap contributors, ODbL",
+  "flight": null,
+  "spider": null,
+  "lite": false,
+  "grid": false,
+  "subs": true,
+  "in3d": false
+ },
+ "st_errors": [
+  "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+ ],
+ "ed_first": {
+  "vw": 412,
+  "vh": 839,
+  "bar": [
+   0,
+   0,
+   412,
+   75
+  ],
+  "barname": "KUIPER EDITION 4",
+  "titles": [
+   {
+    "t": "edition",
+    "r": [
+     147,
+     6,
+     71,
+     29
+    ]
+   },
+   {
+    "t": "readout",
+    "r": [
+     221,
+     6,
+     71,
+     29
+    ]
+   },
+   {
+    "t": "lines",
+    "r": [
+     296,
+     6,
+     56,
+     29
+    ]
+   },
+   {
+    "t": "commands",
+    "r": [
+     8,
+     39,
+     78,
+     29
+    ]
+   }
+  ],
+  "big": "Kuiper Edition 4 · 344 verified lines lit",
+  "hash": ""
+ },
+ "ed_errors": []
+}

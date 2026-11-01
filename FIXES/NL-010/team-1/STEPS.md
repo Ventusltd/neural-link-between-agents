@@ -104,7 +104,7 @@ old interface reachable and publishes a failure strip rather than being skipped 
 measured: the strip at (8,8) 1264×33 when the engine had 0 + 0 controls).
 1.5 Commands move as the same DOM nodes into panel rows of 44 px, in the panel's own type (`11px/1.35` mono); the map
 keeps the search box under the bar because it is "the one control a person needs before they know which menu to open"
-(cartridge `:6010-6016`) and the GRID/SUBS chips (`:1521-1552`); result surfaces stay with the map (`:220-225`, `:1658-1667`; measured
+(cartridge `:6010-6016`) and the GRID/SUBS chips (`:1521-1552`); result surfaces stay with the map (`:220-225`, `:1662-1669`; cartridge `:6017-6023`; measured
 `controls_moved:17`; the module moves the search into File at `:1662`, yet the live page shows `.search-bar-wrapper`
 over the map at (981.8,77), see the note under the table).
 1.6 Phone rule at `max-width:700px`: bar 34 px, titles 9 px `.025em` padding `0 6px`, panels `position:fixed; top:34px;
@@ -154,9 +154,9 @@ C5 The six names, mapped. The Kuiper keeps GridAtlas's six words where the meani
 | ABOUT | the Versions ledger (`:1557`), disclaimer and shout-out (`:1580-1583`), the Estate links (`:605-613`), the attribution last in small print (`:1590-1611`); measured 8 rows | ABOUT | the card law sentence first (K3), the edition's name and stamp, the laws (`LAWS.md`), licences (`NOTICE.md`), the estate links (See Through, Learn the Kuiper, GridAtlas, the homepage), the attribution of the data last |
 
 The star slot: See Through is "the star player" (step 5, team 3). The shell's width rule for it is fixed here so that
-A2 can run and step 5 chooses the content within it: from 393 px up the star entry is the seventh title, first in the
-left group before FILE, `a.gm-title[href="../../see-through/"]` in the same face (slack 393 − 302 = 91 px ≥ the 72 px it
-needs); at `max-width:380px` it leaves the bar and takes the bottom-left 44 px strip that GridAtlas itself gives its two
+A2 can run and step 5 chooses the content within it: at `min-width:381px` the star entry is the seventh title, first in the
+left group before FILE, `a.gm-title[href="../../see-through/"]` in the same face (slack 381 − 302 = 79 px ≥ the 72 px it
+needs; 91 px at 393, 110 px at 412); at `max-width:380px` it leaves the bar and takes the bottom-left 44 px strip that GridAtlas itself gives its two
 most-used controls on a phone (the GRID/SUBS chips, `chipStaysOnMap :1521-1552`, measured (15,697) 65.7×44 at 360 px by
 the evidence officer), same face, same colours. Step 5 may change the words and the target, not the rule; one row at
 360 px is never traded. Edition 4's four names map as: EDITION → ABOUT (the text) and
