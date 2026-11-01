@@ -2,8 +2,8 @@
  "edition": "202611012027 (Edition 4)",
  "url": "http://127.0.0.1:8110/editions/202611012027/",
  "script": "FIXES/NL-009/android-journey.cjs",
- "generatedAt": "2026-11-01T23:21:35Z",
- "how": "node android-journey.cjs <url> <outdir> --all (the three devices were run as two parallel invocations on one machine and merged here)",
+ "generatedAt": "2026-11-01T23:42:21Z",
+ "how": "node android-journey.cjs <url> <outdir> --device <name>, one invocation per device on one machine shared with nine other Chromium runs, merged here. Pixel 7 and Galaxy S24 ran on the script as committed except for two later harness-only changes made for landscape (the wafer analysis starts 2 px under the bar so the bar border is not counted; the drag and the zoom-out pinch keep the fingers on the canvas when the card leaves little room); Pixel 7 landscape ran on the final script. The assertions themselves did not change.",
  "devices": [
   {
    "device": "Pixel 7",
@@ -1291,15 +1291,15 @@
    },
    "dpr": 2.625,
    "url": "http://127.0.0.1:8110/editions/202611012027/",
-   "startedAt": "2026-11-01T22:57:25.734Z",
+   "startedAt": "2026-11-01T23:21:35.798Z",
    "steps": [
     {
      "id": "load",
      "name": "load: zero console errors, wafer drawn, bar one row",
      "pass": true,
-     "ms": 25942,
+     "ms": 19075,
      "measured": {
-      "loadMs": 25942,
+      "loadMs": 19075,
       "consoleErrors": [],
       "big": "Kuiper Edition 4 \u00b7 344 verified lines lit",
       "wafer": {
@@ -1343,7 +1343,7 @@
       "sparksVisible": 87,
       "frameMs": {
        "median": 17,
-       "max": 20
+       "max": 28
       },
       "screenshot": "pixel-7-landscape/01-load.png"
      },
@@ -1353,7 +1353,7 @@
      "id": "edition-open",
      "name": "tap EDITION: panel opens under the bar and scrolls inside",
      "pass": true,
-     "ms": 4472,
+     "ms": 3125,
      "measured": {
       "panel": {
        "visible": true,
@@ -1386,7 +1386,7 @@
      "id": "edition-close",
      "name": "tap EDITION again: panel closes",
      "pass": true,
-     "ms": 3729,
+     "ms": 1677,
      "measured": {
       "panel": {
        "visible": false,
@@ -1412,7 +1412,7 @@
      "id": "lines-open",
      "name": "tap LINES: panel opens under the bar with the rows",
      "pass": true,
-     "ms": 2088,
+     "ms": 3050,
      "measured": {
       "panel": {
        "visible": true,
@@ -1455,7 +1455,7 @@
      "id": "lines-filter",
      "name": "type \"acceptance\": the list narrows to matching rows, input and first row on screen",
      "pass": true,
-     "ms": 358918,
+     "ms": 23662,
      "measured": {
       "rows": 7,
       "allRowsMatch": true,
@@ -1479,7 +1479,7 @@
      "id": "lines-pick",
      "name": "tap the first row: LINES closes, camera flies, card opens, spark in the clear space",
      "pass": true,
-     "ms": 10788,
+     "ms": 133087,
      "measured": {
       "linesVisible": false,
       "card": {
@@ -1512,7 +1512,7 @@
        "hitTest": "#c",
        "why": ""
       },
-      "sparkMovedAfterTapPx": 0,
+      "sparkMovedAfterTapPx": null,
       "rowTapped": "gridatlas tools/release/acceptance.mjs:15Owner acceptance cannot be forged by an agent: the ACCEPT line",
       "screenshot": "pixel-7-landscape/06-lines-pick.png"
      },
@@ -1522,7 +1522,7 @@
      "id": "card-details",
      "name": "tap details: the card grows, stays under its cap and on screen",
      "pass": true,
-     "ms": 2077,
+     "ms": 1135,
      "measured": {
       "heightBefore": 100.375,
       "heightAfter": 108,
@@ -1561,7 +1561,7 @@
      "id": "card-close",
      "name": "tap \u00d7: the card closes and the selection clears",
      "pass": true,
-     "ms": 9929,
+     "ms": 6876,
      "measured": {
       "closeRect": {
        "left": 551.2,
@@ -1585,7 +1585,7 @@
      "id": "key-e-1",
      "name": "press e (1): next line, card open, spark in the clear space",
      "pass": true,
-     "ms": 121109,
+     "ms": 42023,
      "measured": {
       "card": {
        "index": 1,
@@ -1624,7 +1624,7 @@
      "id": "key-e-2",
      "name": "press e (2): next line, card open, spark in the clear space",
      "pass": true,
-     "ms": 17827,
+     "ms": 24848,
      "measured": {
       "card": {
        "index": 2,
@@ -1663,7 +1663,7 @@
      "id": "key-e-3",
      "name": "press e (3): next line, card open, spark in the clear space",
      "pass": true,
-     "ms": 90448,
+     "ms": 200150,
      "measured": {
       "card": {
        "index": 3,
@@ -1702,7 +1702,7 @@
      "id": "pinch-drag",
      "name": "pinch out then drag: the wafer zooms and pans, the page neither scrolls nor zooms",
      "pass": true,
-     "ms": 242660,
+     "ms": 666309,
      "measured": {
       "pinch": {
        "centre": [
@@ -1734,11 +1734,11 @@
       "drag": {
        "finger": [
         -90,
-        70
+        -70
        ],
        "sparkMoved": [
         -90,
-        70
+        -70
        ],
        "pageScroll": [
         0,
@@ -1756,8 +1756,9 @@
        {
         "centre": [
          341,
-         240.8
+         100.8
         ],
+        "centreHit": "c",
         "axis": "x",
         "fingerDistance": [
          300,
@@ -1765,7 +1766,7 @@
         ],
         "ratio": 0.04,
         "zoomAfter": 0.28,
-        "selectedSparkMovedPx": 0,
+        "selectedSparkMovedPx": 0.9,
         "greensInView": [
          0,
          0
@@ -1774,9 +1775,10 @@
        },
        {
         "centre": [
-         341,
-         240.8
+         340.5,
+         100.1
         ],
+        "centreHit": "c",
         "axis": "x",
         "fingerDistance": [
          300,
@@ -1784,18 +1786,19 @@
         ],
         "ratio": 0.04,
         "zoomAfter": 0.0112,
-        "selectedSparkMovedPx": 0,
+        "selectedSparkMovedPx": 0.7,
         "greensInView": [
          0,
-         0
+         7
         ],
         "ok": true
        },
        {
         "centre": [
-         341,
-         240.8
+         340.1,
+         99.5
         ],
+        "centreHit": "c",
         "axis": "x",
         "fingerDistance": [
          300,
@@ -1803,18 +1806,19 @@
         ],
         "ratio": 0.04,
         "zoomAfter": 0.000448,
-        "selectedSparkMovedPx": 0,
+        "selectedSparkMovedPx": 1.7,
         "greensInView": [
-         0,
-         0
+         7,
+         47
         ],
         "ok": true
        },
        {
         "centre": [
-         341,
-         240.8
+         340.7,
+         97.9
         ],
+        "centreHit": "c",
         "axis": "x",
         "fingerDistance": [
          300,
@@ -1822,10 +1826,10 @@
         ],
         "ratio": 0.69133,
         "zoomAfter": 0.0003097,
-        "selectedSparkMovedPx": 0,
+        "selectedSparkMovedPx": 0.8,
         "greensInView": [
-         0,
-         0
+         47,
+         41
         ],
         "ok": true
        }
@@ -1838,41 +1842,45 @@
     {
      "id": "spark-tap",
      "name": "tap a green spark: the card for the nearest spark opens and the camera places it clear",
-     "pass": false,
-     "ms": 423,
+     "pass": true,
+     "ms": 15981,
      "measured": {
-      "tapped": null,
+      "tapped": {
+       "x": 431.7,
+       "y": 80.6,
+       "px": 34
+      },
       "greensInView": 0,
       "cameraKnown": true,
-      "predictedIndex": null,
-      "predictedTitle": null,
-      "predictedDistanceFromTapPx": null,
-      "secondNearestPx": null,
-      "cardIndex": 3,
+      "predictedIndex": 323,
+      "predictedTitle": "Contributor username, UID and changeset are never read, banned from the schema,",
+      "predictedDistanceFromTapPx": 1.1,
+      "secondNearestPx": 13.7,
+      "cardIndex": 323,
       "previousCardIndex": 3,
-      "cardTitle": "One Earth radius for the whole estate, with the reason",
+      "cardTitle": "Contributor username, UID and changeset are never read, banned from the schema,",
       "clear": {
-       "ok": false,
-       "sparkY": 240.8,
-       "sparkX": 341,
+       "ok": true,
+       "sparkY": 142.2,
+       "sparkX": 431,
        "barBottom": 45.6,
        "cardTop": 240,
        "windowY": [
         55.6,
         230
        ],
-       "hitTest": "#card",
-       "why": "spark at y=240.8 outside [55.6,230]"
+       "hitTest": "#c",
+       "why": ""
       },
       "screenshot": "pixel-7-landscape/13-spark-tap.png"
      },
-     "note": "no unambiguous spark to tap (camera known: true, greens in view: 0)"
+     "note": ""
     },
     {
      "id": "whole-wafer",
      "name": "tap COMMANDS then WHOLE WAFER: the card closes and the whole wafer is on screen under the bar",
-     "pass": false,
-     "ms": 380173,
+     "pass": true,
+     "ms": 63110,
      "measured": {
       "commandsPanel": {
        "visible": true,
@@ -1904,18 +1912,26 @@
       "cardOpen": false,
       "magenta": null,
       "wafer": {
-       "error": "FAILED: page.screenshot: Timeout 180000ms exceeded.",
-       "bbox": null
+       "litFraction": 0.1575,
+       "litPx": 42413,
+       "bbox": [
+        309,
+        80,
+        553,
+        324
+       ],
+       "bboxW": 245,
+       "bboxH": 245
       },
       "screenshot": "pixel-7-landscape/14-whole-wafer.png"
      },
-     "note": "wafer not whole on screen: null"
+     "note": ""
     },
     {
      "id": "see-through",
      "name": "tap SEE THROUGH: ../../see-through/ opens (new tab or navigation)",
      "pass": false,
-     "ms": 83881,
+     "ms": 1517,
      "measured": {
       "control": null,
       "screenshot": "pixel-7-landscape/15-see-through.png"
@@ -1925,9 +1941,9 @@
    ],
    "consoleErrors": [],
    "pass": false,
-   "passed": 12,
-   "failed": 3,
-   "finishedAt": "2026-11-01T23:20:00.198Z"
+   "passed": 14,
+   "failed": 1,
+   "finishedAt": "2026-11-01T23:41:41.423Z"
   }
  ],
  "pass": false,
@@ -1954,11 +1970,9 @@
   },
   {
    "device": "Pixel 7 landscape",
-   "passed": 12,
-   "failed": 3,
+   "passed": 14,
+   "failed": 1,
    "failedSteps": [
-    "spark-tap",
-    "whole-wafer",
     "see-through"
    ],
    "consoleErrors": 0
