@@ -1,4 +1,4 @@
-REVIEW: OPEN
+REVIEW: PASS
 
 # Team 4 "the OS of the estate, baby steps": steps 7 and 8 (with 8a–8c, Addendum 1) of the NL-010 roadmap
 
