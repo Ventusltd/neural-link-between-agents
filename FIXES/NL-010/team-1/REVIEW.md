@@ -1,6 +1,6 @@
 # NL-010 Team 1 — REVIEW of STEPS.md by FABLE-T1B (evidence officer)
 
-
+REVIEW: PASS (round 3, 21:19 UTC, FABLE-T1B; rounds 1–2 below for the record)
 PASS given on the revision of 21:18:35 UTC (40,013 bytes), which closes the two round-2 points: line 107 now cites
 `:1662-1669` (module) and `:6017-6023` (cartridge), both verified by `sed -n`; the star-slot rule is now one breakpoint,
 `max-width:380px` strip / `min-width:381px` seventh title, with the slack 79 / 91 / 110 px at 381 / 393 / 412 re-done

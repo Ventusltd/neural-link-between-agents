@@ -492,3 +492,18 @@ owner's acceptance of steps 1–10.
   URLs (federation_radial.css twice) + 14 remote (estate-menu.js + 13 manifest graphs); 12 controls under 44 px;
   overview deep link left the crumbs at "Federation". `unique_lines.py` first run wrote no JSON (log ends at
   galaxies-wafers, 8 of 25 clones); re-run in progress.
+
+- `unique_lines.py` re-run (21:27–21:4x UTC): killed with exit 137 (out of memory) while reading globalgrid2050 HEAD, after 8 of 25 clones; no `unique_lines.json` written. The prototype holds every distinct line of every clone in one in-memory set and the whole `git cat-file --batch` output of a repository in memory, so it cannot run on globalgrid2050 here. Partial per-repository table (HEAD only, text blobs by the binary rule, distinct = LF-normalised exact bytes), from `/tmp/nl010/team-4/unique_lines.rerun.log`:
+
+  | repository | head | files | binary | lines | distinct |
+  |---|---|---|---|---|---|
+  | code-generator | 857ea8124484 | 59 | 0 | 43,201 | 17,045 |
+  | cvaa | 877bf380202b | 77 | 0 | 8,846 | 5,183 |
+  | data-centres-gb | f9f47286fae6 | 33 | 0 | 5,286 | 3,442 |
+  | data-grid-gb | 75ab8ae54e95 | 102 | 0 | 364,592 | 90,702 |
+  | data-gridatlas | 8bf88da9e210 | 133 | 65 | 24,140 | 9,081 |
+  | elements | f7a92fb085c3 | 25 | 0 | 129,931 | 39,177 |
+  | energy-transition-simulator | a6b5ae63cc0e | 156 | 38 | 27,537 | 23,314 |
+  | galaxies-wafers | fff6fc6ad4f9 | 735 | 0 | 114,966 | 27,849 |
+
+  Sum over these 8: lines 718,499 distinct-in-repo sum 215,793. The cross-repository distinct count is not in the log (it was only to be written to the JSON), so it is UNMEASURED.
