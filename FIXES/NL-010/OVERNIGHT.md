@@ -30,3 +30,8 @@ pointer. Governance note for NL-008's record: this is chat authorisation, not an
 
 The harness wakes every ~40 minutes to commit landed files, relaunch watchers that ended, and start queued Opus agents
 (20 concurrent cap).
+
+## Log
+
+- 2026-11-01 23:34 UTC · Watcher A "release" started (session_015ELZDBhAFNgtcsrTUSi1vm). Read OVERNIGHT, OPUS-BRIEF, ROADMAP step 9, harness notes. kuiper-belt origin/main is now b9901d4 (the engine's own Actions commit, cosmos/*.tsv, 22:09 UTC), ahead of the 018b46a the notes record; the edition branch tip is febdd99. `python3 tools/ci_check.py` on the edition working tree: RESULT: PASS (K1 649 files, 0 private digests). `tools/edition_check.py` and `editions/LAW.md` do not exist yet (team 5's to deliver).
+- 2026-11-01 23:36 UTC · State read from handoff/10-integration: ADMISSIONS rows 1-3 admitted (hello+loader 23:19, kuiper-shell 23:21, line-card 23:35); TEST.md Run 1 INTERIM (Pixel 7, 23:35): the shell admission turns `lines-pick` and `card-details` RED (shell `closeAll(false)` → `history.back()` taken by the loader's ANDROID BACK popstate listener). R1 condition (journey green on Pixel 7 and Galaxy S24 with base + loader + shell) NOT met. Polling every 5 minutes; nothing merged.
