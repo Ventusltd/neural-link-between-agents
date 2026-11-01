@@ -162,16 +162,21 @@ async function runDevice(browser, deviceName) {
     await sleep(FIXED_WAIT);
     const frames = await page.evaluate(() => new Promise(res => { const t = []; let last = performance.now(); const f = () => { const now = performance.now(); t.push(now - last); last = now; if (t.length < 12) requestAnimationFrame(f); else res(t); }; requestAnimationFrame(f); setTimeout(() => res(t), 6000); }));
     let p = await probe();
-    const png = await shotPng();
-    const wafer = png ? await waferFromPng(page, png.toString('base64'), p.bar ? p.bar.bottom : 0) : { error: 'screenshot timed out', litFraction: 0, bbox: null };
+    // the first frames under SwiftShader can take long: the wafer check is retried across drawn frames before it counts as absent
+    let png = null, wafer = null, waferOk = false, waferTries = 0;
+    for (; waferTries < 4 && !waferOk; waferTries++) {
+      if (waferTries) await framesPass(2, 40000);
+      p = await probe(); png = await shotPng();
+      wafer = png ? await waferFromPng(page, png.toString('base64'), p.bar ? p.bar.bottom : 0) : { error: 'screenshot timed out', litFraction: 0, bbox: null };
+      const clearMin = Math.min(p.viewport.w, p.viewport.h - (p.bar ? p.bar.bottom : 0));
+      waferOk = wafer.litFraction > 0.03 && !!wafer.bbox && wafer.bboxW > 0.4 * clearMin && Math.abs(wafer.bboxW / wafer.bboxH - 1) < 0.25;
+    }
     const tops = p.titles.map(t => t.rect.top);   // the buttons' tops: one row means they all share one, the bar is under two button heights, and nothing is clipped off the right
     const nameInRow = !p.barname || !p.barname.rect || (p.barname.rect.bottom <= Math.max(...p.titles.map(t => t.rect.bottom)) + 4 && p.barname.rect.top >= Math.min(...tops) - 4);
     const oneRow = p.bar && tops.length && Math.max(...tops) - Math.min(...tops) < 4 && nameInRow && p.bar.height < 2 * Math.min(...p.titles.map(t => t.rect.height)) && p.barScroll.scrollWidth <= p.barScroll.clientWidth + 1;
     const fr = frames.slice(1).sort((a, b) => a - b);
-    const clearMin = Math.min(p.viewport.w, p.viewport.h - (p.bar ? p.bar.bottom : 0));
-    const waferOk = wafer.litFraction > 0.03 && wafer.bbox && wafer.bboxW > 0.4 * clearMin && Math.abs(wafer.bboxW / wafer.bboxH - 1) < 0.25;
     record('load', 'load: zero console errors, wafer drawn, bar one row', errors.length === 0 && waferOk && oneRow,
-      { loadMs: Date.now() - t0, consoleErrors: errors.slice(), big: p.big, wafer, bar: p.bar, barTitles: p.titles.map(t => t.text), titleTops: tops, barScroll: p.barScroll, oneRow: !!oneRow, sparksVisible: p.greensCount, frameMs: fr.length ? { median: +fr[fr.length >> 1].toFixed(0), max: +fr[fr.length - 1].toFixed(0) } : null, screenshot: await shot('load') },
+      { loadMs: Date.now() - t0, consoleErrors: errors.slice(), big: p.big, wafer, waferTries, bar: p.bar, barTitles: p.titles.map(t => t.text), titleTops: tops, barScroll: p.barScroll, oneRow: !!oneRow, sparksVisible: p.greensCount, frameMs: fr.length ? { median: +fr[fr.length >> 1].toFixed(0), max: +fr[fr.length - 1].toFixed(0) } : null, screenshot: await shot('load') },
       [errors.length ? errors.length + ' console error(s)' : '', waferOk ? '' : 'wafer not detected as a disc under the bar', oneRow ? '' : 'bar is not one row (button tops ' + tops.join('/') + ', bar height ' + (p.bar && p.bar.height) + ', scrollWidth ' + p.barScroll.scrollWidth + '/' + p.barScroll.clientWidth + ')'].filter(Boolean).join('; '));
     try { const j = await page.evaluate(async () => (await (await fetch('keys.json')).json())); bodies = j.bodies || j; placed = bodies.filter(b => b.on_wafer && b.verified && Number.isFinite(b.key) && b.key >= 0).map(b => { const [x, y] = keyPlace(b.key); return { key: b.key, x, y, title: b.title, repo: b.repo }; }); } catch (e) { placed = []; }
 
@@ -250,16 +255,21 @@ async function runDevice(browser, deviceName) {
     // throughout: zoom 14 after a fly, then zoom × (finger distance ratio) per pinch, cx/cy solved from the selected spark.
     const solve = (p, zoom) => { if (!p.magenta || p.card.index == null || !placed[p.card.index - 1]) return null; const b = placed[p.card.index - 1]; return { zoom, cx: b.x - (p.magenta.x - p.viewport.w / 2) / zoom, cy: b.y - (p.viewport.h / 2 - p.magenta.y) / zoom }; };
     const toScreen = (c, b, p) => [(b.x - c.cx) * c.zoom + p.viewport.w / 2, p.viewport.h / 2 - (b.y - c.cy) * c.zoom];
-    const pinchAt = async (mx, my, d0, d1) => { await touch('touchStart', [[mx - d0 / 2, my], [mx + d0 / 2, my]]); for (let i = 1; i <= 10; i++) { const d = d0 + (d1 - d0) * i / 10; await touch('touchMove', [[mx - d / 2, my], [mx + d / 2, my]]); await sleep(30); } await touch('touchEnd', []); return settle(); };
+    const pinchAt = async (mx, my, d0, d1, horizontal = true) => { const pts = d => horizontal ? [[mx - d / 2, my], [mx + d / 2, my]] : [[mx, my - d / 2], [mx, my + d / 2]];
+      await touch('touchStart', pts(d0)); for (let i = 1; i <= 10; i++) { await touch('touchMove', pts(d0 + (d1 - d0) * i / 10)); await sleep(30); } await touch('touchEnd', []); return settle(); };
     let zoomNow = 14, cam = solve(p, zoomNow);
     const P0 = p.magenta, vv0 = p.viewport; let pinch = null, drag = null, zoomOut = [];
-    const clearMid = (p) => Math.max(p.bar.bottom + 40, Math.min((p.card.open ? p.card.rect.top : p.viewport.h) - 40, (p.bar.bottom + (p.card.open ? p.card.rect.top : p.viewport.h)) / 2));
     if (P0) {
-      const mx = p.viewport.w / 2, my = clearMid(p), d0 = Math.min(220, p.viewport.w - 60), d1 = d0 / 2;
+      // the fingers' midpoint must be well away from the spark (edFly puts the spark at the centre of the clear space, so the
+      // centre is the one place not to pinch: the spark would stay put and the ratio would be noise); go 100 px up or down,
+      // whichever side of the spark has more clear room
+      const bandTop = p.bar.bottom + 30, bandBot = (p.card.open ? p.card.rect.top : p.viewport.h) - 30;
+      const off = Math.min(100, Math.max(20, Math.max(P0.y - bandTop, bandBot - P0.y) - 10));
+      const mx = p.viewport.w / 2, my = (bandBot - P0.y >= P0.y - bandTop) ? Math.min(bandBot, P0.y + off) : Math.max(bandTop, P0.y - off), d0 = Math.min(220, p.viewport.w - 60), d1 = d0 / 2;
       const q = await pinchAt(mx, my, d0, d1);   // pinchAt settles, so the last drawn frame is the finished pinch, not one from the middle of it
       const r0 = Math.hypot(P0.x - mx, P0.y - my), r1 = q.magenta ? Math.hypot(q.magenta.x - mx, q.magenta.y - my) : null;
-      pinch = { centre: [mx, my], fingerDistance: [d0, d1], sparkDistanceFromCentre: [+r0.toFixed(1), r1 && +r1.toFixed(1)], ratio: r1 != null ? +(r1 / r0).toFixed(3) : null, expected: 0.5, pageScroll: [q.viewport.scrollX, q.viewport.scrollY], vvScale: q.viewport.vvScale, innerWidth: q.viewport.w };
-      pinch.ok = pinch.ratio != null && Math.abs(pinch.ratio - 0.5) < 0.12 && q.viewport.scrollX === 0 && q.viewport.scrollY === 0 && Math.abs((q.viewport.vvScale || 1) - 1) < 0.01 && q.viewport.w === vv0.w;
+      pinch = { centre: [mx, +my.toFixed(1)], sparkBefore: [P0.x, P0.y], fingerDistance: [d0, d1], sparkDistanceFromCentre: [+r0.toFixed(1), r1 && +r1.toFixed(1)], ratio: r1 != null ? +(r1 / r0).toFixed(3) : null, expected: 0.5, pageScroll: [q.viewport.scrollX, q.viewport.scrollY], vvScale: q.viewport.vvScale, innerWidth: q.viewport.w };
+      pinch.ok = pinch.ratio != null && r0 >= 25 && Math.abs(pinch.ratio - 0.5) < 0.12 && q.viewport.scrollX === 0 && q.viewport.scrollY === 0 && Math.abs((q.viewport.vvScale || 1) - 1) < 0.01 && q.viewport.w === vv0.w;
       if (pinch.ok) zoomNow *= d1 / d0;
       const P1 = q.magenta; if (P1) {
         const ax = p.viewport.w / 2, ay = my, dx = -90, dy = 70;
@@ -274,13 +284,17 @@ async function runDevice(browser, deviceName) {
         const rmax = Math.max(...placed.map(b => Math.hypot(b.x, b.y)));
         const clearH = (p.card.open ? p.card.rect.top : p.viewport.h) - p.bar.bottom;
         const target = Math.max(1.2e-4, 0.40 * Math.min(p.viewport.w, clearH) / rmax);
-        for (let k = 0; k < 4 && zoomNow > target * 1.05; k++) {
-          const ratio = Math.min(90, zoomNow / target), D0 = Math.min(300, p.viewport.w - 40), D1 = D0 / ratio;
-          const M = p.magenta; const mx2 = M.x, my2 = M.y;                 // fingers centred on the selected spark: it must not move
-          const q2 = await pinchAt(mx2, my2, D0, D1);
+        for (let k = 0; k < 7 && zoomNow > target * 1.05; k++) {
+          // fingers centred on the selected spark (it must not move), on whichever axis has more room, and never off the
+          // screen: a touch point outside the viewport is dropped by Chromium and the pinch degrades into a one-finger drag
+          const M = p.magenta; const mx2 = M.x, my2 = M.y;
+          const roomX = 2 * Math.min(mx2, p.viewport.w - mx2) - 16, roomY = 2 * Math.min(my2 - p.bar.bottom, (p.card.open ? p.card.rect.top : p.viewport.h) - my2) - 16;
+          const horizontal = roomX >= roomY, D0 = Math.min(300, Math.max(40, horizontal ? roomX : roomY));
+          const ratio = Math.min(D0 / 12, zoomNow / target), D1 = D0 / ratio;
+          const q2 = await pinchAt(mx2, my2, D0, D1, horizontal);
           const moved = q2.magenta ? +Math.hypot(q2.magenta.x - mx2, q2.magenta.y - my2).toFixed(1) : null;
-          const ok = moved != null && moved <= 3 && q2.greensCount > p.greensCount && q2.viewport.scrollY === 0 && Math.abs((q2.viewport.vvScale || 1) - 1) < 0.01;
-          zoomOut.push({ fingerDistance: [D0, +D1.toFixed(2)], ratio: +(1 / ratio).toFixed(5), zoomAfter: +(zoomNow / ratio).toExponential(3), selectedSparkMovedPx: moved, greensInView: [p.greensCount, q2.greensCount], ok });
+          const ok = moved != null && moved <= 3 && q2.viewport.scrollY === 0 && Math.abs((q2.viewport.vvScale || 1) - 1) < 0.01;
+          zoomOut.push({ centre: [mx2, my2], axis: horizontal ? 'x' : 'y', fingerDistance: [D0, +D1.toFixed(2)], ratio: +(1 / ratio).toFixed(5), zoomAfter: +(zoomNow / ratio).toExponential(3), selectedSparkMovedPx: moved, greensInView: [p.greensCount, q2.greensCount], ok });
           if (!ok) break; zoomNow /= ratio; p = q2;
         }
         cam = solve(p, zoomNow);
