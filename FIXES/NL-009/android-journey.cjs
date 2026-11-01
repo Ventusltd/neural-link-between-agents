@@ -36,7 +36,7 @@ let DEVICES = ['Pixel 7'];
 if (flag('--all')) DEVICES = ['Pixel 7', 'Galaxy S24', 'Pixel 7 landscape'];
 if (flag('--device')) DEVICES = [String(flag('--device'))];
 if (flag('--devices')) DEVICES = String(flag('--devices')).split(',').map(s => s.trim()).filter(Boolean);
-const SETTLE_MAX = 12000, APPEAR_MAX = 90000, FIXED_WAIT = 6500, MARGIN = 10;   // px margin for "clear space"
+const SETTLE_MAX = 90000, APPEAR_MAX = 90000, FIXED_WAIT = 6500, MARGIN = 10;   // px margin for "clear space"
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -85,6 +85,7 @@ function probeFn() {
     hitAtMagenta: magenta ? hitAt(magenta.x, magenta.y) : null,
     seeThrough: (() => { const els = [...document.querySelectorAll('#bar button, #bar a')]; const el = els.find(e => /see\s*-?\s*through/i.test(e.textContent) || /see-through/i.test(e.getAttribute('href') || '')); return el ? { text: el.textContent.trim(), tag: el.tagName.toLowerCase(), href: el.getAttribute('href'), target: el.getAttribute('target'), rect: R(el) } : null; })(),
     activeElement: document.activeElement ? (document.activeElement.id || document.activeElement.tagName) : null,
+    frames: window.__fr || 0,
   };
 }
 // screenshot analysis: paint the PNG onto a canvas sized like the viewport and measure the lit pixels under the bar
@@ -111,6 +112,7 @@ async function runDevice(browser, deviceName) {
   const dir = path.join(OUT, slug(deviceName)); fs.mkdirSync(dir, { recursive: true });
   const context = await browser.newContext({ ...dev, locale: 'en-GB' });
   const page = await context.newPage(); page.setDefaultTimeout(180000);
+  await page.addInitScript(() => { let n = 0; const f = () => { n++; window.__fr = n; requestAnimationFrame(f); }; requestAnimationFrame(f); });   // counts drawn frames, so "settled" means unchanged across frames, not across wall time
   const errors = [];
   page.on('console', m => { if (m.type() === 'error') errors.push({ kind: 'console', text: m.text().slice(0, 300) }); });
   page.on('pageerror', e => errors.push({ kind: 'pageerror', text: String(e.message || e).slice(0, 300) }));
@@ -127,17 +129,20 @@ async function runDevice(browser, deviceName) {
   const tapAt = (x, y) => page.touchscreen.tap(Math.round(x), Math.round(y));
   const tapRect = async (r) => { if (!r) throw new Error('no rect to tap'); await tapAt((r.left + r.right) / 2, (r.top + r.bottom) / 2); };
   const touch = async (type, points) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: points.map((p, i) => ({ x: p[0], y: p[1], id: i + 1, radiusX: 4, radiusY: 4, force: 1 })) });
-  const settle = async (opts = {}) => {              // wait until the selected spark stops moving (the fly ended and was drawn), or FIXED_WAIT when there is none
-    // a frame at zoom 14 can take many seconds under SwiftShader on a loaded machine, so the spark is given APPEAR_MAX to be
-    // drawn at all, and then SETTLE_MAX to stop moving; the measurement is the final position, never the waiting time
-    const t0 = Date.now(); let last = null, stable = 0, seen = 0;
-    while (true) { await sleep(400); const p = await probe(); const t = Date.now() - t0;
-      if (!p.magenta) { if (opts.noSpark && t >= FIXED_WAIT) return p; if (!opts.noSpark && t >= APPEAR_MAX) return p; continue; }
+  const settle = async (opts = {}) => {
+    // Under SwiftShader on a loaded machine a frame can take seconds, and a position that is unchanged for a second of wall
+    // time may be one stale frame from the middle of a fly. So "settled" is: the selected spark is drawn, and its position is
+    // unchanged across at least two further frames (the rAF counter advanced by 2). The measurement is the final position.
+    const t0 = Date.now(); let last = null, seen = 0;
+    while (true) { await sleep(300); const p = await probe(); const t = Date.now() - t0;
+      if (!p.magenta) { if (opts.noSpark) { if (!seen) seen = p.frames; if (t >= FIXED_WAIT && p.frames - seen >= 2) return p; continue; }
+        if (t >= APPEAR_MAX) return p; continue; }
       if (!seen) seen = Date.now();
-      if (last && Math.hypot(p.magenta.x - last.x, p.magenta.y - last.y) < 0.6) stable++; else stable = 0; last = p.magenta;
-      if (stable >= 3 && Date.now() - seen >= 1600) return p;
+      if (last && Math.hypot(p.magenta.x - last.x, p.magenta.y - last.y) < 0.6) { if (p.frames - last.frames >= 2) return p; }
+      else last = { x: p.magenta.x, y: p.magenta.y, frames: p.frames };
       if (Date.now() - seen >= SETTLE_MAX) return p; }
   };
+  const framesPass = async (k, max = 60000) => { const f0 = await page.evaluate(() => window.__fr || 0), t0 = Date.now(); while (Date.now() - t0 < max) { await sleep(250); if ((await page.evaluate(() => window.__fr || 0)) - f0 >= k) return true; } return false; };
   const clearSpace = (p) => {                          // the spark must sit between the bar and the card, with margins, and the hit test must land on the wafer
     if (!p.magenta) return { ok: false, why: 'no selected spark drawn on #o' };
     const top = p.bar.bottom + MARGIN, bot = (p.card.open ? p.card.rect.top : p.viewport.h) - MARGIN;
@@ -172,13 +177,13 @@ async function runDevice(browser, deviceName) {
 
     // 2 EDITION opens
     const titleRect = (panel) => { const t = p.titles.find(t => t.panel === panel); return t && t.rect; };
-    await tapRect(titleRect('top')); await sleep(600); p = await probe();
+    await tapRect(titleRect('top')); await framesPass(1); p = await probe();
     const tp = p.panels.top; let scrolled = null;
     if (tp && tp.visible) {
       const sh = Math.max(tp.scrollHeight - tp.clientHeight, p.sub ? p.sub.scrollHeight - p.sub.clientHeight : 0);
       if (sh > 8) {   // a one-finger drag upward inside the panel must scroll the panel, not the page
         const x = (tp.rect.left + tp.rect.right) / 2, y0 = tp.rect.bottom - 30, y1 = Math.max(tp.rect.top + 20, y0 - 160);
-        await touch('touchStart', [[x, y0]]); for (let i = 1; i <= 10; i++) { await touch('touchMove', [[x, y0 + (y1 - y0) * i / 10]]); await sleep(25); } await touch('touchEnd', []); await sleep(1500);
+        await touch('touchStart', [[x, y0]]); for (let i = 1; i <= 10; i++) { await touch('touchMove', [[x, y0 + (y1 - y0) * i / 10]]); await sleep(25); } await touch('touchEnd', []); await framesPass(2);
         const q = await probe(); scrolled = { panelScrollTop: q.panels.top.scrollTop, subScrollTop: q.sub ? q.sub.scrollTop : null, pageScrollY: q.viewport.scrollY, scrollable: sh };
         scrolled.ok = (scrolled.panelScrollTop > 4 || (scrolled.subScrollTop || 0) > 4) && q.viewport.scrollY === 0;
       } else scrolled = { scrollable: sh, ok: true, note: 'panel content fits, nothing to scroll' };
@@ -189,7 +194,7 @@ async function runDevice(browser, deviceName) {
       !tp || !tp.visible ? 'EDITION panel did not open' : (!underBar ? 'panel top ' + tp.rect.top + ' vs bar bottom ' + p.bar.bottom + ', bottom ' + tp.rect.bottom + ', overflow ' + tp.overflowY : (scrolled && !scrolled.ok ? 'drag inside the panel did not scroll it (scrollTop ' + scrolled.panelScrollTop + '/' + scrolled.subScrollTop + ')' : '')));
 
     // 3 EDITION closes
-    await tapRect(titleRect('top')); await sleep(500); p = await probe();
+    await tapRect(titleRect('top')); await framesPass(1); p = await probe();
     record('edition-close', 'tap EDITION again: panel closes', !p.panels.top.visible && !(p.titles.find(t => t.panel === 'top') || {}).on, { panel: p.panels.top, screenshot: await shot('edition-close') }, p.panels.top.visible ? 'panel still visible' : '');
 
     // 4 LINES
