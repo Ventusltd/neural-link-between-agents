@@ -52,7 +52,7 @@ What does read a name:
 | The API is removed on close (`window.__descent = null`) | kb@018b46a ST descent.js:1069 |
 | View buttons KUIPER, MAP, SAT, 3D via `setView(v, true)`; `data-v` on each | kb@018b46a ST descent.js:933-936 |
 | Bottom-left chips GRID, SUBS, SPIDER, "lit when on (GridAtlas mobile chips)" | kb@018b46a ST descent.js:926-930 |
-| `back()` in standalone mode clears the input and the target and returns to the stars | kb@018b46a ST descent.js:437-445 |
+| `back()` in standalone mode clears the input and the target and returns to the stars | kb@018b46a ST descent.js:438-445 |
 | Diary's worked example for the box: "Try: cowley" | kb@018b46a diary/20261005.html (text line 47 after tag strip) |
 
 So the only grammar today is: a free-text substation name, case-insensitive, substring, exact match preferred, ≤80
@@ -150,7 +150,7 @@ The menu bar module is `atlas/modules/202609031958-menu-bar.js` (1,805 lines).
 | What that search is in the shell: `#search-input` placeholder "Search project name...", results div, GO button `#search-btn` | ga@5ec7f62 atlas/releases/202608300453-atlas-v9/index.html:42-47 |
 | **File item 2: the engine's Export button** `move(panels.File, ready.nodes.exportButton)` | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:1663 |
 | **File item 3: the engine modules group** `appendEngineModules(panels.File)` | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:1586 |
-| …fetched from `ENGINE_GRAPH_URL` (ventus-grid-engine genome/engine-graph.json); each node is an `<a role="button" target="_blank">` to `ENGINE_VIEW_URL + encodeURIComponent(node.label)`; groups by kind in ORDER canonical, extract, reference, fragment; silent on fetch failure | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:629-632, 636-647, 737-754, 757-762 |
+| …fetched from `ENGINE_GRAPH_URL` (ventus-grid-engine genome/engine-graph.json); each node is an `<a role="button" target="_blank">` to `ENGINE_VIEW_URL + encodeURIComponent(node.label)`; groups by kind in ORDER canonical, extract, reference, fragment; silent on fetch failure | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:629-632, 641-647, 737-754, 757-762 |
 | …the one runnable command: `RUN_COMMAND = 'git clone https://github.com/Ventusltd/ventus-grid-engine && cd ventus-grid-engine && node verify.mjs'`, button "⧉ Copy: clone the engine and run its 133 checks", copied with `navigator.clipboard.writeText`, falls back to showing the command | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:707-733 |
 | …the architect's words behind it: "we are heading towards a grid OS in our website the menus must be neat, it should allow AI and humans to develop and use" (2026-09-05) and "The MJS apps that AI and humans can deploy as an IDE via menu … lets hand power to the people" | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:616-621, 690-694 |
 | **File item 4: "Export this view" group** `appendExport(panels.File, doc)` returning 3 controls | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:1587, 1350-1389 |
@@ -159,7 +159,7 @@ The menu bar module is `atlas/modules/202609031958-menu-bar.js` (1,805 lines).
 | …`#gridatlas-export-image` "⤓ Save an image of this view" → `saveImage(doc, image)`; refuses rather than saving a blank PNG | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:1382-1387, 806-811 |
 | …each export control is named by id and `data-gm-export="print|pdf|image"` because "ITS LABEL IS NOT A NAME" | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:1354-1365 |
 | …export stamps the generation and attribution on the artefact (`exportStamp`) | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:813-834 |
-| Where the other menus get their items (for the mapping): Edit ← status button :1664; View ← fullscreen :1665 and Studies :1588, 771-792; Scope ← radius, radius-area, zone, measure :1666-1669 and gridpoint :1577; Grid ← 63 layer controls `buildLayerControls` :1428 and the curtain :1560-1566; About ← disclaimer, shoutout :1579-1582, Estate links :1585, 605-612, 1392-1407, attribution in small print :1590-1600 | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js (lines as listed) |
+| Where the other menus get their items (for the mapping): Edit ← status button :1664; View ← fullscreen :1665 and Studies :1588, 771-792; Scope ← radius, radius-area, zone, measure :1666-1669 and gridpoint :1578; Grid ← 63 layer controls `buildLayerControls` :1428 and the curtain :1560-1566; About ← disclaimer, shoutout :1580-1583, Estate links :1585, 605-612, 1392-1407, attribution in small print :1590-1600 | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js (lines as listed) |
 | Group headings inside a panel come from `appendGroup(panel, text)` | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:584 |
 | `move(panel, node, label)` is the single primitive that relocates an engine control into a panel | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:1490 |
 | Mobile tray buttons are routed by text (`trayRoute`: clear/scope → Scope; grid/subs → Grid); GRID and SUBS chips stay on the map on a phone ("one tap on a phone, not two") | ga@5ec7f62 atlas/modules/202609031958-menu-bar.js:1499-1504, 1506-1515, 1569-1575 |
@@ -248,3 +248,22 @@ what a hash grammar would have to call.
    should reference it, not define it.
 9. NL-009 round1 findings: at the time of writing only `FIXES/NL-009/round1/BRIEF.md` and an empty `img/` exist; I will
    re-check before the review and list what appears.
+
+## E12. NL-009 round 1 findings that touch steps 5–6 (read 2026-11-01 ~21:00 UTC; folder re-checked before the review)
+
+Files present: `FIXES/NL-009/round1/01-bar.md`, `06-seethrough.md`, `09-robust.md`, `BRIEF.md`, `img/`. Keys are
+the neural-link paths (uncommitted at the time of reading; the harness commits).
+
+| Finding | Key |
+|---|---|
+| 06 F1 BLOCKER: See Through is unreachable from Edition 4 (`grep -ci "see.through"` on the page → 0, README → 0; NOTICE names it once as a licence). Patch adds a fifth bar entry `<a class="gm-title" href="../../see-through/">see through</a>` (Pixel 7: 101×29 px), same tab, through the stable pointer; `goBack()` returns to the edition; 0 console errors on Pixel 7, Galaxy S24, Pixel 7 landscape | FIXES/NL-009/round1/06-seethrough.md "FINDINGS" 1 and PATCH hunk @@ -700,7 |
+| 06 F5 decisions: same tab not `_blank` (homepage opens every app in the same tab; two WebGL pages on one phone; back gesture is the way home); link to the pointer `../../see-through/`, not the dated folder; family paragraph `#edapps` in the EDITION panel naming See Through (CERN-OHL-S v2) and Learn the Kuiper (code Apache-2.0, text CC BY 4.0) | FIXES/NL-009/round1/06-seethrough.md "FINDINGS" 5, 6 and PATCH hunk @@ -718,10 |
+| 06 F4: See Through on Pixel 7 fits the phone (scrollWidth 412, scrollHeight 839); 13 controls all 44 px tall (name input 332×44 at y 56, GO 56×44, KUIPER MAP SAT 3D at y 713, GRID SUBS SPIDER ▲ ▼ at y 761); CARTO style blocked by the sandbox proxy; the app offers no way back to the edition except the browser back gesture | FIXES/NL-009/round1/06-seethrough.md "FINDINGS" 4 |
+| 01 F1 BLOCKER: the bar is two rows at 360–430 px (75.1 px high; content 416.6 px); a fifth button at the present style would need 521 px. 01 F3 MAJOR: no room for SEE THROUGH at 11 px / .08 em / 8 px padding (391 px of buttons alone against 344 px). After 01's patch: five titles in one row at 360 (347.9 px, slack 12.1), bar 51 px, every title 44 px tall, title shrinks to the mark `KE4`, SEE THROUGH 80.4 px wide at 360 | FIXES/NL-009/round1/01-bar.md "FINDINGS" 1-3 and "Status after the patch" |
+| 01 F2 MAJOR: titles 29 px tall, under 44/48 px touch targets; fixed by `(pointer:coarse)` min-height 44 px | FIXES/NL-009/round1/01-bar.md "FINDINGS" 2, "Design" |
+| 09: READOUT slides under the bar after a pick (MAJOR); WebGL-off blank screen (MAJOR); no `<noscript>`, keys.json 404 only in hidden READOUT, Escape does not close the card, reduced motion ignored, ARIA missing (MINOR) | FIXES/NL-009/round1/09-robust.md "FINDINGS" 1-7 |
+
+What this means for steps 5–6: the See Through button exists as a patch (06) and the bar budget for it is solved
+by 01 only with the phone rule (10 px at 360, `KE4` mark). A step that makes See Through "the first and largest
+entry" must reconcile with 01's measured budget (328 px for five titles at 360 px) or state the new budget with
+numbers, and must keep 06's decisions (pointer not dated folder; same tab) or say why not.

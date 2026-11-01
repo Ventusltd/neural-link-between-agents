@@ -41,7 +41,7 @@ the edition brings in is verified from the files and written in one register in 
   rebase, never squash, so the revert is clean).
 - Modules are hashed in the manifest and refused on mismatch. gridatlas@5ec7f62 atlas/current.json:5
   (`IMMUTABLE_SHELL_PLUS_HASHED_CARTRIDGES`), :14-21 (`cartridge_order`), :31 and :573 (`sha256` per cartridge);
-  tools/ci/pr-gate.mjs:176 (`SHA-256 mismatch for <file>` is a gate failure); docs/RELEASE.md:116-117 ("every
+  tools/ci/pr-gate.mjs:176 (`SHA-256 mismatch for <file>` is a gate failure); docs/RELEASE.md:117 ("every
   cartridge the manifest names, each hashing to its recorded sha256").
 - A module installs nothing until its hooks exist, and a missing hook is published as a failure. gridatlas@5ec7f62
   atlas/modules/202609031958-menu-bar.js:8-17 (the admission rule), :122-124 (`complete:` the exact counts), :157
@@ -74,7 +74,7 @@ disagree, or that names a folder without `proof/edition-sha256.txt`, is refused 
 9.3 **`ci_check` PASS, extended to editions.** Before any push, `python3 tools/ci_check.py` must print
 `RESULT: PASS` (notes :48; kuiper-belt@018b46a tools/ci_check.py:97). On GitHub it runs on every push
 (.github/workflows/check.yml:6-8, :25-26). Today K3 parses only pages in the repository root
-(tools/ci_check.py:67, `os.listdir(ROOT)`), so an edition's `index.html` and its modules are not parsed by CI. The
+(tools/ci_check.py:68, `os.listdir(ROOT)`), so an edition's `index.html` and its modules are not parsed by CI. The
 law adds `tools/edition_check.py` (Opus team 9, step 10) with checks E1–E5, run locally before the preview PR and
 wired into `check.yml` in the same PR: E1 every `editions/*/index.html` module script and every `modules/*.js` pass
 `node --check`; E2 every module named in `modules.json` exists and hashes to its recorded sha256, and no file in
@@ -82,6 +82,9 @@ wired into `check.yml` in the same PR: E1 every `editions/*/index.html` module s
 pointer's three stamps agree and name an existing folder with a proof; E5 `keys.json` of the new edition is
 byte-identical to the previous edition's unless the README's "What changed" names a change to the findings (Edition
 4's is `1c293c33…`, proof/edition-sha256.txt:4). Its output is saved as `proof/ci_check.log` in the edition folder.
+It is a separate tool rather than a fifth check inside `ci_check.py`, so that file's docstring (:1-13) stays true and
+its K1–K4 numbers stay comparable run to run; the owner may fold E1–E5 in as K5 later (EVIDENCE.md Q3), which changes
+nothing in this law.
 
 9.4 **The Android journey gate.** The preview is not ready for the owner until the journey passes on
 Playwright `devices['Pixel 7']` with `hasTouch`, `isMobile` and `deviceScaleFactor`, real touch only, SwiftShader
@@ -95,11 +98,23 @@ is in clear space between bar and card; (f) NEXT VERIFIED LINE three times: the 
 the wafer zooms the wafer and not the page; a drag pans and does not scroll; (h) tap a spark of 4 px: it is hit or the
 page says what it hit instead; (i) landscape and a font scale of 1.3: the bar is still one row or wraps by design and
 says so; (j) every module of `modules.json` reports `admitted` in the page's readout, none `refused`. Every finding of
-NL-009 round 1 (FIXES/NL-009/round1/NN-*.md, FINDINGS sections) that is a BLOCKER or MAJOR becomes a journey step
-when the integrator folds them in; at the time of writing that folder holds only BRIEF.md, so the list above is the
-floor, not the ceiling. The gate is PASS only when every step is PASS; a step that cannot be run (no script yet, a
-device profile missing) is written `NOT EVALUATED` with the reason (LAWS.md:153-154), and the preview goes to the
-owner only with the `NOT EVALUATED` list in the PR body.
+NL-009 round 1 (FIXES/NL-009/round1/NN-*.md, FINDINGS sections) that is a BLOCKER or MAJOR is a journey step; the
+ones on disk when this was written (neural-link@591b57c working tree, not yet committed) are folded in here as
+measured by the auditors: (k) bar height at 360, 393, 412 and 430 px is one row, not the 75.1 px two rows of Edition 4
+(01-bar.md:13, BLOCKER); (l) every bar button is at least 44 px tall, not 29.0 px (01-bar.md:18, MAJOR); (m) SEE
+THROUGH fits on that one row with the other titles at the style the shell fixes (01-bar.md:20; 06-seethrough.md:24-32
+measured 439 px of items against 412 px on Pixel 7 and 360 px on Galaxy S24, 544 px with SEE THROUGH, so five titles must
+fit in 328 px at 360 px wide; MAJOR), and `grep -ci "see.through"` on the page is no longer 0 (06-seethrough.md:11, BLOCKER); (n) after any pick with
+READOUT open, the READOUT panel is not under the bar (09-robust.md:11, MAJOR); (o) with `--disable-webgl
+--disable-webgl2` the page shows a sentence, not a blank black screen (09-robust.md:18, MAJOR). The MINOR findings
+(01-bar.md:27-33 sticky hover, safe-area insets, dvh; 06-seethrough.md:33 landscape scroll; 09-robust.md:23-36
+noscript, keys.json 404 said in the open, Escape closes the card, reduced motion, ARIA) are journey steps marked
+`MINOR`: they are measured and reported, and a MINOR FAIL does not block ACCEPT but is listed in PR A's body. The
+auditors' TEST sections (01-bar.md:135, 06-seethrough.md:154, 09-robust.md:221) are the Playwright steps the journey
+script takes verbatim. Findings 02–05, 07, 08 and 10 of NL-009 were not on disk; the integrator adds them the same
+way. The gate is PASS only when every non-MINOR step is PASS; a step that cannot be run (no script yet, a device
+profile missing) is written `NOT EVALUATED` with the reason (LAWS.md:155), and the preview goes to the owner only with
+the `NOT EVALUATED` list in the PR body.
 
 9.5 **Module manifest hashes.** `modules.json` is the edition's `current.json`: `{"edition": "<stamp>", "order":
 [...], "modules": [{"id", "path", "sha256", "requires": ["<hook>", ...], "licence": "<SPDX>", "team": "<NN>"}]}`,
@@ -122,7 +137,9 @@ usable without any refused module, as GridAtlas keeps the old interface reachabl
 - PR B, the release: changes only `editions/index.html` (three places), `editions/README.md`, the root `README.md`
   Editions section, and `editions/LAW.md` the first time. Gate: `ACCEPT <stamp>` exists on PR A, by the owner, after
   the folder's cut time; 9.3 PASS on the PR head; the pointer names the folder the owner tested, byte for byte the
-  one in main (RELEASE.md:119-121). **Only the owner merges PR B**, with rebase (RELEASE.md:41, :54-55). This tightens
+  one in main (RELEASE.md:119-121). **Only the owner merges PR B**, with rebase (RELEASE.md:41, :54-55; this
+  repository's own rule, neural-link@591b57c AGENTS.md:11 "never move the live generation ... without explicit owner
+  acceptance" and :18 "No agent may ... declare `ACCEPT <generation>`, merge protected or live release branches"). This tightens
   the Edition 2–4 procedure, where the harness merged and pushed main itself (notes :48-49): that is the NL-008 gap
   (notes :19-20), and the owner is asked in the DECISION-PROPOSAL to confirm the tightening or keep the old path.
 
@@ -141,17 +158,17 @@ where the file names one; "none in repository" where no LICENSE, NOTICE or licen
 |---|---|---|---|---|
 | kuiper-belt engine, edition layer, modules | the page and every module | code Apache-2.0; text and data CC BY 4.0 | kuiper-belt@018b46a LICENSE:1-3; README.md:156-157; editions/README.md:27; editions/202611012027/NOTICE.md:3-5 | every module carries the header `// Apache-2.0, kuiper-belt` and `NOTICE.md` lists it |
 | GridAtlas UI contract (menu bar, admission rule, manifest shape, release law) | method, names, CSS values measured from the live shell; no GridAtlas file is copied | Apache-2.0 | gridatlas@5ec7f62 LICENSE:1-3; NOTICE:1-2, :10-12 | if any line of gridatlas code is copied (Team 1 decides), it keeps the Apache-2.0 header and NOTICE attribution (Apache-2.0 §4(d)); a measurement is not a copy |
-| the Ventus logo as GridAtlas shows it | the wordmark lockup `.ventus-main` / `.ventus-sub`, a typographic mark, not an image file | the brand is Ventus Ltd's own; Apache-2.0 §6 grants no trademark right, so its use rests on the owner's instruction of 1 Nov 2026, not on the licence | gridatlas@5ec7f62 atlas/cartridges/202609062358-substation-intelligence-v9-63.js:4533-4553 (the fused masthead, "The VENTUS logo is the best part"); atlas/current.json:566-573 (that cartridge is live, sha256 `d94b0de5…`); LICENSE:139 (Trademarks) | `NOTICE.md`: "The VENTUS mark is used by Ventus Ltd, its owner. The Apache-2.0 licence of this code does not license the mark." |
-| See Through (the star player) | a button, a deep link, later the descent and the stars' placement law (`kuiper-law.js`) | CERN-OHL-S v2 (strongly reciprocal) for the app's code; the pointer is `202610050609/` | kuiper-belt@018b46a see-through/index.html:7, :12; see-through/202610050609/LICENSE.md:1-9; NOTICE.md:3, :10-18 (per-file table); licences/globalgrid2050-CERN-OHL-S-2.0.txt (full text present) | linking to See Through brings in no licence duty. Copying `kuiper-law.js` or `descent.js` into a module makes that module CERN-OHL-S v2, its source published with the edition (it is) and the module header saying so; it cannot be relicensed Apache-2.0. Keep See Through code in its own module (`05-see-through.js`) so the reciprocity stops at that file |
+| the Ventus logo as GridAtlas shows it | the wordmark lockup `.ventus-main` / `.ventus-sub`, a typographic mark, not an image file | the brand is Ventus Ltd's own; Apache-2.0 §6 grants no trademark right, so its use rests on the owner's instruction of 1 Nov 2026, not on the licence | gridatlas@5ec7f62 atlas/modules/202609031958-menu-bar.js:184-205 and the same text composed into the live cartridge atlas/cartridges/202609062358-substation-intelligence-v9-63.js:4533-4553 (the fused masthead, "The VENTUS logo is the best part", `.ventus-main` 14 px / 800 / .2em); atlas/current.json:566-573 (that cartridge is live, sha256 `d94b0de5…`); the v8 shell's own lockup atlas/releases/202608300453-atlas-v9/index.html:113-118 (`.scada-brand`: "Ventus", "Cables &amp; Connectivity&reg;", "globalgrid2050.com | open infrastructure intelligence"); no image file named logo exists in gridatlas (`find -iname "*logo*"`); LICENSE:139 (Trademarks) | `NOTICE.md`: "The VENTUS mark is used by Ventus Ltd, its owner. The Apache-2.0 licence of this code does not license the mark." |
+| See Through (the star player) | a button, a deep link, later the descent and the stars' placement law (`kuiper-law.js`) | CERN-OHL-S v2 (strongly reciprocal) for the app's code; the pointer is `202610050609/` | kuiper-belt@018b46a see-through/index.html:7, :12; see-through/202610050609/LICENSE.md:1-9; NOTICE.md:3, :8-18 (per-file table); licences/globalgrid2050-CERN-OHL-S-2.0.txt (full text present) | linking to See Through brings in no licence duty. Copying `kuiper-law.js` or `descent.js` into a module makes that module CERN-OHL-S v2, its source published with the edition (it is) and the module header saying so; it cannot be relicensed Apache-2.0. Keep See Through code in its own module (`05-see-through.js`) so the reciprocity stops at that file |
 | See Through data: substation footprints | only if a module draws them | ODbL 1.0 (OpenStreetMap) | see-through/202610050609/NOTICE.md:16, :22-25 | on-screen credit "Substations and lines © OpenStreetMap contributors, ODbL" wherever drawn; derived data stays ODbL |
 | See Through runtime services | none copied; reached only through See Through itself | CARTO, Esri World Imagery, AWS Terrain Tiles: their terms as written | NOTICE.md:28-34 | nothing to do in the edition unless a module fetches them directly, which no step asks |
 | MapLibre GL JS 4.7.1 | not brought into the edition (the wafer is canvas) | BSD-3-Clause | NOTICE.md:38-39; vendor/MAPLIBRE-LICENSE.txt | register only; no duty unless a module loads it |
 | globalgrid2050 (ancestor of See Through's simulator code) | nothing directly | CERN-OHL-S v2 | globalgrid2050@c66759f LICENSE.txt:1 | the reason See Through is CERN-OHL-S v2 (LICENSE.md:1-5) |
-| Learn the Kuiper (LEARN button, if Team 1 adds it) | a link | code Apache-2.0, docs CC BY 4.0, globalgrid2050-derived parts CERN-OHL-S v2 | kuiper-belt@018b46a learn-the-kuiper/README.md:34-37 | link only |
-| elements (the periodic table: APPS.md, CATALOGUE.md, `catalogue/*.json`) | the app registry (step 7), the `block:<Sym>` keys, titles and descriptions | **none in repository**: no LICENSE, NOTICE or licence sentence in any file (`grep -rni licen` over the clone returns nothing); GitHub's licence detection could not be read from this session (403) | elements@f7a92fb README.md:1-20 (no licence line); APPS.md:3 ("Titles and descriptions are the sources' own words") | `DISCLOSED`. Until the owner adds a LICENSE (the estate's convention is Apache-2.0 code, CC BY 4.0 data, as kuiper-belt README.md:156-157; the choice is the owner's), the edition may link to elements pages and may copy the **keys** (`block:<Sym>`, facts, not expression) but may not vendor `catalogue/*.json` or the descriptions into the edition folder. Step 7's Opus team reads the catalogue at run time from its published address or ships keys only. Ask: owner to add LICENSE and NOTICE to elements before step 7 ships |
+| Learn the Kuiper (LEARN button, if Team 1 adds it) | a link | code Apache-2.0, docs CC BY 4.0, globalgrid2050-derived parts CERN-OHL-S v2 | kuiper-belt@018b46a learn-the-kuiper/README.md:34-37; learn-the-kuiper/202610050609/NOTICE.md:7-11 (`modules/grid.js`, `modules/zoom.js` are the CERN-OHL-S v2 parts) | link only |
+| elements (the periodic table: APPS.md, CATALOGUE.md, `catalogue/*.json`) | the app registry (step 7), the `block:<Sym>` keys, titles and descriptions | **none in repository**: no LICENSE, NOTICE or licence sentence in any file (`grep -rni licen` over the clone returns nothing); GitHub's licence detection could not be read from this session (403) | elements@f7a92fb README.md:1-20 (no licence line); APPS.md:3 ("Titles and descriptions are the sources' own words") | `DISCLOSED`. Until the owner adds a LICENSE (the estate's convention is Apache-2.0 code, CC BY 4.0 data, as kuiper-belt README.md:156-157; the choice is the owner's), the edition may link to elements pages and may use the **keys** (`block:<Sym>`, facts, not expression) and the app **titles** (APPS.md:3: "the sources' own words", and the sources are the licensed estate repositories), but may not vendor `catalogue/*.json` or the descriptions into the edition folder. Step 7's Opus team reads the catalogue at run time from its published address or ships keys only. Ask: owner to add LICENSE and NOTICE to elements before step 7 ships |
 | testcode/spider (the spider sandbox v5) | a launcher entry and a graph layer; the dashboard itself stays where it is | Apache-2.0 (repository LICENSE; the spider folder has no licence file of its own, the root one covers it); its data is read live over https from the served GlobalGrid2050 site, and `./spider/data/` is not in the clone | testcode@d09c185 LICENSE:1-3; NOTICE:1-11, :26-33 (third-party data not covered); spider/INDEX.md:3-5; spider/20260914T143049Z-v5-linkify-frontdoor-brandfaithful/index.html:239, :244 (`DATA_BASE="./spider/data/"`), :108 (loads `estate-menu.js` from `ventusltd.github.io/spiders`) | copying spider code into a module is Apache-2.0 with attribution. The graph data's terms are **not stated** in the clone (`DISCLOSED`): the spider-graph layer of step 7 draws only what it fetches from the served site at run time, names the source address on the layer, and copies no graph JSON into the edition until the data's licence is written at its source. The `spiders` repository is not in the estate clone; its licence is `NOT EVALUATED` |
 | OpenStreetMap-derived material quoted by the verified lines | quotations with keys, as Editions 1–4 | ODbL 1.0; OGL v3 for DESNZ/DUKES material | editions/202611012027/NOTICE.md:7-10 | unchanged: "A quote here is a citation with its key, not a relicensing" |
-| galaxies-wafers (Phase 2 comparison only) | nothing in steps 1–10 | to verify at Phase 2 | galaxies-wafers@fff6fc6 README.md:1-4 | register entry opened, not evaluated |
+| galaxies-wafers (Phase 2 comparison only) | nothing in steps 1–10; at Phase 2 its numbers and law constants, not its code | **none in repository**: no LICENSE or NOTICE in the root listing, no licence word in README.md | galaxies-wafers@fff6fc6 README.md:1-4; root listing (`ls`) | `DISCLOSED` (EVIDENCE.md Q2). Measuring it needs no licence; copying `wafer.mjs` would, so Phase 2 copies nothing until the owner adds one |
 
 Rule of the register: a row with `DISCLOSED` or `NOT EVALUATED` blocks copying, not linking; L8 (LAWS.md:111-124)
 already makes "a dataset carrying a licence" the test of openness, and the edition applies the same test to itself.
@@ -188,7 +205,7 @@ files, each module proven on Android before it is handed to the integrator, inte
 admission leaves the journey green.
 
 **GridAtlas lesson (with keys).** One module, one slot, one hash, one proof per cartridge (gridatlas@5ec7f62
-atlas/current.json:14-21, :31; docs/RELEASE.md:116-118 "`tools/proofs/<G>-<id>.proof.mjs` for every cartridge cut
+atlas/current.json:14-21, :31; docs/RELEASE.md:117-118 "`tools/proofs/<G>-<id>.proof.mjs` for every cartridge cut
 at G"). A cartridge is admitted only when its hooks exist and the inventory is complete (menu-bar.js:8-17,
 :122-124). The preview is additive and never touches the pointer, the loader or the release folders
 (docs/RELEASE.md:39). Only the owner merges (:54-55).
@@ -230,7 +247,7 @@ in every case), hand-off.
 
 | step | team | module | may touch | acceptance test on Android | hand-off to the integrator |
 |---|---|---|---|---|---|
-| 1 the shell (Team 1 Fable, steps 1–2 STEPS.md) | 1 | `modules/01-shell.js` | its module; `handoff/01-shell/` | the bar is one row at 360 px and 393 px (measured `getBoundingClientRect().height` of `#bar` equals one line of its font); the Ventus lockup sits at the top with the face, weight, tracking and two-line form Team 1 measured from gridatlas@5ec7f62 atlas/cartridges/202609062358-substation-intelligence-v9-63.js:4533-4553; the menu titles are the mapped names Team 1 fixes for File, Edit, View, Scope, Grid, About; each opens on tap, closes on the same tap, on a wafer tap and on the back gesture; the labels and commands sit where GridAtlas puts them, not "near the top" | module + sha256; `test.cjs`; 4 screenshots (360, 393, landscape, font scale 1.3); the measured GridAtlas values with keys; `requires` list |
+| 1 the shell (Team 1 Fable, steps 1–2 STEPS.md) | 1 | `modules/01-shell.js` | its module; `handoff/01-shell/` | the bar is one row at 360 px and 393 px (measured `getBoundingClientRect().height` of `#bar` equals one line of its font); the Ventus lockup sits at the top with the face, weight, tracking and two-line form Team 1 measured from gridatlas@5ec7f62 atlas/cartridges/202609062358-substation-intelligence-v9-63.js:4533-4553; the menu titles are the mapped names Team 1 fixes for File, Edit, View, Scope, Grid, About (gridatlas@5ec7f62 atlas/modules/202609031958-menu-bar.js:31 `MENUS`, :34 `EXPECTED_LAYER_CONTROLS = 63`); each opens on tap, closes on the same tap, on a wafer tap and on the back gesture; the labels and commands sit where GridAtlas puts them, not "near the top" | module + sha256; `test.cjs`; 4 screenshots (360, 393, landscape, font scale 1.3); the measured GridAtlas values with keys; `requires` list |
 | 2 the card law | 2 | `modules/02-card.js` | its module; `handoff/02-card/` incl. `LAWS-L11.patch` and the README paragraph | after a pick, the card's first visible text node is the line of code itself (the quoted line), rendered as the header; the title, repository and `path:line` come after; the card is capped as Edition 4 caps it (editions/202611012027/README.md:16-19); the spark stays in the clear space after `edFly`; the law sentence "the line of code is the header" is in the page (the EDITION panel), in the README paragraph and in the LAWS patch | module + sha256; `test.cjs`; before/after screenshots; the patch; the paragraph |
 | 3 layer registry | 3 | `modules/03-layers.js`, `data/layers.json` | both; `handoff/03-layers/` | the layer registry lists the layers Team 2 Fable names (verified lines, repositories, periods, editions, See Through stars, elements, spider graphs) with GridAtlas's states `WAIT LOAD OK EMPTY FAIL` (the vocabulary galaxies-wafers@fff6fc6 README.md:7-8 inherited from GridAtlas); toggling a layer on a phone changes what is drawn within one frame and the readout names the count; a layer whose source fails says `FAIL` and the reason, never blank | module + data + sha256s; `test.cjs`; screenshots of the registry open and of one FAIL state; the registry schema with keys |
 | 4 the loader (cartridge law) | 4 | `modules/04-loader.js` (the reference loader the integrator moves into `index.html`), `handoff/04-loader/` | both | with `modules.json` intact every module shows `admitted` in the readout; with one byte changed in any module that module shows `refused: sha256 mismatch` and the rest still run; with a `requires` entry naming a hook that does not exist the module shows `refused: missing hook <name>`; the page is usable with every module refused (the Edition 4 behaviour remains); load time to first wafer frame on Pixel 7 under SwiftShader is recorded, not promised | loader + sha256; `test.cjs` with the three negative cases; the hook table (name → index.html line at the integrator's copy); the `modules.json` schema |
@@ -279,7 +296,7 @@ says steps 1–10 pass, three further bodies of work open, each needing the same
   and commits (See Through, GridAtlas, the spider, the periodic table, Learn the Kuiper, each `block:<Sym>` app in
   elements APPS.md), writing `cosmos-<app>/repos.tsv`, `wafer.tsv`, `wafer-meta.json` in the shape of
   kuiper-belt@018b46a cosmos/wafer-meta.json:1-13, plus `map.tsv` from the overarching key to the app key, checked both
-  ways by `tools/key.py`; the K2 sums of `ci_check.py` (tools/ci_check.py:49-60) run per app folder.
+  ways by `tools/key.py`; the K2 sums of `ci_check.py` (tools/ci_check.py:50-60) run per app folder.
 - The all-counting Kuiper: a report that first states what the live wafer counts today with keys (wafer-meta.json:2-7:
   issued 45,735,836,396, unissued 17,604,284,400, address space 63,340,120,796, 13,344 commits, 98 repositories at this
   head) and then what EVERYTHING adds (every repository, data and documents, branches or main only, binaries by bytes
@@ -299,10 +316,11 @@ publishes unchanged.
 
 ## Limits of this file
 
-- `FIXES/NL-009/round1/` held only `BRIEF.md` and an empty `img/` when this was written; the journey of 9.4 is the
-  floor and will be extended by the integrator from the auditors' FINDINGS. `android-journey.cjs` did not yet exist.
+- `FIXES/NL-009/round1/` held `BRIEF.md`, `01-bar.md`, `06-seethrough.md`, `09-robust.md` and ten PNGs when this was
+  revised (uncommitted working tree); seven auditors' files and `android-journey.cjs` did not yet exist, so the
+  journey of 9.4 is the floor and the integrator extends it from the remaining FINDINGS.
 - Teams 1–4's STEPS.md were not yet on disk; the module names and hook names of steps 1–8 above are proposals in the
   shape Team 2 Fable owns (step 4, the module boundary) and yield to Team 2's names on consolidation.
 - GitHub's licence detection for elements and testcode could not be read from this session (HTTP 403 on
   `repos/Ventusltd/elements`); the register relies on the files in the clones.
-- The sandbox cannot fetch `github.io` pages (notes :51-52), so "served" is proven by the Pages run, not by a fetch.
+- The sandbox cannot fetch `github.io` pages (notes :51), so "served" is proven by the Pages run, not by a fetch.
