@@ -116,10 +116,10 @@ async function runDevice(browser, deviceName) {
   page.on('pageerror', e => errors.push({ kind: 'pageerror', text: String(e.message || e).slice(0, 300) }));
   page.on('requestfailed', r => { const f = r.failure(); if (f && !/aborted|ERR_ABORTED/i.test(f.errorText)) errors.push({ kind: 'request', text: r.url().slice(0, 200) + ' ' + f.errorText }); });
   const cdp = await context.newCDPSession(page);
-  const steps = []; let n = 0;
+  const steps = []; let n = 0, stepT0 = Date.now();
   const probe = () => page.evaluate(probeFn);
   const shot = async (id) => { const f = path.join(dir, String(++n).padStart(2, '0') + '-' + id + '.png'); await page.screenshot({ path: f, scale: 'css', timeout: 180000 }); return path.relative(OUT, f); };
-  const record = (id, name, pass, measured, note) => { const s = { id, name, pass: !!pass, measured, note: note || '' }; steps.push(s); process.stderr.write(`[${deviceName}] ${pass ? 'PASS' : 'FAIL'} ${id}${note ? ' — ' + note : ''}\n`); return s; };
+  const record = (id, name, pass, measured, note) => { const s = { id, name, pass: !!pass, ms: Date.now() - stepT0, measured, note: note || '' }; stepT0 = Date.now(); steps.push(s); process.stderr.write(`[${deviceName}] ${pass ? 'PASS' : 'FAIL'} ${id}${note ? ' — ' + note : ''}\n`); return s; };
   const tapAt = (x, y) => page.touchscreen.tap(Math.round(x), Math.round(y));
   const tapRect = async (r) => { if (!r) throw new Error('no rect to tap'); await tapAt((r.left + r.right) / 2, (r.top + r.bottom) / 2); };
   const touch = async (type, points) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: points.map((p, i) => ({ x: p[0], y: p[1], id: i + 1, radiusX: 4, radiusY: 4, force: 1 })) });
@@ -232,47 +232,67 @@ async function runDevice(browser, deviceName) {
       prevIndex = p.card.index;
     }
 
-    // 10 tap a spark directly. The camera is known: zoom 14 after a fly, cx/cy solved from the selected spark.
-    let cam = null; const solve = (p, zoom) => { if (!p.magenta || p.card.index == null || !placed[p.card.index - 1]) return null; const b = placed[p.card.index - 1]; return { zoom, cx: b.x - (p.magenta.x - p.viewport.w / 2) / zoom, cy: b.y - (p.viewport.h / 2 - p.magenta.y) / zoom }; };
+    // 10 pinch out, then drag: the camera moves, the page neither scrolls nor zooms. The camera stays known
+    // throughout: zoom 14 after a fly, then zoom × (finger distance ratio) per pinch, cx/cy solved from the selected spark.
+    const solve = (p, zoom) => { if (!p.magenta || p.card.index == null || !placed[p.card.index - 1]) return null; const b = placed[p.card.index - 1]; return { zoom, cx: b.x - (p.magenta.x - p.viewport.w / 2) / zoom, cy: b.y - (p.viewport.h / 2 - p.magenta.y) / zoom }; };
     const toScreen = (c, b, p) => [(b.x - c.cx) * c.zoom + p.viewport.w / 2, p.viewport.h / 2 - (b.y - c.cy) * c.zoom];
-    cam = solve(p, 14);
-    const pickCandidate = (p) => { const top = p.bar.bottom + 24, bot = (p.card.open ? p.card.rect.top : p.viewport.h) - 24;
-      return p.greens.filter(g => g.y > top && g.y < bot && g.x > 24 && g.x < p.viewport.w - 24 && (!p.magenta || Math.hypot(g.x - p.magenta.x, g.y - p.magenta.y) > 30)
-        && p.greens.every(o => o === g || Math.hypot(o.x - g.x, o.y - g.y) > 22)).sort((a, b) => b.px - a.px)[0]; };
-    let cand = pickCandidate(p), zoomedOutToFind = null;
-    if (!cand && p.magenta) {   // nothing else in view at zoom 14: pinch out once (measured below again) to bring neighbours in
-      const mx = p.viewport.w / 2, my = (p.bar.bottom + (p.card.open ? p.card.rect.top : p.viewport.h)) / 2, d0 = Math.min(200, p.viewport.w - 80), d1 = d0 / 4;
-      await touch('touchStart', [[mx - d0 / 2, my], [mx + d0 / 2, my]]); for (let i = 1; i <= 10; i++) { const d = d0 + (d1 - d0) * i / 10; await touch('touchMove', [[mx - d / 2, my], [mx + d / 2, my]]); await sleep(30); } await touch('touchEnd', []); await sleep(1500);
-      p = await probe(); cam = solve(p, 14 * d1 / d0); cand = pickCandidate(p); zoomedOutToFind = { zoom: cam && cam.zoom, greensInView: p.greensCount };
-    }
-    let predicted = null, predictedDist = null;
-    if (cand && cam && placed.length) { let best = -1, bd = 1e18; placed.forEach((b, i) => { const [x, y] = toScreen(cam, b, p); const d = (x - cand.x) ** 2 + (y - cand.y) ** 2; if (d < bd) { bd = d; best = i; } }); predicted = best; predictedDist = +Math.sqrt(bd).toFixed(1); }
-    const prevCardIndex = p.card.index;
-    if (cand) { await tapAt(cand.x, cand.y); p = await settle(); }
-    const csS = clearSpace(p);
-    const gotNearest = cand && p.card.open && p.card.index != null && (predicted == null || p.card.index === predicted + 1);
-    record('spark-tap', 'tap a green spark: the card for the nearest spark opens and the camera places it clear', !!gotNearest && csS.ok,
-      { tapped: cand || null, greensInView: p.greensCount, zoomedOutToFind, predictedIndex: predicted == null ? null : predicted + 1, predictedDistanceFromTapPx: predictedDist, cardIndex: p.card.index, previousCardIndex: prevCardIndex, cardTitle: p.card.title, clear: csS, screenshot: await shot('spark-tap') },
-      !cand ? 'no second spark in view to tap (greens in view: ' + p.greensCount + ')' : (!p.card.open || p.card.index == null ? 'tap did not open a line card (card text: ' + (p.card.title || 'none') + ')' : (gotNearest ? (csS.ok ? '' : csS.why) : 'card shows ' + p.card.index + ', nearest by the law is ' + (predicted + 1))));
-
-    // 11 pinch out, then drag: the camera moves, the page does not scroll or zoom
-    p = await probe(); const P0 = p.magenta, vv0 = p.viewport;
-    let pinch = null, drag = null;
+    const pinchAt = async (mx, my, d0, d1) => { await touch('touchStart', [[mx - d0 / 2, my], [mx + d0 / 2, my]]); for (let i = 1; i <= 10; i++) { const d = d0 + (d1 - d0) * i / 10; await touch('touchMove', [[mx - d / 2, my], [mx + d / 2, my]]); await sleep(30); } await touch('touchEnd', []); await sleep(1200); };
+    let zoomNow = 14, cam = solve(p, zoomNow);
+    const P0 = p.magenta, vv0 = p.viewport; let pinch = null, drag = null, zoomOut = [];
+    const clearMid = (p) => Math.max(p.bar.bottom + 40, Math.min((p.card.open ? p.card.rect.top : p.viewport.h) - 40, (p.bar.bottom + (p.card.open ? p.card.rect.top : p.viewport.h)) / 2));
     if (P0) {
-      const mx = p.viewport.w / 2, my = Math.max(p.bar.bottom + 40, Math.min((p.card.open ? p.card.rect.top : p.viewport.h) - 40, P0.y + 120)), d0 = Math.min(220, p.viewport.w - 60), d1 = d0 / 2;
-      await touch('touchStart', [[mx - d0 / 2, my], [mx + d0 / 2, my]]); for (let i = 1; i <= 10; i++) { const d = d0 + (d1 - d0) * i / 10; await touch('touchMove', [[mx - d / 2, my], [mx + d / 2, my]]); await sleep(30); } await touch('touchEnd', []); await sleep(1500);
+      const mx = p.viewport.w / 2, my = clearMid(p), d0 = Math.min(220, p.viewport.w - 60), d1 = d0 / 2;
+      await pinchAt(mx, my, d0, d1);
       const q = await probe(); const r0 = Math.hypot(P0.x - mx, P0.y - my), r1 = q.magenta ? Math.hypot(q.magenta.x - mx, q.magenta.y - my) : null;
       pinch = { centre: [mx, my], fingerDistance: [d0, d1], sparkDistanceFromCentre: [+r0.toFixed(1), r1 && +r1.toFixed(1)], ratio: r1 != null ? +(r1 / r0).toFixed(3) : null, expected: 0.5, pageScroll: [q.viewport.scrollX, q.viewport.scrollY], vvScale: q.viewport.vvScale, innerWidth: q.viewport.w };
       pinch.ok = pinch.ratio != null && Math.abs(pinch.ratio - 0.5) < 0.12 && q.viewport.scrollX === 0 && q.viewport.scrollY === 0 && Math.abs((q.viewport.vvScale || 1) - 1) < 0.01 && q.viewport.w === vv0.w;
+      if (pinch.ok) zoomNow *= d1 / d0;
       const P1 = q.magenta; if (P1) {
         const ax = p.viewport.w / 2, ay = my, dx = -90, dy = 70;
         await touch('touchStart', [[ax, ay]]); for (let i = 1; i <= 12; i++) { await touch('touchMove', [[ax + dx * i / 12, ay + dy * i / 12]]); await sleep(25); } await touch('touchEnd', []); await sleep(1200);
         const s = await probe(); drag = { finger: [dx, dy], sparkMoved: s.magenta ? [+(s.magenta.x - P1.x).toFixed(1), +(s.magenta.y - P1.y).toFixed(1)] : null, pageScroll: [s.viewport.scrollX, s.viewport.scrollY], vvScale: s.viewport.vvScale, vvOffset: s.viewport.vvOffset, cardOpen: s.card.open };
         drag.ok = !!drag.sparkMoved && Math.abs(drag.sparkMoved[0] - dx) <= 12 && Math.abs(drag.sparkMoved[1] - dy) <= 12 && s.viewport.scrollX === 0 && s.viewport.scrollY === 0 && Math.abs((s.viewport.vvScale || 1) - 1) < 0.01;
+        p = s;
+      }
+      // zoom out until the whole belt of sparks is in view (the engine clamps zoom at 1e-4): the selected spark, under the
+      // midpoint of the fingers, must stay put, which is the pinch law measured a second time at a large ratio
+      if (pinch.ok && drag && drag.ok && p.magenta && placed.length) {
+        const rmax = Math.max(...placed.map(b => Math.hypot(b.x, b.y)));
+        const clearH = (p.card.open ? p.card.rect.top : p.viewport.h) - p.bar.bottom;
+        const target = Math.max(1.2e-4, 0.40 * Math.min(p.viewport.w, clearH) / rmax);
+        for (let k = 0; k < 4 && zoomNow > target * 1.05; k++) {
+          const ratio = Math.min(90, zoomNow / target), D0 = Math.min(300, p.viewport.w - 40), D1 = D0 / ratio;
+          const M = p.magenta; const mx2 = M.x, my2 = M.y;                 // fingers centred on the selected spark: it must not move
+          await pinchAt(mx2, my2, D0, D1); const q2 = await probe();
+          const moved = q2.magenta ? +Math.hypot(q2.magenta.x - mx2, q2.magenta.y - my2).toFixed(1) : null;
+          const ok = moved != null && moved <= 3 && q2.greensCount > p.greensCount && q2.viewport.scrollY === 0 && Math.abs((q2.viewport.vvScale || 1) - 1) < 0.01;
+          zoomOut.push({ fingerDistance: [D0, +D1.toFixed(2)], ratio: +(1 / ratio).toFixed(5), zoomAfter: +(zoomNow / ratio).toExponential(3), selectedSparkMovedPx: moved, greensInView: [p.greensCount, q2.greensCount], ok });
+          if (!ok) break; zoomNow /= ratio; p = q2;
+        }
+        cam = solve(p, zoomNow);
       }
     }
-    record('pinch-drag', 'pinch out then drag: the wafer zooms and pans, the page neither scrolls nor zooms', pinch && pinch.ok && drag && drag.ok, { pinch, drag, screenshot: await shot('pinch-drag') },
-      !P0 ? 'no selected spark to measure against' : [pinch && !pinch.ok ? 'pinch ratio ' + pinch.ratio + ' (expected 0.5) or page moved' : '', drag ? (drag.ok ? '' : 'drag moved spark by ' + JSON.stringify(drag.sparkMoved) + ' for finger ' + JSON.stringify(drag.finger)) : 'no drag measured'].filter(Boolean).join('; '));
+    record('pinch-drag', 'pinch out then drag: the wafer zooms and pans, the page neither scrolls nor zooms', pinch && pinch.ok && drag && drag.ok && zoomOut.length > 0 && zoomOut.every(z => z.ok), { pinch, drag, zoomOut, zoomNow: +zoomNow.toExponential(3), screenshot: await shot('pinch-drag') },
+      !P0 ? 'no selected spark to measure against' : [pinch && !pinch.ok ? 'pinch ratio ' + pinch.ratio + ' (expected 0.5) or page moved' : '', drag ? (drag.ok ? '' : 'drag moved spark by ' + JSON.stringify(drag.sparkMoved) + ' for finger ' + JSON.stringify(drag.finger)) : 'no drag measured', zoomOut.length && zoomOut.every(z => z.ok) ? '' : 'zoom-out pinch failed: ' + JSON.stringify(zoomOut.slice(-1))].filter(Boolean).join('; '));
+
+    // 11 tap a spark directly: the nearest spark by the law must be the one the card shows
+    p = await probe();
+    let cand = null, predicted = null, predictedDist = null, secondDist = null;
+    if (cam && placed.length && p.greens.length) {
+      const top = p.bar.bottom + 20, bot = (p.card.open ? p.card.rect.top : p.viewport.h) - 20;
+      const pos = placed.map(b => toScreen(cam, b, p));
+      const scored = p.greens.filter(g => g.y > top && g.y < bot && g.x > 20 && g.x < p.viewport.w - 20 && (!p.magenta || Math.hypot(g.x - p.magenta.x, g.y - p.magenta.y) > 30)).map(g => {
+        let b1 = -1, d1 = 1e18, d2 = 1e18; pos.forEach(([x, y], i) => { const d = (x - g.x) ** 2 + (y - g.y) ** 2; if (d < d1) { d2 = d1; d1 = d; b1 = i; } else if (d < d2) d2 = d; });
+        return { g, b1, d1: Math.sqrt(d1), d2: Math.sqrt(d2) }; }).filter(s => s.d1 <= 2.5 && s.d2 - s.d1 >= 6).sort((a, b) => (b.d2 - b.d1) - (a.d2 - a.d1));
+      if (scored.length) { cand = scored[0].g; predicted = scored[0].b1; predictedDist = +scored[0].d1.toFixed(1); secondDist = +scored[0].d2.toFixed(1); }
+    }
+    const prevCardIndex = p.card.index;
+    if (cand) { await tapAt(cand.x, cand.y); p = await settle(); }
+    const csS = clearSpace(p);
+    const gotNearest = cand && p.card.open && p.card.index != null && p.card.index === predicted + 1;
+    record('spark-tap', 'tap a green spark: the card for the nearest spark opens and the camera places it clear', !!gotNearest && csS.ok,
+      { tapped: cand || null, greensInView: p.greensCount, cameraKnown: !!cam, predictedIndex: predicted == null ? null : predicted + 1, predictedTitle: predicted == null ? null : placed[predicted].title, predictedDistanceFromTapPx: predictedDist, secondNearestPx: secondDist, cardIndex: p.card.index, previousCardIndex: prevCardIndex, cardTitle: p.card.title, clear: csS, screenshot: await shot('spark-tap') },
+      !cand ? 'no unambiguous spark to tap (camera known: ' + !!cam + ', greens in view: ' + p.greensCount + ')' : (!p.card.open || p.card.index == null ? 'tap did not open a line card (card text: ' + (p.card.title || 'none') + ')' : (gotNearest ? (csS.ok ? '' : csS.why) : 'card shows ' + p.card.index + ', nearest by the law is ' + (predicted + 1))));
 
     // 12 COMMANDS → WHOLE WAFER
     p = await probe(); await tapRect(titleRect('foot')); await sleep(700); p = await probe();
@@ -312,7 +332,7 @@ async function runDevice(browser, deviceName) {
   fs.mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
   const out = { url: URL0, outdir: OUT, generatedAt: new Date().toISOString(), devices: [] };
-  try { for (const d of DEVICES) out.devices.push(await runDevice(browser, d)); }
+  try { for (const d of DEVICES) { out.devices.push(await runDevice(browser, d)); fs.writeFileSync(path.join(OUT, 'report.json'), JSON.stringify(out, null, 1)); } }
   finally { await browser.close(); }
   out.pass = out.devices.every(d => d.pass);
   out.summary = out.devices.map(d => ({ device: d.device, passed: d.passed, failed: d.failed, failedSteps: d.steps.filter(s => !s.pass).map(s => s.id), consoleErrors: d.consoleErrors.length }));

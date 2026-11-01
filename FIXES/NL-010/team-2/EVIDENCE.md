@@ -334,7 +334,18 @@ These are the tests I will hold STEPS.md to. Each is traceable to the rows above
     kuiper-belt Apache-2.0 code / CC BY 4.0 text and data (editions/README.md last line), elements: no LICENSE file
     found (B6.17), to be settled by Team 5.
 
-## D. NL-009 round1 at the time of reading
+## D. NL-009 round1 findings that bear on layers (read 20:58 UTC)
 
-`FIXES/NL-009/round1/` held only `BRIEF.md` and an empty `img/` at 20:44 UTC when this file was started; no Android
-findings yet to fold in. Re-read before REVIEW (see REVIEW.md for the state then).
+`FIXES/NL-009/round1/` held `BRIEF.md` and an empty `img/` at 20:44 UTC; by 20:58 UTC three audits had landed. The
+ones a layer registry must answer (keys are into this repository's files, not the estate):
+
+| # | finding (auditor) | key | what it means for steps 3–4 |
+|---|---|---|---|
+| D1 | BLOCKER: the bar is two rows at 360, 393, 412 and 430 px; a fifth title at the present style needs 521 px (FABLE-01) | neural-link-between-agents FIXES/NL-009/round1/01-bar.md:13 | Layer switches cannot be more bar titles; they belong in ONE Grid-like panel, as GridAtlas keeps 63 switches behind one title (A2.16) |
+| D2 | MINOR: a `keys.json` 404 is said only in the hidden READOUT; the EDITION heading still reads "0 verified lines lit" (FABLE-09) | neural-link-between-agents FIXES/NL-009/round1/09-robust.md:25 | A layer's load state must be on its own label (WAIT/LOAD/OK/FAIL, A1.17) and in the heading, not only in a hidden panel |
+| D3 | MINOR: the 344 LINES rows are `<div>`s, 0 focusable; `#lyFind` has no label (FABLE-09) | neural-link-between-agents FIXES/NL-009/round1/09-robust.md:38 | Layer rows need `role=button tabindex=0` and ≥44 px targets, as GridAtlas stretches the proxy over the whole label (A2.10–A2.11) |
+| D4 | MAJOR: WebGL unavailable gives a blank black screen (FABLE-09) | neural-link-between-agents FIXES/NL-009/round1/09-robust.md:18 | Registry admission must fail loudly when a hook (`gl`, `o2`) is absent, as A3.7–A3.9 and A4.16 |
+| D5 | BLOCKER (owner): See Through is unreachable from Edition 4 (FABLE-06) | neural-link-between-agents FIXES/NL-009/round1/06-seethrough.md:11 | The See Through stars layer and its button are Team 3's step; Team 2's registry must carry the layer record and its deep link, not a second button |
+| D6 | Auditors agree the fix is a `(pointer:coarse)` rule with `min-height:44px` titles and the edition name shrinking to a mark (FABLE-01) | neural-link-between-agents FIXES/NL-009/round1/01-bar.md:51 | The Grid-like LAYERS panel inherits the same touch rule |
+
+Re-read before REVIEW; REVIEW.md names the state then.

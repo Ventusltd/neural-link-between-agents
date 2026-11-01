@@ -148,7 +148,7 @@ dashboard test versions (v1 click-fix to v5 front door)".
 | 149 | overview | Overview (front door) | `./spider/overview-graph.json` (local, 16 nodes, 15 edges) |
 
 - How it loads them: index.html:258 `RECEIVER_MANIFEST_PATH="./spider/manifest.json"`; :286 fetches it;
-  :281 `loadManifestScope` fetches each `entry.path` and on failure shows `placeholderScope` ("not yet emitted");
+  :280–283 `loadManifestScope` fetches each `entry.path` and on failure shows `placeholderScope` ("not yet emitted");
   :239 `DATA_BASE="./spider/data/"` and :243 `loadRoot()` try `nodes.json`/`edges.json` there and fall back to the
   embedded `ROOT_NODES` snapshot (:143) returning "snapshot"; :244 `CONTENTS_BASE="./spider/data/contents/"`;
   :300 reads `./spider/identity.json` (282 labels that appear in two or more graphs, for "Also in").
@@ -159,7 +159,7 @@ dashboard test versions (v1 click-fix to v5 front door)".
   `./spider/data/…`, but the v5 folder ships no css and no `spider/data/` (0 css files; only the three JSON files
   above). Served from testcode alone, the stylesheet 404s and the Federation root is the snapshot, not live. Two of
   the fifteen paths (engine-graph, genome-spider) are documented as "may not exist yet" (index.html:267–268).
-- The graph data shape the Kuiper would consume: `normaliseGenericGraph` (index.html:270–276) accepts `{nodes:[{id,
+- The graph data shape the Kuiper would consume: `normaliseGenericGraph` (index.html:272–278) accepts `{nodes:[{id,
   label|title, type|nodeKind|repo_type, rag|status, reason|status_reason|path, gh, ext}], edges:[[from,to,type] |
   {from|source, to|target, type}]}` or GeoJSON `features`.
 - Precedent for "spider as a graph layer on the wafer": galaxies-wafers@fff6fc6a iterations/index.json entry n=32
@@ -204,7 +204,7 @@ Data and the law:
 
 Camera, safe space, draw:
 - :253 `flyTo(x, y, z)` (engine :225); :272–277 `homeCamera()`, `home()` (engine :249); :262 `safeBox()` (engine :234)
-  and its Edition 3 wrap :726 so the safe rectangle starts under `#bar`; :258 `narrow = () => innerWidth <= 640`.
+  and its Edition 3 wrap :726 so the safe rectangle starts under `#bar`; :247 `narrow = () => innerWidth <= 640`.
 - :332 `draw()` (engine :304); :654 the wrap pattern `{ const _draw = draw; draw = function(){ _draw(); drawEdition(); }; }`
   — a new layer hooks `draw` exactly this way, and sets `dirty = true` to request a frame (:637).
 - :414 `toWorld(px, py)`; :639 `edScreen(b)` = world→screen for a placed body.
@@ -212,7 +212,7 @@ Camera, safe space, draw:
 - :604–613 the go-to box `#goto`/`#gotoin`: Enter parses a year/month/day, "new [N h]", a bare key number
   (`goKey(min(SPACE-1, n))`), or a repository name (`litRepo`, `home()`). This is the only address-entry hook today;
   there is no `location.hash` handling in the page (grep `location.hash|hashchange` → none).
-- :614–618 engine keys: `r` random issued line, `n` show new, `/` go-to box, Backspace home; :601–602 `#keys`
+- :614–618 engine keys: `r` random issued line, `n` show new, `/` go-to box, Backspace home; :600–601 `#keys`
   tap targets dispatch synthetic `keydown`.
 
 The edition layer (the pattern a periodic-table layer copies):
