@@ -1,4 +1,4 @@
-REVIEW: OPEN
+REVIEW: PASS
 
 # NL-010 team 1 ("the shell"): steps 1 and 2
 

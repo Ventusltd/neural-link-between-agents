@@ -41,8 +41,9 @@ page admits by hash and hook, in order, loudly.
 
 **Goal.** One registry, `data/layers.json` plus `modules/<stamp>-layers.js`, holds every reference layer of the wafer as
 a record with a key, a label, a group, a colour with a stated meaning, an order, a source with a sha256, a licence and a
-live state; one LAYERS panel (the Grid menu's place in the bar) shows one row per layer with an on/off control that is
-the only original; every other surface (keys, readout, URL, File menu, the apps) proxies that original; a layer whose
+live state; one WAFER panel (the Grid menu's place in the bar, Team 1's name for it, team-1/STEPS.md:146-153) shows one
+row per layer with an on/off control that is the only original; every other surface (keys, readout, URL, File menu,
+SCOPE and EDIT, the apps) proxies that original; a layer whose
 data is missing, wrong or unlicensed is listed and says why in its row, in the heading and in an alert, and draws
 nothing, while the wafer underneath keeps drawing. The first seven layers: verified lines, repositories, periods,
 editions, See Through stars, elements, spider graphs.
@@ -94,14 +95,17 @@ editions, See Through stars, elements, spider graphs.
       "preload": true, "format": "edition-keys.v1",
       "source": { "file": "keys.json", "bytes": 0, "features": 346, "sha256": "<from proof/edition-sha256.txt>" },
       "licence": "Apache-2.0 (kuiper-belt); each quoted line keeps its repository's licence",
-      "requires": ["keyPlace", "address", "o2", "card", "flyTo", "safeBox"],
-      "deeplink": { "param": "layers", "value": "lines" }, "module": "<stamp>-layers.js" } ] }
+      "requires": ["keyPlace", "address", "o2", "line-card", "flyTo", "safeBox", "wafer"],
+      "deeplink": { "param": "layers", "value": "lines" }, "module": "<module-stamp>-layers.js" } ] }
 ```
 Every field is required except `deeplink`; `bytes` and `features` are measured by the build and checked at load (as
 galaxies-wafers counts features against its index, layers-panel.mjs:400). `colour` must be one of PALETTE.md's hexes
 and `meaning` must be that row's meaning (kuiper-belt@018b46a PALETTE.md:9-14: grey the record, cyan the instrument,
-green energised, amber attention, magenta selected); a layer that needs a sixth colour asks the owner, it does not
-invent one (PALETTE.md:19). `key` is the namespaced key in GridAtlas's sense (`layer:<id>`), the value of the
+green energised, amber attention, magenta selected); "nothing is coloured for decoration. A shade must stand for a
+stated, invertible quantity" (PALETTE.md:19), so a layer that needs a sixth colour asks the owner, it does not invent
+one. A record's `requires` is checked by `tools/build_layers.py` to be a subset of the `requires` of the module named
+in `module` (the module's list is the one the loader checks, 4.4); a record cannot promise a hook its module did not
+ask for. `key` is the namespaced key in GridAtlas's sense (`layer:<id>`), the value of the
 `data-ky-layer` attribute on the layer's original control, and the only attribute the registry dispatches on; no module
 may create a `data-ky-layer`, `data-layer-id` or `data-pn-layer` control outside the registry (the Pipeline News rule).
 `order` is the draw order, bottom first, kept as a separate list from the records exactly as `cartridge_order` is
@@ -119,12 +123,18 @@ predicate, unchanged: finite key, `0 <= key < SPACE`, verified where the format 
 `keyPlace` and nothing else (index.html:632-633, :278; E:B2.5-B2.6, B1.11); what fails the predicate is counted and
 named on the row, never placed (:649-651; E:B2.10), the seventh law (kuiper-belt@018b46a README.md:84).
 
-3.3 **The registry module, `modules/<stamp>-layers.js`.** Registers through step 4's `KY.register` with
-`provides: ["layers"]`. It builds the LAYERS panel (`#layers`, registered as a panel with the shell's panel hook, the
-Edition 4 `PANELS` / `setPanel` / `placePanels` idiom at index.html:710-720; E:B3.5-B3.7) with one row per record in
-`layers.json`, in `order`, grouped by `group` with a group title, each row a `<label>` holding the layer's ORIGINAL
-`<input type=checkbox data-ky-layer="layer:<id>">`, stretched over the whole row as GridAtlas stretches its proxy, a
-name, and a state tag. It exposes:
+3.3 **The registry module, `modules/<module-stamp>-layers.js`.** Registers through step 4's `KY.register` with
+`provides: ["layers"]` and `requires` including `wafer` (the wafer's admission, 4.2) and `line-card` (Team 1's card
+module, 3.3 last bullet). It builds the WAFER panel (`#layers`, registered through `KY.panels.add('wafer', el)`; the
+title WAFER is Team 1's, GRID → WAFER at team-1/STEPS.md:146-153, LINES → WAFER + SCOPE + EDIT at :163) with one row per
+record in `layers.json`, in `order`, grouped by `group` with a group title, each row a `<label>` holding the layer's
+ORIGINAL `<input type=checkbox data-ky-layer="layer:<id>">`, stretched over the whole row as GridAtlas stretches its
+proxy, a name, and a state tag. The panel answers NL-009's audit of today's LINES panel (neural-link
+FIXES/NL-009/round1/05-lines.md): the list scrolls inside the panel, not the panel as one block (:16); every toggle row
+is ≥ 44 px with the input over the whole row, not a 13 px box (:25); the filter field has a visible clear control and
+Escape clears it (:40); a count line under the controls says `<shown> of <total> rows` (:54); rows are grouped, by
+`group` for layers and by repository for the lines list (:58); the panel is full width on a phone, `left:0; right:0`
+winning over any `width:min(…)` (:83). It exposes:
 - `KY.layers.inspect()` → `{ layers, unique, complete, on: [ids], states: {id: WAIT|LOAD|OK|EMPTY|FAIL|REFUSED} }`,
   `complete` being `layers === unique === layers.json.layers.length && no empty key`, the five-part predicate of
   menu-bar.js:122-127 in Kuiper terms. Later modules write their contracts against this probe.
@@ -132,7 +142,14 @@ name, and a state tag. It exposes:
   `original.click()`; nothing else flips a layer. The keyboard (`e`, `E`), the readout, the File menu, the See Through
   button, the URL and any app go through `set`. One delegated `change` listener on `#layers` is the single
   implementation of on/off (menu-bar.js:1451-1462 and :1723-1726 are the model).
-- `KY.layers.get(id)` → the record plus its runtime state `{on, status, why, placed, total, loaded_sha256}`.
+- `KY.layers.get(id)` → the record plus its runtime state `{on, value, status, why, placed, total, loaded_sha256}`.
+- `KY.layers.value(id, value)`: the one setter for a layer's value, the thing a layer shows when it has a choice: the
+  lit repository (`repos`), the lit period (`periods`), the focus flag and the filter query (`lines`), the graph
+  (`spider`). Team 1's SCOPE panel (focus, one repository, one period) and EDIT panel (filter, clear) are proxies that
+  call `value` and `set` and read `get`; they own no state (team-1/STEPS.md:163; the proxy law of menu-bar.js:12-13).
+  The `/` box's grammar (index.html:606-613) calls the same setter. A layer that is `on` with a null value is `OK · none
+  lit` and draws nothing; `set('repos', true)` without a value is therefore not an error and opens nothing; `?layers=`
+  carries ids only, never values (a value in a link is Team 3's hash grammar, 3.6).
 - `KY.layers.register(record)`: for layers that arrive with a later module (See Through's stars from Team 3's step 5,
   elements and spider graphs from Team 4's step 7). The record must already be in `layers.json` with a `module` field
   naming the registering module; a module registering a layer the manifest does not list is refused with
@@ -142,6 +159,11 @@ name, and a state tag. It exposes:
   `o2.clearRect` (index.html:384; E:B1.7) and iterates `order`, calling each on layer's `draw(o2, KY)`. The two wraps of
   Edition 4 (`draw` at :654, `drawEdition` at :745) and the `edNext` wrap (:747) are retired; the verified-lines layer
   becomes the first record and its draw function is `drawEdition` moved into the module, obeying its own `on`.
+- The card is not this module's. Team 1's step 2 owns the card law and its module `<stamp>-line-card.js`
+  (team-1/STEPS.md:255, :312, wrapping `edCard` and `fillLines`); `layers` lists `line-card` in `requires`, is admitted
+  after it in `order` (4.5), and opens a line with `KY.modules['line-card'].api.show(body)` rather than owning the
+  card's HTML. The `edCard` HTML of Edition 4 (index.html:655-667) therefore moves to Team 1's module, not to this one;
+  `edFly`, the list and the stepping stay here.
 
 3.4 **The state machine of a row** (galaxies-wafers' states, GridAtlas's suffix): `WAIT` listed, not asked for;
 `LOAD` fetching; `OK · <placed> of <total>` placed; `EMPTY · <why>` loaded, nothing to place, the reason on the row;

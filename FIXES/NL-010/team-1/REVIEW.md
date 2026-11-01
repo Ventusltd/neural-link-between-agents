@@ -1,8 +1,13 @@
 # NL-010 Team 1 — REVIEW of STEPS.md by FABLE-T1B (evidence officer)
 
-REVIEW: OPEN (round 2; two one-line corrections away from PASS)
 
-Reviewed: `FIXES/NL-010/team-1/STEPS.md` as revised at 21:15:01 UTC on 2026-11-01 (39,954 bytes, line 1 `REVIEW: OPEN`),
+PASS given on the revision of 21:18:35 UTC (40,013 bytes), which closes the two round-2 points: line 107 now cites
+`:1662-1669` (module) and `:6017-6023` (cartridge), both verified by `sed -n`; the star-slot rule is now one breakpoint,
+`max-width:380px` strip / `min-width:381px` seventh title, with the slack 79 / 91 / 110 px at 381 / 393 / 412 re-done
+by me from the measured 302 px (six titles 224.4 + slot 77.6). Every claim in STEPS.md that carries a key was checked
+against the file at that key; every measured number was reproduced by my own run (EVIDENCE A9, B6) or recounted (B3).
+
+Round 2 (superseded) reviewed: `FIXES/NL-010/team-1/STEPS.md` as revised at 21:15:01 UTC on 2026-11-01 (39,954 bytes),
 diffed against the 21:08 revision and re-checked against `EVIDENCE.md`, the owner's words (`FIXES/NL-010/BRIEF.md:5-11`)
 and NL-009 round 1 (`01-bar.md`, `06-seethrough.md`, `09-robust.md`). Round 1 (21:13 UTC, ten points) is superseded by
 this file; its text is in the issue comment
@@ -23,7 +28,7 @@ https://github.com/Ventusltd/neural-link-between-agents/issues/10#issuecomment-6
 | 9 | B1 arithmetic | closed: 216 = 212 + 4, 7 with `quote_key`, the 344 decomposition quoted | matches my recount (EVIDENCE B3) |
 | 10 | 1.3× font scale | closed: A2 runs at 1.3× with the expected result stated | text |
 
-## OPEN points (both are one line)
+## Round-2 points (closed at 21:18)
 
 A. **One key still does not land.** Lesson 1.5 (STEPS.md line 107) cites `:1658-1667` for the moves of the commands into
    the panels; `:1658-1660` are `installStyle / bar = buildBar / buildLayerControls`, and the moves are `:1662-1669` in
@@ -37,5 +42,4 @@ B. **The star-slot width rule has a hole from 381 to 392 px.** "from 393 px up �
 Everything else PASSES against the evidence and the owner's four instructions for the shell (logo exactly as GridAtlas:
 C3 with the flanks; labels and commands like GridAtlas: C4–C7 and the corrected C5; consistent UI built around the
 wafer: C1, C6, C8 and the unchanged `safeBox`/`edFly` law; the line of code is the header, written in the page, the
-README and LAWS.md: step 2 K1–K6). On the next revision that closes A and B, this file becomes `REVIEW: PASS` and the
-PASS comment is posted.
+README and LAWS.md: step 2 K1–K6). Both closed at 21:18:35; `REVIEW: PASS`.
