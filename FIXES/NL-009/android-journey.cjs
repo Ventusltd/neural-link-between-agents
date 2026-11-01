@@ -118,7 +118,11 @@ async function runDevice(browser, deviceName) {
   const cdp = await context.newCDPSession(page);
   const steps = []; let n = 0, stepT0 = Date.now();
   const probe = () => page.evaluate(probeFn);
-  const shot = async (id) => { const f = path.join(dir, String(++n).padStart(2, '0') + '-' + id + '.png'); await page.screenshot({ path: f, scale: 'css', timeout: 180000 }); return path.relative(OUT, f); };
+  const shot = async (id) => {   // a screenshot waits for a frame, and a frame at zoom 14 under SwiftShader on a loaded machine can take minutes: never let it abort the journey
+    const f = path.join(dir, String(++n).padStart(2, '0') + '-' + id + '.png');
+    for (let attempt = 0; attempt < 2; attempt++) { try { await page.screenshot({ path: f, scale: 'css', timeout: 180000 }); return path.relative(OUT, f); } catch (e) { if (attempt) return 'FAILED: ' + String(e.message || e).split('\n')[0]; } }
+  };
+  const shotPng = async () => { try { return await page.screenshot({ type: 'png', scale: 'css', timeout: 180000 }); } catch (e) { return null; } };
   const record = (id, name, pass, measured, note) => { const s = { id, name, pass: !!pass, ms: Date.now() - stepT0, measured, note: note || '' }; stepT0 = Date.now(); steps.push(s); process.stderr.write(`[${deviceName}] ${pass ? 'PASS' : 'FAIL'} ${id}${note ? ' — ' + note : ''}\n`); return s; };
   const tapAt = (x, y) => page.touchscreen.tap(Math.round(x), Math.round(y));
   const tapRect = async (r) => { if (!r) throw new Error('no rect to tap'); await tapAt((r.left + r.right) / 2, (r.top + r.bottom) / 2); };
@@ -150,8 +154,8 @@ async function runDevice(browser, deviceName) {
     await sleep(FIXED_WAIT);
     const frames = await page.evaluate(() => new Promise(res => { const t = []; let last = performance.now(); const f = () => { const now = performance.now(); t.push(now - last); last = now; if (t.length < 12) requestAnimationFrame(f); else res(t); }; requestAnimationFrame(f); setTimeout(() => res(t), 6000); }));
     let p = await probe();
-    const png = await page.screenshot({ type: 'png', scale: 'css', timeout: 180000 });
-    const wafer = await waferFromPng(page, png.toString('base64'), p.bar ? p.bar.bottom : 0);
+    const png = await shotPng();
+    const wafer = png ? await waferFromPng(page, png.toString('base64'), p.bar ? p.bar.bottom : 0) : { error: 'screenshot timed out', litFraction: 0, bbox: null };
     const tops = [p.barname && p.barname.rect ? p.barname.rect.top : null, ...p.titles.map(t => t.rect.top)].filter(v => v != null);
     const oneRow = p.bar && tops.length && Math.max(...tops) - Math.min(...tops) < 4 && p.bar.height < 2 * Math.min(...p.titles.map(t => t.rect.height)) && p.barScroll.scrollWidth <= p.barScroll.clientWidth + 1;
     const fr = frames.slice(1).sort((a, b) => a - b);
@@ -301,7 +305,7 @@ async function runDevice(browser, deviceName) {
     if (ww) await tapRect(ww); p = await settle({ noSpark: true });
     const panelStillOpen = p.panels.foot.visible;
     if (panelStillOpen) { await tapAt(p.viewport.w - 4, p.viewport.h - 4); await sleep(800); p = await probe(); }   // a tap on the empty corner of the wafer closes the layer
-    const png12 = await page.screenshot({ type: 'png', scale: 'css', timeout: 180000 }); const wafer12 = await waferFromPng(page, png12.toString('base64'), p.bar.bottom);
+    const png12 = await shotPng(); const wafer12 = png12 ? await waferFromPng(page, png12.toString('base64'), p.bar.bottom) : { error: 'screenshot timed out', bbox: null };
     const whole = wafer12.bbox && wafer12.bboxW > 0.4 * p.viewport.w && Math.abs(wafer12.bboxW / wafer12.bboxH - 1) < 0.25 && wafer12.bbox[1] >= p.bar.bottom - 1 && wafer12.bbox[3] <= p.viewport.h;
     record('whole-wafer', 'tap COMMANDS then WHOLE WAFER: the card closes and the whole wafer is on screen under the bar', cmdOpen && !p.card.open && !p.magenta && !p.panels.foot.visible && whole,
       { commandsPanel: fp, wholeWaferButton: ww, commandsOpenedUnderBar: !!cmdOpen, panelStayedOpenAfterTap: panelStillOpen, cardOpen: p.card.open, magenta: p.magenta, wafer: wafer12, screenshot: await shot('whole-wafer') },

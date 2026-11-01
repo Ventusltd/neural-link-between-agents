@@ -7,15 +7,20 @@ Heads this file is keyed to: gridatlas `5ec7f62f213e2d20a02e86427daa182c0f38e4a4
 `018b46aed50f28f7b1882a0dcaba6593ce522beb`, elements `f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf`, testcode
 `d09c185c8dacbc5c73afb2b0d0d8dad40745a544`, globalgrid2050 `c66759f0d7ac3489df9158da6eaa1330a37c069f`,
 galaxies-wafers `fff6fc6ad4f93a15fe8f6456942a1b44e5547105`, neural-link-between-agents
-`591b57cfa0a6446f332ea30ed69a7747f4f05562`. Every key below is `repo@sha path:line` against those heads; the short
+`591b57cfa0a6446f332ea30ed69a7747f4f05562` when first written; re-checked at `b9b10bd731eadaa3eb4dd881f8b09058d71f4714`
+(the harness commits as teams write), where `git diff 591b57c..HEAD -- SESSIONS/202611012145-kuiper-edition-harness-notes.md
+AGENTS.md` is empty, so every `neural-link@591b57c` key to those two files holds at the later head. Every key below is
+`repo@sha path:line` against those heads; the short
 form `gridatlas@5ec7f62` means that head. No claim without a key; where a file does not exist the gap is written as
 `DISCLOSED` in the sense of kuiper-belt@018b46a LAWS.md:139-170 (L10), never papered over.
 
 Vocabulary used in both steps: **the edition** is the next dated folder `kuiper-belt/editions/<stamp>/` (Edition 5 or
 later, the stamp cut in UTC when the integrator cuts it); **a module** is one file `modules/NN-<name>.js` inside that
 folder, admitted by the edition's `modules.json` manifest; **the pointer** is `kuiper-belt/editions/index.html`;
-**the journey** is the Android acceptance script of NL-009 (`FIXES/NL-009/round1/android-journey.cjs` once
-FABLE-10 writes it; until then the method in neural-link@591b57c FIXES/NL-009/round1/BRIEF.md:11-20).
+**the journey** is the Android acceptance script of NL-009, `FIXES/NL-009/android-journey.cjs` (35,990 bytes,
+header "the Android end-to-end journey of a Kuiper edition, measured, not eyeballed"; usage `node android-journey.cjs
+<url> <outdir> [--device "Pixel 7"] [--all]`, real touch only, exit 0 only when every step of every device passed),
+extended by the integrator; its method is the one in FIXES/NL-009/round1/BRIEF.md:11-20.
 
 ---
 
@@ -86,8 +91,9 @@ It is a separate tool rather than a fifth check inside `ci_check.py`, so that fi
 its K1–K4 numbers stay comparable run to run; the owner may fold E1–E5 in as K5 later (EVIDENCE.md Q3), which changes
 nothing in this law.
 
-9.4 **The Android journey gate.** The preview is not ready for the owner until the journey passes on
-Playwright `devices['Pixel 7']` with `hasTouch`, `isMobile` and `deviceScaleFactor`, real touch only, SwiftShader
+9.4 **The Android journey gate.** The preview is not ready for the owner until the journey
+(`FIXES/NL-009/android-journey.cjs`, run as `node android-journey.cjs http://127.0.0.1:<port>/editions/<stamp>/
+<outdir> --all`, exit code 0) passes on Playwright `devices['Pixel 7']` with `hasTouch`, `isMobile` and `deviceScaleFactor`, real touch only, SwiftShader
 flags, served from the repository root (NL-009 BRIEF.md:11-20; notes :53-58). The journey, in order, each step
 measured and written to `proof/android-journey.json` with its rectangle, timing or hit-test result: (a) load
 `editions/<stamp>/` with zero console errors; (b) the bar is one row at 360 px and 393 px wide (the Edition 3/4
@@ -113,7 +119,7 @@ noscript, keys.json 404 said in the open, Escape closes the card, reduced motion
 auditors' TEST sections (01-bar.md:135, 06-seethrough.md:154, 09-robust.md:221) are the Playwright steps the journey
 script takes verbatim. Findings 02–05, 07, 08 and 10 of NL-009 were not on disk; the integrator adds them the same
 way. The gate is PASS only when every non-MINOR step is PASS; a step that cannot be run (no script yet, a device
-profile missing) is written `NOT EVALUATED` with the reason (LAWS.md:155), and the preview goes to the owner only with
+profile missing) is written `NOT EVALUATED` with the reason (LAWS.md:156), and the preview goes to the owner only with
 the `NOT EVALUATED` list in the PR body.
 
 9.5 **Module manifest hashes.** `modules.json` is the edition's `current.json`: `{"edition": "<stamp>", "order":
@@ -165,16 +171,22 @@ where the file names one; "none in repository" where no LICENSE, NOTICE or licen
 | MapLibre GL JS 4.7.1 | not brought into the edition (the wafer is canvas) | BSD-3-Clause | NOTICE.md:38-39; vendor/MAPLIBRE-LICENSE.txt | register only; no duty unless a module loads it |
 | globalgrid2050 (ancestor of See Through's simulator code) | nothing directly | CERN-OHL-S v2 | globalgrid2050@c66759f LICENSE.txt:1 | the reason See Through is CERN-OHL-S v2 (LICENSE.md:1-5) |
 | Learn the Kuiper (LEARN button, if Team 1 adds it) | a link | code Apache-2.0, docs CC BY 4.0, globalgrid2050-derived parts CERN-OHL-S v2 | kuiper-belt@018b46a learn-the-kuiper/README.md:34-37; learn-the-kuiper/202610050609/NOTICE.md:7-11 (`modules/grid.js`, `modules/zoom.js` are the CERN-OHL-S v2 parts) | link only |
-| elements (the periodic table: APPS.md, CATALOGUE.md, `catalogue/*.json`) | the app registry (step 7), the `block:<Sym>` keys, titles and descriptions | **none in repository**: no LICENSE, NOTICE or licence sentence in any file (`grep -rni licen` over the clone returns nothing); GitHub's licence detection could not be read from this session (403) | elements@f7a92fb README.md:1-20 (no licence line); APPS.md:3 ("Titles and descriptions are the sources' own words") | `DISCLOSED`. Until the owner adds a LICENSE (the estate's convention is Apache-2.0 code, CC BY 4.0 data, as kuiper-belt README.md:156-157; the choice is the owner's), the edition may link to elements pages and may use the **keys** (`block:<Sym>`, facts, not expression) and the app **titles** (APPS.md:3: "the sources' own words", and the sources are the licensed estate repositories), but may not vendor `catalogue/*.json` or the descriptions into the edition folder. Step 7's Opus team reads the catalogue at run time from its published address or ships keys only. Ask: owner to add LICENSE and NOTICE to elements before step 7 ships |
+| elements (the periodic table: APPS.md, CATALOGUE.md, `catalogue/*.json`) | the app registry (step 7), the `block:<Sym>` keys, titles and descriptions | **none in repository**: no LICENSE, NOTICE or licence sentence in any file (`grep -rni licen` over the clone returns nothing); GitHub's licence detection could not be read from this session (403) | elements@f7a92fb README.md:1-25 (no licence line); README.md:21 ("Titles and descriptions are the sources' own words"); APPS.md:3 (built from the block register `d356562b2e8f`) | `DISCLOSED`. Until the owner adds a LICENSE (the estate's convention is Apache-2.0 code, CC BY 4.0 data, as kuiper-belt README.md:156-157; the choice is the owner's), the edition may link to elements pages and may use the **keys** (`block:<Sym>`, facts, not expression) and the app **titles** (elements README.md:21: "Titles and descriptions are the sources' own words", and the sources are the licensed estate repositories), but may not vendor `catalogue/*.json` or the descriptions into the edition folder. Step 7's Opus team reads the catalogue at run time from its published address or ships keys only. Ask: owner to add LICENSE and NOTICE to elements before step 7 ships |
 | testcode/spider (the spider sandbox v5) | a launcher entry and a graph layer; the dashboard itself stays where it is | Apache-2.0 (repository LICENSE; the spider folder has no licence file of its own, the root one covers it); its data is read live over https from the served GlobalGrid2050 site, and `./spider/data/` is not in the clone | testcode@d09c185 LICENSE:1-3; NOTICE:1-11, :26-33 (third-party data not covered); spider/INDEX.md:3-5; spider/20260914T143049Z-v5-linkify-frontdoor-brandfaithful/index.html:239, :244 (`DATA_BASE="./spider/data/"`), :108 (loads `estate-menu.js` from `ventusltd.github.io/spiders`) | copying spider code into a module is Apache-2.0 with attribution. The graph data's terms are **not stated** in the clone (`DISCLOSED`): the spider-graph layer of step 7 draws only what it fetches from the served site at run time, names the source address on the layer, and copies no graph JSON into the edition until the data's licence is written at its source. The `spiders` repository is not in the estate clone; its licence is `NOT EVALUATED` |
 | OpenStreetMap-derived material quoted by the verified lines | quotations with keys, as Editions 1–4 | ODbL 1.0; OGL v3 for DESNZ/DUKES material | editions/202611012027/NOTICE.md:7-10 | unchanged: "A quote here is a citation with its key, not a relicensing" |
-| galaxies-wafers (Phase 2 comparison only) | nothing in steps 1–10; at Phase 2 its numbers and law constants, not its code | **none in repository**: no LICENSE or NOTICE in the root listing, no licence word in README.md | galaxies-wafers@fff6fc6 README.md:1-4; root listing (`ls`) | `DISCLOSED` (EVIDENCE.md Q2). Measuring it needs no licence; copying `wafer.mjs` would, so Phase 2 copies nothing until the owner adds one |
+| galaxies-wafers (Phase 2 comparison only) | nothing in steps 1–10; at Phase 2 its numbers and law constants, not its code | **none in repository**: no LICENSE or NOTICE in the root listing, no licence word in README.md | galaxies-wafers@fff6fc6 README.md:5 (the frozen law), :1-4 (no licence line); root listing (`ls`) | `DISCLOSED` (EVIDENCE.md Q2). Measuring it needs no licence; copying `wafer.mjs` would, so Phase 2 copies nothing until the owner adds one |
 
 Rule of the register: a row with `DISCLOSED` or `NOT EVALUATED` blocks copying, not linking; L8 (LAWS.md:111-124)
 already makes "a dataset carrying a licence" the test of openness, and the edition applies the same test to itself.
 
 **Module.** `editions/LAW.md` (the text of 9.1–9.7), `tools/edition_check.py` (E1–E5, 9.3), `modules.json` (9.5),
-`LICENCES.md` (9.8), `proof/android-journey.json` (9.4). Built by Opus team 9 (tooling and register) and team 10
+`LICENCES.md` (9.8), `proof/android-journey.json` (9.4).
+
+**Files touched.** New: `kuiper-belt/editions/LAW.md`, `kuiper-belt/tools/edition_check.py`,
+`editions/<stamp>/modules.json`, `editions/<stamp>/LICENCES.md`, `editions/<stamp>/proof/android-journey.json`,
+`editions/<stamp>/proof/ci_check.log`. Changed, in PR B only: `editions/index.html` (three places),
+`editions/README.md`, root `README.md` (Editions section), `.github/workflows/check.yml` (one `run:` line for
+`edition_check.py`). Never: `cosmos/`, `tools/ci_check.py` K1–K4, any earlier edition folder, `see-through/`. Built by Opus team 9 (tooling and register) and team 10
 (integration and the gate), step 10 below.
 
 **Acceptance test on Android.** The journey of 9.4 passes on Pixel 7 against the served preview folder, and the
@@ -255,7 +267,7 @@ in every case), hand-off.
 | 6 the File menu | 6 | `modules/06-file.js`, `handoff/06-file/` | both | File offers: open a key (`python tools/key.py` grammar, resolved in page), open an edition (the pointer's list), open an app (step 7's registry), copy a link (the hash deep link); on Pixel 7 "copy a link" writes to the clipboard or shows the link selectable when the clipboard API refuses; the hash grammar round-trips: a link copied from the card reopens the same spark (`location.hash` preserved by the pointer, editions/index.html:12) | module + sha256; `test.cjs`; the grammar written with examples; screenshots |
 | 7 the OS, baby steps: apps, periodic table, spider | 7 | `modules/07-apps.js`, `data/apps.json`, `handoff/07-apps/` | all three | the launcher lists apps by `block:<Sym>` key from elements@f7a92fb APPS.md (keys only until elements carries a licence, step 9 register); the periodic table opens as a layer and as an app; the spider sandbox opens as an app (`testcode/spider` v5 served address) and as a graph layer fetched live, with its source address on the layer; no window manager: one app at a time, back returns to the wafer | module + data + sha256s; `test.cjs`; screenshots (launcher, table layer, spider layer); the list of what was copied versus linked, per the register |
 | 8 the first intelligent algorithm | 8 | `modules/08-<algorithm>.js` (name from Team 4 Fable's step 8), `data/<algorithm>.json`, `handoff/08-<algorithm>/` | all three | the algorithm runs over the estate's keys with the inputs Team 4 names, prints its key and its result in the readout, and refuses (its refusal rule) with a sentence when an input is missing; on Pixel 7 it completes or reports progress within the time Team 4 bounds; its output carries keys for every number | module + data + sha256s; `test.cjs`; the algorithm's law in the form of LAWS.md (what is measured, how computed, falsified by) |
-| 9 law and register | 9 | `tools/edition_check.py`, `.github/workflows/check.yml`, `editions/LAW.md`, `LICENCES.md`, `handoff/09-law/` | these | `edition_check.py` E1–E5 PASS on the assembled folder and each has a negative test that FAILs; the journey script of 9.4 exists in the handoff (taking `FIXES/NL-009/round1/android-journey.cjs` as its base when present) and writes `proof/android-journey.json`; `LICENCES.md` every key re-verified at the integrator's heads | the tool + tests; `LAW.md`; `LICENCES.md`; the journey script |
+| 9 law and register | 9 | `tools/edition_check.py`, `.github/workflows/check.yml`, `editions/LAW.md`, `LICENCES.md`, `handoff/09-law/` | these | `edition_check.py` E1–E5 PASS on the assembled folder and each has a negative test that FAILs; the journey script of 9.4 is `FIXES/NL-009/android-journey.cjs` carried into the handoff and extended, and it writes `proof/android-journey.json` (its `report.json`); `LICENCES.md` every key re-verified at the integrator's heads | the tool + tests; `LAW.md`; `LICENCES.md`; the journey script |
 | 10 integration and proof | 10 | `index.html`, `keys.json`, `modules.json`, `README.md`, `NOTICE.md`, `proof/`, the branch, PR A and PR B | these | the full journey of 9.4 PASS on the served preview; `tools/ci_check.py` and `tools/edition_check.py` PASS; `proof/edition-sha256.txt` complete; the README "What changed from Edition 4" names every module and every NL-009 finding folded in | the PRs, the journey table in PR A's body, the `NOT EVALUATED` list, the request for `ACCEPT <stamp>` |
 
 **Order of integration.** The integrator (team 10) opens the branch on day one with the Edition 4 copy, the hook
@@ -276,6 +288,12 @@ so the page loads in the same order it was proven in.
 by the team). A hand-off without `EVIDENCE.md` keys or without a passing `test.cjs` on Pixel 7 is returned.
 
 **Module.** The ten modules above and `modules.json`.
+
+**Files touched.** Per team, exactly the "may touch" column of the table: `editions/<stamp>/modules/NN-<name>.js`,
+that team's `data/*.json` and `handoff/NN-<name>/`; team 9 additionally `tools/edition_check.py`,
+`.github/workflows/check.yml`, `editions/LAW.md`, `editions/<stamp>/LICENCES.md`; team 10 `editions/<stamp>/index.html`,
+`keys.json`, `modules.json`, `README.md`, `NOTICE.md`, `proof/` and, in PR B, the pointer and the two README entries.
+Root `LAWS.md` only through team 2's patch carried in PR B. Nothing else by anyone.
 
 **Acceptance test on Android.** Every row's test, then the whole journey of 9.4 on the assembled edition, then the
 same journey through the pointer after PR B.
@@ -304,7 +322,7 @@ says steps 1–10 pass, three further bodies of work open, each needing the same
   guess.
 - The unique-lines Kuiper: `tools/unique_wafer.py` defining "distinct" in one sentence (exact bytes or trimmed, and
   why), writing a second `cosmos-unique/` folder and `proof/unique-vs-all.json` (distinct count against the all-lines
-  count); and the comparison with the wafer that predates the Kuiper, galaxies-wafers@fff6fc6 README.md:3-4
+  count); and the comparison with the wafer that predates the Kuiper, galaxies-wafers@fff6fc6 README.md:5
   ("every permanently numbered line of the estate placed by one frozen law, `r = sqrt(key)`, `theta = key x golden
   angle`", `wafer.mjs`, inherited from `testcode/202609151339`) and `globalgrid2050/testcode/wafer-development-
   environment/`: counts, law constants (the Kuiper's `r = sqrt(key), theta = 2 pi frac(key x 2654435769 / 2^32)`,
@@ -317,8 +335,9 @@ publishes unchanged.
 ## Limits of this file
 
 - `FIXES/NL-009/round1/` held `BRIEF.md`, `01-bar.md`, `06-seethrough.md`, `09-robust.md` and ten PNGs when this was
-  revised (uncommitted working tree); seven auditors' files and `android-journey.cjs` did not yet exist, so the
-  journey of 9.4 is the floor and the integrator extends it from the remaining FINDINGS.
+  revised (uncommitted working tree); seven auditors' files did not yet exist, so the journey of 9.4 is the floor and
+  the integrator extends it from the remaining FINDINGS. `FIXES/NL-009/android-journey.cjs` arrived at 20:59 UTC and
+  is named as the gate script; its steps were not run here (no edition exists yet to run them on).
 - Teams 1–4's STEPS.md were not yet on disk; the module names and hook names of steps 1–8 above are proposals in the
   shape Team 2 Fable owns (step 4, the module boundary) and yield to Team 2's names on consolidation.
 - GitHub's licence detection for elements and testcode could not be read from this session (HTTP 403 on
