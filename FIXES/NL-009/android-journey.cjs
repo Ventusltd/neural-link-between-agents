@@ -120,11 +120,13 @@ async function runDevice(browser, deviceName) {
   const cdp = await context.newCDPSession(page);
   const steps = []; let n = 0, stepT0 = Date.now();
   const probe = () => page.evaluate(probeFn);
-  const shot = async (id) => {   // a screenshot waits for a frame, and a frame at zoom 14 under SwiftShader on a loaded machine can take minutes: never let it abort the journey
-    const f = path.join(dir, String(++n).padStart(2, '0') + '-' + id + '.png');
-    for (let attempt = 0; attempt < 2; attempt++) { try { await page.screenshot({ path: f, scale: 'css', timeout: 180000 }); return path.relative(OUT, f); } catch (e) { if (attempt) return 'FAILED: ' + String(e.message || e).split('\n')[0]; } }
-  };
-  const shotPng = async () => { try { return await page.screenshot({ type: 'png', scale: 'css', timeout: 180000 }); } catch (e) { return null; } };
+  // a screenshot waits for a frame, and a frame at zoom 14 under SwiftShader on a loaded machine can take minutes: it is
+  // retried once and never aborts the journey. The steps that measure the wafer analyse this same file, so the evidence
+  // image and the measurement are one capture.
+  const shotTo = async (f) => { for (let attempt = 0; attempt < 2; attempt++) { try { await page.screenshot({ path: f, scale: 'css', timeout: 180000 }); return path.relative(OUT, f); } catch (e) { if (attempt) return 'FAILED: ' + String(e.message || e).split('\n')[0]; } } };
+  const shotName = (id) => path.join(dir, String(++n).padStart(2, '0') + '-' + id + '.png');
+  const shot = (id) => shotTo(shotName(id));
+  const waferFromFile = async (file, yFrom) => { try { return await waferFromPng(page, fs.readFileSync(file).toString('base64'), yFrom); } catch (e) { return { error: 'screenshot failed: ' + String(e.message || e).split('\n')[0], litFraction: 0, bbox: null }; } };
   const record = (id, name, pass, measured, note) => { const s = { id, name, pass: !!pass, ms: Date.now() - stepT0, measured, note: note || '' }; stepT0 = Date.now(); steps.push(s); process.stderr.write(`[${deviceName}] ${pass ? 'PASS' : 'FAIL'} ${id}${note ? ' — ' + note : ''}\n`); return s; };
   const tapAt = (x, y) => page.touchscreen.tap(Math.round(x), Math.round(y));
   const tapRect = async (r) => { if (!r) throw new Error('no rect to tap'); await tapAt((r.left + r.right) / 2, (r.top + r.bottom) / 2); };
@@ -163,11 +165,11 @@ async function runDevice(browser, deviceName) {
     const frames = await page.evaluate(() => new Promise(res => { const t = []; let last = performance.now(); const f = () => { const now = performance.now(); t.push(now - last); last = now; if (t.length < 12) requestAnimationFrame(f); else res(t); }; requestAnimationFrame(f); setTimeout(() => res(t), 6000); }));
     let p = await probe();
     // the first frames under SwiftShader can take long: the wafer check is retried across drawn frames before it counts as absent
-    let png = null, wafer = null, waferOk = false, waferTries = 0;
+    let wafer = null, waferOk = false, waferTries = 0; const loadFile = shotName('load');
     for (; waferTries < 4 && !waferOk; waferTries++) {
       if (waferTries) await framesPass(2, 40000);
-      p = await probe(); png = await shotPng();
-      wafer = png ? await waferFromPng(page, png.toString('base64'), p.bar ? p.bar.bottom : 0) : { error: 'screenshot timed out', litFraction: 0, bbox: null };
+      p = await probe(); const got = await shotTo(loadFile);
+      wafer = got.startsWith('FAILED') ? { error: got, litFraction: 0, bbox: null } : await waferFromFile(loadFile, p.bar ? p.bar.bottom : 0);
       const clearMin = Math.min(p.viewport.w, p.viewport.h - (p.bar ? p.bar.bottom : 0));
       waferOk = wafer.litFraction > 0.03 && !!wafer.bbox && wafer.bboxW > 0.4 * clearMin && Math.abs(wafer.bboxW / wafer.bboxH - 1) < 0.25;
     }
@@ -176,7 +178,7 @@ async function runDevice(browser, deviceName) {
     const oneRow = p.bar && tops.length && Math.max(...tops) - Math.min(...tops) < 4 && nameInRow && p.bar.height < 2 * Math.min(...p.titles.map(t => t.rect.height)) && p.barScroll.scrollWidth <= p.barScroll.clientWidth + 1;
     const fr = frames.slice(1).sort((a, b) => a - b);
     record('load', 'load: zero console errors, wafer drawn, bar one row', errors.length === 0 && waferOk && oneRow,
-      { loadMs: Date.now() - t0, consoleErrors: errors.slice(), big: p.big, wafer, waferTries, bar: p.bar, barTitles: p.titles.map(t => t.text), titleTops: tops, barScroll: p.barScroll, oneRow: !!oneRow, sparksVisible: p.greensCount, frameMs: fr.length ? { median: +fr[fr.length >> 1].toFixed(0), max: +fr[fr.length - 1].toFixed(0) } : null, screenshot: await shot('load') },
+      { loadMs: Date.now() - t0, consoleErrors: errors.slice(), big: p.big, wafer, waferTries, bar: p.bar, barTitles: p.titles.map(t => t.text), titleTops: tops, barScroll: p.barScroll, oneRow: !!oneRow, sparksVisible: p.greensCount, frameMs: fr.length ? { median: +fr[fr.length >> 1].toFixed(0), max: +fr[fr.length - 1].toFixed(0) } : null, screenshot: path.relative(OUT, loadFile) },
       [errors.length ? errors.length + ' console error(s)' : '', waferOk ? '' : 'wafer not detected as a disc under the bar', oneRow ? '' : 'bar is not one row (button tops ' + tops.join('/') + ', bar height ' + (p.bar && p.bar.height) + ', scrollWidth ' + p.barScroll.scrollWidth + '/' + p.barScroll.clientWidth + ')'].filter(Boolean).join('; '));
     try { const j = await page.evaluate(async () => (await (await fetch('keys.json')).json())); bodies = j.bodies || j; placed = bodies.filter(b => b.on_wafer && b.verified && Number.isFinite(b.key) && b.key >= 0).map(b => { const [x, y] = keyPlace(b.key); return { key: b.key, x, y, title: b.title, repo: b.repo }; }); } catch (e) { placed = []; }
 
@@ -329,10 +331,11 @@ async function runDevice(browser, deviceName) {
     if (ww) await tapRect(ww); p = await settle({ noSpark: true });
     const panelStillOpen = p.panels.foot.visible;
     if (panelStillOpen) { await tapAt(p.viewport.w - 4, p.viewport.h - 4); await sleep(800); p = await probe(); }   // a tap on the empty corner of the wafer closes the layer
-    const png12 = await shotPng(); const wafer12 = png12 ? await waferFromPng(page, png12.toString('base64'), p.bar.bottom) : { error: 'screenshot timed out', bbox: null };
+    const wwFile = shotName('whole-wafer'); const got12 = await shotTo(wwFile);
+    const wafer12 = got12.startsWith('FAILED') ? { error: got12, bbox: null } : await waferFromFile(wwFile, p.bar.bottom);
     const whole = wafer12.bbox && wafer12.bboxW > 0.4 * Math.min(p.viewport.w, p.viewport.h - p.bar.bottom) && Math.abs(wafer12.bboxW / wafer12.bboxH - 1) < 0.25 && wafer12.bbox[1] >= p.bar.bottom - 1 && wafer12.bbox[3] <= p.viewport.h;
     record('whole-wafer', 'tap COMMANDS then WHOLE WAFER: the card closes and the whole wafer is on screen under the bar', cmdOpen && !p.card.open && !p.magenta && !p.panels.foot.visible && whole,
-      { commandsPanel: fp, wholeWaferButton: ww, commandsOpenedUnderBar: !!cmdOpen, panelStayedOpenAfterTap: panelStillOpen, cardOpen: p.card.open, magenta: p.magenta, wafer: wafer12, screenshot: await shot('whole-wafer') },
+      { commandsPanel: fp, wholeWaferButton: ww, commandsOpenedUnderBar: !!cmdOpen, panelStayedOpenAfterTap: panelStillOpen, cardOpen: p.card.open, magenta: p.magenta, wafer: wafer12, screenshot: path.relative(OUT, wwFile) },
       [cmdOpen ? '' : 'COMMANDS did not open under the bar or WHOLE WAFER off screen', p.card.open ? 'card still open' : '', p.panels.foot.visible ? 'COMMANDS still open' : '', whole ? '' : 'wafer not whole on screen: ' + JSON.stringify(wafer12.bbox)].filter(Boolean).join('; '));
 
     // 13 SEE THROUGH
