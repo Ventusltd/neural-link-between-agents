@@ -36,7 +36,7 @@ let DEVICES = ['Pixel 7'];
 if (flag('--all')) DEVICES = ['Pixel 7', 'Galaxy S24', 'Pixel 7 landscape'];
 if (flag('--device')) DEVICES = [String(flag('--device'))];
 if (flag('--devices')) DEVICES = String(flag('--devices')).split(',').map(s => s.trim()).filter(Boolean);
-const SETTLE_MAX = 10000, FIXED_WAIT = 6500, MARGIN = 10;   // px margin for "clear space"
+const SETTLE_MAX = 12000, APPEAR_MAX = 90000, FIXED_WAIT = 6500, MARGIN = 10;   // px margin for "clear space"
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -128,12 +128,15 @@ async function runDevice(browser, deviceName) {
   const tapRect = async (r) => { if (!r) throw new Error('no rect to tap'); await tapAt((r.left + r.right) / 2, (r.top + r.bottom) / 2); };
   const touch = async (type, points) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: points.map((p, i) => ({ x: p[0], y: p[1], id: i + 1, radiusX: 4, radiusY: 4, force: 1 })) });
   const settle = async (opts = {}) => {              // wait until the selected spark stops moving (the fly ended and was drawn), or FIXED_WAIT when there is none
-    const t0 = Date.now(); let last = null, stable = 0;
-    while (Date.now() - t0 < SETTLE_MAX) { await sleep(400); const p = await probe();
-      if (!p.magenta) { if (opts.noSpark && Date.now() - t0 >= FIXED_WAIT) return p; if (!opts.noSpark && Date.now() - t0 >= SETTLE_MAX - 400) return p; continue; }
+    // a frame at zoom 14 can take many seconds under SwiftShader on a loaded machine, so the spark is given APPEAR_MAX to be
+    // drawn at all, and then SETTLE_MAX to stop moving; the measurement is the final position, never the waiting time
+    const t0 = Date.now(); let last = null, stable = 0, seen = 0;
+    while (true) { await sleep(400); const p = await probe(); const t = Date.now() - t0;
+      if (!p.magenta) { if (opts.noSpark && t >= FIXED_WAIT) return p; if (!opts.noSpark && t >= APPEAR_MAX) return p; continue; }
+      if (!seen) seen = Date.now();
       if (last && Math.hypot(p.magenta.x - last.x, p.magenta.y - last.y) < 0.6) stable++; else stable = 0; last = p.magenta;
-      if (stable >= 3 && Date.now() - t0 >= 1600) return p; }
-    return probe();
+      if (stable >= 3 && Date.now() - seen >= 1600) return p;
+      if (Date.now() - seen >= SETTLE_MAX) return p; }
   };
   const clearSpace = (p) => {                          // the spark must sit between the bar and the card, with margins, and the hit test must land on the wafer
     if (!p.magenta) return { ok: false, why: 'no selected spark drawn on #o' };
@@ -175,7 +178,7 @@ async function runDevice(browser, deviceName) {
       const sh = Math.max(tp.scrollHeight - tp.clientHeight, p.sub ? p.sub.scrollHeight - p.sub.clientHeight : 0);
       if (sh > 8) {   // a one-finger drag upward inside the panel must scroll the panel, not the page
         const x = (tp.rect.left + tp.rect.right) / 2, y0 = tp.rect.bottom - 30, y1 = Math.max(tp.rect.top + 20, y0 - 160);
-        await touch('touchStart', [[x, y0]]); for (let i = 1; i <= 10; i++) { await touch('touchMove', [[x, y0 + (y1 - y0) * i / 10]]); await sleep(25); } await touch('touchEnd', []); await sleep(500);
+        await touch('touchStart', [[x, y0]]); for (let i = 1; i <= 10; i++) { await touch('touchMove', [[x, y0 + (y1 - y0) * i / 10]]); await sleep(25); } await touch('touchEnd', []); await sleep(1500);
         const q = await probe(); scrolled = { panelScrollTop: q.panels.top.scrollTop, subScrollTop: q.sub ? q.sub.scrollTop : null, pageScrollY: q.viewport.scrollY, scrollable: sh };
         scrolled.ok = (scrolled.panelScrollTop > 4 || (scrolled.subScrollTop || 0) > 4) && q.viewport.scrollY === 0;
       } else scrolled = { scrollable: sh, ok: true, note: 'panel content fits, nothing to scroll' };
@@ -242,21 +245,20 @@ async function runDevice(browser, deviceName) {
     // throughout: zoom 14 after a fly, then zoom × (finger distance ratio) per pinch, cx/cy solved from the selected spark.
     const solve = (p, zoom) => { if (!p.magenta || p.card.index == null || !placed[p.card.index - 1]) return null; const b = placed[p.card.index - 1]; return { zoom, cx: b.x - (p.magenta.x - p.viewport.w / 2) / zoom, cy: b.y - (p.viewport.h / 2 - p.magenta.y) / zoom }; };
     const toScreen = (c, b, p) => [(b.x - c.cx) * c.zoom + p.viewport.w / 2, p.viewport.h / 2 - (b.y - c.cy) * c.zoom];
-    const pinchAt = async (mx, my, d0, d1) => { await touch('touchStart', [[mx - d0 / 2, my], [mx + d0 / 2, my]]); for (let i = 1; i <= 10; i++) { const d = d0 + (d1 - d0) * i / 10; await touch('touchMove', [[mx - d / 2, my], [mx + d / 2, my]]); await sleep(30); } await touch('touchEnd', []); await sleep(1200); };
+    const pinchAt = async (mx, my, d0, d1) => { await touch('touchStart', [[mx - d0 / 2, my], [mx + d0 / 2, my]]); for (let i = 1; i <= 10; i++) { const d = d0 + (d1 - d0) * i / 10; await touch('touchMove', [[mx - d / 2, my], [mx + d / 2, my]]); await sleep(30); } await touch('touchEnd', []); return settle(); };
     let zoomNow = 14, cam = solve(p, zoomNow);
     const P0 = p.magenta, vv0 = p.viewport; let pinch = null, drag = null, zoomOut = [];
     const clearMid = (p) => Math.max(p.bar.bottom + 40, Math.min((p.card.open ? p.card.rect.top : p.viewport.h) - 40, (p.bar.bottom + (p.card.open ? p.card.rect.top : p.viewport.h)) / 2));
     if (P0) {
       const mx = p.viewport.w / 2, my = clearMid(p), d0 = Math.min(220, p.viewport.w - 60), d1 = d0 / 2;
-      await pinchAt(mx, my, d0, d1);
-      const q = await probe(); const r0 = Math.hypot(P0.x - mx, P0.y - my), r1 = q.magenta ? Math.hypot(q.magenta.x - mx, q.magenta.y - my) : null;
+      const q = await pinchAt(mx, my, d0, d1);   // settle: the last drawn frame must be the finished pinch, not one from the middle of it const r0 = Math.hypot(P0.x - mx, P0.y - my), r1 = q.magenta ? Math.hypot(q.magenta.x - mx, q.magenta.y - my) : null;
       pinch = { centre: [mx, my], fingerDistance: [d0, d1], sparkDistanceFromCentre: [+r0.toFixed(1), r1 && +r1.toFixed(1)], ratio: r1 != null ? +(r1 / r0).toFixed(3) : null, expected: 0.5, pageScroll: [q.viewport.scrollX, q.viewport.scrollY], vvScale: q.viewport.vvScale, innerWidth: q.viewport.w };
       pinch.ok = pinch.ratio != null && Math.abs(pinch.ratio - 0.5) < 0.12 && q.viewport.scrollX === 0 && q.viewport.scrollY === 0 && Math.abs((q.viewport.vvScale || 1) - 1) < 0.01 && q.viewport.w === vv0.w;
       if (pinch.ok) zoomNow *= d1 / d0;
       const P1 = q.magenta; if (P1) {
         const ax = p.viewport.w / 2, ay = my, dx = -90, dy = 70;
-        await touch('touchStart', [[ax, ay]]); for (let i = 1; i <= 12; i++) { await touch('touchMove', [[ax + dx * i / 12, ay + dy * i / 12]]); await sleep(25); } await touch('touchEnd', []); await sleep(1200);
-        const s = await probe(); drag = { finger: [dx, dy], sparkMoved: s.magenta ? [+(s.magenta.x - P1.x).toFixed(1), +(s.magenta.y - P1.y).toFixed(1)] : null, pageScroll: [s.viewport.scrollX, s.viewport.scrollY], vvScale: s.viewport.vvScale, vvOffset: s.viewport.vvOffset, cardOpen: s.card.open };
+        await touch('touchStart', [[ax, ay]]); for (let i = 1; i <= 12; i++) { await touch('touchMove', [[ax + dx * i / 12, ay + dy * i / 12]]); await sleep(25); } await touch('touchEnd', []);
+        const s = await settle(); drag = { finger: [dx, dy], sparkMoved: s.magenta ? [+(s.magenta.x - P1.x).toFixed(1), +(s.magenta.y - P1.y).toFixed(1)] : null, pageScroll: [s.viewport.scrollX, s.viewport.scrollY], vvScale: s.viewport.vvScale, vvOffset: s.viewport.vvOffset, cardOpen: s.card.open };
         drag.ok = !!drag.sparkMoved && Math.abs(drag.sparkMoved[0] - dx) <= 12 && Math.abs(drag.sparkMoved[1] - dy) <= 12 && s.viewport.scrollX === 0 && s.viewport.scrollY === 0 && Math.abs((s.viewport.vvScale || 1) - 1) < 0.01;
         p = s;
       }
@@ -269,7 +271,7 @@ async function runDevice(browser, deviceName) {
         for (let k = 0; k < 4 && zoomNow > target * 1.05; k++) {
           const ratio = Math.min(90, zoomNow / target), D0 = Math.min(300, p.viewport.w - 40), D1 = D0 / ratio;
           const M = p.magenta; const mx2 = M.x, my2 = M.y;                 // fingers centred on the selected spark: it must not move
-          await pinchAt(mx2, my2, D0, D1); const q2 = await probe();
+          const q2 = await pinchAt(mx2, my2, D0, D1);
           const moved = q2.magenta ? +Math.hypot(q2.magenta.x - mx2, q2.magenta.y - my2).toFixed(1) : null;
           const ok = moved != null && moved <= 3 && q2.greensCount > p.greensCount && q2.viewport.scrollY === 0 && Math.abs((q2.viewport.vvScale || 1) - 1) < 0.01;
           zoomOut.push({ fingerDistance: [D0, +D1.toFixed(2)], ratio: +(1 / ratio).toFixed(5), zoomAfter: +(zoomNow / ratio).toExponential(3), selectedSparkMovedPx: moved, greensInView: [p.greensCount, q2.greensCount], ok });

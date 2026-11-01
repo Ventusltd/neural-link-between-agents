@@ -423,27 +423,30 @@ how a byte-identical module keeps its identity when it is renumbered (answer und
 4.4 **The registration call.** A module's only side effect at parse time is one call:
 ```js
 KY.register({ schema: 'kuiper.module.v1', id: 'layers', generation: '<module-stamp>',
-  requires: ['keyPlace','address','o2','card','flyTo','safeBox','panels','draw','redraw','lit'],
+  requires: ['keyPlace','address','o2','card','flyTo','safeBox','wafer','panels','draw','redraw','lit','line-card'],
   provides: ['layers'],
   install(KY){ /* builds its host <div id="ky-layers">, its panel, its listeners; returns its public API */ },
   inspect(){ /* returns its state, like menuBar.inspect() */ } });
 ```
-`KY.register` does not install. It records the registration against the module the loader is currently admitting (the
-loader sets `KY.admitting = {id, path, sha256}` before injecting the script and clears it after), and the loader then
-checks: the registered `id` equals the manifest id; `generation` equals the stamp in the file name; every name in
-`requires` is a key of the hook table or a `provides` of a module admitted earlier in `order` (GridAtlas's `after-cartridge
-anchor … is not composed before it`, atlas/index.html:73); then calls `install(KY)` inside `try`; on success writes
+`KY.register` does not install. It is a closure over the loader's own `let admitting = null`: the loader sets that
+variable to `{id, path, sha256}` before injecting the script and clears it after, and `register` records the
+registration against it. Nothing is ever assigned onto `KY` after `Object.freeze` (the Edition 4 page script has no
+`'use strict'`, `grep -c "'use strict'"` = 0 at kuiper-belt@018b46a editions/202611012027/index.html, so a write to a
+frozen object there would be a silent no-op, which is why the state is held in the closure and not on the table). The
+loader then checks: the registered `id` equals the manifest id; `generation` equals the manifest's and, when the file
+name begins with twelve digits, those digits (4.3); every name in `requires` is in the admissible set of 4.2 (the hook
+table's names or a `provides` of a module admitted earlier in `order`; GridAtlas's `after-cartridge anchor … is not
+composed before it`, atlas/index.html:73); then calls `install(KY)` inside `try`; on success writes
 `KY.modules[id] = Object.freeze({ id, generation, sha256, api, inspect })` (the lightning overlay's frozen API, :400) and
 the readout line `<id> admitted · <sha256 first 12>`. Nothing else is a module.
 
 4.5 **The manifest, `editions/<stamp>/modules.json`**, the edition's `current.json`, integrator-owned:
 ```json
 { "schema": "kuiper.modules.v1", "edition": "<stamp>", "hooks": "kuiper.hooks.v1",
-  "order": ["<module-stamp>-shell", "<module-stamp>-card", "<module-stamp>-layers", "<module-stamp>-see-through",
-            "<module-stamp>-file", "<module-stamp>-apps", "<module-stamp>-<algorithm>"],
-  "modules": [ { "id": "layers", "file": "<module-stamp>-layers.js", "generation": "<module-stamp>",
+  "order": ["kuiper-shell", "line-card", "layers", "see-through", "file", "apps", "<algorithm>"],
+  "modules": [ { "id": "layers", "generation": "<module-stamp>",
       "path": "modules/<module-stamp>-layers.js", "sha256": "<64 hex>", "bytes": 0, "byte_budget": 65536,
-      "requires": ["keyPlace", "address", "o2", "card", "flyTo", "safeBox", "panels", "draw", "redraw", "lit"],
+      "requires": ["keyPlace", "address", "o2", "card", "flyTo", "safeBox", "wafer", "panels", "draw", "redraw", "lit", "line-card"],
       "provides": ["layers"], "reads": ["data/layers.json", "keys.json", "data/editions.json"],
       "writes": ["window.KY.modules.layers", "#ky-layers", "#layers"],
       "creates_controls": "data-ky-layer only", "licence": "Apache-2.0", "team": "03", "step": 3,
@@ -455,18 +458,22 @@ the readout line `<id> admitted · <sha256 first 12>`. Nothing else is a module.
 and `writes` (atlas/current.json:650-659) made checkable; `byte_budget` as :643. The same sha256 appears in
 `proof/edition-sha256.txt` for the same path (E:B5.15); E3 cross-checks the two.
 
-4.6 **The loader**, in the page, after `window.KY` is built and after the wafer's own data admitted itself (the point
-where `loadEdition()` is called today, index.html:219), so a module never runs against an empty wafer:
+4.6 **The loader**, in the page, started as soon as `window.KY` is built, before the `cosmos` fetch returns: GridAtlas
+composes every cartridge first and each module waits for its own inventory (menu-bar.js:1647-1656 `waiting_for`;
+E:A3.1-A3.6), so the shell and the card are admitted and visible while the 535,037-byte `wafer.tsv` loads, and stay
+when it refuses; a module that needs the wafer lists `wafer` in `requires` and awaits that promise inside its own
+`install` (3.5). The loader:
 1. `fetch('modules.json', {cache:'no-store'})`; refuse the whole edition's modules on a wrong `schema`, `hooks` version
    or shape (one `#refuse` strip, `MODULES NOT ADMITTED: <why> · the wafer is unchanged`), the composer's one screen
    (atlas/index.html:35) scaled down to a page that still draws.
 2. For each id in `order`: find the record (else `refused: in order but not in modules`), check `path` starts with
-   `modules/` and has no `..`, `generation` equals the file name's stamp, `sha256` is 64 hex; `fetch(path,
+   `modules/` and has no `..`, `generation` is twelve digits and, when the file name begins with twelve digits and a
+   hyphen, equals them (4.3), `sha256` is 64 hex; `fetch(path,
    {cache:'no-store'})` (`refused: HTTP <status>`); `crypto.subtle.digest` (`refused: sha256 mismatch`); `byteLength`
    against `bytes` and `byte_budget`; then inject `<script data-ky-module="<id>" src="blob:…">` as its own element and
    await its load, so a parse error or a top-level throw in one module cannot stop the next (GridAtlas isolation,
    current.json:660); then the registration checks of 4.4 (`refused: no registration`, `refused: id <x> ≠ <id>`,
-   `refused: stamp <a> in header, <b> in file name`, `refused: missing hook <name>`, `refused: install threw <message>`).
+   `refused: generation <a>, file name <b>`, `refused: missing hook <name>`, `refused: install threw <message>`).
 3. Publish `window.__KUIPER_EDITION__ = { schema, edition, hooks, order, admitted: [{id, sha256}], refused: [{id,
    why}] }` (as `window.__GRIDATLAS_ATLAS__`, atlas/index.html:104-114) and `KY.inspect()` returning the same; write
    one readout line per module; if `refused` is non-empty, raise `#refuse` with `<n> module(s) refused: <ids and whys>`,
@@ -495,9 +502,10 @@ failure of its own data (it reports it through the layer state or `KY.modules.<i
 `failures: []` in pipeline-news-layers.js:112).
 
 4.9 **Checks before the PR**, folded into Team 5's `tools/edition_check.py` (team-5/STEPS.md:79-81 E1-E5): E6 every file
-in `modules/` has a stamp prefix equal to the `generation` in its first-line header, is listed in `modules.json`, and
-its `requires` ⊆ hook table keys ∪ earlier `provides` (the hook table keys are read from the page with the same regex
-K3 uses, kuiper-belt@018b46a tools/ci_check.py:71); E7 every `writes`/`reads` entry is matched by a literal in the file
+in `modules/` is listed in `modules.json`, its record's `generation` is twelve digits and equals the file name's
+leading digits when the name has them, its `licence` is non-empty, and its `requires` ⊆ the admissible set of 4.2 (the
+hook table's names are read from the page's `KY.names` literal with the same regex K3 uses to find the script,
+kuiper-belt@018b46a tools/ci_check.py:71, plus the `provides` of earlier records); E7 every `writes`/`reads` entry is matched by a literal in the file
 and no `fetch(` literal in the file is outside `reads`; E8 `node --check` on every module and `grep -c "KY.register("`
 equals 1. FINDING for Team 5: `tools/ci_check.py` K3 parses only root-level `*.html` (`os.listdir(ROOT)` at
 tools/ci_check.py:68) and only the first `<script type="module">` (:71); editions' pages and `modules/*.js` are not
@@ -526,13 +534,19 @@ file, and which is removed from `order` before PR A (its sha256 stays in `proof/
 3. One module's record with `requires: ['noSuchHook']`: `refused … missing hook noSuchHook`; the module's host
    `#ky-<id>` absent; later modules that do not require it admitted; one that requires its `provides` refused with
    `missing hook <name>`.
-4. A module file renamed so the stamp in the name differs from `generation`: `refused … stamp`.
+4. A module file renamed so the twelve digits in its name differ from `generation` (and `path` updated to match):
+   `refused … generation <a>, file name <b>`; renamed to a name with no leading digits: admitted (identity is
+   `generation` + `sha256`, 4.3).
 5. A module whose `install` throws (the hello module with a thrown `Error('test')`): `refused … install threw test`,
    all others admitted.
 6. The module file deleted from the served folder: `refused … HTTP 404`.
-7. `modules.json` emptied to `"order": [], "modules": []`: the wafer draws, the bar is present with Team 1's titles,
-   `admitted: []`, no alert; `KY` is frozen (`Object.isFrozen(window.KY) === true`) and `Object.keys(KY.hooks)` equals
-   the list in 4.2.
+7. `modules.json` emptied to `"order": [], "modules": []`: the wafer draws, `admitted: []`, no alert; `KY` is frozen
+   (`Object.isFrozen(window.KY) === true`), `Object.keys(KY.hooks)` equals the 28-name list in 4.2, and
+   `window.__KUIPER_MODULES__ === KY.modules`. Then, with the full manifest and `../../cosmos/wafer.tsv` served as
+   HTTP 404: the bar (Team 1's `kuiper-shell`) and the card module are `admitted`, the refusal strip shows the engine's
+   words (`did not load. The wafer will not invent its keys.`, index.html:240), `layers` is admitted but every row reads
+   `REFUSED · the wafer refused: …`, and the time from `load` to the shell's `admitted` line is recorded with the
+   `wafer.tsv` fetch still pending (the shell did not wait for 535,037 bytes).
 8. `python3 tools/edition_check.py` E1-E8 PASS on the committed folder, and FAIL on each of the served mutations above
    when applied to a copy (hash, stamp, requires, stray file in `modules/`).
 9. Measured and recorded, no threshold: time from `load` to the last `admitted` line on Pixel 7 under SwiftShader, and
