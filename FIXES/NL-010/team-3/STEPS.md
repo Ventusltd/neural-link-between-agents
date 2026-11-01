@@ -7,9 +7,9 @@ are sections of that file). Channel: issue #10. Heads: `kb@018b46a` = `/home/use
 018b46aed50f28f7b1882a0dcaba6593ce522beb (main, Edition 4); `ga@5ec7f62` = `/home/user/estate/gridatlas` at
 5ec7f62f213e2d20a02e86427daa182c0f38e4a4; `gg@c66759f` = globalgrid2050 at c66759f0d7ac3489df9158da6eaa1330a37c069f;
 `ST` = `see-through/202610050609/` inside kuiper-belt (the newest dated folder, the one the pointer opens:
-kb@018b46a see-through/index.html:7, :11, :12). `nl@…` keys are files of this repository, read on 1 Nov 2026 between
-20:50 and 21:15 UTC (NL-009 round 1: `01-bar.md`, `05-lines.md`, `06-seethrough.md`, `09-robust.md`; the other teams'
-STEPS.md). No claim without a key; a measured absence is written as such.
+kb@018b46a see-through/index.html:7, :11, :12). `nl@d9a57af` = this repository at d9a57af ("NL-009/NL-010: agent files as they land", working tree clean at
+21:45 UTC: NL-009 round 1 `01-bar.md`, `05-lines.md`, `06-seethrough.md`, `09-robust.md`, the other teams' STEPS.md and
+team 3's EVIDENCE.md and REVIEW.md are all committed there). No claim without a key; a measured absence is written as such.
 
 Vocabulary shared with teams 1, 2, 4 and 5: **the edition** is the next dated folder `editions/<stamp>/`; **the page**
 is its `index.html`; **a module** is one file under `editions/<stamp>/modules/`, admitted by `modules.json` with a
@@ -29,7 +29,7 @@ Served `/home/user/estate/kuiper-belt` on `127.0.0.1:8203`; Playwright Chromium 
 `basemaps.cartocdn.com`, so MapLibre never finished loading (`mapState:'loading'`, `tileErr:1`, caption `MAP LOADING`
 at the bottom of the fall); every number below about the stars, the controls and the flight is independent of a tile.
 SwiftShader renders See Through's canvases slowly; captures were taken with the page told it was hidden (descent.js
-pauses its frame loop on `visibilitychange`, kb@018b46a ST descent.js:1020-1023) and told it was visible again after.
+pauses its frame loop on `visibilitychange`, kb@018b46a ST descent.js:1020-1024) and told it was visible again after.
 
 See Through, first screen on Pixel 7 (M1): title "See Through"; caption `SEE THROUGH`; 12,900 stars (`NP`, the phone
 rule of ST descent.js:954-955); porthole radius `Rpx` 193.64 px, centre `cy = 148 + (839 − 312)/2 = 411.5` (ST
@@ -76,13 +76,13 @@ been torn out of view" (menu-bar.js:481-503); the first title of the left group 
 failure, not a silent gap (:757-762; the admission rule :1-21).
 5.L4 Identity is resolved by one exact parameter and never manufactured from a name: `repd_ref`,
 `EXACT_REPD_REF_ONLY` (ga@5ec7f62 atlas/releases/202608300453-atlas-v9/deep-link-receiver-manifest.json:4-5; the
-engine's regex `^[A-Za-z0-9-]{1,40}$`, ventus-corev8engine.js:799-801); the link is written on selection with
+engine's regex `^[A-Za-z0-9-]{1,40}$`, ga@5ec7f62 atlas/releases/202608300453-atlas-v9/ventus-corev8engine.js:799-801); the link is written on selection with
 `history.replaceState` (202608291818-place-postcode-search.js:206-209); absent → `status:'ABSENT'` (:294-298). See
 Through has none of this today: zero readers of `location.hash|search|URLSearchParams` in its seven scripts (E2).
 5.L5 The Pipeline News MAP arrival that See Through already copies, "on the point, then the card, then the lines" (ST
 descent.js:855), and NL-009's measured decisions for the See Through button: the stable pointer `../../see-through/`,
 not the dated folder; the same tab, because the back gesture is the way home and two WebGL pages on one phone evict
-each other; `goBack()` measured to return to the edition with 0 errors (nl@FIXES/NL-009/round1/06-seethrough.md:11-23,
+each other; `goBack()` measured to return to the edition with 0 errors (nl@d9a57af FIXES/NL-009/round1/06-seethrough.md:11-23,
 :51-60; E12).
 
 **Kuiper change.**
@@ -109,9 +109,13 @@ does not fit by 16.2 px; at 393 px the slack is 16.8 px, at 412 px 35.8 px, at 4
   wide; `html` gets class `kuiper-star-strip`; the card's `bottom` becomes `calc(60px + env(safe-area-inset-bottom))`
   and `safeBox().y1` is reduced by 52 px so Edition 4's clear-space camera law (`edFly`, kb@018b46a
   editions/202611012027/index.html:676-680, `safeBox` wrap :726) keeps the spark above both. When the bar widens again
-  the node moves back. There is never a second row (NL-009 01 F1: 75 px two-row bar, nl@FIXES/NL-009/round1/01-bar.md:
+  the node moves back. There is never a second row (NL-009 01 F1: 75 px two-row bar, nl@d9a57af FIXES/NL-009/round1/01-bar.md:
   43-45; M2) and never two copies of the entry.
-  (c) The README of the edition states which form each tested width got, with the numbers (A1 below).
+  (c) The README of the edition states which form each tested width got, with the numbers (A1 below), and names
+  the alternative that was measured and not taken: NL-009 01 fitted five titles in one row at 360 px by shrinking the
+  face to 10 px titles with `padding:0 5px` and a `KE4` mark (347.9 px of content, slack 12.1 px, SEE THROUGH 80.4 px;
+  nl@d9a57af FIXES/NL-009/round1/01-bar.md:43-50, :64). That bar is not GridAtlas's face; the owner's words are
+  "exactly like gridatlas", so the 9 px face with `0 6px` is kept and the entry changes place, not the bar its size.
 5.2 **What the entry says, on the phone and in the panel.** The entry's `title` and `aria-label` are "See Through:
 from the stars to one substation in 3D" (the homepage's own sentence for it, gg@c66759f
 homepage_versions/homepage_v134.html:35, E6). The ABOUT panel's estate group (team 1 C5) lists See Through first with
@@ -120,7 +124,7 @@ that sentence, its licence (CERN-OHL-S v2, ST LICENSE.md:3-6) and the pointer li
 (06-seethrough.md:126-152) and the repository README's Editions entry. The Kuiper's own documents name See Through from
 this edition on (closes the E6 gap).
 5.3 **The hero on a phone (what the tap opens).** See Through's first screen is kept as measured (M1; NL-009 06 F4
-"fits the phone", nl@FIXES/NL-009/round1/06-seethrough.md:39-50): caption `SEE THROUGH` top-left, ♪ and X top-right,
+"fits the phone", nl@d9a57af FIXES/NL-009/round1/06-seethrough.md:39-50): caption `SEE THROUGH` top-left, ♪ and X top-right,
 the name box and GO at y 56, the porthole of 12,900 stars (desktop 20,000, ST descent.js:19, :954-955) centred at
 y 411.5 with radius 193.6 px, KUIPER MAP SAT 3D at y 713, GRID SUBS SPIDER and ▲ ▼ at y 761, the ODbL credit at the
 foot. This step changes nothing in that layout; it adds the hash reader (5.5), the way back (5.7) and the re-lifted
@@ -140,29 +144,43 @@ learn-the-kuiper/202610050609/lesson.js:320-336, play.js:736-752; GridAtlas's de
 6.3). Fields `name=value`, joined by `&`, values `encodeURIComponent`-encoded, decoded in `try/catch` (play.js:741).
 Read once at the end of the `ensureGridData` callback, after the names are in `D0.low` (ST descent.js:1051-1057; a link
 arriving before that has nothing to search, E11 item 4), and again on `hashchange`. Unknown fields are ignored and named
-once in the caption line (`LINK FIELD <name> NOT UNDERSTOOD`), never an error.
+once in the note (`LINK FIELD <name> NOT UNDERSTOOD`; `S.note`, :393, never shortened on a phone), never an error.
+
+Identity against 5.L4, stated: `key` (with `space`) is the identity field: every substation j has one star key
+`subKey[j]` (5,800 of 5,800, :965). `sub` is a search, not an identity: `KGGridData.substations.names` names 4,460 of
+the 5,800 (1,340 have no name and `nameOf` says so, :100), 4,338 distinct lower-case names, 91 names used more than
+once ('Drax' is 1182 and 1368), so `sub` reaches only named substations and lands on the first in file order; A3's
+`T === 1182` holds because 1182 precedes 1368 (measured by FABLE-T3B, nl@d9a57af FIXES/NL-010/team-3/REVIEW.md, OPEN
+point 2). The See Through README (5.8d) says the same in one sentence.
 
 | field | value | what See Through does | refusal words (existing words where they exist) |
 |---|---|---|---|
-| `sub` | a substation name, ≤ 80 chars (the box's own `maxLength`, :907) | the name goes into the box; `doSearch()` (:389-403) runs; an exact lower-case match, or exactly one substring match, flies (`flyTo`, :417); otherwise no flight | 0 matches: `NO SUBSTATION NAME HERE CONTAINS THAT` (:400); many: `N MATCHES, n LIT. KEEP TYPING` (:402); the person finishes the search by hand |
-| `key` | an integer `^\d{1,15}$` | at the stars stage (`D = 0`) one amber ring (`C.amber`, attention, kb@018b46a PALETTE.md:9-14) is drawn at `KuiperLaw.place(key)` projected exactly as every star is, `cx + x·ks, cy − y·ks` (:592), nothing else moves; if `key` equals `subKey[j]` for some `j < 5800` (:101, :965: the star that lands on substation j) the box is pre-filled with `nameOf(j)` and the note reads `THE STAR THAT LANDS ON <NAME>. PRESS GO`; otherwise the note reads `KEY <k> · A LINE OF CODE, NOT A SUBSTATION` (the module's own law, :11) | `key ≥ SPACE`: `KEY <k> IS BEYOND THIS SKY (SPACE <SPACE>)`; not an integer: ignored and named |
-| `repo` | a repository name as `cosmos/repos.tsv` spells it | fetches `../../cosmos/wafer.tsv` and `repos.tsv` once (535,037 + 2,467 bytes, `wc -c`), computes the repository's key ranges exactly as the engine does (`k += gap_before; k0 = k; k += lines`, kb@018b46a editions/202611012027/index.html:203-208), and lights every star whose key falls in a range of that repository (the 20,000 DRAW THE GRID keys, :962-966), in the instrument's cyan; the caption reads `<NAME> · <n> OF <NP> STARS`; the name match is the engine's: exact lower-case, then `includes` (:612-613) | fetch fails: `REPOSITORY RANGES NEED ../../cosmos/wafer.tsv`; no such name: `NO REPOSITORY CALLED <name>`; 0 stars in range: `NO STAR OF THIS SKY FALLS IN <NAME>` |
+| `sub` | a substation name, ≤ 80 chars (the box's own `maxLength`, :907) | exactly the typed name plus GO: the name goes into the box, `goSearch()` runs (:409-415): `doSearch()` (:389-403), then `bestMatch()` (:404-408), the exact lower-case match if any, else the first substring match in file order (`mIdx[0]`), then `flyTo` (:417); so `#sub=Cowley` flies to 201 'Cowley Substation' as the diary's "Try: cowley" does (kb@018b46a diary/20261005.html), `#sub=Hinkley` to 1892 'Hinkley Point A Substation' | 0 matches: the note (`S.note`, never shortened on a phone) `NO SUBSTATION NAME HERE CONTAINS THAT. TRY ANOTHER NAME` (:412), no flight |
+| `key` | an integer `^\d{1,15}$` | at the stars stage (`D = 0`) one amber ring (`C.amber`, attention, kb@018b46a PALETTE.md:9-14) is drawn at `KuiperLaw.place(key)` projected exactly as every star is, `cx + x·ks, cy − y·ks` (:592), nothing else moves; if `key` equals `subKey[j]` for some `j < 5800` (:101, :965: the star that lands on substation j) the box is pre-filled with `nameOf(j)` and the note reads `THE STAR THAT LANDS ON <NAME>. PRESS GO`; otherwise the note reads `KEY <k> · A LINE OF CODE, NOT A SUBSTATION` (the module's own law, :11). All these are notes (`S.note`), not captions, so the phone shows them unshortened (`caption()` shortens, :818-822; the note does not) | `key ≥ SPACE`: note `KEY <k> IS BEYOND THIS SKY (SPACE <SPACE>)`; not an integer: ignored and named in the note `LINK FIELD key NOT UNDERSTOOD` |
+| `space` | an integer, the `SPACE` the `key` was cut for | carried beside `key` (the writer always writes it, 5.6). When it differs from the `SPACE` in use, the star key is remapped by the formula it came from: `j = floor(key · 20000 / space)` is checked by `floor((j + 0.5) · space / 20000) === key`; if it holds, `key` is replaced by `floor((j + 0.5) · SPACE_in_use / 20000)` and the note reads `STAR KEY REMAPPED · SKY <space> → <SPACE>`; if not (the key was never a star key) the ring is drawn at the key as given | not an integer: ignored and named |
+| `repo` | a repository name as `cosmos/repos.tsv` spells it | fetches `../../cosmos/wafer.tsv` and `repos.tsv` once (535,037 + 2,467 bytes, `wc -c`), computes the repository's key ranges exactly as the engine does (`k += gap_before; k0 = k; k += lines`, kb@018b46a editions/202611012027/index.html:203-208), and lights every star whose key falls in a range of that repository (the 20,000 DRAW THE GRID keys, :962-966), in the instrument's cyan; the note reads `<NAME> · <n> OF <NP> STARS` (a note, not a caption, so it is not shortened on a phone); the name match is the engine's: exact lower-case, then `includes` (:612-613) | notes: fetch fails: `REPOSITORY RANGES NEED ../../cosmos/wafer.tsv`; no such name: `NO REPOSITORY CALLED <NAME>`; 0 stars in range: `NO STAR OF THIS SKY FALLS IN <NAME>` |
 | `view` | `kuiper` \| `map` \| `sat` \| `3d` | `setView(v, true)` after the flight (:346-358); `3d` before a target is chosen is the existing `CHOOSE A SUBSTATION FIRST` (:364) | other values ignored and named |
 
-Order on arrival: `repo`, then `key`, then `sub` (a flight wins the camera), then `view`. Written on the way out, as
-GridAtlas writes `repd_ref` on selection: `arrive()` does `history.replaceState(null, '', '#sub=' +
-encodeURIComponent(nameOf(S.T)))`; `back()` to the stars (standalone branch, :442-446) clears the hash. Examples:
+Order on arrival: `repo`, then `space`+`key`, then `sub` (a flight wins the camera), then `view`. Written on the way
+out, as GridAtlas writes `repd_ref` on selection: `arrive()` does `history.replaceState(null, '', '#key=' +
+subKey[S.T] + '&space=' + SPACE + '&sub=' + encodeURIComponent(nameOf(S.T)))` (identity first, the name for people);
+`back()` to the stars (standalone branch, :442-446) clears the hash. Examples:
 `https://ventusltd.github.io/kuiper-belt/see-through/#sub=Drax`, `…/see-through/#key=36064705400`,
-`…/see-through/#repo=gridatlas`, `…/see-through/#sub=Cowley&view=3d`. `window.__descent.link()` returns the hash text the
+`…/see-through/#repo=gridatlas`, `…/see-through/#sub=Cowley&view=3d`, `…/see-through/#key=<subKey[1182]>&space=<SPACE>&sub=Drax` (what the page writes). `window.__descent.link()` returns the hash text the
 page would write, for the tests (added beside `find`/`fly`, :1034-1050).
 5.6 **The stars gather by the same placement law, and the sky reaches the rim.** `kuiper-law.js` is lifted verbatim
-from the live page and says "Do not edit it; edit the live page and re-lift" (ST kuiper-law.js:1-3, :37). The law is
+from the live page and says "Do not edit it; edit the live page and re-lift" (ST kuiper-law.js:1-3, :38). The law is
 unchanged at HEAD (`G32`, `keyPlace` at kb@018b46a index.html:92, :250; E3), but the sky is not: `SPACE` 59,637,070,538
-(:36) against 63,340,120,796 today (M3), so 278 of 344 verified lines are beyond the rim (M3). The new See Through folder
-re-lifts `kuiper-law.js` at the edition's head: `source:` names the new commit (:113), `SPACE` becomes the live
-`address_space`, and a comment beside it names `cosmos/wafer-meta.json:4` and the stamp. The 20,000 DRAW THE GRID keys
-(`floor((ki + 0.5) · SPACE / NRULE)`, :962-963) and therefore the 5,800 star keys change with `SPACE`; that is the
-design (a star for every 1/20,000th of the whole wafer), stated in the README. The Kuiper draws the same 5,800 star
+(:36) against 63,340,120,796 today (M3), so 278 of 344 verified lines are beyond the rim (M3). The rule for the
+day the wafer is re-measured (`address_space` grows with the estate, ci_check K2, kb@018b46a tools/ci_check.py:9,
+:56-60): See Through reads `SPACE` at run time. The new folder's `open()` first fetches `../../cosmos/wafer-meta.json`
+(13 lines) and uses its `address_space`; on any failure (offline, `file://`, a malformed file) it uses the folder's
+frozen constant, which is re-lifted at the edition's head (`source:` names the new commit, :113; `SPACE` = the
+`address_space` of that day; the file's own instruction "edit the live page and re-lift", :38, is obeyed once per
+folder). `__descent.state()` gains `space` and `spaceSource: 'wafer-meta' | 'frozen'`, and the credit line names the
+sky in use. The 20,000 DRAW THE GRID keys (`floor((ki + 0.5) · SPACE / NRULE)`, :962-963) and therefore the 5,800 star
+keys change with `SPACE`; that is the design (a star for every 1/20,000th of the whole wafer), stated in the README,
+and it is why every written `key` carries its `space` (5.5) and is remapped by formula under a newer sky. The Kuiper draws the same 5,800 star
 keys as its `see-through` layer: `data/see-through.json`, `code-feature-collection.v1` (team 2, 3.2), 5,800 Point
 features `{"type":"Point","key":subKey[j]}` with `properties: {sub: j, name: nameOf(j), see_through: "<stamp>",
 space: <SPACE>}`, built by `tools/see_through_keys.py` from the same formula and the folder's `SPACE`, hashed into
@@ -172,11 +190,16 @@ Through); names © OpenStreetMap contributors, ODbL"` (team-2/STEPS.md 3.1, 3.7 
 `KY.layers.register(record)` (3.3) and `KY.draw.add(drawStars)`; `drawStars` places each key with `KY.hooks.keyPlace`
 and nothing else (3.8, the only placement). A tap within 9 px of a star (Edition 4's spark rule, :688-693) opens the
 card with the line of code at that key as its header (team 1 step 2, L11), the key, the substation name under it, and
-the row "see this star fall to <NAME>" → `../../see-through/#key=<k>`. The registry row's suffix shows `OK · 5,800 of
-5,800 · See Through <stamp> · SPACE <n>`; when the folder's `SPACE` differs from the wafer's it shows `FAIL · SPACE <a>
-≠ wafer <b>` and draws nothing (team 2's refuse discipline, 3.4-3.5): the sky and the wafer must agree.
+the row "see this star fall to <NAME>" → `../../see-through/#key=<k>&space=<space>`. The layer file is built at the edition's cut from the wafer's
+`address_space`, which is what See Through will read online that day. The registry row's suffix shows `OK · 5,800 of
+5,800 · See Through <stamp> · SPACE <n>` while the file's `space` equals the wafer's; after a cosmos re-measure it shows
+`STALE · layer SPACE <a> · wafer <b> · rebuild data/see-through.json` as a measured state (team 2's suffix discipline,
+3.4), still draws the pinned keys (a key's place never changes, and a tap's `#key=<k>&space=<a>` is remapped by See
+Through under the new sky, 5.5), and the release law (team 5 step 9) requires `tools/see_through_keys.py` to be re-run
+for the next edition; `edition_check` gets one line: the layer's `space` equals `wafer-meta.json` `address_space` at
+the cut (a request to team 5B, Open items 5).
 5.7 **Deep links out of the Kuiper into See Through.** (a) From a spark: the card (team 1 step 2) gets a row "see this
-line among the stars" → `../../see-through/#key=<key>` for any placed body (`keys.json bodies[].key`); no mapping to a
+line among the stars" → `../../see-through/#key=<key>&space=<SPACE>` for any placed body (`keys.json bodies[].key`); no mapping to a
 substation is invented (:11). (b) From a repository: the REPOS layer row and the find box result (`/` with a name,
 :612-613) get "its stars in See Through" → `../../see-through/#repo=<name>`. (c) From a substation name: FILE → open an
 app → See Through (step 6, 6.2) carries the find box's text as `#sub=<text>` when the text matched no key, period or
@@ -188,9 +211,11 @@ nothing to undo (`S.T < 0 && S.D === 0`, the standalone branch of `back()`, :442
 `document.referrer` is same-origin and `history.length > 1`, else `location.href = '../../editions/'` (the pointer,
 kb@018b46a editions/index.html:7, :11, :12); its `aria-label` becomes "back to the Kuiper" at that stage; (b) a
 44 px row `STAR KEY <k> · OPEN IT ON THE KUIPER` appears in the card area once a substation is chosen (`showCard`,
-:848-853), an `<a>` to `../../editions/#key=<keyOfSub(S.T)>`, the first `<a>` the page has; (c) the credit line gains
+:848-853), an `<a>` to `../../editions/#key=<keyOfSub(S.T)>` (the edition's `key` field needs no `space`: it is the wafer),
+the first `<a>` the page has; (c) the credit line gains
 "Stars placed by the Kuiper law (kuiper-belt@<sha>)" with the same link; (d) the See Through README's first paragraph
-names the Kuiper edition as its home and gives the grammar of 5.5 with the four examples. The two apps then link both
+names the Kuiper edition as its home and gives the grammar of 5.5 with the five examples and the sentence "`key` with
+`space` is the identity; `sub` is a search that lands on the first named match". The two apps then link both
 ways by key, and `#key=` round-trips (A6).
 
 **Module.** `editions/<stamp>/modules/<module-stamp>-see-through.js` (the bar entry and its two forms, the layer
@@ -215,19 +240,21 @@ A2 `touchscreen.tap` on the entry's centre (both forms) navigates in the same ta
 "See Through", through the pointer; `page.goBack()` returns to the edition with the bar intact, no panel open, 0
 errors (06's test, 06-seethrough.md:154-173, re-run).
 A3 In See Through on Pixel 7: 13 controls ≥ 44 px tall as M1; `#sub=Drax` → within 14 s `__descent.state().T === 1182`,
-`name === 'Drax'`, `D === 8`; `#sub=xyzzy` → `T === −1`, note `NO SUBSTATION NAME HERE CONTAINS THAT`; `#sub=Hinkley`
-(many) → `T === −1`, note matches `/MATCHES/`, box holds "Hinkley"; `#key=36064705400` → `T === −1`, `D === 0`, note
+`name === 'Drax'`, `D === 8`; `#sub=xyzzy` → `T === −1`, note `NO SUBSTATION NAME HERE CONTAINS THAT. TRY ANOTHER NAME`;
+`#sub=Hinkley` → `T === 1892` (the first substring match, 'Hinkley Point A Substation'); `#sub=Cowley` → `T === 201`; `#key=36064705400` → `T === −1`, `D === 0`, note
 `KEY 36,064,705,400 · A LINE OF CODE, NOT A SUBSTATION`, one amber ring within 1 px of the projection of
 `KuiperLaw.place(36064705400)`; `#key=<subKey[1182]>` → box text "Drax", note starts `THE STAR THAT LANDS ON DRAX`;
-`#key=<SPACE>` → note `KEY … IS BEYOND THIS SKY`; `#repo=gridatlas` → caption matches `/^GRIDATLAS · \d[\d,]* OF 12,900
-STARS$/` and the count equals the Python count of DRAW THE GRID keys inside gridatlas's ranges from `wafer.tsv`;
-`#repo=nosuchrepo` → `NO REPOSITORY CALLED NOSUCHREPO`; after `fly(1182)` `location.hash === '#sub=Drax'`;
-`__descent.link()` equals it.
-A4 `KuiperLaw.constants.SPACE` in the shipped See Through folder equals `cosmos/wafer-meta.json` `address_space`, and
-`data/see-through.json` has 5,800 features whose keys equal `floor((j + 0.5) · SPACE / 20000)` for `j < 5800`
-(recomputed in the test), all `< SPACE`; `KY.layers.inspect().states['see-through'] === 'OK'`; with `SPACE` patched
-in a copy to the old constant the row reads `FAIL · SPACE …` and `drawStars` draws nothing (count of cyan pixels in
-`#o` unchanged).
+`#key=<SPACE>` → note `KEY … IS BEYOND THIS SKY`; `#key=<old star key of 1182>&space=59637070538` → note starts
+`STAR KEY REMAPPED · SKY 59,637,070,538 →` and the box holds "Drax"; `#repo=gridatlas` → note matches `/^GRIDATLAS ·
+\d[\d,]* OF 12,900 STARS$/` and the count equals the Python count of DRAW THE GRID keys inside gridatlas's ranges from `wafer.tsv`;
+`#repo=nosuchrepo` → `NO REPOSITORY CALLED NOSUCHREPO`; after `fly(1182)` `location.hash` equals `'#key=' + subKey[1182] + '&space=' + SPACE + '&sub=Drax'`;
+`__descent.link()` equals it; `state().spaceSource === 'wafer-meta'` when served, `'frozen'` with the fetch blocked.
+A4 `KuiperLaw.constants.SPACE` in the shipped See Through folder equals `cosmos/wafer-meta.json` `address_space` on
+the day of the cut, and `__descent.state().space` equals it when served; `data/see-through.json` has 5,800 features
+whose keys equal `floor((j + 0.5) · space / 20000)` for `j < 5800` (recomputed in the test), all `< space`, with
+`space` equal to the wafer's; `KY.layers.inspect().states['see-through'] === 'OK'`; with `wafer-meta.json` served as a
+copy whose `address_space` is one larger, the row reads `STALE · layer SPACE … · wafer …` and still draws 5,800 stars
+(count of cyan marks in `#o` unchanged), and a tap's link carries `&space=<layer space>`.
 A5 The pointer's three stamps equal the shipped folder; every link of 5.7 resolves with `new URL(href, base)` to the
 same origin and `fetch(HEAD)` 200; the card of body `0048802883266c68d5bdb6f5add0074e8b5b729d:5` (keys.json bodies[0])
 carries an `<a>` whose `href` ends `/see-through/#key=36064705400`.
@@ -332,7 +359,7 @@ debounced (kb@018b46a learn-the-kuiper/202610050609/lesson.js:336).
     hashes, team 2 4.5), `LICENCES.md` (team 5 9.8), `proof/android-journey.json` (team 5 9.4), `README.md`; each row's
     second line is the file's byte count from `edition-sha256.txt`'s companion list, written by the build, so a row
     whose file is missing at test time is a FAIL of A3, not a silent 404 (NL-009 09: keys.json 404 shown only in a
-    hidden readout, nl@FIXES/NL-009/round1/09-robust.md:25-29).
+    hidden readout, nl@d9a57af FIXES/NL-009/round1/09-robust.md:25-29).
 
   EXPORT (GridAtlas's "Export this view", 6.L2)
   - `⤓ Save an image of this view` (`id=kuiper-export-image`, `data-ky-export="image"`): the WebGL wafer is drawn with
@@ -373,8 +400,9 @@ by every row above, by the card, by the layers and by the apps.
 | `period` | `^20\d\d(-\d\d){0,2}$` | `lightTime(y, m, d)` (:607-608) | the find box lights a period; the PERIODS layer row |
 | `layers` | ids of `layers.json`, comma-joined | `KY.layers.set(id, true)` for each, others off (team 2 3.6) | any layer change (team 2 writes through `KY.link.set('layers', …)`) |
 | `edition` | a stamp of `data/editions.json` | handled by `Open an edition`: navigation to `../<stamp>/` with the rest of the hash; never kept in this page's hash | never written by this page |
-| `app` | an id of `data/apps.json` | navigation to the app's `link` with the carried fields mapped (See Through gets `key`, `repo`, `sub`), same tab; unknown → `no app called <id>` | never written by this page |
+| `app` | an id of `data/apps.json` | navigation to the app's `link` with the carried fields mapped (See Through gets `key`, `space`, `repo`, `sub`), same tab; unknown → `no app called <id>` | never written by this page |
 | `sub` | a substation name | carried only: with `app=see-through` it becomes See Through's `#sub=` | written by `Open an app → See Through` from the find box |
+| `space` | an integer | carried only: with `app=see-through` it travels beside `key` (5.5); the edition's own `key` is always on the wafer and needs none | never written by this page |
 
   Resolution order on arrival, after the wafer admitted its data (`N > 0`, the `loadEdition()` call site, :219) and,
   for `line`, after `keys.json` loaded: `edition` (navigate, stop), `app` (navigate, stop), `layers`, `period`, `repo`,
@@ -395,7 +423,7 @@ to this page is its hash: key, line, repo, period, layers; copy it from File, pa
 6.5 **What EDIT and VIEW become** (team 1 C5 named them; this step fixes their rows that touch links):
   EDIT holds the things a person types: the find box (`/`: a key, a repository, a period — the grammar of 6.L5, now also
   accepting a whole Kuiper link or a See Through link pasted in, parsed by `KY.link.read(text)`), `Paste a link…` (the
-  same field, named), the LINES filter (`#lyFind`, with the clear control NL-009 05 F4 asks for, nl@FIXES/NL-009/round1/
+  same field, named), the LINES filter (`#lyFind`, with the clear control NL-009 05 F4 asks for, nl@d9a57af FIXES/NL-009/round1/
   05-lines.md:40-44), `Clear the selection` (Backspace: clears the hash fields as 6.3 says). Edit never navigates.
   VIEW holds the things a person looks at and the keys that step through them: readout on/off, whole wafer, random
   line `r`, new code `n`, next/previous verified line `e`/`E`, reduced motion; every VIEW action that changes what is
@@ -472,3 +500,5 @@ the evidence officer reproduces them from the committed script.
    `REQUESTS.md` line for the homepage owner.
 4. The star entry's strip form at 360 px takes the bottom-left 44 px; team 1's card and team 4's launcher must not
    place anything there on a phone (team 1 C6 already reserves it for the star entry).
+5. Team 5's `edition_check` (step 9): one line, the `see-through` layer's `space` equals `cosmos/wafer-meta.json`
+   `address_space` at the cut, so a cosmos re-measure forces the layer file to be rebuilt in the next edition (5.6).

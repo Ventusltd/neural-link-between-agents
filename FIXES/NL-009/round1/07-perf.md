@@ -37,9 +37,11 @@ File sizes: `keys.json` 1,709,129 raw / 743,603 gzip-6; `keys-min.json` 232,859 
 
 ### Time to the sparks on an emulated slow 4G link (CDP `Network.emulateNetworkConditions`: 1.6 Mbit/s down, 150 ms RTT)
 
-| run | variant | keys file bytes | keys fetch (ms) | first wafer frame (ms) | first spark frame (ms) | sparks after wafer (ms) |
+| run | variant | keys file bytes | keys download, request to last byte (ms) | first wafer frame (ms) | first spark frame (ms) | sparks after wafer (ms) |
 |---|---|---:|---:|---:|---:|---:|
-| (pending) | | | | | | |
+| o-1 | o | 1,709,429 | 8923 | 4799 | 13748 | 8949 |
+| o-2 | o | 1,709,429 | 9226 | 3504 | 12889 | 9385 |
+| p-1 | p | 233,159 | 1588 | 3945 | 5588 | 1643 |
 
 ### Does it draw when nothing changed? Draws of `draw()` per 3 s window, every variant
 
@@ -61,12 +63,16 @@ File sizes: `keys.json` 1,709,129 raw / 743,603 gzip-6; `keys-min.json` 232,859 
 | d2 | 824 x 1678 | 412 x 839 | 412 x 839 |
 | d26 | 1082 x 2202 | 412 x 839 | 412 x 839 |
 
-### WebGL cost against backing-store size: `draw()` forced every frame, requestAnimationFrame deltas (ms)
+### WebGL cost against backing-store size: `draw()` followed by `gl.finish()`, timed synchronously (ms per frame)
 
-| variant | WebGL store | at home (unresolved field, whole wafer): n, p50, p90 | at zoom 14 after `e` (resolved points): n, p50, p90 | ratio to DPR 1 (home p50) |
-|---|---|---|---|---:|
-| d2b-1 | 824 x 1678 | 29, 16.7, 316.6 | 7, 166.6, 1066.6 | |
-| ob-1 | 412 x 839 | 89, 950, 2483.3 | 44, 3766.5, 9732.9 | 1.0x |
+This is the measure that holds: `gl.finish()` waits for SwiftShader to finish the frame, so the time is the GPU work. Rounds are back to back (DPR 1, 2, 2.625, then again) so the load is comparable within a round; the load averages at the start and end of the rounds are in the LIMITS.
+
+| round | variant | WebGL store | at home (unresolved field, whole wafer): n, min, p50, max | at zoom 14 after `e` (resolved points): n, min, p50, max | ratio to DPR 1 in the same round (home p50) |
+|---|---|---|---|---|---:|
+| (pending) | | | | | |
+
+A first attempt measured the requestAnimationFrame cadence with `draw()` forced every frame; it gave 950 ms per frame at DPR 1 in one run and 16.7 ms at DPR 2.625 in the next, because `gl.drawArrays` returns before the work is done and the compositor drops WebGL frames rather than stalling the loop, and because the 950 ms was the machine's load, not the shader. Those cadence runs are kept in the scratch dir (`bench3-*.json`) and are not used here.
+
 
 The same picture from the 12-frame windows of the main runs (rAF p95, ms, noisy): forced redraws at home o 83, d2 267, d26 317; during the fly o 650, d2 1050, d26 5500; forced redraws at zoom 14 o 883, d2 300, d26 13,766.
 
@@ -232,4 +238,5 @@ const { chromium, devices } = require('playwright');
 - The WebGL DPR variants (`d2`, `d26`) scale `zoom` so the home view fits as before, but their overlay and hit-testing are left at CSS size; they measure the fragment cost and nothing else.
 - The overlay-at-DPR-2 option is measured only under SwiftShader, where 2D canvas raster is also software; a phone GPU should pay much less, but that is a guess and it is why the hunk is optional.
 - `keys-min.json` adds a file to the folder: `proof/edition-sha256.txt` and `ci_check.py` K1 (it holds a subset of fields already tracked in `keys.json`) need a run. `README.md` of the edition should name it.
+- Load averages recorded at the start and end of the synchronous DPR rounds: (pending)
 - Not in scope and not touched: the engine's permanent rAF loop, `gl.finish()` in the points path, placement law, cosmos, keys.json.
