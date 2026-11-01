@@ -133,9 +133,9 @@ async function runDevice(browser, deviceName) {
     // Under SwiftShader on a loaded machine a frame can take seconds, and a position that is unchanged for a second of wall
     // time may be one stale frame from the middle of a fly. So "settled" is: the selected spark is drawn, and its position is
     // unchanged across at least two further frames (the rAF counter advanced by 2). The measurement is the final position.
-    const t0 = Date.now(); let last = null, seen = 0;
+    const t0 = Date.now(); let last = null, seen = 0, f0 = -1;
     while (true) { await sleep(300); const p = await probe(); const t = Date.now() - t0;
-      if (!p.magenta) { if (opts.noSpark) { if (!seen) seen = p.frames; if (t >= FIXED_WAIT && p.frames - seen >= 2) return p; continue; }
+      if (!p.magenta) { if (opts.noSpark) { if (f0 < 0) f0 = p.frames; if (t >= FIXED_WAIT && p.frames - f0 >= 2) return p; if (t >= SETTLE_MAX) return p; continue; }
         if (t >= APPEAR_MAX) return p; continue; }
       if (!seen) seen = Date.now();
       if (last && Math.hypot(p.magenta.x - last.x, p.magenta.y - last.y) < 0.6) { if (p.frames - last.frames >= 2) return p; }
