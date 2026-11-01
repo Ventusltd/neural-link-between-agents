@@ -12,7 +12,7 @@ Auditor FABLE-07, dimension perf. Page audited: `/home/user/estate/kuiper-belt/e
 
 **3. PASS (no change): the page draws only when something changed, and runs no timers.** With the frame loop instrumented, 0 calls of `draw()` in 3 s at rest at home and 0 in 3 s at rest at zoom 14 with the card open, in every variant and run; during a 900 ms fly there is one draw per frame while the tween runs and none after. `grep` finds no `setInterval`; the four `setTimeout` calls serve `?selftest=` only. One engine-level note, outside my scope: `frame()` re-arms `requestAnimationFrame` every vsync even when idle, so the renderer never sleeps; on a phone that is battery, not frame time. It is the engine's loop and I do not touch it.
 
-**4. PASS (no change, but recorded): both canvases are already at one backing pixel per CSS pixel, not at devicePixelRatio.** `resize()` sets `cv.width = ov.width = innerWidth`, so on the Pixel 7 profile both canvases are 412 x 839 for a 1081 x 2202 physical screen (DPR 2.625), and the compositor upscales them. For the WebGL wafer that is the right choice and no cap is needed: its fragment shader runs two 16-step binary searches per pixel, so cost is proportional to backing pixels. Measured by forcing `draw()` every frame (the only way to see the GPU cost under SwiftShader, where `gl.drawArrays` returns before the work is done): see the DPR table. The brief's "cap at DPR 2" is therefore already exceeded (it is at 1); I recommend leaving it and I add no code for it.
+**4. PASS (no change, but recorded): both canvases are already at one backing pixel per CSS pixel, not at devicePixelRatio.** `resize()` sets `cv.width = ov.width = innerWidth`, so on the Pixel 7 profile both canvases are 412 x 839 for a 1081 x 2202 physical screen (DPR 2.625), and the compositor upscales them. For the WebGL wafer that is the right choice and no cap is needed: the fragment shader runs two 16-step binary searches per pixel, so its cost is proportional to backing pixels (4x at DPR 2, 6.9x at DPR 2.625). I tried to measure that ratio and could not, honestly: under headless Chromium with SwiftShader neither `requestAnimationFrame` cadence nor `draw()` + `gl.finish()` exposes the GPU time (`gl.finish()` returned in under 1 ms at every DPR; the compositor drops WebGL frames rather than stalling the loop). The one back-to-back round that did stall is in the DPR table: at the same load, DPR 1 kept a 16.7 ms cadence with `draw()` forced every frame while DPR 2 and 2.625 sat at 3,067 and 2,133 ms p50; the 12-frame windows of the main runs trend the same way. Direction established, magnitude UNVERIFIED here. The brief's "cap at DPR 2" is already exceeded (it is at 1); I recommend leaving it and add no code for it.
 
 **5. MINOR, measured as an option and NOT in the patch: the 2D overlay (sparks, month labels, target cross) could be drawn at DPR 2 for sharpness.** Because both canvases are upscaled 2.625x, a 2.6 px spark is a blurred 7-device-pixel blob and the 10 px month labels are soft (screenshot `img/07-before-fly.png`, right panel, device pixels 1:1). A 10-line hunk in the edition layer can give the overlay a backing store at min(DPR, 2) while `ov.width`/`ov.height` keep answering in CSS pixels, so the engine's arithmetic is untouched (`img/07-after-fly.png`). Cost: 4x the overlay pixels; with only the overlay redrawn each frame, the frame cadence went from p50 16.7 ms (DPR 1) to 83 and 183 ms (DPR 2) in two runs under SwiftShader, 5 to 11x. A phone GPU composites a 824 x 1678 canvas far more cheaply than SwiftShader does, but I cannot measure that here, so the hunk is supplied separately (`07-perf-optional-overlay-dpr.patch` text at the end) for the integrator and the owner to decide, and the main patch stays without it.
 
@@ -42,6 +42,7 @@ File sizes: `keys.json` 1,709,129 raw / 743,603 gzip-6; `keys-min.json` 232,859 
 | o-1 | o | 1,709,429 | 8923 | 4799 | 13748 | 8949 |
 | o-2 | o | 1,709,429 | 9226 | 3504 | 12889 | 9385 |
 | p-1 | p | 233,159 | 1588 | 3945 | 5588 | 1643 |
+| p-2 | p | 233,159 | 1631 | 4569 | 6533 | 1964 |
 
 ### Does it draw when nothing changed? Draws of `draw()` per 3 s window, every variant
 
@@ -63,18 +64,32 @@ File sizes: `keys.json` 1,709,129 raw / 743,603 gzip-6; `keys-min.json` 232,859 
 | d2 | 824 x 1678 | 412 x 839 | 412 x 839 |
 | d26 | 1082 x 2202 | 412 x 839 | 412 x 839 |
 
-### WebGL cost against backing-store size: `draw()` followed by `gl.finish()`, timed synchronously (ms per frame)
+### WebGL store against devicePixelRatio: what could and could not be measured
 
-This is the measure that holds: `gl.finish()` waits for SwiftShader to finish the frame, so the time is the GPU work. Rounds are back to back (DPR 1, 2, 2.625, then again) so the load is comparable within a round; the load averages at the start and end of the rounds are in the LIMITS.
+`draw()` + `gl.finish()` timed synchronously, two back-to-back rounds (DPR 1, 2, 2.625, then again): every value is under 1 ms except one outlier, so under this headless SwiftShader setup `gl.finish()` does not wait for the raster and the GPU time is not observable from JavaScript. Reported so nobody repeats it.
 
-| round | variant | WebGL store | at home (unresolved field, whole wafer): n, min, p50, max | at zoom 14 after `e` (resolved points): n, min, p50, max | ratio to DPR 1 in the same round (home p50) |
-|---|---|---|---|---|---:|
-| (pending) | | | | | |
+| round | variant | WebGL store | home: n, min, p50, max (ms) | zoom 14 (points): n, min, p50, max (ms) |
+|---|---|---|---|---|
+| 1 | ob | 412 x 839 | 8, 0.3, 0.9, 2.2 | 4, 0.5, 0.5, 0.8 |
+| 1 | d2b | 824 x 1678 | 8, 0.2, 0.7, 2.4 | 4, 0.2, 0.4, 0.7 |
+| 1 | d26b | 1082 x 2202 | 8, 0.2, 0.3, 1.2 | 4, 0.2, 0.3, 0.8 |
+| 2 | ob | 412 x 839 | 8, 0.1, 0.4, 2.4 | 4, 0.4, 0.5, 2.4 |
+| 2 | d2b | 824 x 1678 | 8, 0.2, 10.9, 69.8 | 4, 0.3, 0.4, 4.6 |
+| 2 | d26b | 1082 x 2202 | 8, 0.1, 0.2, 2.5 | 4, 0.9, 1.3, 12.8 |
 
-A first attempt measured the requestAnimationFrame cadence with `draw()` forced every frame; it gave 950 ms per frame at DPR 1 in one run and 16.7 ms at DPR 2.625 in the next, because `gl.drawArrays` returns before the work is done and the compositor drops WebGL frames rather than stalling the loop, and because the 950 ms was the machine's load, not the shader. Those cadence runs are kept in the scratch dir (`bench3-*.json`) and are not used here.
+requestAnimationFrame cadence with `draw()` forced every frame (ms between frames). Rounds 1 and 2 were run at different times and are not comparable to each other (round 1's 950 ms for DPR 1 was the machine's load; in round 2 every variant read 16.7 ms because the compositor dropped the WebGL frames instead of stalling). Round 3 ran the three variants back to back at load average 37 to 30 and is the one row worth reading: the DPR 1 store keeps cadence, the larger stores do not.
 
+| round | variant | WebGL store | at home: n, p50, p90 | at zoom 14 after `e` (points): n, p50, p90 |
+|---|---|---|---|---|
+| 1 | d26b | 1082 x 2202 | 19, 16.7, 16.7 | 5, 16.7, 16.8 |
+| 1 | d2b | 824 x 1678 | 29, 16.7, 316.6 | 7, 166.6, 1066.6 |
+| 1 | ob | 412 x 839 | 89, 950, 2483.3 | 44, 3766.5, 9732.9 |
+| 2 | ob | 412 x 839 | 29, 16.7, 49.9 | 7, 16.7, 483.3 |
+| 3 | d26b | 1082 x 2202 | 29, 2133.3, 4166.5 | 7, 266.6, 1749.9 |
+| 3 | d2b | 824 x 1678 | 29, 3066.5, 5616.5 | 7, 16.7, 16.7 |
+| 3 | ob | 412 x 839 | 29, 16.7, 33.4 | 7, 16.7, 266.7 |
 
-The same picture from the 12-frame windows of the main runs (rAF p95, ms, noisy): forced redraws at home o 83, d2 267, d26 317; during the fly o 650, d2 1050, d26 5500; forced redraws at zoom 14 o 883, d2 300, d26 13,766.
+The 12-frame windows of the main runs point the same way (rAF p95, ms): forced redraws at home o 83, d2 267, d26 317; during the fly o 650, d2 1050, d26 5500; forced redraws at zoom 14 o 883, d2 300, d26 13,766.
 
 ### Overlay (`clearRect` + `drawEdition`, 344 sparks in view at home), two runs each
 
@@ -235,8 +250,8 @@ const { chromium, devices } = require('playwright');
 - Absolute times are SwiftShader on a 4-core box at load average 25 to 47; only ratios and counts transfer to a phone. No real Android device was available.
 - The slow-4G figures use Chromium's throttle, which models bandwidth and RTT, not radio wake-up or HTTP/2 priorities on Pages.
 - GitHub Pages compression could not be observed (proxy 403); the gzip sizes are local `gzip -6`.
-- The WebGL DPR variants (`d2`, `d26`) scale `zoom` so the home view fits as before, but their overlay and hit-testing are left at CSS size; they measure the fragment cost and nothing else.
+- The WebGL DPR variants (`d2`, `d26`) scale `zoom` so the home view fits as before, but their overlay and hit-testing are left at CSS size; they exist only to load the fragment shader with more pixels. GPU time itself proved unmeasurable from JavaScript in this setup (see the DPR section), so finding 4 rests on pixel arithmetic and one cadence round.
 - The overlay-at-DPR-2 option is measured only under SwiftShader, where 2D canvas raster is also software; a phone GPU should pay much less, but that is a guess and it is why the hunk is optional.
 - `keys-min.json` adds a file to the folder: `proof/edition-sha256.txt` and `ci_check.py` K1 (it holds a subset of fields already tracked in `keys.json`) need a run. `README.md` of the edition should name it.
-- Load averages recorded at the start and end of the synchronous DPR rounds: (pending)
+- Load averages (1, 5, 15 min) recorded at the start and end of DPR rounds 3 and the synchronous rounds: 36.71, 35.65, 42.21; 30.02, 33.87, 39.59; 29.22, 33.64, 39.48; 33.51, 33.45, 37.36
 - Not in scope and not touched: the engine's permanent rAF loop, `gl.finish()` in the points path, placement law, cosmos, keys.json.

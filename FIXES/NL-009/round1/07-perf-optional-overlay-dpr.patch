@@ -1,0 +1,18 @@
+--- a/editions/202611012027/index.html
++++ b/editions/202611012027/index.html
+@@ -750,6 +750,15 @@
+ { const _edNext = edNext; edNext = function(step){ if (!edPlaced.length) return; let i = edSel, n = edPlaced.length;
+     for (let t = 0; t < n; t++) { i = (i + step + n) % n; if (visibleLine(edPlaced[i])) break; }
+     edSel = i; const b = edPlaced[edSel]; edCard(edSel); edFly(b); }; }
++// EDITION 5 (perf): the 2D overlay (sparks, month rings, the target cross) is drawn at the device pixel ratio,
++// capped at 2, so it is sharp on a phone; ov.width and ov.height keep answering in CSS pixels, so the engine's
++// arithmetic is untouched. The WebGL wafer stays at one backing pixel per CSS pixel on purpose: its fragment
++// shader costs per pixel (measured in FIXES/NL-009/round1/07-perf.md), and it is resampled by the compositor.
++{ const OVR = Math.min(2, devicePixelRatio || 1); if (OVR > 1) {
++  const dw = Object.getOwnPropertyDescriptor(HTMLCanvasElement.prototype, 'width'), dh = Object.getOwnPropertyDescriptor(HTMLCanvasElement.prototype, 'height');
++  Object.defineProperty(ov, 'width', { get(){ return Math.round(dw.get.call(ov) / OVR); }, set(v){ dw.set.call(ov, Math.round(v * OVR)); o2.setTransform(OVR, 0, 0, OVR, 0, 0); } });
++  Object.defineProperty(ov, 'height', { get(){ return Math.round(dh.get.call(ov) / OVR); }, set(v){ dh.set.call(ov, Math.round(v * OVR)); o2.setTransform(OVR, 0, 0, OVR, 0, 0); } });
++  resize(); } }
+ requestAnimationFrame(frame);
+ </script>
+ </body>
