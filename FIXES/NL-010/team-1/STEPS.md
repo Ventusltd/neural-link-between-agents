@@ -29,7 +29,9 @@ module's bytes are the served ones; only the basemap is a stub, and no number be
 ## What the live GridAtlas shell is (measured 1 Nov 2026)
 
 The composed page is the immutable shell `atlas/releases/202608300453-atlas-v9/index.html` with the six cartridges of
-`atlas/current.json` (generation 202610292044, `IMMUTABLE_SHELL_PLUS_HASHED_CARTRIDGES`); the menu bar is the module
+`atlas/current.json` (generation 202610292044 in the clone; origin/main `41729af` names 202610312138, the NL-007 release, which changed only
+`uk-offtakers-overlay` and the pointer, so the shell, the menu module and the substation-intelligence cartridge are the
+same bytes live, EVIDENCE.md A1; `IMMUTABLE_SHELL_PLUS_HASHED_CARTRIDGES`); the menu bar is the module
 `atlas/modules/202609031958-menu-bar.js` inlined into the live `substation-intelligence` cartridge
 `atlas/cartridges/202609062358-substation-intelligence-v9-63.js` (schema `gridatlas.menu-bar.v2` at its line 4376;
 `MENUS = ['File','Edit','View','Scope','Grid','About']` at 4380; module `:31`). Keys for every CSS value are given against the
@@ -53,6 +55,14 @@ module file; the same text sits in the cartridge at lines 4515–4731.
 | panels | `.gm-panel` `top:100%` of its title, `min-width:240px; max-width:min(92vw,420px); max-height:min(72dvh,620px)`, `rgba(4,10,13,.98)`, border `1px solid rgba(80,220,240,.32)` no top; right-group panels `right:0`; every row `min-height:44px`, `11px/1.35` same mono, `#cfeef6`, hover `rgba(80,220,240,.14)`; group headings `.gm-layer-group` 10px `#6fa2ae` uppercase `.08em` | all six panels `position:fixed` (`top:34px; left:4px; right:4px; max-height:calc(100dvh - 40px)`) | same (`fixed`); in landscape 863×360 the bar is 36 px again and the panels `absolute`, because the rule is on width, not on the device | `:206-213`, `:218-224`, `:245-247`, `:379-382` |
 | one open at a time, closed at rest | `closed_at_rest:true`; Escape closes; ArrowLeft/Right between titles; ArrowDown opens | same | same | `:405-416`, `:468-479`, `:554-583` |
 | admission rule | installs nothing until the 63 controls and 11 named nodes exist; otherwise publishes `#gridatlas-menu-bar-failure` and leaves the old interface reachable (measured, see limitation) | same | same | `:1-21`, `:30`, `inventory :107-124`, `required :141-160`, `install :1647-1656`, `loudFailure :1752-1768` |
+
+Note on the search box: the module file moves it into File (`menu-bar.js:1662`), but the live cartridge does not: its
+install says "The search bar is NOT moved. It is the one control a person needs before they know which menu to open,
+and File is closed on arrival … It stays in .map-container" (`gridatlas@5ec7f62 atlas/cartridges/202609062358-substation-intelligence-v9-63.js:6010-6016`,
+no `move(panels.File, ready.nodes.search)` anywhere in the cartridge). The live bytes rule, and the measurement agrees
+(search at (981.8,77) on 1280, (135.8,77) on Pixel 7). The GRID and SUBS chips likewise stay on the map at every width
+(`chipStaysOnMap` `:1521-1552`; the Pixel 7 "Tools ▸ ⚡ Grid ◉ Subs" strip bottom-left). Where the two copies differ the
+cartridge is cited.
 
 Landscape Pixel 7 (863×360): bar (5,5) 853×36, titles 11 px (50.7/57.9 px), the full lockup with SYSTEM TIME and 2050
 TARGET back (`.ventus-brand` 90×20.5 at (391.2, 12.3)), panels `absolute`: the phone rule is `max-width:700px`, so a phone
@@ -89,8 +99,9 @@ link (`:184-205`, `:372-378`, `:1671-1679`; shell `atlas/releases/202608300453-a
 1.4 Admission rule: install nothing until every hook is present and uniquely identified; a missing control leaves the
 old interface reachable and publishes a failure strip rather than being skipped (`:1-21`, `:107-124`, `:141-160`, `:1647-1656`, `:1752-1768`;
 measured: the strip at (8,8) 1264×33 when the engine had 0 + 0 controls).
-1.5 Commands move as the same DOM nodes into panel rows of 44 px, in the panel's own type (`11px/1.35` mono), and the
-map keeps only the search box under the bar; result surfaces stay with the map (`:220-225`, `:1658-1667`; measured
+1.5 Commands move as the same DOM nodes into panel rows of 44 px, in the panel's own type (`11px/1.35` mono); the map
+keeps the search box under the bar because it is "the one control a person needs before they know which menu to open"
+(cartridge `:6010-6016`) and the GRID/SUBS chips (`:1521-1552`); result surfaces stay with the map (`:220-225`, `:1658-1667`; measured
 `controls_moved:17`; the module moves the search into File at `:1662`, yet the live page shows `.search-bar-wrapper`
 over the map at (981.8,77), see the note under the table).
 1.6 Phone rule at `max-width:700px`: bar 34 px, titles 9 px `.025em` padding `0 6px`, panels `position:fixed; top:34px;
@@ -119,9 +130,11 @@ logo, and GridAtlas itself hides them on a phone. Not a link, as in GridAtlas. A
 computed style and rendered box to GridAtlas's at the same viewport within 1 px.
 C4 Titles: `button.gm-title[aria-haspopup=menu][aria-expanded][aria-controls]`, uppercase, `.05em`, `#cfeef6`,
 `padding:0 11px`, `min-height` = bar height; hover/open `rgba(80,220,240,.16)` + `#fff`; focus `2px solid #6bebff` inset;
-phone 9 px `.025em` `0 6px`. Left group index 0–2, right group 3–5. On a coarse pointer each title's hit box extends to
-44 px by an invisible `::after` below the bar, so the visible strip stays GridAtlas's 34 px and NL-009's touch finding
-(01-bar F2) is met; measured by `elementFromPoint(x, 40)` resolving to the title.
+phone 9 px `.025em` `0 6px`. Left group index 0–2, right group 3–5. Decision, recorded: GridAtlas's phone titles are 9 px on a 34 px bar, under the
+44 px target NL-009 asks for (01-bar F2); the Kuiper keeps GridAtlas's visible numbers exactly and pays the target with an
+invisible `::after` hit box that extends each title to 44 px below the bar on a coarse pointer; measured by
+`elementFromPoint(x, 40)` resolving to the title. The departure from "exactly" is nil on screen and 10 px in the hit test,
+and the README says so.
 C5 The six names, mapped. The Kuiper keeps GridAtlas's six words where the meaning carries and changes one:
 
 | GridAtlas | holds there (measured `panel_counts`) | Kuiper name | holds in the Kuiper (owner of the content) |
@@ -140,8 +153,9 @@ acceptance test so the decision is measured, not argued. Edition 4's four names 
 the brand slot (the name), READOUT → VIEW, LINES → WAFER + SCOPE + EDIT (switch, focus, filter), COMMANDS → VIEW + EDIT.
 C6 Labels and commands: every command is a 44 px row inside a panel (`button`, `a[role=button]`, or a layer row with a
 20 px box), `11px/1.35` mono `#cfeef6`, hover `rgba(80,220,240,.14)`; group headings `.gm-layer-group` 10 px `#6fa2ae`
-uppercase. At rest nothing is drawn over the wafer but the bar; the find box, when open, sits where GridAtlas's search
-does: right-aligned, directly under the bar, `width:min(82vw,390px)`, 44 px tall; the card (step 2) is the one result
+uppercase. At rest nothing is drawn over the wafer but the bar; the find box (`/`, today `#goto` at 38 % of the height, Edition 4 `:24-26`) is the Kuiper's
+"one control needed before a menu": it sits where GridAtlas's search does, right-aligned directly under the bar, `width:
+min(82vw,390px)`, 44 px tall, present at rest as GridAtlas's is (the only thing on the wafer besides the bar); the card (step 2) is the one result
 surface and stays with the wafer, bottom-left as Edition 4 placed it. GridAtlas's phone keeps two 44 px strips at the
 bottom corners (Tools, LAYERS); the Kuiper copies the shape for exactly two: the star entry's phone form if step 5 wants a
 bottom-left strip, and nothing else, because the wafer's bottom third is where the card lands. The engine's `safeBox()` starts under the bar
@@ -186,7 +200,8 @@ A3 the wordmark: `#kuiper-menu-bar .ventus-main` computed `font-size 11px` (≤7
 centre within 1 px of the viewport centre and of the bar's vertical centre; `closest('a')` null; rendered box within
 1 px of GridAtlas's measured box at the same viewport (73.6×16.3 on Pixel 7 and at 360 px, 90.0×20.5 at 1280×800 and in landscape).
 A4 at rest the only elements with a non-empty client rect over the wafer and outside the bar are the two canvases
-(`#c`, `#o`) and, after a pick, `#card`; `#keys`, `#top`, `#hud`, `#foot`, `#lines` have `display:none` or live inside a
+(`#c`, `#o`), the find box (right-aligned, `top` = bar bottom + 36 as GridAtlas's search at y=77 under a 36 px bar at
+y=5) and, after a pick, `#card`; `#keys`, `#top`, `#hud`, `#foot`, `#lines` have `display:none` or live inside a
 hidden panel.
 A5 every panel row `getBoundingClientRect().height ≥ 44`; `touchscreen.tap` on each title opens exactly one panel whose
 `top ≥ bar bottom` and `right ≤ viewport`, a second tap closes it, Escape closes it, `page.goBack()` closes it and stays

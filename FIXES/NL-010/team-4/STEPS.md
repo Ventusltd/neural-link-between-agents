@@ -63,7 +63,7 @@ yet: windows, processes, a kernel. A baby step adds one of these at a time and p
   (application, engine, reference, catalogue, drawing), a link and one line of purpose: gg@c66759f
   homepage_versions/homepage_v134.html:31 (the table, "All apps and their current versions. Select an app to open it"),
   :32-56 (25 rows; MEASURED by `/tmp/nl010/team-4/` parse of the row regex `<tr data-entity-id=`). The homepage opens
-  every app in the same tab (nl@7f7f49d FIXES/NL-009/round1/06-seethrough.md:12-13, "0 `target="_blank"`").
+  every app in the same tab (nl@7f7f49d FIXES/NL-009/round1/06-seethrough.md:16-17, "0 `target="_blank"`").
 - The periodic table's key grammar is already the estate's: el@f7a92fb README.md:9 ("Every element, app and function
   with more than 10 lines of code has a unique key. Each key is one the estate already uses and never reuses. None is
   invented here"), :13 (`block:<Sym>` element), :14 (app = register block of kind app), :15 (`surface:<url>` = the
@@ -75,7 +75,7 @@ editions/202611012027/index.html:201-205); every key resolves to repository, com
 and places through `keyPlace` (:633); the edition layer is a list of records filtered by the admission predicate
 `on_wafer && verified && key < SPACE` (:632-633); a tap within 9 px opens the nearest spark (:685-690); the bar is four
 titles and a name (:699-703) and NL-009 measured it already two rows wide on a 412 px phone, 439 px of content against
-412 (nl@7f7f49d FIXES/NL-009/round1/06-seethrough.md:21-27). So **the launcher adds no bar entry**; it is a panel that
+412 (nl@7f7f49d FIXES/NL-009/round1/06-seethrough.md:24-30). So **the launcher adds no bar entry**; it is a panel that
 Team 3's File menu opens ("open an app (step 7's registry)", nl@7f7f49d FIXES/NL-010/team-5/STEPS.md:249), and Team 3's
 own evidence hands the registry to this step (nl@7f7f49d FIXES/NL-010/team-3/EVIDENCE.md:246-247).
 
@@ -105,19 +105,22 @@ own evidence hands the registry to this step (nl@7f7f49d FIXES/NL-010/team-3/EVI
     header: the two source heads and the sha256 of the two source files, as el@f7a92fb catalogue/provenance.json:10-12
     does for the register.
 
-7.2 **The launcher `modules/07-apps.js`.** A panel, not a bar title. It registers one File-menu entry "open an app"
-    with Team 3's module and one layer record with Team 2's registry, then draws the list from `data/apps.json` only
+7.2 **The launcher `modules/07-apps.js`.** A panel, not a bar title: one more entry in the engine's `PANELS`, opened
+    by `setPanel('apps')` and placed under the bar by `placePanels()` (kb@018b46a editions/202611012027/index.html:712-714),
+    with no `.gm-title` added, because the bar's content already measures 439 px against 412 px on a Pixel 7 and 360 px
+    on a Galaxy S24 (nl@7f7f49d FIXES/NL-009/round1/06-seethrough.md:24-30; step 1 owns that budget). It registers one
+    File-menu entry "open an app" with Team 3's module and one layer record with Team 2's registry, then draws the list from `data/apps.json` only
     after the wafer has admitted its own data (the hook is the `loadEdition()` call site, kb@018b46a
-    editions/202611012027/index.html:220). Each row obeys the card law of step 1: **the header of the row is the key
+    editions/202611012027/index.html:219). Each row obeys the card law of step 1: **the header of the row is the key
     line** (`block:Pn` / `surface:https://…`), then name, one-line purpose, licence, and the link. A tap on the link
-    navigates in the same tab (NL-009's decision, 06-seethrough.md:66-72: on Android Chrome a `_blank` tab is
+    navigates in the same tab (NL-009's decision, 06-seethrough.md:51-57: on Android Chrome a `_blank` tab is
     invisible and two WebGL pages on one phone evict each other); a tap on the key, when `wafer` is not null, flies the
     camera to the app's first line on the wafer through `keyPlace`/`edFly` and opens the card (:676-680). The GitHub
-    link alone keeps `_blank`, as the edition's card does (:663). A row whose `link` fails `fetch(HEAD)` is drawn with
-    GridAtlas' `FAIL` state in its label, never hidden (Team 2's review bar, nl@7f7f49d FIXES/NL-010/team-2/EVIDENCE.md:316-318).
-    Rows are 44 px tall on a phone (NL-009's hit-target dimension: today's buttons are 29 px, 06-seethrough.md:78).
+    link alone keeps `_blank`, as the edition's card does (:662). A row whose `link` fails `fetch(HEAD)` is drawn with
+    GridAtlas' `FAIL` state in its label, never hidden (Team 2's review bar, nl@7f7f49d FIXES/NL-010/team-2/EVIDENCE.md:316-317).
+    Rows are 44 px tall on a phone (NL-009's hit-target dimension: today's buttons are 29 px, 06-seethrough.md:70).
     **No window manager**: the launcher opens exactly one thing, by navigation, and the back gesture is the way home
-    (06-seethrough.md:66-70 measured it).
+    (06-seethrough.md:20-21 and :51-54 measured it).
 
 7.3 **The periodic table: a layer and an app.** *Layer:* every element of el@f7a92fb catalogue/elements.json placed at
     its own key on the wafer. The key of an element is the key of line 1 of its first register file at the register's
@@ -136,7 +139,9 @@ own evidence hands the registry to this step (nl@7f7f49d FIXES/NL-010/team-3/EVI
     catalogue was built from, el@f7a92fb catalogue/provenance.json:10) and a panel that lists the 244 elements by
     category and number like el@f7a92fb ELEMENTS.md, each row's header its key, tap = fly to it. The edition folder
     carries its own copy `data/elements.json` (the 244 records with their computed keys and sha256 of the source), so it
-    loads offline like `keys.json` does.
+    loads offline like `keys.json` does. Precedent on the pre-Kuiper wafer: gw@fff6fc6 iterations/05-periodic-table/
+    table.mjs:1-14 (one cell per block of the live register, grouped by category; tapping a cell flies the wafer to the
+    block's first line), which this layer repeats on the Kuiper's keys instead of the numbered lines.
 
     Disclosed, not hidden: the catalogue is pinned to the register of 2026-09-15 (244 blocks, el@f7a92fb
     CATALOGUE.md:3); the live register at stars@cbca125 blocks/blocks.json:2 is generated 2026-10-31T18:45:22.798Z and
@@ -190,7 +195,7 @@ homepage ids equal the `data-entity-id` set of homepage_v134.html:32-56 (a scrip
 A2 the bar is unchanged in width (no new title; `#bar .gm-title` count equals step 1's); File → "open an app" opens the
 launcher panel under the bar; each row ≥ 44 px tall; the first row's header text is a key.
 A3 tapping the See Through row navigates in the same tab to `../../see-through/` (HTTP 200, title "See Through");
-`goBack()` returns to the edition with no panel open (the NL-009 journey, 06-seethrough.md:16-19).
+`goBack()` returns to the edition with no panel open (the NL-009 journey, 06-seethrough.md:18-21).
 A4 the periodic table layer: readout says "221 elements placed, 23 counted, not placed"; a tap within 9 px of an element
 spark opens a card whose first line is the text at its key and whose second line is `block:<Sym>`;
 `python tools/key.py <key>` on three sampled elements returns the recorded repository, commit and path.
@@ -212,7 +217,7 @@ folder. Touch only the files named under Module. Never a bar title. Never a lice
 
 **Baby step 2 (not in this edition).** The apps answer back: each app of the family (See Through, Learn the Kuiper, the
 spider, the periodic table) exposes a probe object like GridAtlas' `menuBar.inspect()` (nl@7f7f49d
-FIXES/NL-010/team-2/EVIDENCE.md:321-322) naming its stamp, its licence and the deep-link grammar it accepts; the
+FIXES/NL-010/team-2/EVIDENCE.md:49-50, :326) naming its stamp, its licence and the deep-link grammar it accepts; the
 launcher reads the probe and shows `WAIT/LOAD/OK/FAIL` per row; and every app links back to the Kuiper at a key
 (See Through's `window.KGModules` is the existing hook, team-2/EVIDENCE.md:281). Two-way links, still no windows.
 **Baby step 3.** An app runs inside the edition as a cartridge under step 4's law (its own stamp, hash and hooks), and
@@ -242,7 +247,7 @@ still true at the head? The algorithm answers per line, with a key, and never by
 - *The drift* is the first algorithm that makes an edition honest over time; it is the GridAtlas lesson of the hashed
   cartridge (a thing is admitted only when its bytes still hash to the record, ga@5ec7f62 atlas/current.json:5) applied
   to every verified line; its inputs are all keys; its refusal rule is the first law itself ("A check that examines
-  nothing refuses. It does not pass", kb@018b46a README.md:29-47); it is what step 9's release gate needs before a
+  nothing refuses. It does not pass", kb@018b46a README.md:40); it is what step 9's release gate needs before a
   pointer moves; and it is the algorithm that will run first on a per-app Kuiper (8a). It was prototyped today and it
   returned numbers (below).
 
@@ -250,7 +255,7 @@ still true at the head? The algorithm answers per line, with a key, and never by
 1. `editions/<stamp>/keys.json` `bodies[]`: `id`, `repo`, `commit`, `path`, `line`, `line_text`, `key`
    (kb@018b46a editions/202611012027/keys.json; field list MEASURED from the file).
 2. The head of each repository: `git rev-parse HEAD` of a clone, or `GET repos/Ventusltd/<repo>/commits/HEAD`; recorded
-   as `heads{repo: sha}` with the time of observation and its offset (kb@018b46a README.md:40 "Every time carries its
+   as `heads{repo: sha}` with the time of observation and its offset (kb@018b46a README.md:39 "Every time carries its
    offset").
 3. The file at the head: `git show <head>:<path>` (git objects, never the working tree).
 4. For the moved-line search: the exact bytes of `line_text`, LF-normalised, the wafer's own text rule
@@ -264,12 +269,15 @@ first occurrence, `delta` = head_line − line), `GONE` (the file exists at the 
 is the count per class and per repository, and the share `SAME / (rows − UNVERIFIED)` with its denominator printed.
 
 **Refusal rule.** A repository whose head was not observed makes every one of its rows `UNVERIFIED`, never `SAME`:
-the algorithm may not infer stability from the absence of a fetch (kb@018b46a README.md:46-47; tools/key.py:49 "Never
+the algorithm may not infer stability from the absence of a fetch (kb@018b46a README.md:40; tools/key.py:49 "Never
 trusted blind"). A row whose `line_text` is empty, or whose `key` is not on the wafer (`on_wafer: false`, the two
 star-maker lines), is `UNVERIFIED` with its reason. If the heads file is older than the cut by more than the cap the
 edition README states, the whole run is refused and `drift.json` is not written: a stale drift is worse than none. The
 page module draws nothing when `drift.json` is missing or its `edition` field is not the folder's stamp; it prints why
-in the readout (the `keys.json did not load` pattern, kb@018b46a editions/202611012027/index.html:631).
+in the readout, in the engine's own idiom (kb@018b46a editions/202611012027/index.html:207 `REFUSED: …`, :240 `… did
+not load. The wafer will not invent its keys.`, :631): `data/drift.json did not load. The wafer will not invent a
+head.`; and the tool prints `REFUSED: no head recorded for <repo>; <n> lines UNVERIFIED` per repository it could not
+observe, and `REFUSED: heads older than the cut by <h> h; drift.json not written` for the stale case.
 
 **Where it runs.** `tools/drift.py` runs at cut time on the machine that cuts the edition (it needs git or the GitHub
 API; the page must stay offline-capable), writes `data/drift.json` and is listed in `proof/edition-sha256.txt`; it is
@@ -336,12 +344,16 @@ overarching key.
 **Law.** The app's key space is the subset of the overarching wafer's issued keys whose address (kb@018b46a
 editions/202611012027/index.html:282, `address(k)` → commit, repository, and through `tools/key.py` the path) lies in
 the app's files. The app's files are: for a register app, its `files[]` at their commits (el@f7a92fb
-catalogue/apps.json); for a folder app (See Through, Learn the Kuiper, the spider, an edition), every text blob under
+catalogue/apps.json) **as the seed only**: the register never lists more than 8 files per block (FABLE-T4B's E8: max 8,
+17 blocks at exactly 8, 139 at 1, and for `Ra`, `Sb`, `Pn` the `repos` field names repositories the `files` list does
+not), so a register app's denominator is the folder set the tool measures from those seeds (the folders of the seed
+files at their commits), printed, never the 8 files; for a folder app (See Through, Learn the Kuiper, the spider, an edition), every text blob under
 its folder in every commit of its repository that is a row of `cosmos/wafer.tsv`. The app key is the **rank** of the
 overarching key among the app's keys in wafer order (dense, from 0), and silence between the app's commits is left
 unissued by the same rule as the wafer (kb@018b46a tools/wafer_keys.py:10-11: 600 keys per second of the gap between
 consecutive app commits, capped at 14 days), so an app's Kuiper has rings that are its own nights. The placement law
-is the wafer's, unchanged: `r = sqrt(key), theta = 2π frac(key × 2654435769 / 2^32)` (kb@018b46a cosmos/wafer-meta.json:12).
+is the wafer's, unchanged: `r = sqrt(key + 0.5), theta = 2π frac(key × 2654435769 / 2^32)` (kb@018b46a
+editions/202611012027/index.html:278 as drawn; cosmos/wafer-meta.json:12 as declared).
 
 **The mapping, written down and provable.** `data/app-keys/<id>.tsv`: rows `wafer_k0  app_k0  run_length  commit_sha12
 path` — one row per contiguous run of the app's lines inside one file at one commit (a file's lines are contiguous in
@@ -424,16 +436,21 @@ estate placed by one frozen law, `r = sqrt(key)`, `theta = key x golden angle`";
 frozen 2026-09-15T15:00:00Z (:46-51), inherited unchanged from gg@c66759f testcode/202609151339 (README.md:5 of gw;
 gg README.md:9-15). Its keys are the numbered database: 250,174 distinct lines numbered 1 to 342,795, no duplicate
 rows, 128,369 in a function family (gg@c66759f testcode/202609142202/data/all-lines.meta.json:11-16; the source
-header, el@f7a92fb catalogue/provenance.json:35-37, "250,174 unique lines, numbered 1 to 342,795. Generated
+header, el@f7a92fb catalogue/provenance.json:42, "250,174 unique lines, numbered 1 to 342,795. Generated
 2026-09-14T19:56:58.242Z by the modular star"). Extent sqrt(342,795) ≈ 585.5 units. Between it and the live wafer sat
 the one-wafer of 19 September: 19,257 bodies (one per distinct blob SHA) from 66 repositories, drawn with the 250,174
 numbered lines, 245,170 placed (kb@018b46a NEXT.md:8-13).
 
 **The live wafer against it.** Law: golden angle `theta = key × 2.39996…` (gw) against `theta = 2π frac(key ×
-2654435769 / 2^32)` (kb@018b46a cosmos/wafer-meta.json:12, the Knuth multiplier, NOTICE.md:14-16): same `r = sqrt(key)`,
+2654435769 / 2^32)` (kb@018b46a cosmos/wafer-meta.json:12, the Knuth multiplier, editions/202611012027/NOTICE.md:12-14): same `r = sqrt(key)`,
 different angle, so **no key lands in the same place on the two wafers**, which is why they are two substrates and not
 one. Key ranges: 1…342,795 against 0…63,340,120,795. Count: 250,174 distinct lines against 45,735,836,396 line
 occurrences, a ratio of about 1.8 × 10⁵, which is the expected effect of counting every line in every commit.
+Silence: 92,621 never-issued numbers of 342,795 (27.0 %, from all-lines.meta.json:11 and :15) against 17,604,284,400
+of 63,340,120,796 (27.79 %, wafer-meta.json:5). Radius: `sqrt(key)` against `sqrt(key + 0.5)` (gw wafer.mjs:11,
+kb index.html:278). The two keys do not share a space: a pre-Kuiper key is one distinct numbered line of a snapshot,
+a Kuiper key is one line of one blob in one commit (kb@018b46a tools/key.py:8-9); so "what moved" is **a change of
+unit, not a renumbering**, and the comparison file must say so in its first line.
 
 **The unique-lines Kuiper.** `tools/unique_lines.py` walks every text blob of every commit the wafer holds (the same
 `rev-list --all` set), hashes each LF-normalised line, and issues one key per distinct line in the order of its
