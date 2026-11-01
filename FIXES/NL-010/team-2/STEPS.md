@@ -402,16 +402,23 @@ dirty tween litRepo target` :243, `litK litCi` :244, `atHome` :245, `setPanel` :
 4.3 **The file.** `editions/<stamp>/modules/<module-stamp>-<name>.js`: `<module-stamp>` is the UTC minute the module was
 cut, `YYYYMMDDHHMM`, `<name>` lower-case words and hyphens; a classic script (no `type="module"`, no `import`: one file
 is the unit the loader hashes, as GridAtlas's slot takes one file, build-cartridge.mjs:4-9), wrapped in one IIFE with
-`'use strict'`, no top-level identifier but what the IIFE declares. Its first line is a comment naming the module, the
-stamp and the licence: `/* kuiper module <name>, generation <module-stamp> (UTC), Apache-2.0 (kuiper-belt) */`. A module
-is never edited after it is listed in a published edition: a change is a new file with a new stamp (cartridges/README.md:
-3-7). A module cut for Edition 5 may be carried into Edition 6 byte-identical, same file name, same sha256, as GridAtlas
-carries cartridges across generations (`current.json` generation `202610292044` lists a cartridge of generation
-`202609241251`, atlas/current.json:3, :25). This is why the stamp, not a step number, is in the name: the number is a
-property of one edition's `order`; the stamp is the module's identity across editions. Team 5's draft names
-`modules/NN-<name>.js` (team-5/STEPS.md:15, :219-224); this file asks Team 5B to consolidate on `<module-stamp>-<name>.js`
-with the step number as the manifest field `team` and the order in `modules.json`, and, if Team 5 keeps `NN-`, to say
-in the law how a byte-identical module keeps its identity when it is renumbered.
+`'use strict'`, no top-level identifier but what the IIFE declares. Its first line is a comment naming the module and
+the licence only, `/* kuiper module <name>, Apache-2.0 (kuiper-belt) */`: the stamp lives in exactly two places, the
+file name and the `generation` of the registration (4.4), and the loader and E6 compare those two; a header stamp
+would be a third copy and E:A4.32 is the lesson that a stamp written twice drifts. A module is never edited after it is
+listed in a published edition: a change is a new file with a new stamp (cartridges/README.md:3-7). A module cut for
+Edition 5 may be carried into Edition 6 byte-identical, same file name, same sha256, as GridAtlas carries cartridges
+across generations (`current.json` generation `202610292044` lists a cartridge of generation `202609241251`,
+atlas/current.json:3, :25). This is why the stamp, not a step number, is in the name: the number is a property of one
+edition's `order`; the stamp is the module's identity across editions. Two teams write it this way already (Team 1:
+`<stamp>-kuiper-shell.js`, `<stamp>-line-card.js`, team-1/STEPS.md:200, :312) and two write `modules/NN-<name>.js`
+(team-5/STEPS.md:15, :219-224; team-4/STEPS.md:17, :186). So that the Opus teams never hold two names: a module's
+identity to the loader is `generation` + `sha256` in `modules.json`, whatever the file is called; the file-name check
+applies when the name begins with twelve digits and a hyphen (`/^\d{12}-/`), and then the digits must equal
+`generation`; and the default, if Team 5B does not rule otherwise in ROADMAP.md, is `<module-stamp>-<name>.js`, with
+the step number as the manifest field `team` and the order in `modules.json`. If Team 5B keeps `NN-`, the law must say
+how a byte-identical module keeps its identity when it is renumbered (answer under this scheme: by `generation` +
+`sha256`, which do not change).
 
 4.4 **The registration call.** A module's only side effect at parse time is one call:
 ```js

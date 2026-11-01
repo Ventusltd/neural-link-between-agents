@@ -29,7 +29,7 @@ Served `/home/user/estate/kuiper-belt` on `127.0.0.1:8203`; Playwright Chromium 
 `basemaps.cartocdn.com`, so MapLibre never finished loading (`mapState:'loading'`, `tileErr:1`, caption `MAP LOADING`
 at the bottom of the fall); every number below about the stars, the controls and the flight is independent of a tile.
 SwiftShader renders See Through's canvases slowly; captures were taken with the page told it was hidden (descent.js
-pauses its frame loop on `visibilitychange`, kb@018b46a ST descent.js:1019-1022) and told it was visible again after.
+pauses its frame loop on `visibilitychange`, kb@018b46a ST descent.js:1020-1023) and told it was visible again after.
 
 See Through, first screen on Pixel 7 (M1): title "See Through"; caption `SEE THROUGH`; 12,900 stars (`NP`, the phone
 rule of ST descent.js:954-955); porthole radius `Rpx` 193.64 px, centre `cy = 148 + (839 − 312)/2 = 411.5` (ST
@@ -97,7 +97,7 @@ does not fit by 16.2 px; at 393 px the slack is 16.8 px, at 412 px 35.8 px, at 4
   `SEE THROUGH`, same tab, `rel` unset, first child of `.gm-side-left`, before FILE, in the shell's face (team 1 C4),
   with one difference that makes it the star without a second look: it is drawn at rest in the shell's own *lit*
   state, `background:rgba(80,220,240,.16); color:#fff` (menu-bar.js:177-178, the open-title look; See Through lights
-  its own on-chips the same way, ST descent.js:870). It is the largest entry of the bar by its own length: 74.2 px
+  its own on-chips the same way, ST descent.js:871). It is the largest entry of the bar by its own length: 74.2 px
   against 34.6–40.2 px for the six titles at 9 px, 100.9 px against 50.7–57.9 px at 11 px; no font size or weight is
   changed to make it so (the owner's "exactly like GridAtlas" binds the face).
   (b) On install and on every resize the shell measures: if, with the star title present, `bar.scrollWidth >
@@ -146,8 +146,8 @@ once in the caption line (`LINK FIELD <name> NOT UNDERSTOOD`), never an error.
 |---|---|---|---|
 | `sub` | a substation name, ≤ 80 chars (the box's own `maxLength`, :907) | the name goes into the box; `doSearch()` (:389-403) runs; an exact lower-case match, or exactly one substring match, flies (`flyTo`, :417); otherwise no flight | 0 matches: `NO SUBSTATION NAME HERE CONTAINS THAT` (:400); many: `N MATCHES, n LIT. KEEP TYPING` (:402); the person finishes the search by hand |
 | `key` | an integer `^\d{1,15}$` | at the stars stage (`D = 0`) one amber ring (`C.amber`, attention, kb@018b46a PALETTE.md:9-14) is drawn at `KuiperLaw.place(key)` projected exactly as every star is, `cx + x·ks, cy − y·ks` (:592), nothing else moves; if `key` equals `subKey[j]` for some `j < 5800` (:101, :965: the star that lands on substation j) the box is pre-filled with `nameOf(j)` and the note reads `THE STAR THAT LANDS ON <NAME>. PRESS GO`; otherwise the note reads `KEY <k> · A LINE OF CODE, NOT A SUBSTATION` (the module's own law, :11) | `key ≥ SPACE`: `KEY <k> IS BEYOND THIS SKY (SPACE <SPACE>)`; not an integer: ignored and named |
-| `repo` | a repository name as `cosmos/repos.tsv` spells it | fetches `../../cosmos/wafer.tsv` and `repos.tsv` once (535,037 + 2,467 bytes, `wc -c`), computes the repository's key ranges exactly as the engine does (`k += gap_before; k0 = k; k += lines`, kb@018b46a editions/202611012027/index.html:203-208), and lights every star whose key falls in a range of that repository (the 20,000 DRAW THE GRID keys, :962-966), in the instrument's cyan; the caption reads `<NAME> · <n> OF <NP> STARS`; the name match is the engine's: exact lower-case, then `includes` (:610-611) | fetch fails: `REPOSITORY RANGES NEED ../../cosmos/wafer.tsv`; no such name: `NO REPOSITORY CALLED <name>`; 0 stars in range: `NO STAR OF THIS SKY FALLS IN <NAME>` |
-| `view` | `kuiper` \| `map` \| `sat` \| `3d` | `setView(v, true)` after the flight (:346-358); `3d` before a target is chosen is the existing `CHOOSE A SUBSTATION FIRST` (:362) | other values ignored and named |
+| `repo` | a repository name as `cosmos/repos.tsv` spells it | fetches `../../cosmos/wafer.tsv` and `repos.tsv` once (535,037 + 2,467 bytes, `wc -c`), computes the repository's key ranges exactly as the engine does (`k += gap_before; k0 = k; k += lines`, kb@018b46a editions/202611012027/index.html:203-208), and lights every star whose key falls in a range of that repository (the 20,000 DRAW THE GRID keys, :962-966), in the instrument's cyan; the caption reads `<NAME> · <n> OF <NP> STARS`; the name match is the engine's: exact lower-case, then `includes` (:612-613) | fetch fails: `REPOSITORY RANGES NEED ../../cosmos/wafer.tsv`; no such name: `NO REPOSITORY CALLED <name>`; 0 stars in range: `NO STAR OF THIS SKY FALLS IN <NAME>` |
+| `view` | `kuiper` \| `map` \| `sat` \| `3d` | `setView(v, true)` after the flight (:346-358); `3d` before a target is chosen is the existing `CHOOSE A SUBSTATION FIRST` (:364) | other values ignored and named |
 
 Order on arrival: `repo`, then `key`, then `sub` (a flight wins the camera), then `view`. Written on the way out, as
 GridAtlas writes `repd_ref` on selection: `arrive()` does `history.replaceState(null, '', '#sub=' +
@@ -178,7 +178,7 @@ the row "see this star fall to <NAME>" → `../../see-through/#key=<k>`. The reg
 5.7 **Deep links out of the Kuiper into See Through.** (a) From a spark: the card (team 1 step 2) gets a row "see this
 line among the stars" → `../../see-through/#key=<key>` for any placed body (`keys.json bodies[].key`); no mapping to a
 substation is invented (:11). (b) From a repository: the REPOS layer row and the find box result (`/` with a name,
-:610-611) get "its stars in See Through" → `../../see-through/#repo=<name>`. (c) From a substation name: FILE → open an
+:612-613) get "its stars in See Through" → `../../see-through/#repo=<name>`. (c) From a substation name: FILE → open an
 app → See Through (step 6, 6.2) carries the find box's text as `#sub=<text>` when the text matched no key, period or
 repository. (d) From a See Through star of the layer: 5.6. Every link is same-origin, same tab, through the pointer;
 the See Through folder shipped with the edition is the one the pointer names (checked, A5).
@@ -280,7 +280,7 @@ the application runs on and opens each one (:614-632), and its one runnable comm
 control that silently does nothing is worse than one that shows its own payload" (:707-733).
 6.L2 File holds what leaves the building: "Export this view" — print, PDF, image — and the image is checked for
 blankness before it is offered ("Handing someone an empty PNG that looks like a successful save is worse than
-refusing", :794-811, `looksBlank` :1082, capture inside a render frame :1120-1137), and the credit travels with the
+refusing", :796-810, `looksBlank` :1082, capture inside a render frame :1120-1137), and the credit travels with the
 artefact (`exportStamp`, `attributionText`, :813-834). Each export control is named by `id` and `data-gm-export`
 "because its label is not a name" (:1354-1365).
 6.L3 What else File, Edit and View hold in the live page: File ← the engine's Export button (:1663) and the engine
@@ -292,7 +292,7 @@ error (:757-762).
 `search + hash` to the live route (ga@5ec7f62 index.html:2).
 6.L5 The Kuiper's own find grammar already exists and is the seed of the link grammar: on Enter, a period
 `YYYY[-MM[-DD]]` → `lightTime`, `new [code] [N h]` → `showNew`, digits → `goKey(min(SPACE−1, n))`, else a repository by
-exact lower-case name then `includes` (kb@018b46a editions/202611012027/index.html:604-611; `goKey` :416, `address`
+exact lower-case name then `includes` (kb@018b46a editions/202611012027/index.html:605-614; `goKey` :416, `address`
 :282, `describe` :284 ends with "the text itself: python tools/key.py <k>"; the placeholder "a key, or a repository name
 to send light through" :92). Learn the Kuiper writes its state into the hash with `history.replaceState`, 400 ms
 debounced (kb@018b46a learn-the-kuiper/202610050609/lesson.js:336).
@@ -313,7 +313,7 @@ debounced (kb@018b46a learn-the-kuiper/202610050609/lesson.js:336).
     and the pointer), newest first: "Kuiper Edition 4 · 202611012027", the current one marked and inert; a tap goes to
     `../<stamp>/` carrying the current hash (`location.href = '../' + stamp + '/' + location.hash`), same tab, so the
     same key is looked at in another edition; Edition 1 opens `../202610311905/belt/` as its README says (editions/
-    README.md:21). The pointer `editions/` is the last row, "the newest edition".
+    README.md:22). The pointer `editions/` is the last row, "the newest edition".
   - `Open an app ▸` — the launcher panel of team 4 (`setPanel('apps')`, team-4/STEPS.md 7.2), the rows drawn from
     `data/apps.json`; See Through first and lit (5.1's face), then Learn the Kuiper, GridAtlas, the periodic table,
     the spider sandbox, the homepage; this step adds nothing to the registry and defines no app key; when the find
@@ -336,10 +336,10 @@ debounced (kb@018b46a learn-the-kuiper/202610050609/lesson.js:336).
 
   EXPORT (GridAtlas's "Export this view", 6.L2)
   - `⤓ Save an image of this view` (`id=kuiper-export-image`, `data-ky-export="image"`): the WebGL wafer is drawn with
-    `{antialias:false, alpha:false}` and no `preserveDrawingBuffer` (kb@018b46a editions/202611012027/index.html:121),
+    `{antialias:false, alpha:false}` and no `preserveDrawingBuffer` (kb@018b46a editions/202611012027/index.html:122),
     so the capture is taken inside the page's own draw (`KY.draw.add` with the highest order, reading `#c` then `#o`
     onto one offscreen canvas), checked with GridAtlas's blank test, and stamped at the foot with the edition's name,
-    the stamp, the UTC time and the licence line "code Apache-2.0, text and data CC BY 4.0" (editions/README.md:27-28);
+    the stamp, the UTC time and the licence line "code Apache-2.0, text and data CC BY 4.0" (editions/README.md:27);
     a blank capture is refused with "the image came back blank; try again after the wafer has drawn".
   - `⎙ Print` (`data-ky-export="print"`): the same image in a print stylesheet with the same foot. No PDF writer is
     copied from GridAtlas in this step (its `buildMapPdf` is 80 lines of JPEG-in-PDF for a raster map, :1206-1285;
@@ -369,8 +369,8 @@ by every row above, by the card, by the layers and by the apps.
 |---|---|---|---|
 | `key` | `^\d{1,15}$`, `< SPACE` | `goKey(k)`: camera to the key at zoom 14, the card with the line at the key (step 2) or `describe`'s silence words | a key is opened by any means (`r`, `/`, a tap on the wafer that opens a card, `Open a key`) |
 | `line` | `^[0-9a-f]{40}:\d+$` (`keys.json bodies[].id`) | the verified line: `edCard(i)` + `edFly` for the body with that id; unknown id → `line <id> is not in this edition's keys.json` | `e`/`E`, a spark tap, a LINES row, `Open a line` (and `key=` is written beside it with the body's key) |
-| `repo` | a name of `cosmos/repos.tsv` | lit repository, exact lower-case then `includes` (:610-611), `home()`; none → `no repository called <name>` | the find box lights a repository; the REPOS layer row |
-| `period` | `^20\d\d(-\d\d){0,2}$` | `lightTime(y, m, d)` (:604-605) | the find box lights a period; the PERIODS layer row |
+| `repo` | a name of `cosmos/repos.tsv` | lit repository, exact lower-case then `includes` (:612-613), `home()`; none → `no repository called <name>` | the find box lights a repository; the REPOS layer row |
+| `period` | `^20\d\d(-\d\d){0,2}$` | `lightTime(y, m, d)` (:607-608) | the find box lights a period; the PERIODS layer row |
 | `layers` | ids of `layers.json`, comma-joined | `KY.layers.set(id, true)` for each, others off (team 2 3.6) | any layer change (team 2 writes through `KY.link.set('layers', …)`) |
 | `edition` | a stamp of `data/editions.json` | handled by `Open an edition`: navigation to `../<stamp>/` with the rest of the hash; never kept in this page's hash | never written by this page |
 | `app` | an id of `data/apps.json` | navigation to the app's `link` with the carried fields mapped (See Through gets `key`, `repo`, `sub`), same tab; unknown → `no app called <id>` | never written by this page |
@@ -443,7 +443,7 @@ the module's sha256 in `modules.json` equals `edition-sha256.txt`'s.
 **Licence note.** The clipboard pattern, the export's blank check and the stamp travel are GridAtlas's method
 (Apache-2.0, ga@5ec7f62 LICENSE, NOTICE; team-1/STEPS.md licence note), credited in the module header and in the
 edition's `NOTICE.md`; no GridAtlas bytes are copied verbatim except the two words of the row labels. The evidence
-files offered for download are the edition's own (code Apache-2.0, text and data CC BY 4.0, editions/README.md:27-28);
+files offered for download are the edition's own (code Apache-2.0, text and data CC BY 4.0, editions/README.md:27);
 `keys.json` quotes lines that keep their repositories' licences (editions/202611012027/NOTICE.md:7-11); offering the
 file is the same publication as serving the page. The exported image carries the attribution line. Nothing
 third-party is added.
