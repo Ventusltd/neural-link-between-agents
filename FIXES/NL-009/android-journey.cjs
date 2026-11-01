@@ -89,13 +89,14 @@ function probeFn() {
   };
 }
 // screenshot analysis: paint the PNG onto a canvas sized like the viewport and measure the lit pixels under the bar
+// (starting 2 px below the bar's bottom edge, so its 1 px border row, which is brighter than the background, is not counted)
 async function waferFromPng(page, b64, yFrom) {
   return page.evaluate(async ({ b64, yFrom }) => {
     const img = new Image(); img.src = 'data:image/png;base64,' + b64; await img.decode();
     const W = innerWidth, H = innerHeight, c = document.createElement('canvas'); c.width = W; c.height = H;
     const g = c.getContext('2d'); g.drawImage(img, 0, 0, W, H); const d = g.getImageData(0, 0, W, H).data;
     let lit = 0, tot = 0, minx = 1e9, miny = 1e9, maxx = -1, maxy = -1;
-    for (let y = Math.max(0, Math.floor(yFrom)); y < H; y++) for (let x = 0; x < W; x++) { const i = (y * W + x) * 4; tot++;
+    for (let y = Math.max(0, Math.ceil(yFrom) + 2); y < H; y++) for (let x = 0; x < W; x++) { const i = (y * W + x) * 4; tot++;
       const lum = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
       if (lum > 34) { lit++; if (x < minx) minx = x; if (y < miny) miny = y; if (x > maxx) maxx = x; if (y > maxy) maxy = y; } }
     return { litFraction: +(lit / Math.max(1, tot)).toFixed(4), litPx: lit, bbox: lit ? [minx, miny, maxx, maxy] : null, bboxW: lit ? maxx - minx + 1 : 0, bboxH: lit ? maxy - miny + 1 : 0 };
@@ -333,7 +334,7 @@ async function runDevice(browser, deviceName) {
     if (panelStillOpen) { await tapAt(p.viewport.w - 4, p.viewport.h - 4); await sleep(800); p = await probe(); }   // a tap on the empty corner of the wafer closes the layer
     const wwFile = shotName('whole-wafer'); const got12 = await shotTo(wwFile);
     const wafer12 = got12.startsWith('FAILED') ? { error: got12, bbox: null } : await waferFromFile(wwFile, p.bar.bottom);
-    const whole = wafer12.bbox && wafer12.bboxW > 0.4 * Math.min(p.viewport.w, p.viewport.h - p.bar.bottom) && Math.abs(wafer12.bboxW / wafer12.bboxH - 1) < 0.25 && wafer12.bbox[1] >= p.bar.bottom - 1 && wafer12.bbox[3] <= p.viewport.h;
+    const whole = wafer12.bbox && wafer12.bboxW > 0.4 * Math.min(p.viewport.w, p.viewport.h - p.bar.bottom) && Math.abs(wafer12.bboxW / wafer12.bboxH - 1) < 0.25 && wafer12.bbox[1] >= p.bar.bottom && wafer12.bbox[3] <= p.viewport.h;
     record('whole-wafer', 'tap COMMANDS then WHOLE WAFER: the card closes and the whole wafer is on screen under the bar', cmdOpen && !p.card.open && !p.magenta && !p.panels.foot.visible && whole,
       { commandsPanel: fp, wholeWaferButton: ww, commandsOpenedUnderBar: !!cmdOpen, panelStayedOpenAfterTap: panelStillOpen, cardOpen: p.card.open, magenta: p.magenta, wafer: wafer12, screenshot: path.relative(OUT, wwFile) },
       [cmdOpen ? '' : 'COMMANDS did not open under the bar or WHOLE WAFER off screen', p.card.open ? 'card still open' : '', p.panels.foot.visible ? 'COMMANDS still open' : '', whole ? '' : 'wafer not whole on screen: ' + JSON.stringify(wafer12.bbox)].filter(Boolean).join('; '));
