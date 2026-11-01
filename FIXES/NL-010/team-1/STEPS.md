@@ -32,27 +32,27 @@ The composed page is the immutable shell `atlas/releases/202608300453-atlas-v9/i
 `atlas/current.json` (generation 202610292044, `IMMUTABLE_SHELL_PLUS_HASHED_CARTRIDGES`); the menu bar is the module
 `atlas/modules/202609031958-menu-bar.js` inlined into the live `substation-intelligence` cartridge
 `atlas/cartridges/202609062358-substation-intelligence-v9-63.js` (schema `gridatlas.menu-bar.v2` at its line 4376;
-`MENUS = ['File','Edit','View','Scope','Grid','About']` at 4380). Keys for every CSS value are given against the
+`MENUS = ['File','Edit','View','Scope','Grid','About']` at 4380; module `:31`). Keys for every CSS value are given against the
 module file; the same text sits in the cartridge at lines 4515–4731.
 
 | what | measured (1280×800) | measured (Pixel 7, 412 px) | measured (360 px) | source of the value (key) |
 |---|---|---|---|---|
-| bar element | `nav#gridatlas-menu-bar`, `aria-label="Atlas menu"`, rect (5,5) 1270×36, `position:absolute; top:0; left:0; right:0` inside `.map-container` (the map's 1 px border puts it at 5,5), z-index 10020 | (5,5) 402×34 (the same 1 px border; `position:absolute` inside `.map-container`, which is 404×827) | (5,5) 350×34 | `menu-bar.js:167-172`, `:480-483` |
-| bar height | 36 px | 34 px (`barHeightCSS 34px`) | 34 px | `:167` (36), `:372` (`@media(max-width:700px)` 34) |
+| bar element | `nav#gridatlas-menu-bar`, `aria-label="Atlas menu"`, rect (5,5) 1270×36, `position:absolute; top:0; left:0; right:0` inside `.map-container` (the map's 1 px border puts it at 5,5), z-index 10020 | (5,5) 402×34 (the same 1 px border; `position:absolute` inside `.map-container`, which is 404×827) | (5,5) 350×34 | `menu-bar.js:166-172`, `:481-503`, inserted as the map container's first child `:1688` |
+| bar height | 36 px | 34 px (`barHeightCSS 34px`) | 34 px | `:166` (36), `:372` (`@media(max-width:700px)` 34) |
 | bar background, border, blur | `rgba(4,10,13,.95)`, `border-bottom:1px solid rgba(80,220,240,.3)`, `backdrop-filter:blur(7px)` | same | same | `:169-171` |
 | bar font | `11px/1 ui-monospace,SFMono-Regular,Menlo,monospace` | titles 9px | titles 9px | `:170`, `:373` |
-| menu titles | FILE EDIT VIEW left group; SCOPE GRID ABOUT right group; `button.gm-title`, uppercase, `letter-spacing:.05em` (0.55 px), `color:#cfeef6`, `padding:0 11px`, `min-height:36px`; widths 50.7/50.7/50.7 and 57.9/50.7/57.9 px; one row at y=5 | 9 px, `letter-spacing:.025em` (0.225 px), `padding:0 6px`, `min-height:34px`; widths 34.6/34.6/34.6 and 40.2/34.6/40.2 px (sum 218.8); one row, `titleRows:1`, last right edge 407 = bar right, `scrollWidth 402 = clientWidth` | same widths (sum 218.8 px); one row; last right edge 355 = bar right; no horizontal scroll | `:174-177`, `:373`, `buildBar :504-535` (index<3 → left) |
+| menu titles | FILE EDIT VIEW left group; SCOPE GRID ABOUT right group; `button.gm-title`, uppercase, `letter-spacing:.05em` (0.55 px), `color:#cfeef6`, `padding:0 11px`, `min-height:36px`; widths 50.7/50.7/50.7 and 57.9/50.7/57.9 px; one row at y=5 | 9 px, `letter-spacing:.025em` (0.225 px), `padding:0 6px`, `min-height:34px`; widths 34.6/34.6/34.6 and 40.2/34.6/40.2 px (sum 218.8); one row, `titleRows:1`, last right edge 407 = bar right, `scrollWidth 402 = clientWidth` | same widths (sum 218.8 px); one row; last right edge 355 = bar right; no horizontal scroll | `:174-177`, `:373`, `buildBar :481-545` (`index < 3 ? left : right` at `:545`) |
 | title hover / open | `background:rgba(80,220,240,.16); color:#fff`; focus ring `2px solid #6bebff` inset | same | same | `:178-181` |
-| the three zones | `.gm-side-left` (5,5) 511×35 · `.gm-brand-slot` (516,5) 247×35 · `.gm-side-right` (764,5) 511×35; the two sides are `flex:1 1 0`, so the brand is centred whatever the titles weigh | sides 162.2 px each, slot (167.2,5) 77.6×33 (`max-width:48%`, `padding:0 2px`) | sides 136.2 px each, slot (141.2,5) 77.6×33 | `:181-183`, `:192-194`, `:486-500` |
+| the three zones | `.gm-side-left` (5,5) 511×35 · `.gm-brand-slot` (516,5) 247×35 · `.gm-side-right` (764,5) 511×35; the two sides are `flex:1 1 0`, so the brand is centred whatever the titles weigh | sides 162.2 px each, slot (167.2,5) 77.6×33 (`max-width:48%`, `padding:0 2px`) | sides 136.2 px each, slot (141.2,5) 77.6×33 | `:181-183`, `:192-194`, `:481-503` |
 | the Ventus logo: what it is | **not an image file.** `find` for `*logo*`, `*ventus*.png|svg` in the repository: none; `img`/`svg` inside the bar: 0. It is the v8 masthead `div.hud-header` (shell `index.html:23-33`) moved as the same DOM node into the brand slot (`move(brandSlot, ready.nodes.header)` `:1679`), holding `div.ventus-brand > div.ventus-main "Ventus" + div.ventus-sub "Cables &amp; Connectivity&reg;"` | same node | same node | shell `index.html:29-32`; `ventusv8.css:6-8`; `menu-bar.js:184-205`, `:1671-1679` |
 | logo natural size (as the v8 masthead, before the menu installs) | `.ventus-brand` 130.3×30.2 at (574.8, 22.9) in a 1272×68 `.hud-header`; `.ventus-main` 17px/800/5px tracking/#fff uppercase; `.ventus-sub` 6.5px/#888/2px | — | — | first-run `measure-desktop-1280x800.json` (bar not installed); `ventusv8.css:7-8` |
 | logo rendered size in the bar | `.ventus-brand` **90.0×20.5 at (599.7, 12.3)**: `.ventus-main` 14px/800/`.2em`/#fff, `.ventus-sub` 5.5px/`.14em`/#888 uppercase; flanked by SYSTEM TIME (66×35) and 2050 TARGET (57×23), gap 11 px | `.ventus-brand` **73.6×16.3 at (169.2, 13.4)**; `.ventus-main` 55.5×11.5, 11px/800/1.54px (`.14em`)/#fff; `.ventus-sub` 73.6×4.7, 4.5px/0.63px/#888; clock and counter `display:none` | `.ventus-brand` 73.6×16.3 at (143.2, 13.4); same type | `:195-205` (desktop), `:374-378` (phone: `.ventus-main` 11px `.14em`, `.ventus-sub` 4.5px, first and last `.hud-header>div` hidden, slot `max-width:48%`) |
 | logo position | horizontally centred in the bar (slot centre 640.0 = viewport centre), vertically centred (12.3+20.5/2 = 22.5 ≈ 5+36/2) | slot centre 206.0 = viewport centre 206; brand vertical centre 21.55 vs bar centre 22.0 | slot centre 180.0 = viewport centre 180 | `:192-199` |
 | logo link | **none**: `vm.closest('a')` null, no `onclick`, cursor default; the wordmark is identity, not navigation; `#fs-letterhead` (a second copy) is `display:none` under the bar | same | same | `:355-371`, `brand-measure.json brandIsLink:false` |
-| where labels and commands sit relative to the map | after install **nothing floats on the map except the search box**: `.search-bar-wrapper` (981.8, 77) 283×24 (right, 36 px under the bar) and the v8 `HIDE LAYERS` toggle at the bottom-right (1135.6, 744) 132×44 of the desktop's lower SCADA panel. Moved into the menus as the same nodes: `.map-controls` (Export, Radius search, Radius area, Poly zone, Status, Measure: `display:none` at rest), `#btn-fullscreen`, `.custom-map-attrib`, `.disclaimer-box`, `.podcast-shoutout`, `.scada-brand`; `controls_moved: 17`, `layer_controls: 63 (60+3)`, `panel_counts {File:8, Edit:1, View:5, Scope:4, Grid:3, About:8}` | three things, all 44 px tall: `.search-bar-wrapper` (135.8, 77) 261×44 (right edge 397, 10 px in from the bar's), a collapsed phone tools strip `.map-controls.gm-tools-collapsed` "Tools ▸ ⚡ Grid ◉ Subs" (15, 756) 135×44 bottom-left, and the v8 `▴ LAYERS` toggle (308.5, 783) 91.5×44 bottom-right above a collapsed SCADA wrapper (height 0); `controls_moved: 20`, `panel_counts {File:8, Edit:1, View:5, Scope:7, Grid:3, About:8}`; the Grid panel holds 63 checkboxes in 13 groups. Open panels sit at (9, 39) 394 px wide, `fixed`; File 373 px tall with 7 rows of 44 px and 20 px group headings, Grid 799 px and scrolls (`panels-pixel7.json`) | search (83.8, 77) 261×44; toggle (256.5, 684) 91.5×44; otherwise the same | `required() :143-159`, `install :1647-1720`, state `NS.menuBar` |
+| where labels and commands sit relative to the map | after install **nothing floats on the map except the search box**: `.search-bar-wrapper` (981.8, 77) 283×24 (right, 36 px under the bar) and the v8 `HIDE LAYERS` toggle at the bottom-right (1135.6, 744) 132×44 of the desktop's lower SCADA panel. Moved into the menus as the same nodes: `.map-controls` (Export, Radius search, Radius area, Poly zone, Status, Measure: `display:none` at rest), `#btn-fullscreen`, `.custom-map-attrib`, `.disclaimer-box`, `.podcast-shoutout`, `.scada-brand`; `controls_moved: 17`, `layer_controls: 63 (60+3)`, `panel_counts {File:8, Edit:1, View:5, Scope:4, Grid:3, About:8}` | three things, all 44 px tall: `.search-bar-wrapper` (135.8, 77) 261×44 (right edge 397, 10 px in from the bar's), a collapsed phone tools strip `.map-controls.gm-tools-collapsed` "Tools ▸ ⚡ Grid ◉ Subs" (15, 756) 135×44 bottom-left, and the v8 `▴ LAYERS` toggle (308.5, 783) 91.5×44 bottom-right above a collapsed SCADA wrapper (height 0); `controls_moved: 20`, `panel_counts {File:8, Edit:1, View:5, Scope:7, Grid:3, About:8}`; the Grid panel holds 63 checkboxes in 13 groups. Open panels sit at (9, 39) 394 px wide, `fixed`; File 373 px tall with 7 rows of 44 px and 20 px group headings, Grid 799 px and scrolls (`panels-pixel7.json`) | search (83.8, 77) 261×44; toggle (256.5, 684) 91.5×44; otherwise the same | `required() :141-160`, `install :1647-1689` (`move(panels.File, ready.nodes.search)` `:1662`), state `NS.menuBar` `:40-57` |
 | panels | `.gm-panel` `top:100%` of its title, `min-width:240px; max-width:min(92vw,420px); max-height:min(72dvh,620px)`, `rgba(4,10,13,.98)`, border `1px solid rgba(80,220,240,.32)` no top; right-group panels `right:0`; every row `min-height:44px`, `11px/1.35` same mono, `#cfeef6`, hover `rgba(80,220,240,.14)`; group headings `.gm-layer-group` 10px `#6fa2ae` uppercase `.08em` | all six panels `position:fixed` (`top:34px; left:4px; right:4px; max-height:calc(100dvh - 40px)`) | same (`fixed`); in landscape 863×360 the bar is 36 px again and the panels `absolute`, because the rule is on width, not on the device | `:206-213`, `:218-224`, `:245-247`, `:379-382` |
-| one open at a time, closed at rest | `closed_at_rest:true`; Escape closes; ArrowLeft/Right between titles; ArrowDown opens | same | same | `:405-445`, `:539-577` |
-| admission rule | installs nothing until the 63 controls and 11 named nodes exist; otherwise publishes `#gridatlas-menu-bar-failure` and leaves the old interface reachable (measured, see limitation) | same | same | `:1-22`, `:30`, `:134-159`, `:1647` |
+| one open at a time, closed at rest | `closed_at_rest:true`; Escape closes; ArrowLeft/Right between titles; ArrowDown opens | same | same | `:405-416`, `:468-479`, `:554-583` |
+| admission rule | installs nothing until the 63 controls and 11 named nodes exist; otherwise publishes `#gridatlas-menu-bar-failure` and leaves the old interface reachable (measured, see limitation) | same | same | `:1-21`, `:30`, `inventory :107-124`, `required :141-160`, `install :1647-1656`, `loudFailure :1752-1768` |
 
 Landscape Pixel 7 (863×360): bar (5,5) 853×36, titles 11 px (50.7/57.9 px), the full lockup with SYSTEM TIME and 2050
 TARGET back (`.ventus-brand` 90×20.5 at (391.2, 12.3)), panels `absolute`: the phone rule is `max-width:700px`, so a phone
@@ -77,25 +77,26 @@ phone. "Exactly as GridAtlas" is defined by the measured table above, not by res
 
 **GridAtlas lesson (with keys).**
 1.1 The bar is one strip at the top of the map, 36 px, `rgba(4,10,13,.95)` with a 1 px `rgba(80,220,240,.3)` rule and a
-7 px blur, mono 11 px, titles uppercase `.05em` `#cfeef6` (`gridatlas@5ec7f62 atlas/modules/202609031958-menu-bar.js:167-181`;
+7 px blur, mono 11 px, titles uppercase `.05em` `#cfeef6` (`gridatlas@5ec7f62 atlas/modules/202609031958-menu-bar.js:166-181`;
 measured (5,5) 1270×36 at 1280 px).
 1.2 Three zones, not six siblings: two `flex:1 1 0` side groups and a brand slot between them, so the brand is centred
-whatever the titles weigh, and every panel has a real left or right anchor (`:181-183`, `:486-500`, measured 511/247/511).
+whatever the titles weigh, and every panel has a real left or right anchor (`:181-183`, `:481-503`, measured 511/247/511).
 1.3 "The VENTUS logo is the best part": the wordmark is the v8 masthead's own node, moved once into the bar, never
 cloned, never a second row, never a closed panel; 14 px/800/`.2em` white over 5.5 px/`.14em` `#888` "CABLES &
 CONNECTIVITY®"; on a phone 11 px/`.14em` over 4.5 px with the clock and the 2050 counter hidden; it is identity, not a
 link (`:184-205`, `:372-378`, `:1671-1679`; shell `atlas/releases/202608300453-atlas-v9/index.html:29-32`;
 `ventusv8.css:7-8`; measured 90.0×20.5 at (599.7,12.3)).
 1.4 Admission rule: install nothing until every hook is present and uniquely identified; a missing control leaves the
-old interface reachable and publishes a failure strip rather than being skipped (`:1-22`, `:134-159`, `:1647`;
+old interface reachable and publishes a failure strip rather than being skipped (`:1-21`, `:107-124`, `:141-160`, `:1647-1656`, `:1752-1768`;
 measured: the strip at (8,8) 1264×33 when the engine had 0 + 0 controls).
 1.5 Commands move as the same DOM nodes into panel rows of 44 px, in the panel's own type (`11px/1.35` mono), and the
-map keeps only the search box under the bar; result surfaces stay with the map (`:218-224`, `:143-159`; measured
-`controls_moved:17`, only `.search-bar-wrapper` left over the map at (981.8,77)).
+map keeps only the search box under the bar; result surfaces stay with the map (`:220-225`, `:1658-1667`; measured
+`controls_moved:17`; the module moves the search into File at `:1662`, yet the live page shows `.search-bar-wrapper`
+over the map at (981.8,77), see the note under the table).
 1.6 Phone rule at `max-width:700px`: bar 34 px, titles 9 px `.025em` padding `0 6px`, panels `position:fixed; top:34px;
-left:4px; right:4px; max-height:calc(100dvh - 40px)` with `env(safe-area-inset-*)` on the bar (`:168`, `:372-382`).
+left:4px; right:4px; max-height:calc(100dvh - 40px)` with `env(safe-area-inset-*)` on the bar (`:167-168`, `:372-383`).
 1.7 The six names are the architect's vocabulary, File Edit View Scope Grid About, and the Grid menu proxies the
-engine's own inputs so the engine's handlers stay the only implementation (`:16-21`, `:29`, `:4380` in the cartridge).
+engine's own inputs so the engine's handlers stay the only implementation (`:16-21`, `:31`; `:4380` in the cartridge).
 
 **Kuiper change.** A shell module replaces Edition 4's `#bar` and `#keys` strip; the wafer engine and its placement law
 are untouched. The contract, each line testable:
@@ -166,7 +167,7 @@ SEE THROUGH in the same face needs 11 × 5.65 + 12 ≈ 74 px, 16 px more than th
 without changing GridAtlas's face, which is why the star slot's form is step 5's measured decision. Titles never shrink below 9 px; a system font scale that overflows
 wraps nothing: the bar gets `overflow-x:auto` as the last resort and the README says so.
 C10 Written in the page: a comment block at the head of the shell module naming this contract, the GridAtlas keys
-and the date measured, as GridAtlas's module does (`:1-22`).
+and the date measured, as GridAtlas's module does (`:1-21`).
 
 **Module.** `editions/<stamp>/modules/<stamp>-kuiper-shell.js` (one file, stamp, sha256 in the edition's cartridge list
 per step 3), schema `kuiper.menu-bar.v1`, loaded by `index.html` after the engine; its CSS installed by the module into

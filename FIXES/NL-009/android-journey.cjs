@@ -156,13 +156,15 @@ async function runDevice(browser, deviceName) {
     let p = await probe();
     const png = await shotPng();
     const wafer = png ? await waferFromPng(page, png.toString('base64'), p.bar ? p.bar.bottom : 0) : { error: 'screenshot timed out', litFraction: 0, bbox: null };
-    const tops = [p.barname && p.barname.rect ? p.barname.rect.top : null, ...p.titles.map(t => t.rect.top)].filter(v => v != null);
-    const oneRow = p.bar && tops.length && Math.max(...tops) - Math.min(...tops) < 4 && p.bar.height < 2 * Math.min(...p.titles.map(t => t.rect.height)) && p.barScroll.scrollWidth <= p.barScroll.clientWidth + 1;
+    const tops = p.titles.map(t => t.rect.top);   // the buttons' tops: one row means they all share one, the bar is under two button heights, and nothing is clipped off the right
+    const nameInRow = !p.barname || !p.barname.rect || (p.barname.rect.bottom <= Math.max(...p.titles.map(t => t.rect.bottom)) + 4 && p.barname.rect.top >= Math.min(...tops) - 4);
+    const oneRow = p.bar && tops.length && Math.max(...tops) - Math.min(...tops) < 4 && nameInRow && p.bar.height < 2 * Math.min(...p.titles.map(t => t.rect.height)) && p.barScroll.scrollWidth <= p.barScroll.clientWidth + 1;
     const fr = frames.slice(1).sort((a, b) => a - b);
-    const waferOk = wafer.litFraction > 0.03 && wafer.bbox && wafer.bboxW > 0.4 * p.viewport.w && Math.abs(wafer.bboxW / wafer.bboxH - 1) < 0.25;
+    const clearMin = Math.min(p.viewport.w, p.viewport.h - (p.bar ? p.bar.bottom : 0));
+    const waferOk = wafer.litFraction > 0.03 && wafer.bbox && wafer.bboxW > 0.4 * clearMin && Math.abs(wafer.bboxW / wafer.bboxH - 1) < 0.25;
     record('load', 'load: zero console errors, wafer drawn, bar one row', errors.length === 0 && waferOk && oneRow,
       { loadMs: Date.now() - t0, consoleErrors: errors.slice(), big: p.big, wafer, bar: p.bar, barTitles: p.titles.map(t => t.text), titleTops: tops, barScroll: p.barScroll, oneRow: !!oneRow, sparksVisible: p.greensCount, frameMs: fr.length ? { median: +fr[fr.length >> 1].toFixed(0), max: +fr[fr.length - 1].toFixed(0) } : null, screenshot: await shot('load') },
-      [errors.length ? errors.length + ' console error(s)' : '', waferOk ? '' : 'wafer not detected as a disc under the bar', oneRow ? '' : 'bar is not one row (tops ' + tops.join('/') + ', height ' + (p.bar && p.bar.height) + ')'].filter(Boolean).join('; '));
+      [errors.length ? errors.length + ' console error(s)' : '', waferOk ? '' : 'wafer not detected as a disc under the bar', oneRow ? '' : 'bar is not one row (button tops ' + tops.join('/') + ', bar height ' + (p.bar && p.bar.height) + ', scrollWidth ' + p.barScroll.scrollWidth + '/' + p.barScroll.clientWidth + ')'].filter(Boolean).join('; '));
     try { const j = await page.evaluate(async () => (await (await fetch('keys.json')).json())); bodies = j.bodies || j; placed = bodies.filter(b => b.on_wafer && b.verified && Number.isFinite(b.key) && b.key >= 0).map(b => { const [x, y] = keyPlace(b.key); return { key: b.key, x, y, title: b.title, repo: b.repo }; }); } catch (e) { placed = []; }
 
     // 2 EDITION opens
@@ -306,7 +308,7 @@ async function runDevice(browser, deviceName) {
     const panelStillOpen = p.panels.foot.visible;
     if (panelStillOpen) { await tapAt(p.viewport.w - 4, p.viewport.h - 4); await sleep(800); p = await probe(); }   // a tap on the empty corner of the wafer closes the layer
     const png12 = await shotPng(); const wafer12 = png12 ? await waferFromPng(page, png12.toString('base64'), p.bar.bottom) : { error: 'screenshot timed out', bbox: null };
-    const whole = wafer12.bbox && wafer12.bboxW > 0.4 * p.viewport.w && Math.abs(wafer12.bboxW / wafer12.bboxH - 1) < 0.25 && wafer12.bbox[1] >= p.bar.bottom - 1 && wafer12.bbox[3] <= p.viewport.h;
+    const whole = wafer12.bbox && wafer12.bboxW > 0.4 * Math.min(p.viewport.w, p.viewport.h - p.bar.bottom) && Math.abs(wafer12.bboxW / wafer12.bboxH - 1) < 0.25 && wafer12.bbox[1] >= p.bar.bottom - 1 && wafer12.bbox[3] <= p.viewport.h;
     record('whole-wafer', 'tap COMMANDS then WHOLE WAFER: the card closes and the whole wafer is on screen under the bar', cmdOpen && !p.card.open && !p.magenta && !p.panels.foot.visible && whole,
       { commandsPanel: fp, wholeWaferButton: ww, commandsOpenedUnderBar: !!cmdOpen, panelStayedOpenAfterTap: panelStillOpen, cardOpen: p.card.open, magenta: p.magenta, wafer: wafer12, screenshot: await shot('whole-wafer') },
       [cmdOpen ? '' : 'COMMANDS did not open under the bar or WHOLE WAFER off screen', p.card.open ? 'card still open' : '', p.panels.foot.visible ? 'COMMANDS still open' : '', whole ? '' : 'wafer not whole on screen: ' + JSON.stringify(wafer12.bbox)].filter(Boolean).join('; '));
