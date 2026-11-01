@@ -124,7 +124,7 @@ async function runDevice(browser, deviceName) {
   // a screenshot waits for a frame, and a frame at zoom 14 under SwiftShader on a loaded machine can take minutes: it is
   // retried once and never aborts the journey. The steps that measure the wafer analyse this same file, so the evidence
   // image and the measurement are one capture.
-  const shotTo = async (f) => { for (let attempt = 0; attempt < 2; attempt++) { try { await page.screenshot({ path: f, scale: 'css', timeout: 180000 }); return path.relative(OUT, f); } catch (e) { if (attempt) return 'FAILED: ' + String(e.message || e).split('\n')[0]; } } };
+  const shotTo = async (f) => { for (let attempt = 0; attempt < 3; attempt++) { try { await page.screenshot({ path: f, scale: 'css', timeout: 180000 }); return path.relative(OUT, f); } catch (e) { if (attempt === 2) return 'FAILED: ' + String(e.message || e).split('\n')[0]; } } };
   const shotName = (id) => path.join(dir, String(++n).padStart(2, '0') + '-' + id + '.png');
   const shot = (id) => shotTo(shotName(id));
   const waferFromFile = async (file, yFrom) => { try { return await waferFromPng(page, fs.readFileSync(file).toString('base64'), yFrom); } catch (e) { return { error: 'screenshot failed: ' + String(e.message || e).split('\n')[0], litFraction: 0, bbox: null }; } };
@@ -275,7 +275,7 @@ async function runDevice(browser, deviceName) {
       pinch.ok = pinch.ratio != null && r0 >= 25 && Math.abs(pinch.ratio - 0.5) < 0.12 && q.viewport.scrollX === 0 && q.viewport.scrollY === 0 && Math.abs((q.viewport.vvScale || 1) - 1) < 0.01 && q.viewport.w === vv0.w;
       if (pinch.ok) zoomNow *= d1 / d0;
       const P1 = q.magenta; if (P1) {
-        const ax = p.viewport.w / 2, ay = my, dx = -90, dy = 70;
+        const ax = p.viewport.w / 2, ay = my, dx = -90, dy = (P1.y + 70 < bandBot - 10) ? 70 : -70;   // keep the spark in the clear band (landscape has little room below)
         await touch('touchStart', [[ax, ay]]); for (let i = 1; i <= 12; i++) { await touch('touchMove', [[ax + dx * i / 12, ay + dy * i / 12]]); await sleep(25); } await touch('touchEnd', []);
         const s = await settle(); drag = { finger: [dx, dy], sparkMoved: s.magenta ? [+(s.magenta.x - P1.x).toFixed(1), +(s.magenta.y - P1.y).toFixed(1)] : null, pageScroll: [s.viewport.scrollX, s.viewport.scrollY], vvScale: s.viewport.vvScale, vvOffset: s.viewport.vvOffset, cardOpen: s.card.open };
         drag.ok = !!drag.sparkMoved && Math.abs(drag.sparkMoved[0] - dx) <= 12 && Math.abs(drag.sparkMoved[1] - dy) <= 12 && s.viewport.scrollX === 0 && s.viewport.scrollY === 0 && Math.abs((s.viewport.vvScale || 1) - 1) < 0.01;
@@ -290,14 +290,21 @@ async function runDevice(browser, deviceName) {
         for (let k = 0; k < 7 && zoomNow > target * 1.05; k++) {
           // fingers centred on the selected spark (it must not move), on whichever axis has more room, and never off the
           // screen: a touch point outside the viewport is dropped by Chromium and the pinch degrades into a one-finger drag
-          const M = p.magenta; const mx2 = M.x, my2 = M.y;
+          let M = p.magenta; const bTop = p.bar.bottom + 12, bBot = (p.card.open ? p.card.rect.top : p.viewport.h) - 12;
+          if (M.y < bTop || M.y > bBot || M.x < 12 || M.x > p.viewport.w - 12) {   // pan the spark back into the clear band with one finger on the canvas, then re-measure
+            const fx = p.viewport.w / 2, fy = (bTop + bBot) / 2, tx = Math.min(p.viewport.w - 40, Math.max(40, M.x)), ty = Math.min(bBot - 20, Math.max(bTop + 20, M.y));
+            const ddx = Math.min(p.viewport.w / 2 - 20, Math.max(20 - p.viewport.w / 2, fx - M.x)), ddy = fy - M.y;
+            await touch('touchStart', [[fx, fy]]); for (let i = 1; i <= 12; i++) { await touch('touchMove', [[fx + ddx * i / 12, fy + ddy * i / 12]]); await sleep(25); } await touch('touchEnd', []);
+            p = await settle(); M = p.magenta; if (!M) break; zoomOut.push({ pannedSparkBack: [ddx, +ddy.toFixed(1)], sparkNow: [M.x, M.y], ok: true });
+          }
+          const mx2 = M.x, my2 = M.y;
           const roomX = 2 * Math.min(mx2, p.viewport.w - mx2) - 16, roomY = 2 * Math.min(my2 - p.bar.bottom, (p.card.open ? p.card.rect.top : p.viewport.h) - my2) - 16;
           const horizontal = roomX >= roomY, D0 = Math.min(300, Math.max(40, horizontal ? roomX : roomY));
           const ratio = Math.min(D0 / 12, zoomNow / target), D1 = D0 / ratio;
           const q2 = await pinchAt(mx2, my2, D0, D1, horizontal);
           const moved = q2.magenta ? +Math.hypot(q2.magenta.x - mx2, q2.magenta.y - my2).toFixed(1) : null;
           const ok = moved != null && moved <= 3 && q2.viewport.scrollY === 0 && Math.abs((q2.viewport.vvScale || 1) - 1) < 0.01;
-          zoomOut.push({ centre: [mx2, my2], axis: horizontal ? 'x' : 'y', fingerDistance: [D0, +D1.toFixed(2)], ratio: +(1 / ratio).toFixed(5), zoomAfter: +(zoomNow / ratio).toExponential(3), selectedSparkMovedPx: moved, greensInView: [p.greensCount, q2.greensCount], ok });
+          zoomOut.push({ centre: [mx2, my2], centreHit: await page.evaluate(([x, y]) => { const el = document.elementFromPoint(x, y); return el ? (el.id || el.tagName) : null; }, [mx2, my2]), axis: horizontal ? 'x' : 'y', fingerDistance: [D0, +D1.toFixed(2)], ratio: +(1 / ratio).toFixed(5), zoomAfter: +(zoomNow / ratio).toExponential(3), selectedSparkMovedPx: moved, greensInView: [p.greensCount, q2.greensCount], ok });
           if (!ok) break; zoomNow /= ratio; p = q2;
         }
         cam = solve(p, zoomNow);
