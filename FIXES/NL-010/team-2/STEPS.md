@@ -427,7 +427,7 @@ unnecessary: if the hook is missing the module is refused at once), `target="_bl
 outside PALETTE.md; may not touch `keys.json`, `cosmos/`, the pointer, another module's host, or `index.html`; may not
 exceed `byte_budget`; may not carry its stamp anywhere but the file name and `generation`; may not catch and swallow a
 failure of its own data (it reports it through the layer state or `KY.modules.<id>.inspect().failures`, as
-`state.failures` in pipeline-news-layers.js:113).
+`failures: []` in pipeline-news-layers.js:112).
 
 4.9 **Checks before the PR**, folded into Team 5's `tools/edition_check.py` (team-5/STEPS.md:79-81 E1-E5): E6 every file
 in `modules/` has a stamp prefix equal to the `generation` in its first-line header, is listed in `modules.json`, and
