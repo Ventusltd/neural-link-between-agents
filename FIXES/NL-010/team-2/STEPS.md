@@ -41,7 +41,7 @@ page admits by hash and hook, in order, loudly.
 
 **Goal.** One registry, `data/layers.json` plus `modules/<stamp>-layers.js`, holds every reference layer of the wafer as
 a record with a key, a label, a group, a colour with a stated meaning, an order, a source with a sha256, a licence and a
-live state; one WAFER panel (the Grid menu's place in the bar, Team 1's name for it, team-1/STEPS.md:146-153) shows one
+live state; one WAFER panel (the Grid menu's place in the bar, Team 1's name for it, team-1/STEPS.md:145-153) shows one
 row per layer with an on/off control that is the only original; every other surface (keys, readout, URL, File menu,
 SCOPE and EDIT, the apps) proxies that original; a layer whose
 data is missing, wrong or unlicensed is listed and says why in its row, in the heading and in an alert, and draws
@@ -126,7 +126,7 @@ named on the row, never placed (:649-651; E:B2.10), the seventh law (kuiper-belt
 3.3 **The registry module, `modules/<module-stamp>-layers.js`.** Registers through step 4's `KY.register` with
 `provides: ["layers"]` and `requires` including `wafer` (the wafer's admission, 4.2) and `line-card` (Team 1's card
 module, 3.3 last bullet). It builds the WAFER panel (`#layers`, registered through `KY.panels.add('wafer', el)`; the
-title WAFER is Team 1's, GRID → WAFER at team-1/STEPS.md:146-153, LINES → WAFER + SCOPE + EDIT at :163) with one row per
+title WAFER is Team 1's, GRID → WAFER at team-1/STEPS.md:145-153, LINES → WAFER + SCOPE + EDIT at :163) with one row per
 record in `layers.json`, in `order`, grouped by `group` with a group title, each row a `<label>` holding the layer's
 ORIGINAL `<input type=checkbox data-ky-layer="layer:<id>">`, stretched over the whole row as GridAtlas stretches its
 proxy, a name, and a state tag. The panel answers NL-009's audit of today's LINES panel (neural-link
@@ -210,8 +210,8 @@ keeps its parameters. Step 3 test 6 opens through `editions/`, not only the date
 | `editions` | `layer:editions` | editions · THE WAFER | one amber ring at the radius of the first commit at or after each edition's cut stamp (`findBy('unix', …)` as `lightTime` does, :556), labelled with the number; tap opens that edition (Team 3's File: open an edition). An edition cut after the wafer's last commit has no such commit: it is counted and named on the row, drawn as an amber tick at the rim (`sqrt(SPACE)`) with the words `beyond the wafer's last commit`, never placed inside (the seventh law). Measured at kuiper-belt@018b46a: `last_unix` 1793539112 = 2026-11-01T13:18:32Z (cosmos/wafer-meta.json:9), so Editions 3 (202611012022) and 4 (202611012027) are beyond the rim and Editions 1 and 2 are placed | `data/editions.json`, built from `editions/README.md` (kuiper-belt@018b46a editions/README.md:12-24: 4 editions, stamps 202610311905, 202611010114, 202611012022, 202611012027) and the pointer (editions/index.html:7, :11, :12) | CC BY 4.0 (kuiper-belt data) | at the wafer of kuiper-belt@018b46a: `OK · 2 of 4 placed, 2 beyond the rim`; Edition 5 itself is a third beyond the rim until `cosmos/` is re-harvested |
 | `lines` | `layer:lines` | verified lines · THE EVIDENCE | green sparks at their keys, bright green for `class: focus`, magenta when selected (index.html:645-648) | `keys.json`, 346 bodies, 344 on the wafer, hashed in `proof/edition-sha256.txt` (kuiper-belt@018b46a editions/202611012027/proof/edition-sha256.txt:4; E:B5.16) | Apache-2.0; each quoted line keeps its repository's licence (editions/202611012027/NOTICE.md:7-10) | OK · 344 of 346 (the two star-maker lines counted, not placed, README.md:48); `preload: true` |
 | `see-through` | `layer:see-through` | See Through stars · THE APPS | cyan stars (the instrument) at the keys Team 3's step 5 assigns; tap deep-links into See Through | the record's `source.file`, `format` and `features` are Team 3's to write in step 5 (the registry names no other team's file); the registry admits `edition-keys.v1` and `code-feature-collection.v1` and refuses any other format in words (`REFUSED · format <x> not admitted`); today See Through's stars are "a line of code today, not a substation" placed by the same law (kuiper-belt@018b46a see-through/202610050609/descent.js:11; kuiper-law.js:7-10; E:B6.5) and the app reads no URL parameter (`grep -n 'location\.'` over descent.js and index.html at see-through/202610050609 finds nothing; Team 3 EVIDENCE.md:35-36) | CERN-OHL-S v2 for the app (see-through/202610050609/LICENSE.md:6; E:B6.3); ODbL for the substations (grid-data.js:7; E:B6.9) | first row of THE APPS and the largest label in the panel (the star player); `EMPTY · awaiting step 5 features` until Team 3's file exists, never absent from the list |
-| `elements` | `layer:elements` | periodic table · THE APPS | one mark per `block:<Sym>` at the key of its first function line, grey (the record), amber when `state: UNSETTLED` (elements@f7a92fb ELEMENTS.md:7-13) | Team 4's step 7 writes the file and names it (its draft: `data/elements.json`, team-4/STEPS.md:186); the registry admits it when its `format` is `code-feature-collection.v1` and refuses any other in words on the row; the catalogue keys its functions by `line:<n>` of the 250,174-line numbered database (elements@f7a92fb README.md:16-17, ELEMENTS.md:3), which is galaxies-wafers' key space, not the Kuiper's 63,340,120,796-key address space (cosmos/wafer-meta.json:4); the mapping `line:<n>` → `repo@commit path:line` → Kuiper key by `tools/edition_keys.py` (:12) is Team 4's to build and prove | **unsettled**: no LICENSE file at elements@f7a92fb (`ls`: APPS.md CATALOGUE.md ELEMENTS.md README.md SURFACES.md build catalogue functions inputs tests; E:B6.17), Team 5's register | `REFUSED · licence unsettled (elements@f7a92fb has no LICENSE)` until Team 5 settles it; then `EMPTY · awaiting step 7 keys` until the mapping exists; listed from Edition 5 |
-| `spider` | `layer:spider` | spider graphs · THE APPS | nodes as grey marks, edges as `LineString` key pairs drawn as chords, one graph at a time, the graph being the layer's `value` | Team 4's step 7 writes the files and names them (its draft: `data/graphs/overview.json`, `data/graphs/periodic-table.json` in `receiver-graph-v1` node/edge JSON, team-4/STEPS.md:166, :186); the registry admits a graph only as `code-feature-collection.v1` (nodes as Points with keys, edges as LineStrings with key pairs) and shows `REFUSED · format receiver-graph-v1 not admitted` otherwise, so the conversion is Team 4's or a later edition adds the format to the registry, and the disagreement surfaces on the row, not in a merge; built from the receiver manifest (testcode@d09c185 spider/20260914T143049Z-v5-linkify-frontdoor-brandfaithful/spider/manifest.json:2 `receiver-manifest-v1`, 16 graphs incl. `periodic-table` at :57); node ids `family:N` and `block:<Sym>` need the same key mapping as elements | Apache-2.0 (testcode@d09c185 LICENSE:1); the graphs' own data is read live over https from other repositories, each named in the manifest entry | `EMPTY · awaiting step 7 keys`; the `?graph=<id>&focus=` grammar (v5 index.html:212) is the tap's deep link into the spider |
+| `elements` | `layer:elements` | periodic table · THE APPS | one mark per `block:<Sym>` at the key of its first function line, grey (the record), amber when `state: UNSETTLED` (elements@f7a92fb ELEMENTS.md:7-13) | Team 4's step 7 writes the file and names it (its draft: `data/elements.json`, team-4/STEPS.md:189); the registry admits it when its `format` is `code-feature-collection.v1` and refuses any other in words on the row; the catalogue keys its functions by `line:<n>` of the 250,174-line numbered database (elements@f7a92fb README.md:16-17, ELEMENTS.md:3), which is galaxies-wafers' key space, not the Kuiper's 63,340,120,796-key address space (cosmos/wafer-meta.json:4); the mapping `line:<n>` → `repo@commit path:line` → Kuiper key by `tools/edition_keys.py` (:12) is Team 4's to build and prove | **unsettled**: no LICENSE file at elements@f7a92fb (`ls`: APPS.md CATALOGUE.md ELEMENTS.md README.md SURFACES.md build catalogue functions inputs tests; E:B6.17), Team 5's register | `REFUSED · licence unsettled (elements@f7a92fb has no LICENSE)` until Team 5 settles it; then `EMPTY · awaiting step 7 keys` until the mapping exists; listed from Edition 5 |
+| `spider` | `layer:spider` | spider graphs · THE APPS | nodes as grey marks, edges as `LineString` key pairs drawn as chords, one graph at a time, the graph being the layer's `value` | Team 4's step 7 writes the files and names them (its draft: `data/graphs/overview.json`, `data/graphs/periodic-table.json` in `receiver-graph-v1` node/edge JSON, team-4/STEPS.md:169, :189); the registry admits a graph only as `code-feature-collection.v1` (nodes as Points with keys, edges as LineStrings with key pairs) and shows `REFUSED · format receiver-graph-v1 not admitted` otherwise, so the conversion is Team 4's or a later edition adds the format to the registry, and the disagreement surfaces on the row, not in a merge; built from the receiver manifest (testcode@d09c185 spider/20260914T143049Z-v5-linkify-frontdoor-brandfaithful/spider/manifest.json:2 `receiver-manifest-v1`, 16 graphs incl. `periodic-table` at :57); node ids `family:N` and `block:<Sym>` need the same key mapping as elements | Apache-2.0 (testcode@d09c185 LICENSE:1); the graphs' own data is read live over https from other repositories, each named in the manifest entry | `EMPTY · awaiting step 7 keys`; the `?graph=<id>&focus=` grammar (v5 index.html:212) is the tap's deep link into the spider |
 
 Two layers above (`periods`, `repos`) have no file: their source is the wafer itself, their proof is `ci_check` K2
 (kuiper-belt@018b46a tools/ci_check.py:9) and the engine's own self-tests (`?selftest=2026-07` at index.html:220-235,
@@ -222,7 +222,7 @@ not store x,y in any file (the format forbids coordinates; the Edition 4 `Object
 as the run-time place and nothing else). It does not add bar titles: FABLE-01 measured the bar at 416.6 px of content
 against 344-414 px available, two rows on every phone (neural-link FIXES/NL-009/round1/01-bar.md:13-17); the layers
 live behind ONE title, as GridAtlas keeps 63 behind Grid; that title is WAFER, Team 1's mapping of GRID
-(team-1/STEPS.md:146-153), adopted here for the owner's "keep it consistent". It does not decide licences (Team 5), deep links (Team 3)
+(team-1/STEPS.md:145-153), adopted here for the owner's "keep it consistent". It does not decide licences (Team 5), deep links (Team 3)
 or which app keys exist (Team 4); it refuses what they have not yet settled, in words, on the row.
 
 **Module.** `editions/<stamp>/modules/<module-stamp>-layers.js` (the registry, the WAFER panel, the verified-lines
@@ -412,7 +412,7 @@ across generations (`current.json` generation `202610292044` lists a cartridge o
 atlas/current.json:3, :25). This is why the stamp, not a step number, is in the name: the number is a property of one
 edition's `order`; the stamp is the module's identity across editions. Two teams write it this way already (Team 1:
 `<stamp>-kuiper-shell.js`, `<stamp>-line-card.js`, team-1/STEPS.md:200, :312) and two write `modules/NN-<name>.js`
-(team-5/STEPS.md:15, :219-224; team-4/STEPS.md:17, :186). So that the Opus teams never hold two names: a module's
+(team-5/STEPS.md:18, :228-237; team-4/STEPS.md:17, :189). So that the Opus teams never hold two names: a module's
 identity to the loader is `generation` + `sha256` in `modules.json`, whatever the file is called; the file-name check
 applies when the name begins with twelve digits and a hyphen (`/^\d{12}-/`), and then the digits must equal
 `generation`; and the default, if Team 5B does not rule otherwise in ROADMAP.md, is `<module-stamp>-<name>.js`, with
@@ -501,7 +501,7 @@ exceed `byte_budget`; may not carry its stamp anywhere but the file name and `ge
 failure of its own data (it reports it through the layer state or `KY.modules.<id>.inspect().failures`, as
 `failures: []` in pipeline-news-layers.js:112).
 
-4.9 **Checks before the PR**, folded into Team 5's `tools/edition_check.py` (team-5/STEPS.md:79-81 E1-E5): E6 every file
+4.9 **Checks before the PR**, folded into Team 5's `tools/edition_check.py` (team-5/STEPS.md:84-86 E1-E5): E6 every file
 in `modules/` is listed in `modules.json`, its record's `generation` is twelve digits and equals the file name's
 leading digits when the name has them, its `licence` is non-empty, and its `requires` ⊆ the admissible set of 4.2 (the
 hook table's names are read from the page's `KY.names` literal with the same regex K3 uses to find the script,
@@ -519,7 +519,7 @@ if not, exactly why. A team that needs a hook the table lacks files a REQUEST on
 
 **Module.** The hook table and the loader live in `editions/<stamp>/index.html` (integrator; Opus team 4 writes them
 as `modules/<module-stamp>-loader.js` for review and the integrator moves the code into the page, since the loader
-cannot load itself; Team 5's plan says the same, team-5/STEPS.md:253); `editions/<stamp>/modules.json`;
+cannot load itself; Team 5's plan says the same, team-5/STEPS.md:265); `editions/<stamp>/modules.json`;
 `tools/edition_check.py` E6-E8; a reference module `modules/<module-stamp>-hello.js` (twenty lines: registers, draws one
 cyan ring at `keyPlace(0)`, exposes `inspect`) that every team's tests load first to prove the loader against a known
 file, and which is removed from `order` before PR A (its sha256 stays in `proof/handoff/04-loader/`).
@@ -564,7 +564,7 @@ integrator applies), the loader (`modules/<module-stamp>-loader.js` as the revie
 the integrator), `modules.json`'s schema and the integrator's first record set, `tools/edition_check.py` E6-E8, the
 hello module, and this step's tests 1-9 on Pixel 7 and Galaxy S24 with screenshots of tests 1, 2 and 7. You do not
 touch the engine below the hook table, `keys.json`, `cosmos/`, the bar's titles (Team 1), any layer (Team 3 of the Opus
-plan) or the link grammar (Team 6). You are admitted first in the integrator's order (team-5/STEPS.md:262-267) because
+plan) or the link grammar (Team 6). You are admitted first in the integrator's order (team-5/STEPS.md:274-279) because
 every other module is tested against you; you therefore publish your hook-table key list on #10 as a FINDING before
 any other team's module is cut, and you add a key only by a new FINDING naming the engine line it exposes.
 
@@ -572,13 +572,18 @@ any other team's module is cut, and you add a key only by a new FINDING naming t
 
 ## Open items this team hands to others (DISCLOSED, not resolved here)
 
-- Team 1: the name of the layers' title in the bar (Grid → LAYERS proposed) and the `KY.panels.add` hook's exact shape;
-  the bar must stay one row at 360 px with it (neural-link FIXES/NL-009/round1/01-bar.md:13-17).
-- Team 3: the features of `data/see-through.json` (which keys are "See Through's stars" on the wafer), the deep link
-  a star opens, and the link grammar beyond `?layers=`.
-- Team 4: the mapping `line:<n>` → Kuiper key for elements and spider nodes, and the app keys; until then those two
-  layers are listed EMPTY.
-- Team 5: elements' licence (none at elements@f7a92fb); E6-E8; the `<module-stamp>-<name>.js` vs `NN-<name>.js` choice;
-  K3's root-only scope (tools/ci_check.py:68).
+- Team 1: WAFER is adopted as the title (team-1/STEPS.md:145-153); the `KY.panels.add` hook's exact shape and how the
+  SCOPE and EDIT panels call `KY.layers.value` / `set` / `get` (3.3) are Team 1's to write into its module; the card
+  module `line-card` is admitted before `layers` and exposes `api.show(body)`; the bar must stay one row at 360 px
+  (neural-link FIXES/NL-009/round1/01-bar.md:13-17).
+- Team 3: the record fields (`source.file`, `format`, `features`) of the See Through stars layer (which keys are "See
+  Through's stars" on the wafer), the deep link a star opens, the link grammar beyond `?layers=`, and the forwarding of
+  `location.search` by `see-through/index.html` (3.6).
+- Team 4: the mapping `line:<n>` → Kuiper key for elements and spider nodes, the app keys, and the conversion of its
+  `receiver-graph-v1` graphs to `code-feature-collection.v1` (or a REQUEST for the registry to admit that format in a
+  later edition); until then those two layers are listed EMPTY or REFUSED with the words on the row.
+- Team 5: the pointer forwarding `location.search + location.hash` (3.6, GridAtlas index.html:2); elements' licence
+  (none at elements@f7a92fb); E6-E8; the `<module-stamp>-<name>.js` default and the `NN-<name>.js` drafts of Teams 4 and 5
+  (4.3); K3's root-only scope (tools/ci_check.py:68).
 - NL-009: the `#refuse` strip (09-robust.md patch :94-96) and the 44 px touch rule (01-bar.md:51) are assumed to land in
   Edition 5; this team's rows and alerts use them rather than inventing a second surface.

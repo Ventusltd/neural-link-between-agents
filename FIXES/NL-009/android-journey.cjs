@@ -251,7 +251,8 @@ async function runDevice(browser, deviceName) {
     const clearMid = (p) => Math.max(p.bar.bottom + 40, Math.min((p.card.open ? p.card.rect.top : p.viewport.h) - 40, (p.bar.bottom + (p.card.open ? p.card.rect.top : p.viewport.h)) / 2));
     if (P0) {
       const mx = p.viewport.w / 2, my = clearMid(p), d0 = Math.min(220, p.viewport.w - 60), d1 = d0 / 2;
-      const q = await pinchAt(mx, my, d0, d1);   // settle: the last drawn frame must be the finished pinch, not one from the middle of it const r0 = Math.hypot(P0.x - mx, P0.y - my), r1 = q.magenta ? Math.hypot(q.magenta.x - mx, q.magenta.y - my) : null;
+      const q = await pinchAt(mx, my, d0, d1);   // pinchAt settles, so the last drawn frame is the finished pinch, not one from the middle of it
+      const r0 = Math.hypot(P0.x - mx, P0.y - my), r1 = q.magenta ? Math.hypot(q.magenta.x - mx, q.magenta.y - my) : null;
       pinch = { centre: [mx, my], fingerDistance: [d0, d1], sparkDistanceFromCentre: [+r0.toFixed(1), r1 && +r1.toFixed(1)], ratio: r1 != null ? +(r1 / r0).toFixed(3) : null, expected: 0.5, pageScroll: [q.viewport.scrollX, q.viewport.scrollY], vvScale: q.viewport.vvScale, innerWidth: q.viewport.w };
       pinch.ok = pinch.ratio != null && Math.abs(pinch.ratio - 0.5) < 0.12 && q.viewport.scrollX === 0 && q.viewport.scrollY === 0 && Math.abs((q.viewport.vvScale || 1) - 1) < 0.01 && q.viewport.w === vv0.w;
       if (pinch.ok) zoomNow *= d1 / d0;

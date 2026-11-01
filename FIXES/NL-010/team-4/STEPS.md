@@ -305,11 +305,16 @@ the pointer now reads generation 202610292044, ga@5ec7f62 atlas/current.json:3; 
 globalgrid2050 (the diary line 89→90) and kuiper-belt. The prototype compares `line_text` (the text at the edition's
 commit) and, where `line_text` is empty (6 bodies, MEASURED), falls back to `quote` (`drift.py:20`), which the
 deliverable will not do: run strictly (`/tmp/nl010/team-4/drift_strict.py`, output `drift_strict.json`) the result is
-**331 SAME, 7 MOVED, 2 GONE, 0 FILE_GONE, 6 UNVERIFIED (reason `empty line_text`)**, and those are the numbers the
-rule above produces. Two of the MOVED rows, kuiper-belt README.md 33→34 and globalgrid2050 diary 89→90, are two of
-the rows keys.json `quote_not_at_line` flags; they are genuine at head (`line_text` is found one line lower), not an
-artefact of that flag. FABLE-T4B re-ran the first run byte-identical (REVIEW.md round 1); the strict numbers stand
-once EVIDENCE.md keys them.
+**331 SAME, 7 MOVED, 2 GONE, 0 FILE_GONE, 6 UNVERIFIED (reason `empty line_text`)**, and those are the algorithm's
+numbers. The six empty-`line_text` bodies are star-maker README.md:115 and machinery/bench/starmaker.mjs:86 (the two
+lines not on the wafer), globalgrid2050 diary …:89, kuiper-belt README.md:33, data-centres-gb README.md:8 and
+kuiper-belt learn-the-kuiper/202610050144/NOTICE.md:6; the last four are four of the seven `quote_not_at_line` rows
+(the quote sits at 90, 34, 9, 7 at the edition's own commit). The loose run compared those four by `quote` and so
+reported 3 of its 10 MOVED (89→90, 33→34, 8→9) and 1 of its 3 GONE (NOTICE.md:6) **because of** the Edition 1
+off-by-one, which is the artefact the rule exists to exclude; the strict run makes them UNVERIFIED, which is right.
+The deliverable records every head before it classifies, so its summary reads "22 heads observed, 6 UNVERIFIED"
+(the strict prototype looked heads up lazily and recorded 21, star-maker's two rows being refused first). FABLE-T4B
+re-ran both runs byte-identical (REVIEW.md rounds 1 and 2); the strict numbers stand once EVIDENCE.md keys them.
 
 **How it is proven.** P1 determinism: two runs against the same recorded heads produce byte-identical `drift.json`.
 P2 the refusal: with one clone removed, every row of that repository is `UNVERIFIED` and the summary's denominator
@@ -480,7 +485,11 @@ unit, not a renumbering**, and the comparison file must say so in its first line
 substrate beside the old one (gw@fff6fc6 wafer.mjs:3-7, :40-43, GridAtlas' Carto basemap as the precedent): the
 unique-lines wafer is a second substrate with a second name, compared, never merged. **Opus team brief.** Phase 2,
 after the owner's ACCEPT of 1–10: one team of four on `tools/unique_lines.py`, `cosmos/unique.tsv`, `unique.html` and
-`proof/unique-vs-numbered.json`, run on the harvest machine, with K2u as the test.
+`proof/unique-vs-numbered.json`, run on the harvest machine, with K2u as the test. The tool must stream: one blob at a
+time from `git cat-file --batch`, lines hashed as they are read, the distinct set spilled to disk (a sorted on-disk
+hash file or SQLite, as the modular star's `modular.sqlite` did, el@f7a92fb catalogue/provenance.json:42), because the
+in-memory prototype died of memory on globalgrid2050 alone on a 25-clone machine, let alone 98 repositories (see
+"Measurements appended").
 
 **The unique-lines Kuiper.** `tools/unique_lines.py` walks every text blob of every commit the wafer holds (the same
 `rev-list --all` set), hashes each LF-normalised line, and issues one key per distinct line in the order of its
@@ -528,7 +537,11 @@ Partial output of `/tmp/nl010/team-4/unique_lines.py` (HEAD of the local clones,
 exact LF-normalised bytes within that repository). 8 of 25 repositories done; the remaining 17 (globalgrid2050,
 grid-distance-maths, gridatlas, gridmachine1, kuiper-belt, kuiper-drawing-engine, kuiper-ship, maths,
 particle-physics-drawing-engine, star-maker, stars, substations, testcode, time-stone, trillion-loop, ventus-grid-engine,
-worlds-) are UNMEASURED here. No estate-wide distinct count is claimed from this table.
+worlds-) are UNMEASURED here. No estate-wide distinct count is claimed from this table. Why it stopped: both runs of
+`unique_lines.py` (T4A's and FABLE-T4B's re-run, `/tmp/nl010/team-4/unique_lines.rerun.log`) were killed with exit 137,
+out of memory, while reading globalgrid2050's HEAD tree, because the prototype holds a whole repository's
+`git cat-file --batch` output and every distinct line of every clone in memory at once. The consequence is written
+into 8c's Opus brief: the deliverable streams.
 
 | repository | head | files | binary | text lines | distinct lines | distinct / lines |
 |---|---|---|---|---|---|---|
