@@ -84,12 +84,12 @@
   },
   "T3_tap_vs_drag": {
    "clean_tap_opens_card": true,
-   "clean_down_to_up_ms": 60,
+   "clean_down_to_up_ms": 59.9,
    "held_900ms_opens_card": false,
    "held_down_to_up_ms": 900.1,
    "jittered_tap_6px_opens_card": true,
    "jitter_moved": 8.49,
-   "jitter_down_to_up_ms": 79.9,
+   "jitter_down_to_up_ms": 80.1,
    "drag_30px_opens_card": false,
    "drag_moved": 30
   },
@@ -108,14 +108,14 @@
     "scrollY": 0,
     "scrollX": 0
    },
-   "pointerup_to_click_ms": 1,
+   "pointerup_to_click_ms": 1.4,
    "targets": {
     "up": [
-     99419,
+     51795.30000000028,
      "BUTTON"
     ],
     "click": [
-     99420,
+     51796.700000000186,
      "BUTTON"
     ]
    },
@@ -190,6 +190,18 @@
   },
   "T6e_escape_with_panel_open": {
    "openPanel_after": null
+  },
+  "T6f_close_then_open_at_once": {
+   "openPanel": null,
+   "card_after": "block",
+   "edSel": 6,
+   "state_kuiper": true,
+   "verdict": "ok: the new card survived our own back()"
+  },
+  "T6g_back_after_race": {
+   "page_alive": true,
+   "card_after": "none",
+   "verdict": "ok"
   },
   "T7_long_press": {
    "canvas": {

@@ -507,3 +507,19 @@ owner's acceptance of steps 1–10.
   | galaxies-wafers | fff6fc6ad4f9 | 735 | 0 | 114,966 | 27,849 |
 
   Sum over these 8: lines 718,499 distinct-in-repo sum 215,793. The cross-repository distinct count is not in the log (it was only to be written to the JSON), so it is UNMEASURED.
+
+## E12. Round-2 keys (21:35–21:45 UTC)
+
+- `/tmp/nl010/team-4/drift_strict.py` (compares `line_text` only; `drift_strict.py:20–22`) re-run by me:
+  `drift_strict.json` byte-identical to T4A's; 346 rows → 331 SAME, 7 MOVED, 2 GONE, 0 FILE_GONE, 6 UNVERIFIED
+  (`reason: empty line_text`), 21 heads recorded. The six: star-maker README.md:115, star-maker
+  machinery/bench/starmaker.mjs:86, globalgrid2050 diary-notes-log/260522-0115-v7-rollback-and-working-method.md:89,
+  kuiper-belt README.md:33, data-centres-gb README.md:8, kuiper-belt learn-the-kuiper/202610050144/NOTICE.md:6. The
+  last four are four of the seven `summary.quote_not_at_line` rows of keys.json (quote at 90, 34, 9, 7), so the loose
+  run's MOVED 89→90, 33→34, 8→9 and GONE NOTICE.md:6 were the Edition 1 off-by-one compared through `quote`
+  (`drift.py:20` `b.get('line_text') or b['quote']`), not drift at head.
+- kuiper-belt@018b46ae editions/202611012027/proof/keys-summary.json `roundtrip_key_py[0]`: key 62884788882,
+  gridatlas tools/offtakers/src/01-data.js:4, `key_py.commit` cacb69a7c4ab…, `text_eq_git_line` true.
+- kuiper-belt@018b46ae README.md:33–36: "A statement with a key is a fact … A statement without a key is a candidate.
+  Write it as a candidate or do not write it."
+- neural-link-between-agents at 4ed9bfe3 (moving): team-5/STEPS.md:233–234 and :268–269 unchanged from E11.

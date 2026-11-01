@@ -162,7 +162,15 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
     await page.evaluate(() => { edCard(4); }); await sleep(200); await page.keyboard.press('Escape'); await sleep(200);
     const g7 = await G(); rec('T6d_escape_with_card_open', { card_after:g7.card, verdict: g7.card === 'block' ? 'BUG: Escape does not close the card' : 'ok' });
     await page.evaluate(() => { card.style.display = 'none'; }); await page.$eval('#bar [data-panel=foot]', b => b.click()); await sleep(200); await page.keyboard.press('Escape'); await sleep(200);
-    rec('T6e_escape_with_panel_open', { openPanel_after:(await G()).openPanel }); }
+    rec('T6e_escape_with_panel_open', { openPanel_after:(await G()).openPanel });
+    // the race: close a layer and open another before the popstate from history.back() arrives
+    await page.$eval('#bar [data-panel=lines]', b => b.click()); await sleep(300);
+    await page.evaluate(() => { __k.key('Escape'); edCard(6); }); await sleep(1500);
+    const g8 = await G(); rec('T6f_close_then_open_at_once', { openPanel:g8.openPanel, card_after:g8.card, edSel:g8.edSel, state_kuiper: await page.evaluate(() => !!(history.state && history.state.kuiper)), verdict: g8.card === 'block' ? 'ok: the new card survived our own back()' : 'BUG: our own popstate closed the new card' });
+    await page.goBack({ waitUntil:'commit' }).catch(()=>{}); await sleep(800);
+    const alive8 = await page.evaluate(() => !!window.__k).catch(() => false); const g9 = alive8 ? await G() : null;
+    rec('T6g_back_after_race', { page_alive:alive8, card_after:g9 && g9.card, verdict: alive8 && g9.card !== 'block' ? 'ok' : 'BUG' });
+    if (!alive8) { await page.goForward({ waitUntil:'commit' }).catch(()=>{}); await page.waitForFunction(() => window.__k && window.__k.get().edN > 0, null, { timeout:60000 }); await sleep(6000); } }
   // ---- T7 long press
   { await page.evaluate(() => { card.style.display = 'none'; __ev.ctx = 0; __ev.ctxPrevented = 0; }); await settle();
     const x = Math.round(W*0.5), y = Math.round(H*0.65);

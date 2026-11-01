@@ -10,6 +10,9 @@ so the camera (`cx, cy, zoom`), `moved`, `openPanel`, the card state and `edScre
 the patch. Full JSON records: `results-before-Pixel_7.json`, `results-after-Pixel_7.json`, `results-after-Galaxy_S24.json`
 (copied beside this file as `04-touch-results-*.json`).
 
+Galaxy S24 (360×780) after the patch: identical verdicts, pinch on bar and LINES panel `scale 1`, spark under the ×
+at (334, 629.6) not picked, back closes panel and card, race probe `T6f` ok, 0 console errors.
+
 What the engine does today (read from the page): `pointerdown` on `#c`, `pointermove`/`pointerup`/`pointercancel` on
 `window`, one `Map` of pointers (one = drag, two = pinch about the world point between the fingers), `wheel` passive;
 `canvas{touch-action:none}`, bar/keys/× buttons `touch-action:manipulation`, panels and card `auto`; viewport
@@ -48,8 +51,8 @@ tap = cumulative `|dx|+|dy| < 4` px with no time bound; the edition's spark pick
    (Escape).** `history.length` 2 before and after opening LINES; `page.goBack()` with LINES open → `about:blank`
    (`T6a`, before), the same with the card open (`T6b`). Escape with the card open left it `block` (`T6d`). After:
    opening a panel or a card pushes one `history.pushState({kuiper:1})` entry (kept in step with the UI on every
-   redraw, so every close path, including the engine's own, releases it with `history.back()`), `popstate` closes the
-   open layer; back with LINES open → URL unchanged, `openPanel null`; back with the card open → card `none`; back
+   redraw, so every close path, including the engine's own, releases it with `history.back()`; that self-inflicted
+   `popstate` is flagged and closes nothing), a user's `popstate` closes the open layer; back with LINES open → URL unchanged, `openPanel null`; back with the card open → card `none`; back
    with nothing open still leaves the page (`T6c`: `page_left true`). Escape now closes the card when no panel is open.
    Judgement on `pushState`: adopted. It is the Android convention for a sheet or dialog, costs one entry only while
    something is open, and the entry is created inside the tap's user activation so Chrome's back-intervention does
@@ -178,7 +181,7 @@ passes; zero console errors on load.
    let best = -1, bd = 81;
    for (let i = 0; i < edPlaced.length; i++) { const [x, y] = edScreen(edPlaced[i]); const d = (x - e.clientX)**2 + (y - e.clientY)**2; if (d < bd) { bd = d; best = i; } }
    if (best >= 0) { edCard(best); edFly(edPlaced[best]); }
-@@ -719,8 +731,18 @@
+@@ -719,8 +731,21 @@
    dirty = true;
  }
  bar.addEventListener('click', e => { const b = e.target.closest('.gm-title'); if (b) { e.stopPropagation(); setPanel(b.dataset.panel); } });
@@ -191,11 +194,14 @@ passes; zero console errors on load.
 +// ANDROID BACK (Edition 5). While a panel or the card is open the page holds one extra history entry, so the
 +// back gesture closes the layer instead of leaving the page; with nothing open, back leaves as it should. The
 +// entry follows the state on every redraw (every open or close sets dirty), so no close path is forgotten.
-+let edHist = false;
-+addEventListener('popstate', () => { edHist = false; if (openPanel) setPanel(openPanel); if (card.style.display === 'block') { card.style.display = 'none'; edSel = -1; target = null; dirty = true; } });
-+{ const _draw = draw; draw = function(){ _draw(); const open = !!openPanel || card.style.display === 'block';
-+    if (open && !edHist) { try { history.pushState({ kuiper:1 }, ''); edHist = true; } catch (e) {} }
-+    else if (!open && edHist) { edHist = false; if (history.state && history.state.kuiper) history.back(); } }; }
++let edHist = false, edPopping = false;
++function edSync(){ const open = !!openPanel || card.style.display === 'block';
++  if (open && !edHist) { try { history.pushState({ kuiper:1 }, ''); } catch (e) {} edHist = true; }
++  else if (!open && edHist) { edHist = false; if (history.state && history.state.kuiper) { edPopping = true; history.back(); } } }
++addEventListener('popstate', () => {
++  if (edPopping) { edPopping = false; edHist = !!(history.state && history.state.kuiper); edSync(); return; }   // our own back(): close nothing, re-arm if a layer opened meanwhile
++  edHist = false; if (openPanel) setPanel(openPanel); if (card.style.display === 'block') { card.style.display = 'none'; edSel = -1; target = null; dirty = true; } });
++{ const _draw = draw; draw = function(){ _draw(); edSync(); }; }
  elTop.classList.add('open');                                   // the long subtitle is readable once the panel is open
  // the safe rectangle now starts under the bar, and the hidden panels take no room
  { const _safe = safeBox; safeBox = function(){ const s = _safe(); s.y0 = Math.max(s.y0, bar.getBoundingClientRect().bottom + 8); s.y1 = Math.max(s.y0 + 24, innerHeight - 8); return s; }; }
@@ -228,7 +234,8 @@ passes; zero console errors on load.
      `none`; tap "details", the quote and the card's padding: card stays; open READOUT, tap the wafer: panel closed,
      no card.
    - T6 open LINES, `page.goBack()`: URL unchanged and panel closed; `edCard(2)` then back: card closed; nothing open
-     then back: page left; `edCard(4)` then `keyboard.press('Escape')`: card closed.
+     then back: page left; `edCard(4)` then `keyboard.press('Escape')`: card closed; open LINES, then Escape and
+     `edCard(6)` in the same task: the card stays open (`T6f`), and a back after it closes the card (`T6g`).
    - T7 900 ms press on the canvas and on EDITION: no selection, no card; synthetic `contextmenu` on `#c` and on a
      bar button is `defaultPrevented`.
 3. Expected after the patch (Pixel 7): every verdict `ok`, `console_errors []`; see the JSON quoted in FINDINGS.
@@ -247,8 +254,11 @@ passes; zero console errors on load.
   zoom and the layers are text that Android's font scaling still enlarges. Remove the two tokens if the owner objects;
   `touch-action:pan-x pan-y` alone already blocks pinch and double-tap zoom on Android Chrome (T2b/T2c pass either
   way in the emulator, where the two mechanisms cannot be told apart).
-- The history entry is reconciled on redraw. Closing a layer and reopening another within the few milliseconds before
-  the `popstate` from `history.back()` arrives would close the new one; not reproducible by hand.
+- The history entry is reconciled on redraw (`edSync`). The page's own `history.back()` is flagged (`edPopping`) so
+  the `popstate` it causes closes nothing and re-arms the entry if a layer was opened in between; the harness forces
+  that race (Escape and `edCard(6)` in one task, `T6f`) and the new card survives, and a user back afterwards still
+  closes it (`T6g`). The first version of this patch lacked the flag and lost the card in that race on the loaded
+  Galaxy S24 run, which is why the flag exists.
 - Not in this patch (other dimensions): the spark hit radius is 9 CSS px (`bd = 81`), small for a finger; the × is
   26 px; the bar wrapping; `100vh` versus `dvh`; the desktop `wheel` listener is passive so Ctrl+wheel page-zooms on a
   laptop (not Android).
