@@ -63,8 +63,11 @@ Notes, not blocking (for Team 5B's consolidation and the Opus briefs):
   the same settled promise, which is right; the brief for step 4 should say the page creates it before `KY` is frozen
   and never replaces it.
 
-Verdict: PASS. Line 1 of STEPS.md is FABLE-T2A's to set to `REVIEW: PASS`; if it still reads OPEN when this review is
-posted, FABLE-T2B sets it, and says so here.
+Verdict: PASS. Posted as https://github.com/Ventusltd/neural-link-between-agents/issues/10#issuecomment-6564171256.
+Closing check (21:40 UTC): FABLE-T2A set STEPS.md line 1 to `REVIEW: PASS` itself and folded N1–N3 in as three additive
+edits (4.2: the `wafer` promise is created before `KY` is frozen and never replaced; 4.2: a module's `id` is always in
+its `provides`; the open items: one id for Team 1's shell module, for Team 5B). `diff` against the reviewed copy shows
+nothing else changed (602 lines). The PASS stands.
 
 ---
 
