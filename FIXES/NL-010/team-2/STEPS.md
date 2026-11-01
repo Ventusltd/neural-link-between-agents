@@ -1,4 +1,4 @@
-REVIEW: OPEN
+REVIEW: PASS
 
 # Team 2 "layers": steps 3 and 4 of the NL-010 roadmap
 
@@ -382,7 +382,7 @@ window.KY = Object.freeze({
     keyPlace, address, describe, findBy, flyTo, home, homeCamera, safeBox, lightTime, showNew, goKey, fmt, words, esc,
     cv, ov, o2, hud, big, sub, card, gbox, gin,
     get SPACE(){ return SPACE }, get N(){ return N }, get repos(){ return repos }, get commits(){ return commits },
-    wafer /* a Promise: resolves {N, SPACE} right after index.html:208; rejects with the refusal's words (:207, :240) */ }),
+    wafer /* a Promise created before KY is frozen and never replaced: resolves {N, SPACE} right after index.html:208; rejects with the refusal's words (:207, :240) */ }),
   cam: { get x(){return cx}, get y(){return cy}, get zoom(){return zoom}, get atHome(){return atHome} },
   lit: { get repo(){return litRepo}, set repo(v){ litRepo = v; dirty = true },
          get K(){return litK}, get Ci(){return litCi}, set period(p){ /* lightTime result or null */ } },
@@ -397,7 +397,7 @@ window.__KUIPER_MODULES__ = KY.modules;   // the alias Team 1's modules probe (t
 ```
 One rule for what `requires` may name, applied by the loader and by E6 alike: the admissible set is
 `Object.keys(KY.hooks)` ∪ `['cam', 'lit', 'sel', 'redraw', 'draw', 'panels']` ∪ the `provides` of modules admitted
-earlier in `order`, and nothing else. `Object.keys(KY.hooks)` at Edition 5 is this list, in this order, and test 7
+earlier in `order`, and nothing else; a module's `id` is always in its `provides`, so `requires: ['line-card']` resolves to Team 1's card module by its id. `Object.keys(KY.hooks)` at Edition 5 is this list, in this order, and test 7
 asserts it: `keyPlace, address, describe, findBy, flyTo, home, homeCamera, safeBox, lightTime, showNew, goKey, fmt,
 words, esc, cv, ov, o2, hud, big, sub, card, gbox, gin, SPACE, N, repos, commits, wafer` (28 names). `KY.names` is that
 set without the `provides`, frozen, so a module can read what it may ask for. The page's hook table is the Kuiper's
@@ -594,6 +594,7 @@ any other team's module is cut, and you add a key only by a new FINDING naming t
 - Team 4: the mapping `line:<n>` → Kuiper key for elements and spider nodes, the app keys, and the conversion of its
   `receiver-graph-v1` graphs to `code-feature-collection.v1` (or a REQUEST for the registry to admit that format in a
   later edition); until then those two layers are listed EMPTY or REFUSED with the words on the row.
+- Team 5B: one id for Team 1's shell module (`menuBar` at team-1/STEPS.md:339, `kuiper-shell` in 4.5 here), REVIEW.md round 2 N2.
 - Team 5: the pointer forwarding `location.search + location.hash` (3.6, GridAtlas index.html:2); elements' licence
   (none at elements@f7a92fb); E6-E8; the `<module-stamp>-<name>.js` default and the `NN-<name>.js` drafts of Teams 4 and 5
   (4.3); K3's root-only scope (tools/ci_check.py:68).

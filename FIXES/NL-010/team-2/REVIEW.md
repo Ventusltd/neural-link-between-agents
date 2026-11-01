@@ -1,4 +1,74 @@
-REVIEW: OPEN
+REVIEW: PASS
+
+# NL-010 Team 2 (layers): REVIEW of STEPS.md by FABLE-T2B
+
+## Round 2, 1 Nov 2026 21:31 UTC: PASS
+
+Reviewed: `STEPS.md` as revised by FABLE-T2A (601 lines, settled for three minutes before reading; copy kept at
+`/tmp/nl010/team-2/STEPS.round2.md`). Checks: every fully-qualified key exists at the stated head and line
+(`check_steps_keys.py`: 57/57); the new claims verified by fragment: kuiper-belt@018b46a cosmos/wafer-meta.json:9
+(`"last_unix": 1793539112`), PALETTE.md:19 ("nothing is coloured for decoration"), editions/index.html:12 and
+gridatlas@5ec7f62 index.html:2 (the two pointers), editions/202611012027/index.html:750-753 (the repeated tail), the
+28-name hook list (counted 28); the cross-team lines as the files stood at 21:31 UTC: team-1/STEPS.md:145 (C5, the six
+names mapped), :153 (the GRID row), :163 (LINES → WAFER + SCOPE + EDIT), :200 (`<stamp>-kuiper-shell.js`), :312
+(`<stamp>-line-card.js`), :339 (`window.__KUIPER_MODULES__`); team-4/STEPS.md:17, :169, :189; team-5/STEPS.md:18,
+:84-86, :228, :237, :265, :274-279. All hold.
+
+How each round-1 point is answered (point → where):
+1. `?layers=` dropped by the pointer → 3.6 FINDING with both pointer keys, owner Team 5 step 9, `see-through/index.html`
+   asked the same, test 6 opens through `editions/` and records FAIL with the key until the pointer forwards `search`.
+2. The shell waited on the wafer → 4.6 starts the loader as soon as `KY` exists; `wafer` is a hook (a promise resolving
+   after index.html:208, rejecting with :207/:240's words) that data modules require and the shell does not; step 3
+   test 7b and step 4 test 7 prove the bar and the alert with `wafer.tsv` served 404.
+3. `KY.admitting` on a frozen table → 4.4: `register` is a closure over the loader's own `let admitting`; nothing is
+   assigned onto `KY` after `Object.freeze`; the no-`'use strict'` fact is stated with its grep.
+4. The admissible set → 4.2: one rule (`Object.keys(KY.hooks)` ∪ the six group names ∪ earlier `provides`), the 28
+   names listed in order, published as `KY.names`, asserted by step 4 test 7 and applied by E6.
+5. The stamp in three places → 4.3: two places only (file name and `generation`); the header carries the name and the
+   licence; 4.4, 4.6, test 4 compare the two; 4.8 is now consistent with it.
+6. Editions beyond the rim → 3.7 row: counted and named, an amber tick at `sqrt(SPACE)` with the words, never placed
+   inside; the measured fact keyed (wafer-meta.json:9); test 2 asserts `OK · 2 of 4 placed, 2 beyond the rim`.
+7. The panel's name → WAFER adopted from Team 1 (3.3, 3.8, tests 2 and 7); SCOPE and EDIT are proxies through
+   `KY.layers.value` / `set` / `get` and own no state, which is the proxy law of E:A2.1.
+8. Module file names → 4.3: identity to the loader is `generation` + `sha256`; the file-name check applies when the
+   name begins with twelve digits; the default is stated once, Team 1's practice is cited, and the `NN-` fallback is
+   given its identity rule; test 4 proves both cases.
+9. Other teams' files and formats → 3.7: the registry names no other team's file; it admits `edition-keys.v1` and
+   `code-feature-collection.v1` and refuses any other format in words on the row (`REFUSED · format receiver-graph-v1
+   not admitted`); Team 4's draft is cited, not overwritten.
+10. NL-009 05-lines → 3.3 (inner scroll, 44 px rows, clear control, count line, grouping, full width, each keyed) and
+    test 2 measures them.
+11. Two `requires` lists → 3.1: `tools/build_layers.py` checks a record's list ⊆ its module's; the module's is the one
+    the loader checks.
+12. `repos`/`periods` with no value → 3.3 `KY.layers.value`, `OK · none lit`, `set` without a value is not an error,
+    `?layers=` carries ids only; test 3 taps the `repos` row.
+13. Wording → 4.1 says "three hunks", the engine range ends at :590 and the repeated tail is accounted for.
+14. The card → 3.3 last bullet: Team 1's `line-card` module owns the card, is admitted before `layers`, exposes
+    `api.show(body)`; the brief's line ranges are split accordingly.
+
+Against the owner's words: "reference layer management like gridatlas" (one registry as data, one original per layer,
+every surface a proxy, admission by inventory, refusal in words with the originals left standing, hashed cartridges in an
+explicit order behind one pointer), "consistent" (Team 1's WAFER name adopted; one identity rule for modules under
+either naming; other teams' files and formats left to their owners and refused in words rather than overwritten),
+"built around the kuiper" (the engine untouched below a frozen hook table; `keyPlace` the only placement; the seventh
+law applied to the editions ring; See Through the first and largest row of THE APPS).
+
+Notes, not blocking (for Team 5B's consolidation and the Opus briefs):
+- N1. `requires: ['line-card']` resolves only if a module's `id` counts as one of its `provides`, or if Team 1's card
+  module lists `provides: ['line-card']`. Say which in ROADMAP.md (one sentence in 4.2's rule: "a module's `id` is
+  always in its `provides`").
+- N2. Team 1's step 2 refers to the shell module as `menuBar` (`window.__KUIPER_MODULES__.menuBar.installed`,
+  team-1/STEPS.md:339); Team 2's `order` names it `kuiper-shell`. One id, chosen by Team 5B.
+- N3. The `wafer` hook is a Promise held inside the frozen `KY.hooks`; a module that reads `KY.hooks.wafer` twice gets
+  the same settled promise, which is right; the brief for step 4 should say the page creates it before `KY` is frozen
+  and never replaces it.
+
+Verdict: PASS. Line 1 of STEPS.md is FABLE-T2A's to set to `REVIEW: PASS`; if it still reads OPEN when this review is
+posted, FABLE-T2B sets it, and says so here.
+
+---
+
+## Round 1 record (1 Nov 2026 ~21:15 UTC): OPEN, 14 points
 
 # NL-010 Team 2 (layers): REVIEW of STEPS.md by FABLE-T2B
 

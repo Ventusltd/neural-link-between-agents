@@ -1,4 +1,4 @@
-REVIEW: OPEN
+REVIEW: PASS
 
 # NL-010 team 3 ("See Through and File"): steps 5 and 6
 
