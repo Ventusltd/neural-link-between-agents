@@ -1,4 +1,4 @@
-PENDING: NL-011 09 decisions, 10 resume kit, 11 index, 12 live reviewer (prompts in FIXES/NL-011/QUEUE.md)
+PENDING: NL-011 12 live reviewer (prompts in FIXES/NL-011/QUEUE.md)
 LAUNCHED: teams 1,2,3,4 (all four roles), 5-lead, 5-builder, 5-tester
 NOTE: edition branch history carries the token [K1-forbidden name] in data/see-through.json (commits before the fix); squash the branch into one commit before merging to main so main history stays K1-clean.
 R0: globalgrid2050 PR #50 kuiper-editions-door open (merge next check-in if green). WATCHER-A launched af2be458aad788c54. send_later trig_01NzUfCwezDi6GMZN2T2tMdK at 00:14Z.
