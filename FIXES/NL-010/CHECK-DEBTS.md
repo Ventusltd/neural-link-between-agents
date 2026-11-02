@@ -63,3 +63,18 @@ not admitted.
   (tools/release/RECIPE.md step 4 gains apps.json and elements.json), and edition_check gains an E10: every
   `editions/<stamp>/data/*.json` with an `edition` field equals the stamp. A cvaa vaccine with that exact check is filed
   today (Ventusltd/cvaa, kuiper-belt-data-stamp-is-the-page-stamp).
+
+## New (found 10:48Z by the cvaa vaccine kuiper-belt-no-private-names): K1 skips tracked files over 3,000,000 bytes
+
+- Check: kuiper-belt@94aa593 tools/ci_check.py:40 scans a tracked file only if its size is at most 3,000,000 bytes, and
+  :46 then prints "852 tracked files scanned, 0 match" counting every tracked file, scanned or not. k1-staged.py has the
+  same bound (FIXES/NL-010/tools/k1-staged.py:11).
+- Facts (clean worktree of main 94aa593, `leaks()` from tools/check_proof.py run file by file, counts only): four tracked
+  files over the bound each carry 6 tokens whose digests are on the not-public list: data/20260918T234128Z/estate-network.json
+  (3,112,373 B), data/20260918T234405Z/estate-bodies.json (3,116,099 B), data/20260918T234855Z/estate-bodies.json
+  (3,116,751 B), data/20260919T001154Z/estate-bodies.json (3,137,106 B). data/20260918T231829Z/estate-network.json
+  (2,928,364 B, scanned by ci_check) carries 0. These are the 18-19 September harvest snapshots, on main since then;
+  not touched tonight, and not touched by FIN-1 (deletions and history are the owner's: delegation 6566796733).
+- Fix (owner's decision, prepared nowhere): remove or redact the four files in a commit the owner makes (history keeps
+  them unless rewritten); then ci_check K1 scans every tracked file regardless of size, or at least prints the skipped
+  ones as a FAIL. The cvaa vaccine reports an unscanned file as a finding, never a pass.

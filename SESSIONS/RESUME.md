@@ -24,6 +24,9 @@ Known check debts, not shipped: `FIXES/NL-010/CHECK-DEBTS.md` (edition_check E6:
 block carries KY_EDITION 202611012135; E7: prose in the drift and apps records' writes; E9: drift.json re-computes
 differently as heads move; and a new one, data/apps.json and data/elements.json still stamped 202611012135 in Editions
 9 to 11). `tools/edition_check.py` and `editions/LAW.md` exist only on the branch, not on main.
+**Privacy gap found at 10:50Z**: kuiper-belt ci_check K1 skips tracked files over 3,000,000 bytes (tools/ci_check.py:40); four
+September harvest snapshots under data/ on main each carry 6 tokens on the not-public list (CHECK-DEBTS.md, last
+section; counts only, never the token). Owner's decision; nothing was touched.
 
 Open at 10:36Z: the See Through module admission (FABLE-FIN-2, kuiper-belt handoff/05-see-through, do not touch); the
 progress report (FABLE-FIN-3); the owner questions of section 9.6; gridatlas PR #83 (owner's merge). The stale release
