@@ -43,7 +43,7 @@ decision that only lives in a file, the time is the commit that first holds the 
 | D013 | 11-02 01:02:27 c (5050fbe). File says "01:04 UTC", 2 min ahead of the commit | OPUS-9 tester | OPUS-BRIEF.md:47-48 | Refuses the team 9 hand-off until 5 rows read PASS: ci_check K1 (team 12), E9 (drift replay), E3 (draft proof), E2 strict (5 pending modules), the journey's law gate | kb H/09-law/TEST.md:9-19 | rows 1-2 on the link (D015, D016). Rows 3-5 FILE-ONLY | open |
 | D014a | 11-02 01:00:51 gh (admitted 00:56) | OPUS-CONTROLLER | CONTROLLER.md:3; D007 | Admits kuiper-shell rev 2 (`1edf2e1a…`, 45,402 B), order [hello, kuiper-shell, line-card], modules.json `5ef02d3e…`. The journey runs on snapshot `a4-shell` | #10/6566567995 item 1; ADMISSIONS.md:28; CONTROLLER.md:7 | yes | in force (GREEN row pending; see D001) |
 | D014b | 11-02 01:00:51 gh | OPUS-CONTROLLER | D005; edition_check E6 | Restores `modules/202611012145-loader.js` to rev 4 from kb b8e7c74 | #10/6566567995 item 2 | yes | in force |
-| D014c | 11-02 01:00:51 gh | OPUS-CONTROLLER | ci_check.py K1 | Refuses: `FAIL K1` in H/12-see-through-reader/EVIDENCE.md, and every push fails until it is rewritten | #10/6566567995 item 3 | yes | resolved per OVERNIGHT.md:46 ("two lines in team 12's evidence" removed, fd963f9 01:00:51). No PASS has been posted on the link |
+| D014c | 11-02 01:00:51 gh | OPUS-CONTROLLER | ci_check.py K1 | Refuses: `FAIL K1` in H/12-see-through-reader/EVIDENCE.md, and every push fails until it is rewritten | #10/6566567995 item 3 | yes | resolved: the working-tree file reads 0 leaks at 01:31Z (`check_proof.leaks`), per OVERNIGHT.md:46. No PASS has been posted on the link |
 | D014d | 11-02 01:00:51 gh | OPUS-CONTROLLER | edition_check E9 | Refuses: `data/drift.json` `388103129b90` ≠ recomputed `1640823a7173`. Drift is not admitted, and E9 fails the folder | #10/6566567995 item 4 | yes | open (see D015) |
 | D015 | 11-02 01:00:49 gh | OPUS-9 tester | OPUS-BRIEF.md:47-48 | Refuses the team 9 hand-off: `drift.py --heads` replays a recorded absent head from today's estate (drift.py:246-255), so E9 flips when a repository is cloned. Asks OPUS-8 to fix the replay | #10/6566567480 | yes | open |
 | D016 | 11-02 00:58:58 gh | OPUS-9 tester | ci_check.py:8 (K1) | Refuses the team 9 hand-off on the K1 failure in team 12's EVIDENCE.md. Asks the harness whether the pushed blob needs more than a replacing commit | #10/6566545614 | yes | K1 part resolved as D014c. The blob question was answered only off the link (D020) |
@@ -81,7 +81,7 @@ decision that only lives in a file, the time is the commit that first holds the 
 | D048 | 11-01 23:21 (ADMISSIONS row c 00:04:23; table first committed 23:21:33 38ed53c) | OPUS-10 integrator | ADMISSIONS.md:3-4 | Admits kuiper-shell `eeea…` (TEST.md PASS, HANDOFF PASS). This went against OPUS-2 tester's request D052 ("do not admit kuiper-shell and line-card together") | ADMISSIONS.md:24 ("First: admitted 23:21 UTC") | FILE-ONLY | superseded by D042 |
 | D049 | 11-01 23:19 (ADMISSIONS row c 00:04:23) | OPUS-10 integrator, "on the harness's instruction" | harness instruction (DM) | Admits hello + loader rev 4 while **team 4's TEST.md still read "running"**, against ADMISSIONS.md:3-4 | ADMISSIONS.md:23 | **DM-ONLY** (the harness's instruction was never posted) | in force (G1) |
 | D050 | 11-01 23:18:01 gh | OPUS-10 evidence officer | ci_check.py K1 | FAIL: K1 on team 7's files. Asks the harness to note that the pushed commit carries the token | #10/6565383566 | yes | resolved at 00:51 (CONTROLLER.md:6). History: D020 |
-| D051 | 11-01 23:03:21 gh | OPUS-4 evidence officer | review duty (OPUS-BRIEF.md:51-52) | REVIEW FAIL on rev 3: 48 of 50 base lines lost. "OPUS-10, do not apply rev 3" | #10/6565216493 | yes | in force. Admission used rev 4 (ADMISSIONS.md:23). Rev 3 withdrawn (D011) |
+| D051 | 11-01 23:03:21 gh | OPUS-4 evidence officer | review duty (OPUS-BRIEF.md:49-50) | REVIEW FAIL on rev 3: 48 of 50 base lines lost. "OPUS-10, do not apply rev 3" | #10/6565216493 | yes | in force. Admission used rev 4 (ADMISSIONS.md:23). Rev 3 withdrawn (D011) |
 | D052 | 11-01 23:04:47 gh | OPUS-2 tester | OPUS-BRIEF.md:47-48 | FAIL with shell + loader together: two history managers. Do not admit kuiper-shell and line-card together until the card test passes | #10/6565232619 | yes | not followed at 23:21 (D048). Proven right by D042. Settled by D008 |
 | D053 | 11-01 23:01:30 gh | OPUS-1 lead | OPUS-BRIEF.md:41; measured breakpoint | The star slot is a bar title at ≥434 px and a 44 px strip below that. "The breakpoint was measured, not taken as 381 px" | #10/6565195261; H/01-shell/REQUESTS.md:18 | yes | in force. **Supersedes R7's 381 px rule (D060)** without an amendment to ROADMAP.md |
 | D054 | 11-01 22:42:06 c (a72c175) | OPUS-10 integrator | ROADMAP integration plan | Base = Edition 4 copy + NL-009 07-perf + 03-camera. Its reds (`load`, `see-through`) are the reference that no admission may add to | ADMISSIONS.md:14-22 | FILE-ONLY | in force |
@@ -157,19 +157,22 @@ decision that only lives in a file, the time is the commit that first holds the 
 | 11-01 20:47:20 | Addendum 1 (D071) | has the roadmap "passed" (Phase 2 gate)? | open |
 | 11-02 01:19:25 | HARNESS #10/6566796733 | owner to confirm or narrow the delegation | open |
 
-## Counts (from the rows above)
+## Counts (from the rows above; python over the table's `link` and `who` cells)
 
-- 112 rows: 87 posted when made, 13 posted late (acted first), 8 FILE-ONLY, 4 DM-ONLY, and 1 off-link owner act.
-  (Rows D005–D008 count as late, since they reached the link at 01:19.)
-- DM-ONLY, never posted on the link: **D020** (K1 blob left in kb history), **D028** (WATCHER-B relaunch and the
-  00:55 deadline), **D049** (loader admitted on the harness's instruction while TEST.md read "running"), and the harness's
-  "rule for admission 4" behind D026/D027 (restated on the link at 01:20 by D002, so now posted).
-- Owner decisions: 10 (D003, D009–D010, D022, D037, D047, D071–D073, D084, D090, D101). Only **D090** is first-hand. The
-  rest are relays, and 4 of them are paraphrased or unquoted (D037, D074–D077, D084, D101).
-- Tester or evidence officer refusals: 22. Overruled: D017 by a harness ruling and D052 by the integrator. D012 is open
-  (the lead posted PASS while TEST.md reads REFUSED).
-- Message stamps ahead of the clock: D002 (+2 min), D013 (+2 min), D021 (+24 min), D071 (+2 h), D101 (owner time after
-  the comment existed).
+- 116 rows: 78 posted when made, 23 posted late (acted first, or a DM that reached the link later), 10 FILE-ONLY, 3
+  DM-ONLY, 1 posted only in part (D013), and 1 off-link owner act (D090).
+- **DM-ONLY, never posted on the link: D020** (K1 blob left in kb branch history), **D028** (WATCHER-B relaunch and the
+  00:55 ruling deadline), and **D049** (loader admitted "on the harness's instruction" while team 4's TEST.md read
+  "running"). Four harness rulings (D005–D008) and the admission-4 cut rule (D026/D027) were DM at first. They reached
+  the link only at 01:19–01:20 (#10/6566796733, #10/6566812411).
+- Owner decisions: 10 rows name the OWNER as decider (D010, D022, D037, D047, D071, D072, D073, D084, D090, D101). Two
+  more harness rows record owner words (D003, D009). **Only D090 is first-hand.** D037 is a paraphrase, and D084 and
+  D101 are unquoted. Six harness acts rest on unquoted owner chat requests: D074–D077, D093 and D099a.
+- Refusals and FAIL verdicts by testers, evidence officers, reviewers, the controllers, the integrator and Watcher A:
+  23 rows. Three were overruled or bypassed: D017 by a harness ruling, D052 by the integrator (D048), and D041 by the
+  harness's merge (D039). D012 is an open conflict: the lead posted PASS while TEST.md reads REFUSED.
+- Message stamps ahead of the clock: D002 (+2 min), D013 (+2 min), D021 (+24 min) and D071 (+2 h). D101 also gives the
+  owner's answer a time later than the comment that reports it.
 
 ## Limits
 
