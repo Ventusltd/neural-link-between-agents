@@ -1,0 +1,8 @@
+[Pixel 7] FAIL load — bar is not one row (button tops 6/6/6/39, bar height 75.1, scrollWidth 412/412)
+[Pixel 7] FAIL modules — admitted ["hello","line-card"] of ["hello","kuiper-shell","line-card"]; refused [{"id":"kuiper-shell","why":"sha256 mismatch","t_ms":20761}]
+[Pixel 7] PASS edition-open
+[Pixel 7] PASS edition-close
+[Pixel 7] PASS lines-open
+[Pixel 7] PASS lines-filter
+[Pixel 7] FAIL lines-pick — spark covered by #refuse
+[Pixel 7] FAIL harness — touchscreen.tap: Target page, context or browser has been closed

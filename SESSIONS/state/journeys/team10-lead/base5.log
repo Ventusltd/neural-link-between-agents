@@ -1,0 +1,32 @@
+[Pixel 7] FAIL load — bar is not one row (button tops 6/6/6/39, bar height 75.1, scrollWidth 412/412)
+[Pixel 7] PASS modules — no loader on this page
+[Pixel 7] PASS edition-open
+[Pixel 7] PASS edition-close
+[Pixel 7] PASS lines-open
+[Pixel 7] PASS lines-filter
+[Pixel 7] PASS lines-pick
+[Pixel 7] PASS card-details
+[Pixel 7] PASS card-close
+[Pixel 7] PASS key-e-1
+[Pixel 7] PASS key-e-2
+[Pixel 7] PASS key-e-3
+[Pixel 7] PASS pinch-drag
+[Pixel 7] PASS spark-tap
+[Pixel 7] PASS whole-wafer
+[Pixel 7] FAIL see-through — no SEE THROUGH control in #bar
+[Galaxy S24] FAIL load — bar is not one row (button tops 6/6/6/39, bar height 75.1, scrollWidth 360/360)
+[Galaxy S24] PASS modules — no loader on this page
+[Galaxy S24] PASS edition-open
+[Galaxy S24] PASS edition-close
+[Galaxy S24] PASS lines-open
+[Galaxy S24] PASS lines-filter
+[Galaxy S24] PASS lines-pick
+[Galaxy S24] PASS card-details
+[Galaxy S24] PASS card-close
+[Galaxy S24] PASS key-e-1
+[Galaxy S24] PASS key-e-2
+[Galaxy S24] PASS key-e-3
+[Galaxy S24] PASS pinch-drag
+[Galaxy S24] PASS spark-tap
+[Galaxy S24] FAIL whole-wafer — wafer not whole on screen: null
+[Galaxy S24] FAIL see-through — no SEE THROUGH control in #bar

@@ -1,0 +1,19 @@
+[Pixel 7] PASS load
+[Pixel 7] PASS edition-open
+[Pixel 7] PASS edition-close
+[Pixel 7] PASS panel-dismiss
+[Pixel 7] PASS lines-open
+[Pixel 7] FAIL lines-filter — filter input or first row off screen (keyboard/visual viewport)
+[Pixel 7] FAIL lines-pick — no card; card header is not the line of code (equals line_text false, first text null)
+[Pixel 7] FAIL card-details — details did not open; card did not grow
+[Pixel 7] FAIL card-close — spark still selected
+[Pixel 7] PASS key-e-1
+[Pixel 7] PASS key-e-2
+[Pixel 7] PASS key-e-3
+[Pixel 7] PASS pinch-drag
+[Pixel 7] FAIL spark-tap — card shows 21307418144, nearest by the law is 323
+[Pixel 7] PASS whole-wafer
+[Pixel 7] FAIL modules — 1 page error(s)
+[Pixel 7] PASS see-through — same-tab → http://127.0.0.1:8590/w3/see-through/202611020012/
+[Pixel 7] FAIL console — 1 error(s): pageerror edSel is not defined; note: 2 error(s) after leaving the edition (not counted)
+exit 1

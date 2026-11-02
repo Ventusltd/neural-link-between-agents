@@ -1,0 +1,690 @@
+{
+ "url": "http://127.0.0.1:8500/a3-card/editions/202611012135/",
+ "outdir": "/tmp/nl010-opus/team-10/lead/journey/out-a3-card-pixel-7",
+ "generatedAt": "2026-11-02T00:02:26.991Z",
+ "devices": [
+  {
+   "device": "Pixel 7",
+   "viewport": {
+    "width": 412,
+    "height": 839
+   },
+   "dpr": 2.625,
+   "url": "http://127.0.0.1:8500/a3-card/editions/202611012135/",
+   "startedAt": "2026-11-02T00:02:27.938Z",
+   "steps": [
+    {
+     "id": "load",
+     "name": "load: zero console errors, wafer drawn, bar one row",
+     "pass": false,
+     "ms": 20699,
+     "measured": {
+      "loadMs": 19027,
+      "consoleErrors": [],
+      "big": "Kuiper Edition 5 · 344 verified lines lit",
+      "wafer": {
+       "litFraction": 0.2322,
+       "litPx": 73077,
+       "bbox": [
+        45,
+        296,
+        366,
+        618
+       ],
+       "bboxW": 322,
+       "bboxH": 323
+      },
+      "waferTries": 1,
+      "bar": {
+       "left": 0,
+       "top": 0,
+       "right": 412,
+       "bottom": 75.1,
+       "width": 412,
+       "height": 75.1
+      },
+      "barTitles": [
+       "edition",
+       "readout",
+       "lines",
+       "commands"
+      ],
+      "titleTops": [
+       6,
+       6,
+       6,
+       39
+      ],
+      "barScroll": {
+       "scrollWidth": 412,
+       "clientWidth": 412
+      },
+      "oneRow": false,
+      "sparksVisible": 113,
+      "frameMs": {
+       "median": 17,
+       "max": 103
+      },
+      "screenshot": "pixel-7/01-load.png"
+     },
+     "note": "bar is not one row (button tops 6/6/6/39, bar height 75.1, scrollWidth 412/412)"
+    },
+    {
+     "id": "modules",
+     "name": "every modules.json order entry admitted in order, none refused",
+     "pass": true,
+     "ms": 7,
+     "measured": {
+      "modules": {
+       "done": true,
+       "order": [
+        "hello",
+        "line-card"
+       ],
+       "admitted": [
+        "hello",
+        "line-card"
+       ],
+       "refused": [],
+       "failures": [],
+       "whole": null,
+       "timings": {
+        "loader_start_ms": 577,
+        "last_admitted_ms": 4815,
+        "loader_end_ms": 4815
+       },
+       "bytes": 15812,
+       "byte_budget": 36864
+      },
+      "consoleErrorsSoFar": 0
+     },
+     "note": "2 admitted: hello, line-card"
+    },
+    {
+     "id": "edition-open",
+     "name": "tap EDITION: panel opens under the bar and scrolls inside",
+     "pass": true,
+     "ms": 10780,
+     "measured": {
+      "panel": {
+       "visible": true,
+       "open": true,
+       "rect": {
+        "left": 0,
+        "top": 77.1,
+        "right": 412,
+        "bottom": 259.6,
+        "width": 412,
+        "height": 182.5
+       },
+       "overflowY": "auto",
+       "scrollHeight": 181,
+       "clientHeight": 181,
+       "scrollTop": 0
+      },
+      "barBottom": 75.1,
+      "titleOn": true,
+      "scroll": {
+       "scrollable": 0,
+       "ok": true,
+       "note": "panel content fits, nothing to scroll"
+      },
+      "screenshot": "pixel-7/02-edition-open.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "edition-close",
+     "name": "tap EDITION again: panel closes",
+     "pass": true,
+     "ms": 2574,
+     "measured": {
+      "panel": {
+       "visible": false,
+       "open": false,
+       "rect": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "width": 0,
+        "height": 0
+       },
+       "overflowY": "auto",
+       "scrollHeight": 0,
+       "clientHeight": 0,
+       "scrollTop": 0
+      },
+      "screenshot": "pixel-7/03-edition-close.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "lines-open",
+     "name": "tap LINES: panel opens under the bar with the rows",
+     "pass": true,
+     "ms": 2326,
+     "measured": {
+      "panel": {
+       "visible": true,
+       "open": true,
+       "rect": {
+        "left": 0,
+        "top": 77.1,
+        "right": 395.5,
+        "bottom": 597.3,
+        "width": 395.5,
+        "height": 520.2
+       },
+       "overflowY": "auto",
+       "scrollHeight": 20321,
+       "clientHeight": 518,
+       "scrollTop": 0
+      },
+      "rows": 344,
+      "firstRow": {
+       "left": 13,
+       "top": 191.2,
+       "right": 382.5,
+       "bottom": 270.4,
+       "width": 369.5,
+       "height": 79.2
+      },
+      "find": {
+       "left": 13,
+       "top": 154.2,
+       "right": 382.5,
+       "bottom": 183.2,
+       "width": 369.5,
+       "height": 29
+      },
+      "screenshot": "pixel-7/04-lines-open.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "lines-filter",
+     "name": "type \"acceptance\": the list narrows to matching rows, input and first row on screen",
+     "pass": true,
+     "ms": 6916,
+     "measured": {
+      "rows": 7,
+      "allRowsMatch": true,
+      "findValue": "acceptance",
+      "firstRow": {
+       "left": 13,
+       "top": 191.2,
+       "right": 382.5,
+       "bottom": 287.5,
+       "width": 369.5,
+       "height": 96.2
+      },
+      "firstRowText": "*gridatlas@cacb69a tools/release/acceptance.mjs:15 · key 62,884,836,484Owner acceptance cannot be forged by an agent: th",
+      "pageScrollY": 0,
+      "activeElement": "lyFind",
+      "screenshot": "pixel-7/05-lines-filter.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "lines-pick",
+     "name": "tap the first row: LINES closes, camera flies, card opens, spark in the clear space",
+     "pass": true,
+     "ms": 26225,
+     "measured": {
+      "linesVisible": false,
+      "card": {
+       "open": true,
+       "rect": {
+        "left": 0,
+        "top": 640.6,
+        "right": 412,
+        "bottom": 839,
+        "width": 412,
+        "height": 198.4
+       },
+       "index": 40,
+       "total": 344,
+       "title": "Owner acceptance cannot be forged by an agent: the ACCEPT line",
+       "cap": 285.3,
+       "height": 198.390625,
+       "ok": true
+      },
+      "clear": {
+       "ok": true,
+       "sparkY": 357.1,
+       "sparkX": 205.5,
+       "barBottom": 75.1,
+       "cardTop": 640.6,
+       "windowY": [
+        85.1,
+        630.6
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "sparkMovedAfterTapPx": 477.9,
+      "rowTapped": "*gridatlas@cacb69a tools/release/acceptance.mjs:15 · key 62,884,836,484Owner acceptance cannot be forged by an agent: th",
+      "screenshot": "pixel-7/06-lines-pick.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "card-details",
+     "name": "tap details: the card grows, stays under its cap and on screen",
+     "pass": true,
+     "ms": 910,
+     "measured": {
+      "heightBefore": 198.390625,
+      "heightAfter": 285.25,
+      "cap": 285.3,
+      "height": 285.25,
+      "ok": true,
+      "cardRect": {
+       "left": 0,
+       "top": 553.8,
+       "right": 412,
+       "bottom": 839,
+       "width": 412,
+       "height": 285.3
+      },
+      "cardScrollHeight": 425,
+      "detailsOpen": true,
+      "sparkStillClear": true,
+      "clear": {
+       "ok": true,
+       "sparkY": 357.1,
+       "sparkX": 205.5,
+       "barBottom": 75.1,
+       "cardTop": 553.8,
+       "windowY": [
+        85.1,
+        543.8
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "screenshot": "pixel-7/07-card-details.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "card-close",
+     "name": "tap ×: the card closes and the selection clears",
+     "pass": true,
+     "ms": 14724,
+     "measured": {
+      "closeRect": {
+       "left": 368,
+       "top": 554.8,
+       "right": 412,
+       "bottom": 602.8,
+       "width": 44,
+       "height": 48
+      },
+      "closeSize": [
+       44,
+       48
+      ],
+      "cardOpen": false,
+      "magenta": null,
+      "screenshot": "pixel-7/08-card-close.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "key-e-1",
+     "name": "press e (1): next line, card open, spark in the clear space",
+     "pass": true,
+     "ms": 40061,
+     "measured": {
+      "card": {
+       "index": 1,
+       "total": 344,
+       "title": "Bytes on disk are the bytes that ship",
+       "rect": {
+        "left": 0,
+        "top": 701.2,
+        "right": 412,
+        "bottom": 839,
+        "width": 412,
+        "height": 137.8
+       },
+       "cap": 285.3,
+       "height": 137.78125,
+       "ok": true
+      },
+      "clear": {
+       "ok": true,
+       "sparkY": 387.8,
+       "sparkX": 205.5,
+       "barBottom": 75.1,
+       "cardTop": 701.2,
+       "windowY": [
+        85.1,
+        691.2
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "screenshot": "pixel-7/09-key-e-1.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "key-e-2",
+     "name": "press e (2): next line, card open, spark in the clear space",
+     "pass": true,
+     "ms": 61336,
+     "measured": {
+      "card": {
+       "index": 2,
+       "total": 344,
+       "title": "Plain words become commands with no model, and a missing number is a refusal tha",
+       "rect": {
+        "left": 0,
+        "top": 587.8,
+        "right": 412,
+        "bottom": 839,
+        "width": 412,
+        "height": 251.2
+       },
+       "cap": 285.3,
+       "height": 251.171875,
+       "ok": true
+      },
+      "clear": {
+       "ok": true,
+       "sparkY": 331.1,
+       "sparkX": 205.5,
+       "barBottom": 75.1,
+       "cardTop": 587.8,
+       "windowY": [
+        85.1,
+        577.8
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "screenshot": "pixel-7/10-key-e-2.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "key-e-3",
+     "name": "press e (3): next line, card open, spark in the clear space",
+     "pass": true,
+     "ms": 240580,
+     "measured": {
+      "card": {
+       "index": 3,
+       "total": 344,
+       "title": "One Earth radius for the whole estate, with the reason",
+       "rect": {
+        "left": 0,
+        "top": 683.2,
+        "right": 412,
+        "bottom": 839,
+        "width": 412,
+        "height": 155.8
+       },
+       "cap": 285.3,
+       "height": 155.78125,
+       "ok": true
+      },
+      "clear": {
+       "ok": true,
+       "sparkY": 378.8,
+       "sparkX": 205.5,
+       "barBottom": 75.1,
+       "cardTop": 683.2,
+       "windowY": [
+        85.1,
+        673.2
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "screenshot": "pixel-7/11-key-e-3.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "pinch-drag",
+     "name": "pinch out then drag: the wafer zooms and pans, the page neither scrolls nor zooms",
+     "pass": true,
+     "ms": 717486,
+     "measured": {
+      "pinch": {
+       "centre": [
+        206,
+        478.8
+       ],
+       "sparkBefore": [
+        205.5,
+        378.8
+       ],
+       "fingerDistance": [
+        220,
+        110
+       ],
+       "sparkDistanceFromCentre": [
+        100,
+        50.2
+       ],
+       "ratio": 0.502,
+       "expected": 0.5,
+       "pageScroll": [
+        0,
+        0
+       ],
+       "vvScale": 1,
+       "innerWidth": 412,
+       "ok": true
+      },
+      "drag": {
+       "finger": [
+        -90,
+        70
+       ],
+       "sparkMoved": [
+        -90,
+        70
+       ],
+       "pageScroll": [
+        0,
+        0
+       ],
+       "vvScale": 1,
+       "vvOffset": [
+        0,
+        0
+       ],
+       "cardOpen": true,
+       "ok": true
+      },
+      "zoomOut": [
+       {
+        "centre": [
+         115.5,
+         498.6
+        ],
+        "axis": "y",
+        "fingerDistance": [
+         300,
+         12
+        ],
+        "ratio": 0.04,
+        "zoomAfter": 0.28,
+        "selectedSparkMovedPx": 0.7,
+        "greensInView": [
+         0,
+         0
+        ],
+        "ok": true
+       },
+       {
+        "centre": [
+         115.1,
+         498
+        ],
+        "axis": "y",
+        "fingerDistance": [
+         300,
+         12
+        ],
+        "ratio": 0.04,
+        "zoomAfter": 0.0112,
+        "selectedSparkMovedPx": 0.7,
+        "greensInView": [
+         0,
+         8
+        ],
+        "ok": true
+       },
+       {
+        "centre": [
+         114.7,
+         497.4
+        ],
+        "axis": "y",
+        "fingerDistance": [
+         300,
+         17.58
+        ],
+        "ratio": 0.05861,
+        "zoomAfter": 0.0006564,
+        "selectedSparkMovedPx": 1.6,
+        "greensInView": [
+         8,
+         118
+        ],
+        "ok": true
+       }
+      ],
+      "zoomNow": 0.0006564,
+      "screenshot": "pixel-7/12-pinch-drag.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "spark-tap",
+     "name": "tap a green spark: the card for the nearest spark opens and the camera places it clear",
+     "pass": true,
+     "ms": 28838,
+     "measured": {
+      "tapped": {
+       "x": 309.4,
+       "y": 459.4,
+       "px": 33
+      },
+      "greensInView": 0,
+      "cameraKnown": true,
+      "predictedIndex": 323,
+      "predictedTitle": "Contributor username, UID and changeset are never read, banned from the schema,",
+      "predictedDistanceFromTapPx": 1.8,
+      "secondNearestPx": 29.6,
+      "cardIndex": 323,
+      "previousCardIndex": 3,
+      "cardTitle": "Contributor username, UID and changeset are never read, banned from the schema,",
+      "clear": {
+       "ok": true,
+       "sparkY": 366.1,
+       "sparkX": 205.5,
+       "barBottom": 75.1,
+       "cardTop": 658.6,
+       "windowY": [
+        85.1,
+        648.6
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "screenshot": "pixel-7/13-spark-tap.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "whole-wafer",
+     "name": "tap COMMANDS then WHOLE WAFER: the card closes and the whole wafer is on screen under the bar",
+     "pass": true,
+     "ms": 78029,
+     "measured": {
+      "commandsPanel": {
+       "visible": true,
+       "open": true,
+       "rect": {
+        "left": 0,
+        "top": 77.1,
+        "right": 412,
+        "bottom": 188.5,
+        "width": 412,
+        "height": 111.4
+       },
+       "overflowY": "auto",
+       "scrollHeight": 109,
+       "clientHeight": 109,
+       "scrollTop": 0
+      },
+      "wholeWaferButton": {
+       "text": "whole wafer",
+       "left": 174.09375,
+       "top": 132.78125,
+       "right": 278.203125,
+       "bottom": 171.46875,
+       "width": 104.109375,
+       "height": 38.6875
+      },
+      "commandsOpenedUnderBar": true,
+      "panelStayedOpenAfterTap": true,
+      "cardOpen": false,
+      "magenta": null,
+      "wafer": {
+       "litFraction": 0.2315,
+       "litPx": 72865,
+       "bbox": [
+        45,
+        296,
+        366,
+        617
+       ],
+       "bboxW": 322,
+       "bboxH": 322
+      },
+      "screenshot": "pixel-7/14-whole-wafer.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "see-through",
+     "name": "tap SEE THROUGH: ../../see-through/ opens (new tab or navigation)",
+     "pass": false,
+     "ms": 1906,
+     "measured": {
+      "control": null,
+      "screenshot": "pixel-7/15-see-through.png"
+     },
+     "note": "no SEE THROUGH control in #bar"
+    }
+   ],
+   "consoleErrors": [],
+   "pass": false,
+   "passed": 14,
+   "failed": 2,
+   "finishedAt": "2026-11-02T00:23:21.335Z"
+  }
+ ],
+ "pass": false,
+ "summary": [
+  {
+   "device": "Pixel 7",
+   "passed": 14,
+   "failed": 2,
+   "failedSteps": [
+    "load",
+    "see-through"
+   ],
+   "consoleErrors": 0
+  }
+ ]
+}

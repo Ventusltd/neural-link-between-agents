@@ -1,0 +1,13 @@
+[Pixel 7] FAIL load — wafer not detected as a disc under the bar
+[Pixel 7] PASS modules — 3 admitted: hello, kuiper-shell, line-card
+[Pixel 7] PASS edition-open
+[Pixel 7] PASS edition-close
+[Pixel 7] PASS lines-open
+[Pixel 7] PASS lines-filter
+[Pixel 7] FAIL lines-pick — no card; no selected spark drawn on #o
+[Pixel 7] FAIL card-details — details did not open; card did not grow; spark no longer clear: no selected spark drawn on #o
+[Pixel 7] PASS card-close — note: × is 0x0 px (under 24)
+[Pixel 7] PASS key-e-1
+[Pixel 7] PASS key-e-2
+[Pixel 7] PASS key-e-3
+[Pixel 7] FAIL harness — cdpSession.send: Target page, context or browser has been closed

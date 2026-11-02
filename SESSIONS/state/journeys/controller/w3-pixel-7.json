@@ -1,0 +1,840 @@
+{
+ "url": "http://127.0.0.1:8590/w3/editions/202611012135/",
+ "outdir": "/tmp/claude-0/-home-user/e5bfe783-54ef-5c7a-8d30-0a492af18594/scratchpad/journey/out-w3-pixel-7",
+ "generatedAt": "2026-11-02T00:05:57.752Z",
+ "devices": [
+  {
+   "device": "Pixel 7",
+   "viewport": {
+    "width": 412,
+    "height": 839
+   },
+   "dpr": 2.625,
+   "url": "http://127.0.0.1:8590/w3/editions/202611012135/",
+   "startedAt": "2026-11-02T00:05:58.165Z",
+   "steps": [
+    {
+     "id": "load",
+     "name": "load: zero console errors, wafer drawn, bar one row",
+     "pass": true,
+     "ms": 22045,
+     "measured": {
+      "loadMs": 22045,
+      "consoleErrors": [],
+      "big": "Kuiper edition 202611012135 · 344 verified lines lit",
+      "wafer": {
+       "excluded": [
+        [
+         8,
+         787,
+         105,
+         44
+        ]
+       ],
+       "litFraction": 0.2244,
+       "litPx": 73300,
+       "bbox": [
+        45,
+        296,
+        410,
+        618
+       ],
+       "bboxW": 366,
+       "bboxH": 323
+      },
+      "waferTries": 1,
+      "bar": {
+       "left": 0,
+       "top": 0,
+       "right": 412,
+       "bottom": 34,
+       "width": 412,
+       "height": 34
+      },
+      "barTitles": [
+       "File",
+       "Edit",
+       "View",
+       "Scope",
+       "Wafer",
+       "About"
+      ],
+      "titleTops": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "barScroll": {
+       "scrollWidth": 412,
+       "clientWidth": 412
+      },
+      "oneRow": true,
+      "sparksVisible": 112,
+      "frameMs": {
+       "median": 17,
+       "max": 137
+      },
+      "screenshot": "pixel-7/01-load.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "edition-open",
+     "name": "tap EDITION: panel opens under the bar and scrolls inside",
+     "pass": true,
+     "ms": 20769,
+     "measured": {
+      "panel": {
+       "el": "kmb-panel-about",
+       "visible": true,
+       "open": true,
+       "rect": {
+        "left": 4,
+        "top": 34,
+        "right": 408,
+        "bottom": 833,
+        "width": 404,
+        "height": 799
+       },
+       "overflowY": "auto",
+       "scrollHeight": 996,
+       "clientHeight": 798,
+       "scrollTop": 0
+      },
+      "barBottom": 34,
+      "titleOn": true,
+      "scroll": {
+       "panelScrollTop": 145,
+       "subScrollTop": 0,
+       "pageScrollY": 0,
+       "scrollable": 198,
+       "ok": true
+      },
+      "screenshot": "pixel-7/02-edition-open.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "edition-close",
+     "name": "tap EDITION again: panel closes",
+     "pass": true,
+     "ms": 2396,
+     "measured": {
+      "panel": {
+       "el": "kmb-panel-about",
+       "visible": false,
+       "open": false,
+       "rect": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "width": 0,
+        "height": 0
+       },
+       "overflowY": "auto",
+       "scrollHeight": 0,
+       "clientHeight": 0,
+       "scrollTop": 0
+      },
+      "screenshot": "pixel-7/03-edition-close.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "panel-dismiss",
+     "name": "open a panel, tap the wafer: it closes; open EDITION/ABOUT, back gesture: it closes and the page stays",
+     "pass": true,
+     "ms": 13455,
+     "measured": {
+      "wafer": {
+       "panel": "file",
+       "el": "kmb-panel-file",
+       "tappedAt": [
+        404,
+        551
+       ],
+       "hit": "#c",
+       "closed": true,
+       "cardOpened": false,
+       "ok": true,
+       "tried": [
+        {
+         "panel": "top",
+         "el": "kmb-panel-about",
+         "panelBottom": 833,
+         "hit": null
+        },
+        {
+         "panel": "file",
+         "el": "kmb-panel-file",
+         "panelBottom": 262.5,
+         "hit": "#c"
+        }
+       ]
+      },
+      "back": {
+       "history": [
+        {
+         "len": 3,
+         "state": "null"
+        },
+        {
+         "len": 3,
+         "state": "{\"kmb\":\"about\"}"
+        }
+       ],
+       "closed": true,
+       "urlBefore": "http://127.0.0.1:8590/w3/editions/202611012135/",
+       "urlAfter": "http://127.0.0.1:8590/w3/editions/202611012135/",
+       "ok": true
+      },
+      "panelClosedAfter": true,
+      "screenshot": "pixel-7/04-panel-dismiss.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "lines-open",
+     "name": "tap LINES: panel opens under the bar with the rows",
+     "pass": true,
+     "ms": 16663,
+     "measured": {
+      "panel": {
+       "el": "kmb-panel-wafer",
+       "visible": true,
+       "open": true,
+       "rect": {
+        "left": 4,
+        "top": 34,
+        "right": 408,
+        "bottom": 833,
+        "width": 404,
+        "height": 799
+       },
+       "overflowY": "auto",
+       "scrollHeight": 949,
+       "clientHeight": 798,
+       "scrollTop": 0
+      },
+      "rows": 344,
+      "firstRow": {
+       "left": 11,
+       "top": 646.2,
+       "right": 401,
+       "bottom": 734.5,
+       "width": 390,
+       "height": 88.2
+      },
+      "find": {
+       "left": 11,
+       "top": 534.8,
+       "right": 401,
+       "bottom": 578.8,
+       "width": 390,
+       "height": 44
+      },
+      "screenshot": "pixel-7/05-lines-open.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "lines-filter",
+     "name": "type \"acceptance\": the list narrows to matching rows, input and first row on screen",
+     "pass": false,
+     "ms": 21860,
+     "measured": {
+      "rows": 9,
+      "allRowsMatch": true,
+      "findValue": "acceptance",
+      "firstRow": {
+       "left": 11,
+       "top": 649.2,
+       "right": 401,
+       "bottom": 841.4,
+       "width": 390,
+       "height": 192.1
+      },
+      "firstRowText": "| 3 | owner acceptance | the owner comments `ACCEPT G` (first line) on the preview PR, or adds the label `accepted:G`; `",
+      "pageScrollY": 0,
+      "activeElement": "lyFind",
+      "screenshot": "pixel-7/06-lines-filter.png"
+     },
+     "note": "filter input or first row off screen (keyboard/visual viewport)"
+    },
+    {
+     "id": "lines-pick",
+     "name": "tap the first row: LINES closes, camera flies, card opens, spark in the clear space, the header is the line of code",
+     "pass": false,
+     "ms": 12740,
+     "measured": {
+      "linesVisible": false,
+      "card": {
+       "open": false,
+       "rect": null,
+       "index": null,
+       "total": null,
+       "title": null,
+       "cap": null,
+       "height": 0,
+       "ok": true
+      },
+      "cardHeader": {
+       "checked": true,
+       "header": null,
+       "headerLength": null,
+       "lineTextLength": null,
+       "equalsLineText": false,
+       "headerIsFirstText": null,
+       "ok": false
+      },
+      "clear": {
+       "ok": true,
+       "sparkY": 300.6,
+       "sparkX": 205.5,
+       "barBottom": 34,
+       "cardTop": null,
+       "windowY": [
+        44,
+        829
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "sparkMovedAfterTapPx": null,
+      "rowTapped": "| 3 | owner acceptance | the owner comments `ACCEPT G` (first line) on the preview PR, or adds the label `accepted:G`; `",
+      "screenshot": "pixel-7/07-lines-pick.png"
+     },
+     "note": "no card; card header is not the line of code (equals line_text false, first text null)"
+    },
+    {
+     "id": "card-details",
+     "name": "tap details: the card grows, stays under its cap and on screen",
+     "pass": false,
+     "ms": 12451,
+     "measured": {
+      "heightBefore": 0,
+      "heightAfter": 0,
+      "cap": null,
+      "height": 0,
+      "ok": true,
+      "cardRect": null,
+      "cardScrollHeight": 0,
+      "detailsOpen": false,
+      "sparkStillClear": true,
+      "clear": {
+       "ok": true,
+       "sparkY": 300.6,
+       "sparkX": 205.5,
+       "barBottom": 34,
+       "cardTop": null,
+       "windowY": [
+        44,
+        829
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "screenshot": "pixel-7/08-card-details.png"
+     },
+     "note": "details did not open; card did not grow"
+    },
+    {
+     "id": "card-close",
+     "name": "tap ×: the card closes and the selection clears",
+     "pass": false,
+     "ms": 12768,
+     "measured": {
+      "closeRect": {
+       "left": 0,
+       "top": 0,
+       "right": 0,
+       "bottom": 0,
+       "width": 0,
+       "height": 0
+      },
+      "closeSize": [
+       0,
+       0
+      ],
+      "cardOpen": false,
+      "magenta": {
+       "x": 205.5,
+       "y": 300.6,
+       "px": 360,
+       "bbox": [
+        190,
+        285,
+        221,
+        316
+       ]
+      },
+      "screenshot": "pixel-7/09-card-close.png"
+     },
+     "note": "spark still selected"
+    },
+    {
+     "id": "key-e-1",
+     "name": "press e (1): next line, card open, spark in the clear space",
+     "pass": true,
+     "ms": 33752,
+     "measured": {
+      "card": {
+       "index": 143,
+       "total": 344,
+       "title": "Fail closed, then reproduce twice, then write only an immutable candidate",
+       "rect": {
+        "left": 0,
+        "top": 676,
+        "right": 412,
+        "bottom": 839,
+        "width": 412,
+        "height": 163
+       },
+       "cap": 285.3,
+       "height": 163,
+       "ok": true
+      },
+      "clear": {
+       "ok": true,
+       "sparkY": 354.6,
+       "sparkX": 205.5,
+       "barBottom": 34,
+       "cardTop": 676,
+       "windowY": [
+        44,
+        666
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "screenshot": "pixel-7/10-key-e-1.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "key-e-2",
+     "name": "press e (2): next line, card open, spark in the clear space",
+     "pass": true,
+     "ms": 52947,
+     "measured": {
+      "card": {
+       "index": 144,
+       "total": 344,
+       "title": "612 data-centre relationship slots, every one ABSTAIN",
+       "rect": {
+        "left": 0,
+        "top": 587.8,
+        "right": 412,
+        "bottom": 839,
+        "width": 412,
+        "height": 251.2
+       },
+       "cap": 285.3,
+       "height": 251.171875,
+       "ok": true
+      },
+      "clear": {
+       "ok": true,
+       "sparkY": 310.3,
+       "sparkX": 205.5,
+       "barBottom": 34,
+       "cardTop": 587.8,
+       "windowY": [
+        44,
+        577.8
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "screenshot": "pixel-7/11-key-e-2.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "key-e-3",
+     "name": "press e (3): next line, card open, spark in the clear space",
+     "pass": true,
+     "ms": 148305,
+     "measured": {
+      "card": {
+       "index": 145,
+       "total": 344,
+       "title": "Fault current: site-wide envelopes say what they combine, and by-voltage rows ar",
+       "rect": {
+        "left": 0,
+        "top": 658.6,
+        "right": 412,
+        "bottom": 839,
+        "width": 412,
+        "height": 180.4
+       },
+       "cap": 285.3,
+       "height": 180.390625,
+       "ok": true
+      },
+      "clear": {
+       "ok": true,
+       "sparkY": 345.8,
+       "sparkX": 205.5,
+       "barBottom": 34,
+       "cardTop": 658.6,
+       "windowY": [
+        44,
+        648.6
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "screenshot": "pixel-7/12-key-e-3.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "pinch-drag",
+     "name": "pinch out then drag: the wafer zooms and pans, the page neither scrolls nor zooms",
+     "pass": true,
+     "ms": 791486,
+     "measured": {
+      "pinch": {
+       "centre": [
+        206,
+        445.8
+       ],
+       "sparkBefore": [
+        205.5,
+        345.8
+       ],
+       "fingerDistance": [
+        220,
+        110
+       ],
+       "sparkDistanceFromCentre": [
+        100,
+        50.3
+       ],
+       "ratio": 0.503,
+       "expected": 0.5,
+       "pageScroll": [
+        0,
+        0
+       ],
+       "vvScale": 1,
+       "innerWidth": 412,
+       "ok": true
+      },
+      "drag": {
+       "finger": [
+        -90,
+        70
+       ],
+       "sparkMoved": [
+        -90,
+        70
+       ],
+       "pageScroll": [
+        0,
+        0
+       ],
+       "vvScale": 1,
+       "vvOffset": [
+        0,
+        0
+       ],
+       "cardOpen": true,
+       "ok": true
+      },
+      "zoomOut": [
+       {
+        "centre": [
+         115.5,
+         465.5
+        ],
+        "axis": "y",
+        "fingerDistance": [
+         300,
+         12
+        ],
+        "ratio": 0.04,
+        "zoomAfter": 0.28,
+        "selectedSparkMovedPx": 0.7,
+        "greensInView": [
+         0,
+         0
+        ],
+        "ok": true
+       },
+       {
+        "centre": [
+         115.1,
+         464.9
+        ],
+        "axis": "y",
+        "fingerDistance": [
+         300,
+         12
+        ],
+        "ratio": 0.04,
+        "zoomAfter": 0.0112,
+        "selectedSparkMovedPx": 0.8,
+        "greensInView": [
+         0,
+         5
+        ],
+        "ok": true
+       },
+       {
+        "centre": [
+         114.9,
+         464.1
+        ],
+        "axis": "y",
+        "fingerDistance": [
+         300,
+         17.58
+        ],
+        "ratio": 0.05861,
+        "zoomAfter": 0.0006564,
+        "selectedSparkMovedPx": 0.4,
+        "greensInView": [
+         5,
+         118
+        ],
+        "ok": true
+       }
+      ],
+      "zoomNow": 0.0006564,
+      "screenshot": "pixel-7/13-pinch-drag.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "spark-tap",
+     "name": "tap a green spark: the card for the nearest spark opens and the camera places it clear",
+     "pass": false,
+     "ms": 4426,
+     "measured": {
+      "tapped": {
+       "x": 260.6,
+       "y": 390.4,
+       "px": 33
+      },
+      "greensInView": 118,
+      "cameraKnown": true,
+      "predictedIndex": 323,
+      "predictedTitle": "Contributor username, UID and changeset are never read, banned from the schema,",
+      "predictedDistanceFromTapPx": 0.7,
+      "secondNearestPx": 28.5,
+      "cardIndex": 21307418144,
+      "previousCardIndex": 145,
+      "cardTitle": "35,708,393,743",
+      "clear": {
+       "ok": true,
+       "sparkY": 463.8,
+       "sparkX": 114.7,
+       "barBottom": 34,
+       "cardTop": 748,
+       "windowY": [
+        44,
+        738
+       ],
+       "hitTest": "#c",
+       "why": ""
+      },
+      "screenshot": "pixel-7/14-spark-tap.png"
+     },
+     "note": "card shows 21307418144, nearest by the law is 323"
+    },
+    {
+     "id": "whole-wafer",
+     "name": "tap COMMANDS then WHOLE WAFER: the card closes and the whole wafer is on screen under the bar",
+     "pass": true,
+     "ms": 11603,
+     "measured": {
+      "commandsPanel": {
+       "el": "kmb-panel-view",
+       "visible": true,
+       "open": true,
+       "rect": {
+        "left": 4,
+        "top": 34,
+        "right": 408,
+        "bottom": 765.1,
+        "width": 404,
+        "height": 731.1
+       },
+       "overflowY": "auto",
+       "scrollHeight": 730,
+       "clientHeight": 730,
+       "scrollTop": 0
+      },
+      "wholeWaferButton": {
+       "text": "whole wafer⌫",
+       "left": 11,
+       "top": 164.5,
+       "right": 401,
+       "bottom": 208.5,
+       "width": 390,
+       "height": 44
+      },
+      "commandsOpenedUnderBar": true,
+      "panelStayedOpenAfterTap": false,
+      "cardOpen": false,
+      "magenta": null,
+      "wafer": {
+       "excluded": [
+        [
+         8,
+         787,
+         105,
+         44
+        ]
+       ],
+       "litFraction": 0.2238,
+       "litPx": 73096,
+       "bbox": [
+        45,
+        275,
+        410,
+        597
+       ],
+       "bboxW": 366,
+       "bboxH": 323
+      },
+      "screenshot": "pixel-7/15-whole-wafer.png"
+     },
+     "note": ""
+    },
+    {
+     "id": "modules",
+     "name": "every module in modules.json order is admitted, none refused, zero page errors",
+     "pass": false,
+     "ms": 443,
+     "measured": {
+      "order": [
+       "hello",
+       "kuiper-shell",
+       "line-card",
+       "layers"
+      ],
+      "manifestError": null,
+      "loader": true,
+      "admitted": [
+       "hello",
+       "kuiper-shell",
+       "line-card",
+       "layers"
+      ],
+      "refused": [],
+      "failures": [],
+      "done": true,
+      "whole": null,
+      "notAdmitted": [],
+      "pageErrors": 1
+     },
+     "note": "1 page error(s)"
+    },
+    {
+     "id": "see-through",
+     "name": "tap SEE THROUGH: ../../see-through/ opens (new tab or navigation)",
+     "pass": true,
+     "ms": 371204,
+     "measured": {
+      "control": {
+       "text": "See Through",
+       "tag": "a",
+       "href": "../../see-through/",
+       "target": null,
+       "form": "strip",
+       "rect": {
+        "left": 9,
+        "top": 788,
+        "right": 111.9,
+        "bottom": 830,
+        "width": 102.9,
+        "height": 42
+       }
+      },
+      "how": "same-tab",
+      "url": "http://127.0.0.1:8590/w3/see-through/202611020012/",
+      "ok": true,
+      "screenshot": "FAILED: page.screenshot: Timeout 180000ms exceeded."
+     },
+     "note": "same-tab → http://127.0.0.1:8590/w3/see-through/202611020012/"
+    },
+    {
+     "id": "console",
+     "name": "zero console errors on the edition across the whole journey",
+     "pass": false,
+     "ms": 0,
+     "measured": {
+      "consoleErrors": [
+       {
+        "kind": "pageerror",
+        "text": "edSel is not defined",
+        "url": "http://127.0.0.1:8590/w3/editions/202611012135/"
+       }
+      ],
+      "offPageErrors": [
+       {
+        "kind": "request",
+        "text": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json net::ERR_TUNNEL_CONNECTION_FAILED",
+        "url": "http://127.0.0.1:8590/w3/see-through/202611020012/"
+       },
+       {
+        "kind": "console",
+        "text": "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED",
+        "url": "http://127.0.0.1:8590/w3/see-through/202611020012/"
+       }
+      ]
+     },
+     "note": "1 error(s): pageerror edSel is not defined; note: 2 error(s) after leaving the edition (not counted)"
+    }
+   ],
+   "consoleErrors": [
+    {
+     "kind": "pageerror",
+     "text": "edSel is not defined",
+     "url": "http://127.0.0.1:8590/w3/editions/202611012135/"
+    }
+   ],
+   "pass": false,
+   "offPageErrors": [
+    {
+     "kind": "request",
+     "text": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json net::ERR_TUNNEL_CONNECTION_FAILED",
+     "url": "http://127.0.0.1:8590/w3/see-through/202611020012/"
+    },
+    {
+     "kind": "console",
+     "text": "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED",
+     "url": "http://127.0.0.1:8590/w3/see-through/202611020012/"
+    }
+   ],
+   "passed": 11,
+   "failed": 7,
+   "finishedAt": "2026-11-02T00:31:47.478Z"
+  }
+ ],
+ "pass": false,
+ "summary": [
+  {
+   "device": "Pixel 7",
+   "passed": 11,
+   "failed": 7,
+   "failedSteps": [
+    "lines-filter",
+    "lines-pick",
+    "card-details",
+    "card-close",
+    "spark-tap",
+    "modules",
+    "console"
+   ],
+   "consoleErrors": 1
+  }
+ ]
+}

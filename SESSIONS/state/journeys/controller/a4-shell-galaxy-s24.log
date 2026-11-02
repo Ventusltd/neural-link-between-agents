@@ -1,0 +1,8 @@
+[Galaxy S24] PASS load
+[Galaxy S24] PASS modules — 3 admitted: hello, kuiper-shell, line-card
+[Galaxy S24] PASS edition-open
+[Galaxy S24] PASS edition-close
+[Galaxy S24] PASS lines-open
+[Galaxy S24] PASS lines-filter
+[Galaxy S24] PASS lines-pick
+[Galaxy S24] PASS card-details

@@ -1,0 +1,16 @@
+[Galaxy S24] FAIL load — wafer not detected as a disc under the bar
+[Galaxy S24] PASS modules — 2 admitted: hello, kuiper-shell
+[Galaxy S24] PASS edition-open
+[Galaxy S24] PASS edition-close
+[Galaxy S24] PASS lines-open
+[Galaxy S24] PASS lines-filter
+[Galaxy S24] FAIL lines-pick — no card; no selected spark drawn on #o
+[Galaxy S24] FAIL card-details — details did not open; card did not grow; spark no longer clear: no selected spark drawn on #o
+[Galaxy S24] PASS card-close — note: × is 0x0 px (under 24)
+[Galaxy S24] PASS key-e-1
+[Galaxy S24] PASS key-e-2
+[Galaxy S24] PASS key-e-3
+[Galaxy S24] FAIL pinch-drag — zoom-out pinch failed: [{"centre":[89.5,442.1],"axis":"y","fingerDistance":[300,12],"ratio":0.04,"zoomAfter":0.28,"selectedSparkMovedPx":144,"greensInView":[0,0],"ok":false}]
+[Galaxy S24] FAIL spark-tap — no unambiguous spark to tap (camera known: true, greens in view: 0)
+[Galaxy S24] FAIL whole-wafer — wafer not whole on screen: null
+[Galaxy S24] PASS see-through — same-tab → http://127.0.0.1:8500/a2-shell/see-through/202610050609/
