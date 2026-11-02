@@ -62,3 +62,4 @@ The harness wakes every ~40 minutes to commit landed files, relaunch watchers th
 - 06:31Z Kuiper Edition 9 (202611020629) published from GREEN E6-G3 (branch b553b1f), main fdf6e35: app launcher added. Render check both phones PASS, launcher opens. Controller 2 ended.
 - 07:02Z check-in 10: Edition 9 already live (main fdf6e35, Pages 41400472359 success). Controller 2 ended; nothing admissible until the Opus 3 layers revision lands. Check-in 11 at 07:42Z.
 - 07:45Z check-in 11: no layers REVISION yet; Opus 3 has a new stamp 202611020637-layers.js under test (uncommitted, its own). Live stays Edition 9. Check-in 12 at 08:26Z.
+- 07:51Z layers revision 202611020637 (c8fccccf) REVISION 6571928537: Opus 3 reports 16/16 on both phones on Edition 9, branch 4784aa3. OPUS-CONTROLLER-3 launched to admit it independently into a branch copy of editions/202611020629.
