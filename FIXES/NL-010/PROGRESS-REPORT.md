@@ -213,8 +213,10 @@ OVERNIGHT.md:3; OVERNIGHT.md:41; OVERNIGHT.md:44; FIXES/NL-011/BRIEF.md; KUIPER-
   #repo lights amber not cyan; the line-of-code note clips at 404 px. (#10/c6567437030)
 - The edition branch's own CI check is red since 03:20 UTC (law check, stray and pre-cut files). (run 41427484228)
 - LAWS.md L11 (the card law) is still a patch in handoff/02-card, not applied on kuiper-belt main.
-- Loader reference bytes: main's Edition 5 folder records 25a16f1d but the file was once rev 5 (d9272b82); the
-  reference is never fetched by the page. (OVERNIGHT.md:48)
+- Closed, for the record: the loader reference defect of the first preview (main e92ad5d carried rev 5 bytes
+  d9272b82 against a manifest naming 25a16f1d) is gone; on main the reference file in Editions 5 and 11 hashes to
+  25a16f1d, as the manifest says (measured 10:46 UTC). The E6 failure above is about the KY_EDITION stamp inside that
+  reference copy, not its bytes. (OVERNIGHT.md:48; kb@94aa593)
 
 ## 8. What happens next
 
