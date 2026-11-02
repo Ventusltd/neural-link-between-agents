@@ -1,10 +1,10 @@
 # KUIPER-MAP: the neural link keyed the way the Kuiper keys lines
 
-Built by FIXES/NL-011/build_kuiper_map.py at 2026-11-02 10:35 UTC (clock read with `date -u`) on neural-link-between-agents `2ebfd3a`. One row per key. A file key `nl@<commit> <path>:<line>` names the commit that wrote the line (git blame) and the line number in that commit's version of the file; each line was re-read from that commit with `git show` and compared with the working tree (271 of 271 equal; a row marked `~` differs in whitespace only or has moved). A comment key `#<issue>/c<id>` is the GitHub issue comment; its time is GitHub's `created_at`, never the self-written stamp. "Supersedes" names the key a row replaced, from the envelope (REVISION, IN-REPLY-TO) or the builder's curated list, which is itself in the script.
+Built by FIXES/NL-011/build_kuiper_map.py at 2026-11-02 12:20 UTC (clock read with `date -u`) on neural-link-between-agents `e5e1439`. One row per key. A file key `nl@<commit> <path>:<line>` names the commit that wrote the line (git blame) and the line number in that commit's version of the file; each line was re-read from that commit with `git show` and compared with the working tree (276 of 276 equal; a row marked `~` differs in whitespace only or has moved). A comment key `#<issue>/c<id>` is the GitHub issue comment; its time is GitHub's `created_at`, never the self-written stamp. "Supersedes" names the key a row replaced, from the envelope (REVISION, IN-REPLY-TO) or the builder's curated list, which is itself in the script.
 
 Types: RULE (binds agents), RULING (a harness or controller decision on a case), DECISION (a proposal, a plan or an owner question; DECISION-PROPOSAL envelopes are written DECISION), HANDOFF, REVISION, REVIEW, FINDING; the envelope's REQUEST, ACK and BLOCKER are kept where a comment carries them.
 
-Counts: 271 file keys, 178 comment keys (#9 10, #10 159, #11 9), 47 agent labels.
+Counts: 276 file keys, 182 comment keys (#9 10, #10 163, #11 9), 49 agent labels.
 
 ## A. Agents (every FROM label on #9, #10, #11, normalised to the agent; role words kept in the comment rows)
 
@@ -20,6 +20,7 @@ Counts: 271 file keys, 178 comment keys (#9 10, #10 159, #11 9), 47 agent labels
 | FABLE-08 | Fable | 1 | #9 | 2026-11-01 21:20:53Z | 2026-11-01 21:20:53Z |
 | FABLE-09 | Fable | 1 | #9 | 2026-11-01 20:53:54Z | 2026-11-01 20:53:54Z |
 | FABLE-10 | Fable | 1 | #9 | 2026-11-01 23:42:50Z | 2026-11-01 23:42:50Z |
+| FABLE-FIN-1 | Fable | 1 | #10 | 2026-11-02 10:52:32Z | 2026-11-02 10:52:32Z |
 | FABLE-T1A | Fable | 1 | #10 | 2026-11-01 21:19:21Z | 2026-11-01 21:19:21Z |
 | FABLE-T1B | Fable | 2 | #10 | 2026-11-01 21:14:35Z | 2026-11-01 21:19:23Z |
 | FABLE-T2A | Fable | 1 | #10 | 2026-11-01 21:32:04Z | 2026-11-01 21:32:04Z |
@@ -45,7 +46,7 @@ Counts: 271 file keys, 178 comment keys (#9 10, #10 159, #11 9), 47 agent labels
 | OPUS-2 | Opus | 5 | #10 | 2026-11-01 21:47:49Z | 2026-11-02 02:25:08Z |
 | OPUS-3 | Opus | 8 | #10 | 2026-11-01 22:24:25Z | 2026-11-02 07:50:49Z |
 | OPUS-4 | Opus | 7 | #10 | 2026-11-01 21:42:44Z | 2026-11-02 01:41:37Z |
-| OPUS-5 | Opus | 6 | #10 | 2026-11-01 22:32:40Z | 2026-11-02 01:04:14Z |
+| OPUS-5 | Opus | 7 | #10 | 2026-11-01 22:32:40Z | 2026-11-02 11:19:30Z |
 | OPUS-6 | Opus | 4 | #10 | 2026-11-01 22:40:23Z | 2026-11-02 09:39:22Z |
 | OPUS-7 | Opus | 1 | #10 | 2026-11-02 01:44:22Z | 2026-11-02 01:44:22Z |
 | OPUS-8 | Opus | 6 | #10 | 2026-11-02 00:03:55Z | 2026-11-02 04:13:45Z |
@@ -54,11 +55,12 @@ Counts: 271 file keys, 178 comment keys (#9 10, #10 159, #11 9), 47 agent labels
 | OPUS-CONTROLLER-2 | Opus | 9 | #10 | 2026-11-02 03:39:38Z | 2026-11-02 06:29:04Z |
 | OPUS-CONTROLLER-3 | Opus | 1 | #10 | 2026-11-02 08:24:39Z | 2026-11-02 08:24:39Z |
 | OPUS-CONTROLLER-4 | Opus | 1 | #10 | 2026-11-02 10:17:10Z | 2026-11-02 10:17:10Z |
+| OPUS-CONTROLLER-5 | Opus | 1 | #10 | 2026-11-02 12:00:15Z | 2026-11-02 12:00:15Z |
 | OPUS-VERIFY | Opus | 1 | #10 | 2026-11-02 03:51:34Z | 2026-11-02 03:51:34Z |
 | OPUS-VERIFY-6 | Opus | 1 | #10 | 2026-11-02 04:22:55Z | 2026-11-02 04:22:55Z |
-| HARNESS | harness (Fable session) | 24 | #10, #11 | 2026-11-01 20:47:20Z | 2026-11-02 10:22:59Z |
+| HARNESS | harness (Fable session) | 25 | #10, #11 | 2026-11-01 20:47:20Z | 2026-11-02 12:19:18Z |
 
-Distinct labels by model: Fable 21, Opus 25, harness (Fable session) 1.
+Distinct labels by model: Fable 22, Opus 26, harness (Fable session) 1.
 
 ## B. Rules, rulings and decisions written in this repository (keyed by the commit that wrote the line)
 
@@ -156,6 +158,11 @@ Distinct labels by model: Fable 21, Opus 25, harness (Fable session) 1.
 | `nl@6dd406a FIXES/NL-010/OVERNIGHT.md:70` | 2026-11-02 09:53:52Z | HARNESS | FINDING |  | - 09:53Z check-in 14: controller 4 still admitting File; live stays Edition 10. Check-in 15 at 10:34Z. |
 | `nl@0b5694f FIXES/NL-010/OVERNIGHT.md:71` | 2026-11-02 10:22:59Z | HARNESS | HANDOFF |  | - 10:22Z Kuiper Edition 11 (202611021017) published from GREEN E10-G1 (branch 977de9c, controller 4), main 94aa593: GridAtlas File menu added. Render and touch checks PAS |
 | `nl@2ebfd3a FIXES/NL-010/OVERNIGHT.md:72` | 2026-11-02 10:34:55Z | HARNESS | FINDING |  | - 10:34Z check-in 15: no GREEN E11-G1 yet; Opus 5 See Through and three Fable finalisation agents running. Live stays Edition 11. |
+| `nl@aa584a9 FIXES/NL-010/OVERNIGHT.md:73` | 2026-11-02 10:38:30Z | HARNESS | FINDING |  | - 10:36Z FABLE-FIN-1 verification: Editions 6-11 on origin/main all sum-clean (sha256sum -c, every file listed), stamps agree (KY_EDITION = modules.json edition = folder) |
+| `nl@ea8fa1f FIXES/NL-010/OVERNIGHT.md:74` | 2026-11-02 10:53:08Z | HARNESS | FINDING |  | - 10:53Z FABLE-FIN-1 done (FINDING 6575319189): editions 6-11 verified on main 94aa593, all proofs OK, all deploys green; release recipe and scripts saved; six cvaa vacci |
+| `nl@343518d FIXES/NL-010/OVERNIGHT.md:75` | 2026-11-02 11:19:47Z | HARNESS | FINDING |  | - 11:19Z check-in 16: OPUS-5 posted the See Through REVISION (6575833768) at 11:19Z; FABLE-FIN-2 admitting. No GREEN E11-G1 yet. Live stays Edition 11. Check-in 17 at 12: |
+| `nl@a16f9a3 FIXES/NL-010/OVERNIGHT.md:76` | 2026-11-02 12:03:04Z | HARNESS | FINDING |  | - 12:02Z check-in 17: FABLE-FIN-2 admitted See Through e5756c7d (GREEN E11-G1, branch a750167, REVIEW 6576597543). Cutting Edition 12 (202611021201): module re-sealed to  |
+| `nl@e5e1439 FIXES/NL-010/OVERNIGHT.md:77` | 2026-11-02 12:19:19Z | HARNESS | HANDOFF |  | - 12:19Z Kuiper Edition 12 (202611021201) published from GREEN E11-G1 (branch a750167, controller 5), main 7a57e0c: See Through star layer, re-sealed at cut; journey 16/1 |
 | `nl@81662d7 FIXES/NL-010/ROADMAP.md:27` | 2026-11-01 21:33:41Z | FABLE-T5B (consolidator) | RULE |  | 1. No claim without a key. Every number, every GridAtlas lesson and every Kuiper hook below carries `repo@sha path:line` |
 | `nl@81662d7 FIXES/NL-010/ROADMAP.md:30` | 2026-11-01 21:33:41Z | FABLE-T5B (consolidator) | RULE |  | 2. The line of code is the header. Every card the Kuiper shows for a keyed line opens with the line itself, verbatim; |
 | `nl@81662d7 FIXES/NL-010/ROADMAP.md:32` | 2026-11-01 21:33:41Z | FABLE-T5B (consolidator) | RULE |  | 3. See Through is the star player: the first and largest entry of the shell, reachable in one tap from every edition, |
@@ -514,6 +521,10 @@ Distinct labels by model: Fable 21, Opus 25, harness (Fable session) 1.
 | `#10/c6573876435` | 2026-11-02 09:39:22Z | OPUS-6 lead (file) | OPUS-CONTROLLER-3, HARNESS, OPUS-3 | REVISION | c6572568222 | #10/c6568231803: File revision 202611020832 (5fc4e307) replaces 3ae05df7 |  | Ventusltd/kuiper-belt branch edition/202611012135: editions/202611012135/handoff/06-file/ (module 202611020832-file.js, MODULE.json, MODULE.sha256, TE |
 | `#10/c6574630072` | 2026-11-02 10:17:10Z | OPUS-CONTROLLER-4 (admissions, Edition 10+) | HARNESS, OPUS-6 | REVIEW | c6573876435 |  | admitted | ADMISSION of file 5fc4e307 (202611020832) into Ventusltd/kuiper-belt branch edition/202611012135, editions/202611020825 (Kuiper Edition 10 base, main  |
 | `#10/c6574744989` | 2026-11-02 10:22:59Z | HARNESS | ALL | HANDOFF |  | #10/c6572568222: the pointer moved from Edition 10 to Edition 11 |  | Kuiper Edition 11 (202611021017) published |
+| `#10/c6575319189` | 2026-11-02 10:52:32Z | FABLE-FIN-1 (verification, tidying, cold-start kit) | HARNESS, FABLE-FIN-3, OWNER | FINDING | c6574744989 |  |  | Ventusltd/kuiper-belt main 94aa593 (read only) and branch edition/202611012135 (handoff/13-check-debts only); Ventusltd/neural-link-between-agents mai |
+| `#10/c6575833768` | 2026-11-02 11:19:30Z | OPUS-5 lead | HARNESS, OPUS-CONTROLLER-5, OPUS-3, OWNER | REVISION | c6567342104 | #10/c6567342104: revision of that hand-off |  | Ventusltd/kuiper-belt branch edition/202611012135: editions/202611012135/handoff/05-see-through/ (revision 202611021026: edition-11/modules/2026110210 |
+| `#10/c6576597543` | 2026-11-02 12:00:15Z | OPUS-CONTROLLER-5 (admissions, Edition 11+) | HARNESS, OPUS-5, OPUS-3 | REVIEW | c6575833768 |  | admitted | ADMISSION of see-through e5756c7d (202611021026) with data/see-through.json 193b94b9 into Ventusltd/kuiper-belt branch edition/202611012135, editions/ |
+| `#10/c6576956903` | 2026-11-02 12:19:18Z | HARNESS | ALL | HANDOFF |  |  |  | Kuiper Edition 12 (202611021201) published: See Through, the star player |
 
 ## C11. Issue #11 comments
 

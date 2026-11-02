@@ -1,7 +1,8 @@
 # NL-010 progress report for the owner (2 November 2026)
 
-Written by FABLE-FIN-3 for Vikram Kumar, Ventus Ltd. DRAFT, clock read with `date -u` at 10:31 UTC on 2 November
-2026; the final version folds in FABLE-FIN-1's FINDING and FABLE-FIN-2's REVIEW on issue #10. Every number here
+Written by FABLE-FIN-3 for Vikram Kumar, Ventus Ltd. First draft 10:31 UTC, final 12:24 UTC on 2 November 2026 (clock
+read with `date -u`); it folds in FABLE-FIN-1's FINDING (#10/c6575319189), FABLE-FIN-2's REVIEW (#10/c6576597543) and
+the Edition 12 release (#10/c6576956903). Every number here
 carries a key in brackets. A key of the form `#10/c6567194090` is a comment on
 https://github.com/Ventusltd/neural-link-between-agents/issues/10 (comment id after `c`); a key of the form
 `OVERNIGHT.md:53` is a line of a file in this repository, and FIXES/NL-011/KUIPER-MAP.md gives the commit that wrote
@@ -9,13 +10,13 @@ that line (`nl@<commit> path:line`); `kb@<sha>` is a kuiper-belt commit; `run <i
 
 ## 1. What is live now, and where
 
-The editions pointer https://ventusltd.github.io/kuiper-belt/editions/ opens Kuiper Edition 11. The door
+The editions pointer https://ventusltd.github.io/kuiper-belt/editions/ opens Kuiper Edition 12. The door
 www.globalgrid2050.com/kuiper-editions/ forwards to that pointer, and the homepage's Kuiper editions card opens the
 door; the homepage's See Through entry opens the See Through pointer, which opens See Through 202611020012. Nothing
-was deleted: Editions 1 to 10 and See Through 202610050609 stay as history. (kb@94aa593; #10/c6574744989;
+was deleted: Editions 1 to 11 and See Through 202610050609 stay as history. (kb@7a57e0c; #10/c6576956903;
 #10/c6566414726; #10/c6567739175)
 
-Seven editions were published between 01:47 and 10:22 UTC, each a new dated folder, each one module on the last:
+Eight editions were published between 01:47 and 12:18 UTC, each a new dated folder, each one module on the last:
 
 - Edition 5, stamp 202611012135. Edition 4's wafer with the NL-009 Android fixes, a hook table and a loader that admits
   stamped modules by sha256 and refuses in words, and the card law (every card opens with the line of code itself, the
@@ -46,6 +47,12 @@ Seven editions were published between 01:47 and 10:22 UTC, each a new dated fold
   edition's evidence, seven files measured live when FILE opens. kb@94aa593, 10:22 UTC, from E10-G1 at 977de9c2;
   16/16 and 16/16 on base and base plus File; by touch on Pixel 7 FILE's smallest target is 44 px and Open a key
   opens the card. (#10/c6574744989; #10/c6574630072)
+- Edition 12, 202611021201. See Through, the star player (module 202611021026): the layers row "See Through stars"
+  reads OK · 5,800 of 5,800; switched on, the 5,800 stars draw cyan at their keys; a tap on a star shows a chip that
+  opens See Through at that star. kb@7a57e0c, 12:18 UTC, Pages run 41443676021 success, proof over 26 files, from
+  E11-G1 at a7501673; the re-sealed folder as published ran the journey again, Pixel 7 16/16 and Galaxy S24 16/16,
+  eight modules admitted, none refused, controller 5's own check 6/6 on both phones, 0 page errors.
+  (#10/c6576956903; #10/c6576597543)
 
 See Through 202611020012 (kb@7110022, 02:14 UTC, Pages run 41376685032) reads the Kuiper's deep links (#sub, #key with
 or without &space, #repo, #view) and gives every star a row that opens it on the Kuiper. Tester PASS 23/23 on Pixel 7
@@ -62,7 +69,9 @@ branch commit a7501673: journey-6 on main's engine, base 16/16 and 16/16, with s
 modules admitted and none refused, 0 page errors, no step HARNESS-LIMITED. The harness is cutting Kuiper Edition 12,
 stamp 202611021201, from that row; because the module is sealed to its edition and its data, the cut re-seals the two
 constants EDITION and DATA (the re-sealed data sha256 is ad9d2d61) and runs the full two-phone journey on the exact
-folder before the push. EDITION-12-STATUS. (#10/c6575833768; #10/c6576597543)
+folder before the push. Edition 12 shipped at 12:18 UTC as kb@7a57e0c (shipped module sha256 ad9d2d61, data 1b91c2d5,
+666,705 bytes; the diff of the module against the admitted e5756c7d is those two constant lines; the harness recorded
+the re-seal as a ruling that covers stamp and hash constants only). (#10/c6575833768; #10/c6576597543; #10/c6576956903)
 
 The www.globalgrid2050.com side: the door /kuiper-editions/ (globalgrid2050 PR #50, merged 23:38 UTC on 1 Nov,
 deploy run 41364141297); the deploy allow-list line (PR #51, 23:58 UTC); the Kuiper editions homepage card
@@ -121,7 +130,7 @@ The roadmap (ROADMAP.md, consolidated 21:34 UTC on 1 Nov, #10/c6564201811) set t
    on the edition branch; E3, E6 and E7 fail for known reasons (section 7).
 5. See Through, the star player: See Through 202611020012 with the deep-link reader is live and linked from the
    homepage; the shell carries the SEE THROUGH entry (title or strip); the star layer module e5756c7d is admitted as
-   GREEN E11-G1 and is the content of Edition 12, being cut as this is written (section 1). The card's own "see this
+   GREEN E11-G1 and shipped as Edition 12 at 12:18 UTC (section 1). The card's own "see this
    line among the stars" row was dropped from the module (it filled the card to its cap, the cause of the first
    refusal); the star tap chip replaces it. (#10/c6567342104; #10/c6575833768; #10/c6576597543)
 6. The File menu and the hash grammar: shipped in Edition 11, with thinner evidence than its first draft (section 7).
@@ -162,7 +171,7 @@ and a commit gate that run K1 and refuse "@" bodies and placeholders, DECISION, 
 naming its object, two identities with branch protection. PROTOCOL.md is unchanged. (PROTOCOL-v2-proposal.md:1;
 #11/c6567020825)
 
-Counts of the record: issue #10 holds 159 comments, #11 holds 9, #9 holds 10 (10:29 UTC). The ledger's last refresh
+Counts of the record: issue #10 holds 163 comments, #11 holds 9, #9 holds 10 (12:20 UTC). The ledger's last refresh
 (03:25 UTC) counted 26 open asks between agents on the link, 17 in files, and 16 open owner asks. (LEDGER.md:7)
 
 ## 5. Agents used
@@ -173,8 +182,8 @@ release, Watcher B integration, the Fable controller stopped at 01:05 UTC on "Wo
 finalisers now (FABLE-FIN-1, -2, -3); and the harness session itself. Opus: 40 module agents in ten teams of four
 (OPUS-1 to -10), raised to 50 with teams 11 to 13 (homepage card, See Through reader, served-domain check); 12 NL-011
 link agents (six studies, six link runners); 4 admission controllers (OPUS-CONTROLLER 1 to 4, each a loop of about
-three hours); 2 verify agents (Edition 5, Edition 6). On the link itself, 47 agent labels posted the 178 comments of
-#9, #10 and #11: 21 Fable, 25 Opus and the harness; the harness alone wrote 24 of them. (BRIEF.md:5; OPUS-BRIEF.md:1;
+three hours, and controller 5 was FABLE-FIN-2); 2 verify agents (Edition 5, Edition 6). On the link itself, 49 agent
+labels posted the 182 comments of #9, #10 and #11: 22 Fable, 26 Opus and the harness; the harness alone wrote 25 of them. (BRIEF.md:5; OPUS-BRIEF.md:1;
 OVERNIGHT.md:3; OVERNIGHT.md:41; OVERNIGHT.md:44; FIXES/NL-011/BRIEF.md; KUIPER-MAP.md section A)
 
 ## 6. Open owner decisions, each with a recommended answer
@@ -265,14 +274,14 @@ OVERNIGHT.md:3; OVERNIGHT.md:41; OVERNIGHT.md:44; FIXES/NL-011/BRIEF.md; KUIPER-
 
 ## 8. What happens next
 
-Edition 12 (the See Through star layer) completes the roadmap's module list; after it the live pointer carries
-steps 1 to 8 of the ten. OPUS-5 owes a revision that remaps the stars to the live SPACE so the layer survives the
+Edition 12 (the See Through star layer) completed the roadmap's module list at 12:18 UTC; the live pointer now
+carries steps 1 to 8 of the ten, with the periodic-table layer still REFUSED on Q1. OPUS-5 owes a revision that remaps the stars to the live SPACE so the layer survives the
 engine's next wafer growth; teams 3 and 7 owe the E7 literals and the "Edition 9" text in the layers record; team 4
 owes a loader reference under a new stamp so E6 passes without the tool patch; team 8 owes the E9 replay. The release
 recipe (RECIPE.md) and the resume kit (RESUME.md section 0) let a new session cut Edition 13 cold. The owner's answers
 in section 6 unblock the periodic table (Q1), the spider terms (Q5), the four large data files, Phase 2 and protocol
 v2. The three finalisation agents end with this report: FABLE-FIN-1's FINDING (#10/c6575319189), FABLE-FIN-2's
-REVIEW as OPUS-CONTROLLER-5 (#10/c6576597543) and this REPORT.
+REVIEW as OPUS-CONTROLLER-5 (#10/c6576597543), the harness's Edition 12 release (#10/c6576956903) and this REPORT.
 
 ## 9. The Kuiper method applied to the link, and the Ventus grid engine for new links
 
@@ -282,8 +291,8 @@ per key, `nl@<commit> path:line` for a file line (the commit that wrote it, from
 commit) or `#<issue>/c<id>` for a comment, with who wrote it, when (UTC, GitHub's time for comments), its type and
 what it superseded. Built by FIXES/NL-011/build_kuiper_map.py. The numbers in this report trace to those rows.
 
-The map holds 271 file keys (all 271 re-read from their commits and equal to the working tree) and 178 comment keys
-(#9 10, #10 159, #11 9), and 47 agent labels. (KUIPER-MAP.md:1)
+The map holds 276 file keys (all 276 re-read from their commits and equal to the working tree) and 182 comment keys
+(#9 10, #10 163, #11 9), and 49 agent labels. (KUIPER-MAP.md:7)
 
 The Ventus grid engine's graph format fits. Read at ventus-grid-engine@96a800eb01825748936b5a193ce396a960f9302f
 (read only, nothing pushed): genome/build-graph.mjs writes genome/engine-graph.json as one object with schema, label,
@@ -298,9 +307,9 @@ is drawn in the default colour and labelled by its own name (spider-sandbox.html
 the BADGE table shows the badge REPO (spider-sandbox.html:177), so an agent card reads REPO above its name; the rag
 colours green, amber, red, grey, blue all work (spider-sandbox.html:175).
 
-FIXES/NL-011/link-graph.json is written in exactly that shape by FIXES/NL-011/build_link_graph.py from the map: 499
-nodes (3 issues, 47 agents, 178 comments, 271 file keys) and 677 edges (wrote 178, posted on 178, replied to 119,
-superseded 47, admitted 11, refused 6, governs 138); its top-level keys, node keys and edge keys were compared to
+FIXES/NL-011/link-graph.json is written in exactly that shape by FIXES/NL-011/build_link_graph.py from the map: 510
+nodes (3 issues, 49 agents, 182 comments, 276 file keys) and 690 edges (wrote 182, posted on 182, replied to 122,
+superseded 48, admitted 12, refused 6, governs 138); its top-level keys, node keys and edge keys were compared to
 engine-graph.json and are equal; every edge index is in range. rag: green in force, grey superseded, amber open or
 asked of the owner, red refused. To draw it, the engine's spider/manifest.json needs one entry whose path is the raw
 GitHub URL of link-graph.json (spider/README.md "How new graphs arrive"); that is a ventus-grid-engine commit and the
