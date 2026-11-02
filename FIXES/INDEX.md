@@ -29,13 +29,14 @@ All eleven issues are open (`gh api repos/Ventusltd/neural-link-between-agents/i
 
 ## 2. FIXES/ and SESSIONS/ (newest last commit first)
 
-Status words: LIVE-LOG (still appended), DONE (closed work), IN-PROGRESS, UNCOMMITTED (on disk, not yet in git at 01:26Z).
+Status words: LIVE-LOG (still appended), DONE (closed work), IN-PROGRESS, UNCOMMITTED (on disk, not yet in git). Last commits re-read at 01:30Z after the harness's nl@7bcdcd2.
 
 | path | what it is | issue | status | key |
 |---|---|---|---|---|
-| FIXES/INDEX.md | this index | #11 | UNCOMMITTED (the harness commits) | FIXES/NL-011/QUEUE.md item 11 |
-| FIXES/NL-011/ | the study of the link and the link-running agents' files | #11 | IN-PROGRESS | nl@70d939d |
-| FIXES/NL-011/LEDGER.md | LINK-08 open-request ledger (every open REQUEST/BLOCKER, refreshed every 10 min) | #11 | UNCOMMITTED, IN-PROGRESS | `git status --short` 01:26Z |
+| FIXES/INDEX.md | this index | #11 | first version committed; line-key fixes uncommitted | nl@7bcdcd2; FIXES/NL-011/QUEUE.md item 11 |
+| FIXES/NL-011/ | the study of the link and the link-running agents' files | #11 | IN-PROGRESS | nl@7bcdcd2 |
+| FIXES/NL-011/12-live-review.md | LINK-12 live reviewer of new comments | #11 | IN-PROGRESS | `ls FIXES/NL-011` 01:30Z |
+| FIXES/NL-011/LEDGER.md | LINK-08 open-request ledger (every open REQUEST/BLOCKER, refreshed every 10 min) | #11 | IN-PROGRESS | nl@7bcdcd2 |
 | FIXES/NL-011/QUEUE.md | launch queue for agents 07–12 kept on the link | #11 | LIVE-LOG ("queue complete") | nl@70d939d |
 | FIXES/NL-011/02-failures.md | study 02, failure catalogue | #11 | DONE (file landed) | nl@aa48eae |
 | FIXES/NL-011/03-topology.md | study 03, topology and latency | #11 | DONE (file landed) | nl@1325317 |
@@ -43,14 +44,14 @@ Status words: LIVE-LOG (still appended), DONE (closed work), IN-PROGRESS, UNCOMM
 | FIXES/NL-011/01-protocol.md, 01-protocol.py | study 01, protocol adherence, and its counting script | #11 | DONE (file landed) | nl@ca4ab8a |
 | FIXES/NL-011/BRIEF.md | brief for the six study agents | #11 | DONE | nl@3e13873 |
 | FIXES/NL-011/ (04, 06, DECISIONS.md, PROTOCOL-v2-proposal.md, SYNTHESIS.md) | expected, not on disk at 01:26Z | #11 | PENDING | FIXES/NL-011/BRIEF.md; QUEUE.md item 09 |
-| SESSIONS/state/ | harness state on the link: overnight queue, edition stamps, in-flight work, journey snapshots | #10, #11 | LIVE-LOG | nl@70d939d |
+| SESSIONS/state/ | harness state on the link: overnight queue, edition stamps, in-flight work, journey snapshots | #10, #11 | LIVE-LOG | nl@7bcdcd2 |
 | SESSIONS/state/overnight-queue.md | the harness's queue, launch log and commit rule (run k1-staged after `git add`) | #10 | LIVE-LOG | nl@70d939d |
-| SESSIONS/state/stamps.env | edition stamps S2–S5 (S5=202611012135) | #10 | UNCOMMITTED | `git status --short` 01:26Z |
-| SESSIONS/state/inflight/team-1-shell-rev3/ | kuiper-shell rev 3 (`pendingBack`) frozen until rev 2's GREEN row | #10 | UNCOMMITTED, HELD | HO/10-integration/ADMISSIONS.md:28 |
-| SESSIONS/state/journeys/ (controller/, team10-lead/) | snapshot sha256 lists of admission journeys | #10 | UNCOMMITTED | `git status --short` 01:26Z |
-| FIXES/NL-010/ | the Kuiper Edition 5 roadmap, briefs, overnight log, served check, hand-offs of teams 11/13, tools | #10 | IN-PROGRESS | nl@70d939d |
+| SESSIONS/state/stamps.env | edition stamps S2–S5 (S5=202611012135) | #10 | committed | nl@7bcdcd2 |
+| SESSIONS/state/inflight/team-1-shell-rev3/ | kuiper-shell rev 3 (`pendingBack`) frozen until rev 2's GREEN row | #10 | HELD (committed) | nl@7bcdcd2; HO/10-integration/ADMISSIONS.md:28 |
+| SESSIONS/state/journeys/ (controller/, team10-lead/) | snapshot sha256 lists of admission journeys | #10 | committed | nl@7bcdcd2 |
+| FIXES/NL-010/ | the Kuiper Edition 5 roadmap, briefs, overnight log, served check, hand-offs of teams 11/13, tools | #10 | IN-PROGRESS | nl@7bcdcd2 |
 | FIXES/NL-010/OVERNIGHT.md | overnight plan (owner ACCEPT, small steps R0–R4) and its log; time correction at :47 | #10 | LIVE-LOG | nl@70d939d |
-| FIXES/NL-010/tools/ | harness and controller scripts moved into the repo: k1-staged.py, controller/ (crun, snap, state, poll, k1), release/ (r1_squash, merge_watch, k1hist), journey/, evidence/nl009/ | #10 | committed in part (8 files); controller/jrun*.sh, journey/, evidence/, release/k1hist.py UNCOMMITTED; poll.sh, state.sh modified | nl@f5b7358; `git status --short` |
+| FIXES/NL-010/tools/ | harness and controller scripts moved into the repo: k1-staged.py, controller/ (crun, snap, state, poll, k1), release/ (r1_squash, merge_watch, k1hist), journey/, evidence/nl009/ | #10 | committed (evidence/ also holds the Opus teams' scratch scripts under nl010-opus/) | nl@7bcdcd2 |
 | FIXES/NL-010/handoff-13-served.md | Opus team 13 hand-off: gridatlas branch served-check-kuiper-editions ce1246e, PR body | #10 | DONE (PR #83 open) | nl@fd963f9; gridatlas PR #83 |
 | FIXES/NL-010/served-check.md | team 13's served-domain check: door, homepage card bundle, Edition 5 preview | #10 | DONE | nl@a9b5919 |
 | FIXES/NL-010/handoff-11-homepage.md | Opus team 11 hand-off: Kuiper editions card on globalgrid2050.com | #10 | DONE (deployed) | nl@3c17c9a |
