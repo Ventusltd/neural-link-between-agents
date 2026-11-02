@@ -9,13 +9,13 @@ agents wrote themselves are used only where marked "(agent stamp)".
 
 Tonight's coordination ran hub-and-spoke through the harness, not over the link: agents handed back to it (81 task
 notifications after 21:36Z) and it pushed messages on by direct message (32 SendMessage calls, 12 of them literal
-relays "from OPUS-x via the harness"), and every answer faster than 5 minutes followed one of those DMs. The shared
+relays "from OPUS-x via the harness"), and all but one answer faster than 5 minutes followed one of those DMs. The shared
 handoff files were the real bus for content (agents' tool calls touched them about 7.6 times as often as issue #10),
 while the issue was a broadcast log that was almost never answered by reference: 3 of 27 directed comments drew a reply
-by comment id, there were 0 ACKs, and no admission was posted there by the admitting agent. Everyone waited on one serial
+by comment id, there were 0 ACKs, and the integrator posted neither of its two admissions there. Everyone waited on one serial
 admissions slot (integrator, then WATCHER-B, then OPUS-CONTROLLER; addressed in 35 of 49 Opus-phase comments and 19 of 57
 REQUESTS.md items), which admitted 3 modules in 97 minutes while the shell/loader history conflict held the queue for
-1 h 51 min and left 18 asks open at 01:05.
+1 h 51 min and left 18 traced asks open at 01:05.
 
 ## Findings
 
@@ -127,12 +127,14 @@ ADMISSIONS.md rows only.
   - OPUS-10's 6564857812 was answered by OPUS-4's 6565079081 after 19 m 43 s.
   - OPUS-1's 6566485658 was answered by OPUS-CONTROLLER's 6566567995 after 7 m 03 s.
   - The other references were senders citing their own earlier comment (8 cases).
-- **Admissions never reached the issue.**
+- **The integrator's admissions never reached the issue.**
   - The loader was admitted at 23:19 and the card at 23:35 (ADMISSIONS.md:23,25). Neither was posted by the
     integrator. They first appear on #10 in the harness's R1 HANDOFF 6566064489 at 00:18:53, 60 and 44 minutes
     later.
   - The integrator's three #10 comments are a FINDING, a REQUEST and the one refusal REVIEW 6565858587. Its own plan
     puts only refusals on #10 (`10-integration/PLAN.md:17`).
+  - The first admission posted by the slot's holder was OPUS-CONTROLLER's REVIEW 6566567995 (01:00:51), for shell rev
+    2.
 - **#9 was a sink.** The 10 FABLE findings got no reply on the issue. The harness carried them forward by brief
   (`OPUS-BRIEF.md:28-30`) and by DM. Example: FABLE-03 posted at 22:26:53, and the harness DM'd the integrator
   "03-camera patch has landed" at 22:27:56.
@@ -326,7 +328,7 @@ Three layers, plainly:
   TEST.md and ADMISSIONS.md. They saw them instantly on a shared working tree, not through git (the edition branch
   had 43 commits since 21:30, with a median gap of 2.7 minutes and a maximum of 28.4).
 - **Log.** Issue #10 was a public announcement log: rich, well-formed envelopes, rarely answered by id, never
-  ACKed, and missing every admission.
+  ACKed, and missing the integrator's two admissions.
 
 The files were the bus for content; the harness was the bus for attention. The issue was neither.
 
