@@ -83,6 +83,14 @@ with every page condition met and the step's own frame measuring a whole wafer (
 HARNESS-LIMITED PASS; and card-details passes at the card's height cap when the details are reachable inside the
 card. (#10/c6568437190; #10/c6568562808)
 
+FABLE-FIN-1 re-verified Editions 6 to 11 on a clean worktree of kuiper-belt main 94aa593 between 10:28 and 10:33
+UTC: for each folder `sha256sum -c` of proof/edition-sha256.txt reads OK (11, 11, 13, 19, 22 and 23 files listed and
+present), KY_EDITION equals the manifest's edition equals the folder, and both the Pages run and the checking-engineer
+run completed success; the pointer names 202611021017 at its lines 7, 11 and 12 and forwards search and hash;
+ci_check on the worktree reads RESULT: PASS (K1 852 tracked files, K2 sums agree). The recipe the harness used from
+Edition 7 on is written step by step in FIXES/NL-010/tools/release/RECIPE.md with the scripts beside it, and
+SESSIONS/RESUME.md section 0 holds the state for a cold start. (#10/c6575319189; CHECK-DEBTS.md:1)
+
 One admission was an exception to the tester rule: the line card revision 8ec117f9 was admitted on the OPUS-2 lead's
 own 24/24 run under the harness's written instruction, because no team 2 tester run existed; it then measured 16/16
 on both phones in the controller's journey. (editions/202611020326/GREEN.md note E6-G1; #10/c6568562808)
@@ -189,7 +197,14 @@ OVERNIGHT.md:3; OVERNIGHT.md:41; OVERNIGHT.md:44; FIXES/NL-011/BRIEF.md; KUIPER-
 10. Phase 2, the Kuiper paradigms, gated on your acceptance of steps 1 to 10 (ROADMAP.md:784). Recommended: accept
     Editions 5 to 11 as steps 1 to 4 and 6 to 8 delivered, with step 5's module and step 9's debts named as open,
     and start 8a with a per-app Kuiper of See Through.
-11. Smaller: Q2 galaxies-wafers licence (Phase 2 only), Q3 a K5 line in ci_check or the separate edition_check (the
+11. New this morning, from FABLE-FIN-1: four tracked data files on kuiper-belt main, the 18 and 19 September harvest
+    snapshots under data/20260918T234128Z, data/20260918T234405Z, data/20260918T234855Z and data/20260919T001154Z
+    (3.11 to 3.14 MB each), carry 6 tokens each whose digests are on the not-public list. ci_check K1 scans a tracked
+    file only up to 3,000,000 bytes and still reports every tracked file as scanned, so they passed every K1 run
+    since September. Nothing was touched: deletion and history are outside the delegation. Recommended: remove or
+    redact the four files in a commit of your own (the history keeps them unless rewritten, which goes with decision 2),
+    then change K1 to scan every size, or to fail on a file it skipped. (#10/c6575319189; CHECK-DEBTS.md:52)
+12. Smaller: Q2 galaxies-wafers licence (Phase 2 only), Q3 a K5 line in ci_check or the separate edition_check (the
     separate tool exists), Q4 the denominators of the Kuiper that counts everything, Q6 who merges previews (moot
     under the delegation), Q8 the VENTUS mark wording in NOTICE.md (recommended: confirm as written), the lockup
     flanks above 700 px, and the 17 GPL and 48 unstated one-line quotations in elements.json as citations
@@ -202,13 +217,25 @@ OVERNIGHT.md:3; OVERNIGHT.md:41; OVERNIGHT.md:44; FIXES/NL-011/BRIEF.md; KUIPER-
   KY_EDITION 202611012135), E7 FAIL (prose instead of literals in the drift and three apps record entries); E9 is
   NOT EVALUATED where no clones sit under the snapshot root, and the recorded drift.json differs from one recomputed
   on another machine. (#10/c6572503742; #10/c6574630072; #10/c6570675769)
+- FABLE-FIN-1 prepared, and did not admit, a tool-only fix on the branch (handoff/13-check-debts/edition_check.patch):
+  E6 compares the hook-table block after normalising the one KY_EDITION line and passes on main with the patch; E7
+  strips a trailing annotation, which clears the drift record but leaves two apps entries that have no literal at
+  all ("history entry {kyApps}", "layers elements, spider"); those need team 7's record corrected at the next cut
+  (the literals are `#card`, `history.pushState`, `elements`, `spider`; drift's `#hud`). E9 stays with team 8: the
+  replay depends on which clones the host holds. (CHECK-DEBTS.md:10; CHECK-DEBTS.md:27; CHECK-DEBTS.md:37)
 - The layers module's See Through stars row says "Edition 9 carries no data/see-through.json": the edition number is
   written into the module text; the next revision should read it from KY. (#10/c6572568222; #10/c6574744989)
 - The File module's evidence is thinner than its first draft: seven shipped files measured live, but no key round-trip
   summary, no licence register and no journey record; NOTICE.md points to a LICENCES.md "when it lands".
   (#10/c6574630072)
-- apps.json and elements.json carry edition 202611012135 in their own edition field, which apps.js does not read.
-  (#10/c6570675769)
+- apps.json and elements.json in Editions 9, 10 and 11 carry edition 202611012135 in their own edition field, which
+  apps.js does not read (drift.js would refuse, which is why drift.json is regenerated at each cut and these were
+  not). The release recipe gains the re-stamp and edition_check an E10; a cvaa vaccine with that check is filed.
+  (#10/c6570675769; CHECK-DEBTS.md:44)
+- Six vaccines were filed in Ventusltd/cvaa (main b124c39) for the night's failure modes, each with a keyed provenance
+  and a diseased fixture: the manifest on a green row, the post that reads the file, no private names, the released
+  folder frozen, the data stamp is the page stamp, record paths not prose. The vaccine "no private names" is what found
+  the four large files of decision 11. (#10/c6575319189)
 - The See Through module (star layer) is refused with no revision; the See Through page was not run on Galaxy S24;
   #repo lights amber not cyan; the line-of-code note clips at 404 px. (#10/c6567437030)
 - The edition branch's own CI check is red since 03:20 UTC (law check, stray and pre-cut files). (run 41427484228)
