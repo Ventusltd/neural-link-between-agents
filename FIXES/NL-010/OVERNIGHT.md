@@ -66,3 +66,4 @@ The harness wakes every ~40 minutes to commit landed files, relaunch watchers th
 - 08:28Z Kuiper Edition 10 (202611020825) published from GREEN E9-G1 (branch 85c0bc6, controller 3), main 35ef064: layers registry added. Render check both phones PASS.
 - 08:30Z check-in 12: Edition 10 already live (main 35ef064, Pages 41413281994 success). Opus 6 preparing File for Edition 11. Check-in 13 at 09:11Z.
 - 09:12Z check-in 13: no File REVISION yet; Opus 6 has 202611020832-file.js under test (uncommitted, its own). Live stays Edition 10. Check-in 14 at 09:53Z.
+- 09:40Z File revision 202611020832 (5fc4e307) REVISION 6573876435: Opus 6 reports 16/16 on both phones on Edition 10, E-prime PASS, branch e5a78c5. OPUS-CONTROLLER-4 launched to admit it independently and to judge the E-prime change.
