@@ -1,0 +1,37 @@
+{
+  "device": "Pixel 7",
+  "viewport": {
+    "width": 412,
+    "height": 839
+  },
+  "card_count": 1,
+  "card_visible": true,
+  "card_title": "↳ Kuiper editions The estate's verified lines of code, lit on the Kuiper wafer",
+  "card_open": true,
+  "launch_href": "https://globalgrid2050.com/kuiper-editions/",
+  "launch_text": "Open the Kuiper editions →",
+  "description": "Every line of every commit of the estate on one wafer, with the verified lines lit as green sparks at their own keys. Tap a spark or pick a row in LINES to read the line and open it on GitHub at its commit, file and line. Each change is a new dated edition; earlier editions stay as they were. See Through, from the same family, has its own entry just below.",
+  "see_through_href": "https://ventusltd.github.io/kuiper-belt/see-through/202610050609/",
+  "kuiper_children": [
+    "",
+    "what-is-kuiper",
+    "learn-the-kuiper",
+    "kuiper-editions",
+    "see-through",
+    "kuiper-diary"
+  ],
+  "doc_overflow_px": 0,
+  "card_box": {
+    "x": 54,
+    "y": 360.296875,
+    "width": 338,
+    "height": 548.671875
+  },
+  "search_rows": [
+    "kuiper-editions"
+  ],
+  "row_versions": "Edition 4 - 1 November 2026",
+  "errors": [],
+  "nojs_launch": "https://globalgrid2050.com/kuiper-editions/",
+  "nojs_row": 1
+}
