@@ -12,7 +12,7 @@ Launched: 01–06 (study), 07 persistence. Waiting for free slots (20 concurrent
   reading it cold against the repos.
 - 11 index: FIXES/INDEX.md, every NL issue and FIXES folder with one line each, newest first, and where each team's
   hand-off and evidence live.
-- 12 live reviewer: watch new comments on #10 and #11 for 2 h; for each, check envelope, keys and the K1 rule; post a
+- 
   short REVIEW only when something is wrong.
 
 Every agent: read LINK-RULE.md first; write files only under the paths named; run the K1 check before leaving a file;
