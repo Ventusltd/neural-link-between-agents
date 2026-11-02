@@ -4,10 +4,10 @@
 //   S1 loader: every modules.json order entry admitted, none refused, see-through among them;
 //   S2 the layers row "See Through stars" reads OK (label.ky-ly[data-id=see-through] .st, layers.api.get('see-through'));
 //   S3 stars keyed to real data: data/see-through.json fetched in the page; every feature key == floor((j+0.5)*SPACE/20000)
-//      (BigInt), every key < SPACE, features == placed == total, and the bytes' sha256 == the layers.json record;
+//      (BigInt), every key < SPACE, features == placed == total, and the bytes' sha256, size and count == the modules.json record (data.files[0]);
 //   S4 the layer draws: switched on through its original input, the overlay gains pixels of the layer's colour;
 //   S5 nothing goes off-origin at load: every request URL starts with the snapshot origin (off-origin ones are aborted and listed);
-//   S6 the shell's See Through entry: exactly one #kuiper-star, an <a> to ../../see-through/ on this origin, same tab.
+//   S6 the shell's See Through entry: exactly one a[data-star=see-through] (kuiper-shell defaultStar), to ../../see-through/ on this origin, same tab.
 // Page errors and console errors are counted. Report JSON to stdout and <outdir>/check.json; screenshots <outdir>/NN-*.png.
 'use strict';
 const { chromium, devices } = require('playwright');
@@ -46,12 +46,13 @@ const ORIGIN = new URL(URL0).origin + '/';
     await shot('01-wafer-panel-closed');
     // S3
     const s3 = await p.evaluate(async () => { const H = KY.hooks, SPACE = BigInt(H.SPACE); const g = KY.modules.layers.api.get('see-through');
+      const mj = await (await fetch('modules.json', { cache: 'no-store' })).json(); const mrec = mj.modules.find(m => m.id === 'see-through'); const drec = (mrec && mrec.data && mrec.data.files && mrec.data.files[0]) || {};
       const res = await fetch('data/see-through.json', { cache: 'no-store' }); const buf = await res.arrayBuffer();
       const hex = [...new Uint8Array(await crypto.subtle.digest('SHA-256', buf))].map(b => (b < 16 ? '0' : '') + b.toString(16)).join('');
       const j = JSON.parse(new TextDecoder().decode(buf)); const fs = j.features || []; let badKey = 0, beyond = 0, notPoint = 0, named = 0; const js = new Set();
       for (const f of fs) { const gm = f.geometry || {}; if (gm.type !== 'Point') { notPoint++; continue; } const jj = f.properties && (f.properties.j ?? f.properties.star_j ?? f.properties.sub); if (jj == null) { badKey++; continue; } js.add(jj);
         const want = ((BigInt(jj) * 2n + 1n) * SPACE) / 40000n; if (BigInt(gm.key) !== want) badKey++; if (BigInt(gm.key) >= SPACE) beyond++; if (f.properties && f.properties.name) named++; }
-      return { bytes: buf.byteLength, sha256: hex, record_sha256: g.source && g.source.sha256, record_bytes: g.source && g.source.bytes, record_features: g.source && g.source.features, features: fs.length, distinct_j: js.size, bad_key: badKey, beyond_space: beyond, not_point: notPoint, named, space: String(SPACE), data_space: j.space || (j.properties && j.properties.space) || null, placed: g.placed, total: g.total, schema: j.schema || j.type }; });
+      return { bytes: buf.byteLength, sha256: hex, record_sha256: drec.sha256, record_bytes: drec.bytes, record_features: drec.features, record_from: 'modules.json see-through data.files[0]', layers_json_source: g.source, features: fs.length, distinct_j: js.size, bad_key: badKey, beyond_space: beyond, not_point: notPoint, named, space: String(SPACE), data_space: j.space || (j.properties && j.properties.space) || null, placed: g.placed, total: g.total, schema: j.schema || j.type }; });
     step('S3 stars keyed to real data (key_j = floor((j+0.5)*SPACE/20000), sha256 = record)', s3.features > 0 && s3.bad_key === 0 && s3.beyond_space === 0 && s3.not_point === 0 && s3.distinct_j === s3.features && s3.features === s3.placed && s3.placed === s3.total && s3.sha256 === s3.record_sha256 && s3.bytes === s3.record_bytes && s3.features === s3.record_features, s3);
     // S4: switch the layer on through its original and count pixels of its colour on the overlay
     const s4 = await p.evaluate(async () => { const L = KY.modules.layers.api; const g = L.get('see-through'); const col = g.colour; const before = count(); L.set('see-through', true); await new Promise(r => setTimeout(r, 1500)); KY.redraw && KY.redraw(); await new Promise(r => setTimeout(r, 1500));
@@ -63,9 +64,9 @@ const ORIGIN = new URL(URL0).origin + '/';
     // S5
     step('S5 nothing off-origin at load', offAtLoad.length === 0, { origin: ORIGIN, requests: R.requests, off_origin_at_load: offAtLoad });
     // S6
-    const s6 = await p.evaluate(() => { const els = [...document.querySelectorAll('#kuiper-star')]; const a = els[0]; const r = a && a.getBoundingClientRect(); const cs = a && getComputedStyle(a);
+    const s6 = await p.evaluate(() => { const els = [...document.querySelectorAll('a[data-star="see-through"], #kuiper-star')]; const a = els[0]; const r = a && a.getBoundingClientRect(); const cs = a && getComputedStyle(a);
       return { count: els.length, tag: a && a.tagName, href: a && a.getAttribute('href'), resolved: a && new URL(a.getAttribute('href'), location.href).href, same_origin: a && new URL(a.getAttribute('href'), location.href).origin === location.origin, target: a && a.getAttribute('target'), text: a && a.textContent.trim(), aria: a && (a.getAttribute('aria-label') || a.getAttribute('title')), parent: a && a.parentElement && (a.parentElement.id || a.parentElement.className), rect: r && { x: Math.round(r.x), y: Math.round(r.y), w: Math.round(r.width), h: Math.round(r.height) }, display: cs && cs.display, visible: !!(r && r.width > 0 && r.height > 0) }; });
-    step('S6 shell See Through entry: one #kuiper-star <a> to ../../see-through/, same origin, same tab, visible', s6.count === 1 && s6.tag === 'A' && s6.href === '../../see-through/' && s6.same_origin && !s6.target && s6.visible, s6);
+    step('S6 shell See Through entry: one a[data-star=see-through] to ../../see-through/, same origin, same tab, visible', s6.count === 1 && s6.tag === 'A' && s6.href === '../../see-through/' && s6.same_origin && !s6.target && s6.visible, s6);
     await shot('03-entry');
   } catch (e) { R.harness_error = String(e && e.stack || e); console.error('HARNESS ' + R.harness_error); }
   R.end = new Date().toISOString(); R.pass = !R.harness_error && R.steps.length === 6 && R.steps.every(s => s.pass) && R.pageerrors.length === 0;

@@ -1,0 +1,166 @@
+{
+ "device": "Pixel 7",
+ "url": "http://127.0.0.1:8590/e11m-st/editions/202611021017/",
+ "start": "2026-11-02T11:27:22.959Z",
+ "steps": [
+  {
+   "id": "S1 loader: every order entry admitted, none refused, see-through among them",
+   "pass": true,
+   "m": {
+    "order": [
+     "hello",
+     "kuiper-shell",
+     "line-card",
+     "drift",
+     "apps",
+     "layers",
+     "file",
+     "see-through"
+    ],
+    "admitted": [
+     "hello",
+     "kuiper-shell",
+     "line-card",
+     "drift",
+     "apps",
+     "layers",
+     "file",
+     "see-through"
+    ],
+    "refused": [],
+    "loader_admitted_in_order": true
+   }
+  },
+  {
+   "id": "S2 layers row \"See Through stars\" reads OK",
+   "pass": true,
+   "m": {
+    "status": "OK",
+    "why": "5,800 of 5,800",
+    "tag": "OK · 5,800 of 5,800",
+    "placed": 5800,
+    "total": 5800,
+    "loaded_sha256": null,
+    "label": "See Through stars",
+    "rec_module": "202611012141-see-through.js",
+    "record_source": {
+     "file": null,
+     "bytes": 0,
+     "features": 0,
+     "sha256": "",
+     "owner": "Opus team 5 (step 5) writes it with handoff/05-see-through/build-see-through-json.py"
+    },
+    "history": [
+     [
+      "EMPTY",
+      "awaiting step 5: the see-through module registers this layer; Edition 9 carries no data/see-through.json",
+      404
+     ],
+     [
+      "LOAD",
+      "module see-through",
+      485
+     ],
+     [
+      "OK",
+      "5,800 of 5,800",
+      516
+     ]
+    ],
+    "row_text": "See Through starsOK · 5,800 of 5,800",
+    "st_text": "OK · 5,800 of 5,800",
+    "st_data_s": "OK",
+    "aria": "See Through stars · OK · 5,800 of 5,800",
+    "input_disabled": false,
+    "st_inspect": {
+     "status": "OK",
+     "why": "5,800 of 5,800",
+     "registered": "yes",
+     "placed": 5800,
+     "total": 5800,
+     "space": 63777293432,
+     "wafer": 63777293432,
+     "sha256": "193b94b90731ef07de6cae5514691ddb4ce6a9e16880a38069271e1b169383a7",
+     "bytes": 666738,
+     "edition": "202611021017",
+     "see_through": "202611020012",
+     "named": 4460,
+     "taps": 0,
+     "chip": null,
+     "errors": [],
+     "on": false
+    }
+   }
+  },
+  {
+   "id": "S3 stars keyed to real data (key_j = floor((j+0.5)*SPACE/20000), sha256 = record)",
+   "pass": false,
+   "m": {
+    "bytes": 666738,
+    "sha256": "193b94b90731ef07de6cae5514691ddb4ce6a9e16880a38069271e1b169383a7",
+    "record_sha256": "",
+    "record_bytes": 0,
+    "record_features": 0,
+    "features": 5800,
+    "distinct_j": 5800,
+    "bad_key": 0,
+    "beyond_space": 0,
+    "not_point": 0,
+    "named": 4460,
+    "space": "63777293432",
+    "data_space": 63777293432,
+    "placed": 5800,
+    "total": 5800,
+    "schema": "CodeFeatureCollection"
+   }
+  },
+  {
+   "id": "S4 the layer draws when switched on (overlay pixels of its colour)",
+   "pass": true,
+   "m": {
+    "colour": "#2ee6e6",
+    "on": true,
+    "before": 1186,
+    "after": 23734
+   }
+  },
+  {
+   "id": "S5 nothing off-origin at load",
+   "pass": true,
+   "m": {
+    "origin": "http://127.0.0.1:8590/",
+    "requests": 25,
+    "off_origin_at_load": []
+   }
+  },
+  {
+   "id": "S6 shell See Through entry: one a[data-star=see-through] to ../../see-through/, same origin, same tab, visible",
+   "pass": true,
+   "m": {
+    "count": 1,
+    "tag": "A",
+    "href": "../../see-through/",
+    "resolved": "http://127.0.0.1:8590/e11m-st/see-through/",
+    "same_origin": true,
+    "target": null,
+    "text": "See Through",
+    "aria": "See Through: from the stars to one substation in 3D",
+    "parent": "kuiper-star-strip",
+    "rect": {
+     "x": 9,
+     "y": 788,
+     "w": 103,
+     "h": 42
+    },
+    "display": "flex",
+    "visible": true
+   }
+  }
+ ],
+ "pageerrors": [],
+ "console_errors": [],
+ "off_origin": [],
+ "requests": 25,
+ "end": "2026-11-02T11:27:35.149Z",
+ "pass": false
+}

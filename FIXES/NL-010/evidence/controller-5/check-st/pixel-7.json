@@ -1,0 +1,153 @@
+{
+ "device": "Pixel 7",
+ "url": "http://127.0.0.1:8590/e11c5-st/editions/202611021017/",
+ "start": "2026-11-02T11:22:36.488Z",
+ "steps": [
+  {
+   "id": "S1 loader: every order entry admitted, none refused, see-through among them",
+   "pass": true,
+   "m": {
+    "order": [
+     "hello",
+     "kuiper-shell",
+     "line-card",
+     "drift",
+     "apps",
+     "layers",
+     "file",
+     "see-through"
+    ],
+    "admitted": [
+     "hello",
+     "kuiper-shell",
+     "line-card",
+     "drift",
+     "apps",
+     "layers",
+     "file",
+     "see-through"
+    ],
+    "refused": [],
+    "loader_admitted_in_order": true
+   }
+  },
+  {
+   "id": "S2 layers row \"See Through stars\" reads OK",
+   "pass": false,
+   "m": {
+    "status": "FAIL",
+    "why": "SPACE 63,777,293,432 ≠ wafer 63,340,120,796",
+    "tag": "FAIL · SPACE 63,777,293,432 ≠ wafer 63,340,120,796",
+    "placed": 0,
+    "total": 0,
+    "loaded_sha256": null,
+    "label": "See Through stars",
+    "rec_module": "202611012141-see-through.js",
+    "record_source": {
+     "file": null,
+     "bytes": 0,
+     "features": 0,
+     "sha256": "",
+     "owner": "Opus team 5 (step 5) writes it with handoff/05-see-through/build-see-through-json.py"
+    },
+    "history": [
+     [
+      "EMPTY",
+      "awaiting step 5: the see-through module registers this layer; Edition 9 carries no data/see-through.json",
+      514
+     ],
+     [
+      "LOAD",
+      "module see-through",
+      618
+     ],
+     [
+      "FAIL",
+      "SPACE 63,777,293,432 ≠ wafer 63,340,120,796",
+      654
+     ]
+    ],
+    "row_text": "See Through starsFAIL · SPACE 63,777,293,432 ≠ wafer 63,340,120,796",
+    "st_text": "FAIL · SPACE 63,777,293,432 ≠ wafer 63,340,120,796",
+    "st_data_s": "FAIL",
+    "aria": "See Through stars · FAIL · SPACE 63,777,293,432 ≠ wafer 63,340,120,796",
+    "input_disabled": false,
+    "st_inspect": {
+     "status": "FAIL",
+     "why": "SPACE 63,777,293,432 ≠ wafer 63,340,120,796",
+     "registered": "yes",
+     "placed": 0,
+     "total": 0,
+     "space": 63777293432,
+     "wafer": 63340120796,
+     "sha256": "193b94b90731ef07de6cae5514691ddb4ce6a9e16880a38069271e1b169383a7",
+     "bytes": 666738,
+     "edition": "202611021017",
+     "see_through": "202611020012",
+     "named": 0,
+     "taps": 0,
+     "chip": null,
+     "errors": [
+      "SPACE 63,777,293,432 ≠ wafer 63,340,120,796"
+     ],
+     "on": false
+    }
+   }
+  },
+  {
+   "id": "S3 stars keyed to real data (key_j = floor((j+0.5)*SPACE/20000), sha256 = record)",
+   "pass": false,
+   "m": {
+    "bytes": 666738,
+    "sha256": "193b94b90731ef07de6cae5514691ddb4ce6a9e16880a38069271e1b169383a7",
+    "record_sha256": "",
+    "record_bytes": 0,
+    "record_features": 0,
+    "features": 5800,
+    "distinct_j": 5800,
+    "bad_key": 5800,
+    "beyond_space": 0,
+    "not_point": 0,
+    "named": 4460,
+    "space": "63340120796",
+    "data_space": 63777293432,
+    "placed": 0,
+    "total": 0,
+    "schema": "CodeFeatureCollection"
+   }
+  },
+  {
+   "id": "S4 the layer draws when switched on (overlay pixels of its colour)",
+   "pass": false,
+   "m": {
+    "colour": "#2ee6e6",
+    "on": true,
+    "before": 1194,
+    "after": 1194
+   }
+  },
+  {
+   "id": "S5 nothing off-origin at load",
+   "pass": true,
+   "m": {
+    "origin": "http://127.0.0.1:8590/",
+    "requests": 25,
+    "off_origin_at_load": []
+   }
+  },
+  {
+   "id": "S6 shell See Through entry: one #kuiper-star <a> to ../../see-through/, same origin, same tab, visible",
+   "pass": false,
+   "m": {
+    "count": 0,
+    "visible": false
+   }
+  }
+ ],
+ "pageerrors": [],
+ "console_errors": [],
+ "off_origin": [],
+ "requests": 25,
+ "end": "2026-11-02T11:22:48.176Z",
+ "pass": false
+}
