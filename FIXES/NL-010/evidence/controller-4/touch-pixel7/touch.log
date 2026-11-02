@@ -1,0 +1,4 @@
+[Pixel 7] PASS T1 FILE opens by touch {"open":"file","w":390,"h":936}
+[Pixel 7] PASS T2 every visible FILE target >= 44 px {"targets":19,"min_h":44,"below":[]}
+[Pixel 7] PASS T3 Open a key opens the line card {"open":true,"index":0,"header":"# Every digest in this repository is taken over git blob content, which is LF,","display":"block","hash":"#key=36064705400&line=0048802883266c68d5bdb6f5add0074e8b5b729d:5&layers=repos,editions,lines"}
+[Pixel 7] PASS T4 Open a line opens the line card on that line {"open":true,"index":200,"header":"if (Buffer.compare(refBytes, Buffer.concat([originalBytes, Buffer.from('\\n'), moduleBytes])) !== 0) {","display":"block","hash":"#key=62884838929&line=90d0268eadcf797c0e36c642bf54bc613342a75b:68&layers=repos,editions,lines"}

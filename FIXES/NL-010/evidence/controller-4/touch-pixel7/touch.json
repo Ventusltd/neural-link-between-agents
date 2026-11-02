@@ -1,0 +1,171 @@
+{
+ "device": "Pixel 7",
+ "url": "http://127.0.0.1:8590/e10c4-file/editions/202611020825/",
+ "start": "2026-11-02T10:14:14.980Z",
+ "steps": [
+  {
+   "id": "T1 FILE opens by touch",
+   "pass": true,
+   "m": {
+    "open": "file",
+    "w": 390,
+    "h": 936
+   }
+  },
+  {
+   "id": "T2 every visible FILE target >= 44 px",
+   "pass": true,
+   "m": {
+    "targets": 19,
+    "min_h": 44,
+    "below": []
+   }
+  },
+  {
+   "id": "T3 Open a key opens the line card",
+   "pass": true,
+   "m": {
+    "open": true,
+    "index": 0,
+    "header": "# Every digest in this repository is taken over git blob content, which is LF,",
+    "display": "block",
+    "hash": "#key=36064705400&line=0048802883266c68d5bdb6f5add0074e8b5b729d:5&layers=repos,editions,lines"
+   }
+  },
+  {
+   "id": "T4 Open a line opens the line card on that line",
+   "pass": true,
+   "m": {
+    "open": true,
+    "index": 200,
+    "header": "if (Buffer.compare(refBytes, Buffer.concat([originalBytes, Buffer.from('\\n'), moduleBytes])) !== 0) {",
+    "display": "block",
+    "hash": "#key=62884838929&line=90d0268eadcf797c0e36c642bf54bc613342a75b:68&layers=repos,editions,lines"
+   }
+  }
+ ],
+ "pageerrors": [],
+ "console_errors": [],
+ "admitted": {
+  "admitted": [
+   "hello",
+   "kuiper-shell",
+   "line-card",
+   "drift",
+   "apps",
+   "layers",
+   "file"
+  ],
+  "refused": []
+ },
+ "expect": {
+  "key": {
+   "id": "0048802883266c68d5bdb6f5add0074e8b5b729d:5",
+   "line_text": "# Every digest in this repository is taken over git blob content, which is LF,"
+  },
+  "line": {
+   "id": "90d0268eadcf797c0e36c642bf54bc613342a75b:68",
+   "key": 62884838929,
+   "line_text": "if (Buffer.compare(refBytes, Buffer.concat([originalBytes, Buffer.from('\\n'), moduleBytes])) !== 0) {"
+  }
+ },
+ "rows": [
+  {
+   "t": "ky-file-key-in",
+   "tag": "INPUT",
+   "h": 44
+  },
+  {
+   "t": "GO",
+   "tag": "BUTTON",
+   "h": 44
+  },
+  {
+   "t": "python tools/key.py <k>",
+   "tag": "BUTTON",
+   "h": 44
+  },
+  {
+   "t": "ky-file-line-in",
+   "tag": "INPUT",
+   "h": 44
+  },
+  {
+   "t": "GO",
+   "tag": "BUTTON",
+   "h": 44
+  },
+  {
+   "t": "Open an edition ▸",
+   "tag": "BUTTON",
+   "h": 44
+  },
+  {
+   "t": "Open an app ▸",
+   "tag": "BUTTON",
+   "h": 44
+  },
+  {
+   "t": "Copy a link to this view",
+   "tag": "BUTTON",
+   "h": 44
+  },
+  {
+   "t": "Copy the key",
+   "tag": "BUTTON",
+   "h": 44
+  },
+  {
+   "t": "Copy python tools/key.py <k>",
+   "tag": "BUTTON",
+   "h": 44
+  },
+  {
+   "t": "keys.json · the register of verified lin",
+   "tag": "A",
+   "h": 44.3
+  },
+  {
+   "t": "keys-min.json · the register the page lo",
+   "tag": "A",
+   "h": 44.3
+  },
+  {
+   "t": "proof/edition-sha256.txt · sha256 of eve",
+   "tag": "A",
+   "h": 59.2
+  },
+  {
+   "t": "modules.json · the admitted modules and ",
+   "tag": "A",
+   "h": 44.3
+  },
+  {
+   "t": "data/layers.json · the layers, each with",
+   "tag": "A",
+   "h": 59.2
+  },
+  {
+   "t": "NOTICE.md · the licences of this folder",
+   "tag": "A",
+   "h": 44.3
+  },
+  {
+   "t": "README.md · this edition",
+   "tag": "A",
+   "h": 44.3
+  },
+  {
+   "t": "⤓ Save an image of this view",
+   "tag": "BUTTON",
+   "h": 44
+  },
+  {
+   "t": "⎙ Print",
+   "tag": "BUTTON",
+   "h": 44
+  }
+ ],
+ "end": "2026-11-02T10:15:12.799Z",
+ "pass": true
+}
