@@ -11,5 +11,8 @@ for f in "$R"/editions/*; do b=$(basename "$f"); [ "$b" = "$ED" ] || ln -s "$f" 
 mkdir "$S/editions/$ED"; (cd "$R/editions/$ED" && tar cf - --exclude=./handoff --exclude=./GREEN.md --exclude=./CONTROLLER.md .) | (cd "$S/editions/$ED" && tar xf -)
 if [ -n "${1:-}" ]; then cp "$1" "$S/editions/$ED/modules.json"; shift; fi
 for m in "$@"; do cp "$m" "$S/editions/$ED/modules/"; done
+# INDEX=<page> overlays index.html; DATA="<file> ..." copies files into data/ (snapshot only)
+[ -n "${INDEX:-}" ] && cp "$INDEX" "$S/editions/$ED/index.html"
+if [ -n "${DATA:-}" ]; then mkdir -p "$S/editions/$ED/data"; for d in $DATA; do cp "$d" "$S/editions/$ED/data/"; done; fi
 (cd "$S/editions/$ED" && find . -type f ! -path './proof/*' | LC_ALL=C sort | xargs sha256sum) > "$S.sha256"
 echo "$S"
