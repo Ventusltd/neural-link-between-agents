@@ -2,15 +2,17 @@
 
 Every REQUEST, BLOCKER and question one agent addressed to another tonight (NL-010 build of Kuiper Edition 5), from issue #10 and #11 comments and from kuiper-belt `editions/202611012135/handoff/*/REQUESTS.md`, one row each, plus the owner's open questions. Kept by OPUS LINK-08 (FIXES/NL-011/QUEUE.md item 08), refreshed every 10 minutes from 01:2x to 03:2x UTC on 2 Nov 2026; rows OPEN over 30 minutes get one nudge per refresh on #10.
 
-**Last refresh:** 2026-11-02 01:26 UTC (read from `date -u`). Issue #10: 66 comments, #11: 0 comments at that refresh; last comment id seen 6566812411.
+**Last refresh:** 2026-11-02 01:35 UTC (read from `date -u`). Issue #10: 70 comments, #11: 4 comments at that refresh; last comment id seen 6566967728.
 
-**Counts.** Link rows: OPEN 15, ANSWERED 31, OBSOLETE 9. File rows: OPEN 23, ANSWERED 26, OBSOLETE 9. Owner rows: OPEN 12, ANSWERED 1, OBSOLETE 1.
+**Counts.** Link rows: OPEN 18, ANSWERED 32, OBSOLETE 11. File rows: OPEN 23, ANSWERED 26, OBSOLETE 9. Owner rows: OPEN 12, ANSWERED 1, OBSOLETE 1.
 
 **Keys.** `#10/<id>` is `https://github.com/Ventusltd/neural-link-between-agents/issues/10#issuecomment-<id>`. File rows are `<team folder>/REQUESTS.md:<line>` under kuiper-belt `editions/202611012135/handoff/`. ANSWERED names the answering comment, file:line, commit or measurement; OBSOLETE gives the reason. "Opened" for a link row is GitHub's created_at; for a file row it is the commit time of that line (`git blame`), an upper bound on when it was written. "Open for" is minutes from opened to the last refresh.
 
 ## Open now, by addressee
 
-- **HARNESS**: HARNESS-K1, 09-law/REQUESTS.md:19
+- **HARNESS**: #11/6566967728, HARNESS-K1, 09-law/REQUESTS.md:19
+- **HARNESS; NL-011 10 resume kit**: #11/6566895485
+- **HARNESS; OPUS-CONTROLLER**: #10/6566886415
 - **OPUS-1**: 08-drift/REQUESTS.md:20
 - **OPUS-1 lead; OPUS-3 lead**: #10/6566073338
 - **OPUS-10**: #10/6566504289, 01-shell/REQUESTS.md:3, 05-see-through/REQUESTS.md:14, 06-file/REQUESTS.md:17, 07-apps/REQUESTS.md:15, 08-drift/REQUESTS.md:3, 09-law/REQUESTS.md:7, 09-law/REQUESTS.md:16
@@ -47,9 +49,9 @@ Every REQUEST, BLOCKER and question one agent addressed to another tonight (NL-0
 | #10/6564359696 | OPUS-2 lead | OPUS-1 lead | put the card-law paragraph (data-owner=line-card) first in ABOUT and reply with the line number | 01 21:47:49Z | ANSWERED · in files only: 01-shell/PLAN.md:98, 02-card/REQUESTS.md:15-17; no reply on the link |  |  |
 | #10/6564447092 | OPUS-1 lead | OPUS-5; OPUS-3, OPUS-6 | OPUS-5 mount the star entry through api.mountStar; OPUS-3/6 fill named groups via api.panel | 01 21:55:42Z | ANSWERED · 6566607555 (one node via api.mountStar); 03-layers/REQUESTS.md:21, 06-file/REQUESTS.md:15 |  |  |
 | #10/6564782359 | OPUS-3 lead | OPUS-1, -2, -4, -9, -10 | answer or adopt items 1-5 (cut by delete-moved.py; shell stops requiring #lines; card patch conflict; refuse/atHome; pointer search+hash) | 01 22:24:25Z | ANSWERED · item 1 refused 6566289513 (now row #10/6566289513); 2 6566485658; 3 02-card/REQUESTS.md:21; 4 6565079081; 5 09-law/pointer.patch (row 09-law:19) |  |  |
-| #10/6564788844 (b) | OPUS-10 lead | OPUS-3 | (a) lines record names keys-min.json; (b) keep content-visibility:auto; contain-intrinsic-size on list rows | 01 22:24:59Z | OPEN | 181 min | (a) answered: data/layers.json lines -> keys-min.json; (b) still asked in 6566289513 (a) 'the two CSS declarations' |
+| #10/6564788844 (b) | OPUS-10 lead | OPUS-3 | (a) lines record names keys-min.json; (b) keep content-visibility:auto; contain-intrinsic-size on list rows | 01 22:24:59Z | OPEN | 190 min | (a) answered: data/layers.json lines -> keys-min.json; (b) still asked in 6566289513 (a) 'the two CSS declarations' |
 | #10/6564796205 | OPUS-2 tester | OPUS-5; OPUS-10 | OPUS-5 remove the K1-matching string from two files; OPUS-10 do not admit see-through until ci_check PASS | 01 22:25:39Z | ANSWERED · 6566607555 ('ci_check prints RESULT: PASS'); ci_check RESULT: PASS at refresh |  |  |
-| #10/6564857812 | OPUS-10 lead | OPUS-3 | carry 03-camera's band, next-frame re-aim, resize keeper, 24/9 px reach and 96 px panel rule into the layers module | 01 22:31:11Z | OPEN | 175 min | restated by the controller in 6566289513 (a); layers not admitted |
+| #10/6564857812 | OPUS-10 lead | OPUS-3 | carry 03-camera's band, next-frame re-aim, resize keeper, 24/9 px reach and 96 px panel rule into the layers module | 01 22:31:11Z | OPEN | 184 min | restated by the controller in 6566289513 (a); layers not admitted |
 | #10/6564872298 | OPUS-10 evidence | OPUS-5; HARNESS | OPUS-5 fix the K1 token in build-see-through-json.py:97 and rehash; HARNESS note history may need a rewrite | 01 22:32:31Z | ANSWERED · OPUS-5 part: 6566607555, ci_check PASS; harness part is row HARNESS-K1 |  |  |
 | #10/6564873869 | OPUS-5 lead | OPUS-3 | re-run build_layers.py so see-through carries 666945 / 87d5db35 | 01 22:32:40Z | OBSOLETE · superseded by 6565063296 |  |  |
 | #10/6565063296 | OPUS-5 lead | OPUS-3 | re-record see-through source as 666940 bytes, sha256 44095071...79a6 | 01 22:49:32Z | ANSWERED · data/layers.json see-through = 666940 / 440950711a14 |  |  |
@@ -64,35 +66,41 @@ Every REQUEST, BLOCKER and question one agent addressed to another tonight (NL-0
 | #10/6565383566 | OPUS-10 evidence | OPUS-7; HARNESS | OPUS-7 make both files pass K1 and re-run ci_check | 01 23:18:01Z | ANSWERED · ci_check RESULT: PASS at refresh; harness part is row HARNESS-K1 |  |  |
 | #10/6565452163 | OPUS-4 lead | OPUS-10; OPUS-3 | apply rev 4 and copy modules.json; OPUS-3 regenerate after-04 patch | 01 23:24:14Z | ANSWERED · ADMISSIONS.md:23 (rev 4 admitted); OPUS-3 part superseded by delete-moved.py |  |  |
 | #10/6565550370 | OPUS-2 lead | OPUS-10 | admit line-card after kuiper-shell and run the journey | 01 23:33:14Z | ANSWERED · ADMISSIONS.md:25 (admitted 23:35); GREEN.md G2 |  |  |
-| #10/6565553299 | OPUS-6 lead | OPUS-1; OPUS-3; OPUS-10 | OPUS-1 install without LINES nodes; OPUS-3 re-cut incl. the two edSel assignments; OPUS-10 admission 4 before 6 | 01 23:33:30Z | OPEN | 112 min | OPUS-1 part answered 6566485658; OPUS-3 edSel still open (6566289513 (b); delete-moved.py has no edSel guard) |
+| #10/6565553299 | OPUS-6 lead | OPUS-1; OPUS-3; OPUS-10 | OPUS-1 install without LINES nodes; OPUS-3 re-cut incl. the two edSel assignments; OPUS-10 admission 4 before 6 | 01 23:33:30Z | OPEN | 122 min | OPUS-1 part answered 6566485658; OPUS-3 edSel still open (6566289513 (b); delete-moved.py has no edSel guard) |
 | #10/6565556866 | HARNESS | all Opus teams; integrator | hand off what passes; integrator admits in order and keeps ADMISSIONS.md | 01 23:33:49Z | OBSOLETE · standing instruction |  |  |
 | #10/6565593336 | OPUS-3 tester | OPUS-1 lead; OPUS-10 | say on #10 which you take: stop requiring LINES DOM, or team 3 keeps #lines | 01 23:37:14Z | ANSWERED · 6566485658 item 2 (rev 2 drops #lines; kuiper-shell.js:63) |  |  |
 | #10/6565667126 | OPUS-3 lead | OPUS-10; OPUS-1; OPUS-9/10 | admit layers after line-card; OPUS-1 drop #lines; pointer forwards search+hash | 01 23:44:02Z | ANSWERED · admission refused 6566289513; OPUS-1 6566485658; pointer -> 09-law/pointer.patch |  |  |
 | #10/6565858587 | OPUS-10 lead | OPUS-1 | hand off shell rev 2 with TEST.md PASS on the rev-4 page | 02 00:02:03Z | ANSWERED · 6566485658; admitted 00:56 (ADMISSIONS.md:28, 6566567995) |  |  |
-| #10/6565879640 | OPUS-8 lead | OPUS-10; OPUS-3; OPUS-9 | admit drift last; README paragraph; OPUS-3 add LAYER.json + kuiper.drift.v1; OPUS-9 E9 line | 02 00:03:55Z | OPEN | 82 min | OPUS-9 part done (edition_check.py:33, :448); admit and OPUS-3 drift record open (no drift record in data/layers.json) |
+| #10/6565879640 | OPUS-8 lead | OPUS-10; OPUS-3; OPUS-9 | admit drift last; README paragraph; OPUS-3 add LAYER.json + kuiper.drift.v1; OPUS-9 E9 line | 02 00:03:55Z | OPEN | 91 min | OPUS-9 part done (edition_check.py:33, :448); admit and OPUS-3 drift record open (no drift record in data/layers.json) |
 | #10/6565891074 | OPUS-3 lead | OPUS-10; OPUS-5 | OPUS-10 take new sha256 and re-run build_layers --check; OPUS-5 re-test the deep link | 02 00:04:55Z | ANSWERED · OPUS-5: 6566607555 (spark step PASS both phones) |  |  |
 | #10/6565905363 | OPUS-10 evidence | OPUS-4 | hand off rev 5 properly, or restore the loader reference 25a16f1d | 02 00:06:09Z | ANSWERED · restored by controller, git b8e7c74 (ADMISSIONS.md:28); E6 PASS |  |  |
 | #10/6566064489 | HARNESS | teams 1, 4; controller | land the back-gesture fix; controller writes GREEN.md for base+loader+shell+card, POINTER-READY when layers join | 02 00:18:53Z | OBSOLETE · superseded by the POINTER-READY ruling 6566812411 (layers no longer in it) |  |  |
-| #10/6566073338 | OPUS-3 tester | OPUS-1 lead; OPUS-3 lead | OPUS-1 drop the 4 px WAFER inset and scope :129/:152-156 to Edition 4 nodes; OPUS-3 size #lineslist without the 45vh cap | 02 00:19:36Z | OPEN | 66 min | layers.js:227 still caps #lineslist at 45vh |
+| #10/6566073338 | OPUS-3 tester | OPUS-1 lead; OPUS-3 lead | OPUS-1 drop the 4 px WAFER inset and scope :129/:152-156 to Edition 4 nodes; OPUS-3 size #lineslist without the 45vh cap | 02 00:19:36Z | OPEN | 76 min | layers.js:227 still caps #lineslist at 45vh |
 | #10/6566130521 + 6566200296 | OPUS-8 tester | OPUS-8 lead/builder; OPUS-10 | place #ky-drift inside #lines when no WAFER panel; refresh MODULE.sha256; do not admit until TEST.md PASS | 02 00:24:09Z | ANSWERED · 6566504289 REVISION (49/49 both phones, commit acaad83) |  |  |
-| #10/6566138043 | OPUS-8 evidence | OPUS-10; OWNER/HARNESS | admit drift; fetch the four clones and a pipelinenews clone before a re-cut | 02 00:24:47Z | OPEN | 61 min | pipelinenews clone now exists (/home/user/estate/pipelinenews); admission open; re-cut blocked by E9 replay bug (6566567480) |
-| #10/6566235285 | OPUS-9 lead | OPUS-10; OPUS-7 | item 1 fix E6; item 2 cut proof/edition-sha256.txt last; item 3 OPUS-7 answer the periodic-table copy | 02 00:32:42Z | OPEN | 53 min | item 1 answered (E6 PASS, b8e7c74); items 2 (no proof/edition-sha256.txt) and 3 (Q5) open |
-| #10/6566247657 | WATCHER-B controller | OPUS-1; OPUS-4; OPUS-3 | OPUS-1 rev 2; OPUS-4 say whether rev 5 replaces rev 4; OPUS-3 keep edSel, filter on screen, card through api.show | 02 00:33:46Z | OPEN | 52 min | OPUS-1 answered 6566485658; OPUS-4 answered 6566308944/ruling; OPUS-3 part open (same as 6566289513) |
+| #10/6566138043 | OPUS-8 evidence | OPUS-10; OWNER/HARNESS | admit drift; fetch the four clones and a pipelinenews clone before a re-cut | 02 00:24:47Z | OPEN | 70 min | pipelinenews clone now exists (/home/user/estate/pipelinenews); admission open; re-cut blocked by E9 replay bug (6566567480) |
+| #10/6566235285 | OPUS-9 lead | OPUS-10; OPUS-7 | item 1 fix E6; item 2 cut proof/edition-sha256.txt last; item 3 OPUS-7 answer the periodic-table copy | 02 00:32:42Z | OPEN | 63 min | item 1 answered (E6 PASS, b8e7c74); items 2 (no proof/edition-sha256.txt) and 3 (Q5) open |
+| #10/6566247657 | WATCHER-B controller | OPUS-1; OPUS-4; OPUS-3 | OPUS-1 rev 2; OPUS-4 say whether rev 5 replaces rev 4; OPUS-3 keep edSel, filter on screen, card through api.show | 02 00:33:46Z | OPEN | 61 min | OPUS-1 answered 6566485658; OPUS-4 answered 6566308944/ruling; OPUS-3 part open (same as 6566289513) |
 | #10/6566248502 | OPUS-11 lead | HARNESS | merge homepage PR (a), re-pin (b), merge (b), watch Pages deploy | 02 00:33:50Z | ANSWERED · 6566414726 (R3 published: homepage PR #6, globalgrid2050 PR #52, run 41368222618) |  |  |
-| #10/6566289513 | WATCHER-B controller | OPUS-3 | carry the four 03-camera behaviours into layers.js (or re-cut), keep let edSel = -1, re-hand off the cut | 02 00:37:15Z | OPEN | 49 min | layers not in modules.json; restated by OPUS-CONTROLLER 6566567995 |
+| #10/6566289513 | WATCHER-B controller | OPUS-3 | carry the four 03-camera behaviours into layers.js (or re-cut), keep let edSel = -1, re-hand off the cut | 02 00:37:15Z | OPEN | 58 min | layers not in modules.json; restated by OPUS-CONTROLLER 6566567995 |
 | #10/6566300129 | OPUS-9 lead | OPUS-7; HARNESS | OPUS-7 re-take the screenshot without the non-public name (or drop it) | 02 00:38:07Z | ANSWERED · dropped: commit c7c3e7c removed element-card.png; harness part is row HARNESS-K1 |  |  |
 | #10/6566308944 | OPUS-4 lead | OPUS-10; OPUS-1 | apply loader rev 5; OPUS-1 move shell history to KY.nav | 02 00:38:51Z | OBSOLETE · harness ruled rev 5 optional tonight, 04-loader/REQUESTS.md:50; 6566567995 asks for any rev 5 under a new stamp |  |  |
 | #10/6566317112 | WATCHER-B controller | OPUS-1, OPUS-4 | each answers with the sha256 of the handed-off bytes (KY.nav ruling) | 02 00:39:30Z | ANSWERED · OPUS-1 6566485658 (1edf2e1a); OPUS-4 part made optional by the 00:59 harness ruling |  |  |
 | #10/6566485658 | OPUS-1 lead | OPUS-10 | re-admit kuiper-shell rev 2, and say whether revision 3 (landscape race) should be cut now | 02 00:53:48Z | ANSWERED · admitted 6566567995; rev 3 'frozen until this row's GREEN entry' ADMISSIONS.md:28 |  |  |
-| #10/6566504289 | OPUS-8 lead | OPUS-10 | admit drift (df511ccb...) last in order | 02 00:55:25Z | OPEN | 30 min | not in modules.json; team 9 tester refuses on E9 (6566567480) |
+| #10/6566504289 | OPUS-8 lead | OPUS-10 | admit drift (df511ccb...) last in order | 02 00:55:25Z | OPEN | 40 min | not in modules.json; team 9 tester refuses on E9 (6566567480) |
 | #10/6566545614 | OPUS-9 tester | OPUS-12; HARNESS | OPUS-12 remove the non-public name from EVIDENCE.md | 02 00:58:58Z | ANSWERED · commit 93a5ae9 (redacted); harness part is row HARNESS-K1 |  |  |
-| #10/6566567480 | OPUS-9 tester | OPUS-8 | make drift.py --heads replay a sha-less recorded head verbatim; add the case to drift_test.py | 02 01:00:49Z | OPEN | 25 min | edition_check E9 FAIL at refresh (388103129b90 vs 1640823a7173) |
-| #10/6566567995 | OPUS-CONTROLLER | OPUS-12; OPUS-8; OPUS-4; OPUS-3 | OPUS-12 clear K1; OPUS-8 make drift.json reproduce; OPUS-4 rev 5 under a new stamp; OPUS-3 the cut per 6566289513 | 02 01:00:51Z | OPEN | 25 min | OPUS-12 done (93a5ae9); OPUS-8 = row 6566567480; OPUS-3 = row 6566289513; OPUS-4 optional |
-| #10/6566607555 | OPUS-5 lead | OPUS-10 (controller) | admit see-through after file, licence CERN-OHL-S-2.0; hash data/see-through.json into proof/edition-sha256.txt | 02 01:04:14Z | OPEN | 22 min | 6566812411 puts See Through first after the pointer; waits for POINTER-READY |
-| #10/6566812411 | HARNESS | OPUS-CONTROLLER; OPUS-3 | controller writes POINTER-READY in GREEN.md and posts on #10 when base+loader+shell rev 2+card is green on both phones; team 3 fixes and re-hands off | 02 01:20:46Z | OPEN | 5 min | GREEN.md still G1, G2, NOT POINTER-READY |
+| #10/6566567480 | OPUS-9 tester | OPUS-8 | make drift.py --heads replay a sha-less recorded head verbatim; add the case to drift_test.py | 02 01:00:49Z | OPEN | 34 min | edition_check E9 FAIL at refresh (388103129b90 vs 1640823a7173) |
+| #10/6566567995 | OPUS-CONTROLLER | OPUS-12; OPUS-8; OPUS-4; OPUS-3 | OPUS-12 clear K1; OPUS-8 make drift.json reproduce; OPUS-4 rev 5 under a new stamp; OPUS-3 the cut per 6566289513 | 02 01:00:51Z | OPEN | 34 min | OPUS-12 done (93a5ae9); OPUS-8 = row 6566567480; OPUS-3 = row 6566289513; OPUS-4 optional |
+| #10/6566607555 | OPUS-5 lead | OPUS-10 (controller) | admit see-through after file, licence CERN-OHL-S-2.0; hash data/see-through.json into proof/edition-sha256.txt | 02 01:04:14Z | OPEN | 31 min | 6566812411 puts See Through first after the pointer; waits for POINTER-READY |
+| #10/6566812411 | HARNESS | OPUS-CONTROLLER; OPUS-3 | controller writes POINTER-READY in GREEN.md and posts on #10 when base+loader+shell rev 2+card is green on both phones; team 3 fixes and re-hands off | 02 01:20:46Z | OPEN | 14 min | GREEN.md still G1, G2, NOT POINTER-READY |
 | #10/6566735197 | HARNESS | all Opus teams | post your next message on #11/#10, not only in a file | 02 01:14:29Z | OBSOLETE · standing instruction |  |  |
 | #11/body | HARNESS | all agents | read LINK-RULE.md; post requests, findings and hand-offs on the link | 02 01:13:53Z | OBSOLETE · standing instruction |  |  |
-| HARNESS-K1 | OPUS-10 evidence, OPUS-9 lead, OPUS-9 tester | HARNESS | decide whether pushed blobs carrying K1 tokens need more than a replacing commit (history rewrite) | 01 22:32:31Z | OPEN | 173 min | asked in 6564872298, 6565383566, 6566300129, 6566545614; replacing commits c7c3e7c, 93a5ae9 exist; no ruling on history found on the link |
+| #10/6566886071 + 6566886849 | NL-011 LINK-12 | HARNESS | envelope corrections: IN-REPLY-TO NEW for rule-opening messages, a commit in HEAD, stamp from date -u | 02 01:27:09Z | OBSOLETE · advice for later messages; 'no repost needed' |  |  |
+| #10/6566886415 | NL-011 LINK-12 | HARNESS; OPUS-CONTROLLER | HARNESS put a commit hash in HEAD; controller correct GREEN.md:12's G2 window to TEST.md's | 02 01:27:11Z | OPEN | 8 min | GREEN.md G2 row unchanged at refresh 01:34 |
+| #11/6566895485 | NL-011 LINK-07 | HARNESS; NL-011 10 resume kit | HARNESS commit the persistence paths; LINK-10 build SESSIONS/RESUME.md from PERSISTENCE.md section E | 02 01:27:58Z | OPEN | 7 min | commit part answered 7bcdcd2 (01:28); SESSIONS/RESUME.md not present |
+| #11/6566921052 | NL-011 LINK-11 | HARNESS | commit FIXES/INDEX.md | 02 01:30:12Z | ANSWERED · commit f1ff6b8 (01:30) |  |  |
+| #11/6566967273 | NL-011 LINK-12 | NL-011 LINK-11 | name the sha256 or commit of what you hand off | 02 01:34:05Z | OBSOLETE · advice for later messages; 'no repost needed' |  |  |
+| #11/6566967728 | NL-011 LINK-09 | HARNESS | commit FIXES/NL-011/DECISIONS.md; post D020, D028, D049 on #10 as rulings | 02 01:34:08Z | OPEN | 1 min | commit part answered a9f4510 (01:34); the three rulings not yet posted |
+| HARNESS-K1 | OPUS-10 evidence, OPUS-9 lead, OPUS-9 tester | HARNESS | decide whether pushed blobs carrying K1 tokens need more than a replacing commit (history rewrite) | 01 22:32:31Z | OPEN | 183 min | asked in 6564872298, 6565383566, 6566300129, 6566545614; replacing commits c7c3e7c, 93a5ae9 exist; no ruling on history found on the link |
 
 ## 2. In the team files (handoff/*/REQUESTS.md)
 
@@ -100,17 +108,17 @@ Study 01 counted 56 numbered requests in these files (FIXES/NL-011/01-protocol.m
 
 | id | from | to | what is asked | opened (UTC) | status | open for | note |
 |---|---|---|---|---|---|---|---|
-| 01-shell/REQUESTS.md:3 | OPUS-1 | OPUS-10 | add the shell (script tag or modules.json order 2); then point safeBox's wrap at #kuiper-menu-bar and remove Edition 4's bar block | 01 22:03Z | OPEN | 203 min | order part done (modules.json order 2, ADMISSIONS.md:28); index.html has 0 'kuiper-menu-bar', bar block not removed |
+| 01-shell/REQUESTS.md:3 | OPUS-1 | OPUS-10 | add the shell (script tag or modules.json order 2); then point safeBox's wrap at #kuiper-menu-bar and remove Edition 4's bar block | 01 22:03Z | OPEN | 212 min | order part done (modules.json order 2, ADMISSIONS.md:28); index.html has 0 'kuiper-menu-bar', bar block not removed |
 | 01-shell/REQUESTS.md:8 | OPUS-1 | OPUS-4 | KY.panels.add forwards to the shell's api.panel; keep __KUIPER_MODULES__ unfrozen | 01 22:03Z | ANSWERED · index.html:875-877 (panels.add forwards to kuiper-shell api.panel) |  |  |
 | 01-shell/REQUESTS.md:13 | OPUS-1 | OPUS-5 | mount the star entry with api.mountStar, no seventh .gm-title | 01 22:03Z | ANSWERED · 05-see-through/REQUESTS.md:29; 6566607555 |  |  |
 | 01-shell/REQUESTS.md:16 | OPUS-1 | OPUS-3 / OPUS-6 | fill WAFER and FILE groups through api.panel | 01 22:03Z | ANSWERED · 03-layers/REQUESTS.md:21-22; 06-file/REQUESTS.md:15 |  |  |
-| 01-shell/REQUESTS.md:18 | OPUS-1 | OWNER | Q7: title at >=434 px, strip below; title at every width costs the brand | 01 22:03Z | OPEN | 203 min | = owner Q7 |
+| 01-shell/REQUESTS.md:18 | OPUS-1 | OWNER | Q7: title at >=434 px, strip below; title at every width costs the brand | 01 22:03Z | OPEN | 212 min | = owner Q7 |
 | 01-shell/REQUESTS.md:23 | OPUS-1 | OPUS-10 | re-admit kuiper-shell rev 2 second in order | 02 00:25Z | ANSWERED · ADMISSIONS.md:28 (00:56), 6566567995 |  |  |
 | 01-shell/REQUESTS.md:28 | OPUS-1 | OPUS-4 | optional KY.history.selfBack() | 02 00:25Z | OBSOLETE · ruling 6566317112 chose KY.nav; harness made rev 5 optional, 04-loader/REQUESTS.md:50 |  |  |
 | 01-shell/REQUESTS.md:30 | OPUS-1 | OPUS-3 | (an answer) #lines etc. no longer required | 02 00:25Z | ANSWERED · is itself the answer to 03-layers/REQUESTS.md:19 |  |  |
 | 02-card/REQUESTS.md:3 | OPUS-2 | OPUS-10 | apply 02-card/index.patch after the loader patch | 01 22:23Z | ANSWERED · ADMISSIONS.md:25 (index sha 418ae14c) |  |  |
 | 02-card/REQUESTS.md:9 | OPUS-2 | OPUS-10 | add line-card record to modules.json, order 3 | 01 22:42Z | ANSWERED · modules.json order hello, kuiper-shell, line-card |  |  |
-| 02-card/REQUESTS.md:11 | OPUS-2 | OPUS-10 / PR B | apply LAWS-L11.patch in PR B (never on the edition branch) | 01 22:23Z | OPEN | 183 min | PR B not opened |
+| 02-card/REQUESTS.md:11 | OPUS-2 | OPUS-10 / PR B | apply LAWS-L11.patch in PR B (never on the edition branch) | 01 22:23Z | OPEN | 192 min | PR B not opened |
 | 02-card/REQUESTS.md:13 | OPUS-2 | OPUS-10 | keep 'The card law' section when the README is written in full | 01 22:23Z | ANSWERED · README.md:93 '## The card law' present |  |  |
 | 02-card/REQUESTS.md:15 | OPUS-2 | OPUS-1 | keep the ABOUT card-law bytes | 01 22:23Z | ANSWERED · 01-shell/PLAN.md:98; shell rev 2 admitted |  |  |
 | 02-card/REQUESTS.md:18 | OPUS-2 | OPUS-3 | open lines with line-card api.show / api.row; list line-card in requires | 01 22:23Z | ANSWERED · 03-layers/REQUESTS.md:26-29; 6565891074 |  |  |
@@ -121,43 +129,43 @@ Study 01 counted 56 numbered requests in these files (FIXES/NL-011/01-protocol.m
 | 03-layers/REQUESTS.md:30 | OPUS-3 | OPUS-4 | KY.refuse / KY.cam.atHome | 01 23:28Z | ANSWERED · marked DONE in rev 3 (6565079081) |  |  |
 | 03-layers/REQUESTS.md:32 | OPUS-3 | OPUS-9 / OPUS-10 | pointer forwards location.search + location.hash | 01 22:23Z | ANSWERED · 09-law/pointer.patch, handed to HARNESS for PR B (row 09-law:19) |  |  |
 | 03-layers/REQUESTS.md:36 | OPUS-3 | OPUS-5, OPUS-7 | register into the layers.json records | 01 22:23Z | ANSWERED · 05-see-through/REQUESTS.md:21-28; 07-apps/REQUESTS.md:3-14 |  |  |
-| 03-layers/REQUESTS.md:42 | OPUS-3 | OPUS-9 | extend E2/E6 to data/*.json via build_layers.py --check | 01 22:23Z | OPEN | 183 min | no build_layers call in tools/edition_check.py |
+| 03-layers/REQUESTS.md:42 | OPUS-3 | OPUS-9 | extend E2/E6 to data/*.json via build_layers.py --check | 01 22:23Z | OPEN | 192 min | no build_layers call in tools/edition_check.py |
 | 04-loader/REQUESTS.md:3 | OPUS-4 | OPUS-10 | apply loader rev 5 and modules.json first records | 02 00:46Z | OBSOLETE · rev 4 admitted 23:19 (ADMISSIONS.md:23); rev 5 optional tonight, 04-loader/REQUESTS.md:50 |  |  |
 | 04-loader/REQUESTS.md:12 | OPUS-4 | OPUS-10 | readout says EDITION 2 | 01 22:14Z | ANSWERED · ADMISSIONS.md:23 ('EDITION 2 ·' 0, EDITION 5 survives) |  |  |
 | 04-loader/REQUESTS.md:14 | OPUS-4 | OPUS-9 | apply edition_check.py.patch; add E9 | 01 22:14Z | ANSWERED · tools/edition_check.py E1-E9 (commit 67aa0c0) |  |  |
 | 04-loader/REQUESTS.md:18 | OPUS-4 | OPUS-1 | move shell history to KY.nav | 02 00:46Z | OBSOLETE · harness: rev 5 optional tonight, shell rev 2 admitted without KY.nav (04-loader/REQUESTS.md:50) |  |  |
 | 04-loader/REQUESTS.md:21 | OPUS-4 | teams 1-3, 5-8 | build against HOOKS.md; header line 1; KY.register once | 02 00:46Z | OBSOLETE · standing rule; E6/E8 PASS for admitted modules |  |  |
-| 04-loader/REQUESTS.md:26 | OPUS-4 | OWNER | keep or drop maximum-scale=1,user-scalable=no (WCAG 1.4.4) | 02 00:46Z | OPEN | 40 min | owner decision, not in Q1-Q8 |
+| 04-loader/REQUESTS.md:26 | OPUS-4 | OWNER | keep or drop maximum-scale=1,user-scalable=no (WCAG 1.4.4) | 02 00:46Z | OPEN | 49 min | owner decision, not in Q1-Q8 |
 | 04-loader/REQUESTS.md:41 | OPUS-1 | OPUS-4 | optional KY.history.selfBack() | 02 00:25Z | OBSOLETE · same as 01-shell/REQUESTS.md:28 |  |  |
-| 05-see-through/REQUESTS.md:5 | OPUS-5 | See Through owner | cut a new see-through/<stamp>/ with the hash-reader patch and move its pointer | 01 22:23Z | OPEN | 183 min | also #10/6564878115; outside Edition 5 |
-| 05-see-through/REQUESTS.md:14 | OPUS-5 | OPUS-10 | admit see-through after file; proof hash; README 'The apps' | 01 22:23Z | OPEN | 183 min | = #10/6566607555; README has no 'The apps' section |
+| 05-see-through/REQUESTS.md:5 | OPUS-5 | See Through owner | cut a new see-through/<stamp>/ with the hash-reader patch and move its pointer | 01 22:23Z | OPEN | 192 min | also #10/6564878115; outside Edition 5 |
+| 05-see-through/REQUESTS.md:14 | OPUS-5 | OPUS-10 | admit see-through after file; proof hash; README 'The apps' | 01 22:23Z | OPEN | 192 min | = #10/6566607555; README has no 'The apps' section |
 | 05-see-through/REQUESTS.md:21 | OPUS-5 | OPUS-3 | see-through record in data/layers.json | 01 22:23Z | ANSWERED · data/layers.json see-through 666940 / 440950711a14 |  |  |
-| 05-see-through/REQUESTS.md:29 | OPUS-5 | OPUS-1; OWNER | mountStar done; owner Q7 now reads 'a Pixel 7 shows the strip' | 01 22:23Z | OPEN | 183 min | owner part = Q7 |
+| 05-see-through/REQUESTS.md:29 | OPUS-5 | OPUS-1; OWNER | mountStar done; owner Q7 now reads 'a Pixel 7 shows the strip' | 01 22:23Z | OPEN | 192 min | owner part = Q7 |
 | 05-see-through/REQUESTS.md:35 | OPUS-5 | OPUS-6 | accept 'space' in the hash grammar, call api.remap / api.link | 01 22:23Z | ANSWERED · 06-file/REQUESTS.md:28-29 |  |  |
-| 05-see-through/REQUESTS.md:40 | OPUS-5 | homepage owner | point homepage_v134.html:35 at see-through/ not the dated folder | 01 22:23Z | OPEN | 183 min | no answer found on the link |
-| 06-file/REQUESTS.md:5 | OPUS-6 | OPUS-3 | (a) expose body(i), indexOf(id), sel(); (b) re-cut the rejecting hunk; (c) shell install | 01 23:06Z | OPEN | 140 min | (b) superseded by delete-moved.py; (c) 6566485658; (a) no body/indexOf/sel api found in layers.js |
+| 05-see-through/REQUESTS.md:40 | OPUS-5 | homepage owner | point homepage_v134.html:35 at see-through/ not the dated folder | 01 22:23Z | OPEN | 192 min | no answer found on the link |
+| 06-file/REQUESTS.md:5 | OPUS-6 | OPUS-3 | (a) expose body(i), indexOf(id), sel(); (b) re-cut the rejecting hunk; (c) shell install | 01 23:06Z | OPEN | 149 min | (b) superseded by delete-moved.py; (c) 6566485658; (a) no body/indexOf/sel api found in layers.js |
 | 06-file/REQUESTS.md:14 | OPUS-6 | OPUS-1 | install without Edition 4's LINES nodes | 01 23:06Z | ANSWERED · 6566485658; kuiper-shell.js:63 |  |  |
-| 06-file/REQUESTS.md:17 | OPUS-6 | OPUS-10 | admit file after layers; NOTICE line; README 'File'/'Links'; EVIDENCE rows | 01 23:06Z | OPEN | 140 min | file not admitted; NOTICE.md has no 'File menu' line; no HANDOFF comment posted (06-file/HANDOFF.md draft) |
+| 06-file/REQUESTS.md:17 | OPUS-6 | OPUS-10 | admit file after layers; NOTICE line; README 'File'/'Links'; EVIDENCE rows | 01 23:06Z | OPEN | 149 min | file not admitted; NOTICE.md has no 'File menu' line; no HANDOFF comment posted (06-file/HANDOFF.md draft) |
 | 06-file/REQUESTS.md:25 | OPUS-6 | OPUS-7 | apps api.open() / api.list() | 01 23:06Z | ANSWERED · 07-apps/REQUESTS.md:23-25 |  |  |
 | 06-file/REQUESTS.md:28 | OPUS-6 | OPUS-5 | nothing to change | 01 23:06Z | OBSOLETE · informational, nothing asked |  |  |
 | 06-file/REQUESTS.md:30 | OPUS-6 | OPUS-9 | pointer law compatible | 01 23:06Z | OBSOLETE · informational, nothing asked |  |  |
-| 06-file/REQUESTS.md:31 | OPUS-6 | OPUS-3 + OPUS-10 | keep let edSel = -1 or drop the two edSel assignments in the cut | 01 23:35Z | OPEN | 111 min | same ask in 6566289513 (b); still open |
-| 07-apps/REQUESTS.md:3 | OPUS-7 | OPUS-3 | record elements (e204cb41) and spider (overview + periodic-table) in layers.json | 01 23:28Z | OPEN | 118 min | elements now e204cb41 (refresh 01:24); spider source.file still null |
-| 07-apps/REQUESTS.md:15 | OPUS-7 | OPUS-10 | admit apps after see-through | 01 23:28Z | OPEN | 118 min | no HANDOFF comment: 07-apps/HANDOFF.md line 1 still [UTC_STAMP] |
+| 06-file/REQUESTS.md:31 | OPUS-6 | OPUS-3 + OPUS-10 | keep let edSel = -1 or drop the two edSel assignments in the cut | 01 23:35Z | OPEN | 120 min | same ask in 6566289513 (b); still open |
+| 07-apps/REQUESTS.md:3 | OPUS-7 | OPUS-3 | record elements (e204cb41) and spider (overview + periodic-table) in layers.json | 01 23:28Z | OPEN | 127 min | elements now e204cb41 (refresh 01:24); spider source.file still null |
+| 07-apps/REQUESTS.md:15 | OPUS-7 | OPUS-10 | admit apps after see-through | 01 23:28Z | OPEN | 127 min | no HANDOFF comment: 07-apps/HANDOFF.md line 1 still [UTC_STAMP] |
 | 07-apps/REQUESTS.md:21 | OPUS-7 | OPUS-9 | take LICENCE.txt rows into LICENCES.md | 01 23:28Z | ANSWERED · LICENCES.md:35-36, :74 |  |  |
 | 07-apps/REQUESTS.md:23 | OPUS-7 | OPUS-6 | nothing to change | 01 23:28Z | OBSOLETE · informational, nothing asked |  |  |
-| 07-apps/REQUESTS.md:26 | OPUS-7 | OWNER | Q1 and Q5 | 01 23:28Z | OPEN | 118 min | = owner Q1, Q5 |
+| 07-apps/REQUESTS.md:26 | OPUS-7 | OWNER | Q1 and Q5 | 01 23:28Z | OPEN | 127 min | = owner Q1, Q5 |
 | 07-apps/REQUESTS.md:28 | OPUS-7 | all | FINDING: K1 link withheld for cable-selection | 01 23:28Z | OBSOLETE · finding, nothing asked |  |  |
-| 08-drift/REQUESTS.md:3 | OPUS-8 | OPUS-10 | admit drift last; README 'Drift since the cut' | 02 00:01Z | OPEN | 85 min | = #10/6566504289; README has no drift paragraph |
-| 08-drift/REQUESTS.md:8 | OPUS-8 | OPUS-3 | drift record in layers.json + kuiper.drift.v1 in FORMATS | 02 00:01Z | OPEN | 85 min | no drift record in data/layers.json |
+| 08-drift/REQUESTS.md:3 | OPUS-8 | OPUS-10 | admit drift last; README 'Drift since the cut' | 02 00:01Z | OPEN | 94 min | = #10/6566504289; README has no drift paragraph |
+| 08-drift/REQUESTS.md:8 | OPUS-8 | OPUS-3 | drift record in layers.json + kuiper.drift.v1 in FORMATS | 02 00:01Z | OPEN | 94 min | no drift record in data/layers.json |
 | 08-drift/REQUESTS.md:14 | OPUS-8 | OPUS-9 | E9 line in edition_check.py | 02 00:01Z | ANSWERED · tools/edition_check.py:33, :448-486 |  |  |
-| 08-drift/REQUESTS.md:17 | OPUS-8 | OWNER / HARNESS | clone pipelinenews into the estate and re-cut drift.json | 02 00:01Z | OPEN | 85 min | clone present since 00:56 (6566567480); re-cut not done, and the clone turned E9 FAIL |
-| 08-drift/REQUESTS.md:20 | OPUS-8 | OPUS-1 | (not blocking) does the shell want a named slot for evidence layers? | 02 00:01Z | OPEN | 85 min | no answer found |
+| 08-drift/REQUESTS.md:17 | OPUS-8 | OWNER / HARNESS | clone pipelinenews into the estate and re-cut drift.json | 02 00:01Z | OPEN | 94 min | clone present since 00:56 (6566567480); re-cut not done, and the clone turned E9 FAIL |
+| 08-drift/REQUESTS.md:20 | OPUS-8 | OPUS-1 | (not blocking) does the shell want a named slot for evidence layers? | 02 00:01Z | OPEN | 94 min | no answer found |
 | 09-law/REQUESTS.md:3 | OPUS-9 | OPUS-10 | E6: loader reference vs file | 02 00:35Z | ANSWERED · restored b8e7c74 (ADMISSIONS.md:28); E6 PASS at refresh |  |  |
-| 09-law/REQUESTS.md:7 | OPUS-9 | OPUS-10 | E3: cut proof/edition-sha256.txt last, handoff/ included unless the owner rules | 02 00:35Z | OPEN | 51 min | proof/edition-sha256.txt absent (E3 NOT EVALUATED); handoff/ included per harness ruling 6566796733 (2) |
-| 09-law/REQUESTS.md:12 | OPUS-9 | OPUS-7, OPUS-10 | periodic-table.json copied while DISCLOSED: draw live or hold the copy until Q5 | 02 00:35Z | OPEN | 51 min | file still in data/graphs/; = Q5 |
-| 09-law/REQUESTS.md:16 | OPUS-9 | OPUS-10 | adopt 09-law/android-journey.cjs; name the READOUT selector | 02 00:35Z | OPEN | 51 min | 10-integration/android-journey.cjs differs from 09-law's (cmp) |
-| 09-law/REQUESTS.md:19 | OPUS-9 | HARNESS | apply pointer.patch in PR B with the stamp move | 02 00:35Z | OPEN | 51 min | PR B not opened |
+| 09-law/REQUESTS.md:7 | OPUS-9 | OPUS-10 | E3: cut proof/edition-sha256.txt last, handoff/ included unless the owner rules | 02 00:35Z | OPEN | 60 min | proof/edition-sha256.txt absent (E3 NOT EVALUATED); handoff/ included per harness ruling 6566796733 (2) |
+| 09-law/REQUESTS.md:12 | OPUS-9 | OPUS-7, OPUS-10 | periodic-table.json copied while DISCLOSED: draw live or hold the copy until Q5 | 02 00:35Z | OPEN | 60 min | file still in data/graphs/; = Q5 |
+| 09-law/REQUESTS.md:16 | OPUS-9 | OPUS-10 | adopt 09-law/android-journey.cjs; name the READOUT selector | 02 00:35Z | OPEN | 60 min | 10-integration/android-journey.cjs differs from 09-law's (cmp) |
+| 09-law/REQUESTS.md:19 | OPUS-9 | HARNESS | apply pointer.patch in PR B with the stamp move | 02 00:35Z | OPEN | 60 min | PR B not opened |
 
 ## 3. The owner's open questions (FIXES/NL-010/ROADMAP.md "Open questions for the owner", Q1-Q8) and other owner asks
 
@@ -165,28 +173,30 @@ Q1-Q8 were put to the owner by FABLE-T5B in #10/6564201811. No comment on #10 or
 
 | id | from | to | what is asked | opened (UTC) | status | open for | note |
 |---|---|---|---|---|---|---|---|
-| Q1 | FABLE-T5B (ROADMAP) | OWNER | elements' licence (elements@f7a92fb has none) | 01 21:33:58Z | OPEN | 232 min | also 6563877491 (2), 6564134343, 07-apps/REQUESTS.md:26 |
-| Q2 | FABLE-T5B | OWNER | galaxies-wafers' licence (Phase 2 only) | 01 21:33:58Z | OPEN | 232 min |  |
-| Q3 | FABLE-T5B | OWNER | K5 line in ci_check.py, or the separate tools/edition_check.py | 01 21:33:58Z | OPEN | 232 min | edition_check.py was built meanwhile |
-| Q4 | FABLE-T5B | OWNER | EVERYTHING's denominators: private repos, binaries, refs | 01 21:33:58Z | OPEN | 232 min | also 6564134343 (8b item 1) |
-| Q5 | FABLE-T5B | OWNER | the spider's graph data: copy as DISCLOSED, or draw live only | 01 21:33:58Z | OPEN | 232 min | periodic-table.json already copied (09-law/REQUESTS.md:12) |
-| Q6 | FABLE-T5B | OWNER | who merges PR A (integrator, or owner merges both) | 01 21:33:58Z | OPEN | 232 min | also 6563877491 (1) |
-| Q7 | FABLE-T5B | OWNER | star slot on the phone: strip below the breakpoint, or title at every width | 01 21:33:58Z | OPEN | 232 min | breakpoint is now 434 px, so a Pixel 7 shows the strip (6566607555, 01-shell/REQUESTS.md:18) |
-| Q8 | FABLE-T5B | OWNER | the mark: confirm NOTICE.md's VENTUS wording | 01 21:33:58Z | OPEN | 232 min |  |
+| Q1 | FABLE-T5B (ROADMAP) | OWNER | elements' licence (elements@f7a92fb has none) | 01 21:33:58Z | OPEN | 241 min | also 6563877491 (2), 6564134343, 07-apps/REQUESTS.md:26 |
+| Q2 | FABLE-T5B | OWNER | galaxies-wafers' licence (Phase 2 only) | 01 21:33:58Z | OPEN | 241 min |  |
+| Q3 | FABLE-T5B | OWNER | K5 line in ci_check.py, or the separate tools/edition_check.py | 01 21:33:58Z | OPEN | 241 min | edition_check.py was built meanwhile |
+| Q4 | FABLE-T5B | OWNER | EVERYTHING's denominators: private repos, binaries, refs | 01 21:33:58Z | OPEN | 241 min | also 6564134343 (8b item 1) |
+| Q5 | FABLE-T5B | OWNER | the spider's graph data: copy as DISCLOSED, or draw live only | 01 21:33:58Z | OPEN | 241 min | periodic-table.json already copied (09-law/REQUESTS.md:12) |
+| Q6 | FABLE-T5B | OWNER | who merges PR A (integrator, or owner merges both) | 01 21:33:58Z | OPEN | 241 min | also 6563877491 (1) |
+| Q7 | FABLE-T5B | OWNER | star slot on the phone: strip below the breakpoint, or title at every width | 01 21:33:58Z | OPEN | 241 min | breakpoint is now 434 px, so a Pixel 7 shows the strip (6566607555, 01-shell/REQUESTS.md:18) |
+| Q8 | FABLE-T5B | OWNER | the mark: confirm NOTICE.md's VENTUS wording | 01 21:33:58Z | OPEN | 241 min |  |
 | OW-accept | FABLE-T5B, FABLE-T2A | OWNER | ACCEPT or REJECT the roadmap; say whether the ten steps pass | 01 21:33:58Z | OBSOLETE · the harness summoned the Opus teams (6564299733 onward); no owner ACCEPT comment on #10 |  |  |
-| OW-lockup | FABLE-T1A | OWNER | the lockup copied with its flanks above 700 px | 01 21:19:21Z | OPEN | 246 min | 6564036091 |
-| OW-zoom | OPUS-4 | OWNER | viewport maximum-scale=1,user-scalable=no (WCAG 2.1 SC 1.4.4) | 02 00:46Z | OPEN | 40 min | 04-loader/REQUESTS.md:26 |
+| OW-lockup | FABLE-T1A | OWNER | the lockup copied with its flanks above 700 px | 01 21:19:21Z | OPEN | 256 min | 6564036091 |
+| OW-zoom | OPUS-4 | OWNER | viewport maximum-scale=1,user-scalable=no (WCAG 2.1 SC 1.4.4) | 02 00:46Z | OPEN | 49 min | 04-loader/REQUESTS.md:26 |
 | OW-handoff | OPUS-9 | OWNER | is handoff/ inside the edition digest (E3)? | 02 00:32:42Z | ANSWERED · harness ruling 6566796733 (2): included at the final cut; the owner may narrow it |  | 6566235285 item 2; 09-law/REQUESTS.md:7 |
-| OW-delegation | HARNESS | OWNER | confirm or narrow the overnight merge delegation (object, scope, expiry) | 02 01:19:25Z | OPEN | 6 min | #10/6566796733 |
-| OW-quotes | OPUS-7, OPUS-9 | OWNER | confirm the 17 GPL + 48 unstated one-line quotations in elements.json as citations | 02 00:57Z | OPEN | 29 min | LICENCES.md:74 |
+| OW-delegation | HARNESS | OWNER | confirm or narrow the overnight merge delegation (object, scope, expiry) | 02 01:19:25Z | OPEN | 16 min | #10/6566796733 |
+| OW-quotes | OPUS-7, OPUS-9 | OWNER | confirm the 17 GPL + 48 unstated one-line quotations in elements.json as citations | 02 00:57Z | OPEN | 38 min | LICENCES.md:74 |
 
 ## 4. Nudges posted on #10 (at most one per refresh, rows OPEN over 30 minutes)
 
 - 01:26 UTC · row `HARNESS-K1` → HARNESS · #10/6566873489
+- 01:35 UTC · row `#10/6566567480` → OPUS-8 lead · #10/6566985670
 
 ## 5. Refresh log
 
 - 01:24 UTC · refresh 1 (baseline): 66 #10 comments read, #11 0; new since study 01: HARNESS 6566796733 (delegation, rulings now on the link) and 6566812411 (POINTER-READY redefined without layers); elements record now e204cb41; edition_check E9 FAIL, ci_check PASS.
+- 01:34 UTC · refresh 2: 7 new comments (LINK-12 reviews x3 on #10; LINK-07, LINK-11, LINK-12, LINK-09 on #11); 6 rows added; harness commits 7bcdcd2, f1ff6b8, a9f4510 answer three commit asks; kuiper-belt 233d91b "layers revision in progress"; E9 still FAIL.
 
 ## Limits
 
