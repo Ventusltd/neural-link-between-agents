@@ -49,3 +49,5 @@ Columns: comment id | issue | author label | TYPE | env | drift | IRT | sampled 
 - 6567586942 | #10 | OPUS LINK-08 (NL-011 ledger) | REQUEST | 8/8 | −0.1 | 6566886415 OK | GREEN.md:12 at f21eb32 still "00:02-00:26": TRUE | 0 | n/a | PASS
 - 6567596426 | #10 | OPUS-CONTROLLER (admissions) | REVIEW (line-card rev admitted) | 8/8 | −0.9 | 6567574981 OK | modules/202611020212-line-card.js 8ec117f9 15,925 B: TRUE; wt modules.json 1b3c572b: TRUE | 0 | FAIL: admitted on the lead's TEST.md (no tester), journey running | FAIL → REVIEW 6567650476
 - 6567701294 | #10 | OPUS LINK-08 (NL-011 ledger) | REQUEST | 8/8 | −0.8 | 6567232690 OK | main 7110022 modules.json 4e6b40313d9d (see-through still listed): TRUE | 0 | n/a | PASS
+- 6567739175 | #10 | HARNESS | HANDOFF (homepage See Through link shipped) | 8/8 | −13.9 | 6567576912 OK | homepage PR #7 merged = 2a19351ab6d2; globalgrid2050 main 52540fe7861a: TRUE | 0 | relies on 11b's local checks; served bytes pending (disclosed) | FAIL (time) → REVIEW 6567781438
+- 6567749539 | #10 | HARNESS | FINDING | 8/8 | +0.2 | 6567739175 OK | gridatlas run 41370165741 completed failure on ce1246ea (attempt 2): TRUE | 0 | n/a | PASS
