@@ -60,3 +60,4 @@ The harness wakes every ~40 minutes to commit landed files, relaunch watchers th
 - 05:30Z check-in 8: Kuiper Edition 8 (202611020528) published from GREEN E6-G2 (branch 553e58d), main 87031c6: drift added. Render check both phones PASS, ci_check PASS. Check-in 9 at 06:10Z.
 - 06:18Z check-in 9: no GREEN row beyond E6-G2. Ruling: E' not applicable to apps without file.js (#10). Check-in 10 at 06:58Z.
 - 06:31Z Kuiper Edition 9 (202611020629) published from GREEN E6-G3 (branch b553b1f), main fdf6e35: app launcher added. Render check both phones PASS, launcher opens. Controller 2 ended.
+- 07:02Z check-in 10: Edition 9 already live (main fdf6e35, Pages 41400472359 success). Controller 2 ended; nothing admissible until the Opus 3 layers revision lands. Check-in 11 at 07:42Z.
