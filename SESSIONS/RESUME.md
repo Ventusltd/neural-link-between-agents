@@ -1,5 +1,37 @@
 # RESUME: how a brand-new session picks up the overnight Kuiper Edition 5 work from the link alone
 
+## 0. State at 2026-11-02 10:36Z (FABLE-FIN-1; read this first, the sections below describe 01:46Z)
+
+Live: **Kuiper Edition 11 (202611021017)**, kuiper-belt main `94aa593`, pointer `editions/index.html` names it in three
+places and forwards search + hash; Pages run 41428320887 and "checking engineer" 41428321541 both completed success.
+Editions 6 to 11 shipped overnight (03:26Z to 10:17Z stamps), each a dated folder cut from one GREEN commit on branch
+`edition/202611012135`: 6 `8cb22350` (202611020326), 7 `4ee309d` (202611020446, GREEN 84f1c1ed), 8 `87031c6`
+(202611020528, 553e58d), 9 `fdf6e35` (202611020629, b553b1f), 10 `35ef064` (202611020825, 85c0bc6), 11 `94aa593`
+(202611021017, 977de9c). Verified at 10:36Z on a clean worktree of origin/main: `sha256sum -c proof/edition-sha256.txt`
+clean in every folder with every file listed, KY_EDITION = modules.json edition = folder stamp in all six,
+editions/README.md and README.md name Edition 11 as current, `tools/ci_check.py` RESULT: PASS (852 files, 0 private
+digests). The door www.globalgrid2050.com/kuiper-editions/ (globalgrid2050 main 52540fe7) forwards to the kuiper-belt
+pointer; its last Deploy run 41378168206 success. The sandbox cannot fetch the served pages.
+
+Stamps and GREEN commits: `SESSIONS/state/stamps.env` (S2 to S11, LIVE, G7 to G11). The release recipe, step by step
+with the scripts: `FIXES/NL-010/tools/release/RECIPE.md` (worktree from origin/main, copy the GREEN commit's folder
+minus CONTROLLER/GREEN/proof/README/data/drift.json, stamp KY_EDITION, modules.json edition, labels and the layers
+record, write README/NOTICE/pointer/README entries, build_layers --edition, layers.json edition, drift.py --heads,
+render check on Pixel 7 and Galaxy S24, rebuild proof, ci_check, rebase over the engine's cosmos commits, push main,
+watch Pages). The /tmp scripts that mattered are copied there (e10-*.cjs, e11-*.cjs, k1-staged.py).
+
+Known check debts, not shipped: `FIXES/NL-010/CHECK-DEBTS.md` (edition_check E6: the loader reference copy's hook-table
+block carries KY_EDITION 202611012135; E7: prose in the drift and apps records' writes; E9: drift.json re-computes
+differently as heads move; and a new one, data/apps.json and data/elements.json still stamped 202611012135 in Editions
+9 to 11). `tools/edition_check.py` and `editions/LAW.md` exist only on the branch, not on main.
+
+Open at 10:36Z: the See Through module admission (FABLE-FIN-2, kuiper-belt handoff/05-see-through, do not touch); the
+progress report (FABLE-FIN-3); the owner questions of section 9.6; gridatlas PR #83 (owner's merge). The stale release
+worktrees /tmp/kb-e6 to /tmp/kb-e11, /tmp/kb-fix, /tmp/kb-release, /tmp/kb-st were removed after checking each equals a
+commit on origin/main (see the FINDING on #10 of 10:36Z). The delegation reading of section 4 still applies: the owner's
+next message ends it.
+
+
 Written by NL-011 LINK-10 "resume kit", 2026-11-02. The clock read 01:20Z at the start and 01:46Z at the last state
 read (`date -u`). It was tested cold in `/tmp/nl011-10/` by cloning from GitHub through the proxy, not from local
 paths (section 13). The reader starts with nothing but GitHub access to the Ventusltd repositories. Every step below

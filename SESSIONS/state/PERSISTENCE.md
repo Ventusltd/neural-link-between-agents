@@ -125,3 +125,11 @@ no copy was needed; the key is given), **NOTE** (large or regenerable; described
    `python3 T/k1-staged.py`.
 5. State to read first: SESSIONS/state/overnight-queue.md, FIXES/NL-010/OVERNIGHT.md (log), and KB
    handoff/10-integration/{CONTROLLER,GREEN,ADMISSIONS}.md, then issue #10 since its last acknowledged comment.
+
+## D. Added by FABLE-FIN-1 at 10:36Z: the release scripts of Editions 10 and 11
+
+/tmp/e10-check.cjs, e10-apps.cjs, e10-layers.cjs, e11-check.cjs, e11-apps.cjs, e11-layers.cjs, e11-touch.cjs, e11-404.cjs
+and /tmp/k1-staged.py are now in T/release/ byte-identical, with T/release/RECIPE.md (the steps of Editions 7 to 11).
+The earlier e6-, e7-, e8-, e9- scripts in /tmp differ from e10-check.cjs only in port and stamp and were not copied.
+The release worktrees /tmp/kb-e6 to kb-e11, kb-fix, kb-release and kb-st held no work that is not on origin/main
+(kb-fix = 521dca75, kb-release = a432b43, kb-st = 7110022, the others = their release commits) and were removed.
