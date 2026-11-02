@@ -53,6 +53,17 @@ on the shipped bytes; Galaxy S24 was not run; #repo lights amber not cyan; the l
 412 px phone. The See Through pointer moved to it in its three places. (#10/c6567465379; #10/c6567437030;
 #10/c6567478191)
 
+The star player's last piece landed this morning. OPUS-5's revision 202611021026 of the See Through module
+(e5756c7d, Apache-2.0, writes nothing into the card) registers the See Through stars as a layer: the layers row reads
+"See Through stars · OK · 5,800 of 5,800", every key equals floor((sub + 0.5) · SPACE / 20000) at the page's SPACE
+63,777,293,432 with 0 mismatches, a tap on a star shows a chip that opens See Through at that key, and nothing leaves
+the page's origin at load. OPUS-CONTROLLER-5 (FABLE-FIN-2's task) admitted it on Edition 11 as GREEN row E11-G1,
+branch commit a7501673: journey-6 on main's engine, base 16/16 and 16/16, with see-through 16/16 and 16/16, eight
+modules admitted and none refused, 0 page errors, no step HARNESS-LIMITED. The harness is cutting Kuiper Edition 12,
+stamp 202611021201, from that row; because the module is sealed to its edition and its data, the cut re-seals the two
+constants EDITION and DATA (the re-sealed data sha256 is ad9d2d61) and runs the full two-phone journey on the exact
+folder before the push. EDITION-12-STATUS. (#10/c6575833768; #10/c6576597543)
+
 The www.globalgrid2050.com side: the door /kuiper-editions/ (globalgrid2050 PR #50, merged 23:38 UTC on 1 Nov,
 deploy run 41364141297); the deploy allow-list line (PR #51, 23:58 UTC); the Kuiper editions homepage card
 (globalgrid2050-homepage PR #6 and globalgrid2050 PR #52, deploy run 41368222618 success at 00:38 UTC); the See
@@ -108,10 +119,11 @@ The roadmap (ROADMAP.md, consolidated 21:34 UTC on 1 Nov, #10/c6564201811) set t
    wrong card). (#10/c6569024455; #10/c6572503742)
 4. The cartridge law (hook table, loader, manifest, refusal in words): shipped in Edition 5. edition_check E1–E9 exists
    on the edition branch; E3, E6 and E7 fail for known reasons (section 7).
-5. See Through, the star player: half shipped. See Through 202611020012 with the deep-link reader is live and linked
-   from the homepage, and the shell carries the SEE THROUGH entry (title or strip). The Kuiper-side module (the 5,800
-   See Through stars as a layer, the card's "see this line among the stars") was refused by its tester and has no
-   revision yet; the layers row reads EMPTY. (#10/c6567342104; #10/c6570675769; #10/c6574744989)
+5. See Through, the star player: See Through 202611020012 with the deep-link reader is live and linked from the
+   homepage; the shell carries the SEE THROUGH entry (title or strip); the star layer module e5756c7d is admitted as
+   GREEN E11-G1 and is the content of Edition 12, being cut as this is written (section 1). The card's own "see this
+   line among the stars" row was dropped from the module (it filled the card to its cap, the cause of the first
+   refusal); the star tap chip replaces it. (#10/c6567342104; #10/c6575833768; #10/c6576597543)
 6. The File menu and the hash grammar: shipped in Edition 11, with thinner evidence than its first draft (section 7).
 7. The OS baby step (app registry, launcher, periodic table, spider): the launcher and registry shipped in Edition 9.
    The periodic-table layer is REFUSED until Q1 is answered; the spider graphs are copied as DISCLOSED pending Q5.
@@ -236,8 +248,14 @@ OVERNIGHT.md:3; OVERNIGHT.md:41; OVERNIGHT.md:44; FIXES/NL-011/BRIEF.md; KUIPER-
   and a diseased fixture: the manifest on a green row, the post that reads the file, no private names, the released
   folder frozen, the data stamp is the page stamp, record paths not prose. The vaccine "no private names" is what found
   the four large files of decision 11. (#10/c6575319189)
-- The See Through module (star layer) is refused with no revision; the See Through page was not run on Galaxy S24;
-  #repo lights amber not cyan; the line-of-code note clips at 404 px. (#10/c6567437030)
+- The See Through star layer is sealed to one wafer: the module refuses any SPACE other than 63,777,293,432 and any
+  data other than its DATA constant. The engine grows main's wafer about every eight hours (the "engine: lines
+  standing and the wafer grown" commits), so after the next engine commit the row will read "FAIL · SPACE … ≠ wafer
+  …", draw nothing and change nothing else (0 page errors, no red step, measured on the branch's older engine). The
+  cure is a revision that remaps the keys to the live SPACE, or a re-cut of data and module at each wafer move.
+  (#10/c6576597543)
+- The See Through page 202611020012 was not run on Galaxy S24; #repo lights amber not cyan; the line-of-code note
+  clips at 404 px. (#10/c6567437030)
 - The edition branch's own CI check is red since 03:20 UTC (law check, stray and pre-cut files). (run 41427484228)
 - LAWS.md L11 (the card law) is still a patch in handoff/02-card, not applied on kuiper-belt main.
 - Closed, for the record: the loader reference defect of the first preview (main e92ad5d carried rev 5 bytes
@@ -247,10 +265,14 @@ OVERNIGHT.md:3; OVERNIGHT.md:41; OVERNIGHT.md:44; FIXES/NL-011/BRIEF.md; KUIPER-
 
 ## 8. What happens next
 
-The See Through star-layer module needs a tester-passed revision; it would be Edition 12 by the same process. Teams 3
-and 7 owe the E7 literals and the "Edition 9" text; team 4 owes a loader reference under a new stamp so E6 passes.
-The owner's answers in section 6 unblock the periodic table (Q1), the spider terms (Q5), Phase 2 and protocol v2.
-FABLE-FIN-1's FINDING and FABLE-FIN-2's REVIEW on #10 are folded into the final version of this report.
+Edition 12 (the See Through star layer) completes the roadmap's module list; after it the live pointer carries
+steps 1 to 8 of the ten. OPUS-5 owes a revision that remaps the stars to the live SPACE so the layer survives the
+engine's next wafer growth; teams 3 and 7 owe the E7 literals and the "Edition 9" text in the layers record; team 4
+owes a loader reference under a new stamp so E6 passes without the tool patch; team 8 owes the E9 replay. The release
+recipe (RECIPE.md) and the resume kit (RESUME.md section 0) let a new session cut Edition 13 cold. The owner's answers
+in section 6 unblock the periodic table (Q1), the spider terms (Q5), the four large data files, Phase 2 and protocol
+v2. The three finalisation agents end with this report: FABLE-FIN-1's FINDING (#10/c6575319189), FABLE-FIN-2's
+REVIEW as OPUS-CONTROLLER-5 (#10/c6576597543) and this REPORT.
 
 ## 9. The Kuiper method applied to the link, and the Ventus grid engine for new links
 
