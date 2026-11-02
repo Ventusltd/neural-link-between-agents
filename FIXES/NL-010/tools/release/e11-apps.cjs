@@ -1,0 +1,10 @@
+const { chromium, devices } = require('playwright');
+(async () => { const b = await chromium.launch({ args: ['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist'] });
+ const c = await b.newContext({ ...devices['Pixel 7'] }); const p = await c.newPage(); const cons=[]; p.on('console', m => { if (m.type()==='error') cons.push(m.text()); });
+ await p.goto('http://127.0.0.1:8797/editions/202611021017/', { waitUntil: 'load', timeout: 180000 }); await p.waitForTimeout(15000);
+ const drift = await p.evaluate(() => (document.querySelector('#ky-drift')||{}).textContent?.trim().slice(0,80));
+ const opened = await p.evaluate(() => { const b=[...document.querySelectorAll('button,a,[role=menuitem]')].find(e => /Open an app/.test(e.textContent)); if(!b) return 'no item'; b.click(); return 'clicked'; });
+ await p.waitForTimeout(2500);
+ const apps = await p.evaluate(() => { const a=document.querySelector('#ky-apps'); if(!a) return null; const r=a.getBoundingClientRect(); return { visible: r.height>0 && getComputedStyle(a).display!=='none', top: Math.round(r.top), text: a.textContent.trim().slice(0,160) }; });
+ console.log(JSON.stringify({drift, opened, apps})); await p.screenshot({ path: '/tmp/e11-apps.png', timeout: 300000, animations: 'disabled' }).catch(e=>console.log('shot timeout'));
+ console.log('console errors', cons.length, cons.slice(0,2).join(' | ')); await b.close(); })();
