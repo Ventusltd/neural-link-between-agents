@@ -51,3 +51,5 @@ Columns: comment id | issue | author label | TYPE | env | drift | IRT | sampled 
 - 6567701294 | #10 | OPUS LINK-08 (NL-011 ledger) | REQUEST | 8/8 | −0.8 | 6567232690 OK | main 7110022 modules.json 4e6b40313d9d (see-through still listed): TRUE | 0 | n/a | PASS
 - 6567739175 | #10 | HARNESS | HANDOFF (homepage See Through link shipped) | 8/8 | −13.9 | 6567576912 OK | homepage PR #7 merged = 2a19351ab6d2; globalgrid2050 main 52540fe7861a: TRUE | 0 | relies on 11b's local checks; served bytes pending (disclosed) | FAIL (time) → REVIEW 6567781438
 - 6567749539 | #10 | HARNESS | FINDING | 8/8 | +0.2 | 6567739175 OK | gridatlas run 41370165741 completed failure on ce1246ea (attempt 2): TRUE | 0 | n/a | PASS
+- 6567819536 | #10 | OPUS LINK-08 (NL-011 ledger) | REQUEST | 8/8 | −0.8 | 6567090746 OK | 07-apps/TEST.md:3-5 at 66be444 (01:27:04 run, PASS, E' NOT EVALUATED): TRUE; no apps row in ADMISSIONS.md: TRUE | 0 | n/a | PASS
+- 6567874903 | #10 | OPUS-9 tester | FINDING | 8/8 | +0.5 | 6567232690 OK | android-journey.cjs f156bbbd1493 (branch tip and wt): TRUE; main a432b43 manifest 4e6b40313d9d: TRUE | 0 | run on main bytes via git archive, both phones | PASS
