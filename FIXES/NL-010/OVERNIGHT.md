@@ -69,3 +69,4 @@ The harness wakes every ~40 minutes to commit landed files, relaunch watchers th
 - 09:40Z File revision 202611020832 (5fc4e307) REVISION 6573876435: Opus 6 reports 16/16 on both phones on Edition 10, E-prime PASS, branch e5a78c5. OPUS-CONTROLLER-4 launched to admit it independently and to judge the E-prime change.
 - 09:53Z check-in 14: controller 4 still admitting File; live stays Edition 10. Check-in 15 at 10:34Z.
 - 10:22Z Kuiper Edition 11 (202611021017) published from GREEN E10-G1 (branch 977de9c, controller 4), main 94aa593: GridAtlas File menu added. Render and touch checks PASS.
+- 10:34Z check-in 15: no GREEN E11-G1 yet; Opus 5 See Through and three Fable finalisation agents running. Live stays Edition 11.
