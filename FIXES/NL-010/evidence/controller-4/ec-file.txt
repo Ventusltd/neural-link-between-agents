@@ -1,0 +1,13 @@
+edition_check: editions/202611020825 (repository e10c4-file)
+E1 PASS: 7 script blocks in 7 editions/*/index.html and 7 modules/*.js parse (node --check)
+E2 PASS: 202611020825: 6 records hash as recorded, 1 reference(s), 7 of 7 files in modules/ admitted
+E3 FAIL: editions/202611012135: handoff/01-shell/HANDOFF.md sha256 ce5de8095784, listed 8b9661c5bdcd; editions/202611012135: handoff/01-shell/REQUESTS.md sha256 421d4770f82d, listed 1273471aef35; editions/202611012135: handoff/03-layers/MODULE.json sha256 b56e444b5139, listed 19af5a083e23; editions/202611012135: handoff/03-layers/MODULE.sha256 sha256 76b0a9d640f9, listed 289afc8ce737; editions/202611012135: handoff/03-layers/PLAN.md sha256 b097fb1a0ce2, listed 88ba032c9758; editions/202611012135: handoff/03-layers/TEST.md sha256 4337a42b627c, listed 43b5c17af54f; editions/202611012135: handoff/03-layers/test.cjs sha256 eec045072ab8, listed a731869ca9fc; editions/202611012135: handoff/06-file/HANDOFF.md sha256 16546b587cc1, listed c3161bda5ed6 ...(89 more)
+E4 PASS: the pointer names 202611012027 in its three places, folder and proof exist; forwards location.hash (search not forwarded: allowed only while the pointer names a pre-Edition-5 folder; handoff/09-law/pointer.patch)
+E5 PASS: 202611020825 keys.json byte-identical to editions/202611012027 (1c293c33...)
+E6 FAIL: 202611020825: reference modules/202611012145-loader.js: hook-table block differs from index.html
+E7 FAIL: 202611020825: drift: writes #hud (one DRIFT line per frame, appended), no literal in the file; 202611020825: apps: writes #card (element card), no literal in the file; 202611020825: apps: writes history entry {kyApps}, no literal in the file; 202611020825: apps: writes layers elements, spider (via KY.modules.layers.api.register), no literal in the file
+E8 PASS: 6 admitted modules parse and register exactly once
+E9 NOT EVALUATED: 202611020825: 21 of 21 clones the recorded heads need are not under /tmp/claude-0/-home-user/e5bfe783-54ef-5c7a-8d30-0a492af18594/scratchpad/snap (cvaa, data-centres-gb, data-grid-gb, data-gridatlas ...): drift not re-computed here
+NOT EVALUATED:
+  - E9: 202611020825: 21 of 21 clones the recorded heads need are not under /tmp/claude-0/-home-user/e5bfe783-54ef-5c7a-8d30-0a492af18594/scratchpad/snap (cvaa, data-centres-gb, data-grid-gb, data-gridatlas ...): drift not re-computed here
+RESULT: FAIL

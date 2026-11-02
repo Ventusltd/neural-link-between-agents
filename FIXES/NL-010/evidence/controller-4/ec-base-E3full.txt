@@ -1,0 +1,95 @@
+E3 FAIL: editions/202611012135: handoff/01-shell/HANDOFF.md sha256 ce5de8095784, listed 8b9661c5bdcd
+editions/202611012135: handoff/01-shell/REQUESTS.md sha256 421d4770f82d, listed 1273471aef35
+editions/202611012135: handoff/01-shell/journey/shell-202611020243-pixel-7.txt not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/202611020637-layers.js not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/HANDOFF.md not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/MODULE.json sha256 b56e444b5139, listed 19af5a083e23
+editions/202611012135: handoff/03-layers/MODULE.sha256 sha256 76b0a9d640f9, listed 289afc8ce737
+editions/202611012135: handoff/03-layers/PLAN.md sha256 b097fb1a0ce2, listed 88ba032c9758
+editions/202611012135: handoff/03-layers/TEST.md sha256 4337a42b627c, listed 43b5c17af54f
+editions/202611012135: handoff/03-layers/edition-9/data/editions.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/data/layers.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/base-galaxy-s24.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/base-galaxy-s24.load not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/base-galaxy-s24.sum not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/base-pixel-7.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/base-pixel-7.load not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/base-pixel-7.sum not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/cut-pixel-7.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/cut-pixel-7.load not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/cut-pixel-7.sum not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/lay-galaxy-s24.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/lay-galaxy-s24.load not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/lay-galaxy-s24.sum not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/lay-hash-end.txt not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/lay-hash-start.txt not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/lay-pixel-7.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/lay-pixel-7.load not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/lay-pixel-7.sum not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/snapshot-base.sha256 not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/journey/snapshot-layers.sha256 not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/modules.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/edition-9/test-run.log not in proof/edition-sha256.txt
+editions/202611012135: handoff/03-layers/test.cjs sha256 eec045072ab8, listed a731869ca9fc
+editions/202611012135: handoff/06-file/202611020832-file.js not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/HANDOFF.md sha256 16546b587cc1, listed c3161bda5ed6
+editions/202611012135: handoff/06-file/MODULE.json sha256 57b32021bfdd, listed e7f8d06dfe9b
+editions/202611012135: handoff/06-file/MODULE.sha256 sha256 2273350e43f8, listed bddb86664361
+editions/202611012135: handoff/06-file/TEST.md sha256 24b1426701ed, listed e23d8679fd5b
+editions/202611012135: handoff/06-file/edition-10/edition-check-e10-base.txt not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/edition-check-e10-file.txt not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/img/Galaxy_S24-02-open-key.png not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/img/Galaxy_S24-04-copy-fallback.png not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/img/Pixel_7-01-file-panel.png not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/img/Pixel_7-02-open-key.png not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-base-galaxy-s24.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-base-galaxy-s24.load not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-base-galaxy-s24.log not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-base-galaxy-s24.sum not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-base-pixel-7.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-base-pixel-7.load not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-base-pixel-7.log not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-base-pixel-7.sum not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-file-galaxy-s24.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-file-galaxy-s24.load not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-file-galaxy-s24.log not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-file-galaxy-s24.sum not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-file-pixel-7.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-file-pixel-7.load not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-file-pixel-7.log not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/e10-file-pixel-7.sum not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/snapshot-e10-base.sha256 not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/journey/snapshot-e10-file.sha256 not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/modules.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/report-galaxy-s24.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/report-pixel7.json not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/test-runs.load not in proof/edition-sha256.txt
+editions/202611012135: handoff/06-file/edition-10/test.cjs not in proof/edition-sha256.txt
+editions/202611012135: handoff/08-drift/EVIDENCE.md sha256 4d0649394632, listed 21c546e0fbb8
+editions/202611012135: handoff/08-drift/HANDOFF.md sha256 b6e829c7af41, listed 247e83374138
+editions/202611012135: handoff/08-drift/MODULE.sha256 sha256 c0efa81d9e28, listed ff62037b3922
+editions/202611012135: handoff/08-drift/TEST.md sha256 5e3f283e74a4, listed 3c855ac6081a
+editions/202611012135: handoff/08-drift/img/1-moved-card-Pixel_7.png sha256 a78f5d04e4a4, listed f7b165b5d4f6
+editions/202611012135: handoff/08-drift/img/2-filter-moved-Galaxy_S24.png sha256 de4d21518bfd, listed ec2721d47752
+editions/202611012135: handoff/08-drift/test.cjs sha256 9dab7650f719, listed 5039a48dd12d
+editions/202611012135: handoff/10-integration/ADMISSIONS.md sha256 a2c3cf1b9a8b, listed ab9749452bdb
+editions/202611012135: handoff/10-integration/CONTROLLER.md sha256 77c455df9b4d, listed 20ff58447239
+editions/202611012135: handoff/10-integration/GREEN.md sha256 b6b06c0d54ec, listed 67eb6f05ac53
+editions/202611020326: CONTROLLER.md not in proof/edition-sha256.txt
+editions/202611020326: GREEN.md not in proof/edition-sha256.txt
+editions/202611020326: data/apps.json not in proof/edition-sha256.txt
+editions/202611020326: data/drift.json not in proof/edition-sha256.txt
+editions/202611020326: data/elements.json not in proof/edition-sha256.txt
+editions/202611020326: data/graphs/overview.json not in proof/edition-sha256.txt
+editions/202611020326: data/graphs/periodic-table.json not in proof/edition-sha256.txt
+editions/202611020326: modules.json sha256 da1fd7a16153, listed 63ef6c4faf7a
+editions/202611020326: modules/202611012143-line-card.js listed, missing
+editions/202611020326: modules/202611012309-apps.js not in proof/edition-sha256.txt
+editions/202611020326: modules/202611020212-line-card.js not in proof/edition-sha256.txt
+editions/202611020326: modules/202611020240-drift.js not in proof/edition-sha256.txt
+editions/202611020629: CONTROLLER.md not in proof/edition-sha256.txt
+editions/202611020629: GREEN.md not in proof/edition-sha256.txt
+editions/202611020629: data/editions.json not in proof/edition-sha256.txt
+editions/202611020629: data/layers.json not in proof/edition-sha256.txt
+editions/202611020629: modules.json sha256 47c51d618292, listed dc18452f0531
+editions/202611020629: modules/202611020637-layers.js not in proof/edition-sha256.txt
