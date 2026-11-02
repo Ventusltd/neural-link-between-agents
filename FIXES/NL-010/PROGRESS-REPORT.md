@@ -1,6 +1,6 @@
 # NL-010 progress report for the owner (2 November 2026)
 
-Written by FABLE-FIN-3 for Vikram Kumar, Ventus Ltd. First draft 10:31 UTC, final 12:24 UTC on 2 November 2026 (clock
+Written by FABLE-FIN-3 for Vikram Kumar, Ventus Ltd. First draft 10:31 UTC, final 12:21 UTC on 2 November 2026 (clock
 read with `date -u`); it folds in FABLE-FIN-1's FINDING (#10/c6575319189), FABLE-FIN-2's REVIEW (#10/c6576597543) and
 the Edition 12 release (#10/c6576956903). Every number here
 carries a key in brackets. A key of the form `#10/c6567194090` is a comment on
