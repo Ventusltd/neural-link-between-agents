@@ -11,6 +11,6 @@ if [ ! -d "$E" ]; then $S/snap.sh $N >/dev/null || exit 3
   (cd $E && find . -type f ! -path './proof/*' | sort | xargs sha256sum) > $S/snap/$N.sha256
 fi
 cd $S/journey; uptime > $N-$s.load; date -u +%H:%M >> $N-$s.load
-NODE_PATH=$(npm root -g) timeout 3000 node /tmp/nl010-opus/team-10/lead/journey/journey-5.cjs http://127.0.0.1:8590/$N/editions/202611012135/ $S/journey/out-$N-$s --device "$D" > $N-$s.json 2> $N-$s.log
+NODE_PATH=$(npm root -g) timeout 3000 node ${JS:-/tmp/nl010-opus/team-10/lead/journey/journey-5.cjs} http://127.0.0.1:8590/$N/editions/202611012135/ $S/journey/out-$N-$s --device "$D" > $N-$s.json 2> $N-$s.log
 echo "exit $?" >> $N-$s.log; uptime >> $N-$s.load; date -u +%H:%M >> $N-$s.load
 grep -hE "\] (PASS|FAIL)" $N-$s.log > $N-$s.sum; echo DONE $N $D
