@@ -1,0 +1,858 @@
+--- a/scripts/repd_q3_2026_ingest.py
++++ b/scripts/repd_q3_2026_ingest.py
+@@ -10,7 +10,7 @@
+ import json
+ import os
+ import sys
+-from datetime import datetime
++from datetime import date, datetime
+ 
+ import pandas as pd
+ from pathlib import Path
+@@ -18,6 +18,7 @@
+ # Reuse the already validated Q2 parsing, identity and canonical capacity rules.
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import repd_sources_v6 as q2  # noqa: E402
++import repd_date_rule  # noqa: E402
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ OUT = Path(os.environ.get("REPD_Q3_OUTPUT", ROOT / ".repd-staging" / "2026-10"))
+@@ -25,18 +26,17 @@
+ Q3_CSV = "https://assets.publishing.service.gov.uk/media/6af42ff0a4004bdbe54e54a5/REPD_Publication_Q3_2026.csv"
+ Q3_XLSX = "https://assets.publishing.service.gov.uk/media/6af42ffdb83b3cae0d0a21c9/REPD_Publication_Q3_2026.xlsx"
+ PUBLICATION_DATE = "2026-11-13"
+-# Independently observed by Claude on 2026-11-13: 25 CSV month-first
+-# serialisations of true Excel dates, all in Planning Application Submitted.
+-# Fail closed if any ref, Excel type, value or record-update chronology differs.
+-EXPECTED_Q3_MONTH_FIRST_DATE_REFS = frozenset({
+-    "21419", "21420", "21424", "21426", "21430", "21432", "21435",
+-    "21436", "21437", "21438", "21439", "21443", "21446", "21453",
+-    "21454", "21456", "21457", "21462", "21463", "21464", "21466",
+-    "21468", "21469", "21471", "21478",
+-})
+-PREVIOUSLY_AMBIGUOUS_DATE_REFS = frozenset({"21424", "21438", "21456", "21463", "21464"})
+-PLANNING_SUBMITTED = "Planning Application Submitted"
+ LAST_UPDATED = "Record Last Updated (dd/mm/yyyy)"
++# No per-release ref allow-list.  repd_date_rule decides every date cell from the
++# two official files: the typed Excel date is the value; CSV text must agree as
++# d/m/yyyy, or as m/d/yyyy only where that cell's own Excel number format is an
++# explicit month-first format.  Anything else rejects the release.
++# These columns must be present as date columns; any further column that Excel
++# types as dates throughout (the appeal and Secretary of State dates, Judicial
++# Review) is discovered and held to the same rule.
++REQUIRED_DATE_COLUMNS = tuple(dict.fromkeys(q2.OFFICIAL_DATE_FIELDS + [LAST_UPDATED]))
++FUTURE_DATED_BY_DESIGN = ("Planning Permission Expired",)
++VALIDATED_Q2_UNIQUE_REFS = 14657
+ 
+ 
+ def strict_date_iso(value) -> str:
+@@ -102,41 +102,44 @@
+     return frame.iloc[retained].copy().reset_index(drop=True), quarantined
+ 
+ 
+-def reconcile(csv_data: bytes, xlsx_data: bytes, old_data: bytes, baseline_name: str, baseline_is_q2: bool) -> tuple[pd.DataFrame | None, dict]:
++def reconcile(csv_data: bytes, xlsx_data: bytes, old_data: bytes, baseline_name: str, baseline_is_q2: bool,
++              minimum_refs: int = VALIDATED_Q2_UNIQUE_REFS,
++              provenance_path: Path | None = None) -> tuple[pd.DataFrame | None, dict]:
+     issues: list[str] = []
+     csv_original = q2.read_csv(csv_data)
+     xlsx_original, sheet = q2.read_xlsx(xlsx_data)
+     current_csv, csv_duplicate_evidence = canonicalise_exact_duplicates(csv_original, "Q3 CSV", issues)
+     current_xlsx, excel_duplicate_evidence = canonicalise_exact_duplicates(xlsx_original, "Q3 Excel", issues)
+-    previous = q2.read_csv(old_data)
++    # The previous release may itself carry identical duplicate rows (October 2026
++    # does: ref 7679), so it gets the same treatment before it is indexed.
++    previous, _ = canonicalise_exact_duplicates(q2.read_csv(old_data), "Comparison baseline", issues)
+     c = q2.indexed(current_csv, "Q3 CSV")
+     x = q2.indexed(current_xlsx, "Q3 XLSX")
+     old = q2.indexed(previous, "Q2 CSV")
+     csv_ids, excel_ids, old_ids = set(c.index), set(x.index), set(old.index)
+     # Fail closed against the last independently validated July/Q2 release.
+     # The historical root file is not a Q2 source and must not lower this floor.
+-    check(len(c) >= 14657 and len(x) >= 14657,
+-          "Q3 unique reference count below the validated Q2 count (14,657)", issues)
++    # Also never accept fewer references than the release actually compared against.
++    floor = max(minimum_refs, len(old))
++    check(len(c) >= floor and len(x) >= floor,
++          f"Q3 unique reference count below the previous-release floor ({floor:,})", issues)
+     check(csv_data.endswith(b"\n"), "Q3 source CSV has no final newline", issues)
+-    # q2.norm_date returns an empty string for an unknown nonblank date.
+-    # Without this guard two different malformed dates could silently compare equal.
+-    invalid_dates = []
+-    date_fields = list(dict.fromkeys(q2.OFFICIAL_DATE_FIELDS + [LAST_UPDATED]))
+-    for label, frame in (("CSV", current_csv), ("XLSX", current_xlsx)):
+-        for field in date_fields:
+-            if field not in frame.columns:
+-                continue
+-            for ref, value in zip(frame["Ref ID"], frame[field]):
+-                clean_ref = q2.clean_ref(ref)
+-                # Explicitly verified Excel dates are parsed month-first separately.
+-                if label == "CSV" and field == PLANNING_SUBMITTED and clean_ref in EXPECTED_Q3_MONTH_FIRST_DATE_REFS:
+-                    continue
+-                raw = q2.collapse(value)
+-                if raw and raw.casefold() not in {"na", "n/a"} and not strict_date_iso(value):
+-                    invalid_dates.append({"source": label, "ref": clean_ref,
+-                                          "field": field, "raw_value": raw[:80]})
+-    check(not invalid_dates,
+-          f"Q3 has {len(invalid_dates)} nonblank unparseable date cells: {invalid_dates[:5]}", issues)
++    # General date rule (typed openpyxl read: pandas discards the number formats
++    # the rule depends on).  Every date cell is explained or the release rejects.
++    dates = repd_date_rule.evaluate(
++        csv_data, xlsx_data, sheet=sheet,
++        required_date_columns=REQUIRED_DATE_COLUMNS,
++        future_ok_columns=FUTURE_DATED_BY_DESIGN,
++        as_of=date.fromisoformat(PUBLICATION_DATE),
++        normalise_header=lambda name: q2.canonicalise_headers(pd.DataFrame(columns=[name])).columns[0],
++    )
++    issues.extend(dates.failure_messages())
++    date_fields = list(dates.date_columns)
++    invalid_dates = [{"source": "CSV/XLSX", "ref": item["ref"], "field": item["column"],
++                      "raw_value": item["csv_text"][:80], "excel_value": item["excel_value"],
++                      "rule": item["rule"]} for item in dates.failures]
++    if provenance_path is not None:
++        repd_date_rule.write_provenance_csv(dates, provenance_path)
+     check(csv_ids == excel_ids, "CSV and Excel REPD reference sets differ", issues)
+     check({x["repd_ref"] for x in csv_duplicate_evidence} == {x["repd_ref"] for x in excel_duplicate_evidence}, "CSV/Excel duplicate identity disagreement", issues)
+     check(len(c) == len(csv_ids), "Duplicate Q3 CSV references", issues)
+@@ -147,38 +150,26 @@
+     check(set(q2.CORE_TEXT_FIELDS + q2.OFFICIAL_DATE_FIELDS).issubset(c.columns), "Q3 CSV missing required original fields", issues)
+     check(set(q2.CORE_TEXT_FIELDS + q2.OFFICIAL_DATE_FIELDS).issubset(x.columns), "Q3 Excel missing required original fields", issues)
+ 
++    # Month-first cells are whatever the rule finds, in any date column.  The
++    # record-update chronology is recorded as corroboration, not used as a gate:
++    # 108 day-first Planning Application Submitted dates in this very release
++    # are later than their Record Last Updated, so it is not an invariant.
+     source_locale_date_normalisations = []
+-    for ref in sorted(EXPECTED_Q3_MONTH_FIRST_DATE_REFS, key=int):
+-        if ref not in csv_ids or ref not in excel_ids:
+-            issues.append(f"Expected month-first Q3 date ref is missing: {ref}")
+-            continue
+-        official_csv = q2.collapse(c.at[ref, PLANNING_SUBMITTED])
+-        typed_excel = x.at[ref, PLANNING_SUBMITTED]
+-        if not isinstance(typed_excel, (datetime, pd.Timestamp)):
+-            issues.append(f"Expected typed Excel planning-submitted date missing: {ref}")
+-            continue
+-        try:
+-            parsed_csv_month_first = datetime.strptime(official_csv, "%m/%d/%Y").strftime("%Y-%m-%d")
+-        except ValueError:
+-            issues.append(f"Expected month-first CSV planning date invalid: {ref}={official_csv!r}")
+-            continue
+-        excel_iso = strict_date_iso(typed_excel)
+-        last_updated = strict_date_iso(x.at[ref, LAST_UPDATED])
+-        if parsed_csv_month_first != excel_iso:
+-            issues.append(f"Official CSV and Excel dates no longer match in month-first interpretation: {ref}")
+-            continue
+-        if not last_updated or excel_iso > last_updated or last_updated > PUBLICATION_DATE:
+-            issues.append(f"Q3 Excel planning date / record-update chronology invalid: {ref}")
+-            continue
++    for cell in dates.month_first_cells:
++        ref = cell["ref"]
++        last_updated = dates.output.get((ref, LAST_UPDATED), "")
++        last_updated = datetime.strptime(last_updated, "%d/%m/%Y").strftime("%Y-%m-%d") if last_updated else ""
+         source_locale_date_normalisations.append({
+-            "repd_ref": ref, "field": PLANNING_SUBMITTED,
+-            "official_csv": official_csv, "official_xlsx": excel_iso,
++            "repd_ref": ref, "field": cell["column"],
++            "official_csv": cell["csv_text"], "official_xlsx": cell["excel_value"],
++            "excel_number_format": cell["excel_number_format"],
+             "record_last_updated": last_updated,
+-            "candidate_value": day_first(excel_iso),
++            "chronology_consistent": bool(last_updated) and cell["excel_value"] <= last_updated <= PUBLICATION_DATE,
++            "csv_also_valid_day_first": bool(cell.get("csv_valid_day_first")),
++            "csv_text_changed": cell["rule"] == repd_date_rule.OK_MONTH_FIRST,
++            "candidate_value": cell["output"],
+             "resolution": "PROVISIONAL_EXCEL_TYPED_DATE_LOCALE_NORMALISATION",
+         })
+-    check(len(source_locale_date_normalisations) == 25,
+-          f"Expected 25 independently observed month-first cells, validated {len(source_locale_date_normalisations)}", issues)
+ 
+     mismatches = []
+     rounding_differences = 0
+@@ -192,12 +183,10 @@
+             for field in fields:
+                 if field == "Planning Application Reference":
+                     equal = q2.planning_refs_equivalent(a[field], b[field])
+-                elif field in q2.OFFICIAL_DATE_FIELDS or field == LAST_UPDATED:
+-                    if field == PLANNING_SUBMITTED and ref in EXPECTED_Q3_MONTH_FIRST_DATE_REFS:
+-                        # Separately check typed Excel dates, raw CSV spelling and update chronology.
+-                        equal = True
+-                    else:
+-                        equal = strict_date_iso(a[field]) == strict_date_iso(b[field])
++                elif field in date_fields:
++                    # Already decided cell by cell by repd_date_rule; a
++                    # disagreement is in ``issues`` with both raw values.
++                    equal = True
+                 else:
+                     equal = q2.norm_text(a[field]) == q2.norm_text(b[field])
+                 if not equal:
+@@ -214,11 +203,12 @@
+     unexpected_mismatches = list(mismatches)
+     check(not unexpected_mismatches,
+           f"Unexpected material CSV/Excel disagreements: {unexpected_mismatches[:10]}", issues)
++    # Cells whose CSV text is also a valid but different day-first date: only the
++    # Excel typing and number format distinguish them, so list them separately.
+     previously_disputed = [
+         event for event in source_locale_date_normalisations
+-        if event["repd_ref"] in PREVIOUSLY_AMBIGUOUS_DATE_REFS
++        if event["csv_also_valid_day_first"] and event["csv_text_changed"]
+     ]
+-    check(len(previously_disputed) == 5, "Five formerly disputed date refs not all verified", issues)
+ 
+     added, removed, retained = csv_ids - old_ids, old_ids - csv_ids, csv_ids & old_ids
+     updated_status = []
+@@ -240,14 +230,7 @@
+         for field in date_fields:
+             if field not in canonical.columns:
+                 continue
+-            normalised = []
+-            for ref in canonical["Ref ID"].astype(str):
+-                value = (x.at[ref, field]
+-                         if field == PLANNING_SUBMITTED and ref in EXPECTED_Q3_MONTH_FIRST_DATE_REFS
+-                         else c.at[ref, field])
+-                iso = strict_date_iso(value)
+-                normalised.append(day_first(iso))
+-            canonical[field] = normalised
++            canonical[field] = [dates.output[(ref, field)] for ref in canonical["Ref ID"].astype(str)]
+         solar, bess = q2.threshold_counts(canonical)
+     else:
+         solar, bess = 0, 0
+@@ -288,8 +271,13 @@
+         "quarantined_official_date_disagreements": [],
+         "formerly_ambiguous_date_representations": previously_disputed,
+         "source_locale_date_normalisations": source_locale_date_normalisations,
++        "date_rule": dates.summary(),
++        "date_rule_plausibility_flags": dates.plausibility_flags,
++        "date_typed_cells_in_non_date_columns": dates.stray_excel_dates,
++        "date_cells_not_plain_day_first": [
++            item for item in dates.provenance if item["rule"] != repd_date_rule.OK_DAY_FIRST],
+         "unexpected_material_disagreements": unexpected_mismatches,
+-        "date_policy": "25 typed Excel date cells provisionally normalised to dd/mm/yyyy after CSV month-first and record-update checks. Raw official representations retained in audit. Independent review and owner acceptance still required.",
++        "date_policy": f"General rule, no ref allow-list: typed Excel date is the value in every date column; CSV text must agree as d/m/yyyy, or as m/d/yyyy only where the cell's Excel number format is explicitly month-first ({len(source_locale_date_normalisations)} such cells). Blank-equivalent text is counted in date_rule. Raw official representations retained in audit. Independent review and owner acceptance still required.",
+         "capacity_rounding_differences": rounding_differences,
+         "records_compared_across_csv_and_excel": checked,
+         "reference_changes_vs_comparison_baseline": {
+@@ -326,7 +314,7 @@
+         "q2_xlsx_bytes": len(old_xlsx),
+     }
+     (OUT / "Q2_BASELINE_SHA256_AUDIT.json").write_text(
+-        json.dumps(baseline_provenance, indent=2) + "\\n", encoding="utf-8"
++        json.dumps(baseline_provenance, indent=2) + "\n", encoding="utf-8"
+     )
+     q2_verified = digest(old_csv) == q2.EXPECTED_CSV_SHA256 and digest(old_xlsx) == q2.EXPECTED_XLSX_SHA256
+     if q2_verified:
+@@ -349,7 +337,8 @@
+     excel_raw = q2.fetch_bytes(Q3_XLSX)
+     (raw_dir / "REPD_Publication_Q3_2026.csv").write_bytes(csv_raw)
+     (raw_dir / "REPD_Publication_Q3_2026.xlsx").write_bytes(excel_raw)
+-    canonical, report = reconcile(csv_raw, excel_raw, comparison_data, comparison_name, q2_verified)
++    canonical, report = reconcile(csv_raw, excel_raw, comparison_data, comparison_name, q2_verified,
++                                  provenance_path=OUT / "Q3_DATE_PROVENANCE.csv")
+     baseline_provenance["observed_q2_csv_identical_to_q3_csv"] = digest(old_csv) == digest(csv_raw)
+     baseline_provenance["observed_q2_excel_identical_to_q3_excel"] = digest(old_xlsx) == digest(excel_raw)
+     (OUT / "Q2_BASELINE_SHA256_AUDIT.json").write_text(json.dumps(baseline_provenance, indent=2) + "\n", encoding="utf-8")
+@@ -363,14 +352,17 @@
+         handle.write("Comparison baseline: " + comparison_name + "\n")
+         handle.write("Original Q2 bytes at historical links: " + ("verified" if q2_verified else "CHANGED; historical root used instead") + "\n")
+         handle.write("Changed records: " + json.dumps(report["reference_changes_vs_comparison_baseline"], sort_keys=True) + "\n")
+-        handle.write("Provisional source date-locale corrections (25): " + json.dumps(report["source_locale_date_normalisations"], sort_keys=True) + "\n")
++        handle.write(f"Provisional source date-locale corrections ({report['source_locale_date_normalisation_count']}): " + json.dumps(report["source_locale_date_normalisations"], sort_keys=True) + "\n")
++        handle.write("Blank-equivalent date cells: " + json.dumps(report["date_rule"]["blank_equivalent_counts"], sort_keys=True) + "\n")
+         handle.write("Duplicate source rows: " + json.dumps(report["identical_source_duplicates_quarantined"], sort_keys=True) + "\n")
+         handle.write("Failures: " + json.dumps(report["failures"]) + "\n")
+         handle.write("Live published datasets: UNCHANGED\n")
+     if report["failures"]:
+         raise RuntimeError("Q3 intake failed validation: " + "; ".join(report["failures"]))
+     assert canonical is not None
+-    canonical.to_csv(OUT / "Q3_CANONICAL_STAGED.csv", index=False, encoding="utf-8-sig")
++    # Pin the record terminator: the pandas default is os.linesep, so the same
++    # candidate would hash differently on a Windows runner.
++    canonical.to_csv(OUT / "Q3_CANONICAL_STAGED.csv", index=False, encoding="utf-8-sig", lineterminator="\n")
+     print(json.dumps({"status": report["stage"], "rows": report["csv_rows"], "comparison_baseline": comparison_name, "changes": report["reference_changes_vs_comparison_baseline"], "sha256": report["q3_source_sha256"]}, indent=2))
+ 
+ 
+--- a/scripts/repd_q3_staging_verify.py
++++ b/scripts/repd_q3_staging_verify.py
+@@ -77,6 +77,9 @@
+         "Planning Permission Expired", "Under Construction", "Operational",
+         "Record Last Updated (dd/mm/yyyy)",
+     ]
++    # Also hold every date column the general rule discovered to strict dd/mm/yyyy.
++    date_columns = list(dict.fromkeys(date_columns + r["date_rule"]["date_columns"]))
++    assert r["date_rule"]["ok"] and r["date_rule"]["failures"] == 0
+     non_day_first_dates = []
+     for row in output_rows:
+         for field in date_columns:
+--- /dev/null
++++ b/scripts/repd_date_rule.py
+@@ -0,0 +1,571 @@
++#!/usr/bin/env python3
++"""General CSV/Excel date reconciliation rule for REPD quarterly extracts.
++
++Replaces a per-release allow-list of "known month-first refs" with a rule that
++is derived only from the two official files:
++
++1. A column is a *date column* when it is required by the caller, or when every
++   Excel cell in it that is not blank-equivalent is a true date cell (a number
++   carrying a date number format) with a plausible calendar value.
++2. For every cell of a date column the typed Excel date is the value.  The CSV
++   text must be explained by it:
++     * as d/m/yyyy, or
++     * as m/d/yyyy, but ONLY if that cell's own Excel number format is an
++       explicit month-first format (for example the custom code ``m/d/yyyy``).
++       Built-in format 14 (which openpyxl reports as ``mm-dd-yy``) is the
++       "system short date": Excel renders it in the locale of the machine, so
++       it is NOT evidence of month-first text and never unlocks rule (b).
++     * as yyyy-mm-dd (unambiguous).
++3. Blank-equivalent text (empty, whitespace, NA, N/A) is emitted as blank and
++   counted per column and per token.  Excel must also be blank(-equivalent).
++4. Anything else is a failure: unparseable non-blank text, a date present in
++   only one file, a day/month swap that the number format does not explain,
++   two different dates, a time-of-day component, a non-date Excel cell.
++5. Output is strict dd/mm/yyyy.  Every non-empty cell gets a provenance record.
++
++Nothing here is specific to a release: no refs, no counts, no column positions.
++The module has no network access and never writes unless asked to.
++"""
++from __future__ import annotations
++
++import csv
++import io
++import json
++import re
++from collections import Counter, defaultdict
++from dataclasses import dataclass, field
++from datetime import date, datetime, time
++from typing import Callable, Iterable
++
++import openpyxl
++
++# --------------------------------------------------------------------------
++# Rule codes
++# --------------------------------------------------------------------------
++OK_DAY_FIRST = "EXCEL_DATE_CSV_DAY_FIRST"                    # CSV dd/mm/yyyy == Excel date
++OK_DAY_FIRST_REPADDED = "EXCEL_DATE_CSV_DAY_FIRST_REPADDED"  # CSV d/m/yyyy, same date
++OK_ISO = "EXCEL_DATE_CSV_ISO"                                # CSV yyyy-mm-dd == Excel date
++OK_MONTH_FIRST = "EXCEL_DATE_CSV_MONTH_FIRST_CORRECTED"      # text changed from Excel
++OK_MONTH_FIRST_INVARIANT = "EXCEL_DATE_CSV_MONTH_FIRST_INVARIANT"  # day == month
++OK_BLANK_EQUIVALENT = "BLANK_EQUIVALENT"
++OK_TEXT_UNAMBIGUOUS = "TEXT_DATE_BOTH_FILES_UNAMBIGUOUS"     # no typed date; day > 12
++
++FAIL_UNPARSEABLE = "FAIL_CSV_UNPARSEABLE"
++FAIL_SWAP = "FAIL_DAY_MONTH_SWAP_NOT_EXPLAINED_BY_FORMAT"
++FAIL_MISMATCH = "FAIL_DIFFERENT_DATES"
++FAIL_CSV_ONLY = "FAIL_CSV_DATE_EXCEL_BLANK"
++FAIL_EXCEL_ONLY = "FAIL_EXCEL_DATE_CSV_BLANK"
++FAIL_EXCEL_NOT_DATE = "FAIL_EXCEL_CELL_NOT_A_TRUE_DATE"
++FAIL_TIME = "FAIL_EXCEL_TIME_COMPONENT"
++FAIL_TEXT_AMBIGUOUS = "FAIL_TEXT_DATE_AMBIGUOUS_WITHOUT_TYPED_DATE"
++FAIL_BLANK_CONFLICT = "FAIL_BLANK_EQUIVALENT_CONFLICT"
++
++MONTH_FIRST_RULES = (OK_MONTH_FIRST, OK_MONTH_FIRST_INVARIANT)
++
++DEFAULT_BLANK_TOKENS = frozenset({"na", "n/a"})
++# Excel serial numbers below 61 sit before 1 March 1900, where Excel's calendar
++# is wrong (phantom 29 Feb 1900).  A "date" there is a small number wearing a
++# date format, never a planning date.
++EARLIEST_PLAUSIBLE = date(1900, 3, 1)
++LOCALE_SHORT_DATE_FORMAT_IDS = frozenset({14, 22})
++
++_DMY = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})")
++_ISO = re.compile(r"(\d{4})-(\d{2})-(\d{2})")
++
++
++# --------------------------------------------------------------------------
++# Data carriers
++# --------------------------------------------------------------------------
++@dataclass(frozen=True)
++class XCell:
++    """One Excel cell, reduced to what the rule needs."""
++    value: object = None
++    is_date: bool = False            # numeric cell with a date number format
++    number_format: str = "General"
++    num_fmt_id: int | None = None    # raw numFmtId from styles.xml when known
++
++
++@dataclass
++class DateRuleResult:
++    date_columns: list[str] = field(default_factory=list)
++    output: dict[tuple[str, str], str] = field(default_factory=dict)
++    provenance: list[dict] = field(default_factory=list)
++    failures: list[dict] = field(default_factory=list)
++    structural_failures: list[str] = field(default_factory=list)
++    rule_counts: dict[str, dict[str, int]] = field(default_factory=dict)
++    blank_equivalent_counts: dict[str, dict[str, int]] = field(default_factory=dict)
++    plausibility_flags: list[dict] = field(default_factory=list)
++    stray_excel_dates: list[dict] = field(default_factory=list)
++    duplicates: dict[str, list[dict]] = field(default_factory=dict)
++    refs: list[str] = field(default_factory=list)
++
++    @property
++    def ok(self) -> bool:
++        return not self.failures and not self.structural_failures
++
++    @property
++    def month_first_cells(self) -> list[dict]:
++        return [p for p in self.provenance if p["rule"] in MONTH_FIRST_RULES]
++
++    def failure_messages(self, limit: int = 10) -> list[str]:
++        messages = list(self.structural_failures)
++        if self.failures:
++            by_rule = Counter(f["rule"] for f in self.failures)
++            sample = [(f["ref"], f["column"], f["csv_text"], f["excel_value"], f["rule"])
++                      for f in self.failures[:limit]]
++            messages.append(
++                f"Date rule: {len(self.failures)} unexplained date cells {dict(by_rule)}; first: {sample}")
++        return messages
++
++    def summary(self) -> dict:
++        totals: Counter = Counter()
++        for counts in self.rule_counts.values():
++            totals.update(counts)
++        return {
++            "ok": self.ok,
++            "date_columns": self.date_columns,
++            "refs": len(self.refs),
++            "rule_totals": dict(sorted(totals.items())),
++            "rule_counts_by_column": self.rule_counts,
++            "blank_equivalent_counts": self.blank_equivalent_counts,
++            "month_first_cells": len(self.month_first_cells),
++            "month_first_cells_text_changed": sum(p["rule"] == OK_MONTH_FIRST for p in self.provenance),
++            "month_first_cells_also_valid_day_first": sum(
++                p["rule"] == OK_MONTH_FIRST and p.get("csv_valid_day_first") for p in self.provenance),
++            "failures": len(self.failures),
++            "structural_failures": self.structural_failures,
++            "plausibility_flags": len(self.plausibility_flags),
++            "stray_excel_date_cells_in_non_date_columns": len(self.stray_excel_dates),
++            "duplicates": self.duplicates,
++        }
++
++
++# --------------------------------------------------------------------------
++# Small helpers
++# --------------------------------------------------------------------------
++def collapse_header(name) -> str:
++    return re.sub(r"\s+", " ", str(name if name is not None else "")).strip()
++
++
++def clean_ref(value) -> str:
++    if value is None:
++        return ""
++    if isinstance(value, bool):
++        return str(value)
++    if isinstance(value, int):
++        return str(value)
++    if isinstance(value, float) and value.is_integer():
++        return str(int(value))
++    text = str(value).strip()
++    return text[:-2] if re.fullmatch(r"\d+\.0", text) else text
++
++
++def classify_number_format(code: str | None, num_fmt_id: int | None = None) -> str:
++    """Return month_first | day_first | year_first | locale_short_date | not_date.
++
++    Only an explicit code in which the month token precedes the day token is
++    month-first.  Built-in ids 14 and 22 are locale-dependent short dates.
++    openpyxl spells id 14 as ``mm-dd-yy``; when the raw id is unavailable that
++    spelling is therefore treated as locale-dependent (the conservative choice:
++    it can only cause a failure, never a silent month-first acceptance).
++    """
++    if num_fmt_id in LOCALE_SHORT_DATE_FORMAT_IDS:
++        return "locale_short_date"
++    if not code or code == "General":
++        return "not_date"
++    if num_fmt_id is None and code.lower() in {"mm-dd-yy", "m/d/yy h:mm"}:
++        return "locale_short_date"
++    body = code.split(";")[0]
++    body = re.sub(r"\[[^\]]*\]", "", body)      # [$-809], [Red], [h]
++    body = re.sub(r'"[^"]*"', "", body)          # quoted literals
++    body = re.sub(r"\\.", "", body).lower()      # escaped characters
++    body = re.sub(r"am/pm|a/p", "", body)
++    # minutes: an m-run directly after hours or directly before seconds
++    body = re.sub(r"(h+[^a-z]*)m+", r"\1", body)
++    body = re.sub(r"m+([^a-z]*s+)", r"\1", body)
++    first = {token: body.find(token) for token in "dmy"}
++    if first["d"] < 0 or first["m"] < 0:
++        return "not_date"
++    if 0 <= first["y"] < min(first["d"], first["m"]):
++        return "year_first"
++    return "month_first" if first["m"] < first["d"] else "day_first"
++
++
++def _is_blank_token(text: str, blank_tokens: Iterable[str]) -> str | None:
++    """Return a display token if ``text`` is blank-equivalent, else None."""
++    stripped = text.strip().strip(" ").strip()
++    if stripped == "":
++        return "" if text == "" else "<whitespace>"
++    if stripped.casefold() in blank_tokens:
++        return stripped
++    return None
++
++
++def _valid(year: int, month: int, day: int) -> date | None:
++    try:
++        return date(year, month, day)
++    except ValueError:
++        return None
++
++
++def _as_date(value) -> tuple[date | None, bool]:
++    """(calendar date, has_time_component) for datetime/date cell values."""
++    if isinstance(value, datetime):
++        return value.date(), value.time() != time(0)
++    if isinstance(value, date):
++        return value, False
++    return None, False
++
++
++def _fmt(d: date) -> str:
++    return d.strftime("%d/%m/%Y")
++
++
++# --------------------------------------------------------------------------
++# The per-cell rule
++# --------------------------------------------------------------------------
++def resolve_cell(csv_text: str, cell: XCell,
++                 blank_tokens: Iterable[str] = DEFAULT_BLANK_TOKENS) -> dict:
++    """Apply the rule to one cell.  Returns rule, output and evidence fields."""
++    text = "" if csv_text is None else str(csv_text)
++    stripped = text.strip()
++    fmt_class = classify_number_format(cell.number_format, cell.num_fmt_id)
++    xl_date, has_time = _as_date(cell.value) if cell.is_date or isinstance(cell.value, (datetime, date)) else (None, False)
++    record = {
++        "csv_text": text,
++        "excel_value": xl_date.isoformat() if xl_date else (None if cell.value is None else str(cell.value)),
++        "excel_type": "date" if xl_date else type(cell.value).__name__,
++        "excel_number_format": cell.number_format,
++        "excel_num_fmt_id": cell.num_fmt_id,
++        "excel_format_class": fmt_class,
++        "output": "",
++    }
++
++    def done(rule: str, output: str = "", **extra) -> dict:
++        record.update(rule=rule, output=output, **extra)
++        return record
++
++    csv_blank = _is_blank_token(text, blank_tokens)
++
++    # ---- Excel holds a true date -------------------------------------------------
++    if xl_date is not None:
++        if has_time:
++            return done(FAIL_TIME)
++        if csv_blank is not None:
++            return done(FAIL_EXCEL_ONLY)
++        iso = _ISO.fullmatch(stripped)
++        if iso:
++            parsed = _valid(*map(int, iso.groups()))
++            return done(OK_ISO, _fmt(xl_date)) if parsed == xl_date else done(FAIL_MISMATCH)
++        match = _DMY.fullmatch(stripped)
++        if not match:
++            return done(FAIL_UNPARSEABLE)
++        a, b, year = map(int, match.groups())
++        as_day_first = _valid(year, b, a)
++        as_month_first = _valid(year, a, b)
++        if as_day_first is None and as_month_first is None:
++            return done(FAIL_UNPARSEABLE)
++        if as_day_first == xl_date:
++            if as_month_first == xl_date and fmt_class == "month_first":
++                return done(OK_MONTH_FIRST_INVARIANT, _fmt(xl_date), csv_valid_day_first=True)
++            exact = stripped == _fmt(xl_date)
++            return done(OK_DAY_FIRST if exact else OK_DAY_FIRST_REPADDED, _fmt(xl_date))
++        if as_month_first == xl_date:
++            if fmt_class == "month_first":
++                return done(OK_MONTH_FIRST, _fmt(xl_date),
++                            csv_valid_day_first=as_day_first is not None,
++                            csv_day_first_reading=as_day_first.isoformat() if as_day_first else None)
++            return done(FAIL_SWAP,
++                        csv_day_first_reading=as_day_first.isoformat() if as_day_first else None)
++        return done(FAIL_MISMATCH)
++
++    # ---- Excel holds no true date ------------------------------------------------
++    if cell.value is None or (isinstance(cell.value, str) and _is_blank_token(cell.value, blank_tokens) is not None):
++        if csv_blank is None:
++            if _DMY.fullmatch(stripped) or _ISO.fullmatch(stripped):
++                return done(FAIL_CSV_ONLY)
++            return done(FAIL_UNPARSEABLE)
++        xl_token = "" if cell.value is None else _is_blank_token(cell.value, blank_tokens)
++        if csv_blank == "" and xl_token == "":
++            return done("BLANK")
++        return done(OK_BLANK_EQUIVALENT, "", blank_token=csv_blank or xl_token)
++    if csv_blank is not None:
++        return done(FAIL_BLANK_CONFLICT)
++    if isinstance(cell.value, str):
++        match = _DMY.fullmatch(stripped)
++        if match and cell.value.strip() == stripped:
++            a, b, year = map(int, match.groups())
++            as_day_first = _valid(year, b, a)
++            if as_day_first is not None and (a > 12 or a == b):
++                return done(OK_TEXT_UNAMBIGUOUS, _fmt(as_day_first))
++            return done(FAIL_TEXT_AMBIGUOUS)
++        if not match and not _ISO.fullmatch(stripped):
++            return done(FAIL_UNPARSEABLE)
++    return done(FAIL_EXCEL_NOT_DATE)
++
++
++# --------------------------------------------------------------------------
++# Readers (typed; no pandas, because pandas discards number formats and turns
++# the text "NA" into NaN)
++# --------------------------------------------------------------------------
++def read_csv_table(raw: bytes) -> tuple[list[str], list[list[str]], str]:
++    """Strict CSV read: every record must have exactly the header's field count."""
++    last_error: Exception | None = None
++    for encoding in ("utf-8-sig", "cp1252"):
++        try:
++            text = raw.decode(encoding)
++        except UnicodeDecodeError as exc:
++            last_error = exc
++            continue
++        rows = list(csv.reader(io.StringIO(text, newline=""), strict=True))
++        if not rows:
++            raise ValueError("CSV is empty")
++        header, body = rows[0], rows[1:]
++        for number, row in enumerate(body, start=2):
++            if len(row) != len(header):
++                raise ValueError(
++                    f"CSV record {number} has {len(row)} fields, header has {len(header)} (truncated or malformed)")
++        return header, body, encoding
++    raise ValueError(f"Unable to decode CSV: {last_error}")
++
++
++def _cell_fmt_id(cell) -> int | None:
++    for getter in (lambda c: c._style.numFmtId, lambda c: c.style_array.numFmtId):
++        try:
++            return int(getter(cell))
++        except Exception:
++            continue
++    return None
++
++
++def read_xlsx_table(raw: bytes, sheet: str | None = None,
++                    required_headers: Iterable[str] = ("Ref ID",)) -> tuple[list[str], list[list[XCell]], str]:
++    book = openpyxl.load_workbook(io.BytesIO(raw), data_only=True)
++    required = {collapse_header(h) for h in required_headers}
++    candidates = [book[sheet]] if sheet else list(book.worksheets)
++    for worksheet in candidates:
++        rows = worksheet.iter_rows()
++        try:
++            head = next(rows)
++        except StopIteration:
++            continue
++        header = [c.value for c in head]
++        while header and header[-1] is None:
++            header.pop()
++        if not required.issubset({collapse_header(h) for h in header}):
++            continue
++        width = len(header)
++        body: list[list[XCell]] = []
++        for row in rows:
++            cells = [XCell(c.value, bool(c.is_date) and not isinstance(c.value, str) and c.value is not None,
++                           c.number_format, _cell_fmt_id(c)) for c in row[:width]]
++            cells += [XCell()] * (width - len(cells))
++            if all(c.value is None for c in cells):
++                continue  # wholly empty trailing row
++            body.append(cells)
++        return [str(h) if h is not None else "" for h in header], body, worksheet.title
++    raise ValueError(f"No worksheet with headers {sorted(required)}; sheets={book.sheetnames}")
++
++
++def _index(rows: list, ref_position: int, as_key: Callable, label: str,
++           structural: list[str]) -> tuple[dict[str, list], list[str], list[dict]]:
++    """Index rows by ref; keep one of a set of exactly identical rows; flag conflicts."""
++    table: dict[str, list] = {}
++    order: list[str] = []
++    seen_rows: dict[str, list[int]] = defaultdict(list)
++    duplicates: list[dict] = []
++    for number, row in enumerate(rows, start=2):
++        ref = clean_ref(as_key(row[ref_position]))
++        if not ref:
++            structural.append(f"{label}: record {number} has no Ref ID")
++            continue
++        seen_rows[ref].append(number)
++        if ref in table:
++            if [as_key(c) for c in row] != [as_key(c) for c in table[ref]]:
++                structural.append(f"{label}: conflicting duplicate Ref ID {ref} (records {seen_rows[ref]})")
++            continue
++        table[ref] = row
++        order.append(ref)
++    for ref, numbers in seen_rows.items():
++        if len(numbers) > 1:
++            duplicates.append({"ref": ref, "records_1_based_including_header": numbers})
++    return table, order, duplicates
++
++
++# --------------------------------------------------------------------------
++# The table-level rule
++# --------------------------------------------------------------------------
++def apply_rule(csv_header: list[str], csv_rows: list[list[str]],
++               xl_header: list[str], xl_rows: list[list[XCell]], *,
++               required_date_columns: Iterable[str] = (),
++               date_columns: Iterable[str] | None = None,
++               blank_tokens: Iterable[str] = DEFAULT_BLANK_TOKENS,
++               as_of: date | None = None,
++               future_ok_columns: Iterable[str] = (),
++               ref_column: str = "Ref ID",
++               normalise_header: Callable[[str], str] = collapse_header) -> DateRuleResult:
++    """Reconcile every date column of two already-parsed tables.
++
++    ``date_columns`` forces the set; otherwise it is ``required_date_columns``
++    plus every column the Excel typing proves to be a date column.
++    """
++    result = DateRuleResult()
++    blank_tokens = frozenset(t.casefold() for t in blank_tokens)
++    c_names = [normalise_header(h) for h in csv_header]
++    x_names = [normalise_header(h) for h in xl_header]
++    for label, names in (("CSV", c_names), ("Excel", x_names)):
++        dupes = [n for n, k in Counter(names).items() if k > 1]
++        if dupes:
++            result.structural_failures.append(f"{label}: duplicate headers after normalisation {dupes}")
++    if c_names != x_names:
++        result.structural_failures.append("CSV and Excel headers differ (names or order)")
++    ref_name = normalise_header(ref_column)
++    if ref_name not in c_names or ref_name not in x_names:
++        result.structural_failures.append("Ref ID column missing")
++        return result
++
++    c_table, c_order, c_dupes = _index(csv_rows, c_names.index(ref_name), lambda v: v, "CSV",
++                                       result.structural_failures)
++    x_table, x_order, x_dupes = _index(xl_rows, x_names.index(ref_name),
++                                       lambda c: c.value if isinstance(c, XCell) else c, "Excel",
++                                       result.structural_failures)
++    result.duplicates = {"csv": c_dupes, "xlsx": x_dupes}
++    result.refs = c_order
++    if set(c_table) != set(x_table):
++        only_c, only_x = sorted(set(c_table) - set(x_table)), sorted(set(x_table) - set(c_table))
++        result.structural_failures.append(
++            f"CSV and Excel Ref ID sets differ: csv_only={only_c[:10]} ({len(only_c)}) xlsx_only={only_x[:10]} ({len(only_x)})")
++    shared = [ref for ref in c_order if ref in x_table]
++    x_pos = {name: i for i, name in enumerate(x_names)}
++    c_pos = {name: i for i, name in enumerate(c_names)}
++
++    required = [normalise_header(h) for h in required_date_columns]
++    missing = [h for h in required if h not in x_pos or h not in c_pos]
++    if missing:
++        result.structural_failures.append(f"Required date columns missing: {missing}")
++
++    # ---- which columns are date columns? ------------------------------------
++    stray_columns: list[str] = []
++    if date_columns is not None:
++        chosen = [normalise_header(h) for h in date_columns]
++    else:
++        chosen = [h for h in required if h in x_pos and h in c_pos]
++        for name in x_names:
++            if name in chosen or name not in c_pos or name == ref_name:
++                continue
++            dates = other = implausible = 0
++            for ref in shared:
++                cell = x_table[ref][x_pos[name]]
++                if cell.is_date:
++                    d, has_time = _as_date(cell.value)
++                    dates += 1
++                    if d is None or d < EARLIEST_PLAUSIBLE or has_time:
++                        implausible += 1
++                elif cell.value is not None and not (
++                        isinstance(cell.value, str) and _is_blank_token(cell.value, blank_tokens) is not None):
++                    other += 1
++            if dates and not other and not implausible:
++                chosen.append(name)
++            elif dates:
++                stray_columns.append(name)
++        chosen.sort(key=lambda h: x_pos.get(h, 10**9))
++    result.date_columns = chosen
++
++    # ---- the cells --------------------------------------------------------------
++    future_ok = {normalise_header(h) for h in future_ok_columns}
++    for name in chosen:
++        if name not in x_pos or name not in c_pos:
++            continue
++        counts: Counter = Counter()
++        blanks: Counter = Counter()
++        for ref in shared:
++            record = resolve_cell(c_table[ref][c_pos[name]], x_table[ref][x_pos[name]], blank_tokens)
++            rule = record["rule"]
++            counts[rule] += 1
++            result.output[(ref, name)] = record["output"]
++            if rule == "BLANK":
++                continue
++            record = {"ref": ref, "column": name, **record}
++            result.provenance.append(record)
++            if rule == OK_BLANK_EQUIVALENT:
++                blanks[record["blank_token"]] += 1
++            if rule.startswith("FAIL_"):
++                result.failures.append(record)
++                continue
++            if record["output"]:
++                value = datetime.strptime(record["output"], "%d/%m/%Y").date()
++                if value < EARLIEST_PLAUSIBLE:
++                    result.plausibility_flags.append({"ref": ref, "column": name, "value": record["output"],
++                                                      "flag": "BEFORE_1900_03_01_EXCEL_SERIAL_ARTEFACT"})
++                elif as_of is not None and value > as_of and name not in future_ok:
++                    result.plausibility_flags.append({"ref": ref, "column": name, "value": record["output"],
++                                                      "flag": "AFTER_AS_OF_DATE", "as_of": as_of.isoformat()})
++        result.rule_counts[name] = dict(sorted(counts.items()))
++        if blanks:
++            result.blank_equivalent_counts[name] = dict(sorted(blanks.items()))
++
++    # ---- date-typed cells sitting in columns that are not date columns ----------
++    for name in stray_columns:
++        for ref in shared:
++            cell = x_table[ref][x_pos[name]]
++            if not cell.is_date:
++                continue
++            d, has_time = _as_date(cell.value)
++            result.stray_excel_dates.append({
++                "ref": ref, "column": name, "csv_text": c_table[ref][c_pos[name]],
++                "excel_value": str(cell.value), "excel_number_format": cell.number_format,
++                "excel_num_fmt_id": cell.num_fmt_id,
++                "likely_number_formatted_as_date": bool(d is None or d < EARLIEST_PLAUSIBLE or has_time),
++                "action": "NOT_ALTERED_REPORTED_ONLY",
++            })
++    return result
++
++
++def evaluate(csv_raw: bytes, xlsx_raw: bytes, *, sheet: str | None = None, **options) -> DateRuleResult:
++    """Convenience wrapper: official bytes in, DateRuleResult out."""
++    csv_header, csv_rows, _ = read_csv_table(csv_raw)
++    xl_header, xl_rows, _ = read_xlsx_table(xlsx_raw, sheet=sheet)
++    return apply_rule(csv_header, csv_rows, xl_header, xl_rows, **options)
++
++
++def write_provenance_csv(result: DateRuleResult, path) -> None:
++    columns = ["ref", "column", "csv_text", "excel_value", "excel_type", "excel_number_format",
++               "excel_num_fmt_id", "excel_format_class", "rule", "output"]
++    with open(path, "w", encoding="utf-8", newline="") as handle:
++        writer = csv.DictWriter(handle, fieldnames=columns, extrasaction="ignore", lineterminator="\n")
++        writer.writeheader()
++        writer.writerows(result.provenance)
++
++
++def main(argv: list[str] | None = None) -> int:
++    import argparse
++    from pathlib import Path
++
++    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
++    parser.add_argument("csv")
++    parser.add_argument("xlsx")
++    parser.add_argument("--out", help="directory for date_rule_summary.json and date_rule_provenance.csv")
++    parser.add_argument("--as-of", help="yyyy-mm-dd; dates after it are flagged (not failed)")
++    parser.add_argument("--require", action="append", default=[], help="column that must be a date column")
++    parser.add_argument("--future-ok", action="append", default=[])
++    args = parser.parse_args(argv)
++    result = evaluate(Path(args.csv).read_bytes(), Path(args.xlsx).read_bytes(),
++                      required_date_columns=args.require, future_ok_columns=args.future_ok,
++                      as_of=date.fromisoformat(args.as_of) if args.as_of else None)
++    report = result.summary()
++    report["month_first_cell_list"] = result.month_first_cells
++    report["failure_list"] = result.failures
++    report["plausibility_flag_list"] = result.plausibility_flags
++    report["stray_excel_date_list"] = result.stray_excel_dates
++    if args.out:
++        out = Path(args.out)
++        out.mkdir(parents=True, exist_ok=True)
++        (out / "date_rule_summary.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
++        write_provenance_csv(result, out / "date_rule_provenance.csv")
++    print(json.dumps({k: v for k, v in report.items() if not k.endswith("_list") and k != "rule_counts_by_column"},
++                     indent=2))
++    return 0 if result.ok else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
