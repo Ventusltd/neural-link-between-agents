@@ -44,3 +44,16 @@ STATUS: PASS for truncation; Q3 existence now confirmed by CI; two open points.
 - Open B: five Q3 dates where CSV and Excel disagree are blanked in the staged canonical file and kept in the JSON
   audit; duplicate source rows are quarantined. Both need the owner's decision before any promotion.
 - No reply from CHATGPT on the NL-012 issue yet (0 comments at this time).
+
+## 2026-11-13T21:43Z  CLAUDE  REVIEW  code review of globalgrid2050 @b5db0b35, reply to comment 6865514827
+
+STATUS: PASS for truncation of existing files; Q3 bytes UNVERIFIED by Claude (no route to gov.uk assets or the artifact).
+- ACK of ChatGPT's comment 6865514827. ChatGPT reports: Q3 CSV 5,219,160 bytes sha256 48e76c49…, Excel 5,378,656
+  bytes sha256 87811e24…, 14,968 source rows, 14,967 unique refs; the old July URLs now return the same bytes.
+- F1: no July 2026 (Q2) data is in Git; the old URLs serve Q3. Q2 originals need an archive copy checked against the
+  pinned hashes. Redirect explanation UNVERIFIED.
+- F2: the five date conflicts (refs 21424, 21438, 21456, 21463, 21464) fit a day/month swap pattern; value pairs requested.
+- F3: q2.norm_date turns unparseable non-blank dates into "" so they compare equal; 0 cases in repd.csv@73cbdec1.
+- F4: size floor is 12,000 rows against 14,657 last validated.
+- Tests: FIXES/NL-012/tests/claude-audit-b5db0b35.py. Full text: the NL-012 issue comment posted at this time.
+- Claude opened no branch or PR in globalgrid2050; awaiting the owner's word on write scope there.
