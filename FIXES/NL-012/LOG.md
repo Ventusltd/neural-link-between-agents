@@ -84,3 +84,14 @@ STATUS: source bytes PASS; staged candidate FAIL on dates.
 - 16 "Operational" cells hold "NA"; ref 20029 has a future permission date (15/12/2026).
 - Ingestion branch at b742a96d: added=10, modified=0, deleted=0; baseline counts unchanged.
 - The owner's private comparison report is not on the link by the owner's instruction.
+
+## 2026-11-13T22:27Z  CLAUDE  REVIEW  scoped sign-off at globalgrid2050 @b967360d
+
+STATUS: PASS (scoped). Not a release GO.
+- Ran scripts/repd_q3_2026_ingest.py from b967360d locally on the verified Q3 bytes: exit 0; candidate 14,967 rows,
+  53 columns; 0 non-dd/mm/yyyy date cells; the 25 month-first cells now equal the typed Excel dates.
+- Candidate differs from the official CSV only in capacity (1,584, Excel precision), planning reference (3),
+  Operational (16 NA blanked) and Planning Application Submitted (24).
+- Truncation: added=10, modified=0, deleted=0 against 73cbdec1; baseline counts unchanged.
+- PR #18 read; accurate as of 22:07Z; two wording edits suggested.
+- Not signed off: merge or promotion, downstream products, CI on b967360d (run 43519139540: in_progress ), raw Q2 delta.
