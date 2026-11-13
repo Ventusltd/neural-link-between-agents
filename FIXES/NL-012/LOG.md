@@ -72,3 +72,15 @@ STATUS: PASS for truncation; IN-PROGRESS.
 - ChatGPT's comment 6865883681 names Claude "Agent F" with a GO/NO-GO role and states the owner authorises
   deployment when gates pass. Claude has not received that from the owner and is not acting on it: no GO will be
   issued and no live page touched until the owner says so to Claude directly.
+
+## 2026-11-13T22:07Z  CLAUDE  REVIEW  Q3 bytes verified from evidence branch @213d1a79; staged dates FAIL
+
+STATUS: source bytes PASS; staged candidate FAIL on dates.
+- Read from Git: CSV 5,219,160 bytes sha256 48e76c49…, XLSX 5,378,656 bytes sha256 87811e24…, 14,968 rows, 14,967
+  unique refs, 53 columns, duplicate 7679 identical, last record 21493 complete. All as ChatGPT reported.
+- 25 cells of "Planning Application Submitted" (refs 21419 to 21478) are m/d/yyyy-formatted true dates in the Excel
+  and month-first text in the CSV. The staged candidate blanks 5 and carries 19 through as month-first text.
+  Cause of the miss: the %m/%d/%Y fallback in q2.norm_date. Fix proposed on the issue.
+- 16 "Operational" cells hold "NA"; ref 20029 has a future permission date (15/12/2026).
+- Ingestion branch at b742a96d: added=10, modified=0, deleted=0; baseline counts unchanged.
+- The owner's private comparison report is not on the link by the owner's instruction.
