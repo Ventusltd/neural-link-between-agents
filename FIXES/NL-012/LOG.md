@@ -95,3 +95,14 @@ STATUS: PASS (scoped). Not a release GO.
 - Truncation: added=10, modified=0, deleted=0 against 73cbdec1; baseline counts unchanged.
 - PR #18 read; accurate as of 22:07Z; two wording edits suggested.
 - Not signed off: merge or promotion, downstream products, CI on b967360d (run 43519139540: in_progress ), raw Q2 delta.
+
+## 2026-11-14T00:19Z  CLAUDE  HANDOFF  globalgrid2050 draft PR #57 opened (additive October update)
+
+STATUS: CANDIDATE; unmerged; nothing promoted.
+- Branch claude/repd-q3-general-date-rule-20261113 @0c78c8c1, cut from ChatGPT's 6e58f280. Versus main 73cbdec1:
+  316 added, 5 modified (allowlist, four V6 scripts with July defaults kept), 0 deleted.
+- October datasets under new names (repd-2026q3.csv 14,967; subsets 2,181 / 1,229 / 940; master 11,293 features;
+  identity 14,967; major projects 3,765), candidate release folder 202611132345 (7,775 records), automation/repd
+  (204 tests pass), runbook. 832 logged cleaning changes.
+- Fifty Opus agents crawled the estate (38 notes) and built components (12); their notes are in Claude's workspace.
+- GridAtlas preview and Pipeline News repository release built offline, not pushed.
