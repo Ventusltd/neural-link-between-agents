@@ -1,0 +1,11 @@
+October preview parquet rows 11329
+capacity_mw differs from the CSV value (compiler /1000 rule, biomass>100 MW, solar_roof>50 MW): 7 rows; CSV MW total 3362.0 -> parquet 3.362
+   174 Drax Biomass Power Station - Unit 1 Biomass (co-firing) CSV 645 -> parquet 0.645 operational
+   175 Drax Biomass Power Station - Unit 3 Biomass (dedicated) CSV 645 -> parquet 0.645 operational
+   192 Drax Biomass Power Station - Unit 2 Biomass (dedicated) CSV 645 -> parquet 0.645 operational
+   6659 Drax Biomass Power Station - Unit 4 Biomass (dedicated) CSV 645 -> parquet 0.645 operational
+   115 Lynemouth Power Station Biomass (dedicated) CSV 420 -> parquet 0.42 operational
+   8849 Upper Bighouse Biomass Boilers Biomass (dedicated) CSV 260 -> parquet 0.26 application submitted
+   6641 Boston Alternative Energy Facility (BAEF) EfW Incineration CSV 102 -> parquet 0.102 awaiting construction
+by technology: Counter({'biomass': 7})
+blank capacity in CSV written as capacity_mw 0.0: 1126 [('bess', 474), ('solar_roof', 334), ('solar', 106), ('wind_onshore', 90), ('biomass', 85), ('hydrogen', 21)]

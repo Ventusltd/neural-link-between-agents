@@ -1,0 +1,528 @@
+[
+ {
+  "page": "repd-atlas.md (/atlas/)",
+  "jan": {
+   "file": "repd.csv",
+   "rows": 13995,
+   "drawn": 13970,
+   "noXY": [
+    "1613 Sainsbury's Stores (169 individual Stores) [Operational, 16.00 MW]",
+    "1616 First Wessex Housing Properties (multiple) [Operational, 1.00 MW]",
+    "9947 Bristol City Council - Solar PV Project [Under Construction]",
+    "10603 Balliemeanoch Pumped Hydro Project [Application Submitted, 1500.00 MW]",
+    "10913 North Falls Offshore Wind Farm [Application Submitted, 1000.00 MW]",
+    "10919 Morgan Offshore Wind Farm [Awaiting Construction, 1500.00 MW]",
+    "10922 Morecombe Offshore Windfarm [Application Submitted, 480.00 MW]",
+    "11109 Dogger Bank South East [Application Submitted, 1500.00 MW]",
+    "13429 Ossian [Awaiting Construction, 3600.00 MW]",
+    "13431 Muir Mh�r [Application Submitted, 1000.00 MW]",
+    "13528 Cenos Offshore Wind Farm [Application Submitted, 1350.00 MW]",
+    "14546 Back Fell Wind Farm [Application Submitted, 92.40 MW]",
+    "14547 Back Fell Wind Farm [Application Submitted, 40.00 MW]",
+    "14773 Mynydd Maen Solar Farm (Cil-Lonydd) [Application Submitted, 35.00 MW]",
+    "14796 Alwen Forest Project [Awaiting Construction, 59.40 MW]",
+    "15368 Seastar Project - Tidal Energy Farm [Awaiting Construction, 4.00 MW]",
+    "17044 La Rue Du Moulin A Vent - Solar PV Arrays [Application Submitted]",
+    "17120 La Rue De La Hougue Mauger - Solar Farm [Application Submitted, 5.38 MW]",
+    "17134 Oceanstar Project - Tidal Energy Farm [Awaiting Construction, 10.00 MW]",
+    "17260 Solar Farm Development in Antrim [Application Submitted, 20.00 MW]",
+    "17318 Wind Turbine Development in Ballymoney [Application Submitted, 0.60 MW]",
+    "17672 Scout Moor 2 -  Wind Farm [Awaiting Construction, 99.90 MW]",
+    "17724 Mynydd Maen Solar Farm (Cil-Lonydd) [Awaiting Construction, 35.00 MW]",
+    "18489 Alwen Forest Project [Awaiting Construction]",
+    "20217 Dogger Bank South West [Application Submitted, 1500.00 MW]"
+   ],
+   "blankCapDrawnAs0MW": 1264,
+   "fffdRowsDrawn": 198,
+   "mojibakeRowsDrawn": 0,
+   "dupRefs": 0,
+   "salters": [
+    "18561 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear",
+    "18562 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear"
+   ]
+  },
+  "oct": {
+   "file": "repd-2026q3.csv",
+   "rows": 14967,
+   "drawn": 14931,
+   "noXY": [
+    "1613 Sainsbury's Stores (169 individual Stores) [Operational, 16 MW]",
+    "1616 First Wessex Housing Properties (multiple) [Operational, 1 MW]",
+    "9947 Bristol City Council - Solar PV Project [Under Construction]",
+    "10913 North Falls Offshore Wind Farm [Awaiting Construction, 1000 MW]",
+    "10919 Morgan Offshore Wind Farm [Awaiting Construction, 1500 MW]",
+    "10922 Morecombe Offshore Windfarm [Awaiting Construction, 480 MW]",
+    "11109 Dogger Bank South East [Awaiting Construction, 1500 MW]",
+    "13601 Tees Green Hydrogen [Under Construction, 7.5 MW]",
+    "14773 Mynydd Maen Solar Farm (Cil-Lonydd) [Awaiting Construction, 35 MW]",
+    "14796 Alwen Forest Project [Awaiting Construction, 59.4 MW]",
+    "17044 La Rue Du Moulin A Vent - Solar PV Arrays [Application Submitted]",
+    "17120 La Rue De La Hougue Mauger - Solar Farm [Application Submitted, 5.38 MW]",
+    "17260 Solar Farm Development in Antrim [Application Submitted, 20 MW]",
+    "17318 Wind Turbine Development in Ballymoney [Application Submitted, 0.6 MW]",
+    "17672 Scout Moor 2 -  Wind Farm [Application Submitted, 99.9 MW]",
+    "17724 Mynydd Maen Solar Farm (Cil-Lonydd) [Awaiting Construction, 35 MW]",
+    "18489 Alwen Forest Project [Awaiting Construction]",
+    "20217 Dogger Bank South West [Awaiting Construction, 1500 MW]",
+    "20447 Exeter City Council - Solar PV Systems [Under Construction]",
+    "10603 Balliemeanoch Pumped Hydro Project [Application Submitted, 1500 MW]",
+    "10920 Morven North Offshore Wind Farm [Application Submitted, 1450 MW]",
+    "11613 Fraserburgh - Buchan Floating Wind Project [Application Submitted, 1000 MW]",
+    "13417 Cluaran Deas Ear / Ayre Wind Farm  (Thistle South East) (NE2) [Application Submitted, 1008 MW]",
+    "13428 Machair [Application Submitted, 2000 MW]",
+    "13429 Ossian [Application Submitted, 3600 MW]",
+    "13431 Muir Mhòr [Application Submitted, 1000 MW]",
+    "13432 Marram [Application Submitted, 3000 MW]",
+    "13528 Cenos Offshore Wind Farm [Application Submitted, 1350 MW]",
+    "13735 Spiorad na Mara [Application Submitted, 900 MW]",
+    "14546 Back Fell Wind Farm [Application Submitted, 92.4 MW]",
+    "14547 Back Fell Wind Farm [Application Submitted, 40 MW]",
+    "15368 Seastar Project - Tidal Energy Farm [Awaiting Construction, 4 MW]",
+    "15385 Hare Hill  Wind Farm Repowering [Application Submitted, 130 MW]",
+    "15386 Hare Hill Wind Farm Repowering [Application Submitted]",
+    "17134 Oceanstar Project - Tidal Energy Farm [Awaiting Construction, 10 MW]",
+    "21087 Morven South Offshore Wind Farm [Application Submitted, 1450 MW]"
+   ],
+   "blankCapDrawnAs0MW": 1362,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 2,
+   "dupRefs": 0,
+   "salters": [
+    "18561 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear",
+    "18562 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear"
+   ]
+  },
+  "gainedDrawn": 986,
+  "lostDrawn": 25,
+  "lostDrawnExamples": [
+   "3300",
+   "9035",
+   "9681",
+   "9962",
+   "10050",
+   "10293",
+   "10294",
+   "11885"
+  ]
+ },
+ {
+  "page": "uk_grid-batteries.md",
+  "jan": {
+   "file": "repd-grid-batteries.csv",
+   "rows": 2025,
+   "drawn": 2022,
+   "noXY": [
+    "14547 Back Fell Wind Farm [Application Submitted, 40.00 MW]",
+    "17724 Mynydd Maen Solar Farm (Cil-Lonydd) [Awaiting Construction, 35.00 MW]",
+    "18489 Alwen Forest Project [Awaiting Construction]"
+   ],
+   "blankCapDrawnAs0MW": 468,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 30,
+   "dupRefs": 0,
+   "salters": [
+    "18562 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear"
+   ]
+  },
+  "oct": {
+   "file": "repd-grid-batteries-2026q3.csv",
+   "rows": 2181,
+   "drawn": 2177,
+   "noXY": [
+    "17724 Mynydd Maen Solar Farm (Cil-Lonydd) [Awaiting Construction, 35 MW]",
+    "18489 Alwen Forest Project [Awaiting Construction]",
+    "14547 Back Fell Wind Farm [Application Submitted, 40 MW]",
+    "15386 Hare Hill Wind Farm Repowering [Application Submitted]"
+   ],
+   "blankCapDrawnAs0MW": 474,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 0,
+   "dupRefs": 0,
+   "salters": [
+    "18562 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear"
+   ]
+  },
+  "gainedDrawn": 224,
+  "lostDrawn": 69,
+  "lostDrawnExamples": [
+   "8893",
+   "8993",
+   "10294",
+   "10714",
+   "11212",
+   "11442",
+   "11480",
+   "11945"
+  ]
+ },
+ {
+  "page": "uk_operating_large_solar_farms.md",
+  "jan": {
+   "file": "repd-solar-operational-over-4mw.csv",
+   "rows": 924,
+   "drawn": 923,
+   "noXY": [
+    "1613 Sainsbury's Stores (169 individual Stores) [Operational, 16.0 MW]"
+   ],
+   "blankCapDrawnAs0MW": 0,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 6,
+   "dupRefs": 0,
+   "salters": []
+  },
+  "oct": {
+   "file": "repd-solar-operational-over-4mw-2026q3.csv",
+   "rows": 940,
+   "drawn": 939,
+   "noXY": [
+    "1613 Sainsbury's Stores (169 individual Stores) [Operational, 16 MW]"
+   ],
+   "blankCapDrawnAs0MW": 0,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 0,
+   "dupRefs": 0,
+   "salters": []
+  },
+  "gainedDrawn": 17,
+  "lostDrawn": 1,
+  "lostDrawnExamples": [
+   "9962"
+  ]
+ },
+ {
+  "page": "repd-uk-operational-solar.md",
+  "jan": {
+   "file": "repd-solar-operational.csv",
+   "rows": 1209,
+   "drawn": 1208,
+   "noXY": [
+    "1613 Sainsbury's Stores (169 individual Stores) [Operational, 16.0 MW]"
+   ],
+   "blankCapDrawnAs0MW": 0,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 10,
+   "dupRefs": 0,
+   "salters": []
+  },
+  "oct": {
+   "file": "repd-solar-operational-2026q3.csv",
+   "rows": 1229,
+   "drawn": 1228,
+   "noXY": [
+    "1613 Sainsbury's Stores (169 individual Stores) [Operational, 16 MW]"
+   ],
+   "blankCapDrawnAs0MW": 0,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 0,
+   "dupRefs": 0,
+   "salters": []
+  },
+  "gainedDrawn": 21,
+  "lostDrawn": 1,
+  "lostDrawnExamples": [
+   "9962"
+  ]
+ },
+ {
+  "page": "uk_offshore_wind_atlas.md",
+  "jan": {
+   "file": "repd.csv",
+   "rows": 101,
+   "drawn": 93,
+   "noXY": [
+    "10913 North Falls Offshore Wind Farm [Application Submitted, 1000.00 MW]",
+    "10919 Morgan Offshore Wind Farm [Awaiting Construction, 1500.00 MW]",
+    "10922 Morecombe Offshore Windfarm [Application Submitted, 480.00 MW]",
+    "11109 Dogger Bank South East [Application Submitted, 1500.00 MW]",
+    "13429 Ossian [Awaiting Construction, 3600.00 MW]",
+    "13431 Muir Mh�r [Application Submitted, 1000.00 MW]",
+    "13528 Cenos Offshore Wind Farm [Application Submitted, 1350.00 MW]",
+    "20217 Dogger Bank South West [Application Submitted, 1500.00 MW]"
+   ],
+   "blankCapDrawnAs0MW": 1,
+   "fffdRowsDrawn": 28,
+   "mojibakeRowsDrawn": 0,
+   "dupRefs": 0,
+   "salters": []
+  },
+  "oct": {
+   "file": "repd-2026q3.csv",
+   "rows": 111,
+   "drawn": 96,
+   "noXY": [
+    "10913 North Falls Offshore Wind Farm [Awaiting Construction, 1000 MW]",
+    "10919 Morgan Offshore Wind Farm [Awaiting Construction, 1500 MW]",
+    "10922 Morecombe Offshore Windfarm [Awaiting Construction, 480 MW]",
+    "11109 Dogger Bank South East [Awaiting Construction, 1500 MW]",
+    "20217 Dogger Bank South West [Awaiting Construction, 1500 MW]",
+    "10920 Morven North Offshore Wind Farm [Application Submitted, 1450 MW]",
+    "11613 Fraserburgh - Buchan Floating Wind Project [Application Submitted, 1000 MW]",
+    "13417 Cluaran Deas Ear / Ayre Wind Farm  (Thistle South East) (NE2) [Application Submitted, 1008 MW]",
+    "13428 Machair [Application Submitted, 2000 MW]",
+    "13429 Ossian [Application Submitted, 3600 MW]",
+    "13431 Muir Mhòr [Application Submitted, 1000 MW]",
+    "13432 Marram [Application Submitted, 3000 MW]",
+    "13528 Cenos Offshore Wind Farm [Application Submitted, 1350 MW]",
+    "13735 Spiorad na Mara [Application Submitted, 900 MW]",
+    "21087 Morven South Offshore Wind Farm [Application Submitted, 1450 MW]"
+   ],
+   "blankCapDrawnAs0MW": 1,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 0,
+   "dupRefs": 0,
+   "salters": []
+  },
+  "gainedDrawn": 3,
+  "lostDrawn": 0,
+  "lostDrawnExamples": [],
+  "newlyNoXY": [
+   "10920 Morven North Offshore Wind Farm [Application Submitted, 1450 MW]",
+   "11613 Fraserburgh - Buchan Floating Wind Project [Application Submitted, 1000 MW]",
+   "13417 Cluaran Deas Ear / Ayre Wind Farm  (Thistle South East) (NE2) [Application Submitted, 1008 MW]",
+   "13428 Machair [Application Submitted, 2000 MW]",
+   "13432 Marram [Application Submitted, 3000 MW]",
+   "13735 Spiorad na Mara [Application Submitted, 900 MW]",
+   "21087 Morven South Offshore Wind Farm [Application Submitted, 1450 MW]"
+  ]
+ },
+ {
+  "page": "uk_onshore_wind_atlas.md",
+  "jan": {
+   "file": "repd.csv",
+   "rows": 2699,
+   "drawn": 2695,
+   "noXY": [
+    "14546 Back Fell Wind Farm [Application Submitted, 92.40 MW]",
+    "14796 Alwen Forest Project [Awaiting Construction, 59.40 MW]",
+    "17318 Wind Turbine Development in Ballymoney [Application Submitted, 0.60 MW]",
+    "17672 Scout Moor 2 -  Wind Farm [Awaiting Construction, 99.90 MW]"
+   ],
+   "blankCapDrawnAs0MW": 96,
+   "fffdRowsDrawn": 34,
+   "mojibakeRowsDrawn": 0,
+   "dupRefs": 0,
+   "salters": []
+  },
+  "oct": {
+   "file": "repd-2026q3.csv",
+   "rows": 2776,
+   "drawn": 2771,
+   "noXY": [
+    "14796 Alwen Forest Project [Awaiting Construction, 59.4 MW]",
+    "17318 Wind Turbine Development in Ballymoney [Application Submitted, 0.6 MW]",
+    "17672 Scout Moor 2 -  Wind Farm [Application Submitted, 99.9 MW]",
+    "14546 Back Fell Wind Farm [Application Submitted, 92.4 MW]",
+    "15385 Hare Hill  Wind Farm Repowering [Application Submitted, 130 MW]"
+   ],
+   "blankCapDrawnAs0MW": 108,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 2,
+   "dupRefs": 0,
+   "salters": []
+  },
+  "gainedDrawn": 77,
+  "lostDrawn": 1,
+  "lostDrawnExamples": [
+   "3300"
+  ]
+ },
+ {
+  "page": "uk_solar_in-planning-1-50mw.md",
+  "jan": {
+   "file": "repd.csv",
+   "rows": 1660,
+   "drawn": 1657,
+   "noXY": [
+    "14773 Mynydd Maen Solar Farm (Cil-Lonydd) [Application Submitted, 35.00 MW]",
+    "17120 La Rue De La Hougue Mauger - Solar Farm [Application Submitted, 5.38 MW]",
+    "17260 Solar Farm Development in Antrim [Application Submitted, 20.00 MW]"
+   ],
+   "blankCapDrawnAs0MW": 0,
+   "fffdRowsDrawn": 22,
+   "mojibakeRowsDrawn": 0,
+   "dupRefs": 0,
+   "salters": []
+  },
+  "oct": {
+   "file": "repd-2026q3.csv",
+   "rows": 1733,
+   "drawn": 1730,
+   "noXY": [
+    "14773 Mynydd Maen Solar Farm (Cil-Lonydd) [Awaiting Construction, 35 MW]",
+    "17120 La Rue De La Hougue Mauger - Solar Farm [Application Submitted, 5.38 MW]",
+    "17260 Solar Farm Development in Antrim [Application Submitted, 20 MW]"
+   ],
+   "blankCapDrawnAs0MW": 0,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 0,
+   "dupRefs": 0,
+   "salters": [
+    "18561 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear"
+   ]
+  },
+  "gainedDrawn": 144,
+  "lostDrawn": 71,
+  "lostDrawnExamples": [
+   "7221",
+   "7223",
+   "7656",
+   "7889",
+   "8136",
+   "8479",
+   "8528",
+   "8842"
+  ]
+ },
+ {
+  "page": "repd_atlas_grid_model.md",
+  "jan": {
+   "file": "repd.csv",
+   "rows": 13995,
+   "drawn": 13970,
+   "noXY": [
+    "1613 Sainsbury's Stores (169 individual Stores) [Operational, 16.00 MW]",
+    "1616 First Wessex Housing Properties (multiple) [Operational, 1.00 MW]",
+    "9947 Bristol City Council - Solar PV Project [Under Construction]",
+    "10603 Balliemeanoch Pumped Hydro Project [Application Submitted, 1500.00 MW]",
+    "10913 North Falls Offshore Wind Farm [Application Submitted, 1000.00 MW]",
+    "10919 Morgan Offshore Wind Farm [Awaiting Construction, 1500.00 MW]",
+    "10922 Morecombe Offshore Windfarm [Application Submitted, 480.00 MW]",
+    "11109 Dogger Bank South East [Application Submitted, 1500.00 MW]",
+    "13429 Ossian [Awaiting Construction, 3600.00 MW]",
+    "13431 Muir Mh�r [Application Submitted, 1000.00 MW]",
+    "13528 Cenos Offshore Wind Farm [Application Submitted, 1350.00 MW]",
+    "14546 Back Fell Wind Farm [Application Submitted, 92.40 MW]",
+    "14547 Back Fell Wind Farm [Application Submitted, 40.00 MW]",
+    "14773 Mynydd Maen Solar Farm (Cil-Lonydd) [Application Submitted, 35.00 MW]",
+    "14796 Alwen Forest Project [Awaiting Construction, 59.40 MW]",
+    "15368 Seastar Project - Tidal Energy Farm [Awaiting Construction, 4.00 MW]",
+    "17044 La Rue Du Moulin A Vent - Solar PV Arrays [Application Submitted]",
+    "17120 La Rue De La Hougue Mauger - Solar Farm [Application Submitted, 5.38 MW]",
+    "17134 Oceanstar Project - Tidal Energy Farm [Awaiting Construction, 10.00 MW]",
+    "17260 Solar Farm Development in Antrim [Application Submitted, 20.00 MW]",
+    "17318 Wind Turbine Development in Ballymoney [Application Submitted, 0.60 MW]",
+    "17672 Scout Moor 2 -  Wind Farm [Awaiting Construction, 99.90 MW]",
+    "17724 Mynydd Maen Solar Farm (Cil-Lonydd) [Awaiting Construction, 35.00 MW]",
+    "18489 Alwen Forest Project [Awaiting Construction]",
+    "20217 Dogger Bank South West [Application Submitted, 1500.00 MW]"
+   ],
+   "blankCapDrawnAs0MW": 1264,
+   "fffdRowsDrawn": 198,
+   "mojibakeRowsDrawn": 0,
+   "dupRefs": 0,
+   "salters": [
+    "18561 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear",
+    "18562 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear"
+   ]
+  },
+  "oct": {
+   "file": "repd-2026q3.csv",
+   "rows": 14967,
+   "drawn": 14931,
+   "noXY": [
+    "1613 Sainsbury's Stores (169 individual Stores) [Operational, 16 MW]",
+    "1616 First Wessex Housing Properties (multiple) [Operational, 1 MW]",
+    "9947 Bristol City Council - Solar PV Project [Under Construction]",
+    "10913 North Falls Offshore Wind Farm [Awaiting Construction, 1000 MW]",
+    "10919 Morgan Offshore Wind Farm [Awaiting Construction, 1500 MW]",
+    "10922 Morecombe Offshore Windfarm [Awaiting Construction, 480 MW]",
+    "11109 Dogger Bank South East [Awaiting Construction, 1500 MW]",
+    "13601 Tees Green Hydrogen [Under Construction, 7.5 MW]",
+    "14773 Mynydd Maen Solar Farm (Cil-Lonydd) [Awaiting Construction, 35 MW]",
+    "14796 Alwen Forest Project [Awaiting Construction, 59.4 MW]",
+    "17044 La Rue Du Moulin A Vent - Solar PV Arrays [Application Submitted]",
+    "17120 La Rue De La Hougue Mauger - Solar Farm [Application Submitted, 5.38 MW]",
+    "17260 Solar Farm Development in Antrim [Application Submitted, 20 MW]",
+    "17318 Wind Turbine Development in Ballymoney [Application Submitted, 0.6 MW]",
+    "17672 Scout Moor 2 -  Wind Farm [Application Submitted, 99.9 MW]",
+    "17724 Mynydd Maen Solar Farm (Cil-Lonydd) [Awaiting Construction, 35 MW]",
+    "18489 Alwen Forest Project [Awaiting Construction]",
+    "20217 Dogger Bank South West [Awaiting Construction, 1500 MW]",
+    "20447 Exeter City Council - Solar PV Systems [Under Construction]",
+    "10603 Balliemeanoch Pumped Hydro Project [Application Submitted, 1500 MW]",
+    "10920 Morven North Offshore Wind Farm [Application Submitted, 1450 MW]",
+    "11613 Fraserburgh - Buchan Floating Wind Project [Application Submitted, 1000 MW]",
+    "13417 Cluaran Deas Ear / Ayre Wind Farm  (Thistle South East) (NE2) [Application Submitted, 1008 MW]",
+    "13428 Machair [Application Submitted, 2000 MW]",
+    "13429 Ossian [Application Submitted, 3600 MW]",
+    "13431 Muir Mhòr [Application Submitted, 1000 MW]",
+    "13432 Marram [Application Submitted, 3000 MW]",
+    "13528 Cenos Offshore Wind Farm [Application Submitted, 1350 MW]",
+    "13735 Spiorad na Mara [Application Submitted, 900 MW]",
+    "14546 Back Fell Wind Farm [Application Submitted, 92.4 MW]",
+    "14547 Back Fell Wind Farm [Application Submitted, 40 MW]",
+    "15368 Seastar Project - Tidal Energy Farm [Awaiting Construction, 4 MW]",
+    "15385 Hare Hill  Wind Farm Repowering [Application Submitted, 130 MW]",
+    "15386 Hare Hill Wind Farm Repowering [Application Submitted]",
+    "17134 Oceanstar Project - Tidal Energy Farm [Awaiting Construction, 10 MW]",
+    "21087 Morven South Offshore Wind Farm [Application Submitted, 1450 MW]"
+   ],
+   "blankCapDrawnAs0MW": 1362,
+   "fffdRowsDrawn": 0,
+   "mojibakeRowsDrawn": 2,
+   "dupRefs": 0,
+   "salters": [
+    "18561 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear",
+    "18562 Salters Lane - Solar Panels  X=492983 Y=188837 county=Tyne And Wear"
+   ]
+  },
+  "gainedDrawn": 986,
+  "lostDrawn": 25,
+  "lostDrawnExamples": [
+   "3300",
+   "9035",
+   "9681",
+   "9962",
+   "10050",
+   "10293",
+   "10294",
+   "11885"
+  ]
+ },
+ {
+  "master": "dist/repd_master.json",
+  "features": 10784,
+  "byTech": {
+   "biomass": 823,
+   "act": 37,
+   "hydro": 151,
+   "solar": 2819,
+   "solar_roof": 3241,
+   "tidal": 18,
+   "wind": 1550,
+   "geothermal": 7,
+   "caes": 4,
+   "bess": 2070,
+   "flywheel": 1,
+   "hydrogen": 62,
+   "other": 1
+  },
+  "capacityZero": 1088,
+  "capacityNull": 0,
+  "salters": []
+ },
+ {
+  "master": "dist/repd_master_2026q3.json",
+  "features": 11293,
+  "byTech": {
+   "wind": 1587,
+   "biomass": 825,
+   "solar_roof": 3529,
+   "act": 38,
+   "bess": 2172,
+   "tidal": 18,
+   "solar": 2892,
+   "hydro": 155,
+   "hydrogen": 63,
+   "geothermal": 8,
+   "caes": 4,
+   "other": 2
+  },
+  "capacityZero": 1121,
+  "capacityNull": 0,
+  "salters": [
+   "18561 Salters Lane - Solar Panels -0.659174,51.590722",
+   "18562 Salters Lane - Solar Panels -0.659174,51.590722"
+  ]
+ }
+]

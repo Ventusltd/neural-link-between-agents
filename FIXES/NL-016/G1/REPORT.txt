@@ -1,0 +1,160 @@
+G1: WHAT GRIDATLAS ALREADY SHOWS ABOUT REPD AND DATA CENTRES (headless Chrome, local copy)
+
+Agent G1 (Claude Opus), NL-016, 14 Nov 2026. Read-only. Nothing was committed, pushed or deployed, and no file in any
+clone was edited. This workspace cannot reach the live site: the proxy refuses ventusltd.github.io, cdn.jsdelivr.net,
+basemaps.cartocdn.com and extensions.duckdb.org with 403. Everything below was therefore tested on a LOCAL COPY.
+Anything that depends on the live site is marked UNVERIFIED.
+
+0. HOW IT WAS RUN
+- Site copy: <workspace>/teams/12/site/ holds
+  gridatlas/ (clone 41729af, v9.188, composition 202610312138, .git removed),
+  data-gridatlas/ (git clone --depth 1 SUCCEEDED: 8bf88da, 190 MB) and
+  dist/ (globalgrid2050 main dist/, plus dist/convergence/2026q3 from gg-wt).
+  It is served with python3 -m http.server 8812.
+- Driver: <workspace>/teams/12/drive.mjs, using Playwright with /usr/bin/google-chrome and SwiftShader WebGL.
+  Pages open under their real origin (https://ventusltd.github.io/gridatlas/atlas/...), and every request is
+  answered locally:
+  - ventusltd.github.io and globalgrid2050.com go to the local server;
+  - maplibre-gl 3.6.2 and duckdb-wasm 1.29.0 come from npm copies of the same versions;
+  - raw.githubusercontent.com is fetched for real through the proxy;
+  - the basemap is a flat stub with no tiles, so the screenshots show no coastline.
+- Scenarios: runs/s1.json to s6.json. Results (served, missing, aborted, console errors, evaluated state):
+  shots/s*/results.json. Screenshots: shots/s*/*.png (30 files).
+
+What loads locally:
+- Loads: the loader, current.json, shell 202608300453-atlas-v9 and all 6 cartridges (hash-verified by the loader).
+- Loads: all shell data (grid 400/275/220/132/66 kV, substations, power plants, industry, v8 data centres,
+  airports, railways).
+- Loads: offtakers_filtered_202610292000, uk_datacentre_pipeline_202610312133 and conventional_power_uk_202610292000.
+- Loads: data-grid-gb connection-points.v3.json (raw.githubusercontent, pin 1c9909d), 2,896,561 bytes, fetched for real.
+- 404: ventus-grid-engine/genome/engine-graph.json. It is in no local clone.
+- BLOCKED: the DuckDB parquet extension (extensions.duckdb.org). As a result:
+  - every REPD layer stays at [WAIT];
+  - the deep-link REPD identity check fails with "active-register check failed";
+  - the M5 record join cannot run.
+- Harness-only work-around: after boot the driver fills the engine's own src-repd source with the same register the
+  bridge serves (dist/repd_master.json, 10,784 features, sha256 ca5da437...). That file is what the
+  repd_master_v8_oracle partition transplants. The offtakers module then reads it as it does live. Every result
+  labels this step "inject-repd(harness)".
+- Not tried: lightning. It is off by default and nothing is fetched until it is switched on.
+
+1. WHAT GRIDATLAS HOLDS AND DRAWS
+The composition is an immutable shell plus 6 hashed cartridges:
+- streaming-parquet-bridge v9.156
+- uk-gazetteer-flyto v9.145 (search)
+- substation-intelligence v9.140
+- sld-sandbox v9.156 (deep-link arrival, nearest substations, layout)
+- uk-lightning-overlay v9.188
+- uk-offtakers-overlay v9.188 (source tools/offtakers/src, built by tools/offtakers/build.mjs)
+
+Layers and their data:
+- Data centres, offtakers layer: data/uk_datacentre_pipeline_202610312133.geojson (sha256 87337db5...).
+  - 226 sites, 225 drawn.
+  - Fields: id, name, operator, status, location{lat,lon,precision}, it_load_mw / grid_connection_mw /
+    unclassified_mw as {value,label,source_id}, dates, planning_refs, connection_refs, sources, conflicts.
+  - Built 29 Oct 2026; re-pinned at data-grid-gb 01a4491.
+- Industry, power, water and campus offtakers: data/offtakers_filtered_202610292000.geojson, 1,568 features
+  (A 813, B 358, D 8+168, E 57).
+- Conventional power: data/conventional_power_uk_202610292000.geojson, 301 records (290 listed).
+- REPD (map, search, cards): data-gridatlas partitions/repd_master_v8_oracle.parquet (10,784 drawn) and
+  data/repd_projects_202608290716.parquet. This is the July 2026 extract: the October register is not in
+  GridAtlas yet.
+- Substations: shell grid_substations.geojson, 5,800.
+- NESO connection sites: atlas/data/neso-connection-sites.lean.json, 767.
+- Transmission nodes: data-grid-gb connection-points.v3, 886 points (489 located).
+- Interconnectors: atlas/data/interconnectors.geojson, 4 drawn (10 endpoints).
+- Old v8 "Data Ctrs" checkbox: shell datacentres.geojson, 240 records (name and operator only).
+
+Data-centre facts, counted from the file:
+- Status: operational 202, announced 12, in planning 7, consented 4, unknown 1.
+- Location precision: exact_site 200, settlement 20, region 5, unknown 1.
+- MW is thin: grid connection MW is known for 2 sites, IT load for 4, unclassified MW for 8.
+- planning_refs and connection_refs are EMPTY on all 226 records.
+- 200 of the 226 are OpenStreetMap operational sites. The 23 pipeline sites come from gov.uk, MHCLG and s35 seeds.
+
+2. WHAT A USER CAN ALREADY DO WITH REPD AND DATA CENTRES
+All of it sits in the Offtakers layer. That layer is OFF by default and switches on with one checkbox. It was driven
+at 1400x900 and at 390x844 (phone, touch).
+a) Switch Offtakers on.
+   - 1,404 dots appear, with data centres in violet and a status ring.
+   - The status line reads "225 from the open pipeline ... 1 skipped".
+   - Shot: shots/s2/02-offtakers-desktop-uk.png.
+b) Tap a data centre to get the Grid Engine 30/30/30 card.
+   - Example: Ampthill Road, Bedford (QuestPit, in planning, IT 720 MW, grid connection 200 MW).
+   - It lists 30 substations within 17.7 km, 30 REPD sites within 9.0 km and 30 conventional sites within 81.5 km.
+   - REPD within 5/10/20 km: 15/36/139 projects, with 138.13/403.3/2,344.15 MW stated.
+   - At 20 km the card reads: operational 451.09 MW, consented 1,179.72 MW, planning 713.34 MW.
+   - Nearest 400 kV: Marston Vale, 5.00 km.
+   - The REPD tab offers status filters, Draw all and a 92-row CSV.
+   - The phone gives the same result.
+   - Shots: shots/s3b/03-*.png and 04-*.png.
+c) Tap any other offtaker to get its 15 nearest REPD sites and 5 nearest substations.
+d) Arrive from Pipeline News (the MAP link), tick Offtakers, then tap the nearby data centre: the REPD project
+   appears in the data centre's card.
+   - Tested on REPD 9077 (Green Lane, Stewartby, 30 MW solar).
+   - It is item 9, at 2.76 km. The convergence file on main gives dc1_km 2.761, so the two agree.
+   - Shots: shots/s4b/05b-*-dccard.png.
+GridAtlas computes no "shared connection": distances are straight lines, and there are no connection references to
+join on.
+
+3. URLS THAT OPEN GRIDATLAS WITHOUT NEW GRIDATLAS CODE
+- REPD project, using the Pipeline News MAP contract (CONTRACT_PARAMS in atlas-receiver-v9-7.js):
+  /gridatlas/atlas/?repd_ref=9077&technology=solar&latitude=52.0702499&longitude=-0.5144965&zoom=12
+  - Centres on the project.
+  - Ticks 400/275/132 kV, Subs and Solar.
+  - Nearest 400 kV is Marston Vale at 2.26 km.
+  - The identity check fails locally because parquet is blocked. Live behaviour is UNVERIFIED.
+- REPD by reference only: ?repd_ref=9668&technology=bess
+  Fails locally (parquet). Pipeline News code says this was measured working live on REPD 13429. UNVERIFIED.
+- A data centre:
+  ?latitude=52.09&longitude=-0.49&zoom=13&project=Data+Centre+Campus%2C+Ampthill+Road%2C+Bedford
+  - WORKS: the camera lands on the site, the card is titled with the name, and nearest 400 kV is measured
+    (Marston Vale, 5.00 km).
+  - It is the generic arrival card: no data-centre fields and no pin.
+  - Shot: shots/s4/07-E3b-*.png.
+- No URL parameter switches Offtakers on or opens a data-centre card. &offtakers=1 was tried and does nothing.
+
+4. EXPERIMENTS
+E1 Opened the exact Pipeline News MAP link for REPD 9077.
+   Works, apart from the local parquet block. No change needed.
+E2 From that arrival, ticked Offtakers and tapped the data centre 2.8 km away.
+   Works: 9077 is listed at 2.76 km. No GridAtlas change needed.
+E3 Opened GridAtlas on a data centre with latitude/longitude/zoom/project.
+   Works (generic card). No change needed.
+E4 Built one new static page, uk_renewables_pipeline/datacentres/index.html. It reads
+   dist/convergence/2026q3/datacentre_proximity.csv, which is already on main. It shows:
+   - all 226 sites, pipeline first;
+   - data-centre MW kept apart (IT / grid / unlabelled);
+   - October REPD solar, battery and wind MW within 10 km, by status;
+   - the nearest REPD project per technology, with MAP links (Pipeline News contract);
+   - a MAP link to the data centre (the E3 URL);
+   - a NEWS link per site, and 5 data-centre news searches at the top;
+   - distances withheld for the 6 sites at region or unknown precision.
+   Rendered at 1400 px and 390 px: 0 console errors, 226 rows, 23 in the pipeline. Shots: shots/s5/*.png.
+E5 Followed the data-centre link from E4, then tapped Offtakers once and the site once (phone).
+   Gives the full 30/30/30 card. Shot: shots/s6/11-*-card.png.
+   A GridAtlas ?offtakers=1 parameter would remove the first tap (suggestion only, see section 5).
+
+Caveats to state when this is shown:
+- The two views count different things.
+  - The E4 page counts solar, battery and wind from the October REPD: Bedford 303.8 MW within 10 km.
+  - The GridAtlas card counts all technologies from the July register: Bedford 403.3 MW within 10 km, which
+    includes, for example, Rookery South EfW at 65 MW.
+- Data-centre MW is known for only 12 of the 226 sites, so this is a screening view, not a register of demand.
+- On desktop, a dark empty rectangle sits above the data-centre card (shots/s3b/03-*-card.png). It may be caused by
+  the harness having no basemap. UNVERIFIED on live.
+
+5. RECOMMENDATION
+Ship E4 first: one new static file in globalgrid2050. It is additive, reads data already on main, needs no GridAtlas
+change, and every link uses a URL GridAtlas already understands.
+- Patch: <workspace>/teams/12/patches/G1-datacentres-page.diff
+  - New file, 139 lines, applied with patch -p1 from the gg-wt root.
+  - Dry run and apply both checked on a scratch copy.
+  - File sha256: 1c73ca4f...
+- Optional: patches/G1-OPTIONAL-pn-nav-link.diff adds one "DATA CENTRES" link to the October Pipeline News sidebar.
+  This edits an existing file.
+- GridAtlas suggestion only: patches/G1-SUGGESTION-gridatlas-offtakers-url.diff makes ?offtakers=1 switch the layer
+  on (3 lines in tools/offtakers/src/07-panel-install.js). It cannot be pushed from here, and it would need a new
+  offtakers generation plus updates to current.json and STATE.md.
+- Before it goes live: the page must be served from the same site as dist/ (globalgrid2050.com). No live link was
+  opened from this workspace.

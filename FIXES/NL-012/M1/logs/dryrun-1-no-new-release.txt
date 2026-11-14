@@ -1,0 +1,8 @@
+## No new REPD release
+
+- Checked at 2026-11-14T01:04:13Z; newest known release: `2026q3`
+- Reason: published CSV and XLSX sha256 equal the pinned hashes of 2026q3
+- CSV: https://assets.publishing.service.gov.uk/media/6af42ff0a4004bdbe54e54a5/REPD_Publication_Q3_2026.csv (5219160 bytes, sha256 `48e76c49f33a1090e78108d1ea9bfe689b35963ea3be1bb4f6516d038a5ff862`)
+- XLSX: https://assets.publishing.service.gov.uk/media/6af42ffdb83b3cae0d0a21c9/REPD_Publication_Q3_2026.xlsx (5378656 bytes, sha256 `87811e249395a05b223db6855952334f425e66cc9a2106caea0e38fd9e5037ea`)
+
+exit=0

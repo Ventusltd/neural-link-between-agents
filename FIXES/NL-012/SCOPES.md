@@ -31,6 +31,8 @@ Revised only when a lane's findings or ChatGPT's posts change what a lane should
 | 11 | Data-centre capex news and politics in Pipeline News | N4 (NL-019) | One feed file and one panel on the operative page, hidden when the file is absent | Feed schema, fixture tests, headless screenshot |
 | 12 | Use what GridAtlas already holds, through a headless browser | G1 (NL-016) | An inventory of GridAtlas layers with counts, ids and screenshots, and a list of what other lanes can reuse instead of building | Inventory file, screenshots |
 | 13 | Simple, exploratory, keep moving | Every lane; the coordinator names the cuts (section 2b) | Each duplicate in section 2b has one owner or is removed | section 2b |
+| 14 | Compare the Cloud article in the feed and linked from the cyber-resilience site, nothing truncated | Harness (both pull requests); ChatGPT checks and publishes | Article in the feed file; cyber-resilience entry merged with the earlier entry, note and stylesheet byte-identical | PR #70; cyber-resilience PR #1 and the hashes in its text |
+| 15 | Pipeline News version train every 30 minutes, converging on a final release; map and Grid Engine deep link the star; old versions kept | Guardian (reports on NL-015) | See section 2c | versions page, CI workflow, release-candidate post |
 
 ## 1. The whole job in one picture
 
@@ -265,6 +267,81 @@ the 43-check acceptance, the release folder's own tests.
   procedure moves to M1.
 - S-C (brief line 8b): still unowned and still waiting on Team 6's questions 3 and 4; G1's inventory may answer 4.
 
+## 2c. Revision 3 (2026-11-14T01:29Z): the version train, and what the handed-off lanes leave for it
+
+State: every Claude lane started before 01:20Z has handed off (Teams 1 to 6, N1 to N4, M1, G1). Working: the guardian
+(brief line 15) and ChatGPT. globalgrid2050 main `3f136bfa`.
+
+Correction to section 2b: the row "two served copies of the October page ... no third folder" is withdrawn. The owner
+has since asked for a new version about every 30 minutes with old versions kept (brief line 15). His word outranks the
+simplicity cut.
+
+### Guardian: Pipeline News version train (brief line 15)
+
+- Outcome: a chain of version folders from parent 202611140058, each published at its own address even if broken, each
+  judged by one CI workflow against its parent, ending in one release candidate whose map links and Ventus Grid Engine
+  deep links work; old versions stay.
+- What the train must carry, from the lanes that have handed off (this is the lane's backlog, in the order the owner's
+  brief gives weight):
+  1. The star feature. Team 4 measured the 7,775 MAP links of the operative page against the live map (issue 16,
+     6869215161): 5,246 resolve with an identity card; 97 active rows get no card; 12 resolve to a point that moved; 26
+     links carry no usable point. A version cannot fix the map from the page side: the cure is the October register in
+     GridAtlas (Team 4's patch-0 and P1, which only the owner can push). Until then the release candidate should say on
+     the page which rows have no card yet, rather than show a link that half works. Done for the star feature: every
+     MAP link either opens the right card on the live map or is marked; checked on the live site by ChatGPT.
+  2. N4's panel (data-centre capex and politics, brief line 11): the feed is on main, the panel is on no folder.
+  3. N3's events feed (official register changes) shown as its own labelled list, not as news stories (ChatGPT's
+     condition in issue 19, 6869043996).
+  4. G1's data-centres page (PR #72) linked from the page, if the harness merges it.
+  5. Team 3's left-overs: the news panel still shows the August-dated feed; county "tock" and refs 18561 and 18562 are
+     as published.
+- Done when: (1) the guardian has posted an ACK on issue 15 with its rules; (2) `versions.html` lists every version with
+  parent, time, CI verdict and what changed, in one line each; (3) the CI workflow fails a version that drops records
+  (7,775), changes a pinned figure, breaks the export column, or loses a MAP link its parent had; (4) no version edits
+  an earlier folder; (5) the homepage pointer is never moved by the train: a release candidate is announced on issue 15
+  and promoted by ChatGPT or the harness with a checkpoint; (6) a stated end: when the release candidate is promoted the
+  train stops or drops to "on change".
+- Size, the one constraint the owner's words do not mention and the repository imposes: 202611140058 is 230 files and
+  46.7 MB; 202611132345 is 232 files and 70.2 MB (git trees API, 01:27Z). A full copy every 30 minutes adds roughly
+  90 MB an hour to a repository of about 360 MB and to a Pages site with a 1 GB limit. So a version should hold only
+  what differs from its parent and read data and fixtures from the parent (as 202611140058 already does for the 2026q3
+  fixtures), with a per-version size budget checked in CI. "Keep old versions" is then cheap.
+- Must not touch: earlier folders; the homepage repository; gridatlas; the pinned Q2 feeds.
+- Overlap: Team 3's lane ends where this begins. ChatGPT's Energy24 page (PR #65) is a separate page; the two should
+  read the same headlines file.
+
+### Line 14: Compare the Cloud
+
+Owned by the harness (PR #70 on main; cyber-resilience PR #1 open) with ChatGPT as checker and publisher. Done when
+ChatGPT has confirmed the link, the neutrality of the two-sentence summary and the rendering, and merged; and the feed's
+pinned-items file names the source and date. Nothing else is in scope: one entry, additive.
+
+### Line 8b after G1
+
+G1 found that GridAtlas already answers "what renewable capacity is near this data centre" on its Offtakers card, and
+delivered one new page (PR #72) listing the 226 sites with October figures. That is the simplest form of line 8b and
+replaces the proposed S-C unless the owner wants data centres inside the Pipeline News table itself. Two things to state
+on that page so it does not contradict the map: it counts solar, battery and wind from the October register; the
+GridAtlas card counts all technologies from the July register (Bedford: 303.8 against 403.3 MW within 10 km).
+
+### Fetchers and binders (update to the simplicity table)
+
+- Fetcher: N4's `automation/news/datacentre_feed.py` is on main and has run on GitHub (nine feeds, daily). It is now
+  the existing one; the simple course is that ChatGPT's Energy24 reads its file (branch `datacentre-news-data`) for
+  data-centre items rather than scanning the same sources hourly. ChatGPT's scanner would then cover only what N4's
+  does not (energy-storage and solar trade press).
+- Binder: both N1's and N3's are on main. ChatGPT's rule (issue 19, 6869043996): no name-only binding is published;
+  only exact REPD Ref evidence promotes a match, everything else goes to a review queue. That rule makes the choice
+  moot for readers; for code, N3's stays the one to extend.
+
+### Still without a lane
+
+S-B (rehearse pointer and full rollback on a full-history clone; restate no-truncation for main after PRs #63 to #71;
+exclude rendered `.md` pages from the Pages build; `--news-review-expected`; prune one-off workflows and evidence
+branches; replace local workspace paths in files on main: the served `CLEANING-LOG.txt` (Team 5) and a test in the
+monthly-workflow patch as delivered, which points at a local folder for the official October files; whether main carries
+that line is UNVERIFIED). The public language gate. N2's pipelinenews patches (owner decision). The gridatlas push (owner).
+
 ## 3. Scope per lane
 
 ### NL-013, Team 1: source and dataset QA
@@ -475,6 +552,8 @@ Traces to brief lines 3, 4, 5 and 9.
 ## Revisions
 
 - 2026-11-14T00:48Z first issue.
+- 2026-11-14T01:29Z revision 3: brief lines 14 and 15; guardian scope with its backlog and a size constraint; line 8b after G1;
+  the 'no third folder' cut withdrawn; all earlier lanes handed off.
 - 2026-11-14T01:07Z revision 2: owner's 00:56 instructions folded in as brief lines 10 to 13; lanes M1, N4, G1 scoped;
   simplicity table; integration proposal for ChatGPT's PR #65 and N4; Teams 1 and 3 and N1 to N3 handed off.
 - 2026-11-14T00:53Z revision 1: Teams 3, 5 and 6 handed off (comments 6868814345, 6868817609, 6868817840); section 2a lists

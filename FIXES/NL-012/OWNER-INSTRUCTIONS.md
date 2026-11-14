@@ -57,6 +57,8 @@ line here should have an owner, a state and evidence.
 | 00:56 | Simple. Do not over-complicate. |
 | 00:56 | GridAtlas already has a lot of data: use a headless Chrome browser and look at it through its offtakers and other layers. |
 | 00:56 | Experiment, explore, do not freeze. |
+| between 00:56 and 01:18 | Make sure the Compare the Cloud article is there (in the data-centre news feed) and also link it to the cyber-resilience site, using hashes so nothing is truncated; get ChatGPT to check it and publish. (As quoted by the harness in issue 12 comment 6869302028.) |
+| between 00:56 and 01:18 | Get versions of Pipeline News published every 30 minutes even if broken, then use CI/CD against earlier versions to deliver a final release. The map and the Ventus Grid Engine deep link are the star feature. Prepare a Fable engineer guardian for that CI integration and keep old versions. (Same source.) |
 | 00:47 | First consolidate everything I have said tonight to ChatGPT and to you in a coherent order, and compare it with progress. That is the DNA of the reasoner and quality Fable. |
 
 ## Part 2. The same instructions as one coherent brief
@@ -86,54 +88,60 @@ line here should have an owner, a state and evidence.
     before building anything new.
 13. Working style: simple, exploratory, keep moving. Simplicity is a criterion for every lane: anything a lane builds
     that the owner did not ask for is cut.
+14. The Compare the Cloud article appears in the data-centre news feed and is linked from the cyber-resilience site,
+    added without truncating anything there (hash-checked); ChatGPT checks and publishes it.
+15. Pipeline News is released as a train: a new version about every 30 minutes, published even if broken, each compared
+    by CI with earlier versions, old versions kept, converging on a final release. The star feature is the map and the
+    Ventus Grid Engine deep link. A Fable engineer guardian runs the train.
 
 ## Part 3. Progress against each point
 
-Kept current by the coordinator (Claude Fable). Last pass: 2026-11-14T01:06Z. Each line names its one owning lane; scopes are in
-`SCOPES.md` in this folder. globalgrid2050 main at this pass: `10cc4b40` (PRs #57, #60, #61, #63, #64, #66 merged).
+Kept current by the coordinator (Claude Fable). Last pass: 2026-11-14T01:28Z. Each line names its one owning lane; scopes are in
+`SCOPES.md` in this folder. globalgrid2050 main at this pass: `3f136bfa` (PRs #57, #60, #61, #63, #64, #66 to #71
+merged; #72 open; #65 draft).
 
 | # | Asked | Owning lane | State | Evidence | Gap |
 |---|---|---|---|---|---|
-| 1 | Back up, text log, no truncation, hashes, checkpoints, testcode | Team 5 (issue 17), handed off; the harness makes checkpoints | DONE for the first live step; later steps have written, unrehearsed rollback | Restore branch restore/pre-repd-2026q3-20261114; testcode backups/202611140031-repd-2026q3-pre-release; Team 5 gate table (comment 6868817609): 1a416f4b against 73cbdec1 318 added, 6 modified, 0 deleted; ChatGPT's final homepage run 43537283611 records the previous pin | Six merges since the one checkpoint. Pointer rollback (P) and full rollback (Q) not rehearsed. No no-truncation restatement for main after PR #63, #64, #66. No homepage snapshot v139 |
-| 2a | Ingest October REPD, cleaned with Python, existing code: the datasets | Team 1 (issue 13), handed off | DONE; independently reproduced | Team 1 HANDOFF 6868919369: re-derivation byte-identical (d937ae16…), 832 cells matched, counts 2,181 / 1,229 / 940 / 11,293 / 14,967 / 3,765 confirmed; automation defects D1 to D7 fixed in PR #64 (99a6142c) | D9 (the page's identity fixture records the staged file's hash 9b1f87eb) and D10 (assemble layout) left to the owner. Pages other than Pipeline News still read old data |
-| 2b | July baseline and true comparison | Team 2 (issue 14), handed off | DONE | Comment 6868663705; PR #60 | Workbook 99ec4d05 unexplained; whether July originals enter main |
-| 2c | Pipeline News on October data | Team 3 (issue 15), handed off twice | LIVE: 202611132345 is the homepage's operative release (ChatGPT's final run 43537283611). Export defect fixed in place by PR #63. Successor folder 202611140058 (V9.13, final label, same data) delivered as patches | Team 3 HANDOFFs 6868814345 and 6869028602; harness note 6868920602; ChatGPT sign-off 6868912608 | Three files of the served folder now differ from the bytes ChatGPT hash-verified (disclosed in 6868920602). Successor not yet applied or promoted; second pointer move and restore of the three files pending. ChatGPT's three live checks unanswered |
-| 2d | GridAtlas and the legacy map pages | Team 4 (issue 16), working | NOT LIVE; no report yet | ACK 6868444317 only | 97 active rows of the operative page absent from live GridAtlas (Team 3, code read). No push route to gridatlas. Lane has posted nothing since its ACK at 00:25Z |
-| 3 | Two agents through the agents repository, audit trail, sign-off, use ChatGPT | The harness, on issue 12 | WORKING | Issues 12 to 20; ChatGPT's "production release complete" (6868912608) | Changes crossed once (in-place fix against ChatGPT's request not to rewrite the folder). PR #58, #59, #62 still drafts. ChatGPT asked the coordinator for an integration plan against its PR #65: given in SCOPES.md, revision 2 |
-| 4 | Private comparison report | The harness (private) | DONE | Private | Not updated with Team 2's comparison |
-| 5 | Scale, autonomy, live | The harness | WORKING | 12 lanes started so far; 8 handed off | Agents cannot launch agents |
-| 6 | Finished, audited CI/CD | Team 5, handed off; no successor yet (S-B proposed) | NOT FINISHED | Runbook command patch and Team 1's gate fixes on main; release folder tests now run in CI (PR #63) | Public language gate never ran (runner offline) on any of the night's pull requests. Rollback rehearsal, Jekyll exclusion, `--news-review-expected`, pruning of one-off workflows and evidence branches: unowned |
-| 7a | News: existing builders on October data | N1, handed off | DONE as files; merged as PR #66 | HANDOFF 6868976118 | Live crawl UNVERIFIED (news.google.com blocked). Added a second binder (scripts/news_binder_refaware.py) beside N3's |
-| 7b | News: discovery | N2, handed off | DONE as patches for the pipelinenews repository | FINDING 6869000917, HANDOFF 6869003251 | Nothing applies without a push route to pipelinenews; every discovery workflow there is disabled; four owner decisions listed in section 6 of the finding |
-| 7c | News: relevance | N3, handed off | DONE as patch; PR #67 open | HANDOFF 6869000209: 769 events reconciling to the comparison; binder precision 1.00, recall 0.98 on 133 items (silver labels) | Not merged. No page reads the feed |
-| 8a | Convergence join | Team 6, handed off | ON MAIN as data (PR #63) | HANDOFF 6868817840 | Six questions unanswered (6868809262) |
-| 8b | Data centres as a category in Pipeline News | No lane (S-C proposed); N4's panel covers news only | NOT STARTED | Team 6 proposal 1 | Blocked on questions 3 and 4 |
-| 9 | Fable reasoner | Coordinator | Revision 2 published | SCOPES.md | |
-| 10 | REPD refreshed every month | M1 (new; public folder FIXES/NL-012/M1, no issue of its own) | STARTED about 01:03Z | Working folder only | Nothing public yet. REPD is published quarterly: "monthly" is a monthly check that acts only when the published file changed |
-| 11 | Data-centre capex news and politics in Pipeline News | N4 (new, issue 19) | STARTED 01:02Z | ACK 6868993134 | ChatGPT's draft PR #65 (Energy24) scans the same feeds for a separate page: two fetchers, two scheduled workflows. One should fetch; see SCOPES.md |
-| 12 | Use what GridAtlas already holds, seen in a headless browser | G1 (new, issue 16) | STARTED about 01:03Z | Working folder only (one run, screenshots) | No ACK on the link yet |
-| 13 | Simple, exploratory, keep moving | Every lane; the coordinator names the cuts | APPLIED in SCOPES.md revision 2 | | Three binders, two event sources, two news fetchers, three draft QA pull requests, seven evidence branches |
+| 1 | Back up, no truncation, hashes, checkpoints, testcode, easy restore | Team 5 (handed off); the harness makes checkpoints | DONE for the first merge; a second checkpoint is reported for the legacy-page switch | Restore branch and testcode backup of 00:31Z; Team 5 gate table (6868817609); harness 6869302028 ("checkpointed in testcode backups/") | No no-truncation restatement for main after PRs #63 to #71. Pointer and full rollback written, not rehearsed. Successor lane S-B still unowned |
+| 2a | October datasets | Team 1 (handed off) | DONE, reproduced byte for byte; fixes merged (PR #64) | 6868919369 | D9, D10 for the owner |
+| 2b | July baseline and comparison | Team 2 (handed off) | DONE (PR #60) | 6868663705 | Workbook 99ec4d05; July originals into main |
+| 2c | Pipeline News on October data | Team 3 (handed off); from 01:24Z the guardian (line 15) | LIVE: 202611132345 operative. Successor 202611140058 on main (PR #68), not promoted | 6869028602; 6869067985 | Second pointer promotion (ChatGPT). Three files of 202611132345 differ from the bytes ChatGPT verified until patch S2 restores them. ChatGPT's live checks unanswered |
+| 2d | GridAtlas and legacy maps | Team 4 (handed off 01:20Z) | Legacy: seven current pages now read the October files (PR #71), historical pages left. GridAtlas: patch-0 (two clock-dependent tests) and P1 (22 files, pr-gate 19 of 19) ready, not pushed | 6869215161, 6869257356; FIXES/NL-016 | No push route to gridatlas: owner. Until then the live map is on the July register: of 7,775 MAP links, 5,246 resolve, 97 active rows get no identity card, 12 resolve to a point that moved. Legacy pages on the live site UNVERIFIED (ChatGPT asked) |
+| 3 | Two agents through the repository, audit trail, sign-off | The harness with ChatGPT | WORKING | Issue 12 | ChatGPT's draft pull requests #58, #59, #62 open |
+| 4 | Private report | The harness (private) | DONE | Private | |
+| 5 | Scale, autonomy, live | The harness | WORKING | 14 lanes started, all but the guardian handed off | |
+| 6 | Finished, audited CI/CD | Team 5 (handed off); S-B unowned | NOT FINISHED | Release-folder CI on pull requests (PR #63, #68); monthly workflow (PR #71) | Public language gate has not run on any pull request tonight. Rollback rehearsal, Jekyll exclusion of rendered .md pages, `--news-review-expected`, pruning of one-off workflows and evidence branches |
+| 7a | News: existing builders | N1 (handed off) | ON MAIN (PR #66) | 6868976118 | Live crawl UNVERIFIED |
+| 7b | News: discovery | N2 (handed off) | Patches for pipelinenews, not applied | 6869000917, 6869003251 | Owner: is the pipelinenews repository revived |
+| 7c | News: relevance | N3 (handed off) | ON MAIN (PR #67) | 6869000209 | No page reads the events feed yet; ChatGPT proposes a lane for it on its Energy24 page |
+| 8a | Convergence join | Team 6 (handed off) | ON MAIN (PR #63) | 6868817840 | Six questions (6868809262) unanswered |
+| 8b | Data centres beside the REPD pipeline | G1's page, PR #72 (open) | One new page listing the 226 sites with October REPD capacity within 10 km, MAP links and news links | G1 HANDOFF 6869332568 | Not merged. It is a page beside Pipeline News, not a category inside the table; whether that satisfies the owner is his call |
+| 9 | Fable reasoner | Coordinator | Revision 3 | SCOPES.md | |
+| 10 | REPD every month | M1 (handed off) | ON MAIN (PR #71): repd-monthly.yml, 3rd of each month, pull request only when published hashes differ | Run 43540253203 on main: success | After its pull request, a release folder build and a pointer move are still by hand |
+| 11 | Data-centre capex news and politics in Pipeline News | N4 (handed off) | Feed ON MAIN (PR #69, #70), daily, published to branch datacentre-news-data; first real run fetched nine feeds | 6869147650; runs 43539485129, 43539808173 | The panel is not on main: neither release folder contains scripts/plugins/datacentre-news.js (contents API, 01:29Z), so nothing in Pipeline News shows the feed yet. It belongs in the guardian's next version, not in a served folder. ChatGPT's Energy24 (PR #65) fetches separately: one fetcher still to be agreed |
+| 12 | Use what GridAtlas already holds | G1 (handed off 01:26Z) | DONE: GridAtlas already shows, per data centre, the nearest 30 substations, 30 REPD sites and 30 plants with MW within 5, 10, 20 km; Offtakers is off by default and no URL parameter turns it on | 6869332568; FIXES/NL-016/G1 | GridAtlas counts all technologies from the July register; the new page counts solar, battery and wind from October: the two numbers differ for the same site (Bedford 403.3 against 303.8 MW) |
+| 13 | Simple | Every lane | See SCOPES.md section 2c | | Two fetchers; two binders on main |
+| 14 | Compare the Cloud article in the feed and on the cyber-resilience site | The harness (feed, PR #70; cyber-resilience PR #1); ChatGPT checks and publishes | Feed: ON MAIN. Cyber-resilience: pull request open | 6869302028 | ChatGPT's check and merge |
+| 15 | Pipeline News version train, every 30 minutes, final release with the map and Grid Engine deep link as the star | Guardian (Fable engineer; reports on issue 15) | STARTED about 01:24Z | Harness 6869302028 | No ACK or scope from the guardian on the link yet. Each release folder is 46 to 70 MB (202611140058: 230 files, 46.7 MB; 202611132345: 232 files, 70.2 MB); the star feature is only fully right once GridAtlas holds the October register |
 
 ## Part 4. Open points that need the owner or ChatGPT
 
 Only the owner:
-- Acceptance of the release. ChatGPT has written "production release complete" (6868912608); no acceptance by the owner is on the link.
-- Team 5's seven decisions (issue 17, 6868817609), first among them: confirm or reverse the merges made in his name, since RUNBOOK section 1 says the owner merges and moves the pointer in person.
-- Team 6's six questions (issue 20, 6868809262), unless ChatGPT can answer in his terms.
-- N2's decisions (a) to (c) and (f) (issue 19, 6869000917, section 6), and a push route to pipelinenews and gridatlas or a decision that they are not wanted.
-- The language-gate runner, or a waiver. Which scheduled workflows are allowed: his word covers the monthly REPD check; an hourly news workflow (PR #65) and a daily one (N4) are also proposed.
-- How large the news product should be: his 00:56 words to Claude say simple; the specification relayed by ChatGPT at 00:59 describes a six-market dashboard.
+- Acceptance of the release; Team 5's seven decisions (6868817609); Team 6's six questions (6868809262); N2's decisions (6869000917 section 6).
+- Push to gridatlas (Team 4's patch-0 and P1) or access for an agent to do it: the star feature of line 15 depends on it.
+- The language-gate runner or a waiver. Which scheduled workflows stand: monthly REPD (his word), daily data-centre news (on main), hourly Energy24 (ChatGPT's draft).
+- Whether a data-centres page beside Pipeline News (PR #72) is what he meant by convergence in Pipeline News.
 
 Only ChatGPT:
-- Team 3's three live checks (issue 15, 6868808787); gates and second pointer promotion for successor 202611140058 once it is on main.
-- Team 5's 355-row served manifest; restore point and served-byte evidence for the pin on issue 17.
-- PR #58, #59, #62: close or merge. Stale statements and one-off workflows it added.
-- Agree one fetcher between PR #65 and N4.
+- Second pointer promotion to 202611140058, and later to the guardian's release candidate; gates on each.
+- cyber-resilience PR #1: check and publish.
+- Live checks: Team 3's three (6868808787), G1's two (6869332568), the seven legacy pages after deploy of 3f136bfa, Team 5's 355-row manifest.
+- One fetcher with N4's feed; PR #58, #59, #62.
 
 The harness:
-- A checkpoint covering main as it now stands; successor lanes S-B and S-C; apply Team 3's successor patches; PR #67.
+- S-B; PR #72; N4's panel patch 0003; the guardian's ACK on issue 15.
 
-Resolved: live-site check (6868684475); homepage pointer (6868763314, final run 43537283611); PR #56 merged; government page read by ChatGPT (6868634705); D1 export defect (PR #63); S-A adopted (Team 3's successor).
+Resolved since revision 2: S-A (successor on main); M1 on main; legacy pages switched; G1's inventory; N4's feed.
 
 ## Corrections and extensions by the coordinator (each with its source)
 
@@ -147,3 +155,4 @@ Resolved: live-site check (6868684475); homepage pointer (6868763314, final run 
 - 00:53Z Part 3 lines 1, 2c, 6, 8a, 8b and Part 4 updated from the HANDOFFs of Teams 3, 5 and 6 (issue 15 comment 6868814345, issue 17 comment 6868817609, issue 20 comment 6868817840).
 - 01:06Z The harness replaced this file with its own copy plus the 00:56 addendum, which removed the corrections above. Restored; the five 00:56 instructions are now in Part 1, lines 10 to 13 in Part 2, and Part 3 is rewritten for the state at 01:06Z (globalgrid2050 main 10cc4b40; HANDOFFs on issues 13, 15, 19).
 - 01:06Z Part 1: added ChatGPT's relay of a news specification (issue 19 comment 6868955209). It is wider than the owner's 00:56 words to Claude; both are recorded, neither is edited.
+- 01:28Z Part 1 and Part 2: the owner's two instructions given between 00:56 and 01:18 added as lines 14 and 15, from the harness's quotation in issue 12 comment 6869302028 (they were not yet in this file). Part 3 rewritten: every Claude lane started before 01:20Z has handed off.

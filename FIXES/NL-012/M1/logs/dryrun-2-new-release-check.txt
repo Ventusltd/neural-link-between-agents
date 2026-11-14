@@ -1,0 +1,10 @@
+## New REPD release 2026q3
+
+- Checked at 2026-11-14T01:05:08Z; newest known release: `2026q2`
+- Reason: published sha256 not pinned by any known release; derived 2026q3 from file name / attachment title
+- CSV: https://assets.publishing.service.gov.uk/media/6af42ff0a4004bdbe54e54a5/REPD_Publication_Q3_2026.csv (5219160 bytes, sha256 `48e76c49f33a1090e78108d1ea9bfe689b35963ea3be1bb4f6516d038a5ff862`)
+- XLSX: https://assets.publishing.service.gov.uk/media/6af42ffdb83b3cae0d0a21c9/REPD_Publication_Q3_2026.xlsx (5378656 bytes, sha256 `87811e249395a05b223db6855952334f425e66cc9a2106caea0e38fd9e5037ea`)
+- Counts: {"csv_rows": 14968, "unique_refs": 14967, "duplicate_refs": ["7679"], "solar_gt_1mw": 3484, "bess_gt_100mw": 281}
+- Release folder: `uk_renewables_pipeline/202611140117/`
+
+exit=0

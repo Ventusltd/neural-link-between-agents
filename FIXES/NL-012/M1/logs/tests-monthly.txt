@@ -1,0 +1,14 @@
+automation/repd/tests/test_monthly.py::test_quarter_from_date PASSED     [  8%]
+automation/repd/tests/test_monthly.py::test_new_release_writes_descriptors_allowlist_and_counts PASSED [ 16%]
+automation/repd/tests/test_monthly.py::test_unchanged_when_hashes_are_pinned PASSED [ 25%]
+automation/repd/tests/test_monthly.py::test_redirected_old_url_is_judged_by_hash_not_url PASSED [ 33%]
+automation/repd/tests/test_monthly.py::test_same_quarter_with_new_bytes_needs_a_person PASSED [ 41%]
+automation/repd/tests/test_monthly.py::test_unnamed_files_get_a_date_derived_id PASSED [ 50%]
+automation/repd/tests/test_monthly.py::test_acceptance_waivers_carry_forward PASSED [ 58%]
+automation/repd/tests/test_monthly.py::test_allowlist_is_idempotent_and_optional PASSED [ 66%]
+automation/repd/tests/test_monthly.py::test_unreadable_publication_is_an_error_not_green PASSED [ 75%]
+automation/repd/tests/test_monthly.py::test_github_output PASSED         [ 83%]
+automation/repd/tests/test_monthly.py::test_real_october_files_are_unchanged_against_main PASSED [ 91%]
+automation/repd/tests/test_run.py::test_monthly_workflow_schedule_permissions_and_branch PASSED [100%]
+============================== 12 passed in 0.71s ==============================
+230 passed, 5 skipped in 14.93s

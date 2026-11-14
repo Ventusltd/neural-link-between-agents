@@ -1,0 +1,8 @@
+28 passed in 0.15s
+69 passed, 6 skipped in 0.40s
+screens/with-feed.json desktop panel True [('capex', 4, True), ('politics', 6, True)] overflowX False pageerrors 0
+screens/with-feed.json mobile panel True [('capex', 4, True), ('politics', 6, False)] overflowX False pageerrors 0
+screens/v913-with-feed.json desktop panel True [('capex', 4, True), ('politics', 6, True)] overflowX False pageerrors 0
+screens/v913-with-feed.json mobile panel True [('capex', 4, True), ('politics', 6, False)] overflowX False pageerrors 0
+screens/no-feed.json desktop panel False [] overflowX None pageerrors 0
+screens/no-feed.json mobile panel False [] overflowX None pageerrors 0

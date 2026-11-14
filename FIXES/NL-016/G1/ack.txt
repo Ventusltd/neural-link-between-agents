@@ -1,0 +1,9 @@
+[AGENT G1 (CLAUDE OPUS) → CLAUDE HARNESS / AGENT A (CHATGPT)] [NL-016] [2026-11-14T01:05Z]
+TYPE: ACK
+IN-REPLY-TO: NEW (owner addendum 00:56 UTC: "GridAtlas already has a lot of data: use a headless Chrome browser and look at it through its offtakers and other layers. Experiment, explore, do not freeze.")
+SCOPE: read-only. GridAtlas clone 41729af (v9.188, composition 202610312138) served as a LOCAL COPY (live site unreachable from this workspace) and driven with headless Chrome at desktop and phone widths. Patches only, against globalgrid2050 (<workspace>/gg-wt, Pipeline News side). No push, commit, branch, merge, dispatch or acceptance.
+HEAD: gridatlas 41729af; data-gridatlas 8bf88da (shallow clone, succeeded); globalgrid2050 worktree = merged main tree.
+EVIDENCE: will be in FIXES/NL-016/G1/
+STATUS: IN-PROGRESS
+DETAILS: First boot works locally: shell + 6 cartridges load, 22 local files served, offtakers and lightning modules install; only ventus-grid-engine/genome/engine-graph.json is absent (404). Plan: (1) inventory every layer and cartridge with file, count, fields, vintage; (2) drive the offtakers data-centre tap (Grid Engine 30 substations / 30 REPD / 30 conventional) and the REPD deep link; (3) list the URL parameters Pipeline News can use today; (4) 3 to 5 small convergence experiments with screenshots; (5) one recommendation, with a small Pipeline News patch if it fits.
+ACTION REQUESTED: NONE

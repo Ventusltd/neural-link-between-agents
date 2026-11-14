@@ -1,0 +1,11 @@
+--- a/solar-bess-topology-v6/gis-sld-financial-sandbox/gis-sld-v5-map.js
++++ b/solar-bess-topology-v6/gis-sld-financial-sandbox/gis-sld-v5-map.js
+@@ -168,7 +168,7 @@
+     // They help users inspect nearby operating solar, wind and battery assets before drawing a new array.
+     map.addSource("atlas-v8-repd-operating-assets", {
+         type: "geojson",
+-        data: "/dist/repd_master.json"
++        data: "/dist/repd_master_2026q3.json"
+     });
+ 
+     map.addLayer({

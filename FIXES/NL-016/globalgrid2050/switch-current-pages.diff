@@ -1,0 +1,77 @@
+--- a/repd-atlas.md
++++ b/repd-atlas.md
+@@ -84,7 +84,7 @@
+     }).addTo(map);
+ 
+     const markers = L.markerClusterGroup({ disableClusteringAtZoom: 12 });
+-    const csvUrl = '{{ site.baseurl }}/repd.csv';
++    const csvUrl = '{{ site.baseurl }}/repd-2026q3.csv';
+ 
+     let allData = [];
+     let allMarkers = [];
+--- a/uk_grid-batteries.md
++++ b/uk_grid-batteries.md
+@@ -55,7 +55,7 @@
+     const markers = L.markerClusterGroup({ disableClusteringAtZoom: 13 });
+     
+     // Linked to the BESS CSV shown in your image
+-    const csvUrl = '{{ site.baseurl }}/repd-grid-batteries.csv';
++    const csvUrl = '{{ site.baseurl }}/repd-grid-batteries-2026q3.csv';
+ 
+     Papa.parse(csvUrl, {
+         download: true, header: true, skipEmptyLines: true,
+--- a/uk_operating_large_solar_farms.md
++++ b/uk_operating_large_solar_farms.md
+@@ -84,7 +84,7 @@
+     }).addTo(map);
+ 
+     const markers = L.markerClusterGroup({ disableClusteringAtZoom: 12 });
+-    const csvUrl = '{{ site.baseurl }}/repd-solar-operational-over-4mw.csv';
++    const csvUrl = '{{ site.baseurl }}/repd-solar-operational-over-4mw-2026q3.csv';
+ 
+     let allData = [];
+     let allMarkers = [];
+--- a/repd-uk-operational-solar.md
++++ b/repd-uk-operational-solar.md
+@@ -84,7 +84,7 @@
+     }).addTo(map);
+ 
+     const markers = L.markerClusterGroup({ disableClusteringAtZoom: 12 });
+-    const csvUrl = '{{ site.baseurl }}/repd-solar-operational.csv';
++    const csvUrl = '{{ site.baseurl }}/repd-solar-operational-2026q3.csv';
+ 
+     let allData = [];
+     let allMarkers = [];
+--- a/uk_offshore_wind_atlas.md
++++ b/uk_offshore_wind_atlas.md
+@@ -85,7 +85,7 @@
+     }).addTo(map);
+ 
+     const markers = L.markerClusterGroup({ disableClusteringAtZoom: 10 });
+-    const csvUrl = '{{ site.baseurl }}/repd.csv'; // Scanning the core REPD dataset
++    const csvUrl = '{{ site.baseurl }}/repd-2026q3.csv'; // Scanning the core REPD dataset
+ 
+     let allData = [];
+     let allMarkers = [];
+--- a/uk_onshore_wind_atlas.md
++++ b/uk_onshore_wind_atlas.md
+@@ -84,7 +84,7 @@
+     }).addTo(map);
+ 
+     const markers = L.markerClusterGroup({ disableClusteringAtZoom: 12 });
+-    const csvUrl = '{{ site.baseurl }}/repd.csv'; // Scanning the core REPD dataset
++    const csvUrl = '{{ site.baseurl }}/repd-2026q3.csv'; // Scanning the core REPD dataset
+ 
+     let allData = [];
+     let allMarkers = [];
+--- a/uk_solar_in-planning-1-50mw.md
++++ b/uk_solar_in-planning-1-50mw.md
+@@ -123,7 +123,7 @@
+         .catch(error => console.error('Error loading 132kV:', error));
+ 
+     const markers = L.markerClusterGroup({ disableClusteringAtZoom: 12 });
+-    const csvUrl = '{{ site.baseurl }}/repd.csv';
++    const csvUrl = '{{ site.baseurl }}/repd-2026q3.csv';
+ 
+     let allData = [];
+     let allMarkers = [];

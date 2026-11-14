@@ -1,0 +1,7030 @@
+{
+"substations_loaded": 5800,
+"substations_qualifying": 5800,
+"MIN_KV": 33,
+"LINK_COUNT": 5,
+"MAX_LINK_KM": 40,
+"groups": {
+"added": {
+"records": 328,
+"placeholder_no_map": [],
+"measured": 328,
+"nearest_km_median": 1.357,
+"nearest_km_p95": 6.141,
+"nearest_km_max": 17.265,
+"beyond_40km_no_links": [],
+"region_lat_mismatch": []
+},
+"moved": {
+"records": 19,
+"placeholder_no_map": [],
+"measured": 19,
+"nearest_km_median": 1.883,
+"nearest_km_p95": 9.179,
+"nearest_km_max": 9.179,
+"beyond_40km_no_links": [],
+"region_lat_mismatch": [],
+"moved_over_5km": [
+"7871 Artfield Forest Wind Farm moved 103.811 km",
+"8912 Bolfornought Farm Battery Storage Facility moved 581.288 km",
+"10222 A981 Fraserburgh - Battery Energy Storage moved 59.461 km",
+"12711 A981 Fraserburgh - Battery Energy Storage moved 8.708 km",
+"13290 Corshellach Battery Energy Storage moved 222.675 km",
+"14535 Dorenell Extension Wind Farm moved 9.459 km",
+"14536 Dorenell Extension Wind Farm moved 9.459 km",
+"16884 Smiddyhill, Strichen - Battery Energy Storage moved 10.109 km",
+"18504 Rothienorman, Middleton of Blackhills - BESS moved 7.957 km",
+"18563 Salters Lane - Solar Panels moved 364.451 km",
+"21008 Hillhead Road & Dundrum Road - Wind Farm moved 243.992 km",
+"21026 White Barn Farm, Station Road - Wind Turbines moved 195.666 km"
+]
+}
+},
+"salters_lane": [
+{
+"repd_ref": "18561",
+"name": "Salters Lane - Solar Panels",
+"county": "Tyne And Wear",
+"lon": -0.659174,
+"lat": 51.590722,
+"nearest": {
+"name": "",
+"kv": 33,
+"km": 3.367
+}
+},
+{
+"repd_ref": "18562",
+"name": "Salters Lane - Solar Panels",
+"county": "Tyne And Wear",
+"lon": -0.659174,
+"lat": 51.590722,
+"nearest": {
+"name": "",
+"kv": 33,
+"km": 3.367
+}
+}
+],
+"rows": [
+{
+"kind": "added",
+"repd_ref": "7012",
+"name": "Land off Shilton Lane",
+"technology": "bess",
+"status": "operational",
+"capacity_mw": 40,
+"region": "Scotland",
+"county": "Renfrewshire",
+"lon": -4.475961,
+"lat": 55.912564,
+"placeholder": false,
+"nearest": {
+"name": "Erskine Substation",
+"kv": 132,
+"km": 1.031
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "7221",
+"name": "Mauxhall Farm",
+"technology": "solar",
+"status": "operational",
+"capacity_mw": 44.5,
+"region": "Yorkshire and Humber",
+"county": "Humberside",
+"lon": -0.200019,
+"lat": 53.601904,
+"placeholder": false,
+"nearest": {
+"name": "Mauxhall Farm",
+"kv": 33,
+"km": 0.181
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "7230",
+"name": "Land North of Actrees Solar Farm",
+"technology": "bess",
+"status": "operational",
+"capacity_mw": 49.9,
+"region": "South West",
+"county": "Gloucestershire",
+"lon": -2.421556,
+"lat": 51.681669,
+"placeholder": false,
+"nearest": {
+"name": "Actree Solar Farm Substation",
+"kv": 33,
+"km": 0.244
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "7827",
+"name": "Mauxhall Farm",
+"technology": "bess",
+"status": "operational",
+"capacity_mw": 25,
+"region": "Yorkshire and Humber",
+"county": "Humberside",
+"lon": -0.200019,
+"lat": 53.601904,
+"placeholder": false,
+"nearest": {
+"name": "Mauxhall Farm",
+"kv": 33,
+"km": 0.181
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "7871",
+"name": "Artfield Forest Wind Farm",
+"technology": "wind_onshore",
+"status": "awaiting construction",
+"capacity_mw": 67.2,
+"region": "Scotland",
+"county": "Dumfries and Galloway",
+"lon": -4.747218,
+"lat": 54.967447,
+"placeholder": false,
+"nearest": {
+"name": "Kilgallioch Wind Farm Substation",
+"kv": 275,
+"km": 9.179
+},
+"drawn_links": 5,
+"moved_km": 103.811,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "8842",
+"name": "Cullerlie Solar Farm",
+"technology": "solar",
+"status": "operational",
+"capacity_mw": 15,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.365735,
+"lat": 57.116214,
+"placeholder": false,
+"nearest": {
+"name": "Park Primary Substation",
+"kv": 33,
+"km": 3.621
+},
+"drawn_links": 5,
+"moved_km": 0.264,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "8912",
+"name": "Bolfornought Farm Battery Storage Facility",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 49.9,
+"region": "Scotland",
+"county": "Central",
+"lon": -3.895117,
+"lat": 56.120551,
+"placeholder": false,
+"nearest": {
+"name": "Stirling",
+"kv": 132,
+"km": 1.543
+},
+"drawn_links": 5,
+"moved_km": 581.288,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "8982",
+"name": "Tarland Substation",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "Scotland",
+"county": "Grampian",
+"lon": -2.785756,
+"lat": 57.152832,
+"placeholder": false,
+"nearest": {
+"name": "Tarland Substation",
+"kv": 132,
+"km": 0.133
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "9159",
+"name": "Reaps Moss - Wind turbine",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 5,
+"region": "North West",
+"county": "Lancashire",
+"lon": -2.203006,
+"lat": 53.701003,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 6.491
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "10222",
+"name": "A981 Fraserburgh - Battery Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 25,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.026323,
+"lat": 57.671397,
+"placeholder": false,
+"nearest": {
+"name": "Fraserburgh",
+"kv": 132,
+"km": 1.66
+},
+"drawn_links": 5,
+"moved_km": 59.461,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "10467",
+"name": "Kintore Battery Energy Storage Project",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 300,
+"region": "Scotland",
+"county": "Grampian",
+"lon": -2.335355,
+"lat": 57.220547,
+"placeholder": false,
+"nearest": {
+"name": "Torryburn Primary Substation",
+"kv": 33,
+"km": 1.379
+},
+"drawn_links": 5,
+"moved_km": 0.476,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "10633",
+"name": "Cairnmore Hill Wind Farm",
+"technology": "wind_onshore",
+"status": "awaiting construction",
+"capacity_mw": 21,
+"region": "Scotland",
+"county": "Highland",
+"lon": -3.629125,
+"lat": 58.599482,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 5.586
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "10638",
+"name": "Rothienorman - Battery Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 49.9,
+"region": "Scotland",
+"county": "Grampian",
+"lon": -2.492176,
+"lat": 57.420816,
+"placeholder": false,
+"nearest": {
+"name": "Rothienorman Substation",
+"kv": 400,
+"km": 1.883
+},
+"drawn_links": 5,
+"moved_km": 1.697,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "10701",
+"name": "Broomhill BESS - Battery Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 49,
+"region": "Scotland",
+"county": "Grampian",
+"lon": -2.347223,
+"lat": 57.216553,
+"placeholder": false,
+"nearest": {
+"name": "Torryburn Primary Substation",
+"kv": 33,
+"km": 1.624
+},
+"drawn_links": 5,
+"moved_km": 0.365,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "11058",
+"name": "Mynydd y Gaer Wind Farm",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 70,
+"region": "Wales",
+"county": "Mid Glamorgan",
+"lon": -3.508667,
+"lat": 51.562547,
+"placeholder": false,
+"nearest": {
+"name": "Taff Ely Wind Farm Substation",
+"kv": 33,
+"km": 3.077
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "11844",
+"name": "Llangurig - Banc Du Energy Park",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 40,
+"region": "Wales",
+"county": "Powys",
+"lon": -3.619277,
+"lat": 52.429379,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 6.364
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "11869",
+"name": "Llangurig - Rhiwlas Energy Park",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 80,
+"region": "Wales",
+"county": "Powys",
+"lon": -3.619514,
+"lat": 52.411771,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 7.477
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "12037",
+"name": "Tigh Na Bradhan, Fasnakyle - Battery Storage Facility",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "Scotland",
+"county": "Highland",
+"lon": -4.806112,
+"lat": 57.31856,
+"placeholder": false,
+"nearest": {
+"name": "Fasnakyle Substation",
+"kv": 275,
+"km": 1.449
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "12446",
+"name": "Greenlands, Wreay - Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 49.9,
+"region": "North West",
+"county": "Cumbria",
+"lon": -2.906678,
+"lat": 54.825679,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 8.6
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "12688",
+"name": "Hayton House, North Aberford - Solar Farm & Battery Storage",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 49.9,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.340943,
+"lat": 53.844802,
+"placeholder": false,
+"nearest": {
+"name": "Warren Lane",
+"kv": 33,
+"km": 3.137
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "12689",
+"name": "Hayton House, North Aberford - Solar Farm & Battery Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 50,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.340943,
+"lat": 53.844802,
+"placeholder": false,
+"nearest": {
+"name": "Warren Lane",
+"kv": 33,
+"km": 3.137
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "12711",
+"name": "A981 Fraserburgh - Battery Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 45,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.026323,
+"lat": 57.671397,
+"placeholder": false,
+"nearest": {
+"name": "Fraserburgh",
+"kv": 132,
+"km": 1.66
+},
+"drawn_links": 5,
+"moved_km": 8.708,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "12780",
+"name": "Alness Grid Sub Station, Mid Balnacraig - Battery Storage Facility",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 50,
+"region": "Scotland",
+"county": "Highland",
+"lon": -4.279,
+"lat": 57.706448,
+"placeholder": false,
+"nearest": {
+"name": "Alness Substation",
+"kv": 132,
+"km": 0.334
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "13290",
+"name": "Corshellach Battery Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 49.9,
+"region": "Scotland",
+"county": "Moray",
+"lon": -3.566332,
+"lat": 57.490784,
+"placeholder": false,
+"nearest": {
+"name": "Berry Burn",
+"kv": 275,
+"km": 2.466
+},
+"drawn_links": 5,
+"moved_km": 222.675,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "13422",
+"name": "Llyr 1 Wind Farm",
+"technology": "wind_offshore",
+"status": "awaiting construction",
+"capacity_mw": 100,
+"region": "Wales",
+"county": "Offshore",
+"lon": -5.05987,
+"lat": 51.666182,
+"placeholder": false,
+"nearest": {
+"name": "Texaco Substation",
+"kv": 132,
+"km": 2.646
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "14038",
+"name": "Beddington Lane, Beddington - Anaerobic Digestion Facility",
+"technology": "biomass",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "London",
+"county": "London",
+"lon": -0.130619,
+"lat": 51.372834,
+"placeholder": false,
+"nearest": {
+"name": "Beddington Substation",
+"kv": 400,
+"km": 0.219
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "14469",
+"name": "Tregath Business Park Station Road - Geothermal Development",
+"technology": "geothermal",
+"status": "awaiting construction",
+"capacity_mw": 49,
+"region": "South West",
+"county": "Cornwall",
+"lon": -4.688705,
+"lat": 50.639062,
+"placeholder": false,
+"nearest": {
+"name": "Delabole Substation",
+"kv": 33,
+"km": 2.209
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "14535",
+"name": "Dorenell Extension Wind Farm",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 476.6,
+"region": "Scotland",
+"county": "Moray",
+"lon": -3.097559,
+"lat": 57.307363,
+"placeholder": false,
+"nearest": {
+"name": "Dorenell Wind Farm Substation",
+"kv": 132,
+"km": 7.845
+},
+"drawn_links": 5,
+"moved_km": 9.459,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "14536",
+"name": "Dorenell Extension Wind Farm",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 20,
+"region": "Scotland",
+"county": "Moray",
+"lon": -3.097559,
+"lat": 57.307363,
+"placeholder": false,
+"nearest": {
+"name": "Dorenell Wind Farm Substation",
+"kv": 132,
+"km": 7.845
+},
+"drawn_links": 5,
+"moved_km": 9.459,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "14851",
+"name": "Rosefield - Solar Farm & Battery Storage",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 500,
+"region": "South East",
+"county": "Buckinghamshire",
+"lon": -0.937412,
+"lat": 51.905303,
+"placeholder": false,
+"nearest": {
+"name": "Greatmoor EFW Calvert Substation",
+"kv": 33,
+"km": 3.033
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "14852",
+"name": "Rosefield - Solar Farm & Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "South East",
+"county": "Buckinghamshire",
+"lon": -0.937412,
+"lat": 51.905303,
+"placeholder": false,
+"nearest": {
+"name": "Greatmoor EFW Calvert Substation",
+"kv": 33,
+"km": 3.033
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "14926",
+"name": "The Kintore Hydrogen Project, Kintore - Hydrogen Plant",
+"technology": "hydrogen",
+"status": "awaiting construction",
+"capacity_mw": 3000,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.394448,
+"lat": 57.215264,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 275,
+"km": 0.458
+},
+"drawn_links": 5,
+"moved_km": 3.833,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "14991",
+"name": "Forsinain Forest Wind Farm",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 86.4,
+"region": "Scotland",
+"county": "Highland",
+"lon": -3.865339,
+"lat": 58.385605,
+"placeholder": false,
+"nearest": {
+"name": "Connagill Substation",
+"kv": 275,
+"km": 14.107
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "15038",
+"name": "Raigmore Hospital, Old Perth Road - Battery Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "Scotland",
+"county": "Highland",
+"lon": -4.192472,
+"lat": 57.473823,
+"placeholder": false,
+"nearest": {
+"name": "Raigmore Primary",
+"kv": 33,
+"km": 0.196
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "15088",
+"name": "Glengolly Farmhouse- Battery Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 49.9,
+"region": "Scotland",
+"county": "Highland",
+"lon": -3.536301,
+"lat": 58.573211,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.367
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "15172",
+"name": "Muttonhole Road - Battery Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 500,
+"region": "Scotland",
+"county": "Lanarkshire",
+"lon": -4.09801,
+"lat": 55.75726,
+"placeholder": false,
+"nearest": {
+"name": "Strathaven Substation",
+"kv": 275,
+"km": 1.151
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "15550",
+"name": "Mynydd Ty Talwyn Energy Park",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 43,
+"region": "Wales",
+"county": "West Glamorgan",
+"lon": -3.635827,
+"lat": 51.562506,
+"placeholder": false,
+"nearest": {
+"name": "Llynfi Primary Substation",
+"kv": 66,
+"km": 1.865
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "15551",
+"name": "Mynydd Ty Talwyn Energy Park",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 50,
+"region": "Wales",
+"county": "West Glamorgan",
+"lon": -3.635827,
+"lat": 51.562506,
+"placeholder": false,
+"nearest": {
+"name": "Llynfi Primary Substation",
+"kv": 66,
+"km": 1.865
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "15866",
+"name": "Meridian Solar Farm - Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 750,
+"region": "East Midlands",
+"county": "Lincolnshire",
+"lon": -0.107387,
+"lat": 52.745589,
+"placeholder": false,
+"nearest": {
+"name": "Spalding Substation",
+"kv": 132,
+"km": 3.837
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "15867",
+"name": "Meridian Solar Farm - Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "East Midlands",
+"county": "Lincolnshire",
+"lon": -0.107387,
+"lat": 52.745589,
+"placeholder": false,
+"nearest": {
+"name": "Spalding Substation",
+"kv": 132,
+"km": 3.837
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "16613",
+"name": "Castleford Wastewater Treatment Works, Wheldon Road - Solar Array",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 0.35,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.328387,
+"lat": 53.732722,
+"placeholder": false,
+"nearest": {
+"name": "Smith Street",
+"kv": 33,
+"km": 0.688
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "16768",
+"name": "Corriemoillie Quarry - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 200,
+"region": "Scotland",
+"county": "Highland",
+"lon": -4.749831,
+"lat": 57.632288,
+"placeholder": false,
+"nearest": {
+"name": "Corriemoillie Substation",
+"kv": 132,
+"km": 1.166
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "16791",
+"name": "Gypsy Lane, Burnett - Solar PV Arrays",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 24.5,
+"region": "South West",
+"county": "Somerset",
+"lon": -2.484989,
+"lat": 51.391009,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.354
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "16884",
+"name": "Smiddyhill, Strichen - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 49.9,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.042655,
+"lat": 57.58959,
+"placeholder": false,
+"nearest": {
+"name": "Strichen Substation",
+"kv": 132,
+"km": 1.684
+},
+"drawn_links": 5,
+"moved_km": 10.109,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "17137",
+"name": "Charleston Energy Park",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 30,
+"region": "Scotland",
+"county": "Highland",
+"lon": -3.229149,
+"lat": 58.637144,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 12.212
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "17138",
+"name": "Charleston Energy Park",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 25,
+"region": "Scotland",
+"county": "Highland",
+"lon": -3.229149,
+"lat": 58.637144,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 12.212
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "17141",
+"name": "Port of Dundas - Battery Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 90,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -4.256592,
+"lat": 55.873596,
+"placeholder": false,
+"nearest": {
+"name": "Port Dundas",
+"kv": 275,
+"km": 0.096
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "17150",
+"name": "Fyrish Battery Energy Storage System",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 200,
+"region": "Scotland",
+"county": "Highland",
+"lon": -4.295384,
+"lat": 57.692413,
+"placeholder": false,
+"nearest": {
+"name": "Fyrish Substation",
+"kv": 275,
+"km": 0.772
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "17429",
+"name": "Fosse Way - Solar Farm",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 49.99,
+"region": "West Midlands",
+"county": "Warwickshire",
+"lon": -1.486109,
+"lat": 52.254964,
+"placeholder": false,
+"nearest": {
+"name": "Fosse Way Radford Solar FM",
+"kv": 33,
+"km": 0.209
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "17430",
+"name": "Fosse Way - Battery Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "West Midlands",
+"county": "Warwickshire",
+"lon": -1.486109,
+"lat": 52.254964,
+"placeholder": false,
+"nearest": {
+"name": "Fosse Way Radford Solar FM",
+"kv": 33,
+"km": 0.209
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "17466",
+"name": "Fence Dike Lane - Battery Energy Storage System",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Yorkshire and Humber",
+"county": "North Yorkshire",
+"lon": -1.551947,
+"lat": 54.330629,
+"placeholder": false,
+"nearest": {
+"name": "Leeming Bar",
+"kv": 132,
+"km": 0.577
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "17554",
+"name": "North Logiealmond Wind Farm",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 93.6,
+"region": "Scotland",
+"county": "Perth and Kinross",
+"lon": -3.745256,
+"lat": 56.505421,
+"placeholder": false,
+"nearest": {
+"name": "Griffin Wind Farm Substation",
+"kv": 132,
+"km": 6.738
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "17760",
+"name": "Brownside Farm - Electricity Production Facility & Battery Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 14.9,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.554147,
+"lat": 57.578267,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 5.172
+},
+"drawn_links": 5,
+"moved_km": 0.064,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "17857",
+"name": "Sandhutton Biofuel Plant, North Farm - Anaerobic Digestion",
+"technology": "biomass",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "Yorkshire and Humber",
+"county": "North Yorkshire",
+"lon": -1.42384,
+"lat": 54.2247,
+"placeholder": false,
+"nearest": {
+"name": "Thirsk",
+"kv": 33,
+"km": 2.371
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "17931",
+"name": "Shin Etsu Handotai Europe, Wilson Road - Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 6,
+"region": "Scotland",
+"county": "West Lothian",
+"lon": -3.563358,
+"lat": 55.888382,
+"placeholder": false,
+"nearest": {
+"name": "Deans Substation",
+"kv": 33,
+"km": 1.766
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "18079",
+"name": "Invercassley Wind Farm, Rosehall - Wind Farm & Battery Storage",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 144,
+"region": "Scotland",
+"county": "Highland",
+"lon": -4.665042,
+"lat": 58.053249,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 9.971
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "18084",
+"name": "Upper Greenfield, Cuminestown - New Deer 2 Battery Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 400,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.323702,
+"lat": 57.51911,
+"placeholder": false,
+"nearest": {
+"name": "New Deer Substation",
+"kv": 400,
+"km": 3.897
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "18467",
+"name": "Swinford Battery Energy Storage System",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 1000,
+"region": "East Midlands",
+"county": "Leicestershire",
+"lon": -1.15757,
+"lat": 52.435169,
+"placeholder": false,
+"nearest": {
+"name": "Swinford Wind Farm Substation",
+"kv": 33,
+"km": 1.183
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "18477",
+"name": "Craigo Glenskinno - Solar and Battery Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 60,
+"region": "Scotland",
+"county": "Angus",
+"lon": -2.522794,
+"lat": 56.742079,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 3.165
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "18478",
+"name": "Craigo Glenskinno - Solar and Battery Farm",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 60,
+"region": "Scotland",
+"county": "Angus",
+"lon": -2.522794,
+"lat": 56.742079,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 3.165
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "18499",
+"name": "Hagshaw, Conexus West -Battery Energy Storage System",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 500,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -3.840909,
+"lat": 55.588286,
+"placeholder": false,
+"nearest": {
+"name": "Douglas North",
+"kv": 132,
+"km": 0.606
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "18502",
+"name": "Neshion Energy Park - Wind Farm",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 58,
+"region": "Scotland",
+"county": "Shetland",
+"lon": -1.243766,
+"lat": 60.467058,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.024
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "18503",
+"name": "Neshion Energy Park - BESS",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 25,
+"region": "Scotland",
+"county": "Shetland",
+"lon": -1.243766,
+"lat": 60.467058,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.024
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "18504",
+"name": "Rothienorman, Middleton of Blackhills - BESS",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 500,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.512658,
+"lat": 57.411536,
+"placeholder": false,
+"nearest": {
+"name": "Rothienorman Substation",
+"kv": 400,
+"km": 0.278
+},
+"drawn_links": 5,
+"moved_km": 7.957,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "18563",
+"name": "Salters Lane - Solar Panels",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 42,
+"region": "North East",
+"county": "Tyne And Wear",
+"lon": -1.414868,
+"lat": 54.833266,
+"placeholder": false,
+"nearest": {
+"name": "Hawthorn Pit Grid",
+"kv": 66,
+"km": 3.124
+},
+"drawn_links": 5,
+"moved_km": 364.451,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "18572",
+"name": "Middleton Of Blackhills, Rothienorman - Battery Energy Storage System",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 49.9,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.512078,
+"lat": 57.410478,
+"placeholder": false,
+"nearest": {
+"name": "Rothienorman Substation",
+"kv": 400,
+"km": 0.258
+},
+"drawn_links": 5,
+"moved_km": 0.968,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19020",
+"name": "Lochay Power Station - Lochay Hydro Power Station Repowering",
+"technology": "hydro",
+"status": "awaiting construction",
+"capacity_mw": 53.2,
+"region": "Scotland",
+"county": "Perthshire",
+"lon": -4.39311,
+"lat": 56.491578,
+"placeholder": false,
+"nearest": {
+"name": "Lochay Substation",
+"kv": 132,
+"km": 1.943
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19041",
+"name": "Ravengill Energy Park - Wind Farm & Battery Energy Storage",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 147,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -4.275212,
+"lat": 55.866432,
+"placeholder": false,
+"nearest": {
+"name": "West George Street Substation",
+"kv": 275,
+"km": 0.673
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19042",
+"name": "Ravengill Energy Park - Wind Farm & Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 50,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -4.275212,
+"lat": 55.866432,
+"placeholder": false,
+"nearest": {
+"name": "West George Street Substation",
+"kv": 275,
+"km": 0.673
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19100",
+"name": "Burgar Hill Repower",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 30,
+"region": "Scotland",
+"county": "Islands",
+"lon": -3.119205,
+"lat": 59.116889,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.573
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19139",
+"name": "Hallfield Farm, Easington - Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 300,
+"region": "North East",
+"county": "County Durham",
+"lon": -1.370206,
+"lat": 54.793016,
+"placeholder": false,
+"nearest": {
+"name": "Hawthorn Pit",
+"kv": 66,
+"km": 2.305
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19213",
+"name": "Glebe Farm Solar Farm",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 38.78,
+"region": "East Midlands",
+"county": "Lincolnshire",
+"lon": -0.548128,
+"lat": 52.946647,
+"placeholder": false,
+"nearest": {
+"name": "Grantham Substation",
+"kv": 132,
+"km": 3.641
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19365",
+"name": "Marton Road - Micro Energy Storage Facility",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "North East",
+"county": "Cleveland",
+"lon": -1.212638,
+"lat": 54.542269,
+"placeholder": false,
+"nearest": {
+"name": "Prissick Substation",
+"kv": 66,
+"km": 0.102
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19470",
+"name": "Hagshaw Hill III Energy Project - Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 30,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -3.848569,
+"lat": 55.557813,
+"placeholder": false,
+"nearest": {
+"name": "Douglas West Substation",
+"kv": 33,
+"km": 1.505
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19471",
+"name": "Hagshaw Hill III Energy Project - LDES",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 50,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -3.848569,
+"lat": 55.557813,
+"placeholder": false,
+"nearest": {
+"name": "Douglas West Substation",
+"kv": 33,
+"km": 1.505
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19472",
+"name": "Hagshaw Hill III Energy Project - Wind Turbines",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 58,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -3.848569,
+"lat": 55.557813,
+"placeholder": false,
+"nearest": {
+"name": "Douglas West Substation",
+"kv": 33,
+"km": 1.505
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19582",
+"name": "Heolddu Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 40,
+"region": "Wales",
+"county": "Dyfed",
+"lon": -4.345396,
+"lat": 51.772535,
+"placeholder": false,
+"nearest": {
+"name": "Kidwelly Primary Substation",
+"kv": 33,
+"km": 5.059
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19635",
+"name": "Tewes Farm, Thaxted Road - Solar Array",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 49.99,
+"region": "Eastern",
+"county": "Essex",
+"lon": 0.364239,
+"lat": 51.971734,
+"placeholder": false,
+"nearest": {
+"name": "Boyton End Substation",
+"kv": 132,
+"km": 0.727
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19768",
+"name": "Potters Farm, Potters Lane - Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 26,
+"region": "Eastern",
+"county": "Essex",
+"lon": 0.558485,
+"lat": 51.640063,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 2.628
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19806",
+"name": "Langlands Gate, East Kilbride - Battery Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 30,
+"region": "Scotland",
+"county": "Lanarkshire",
+"lon": -4.169748,
+"lat": 55.736349,
+"placeholder": false,
+"nearest": {
+"name": "East Kilbride South Substation",
+"kv": 275,
+"km": 0.647
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "19928",
+"name": "Micro Energy Storage Unit, Kenilworth Road - Micro Energy Storage Facility",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "West Midlands",
+"county": "Warwickshire",
+"lon": -1.538942,
+"lat": 52.31646,
+"placeholder": false,
+"nearest": {
+"name": "Campion Hills Substation",
+"kv": 33,
+"km": 2.715
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "20123",
+"name": "Featherby Road, Bredgar Road - Micro Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "South East",
+"county": "Kent",
+"lon": 0.579913,
+"lat": 51.380824,
+"placeholder": false,
+"nearest": {
+"name": "Gillingham DC Traction Substation",
+"kv": 33,
+"km": 1.619
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "20149",
+"name": "Lamby Way Landfill - Solar Farm",
+"technology": "solar",
+"status": "under construction",
+"capacity_mw": 8.95,
+"region": "Wales",
+"county": "South Glamorgan",
+"lon": -3.124033,
+"lat": 51.498696,
+"placeholder": false,
+"nearest": {
+"name": "Cardiff East Grid Substation",
+"kv": 275,
+"km": 1.535
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "20406",
+"name": "Glebe Farm, Fen Road - Anaerobic Digester",
+"technology": "biomass",
+"status": "application submitted",
+"capacity_mw": 7.8,
+"region": "East Midlands",
+"county": "Lincolnshire",
+"lon": 0.047065,
+"lat": 53.150271,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 4.342
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "20880",
+"name": "Treviscoe Dryers, Barton Lane - Electrolytic Green Hydrogen Production",
+"technology": "hydrogen",
+"status": "application submitted",
+"capacity_mw": 20,
+"region": "South West",
+"county": "Cornwall",
+"lon": -4.893141,
+"lat": 50.36605,
+"placeholder": false,
+"nearest": {
+"name": "St Stephen 33kV Solar Park",
+"kv": 33,
+"km": 1.194
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "20909",
+"name": "Follens Road, Walpole St Andrew - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 277.9,
+"region": "Eastern",
+"county": "Cambridgeshire",
+"lon": 0.21421,
+"lat": 52.742978,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.359
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "20991",
+"name": "Conesby Solar Farm",
+"technology": "solar",
+"status": "under construction",
+"capacity_mw": 54,
+"region": "Yorkshire and Humber",
+"county": "Lincolnshire",
+"lon": -0.661392,
+"lat": 53.627173,
+"placeholder": false,
+"nearest": {
+"name": "Bagmoor WF",
+"kv": 33,
+"km": 0.346
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "20998",
+"name": "Stannergate Wastewater Pumping Station - Solar Farm",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 0.72,
+"region": "Scotland",
+"county": "Tayside",
+"lon": -2.933098,
+"lat": 56.468762,
+"placeholder": false,
+"nearest": {
+"name": "Milton of Craigie",
+"kv": 132,
+"km": 0.879
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "21008",
+"name": "Hillhead Road & Dundrum Road - Wind Farm",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Northern Ireland",
+"county": "Co. Down",
+"lon": -5.957921,
+"lat": 54.362803,
+"placeholder": false,
+"nearest": {
+"name": "Dromara Central Substation",
+"kv": 33,
+"km": 3.759
+},
+"drawn_links": 5,
+"moved_km": 243.992,
+"region_lat_mismatch": false
+},
+{
+"kind": "moved",
+"repd_ref": "21026",
+"name": "White Barn Farm, Station Road - Wind Turbines",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 1.7,
+"region": "East Midlands",
+"county": "Northamptonshire",
+"lon": -1.085841,
+"lat": 52.296598,
+"placeholder": false,
+"nearest": {
+"name": "Patford Bridge Substation",
+"kv": 400,
+"km": 2.157
+},
+"drawn_links": 5,
+"moved_km": 195.666,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21073",
+"name": "Southampton Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 1000,
+"region": "South East",
+"county": "Hampshire",
+"lon": -1.469329,
+"lat": 50.915429,
+"placeholder": false,
+"nearest": {
+"name": "Millbrook Substation",
+"kv": 132,
+"km": 0.403
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21099",
+"name": "Loch Levens - Solar Array and Battery",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 0.16,
+"region": "Scotland",
+"county": "Tayside",
+"lon": -3.35612,
+"lat": 56.223691,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 4.179
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21100",
+"name": "Loch Levens - Solar Array and Battery",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "Scotland",
+"county": "Tayside",
+"lon": -3.35612,
+"lat": 56.223691,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 4.179
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21101",
+"name": "Hillside Road, Armoy - Wind Turbine",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 0.25,
+"region": "Northern Ireland",
+"county": "Co. Antrim",
+"lon": -6.320793,
+"lat": 55.139,
+"placeholder": false,
+"nearest": {
+"name": "Ballycastle Central 33 kV Substation",
+"kv": 33,
+"km": 6.995
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21102",
+"name": "Marlacoo Road, Portadown - Wind Turbine",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 0.9,
+"region": "Northern Ireland",
+"county": "Co. Armagh",
+"lon": -6.499591,
+"lat": 54.345347,
+"placeholder": false,
+"nearest": {
+"name": "Richhill Central 33kV Substation",
+"kv": 33,
+"km": 5.121
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21103",
+"name": "River Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.25,
+"region": "London",
+"county": "Essex",
+"lon": 0.1013,
+"lat": 51.516477,
+"placeholder": false,
+"nearest": {
+"name": "Barking West Substation",
+"kv": 33,
+"km": 0.547
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21104",
+"name": "University Campus, Heronbank North - Phase 2 - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 1.1,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -1.557544,
+"lat": 52.37815,
+"placeholder": false,
+"nearest": {
+"name": "University Of Warwick Substation",
+"kv": 33,
+"km": 0.774
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21106",
+"name": "Kingston International Business Park, Somerden Road - Soalr Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.19,
+"region": "Yorkshire and Humber",
+"county": "East Riding of Yorkshire",
+"lon": -0.248309,
+"lat": 53.746352,
+"placeholder": false,
+"nearest": {
+"name": "Hedon Road Substation",
+"kv": 33,
+"km": 0.324
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21107",
+"name": "Moran Logistics, Pontefract Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.65,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.496616,
+"lat": 53.765697,
+"placeholder": false,
+"nearest": {
+"name": "Stourton Primary",
+"kv": 33,
+"km": 0.12
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21108",
+"name": "Winchburgh Waste Water Treatment Works - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.37,
+"region": "Scotland",
+"county": "Lothian",
+"lon": -3.458588,
+"lat": 55.951671,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.733
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21109",
+"name": "Jaguar Land Rover, Lode Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 1.02,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -1.777669,
+"lat": 52.435577,
+"placeholder": false,
+"nearest": {
+"name": "Solihull Local No 1",
+"kv": 132,
+"km": 2.326
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21110",
+"name": "Notcutts Garden Centre, Stratford Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.16,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -1.790739,
+"lat": 52.384025,
+"placeholder": false,
+"nearest": {
+"name": "Shirley Substation",
+"kv": 132,
+"km": 1.579
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21111",
+"name": "Widley Farm, New Down Lane - Battery Storage Facility",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 100,
+"region": "South East",
+"county": "Hampshire",
+"lon": -1.059956,
+"lat": 50.867421,
+"placeholder": false,
+"nearest": {
+"name": "Fort Widley",
+"kv": 132,
+"km": 0.518
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21112",
+"name": "Network Rail Infrastructure, Audax Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.35,
+"region": "Yorkshire and Humber",
+"county": "North Yorkshire",
+"lon": -1.094871,
+"lat": 53.990469,
+"placeholder": false,
+"nearest": {
+"name": "Rawcliffe Lane",
+"kv": 33,
+"km": 1.395
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21113",
+"name": "Gates Nurseries & Garden Centre, Lakeland Somerby Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.34,
+"region": "East Midlands",
+"county": "Leicestershire",
+"lon": -0.80456,
+"lat": 52.680684,
+"placeholder": false,
+"nearest": {
+"name": "Oakham Substation",
+"kv": 132,
+"km": 6.528
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21116",
+"name": "Felixstowe Road & Anson Road - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Eastern",
+"county": "Suffolk",
+"lon": 1.278976,
+"lat": 52.06597,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 4.012
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21117",
+"name": "Rivington And Blackrod High School, Rivington Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.16,
+"region": "North West",
+"county": "Lancashire",
+"lon": -2.549176,
+"lat": 53.610347,
+"placeholder": false,
+"nearest": {
+"name": "Westhoughton Substation",
+"kv": 132,
+"km": 6.141
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21118",
+"name": "Wye School, Kempe Centre - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.16,
+"region": "South East",
+"county": "Kent",
+"lon": 0.94076,
+"lat": 51.184444,
+"placeholder": false,
+"nearest": {
+"name": "Ashford Substation",
+"kv": 132,
+"km": 6.779
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21119",
+"name": "Fieldhead Hospital, Ouchthorpe Lane - Solar PV Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.32,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.494054,
+"lat": 53.697358,
+"placeholder": false,
+"nearest": {
+"name": "Wakefield North",
+"kv": 132,
+"km": 1.014
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21120",
+"name": "Paddock Wood Distribution Centre, Lucks Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.17,
+"region": "South East",
+"county": "Kent",
+"lon": 0.398145,
+"lat": 51.184114,
+"placeholder": false,
+"nearest": {
+"name": "Paddock Wood DC Traction Substation",
+"kv": 33,
+"km": 0.415
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21121",
+"name": "Fiveways Supermarket, Riverside Avenue East - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.18,
+"region": "Eastern",
+"county": "Essex",
+"lon": 1.060646,
+"lat": 51.947229,
+"placeholder": false,
+"nearest": {
+"name": "Manningtree BR Substation",
+"kv": 132,
+"km": 0.79
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21122",
+"name": "Leach Colour, Cartwright Court Bradley Business Park - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.18,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.765098,
+"lat": 53.678673,
+"placeholder": false,
+"nearest": {
+"name": "Brighouse",
+"kv": 132,
+"km": 2.293
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21123",
+"name": "Dublin Road - Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 20,
+"region": "Northern Ireland",
+"county": "Co. Antrim",
+"lon": -6.222294,
+"lat": 54.700707,
+"placeholder": false,
+"nearest": {
+"name": "Antrim 33kV Substation",
+"kv": 33,
+"km": 1.872
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21124",
+"name": "Sainsburys, Hamilton Street - Solar panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.21,
+"region": "Scotland",
+"county": "Ayrshire",
+"lon": -4.790336,
+"lat": 55.634651,
+"placeholder": false,
+"nearest": {
+"name": "Saltcoats",
+"kv": 132,
+"km": 1.423
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21125",
+"name": "Cleeve School, Two Hedges Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.23,
+"region": "South West",
+"county": "Gloucestershire",
+"lon": -2.055989,
+"lat": 51.941507,
+"placeholder": false,
+"nearest": {
+"name": "Bishops Cleeve Substation",
+"kv": 66,
+"km": 1.696
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21126",
+"name": "Tottenham Hotspur Football Club, High Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 1.6,
+"region": "London",
+"county": "London",
+"lon": -0.067571,
+"lat": 51.603146,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 0.767
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21127",
+"name": "Findale Foods, Little Green - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.16,
+"region": "Eastern",
+"county": "Norfolk",
+"lon": 1.132643,
+"lat": 52.496135,
+"placeholder": false,
+"nearest": {
+"name": "Hapton Primary Substation",
+"kv": 33,
+"km": 6.024
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21128",
+"name": "St Katherines School, Ham Green - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "South West",
+"county": "Somerset",
+"lon": -2.677196,
+"lat": 51.473283,
+"placeholder": false,
+"nearest": {
+"name": "Easton-in-Gordano Substation",
+"kv": 33,
+"km": 1.056
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21129",
+"name": "Tesco Extra, Newpark District Shopping Centre - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.5,
+"region": "Wales",
+"county": "Mid Glamorgan",
+"lon": -3.380735,
+"lat": 51.535105,
+"placeholder": false,
+"nearest": {
+"name": "Pontyclun Primary Substation",
+"kv": 132,
+"km": 1.472
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21130",
+"name": "Bunderg Road - Wind Turbine",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 0.25,
+"region": "Northern Ireland",
+"county": "Co. Tyrone",
+"lon": -7.422447,
+"lat": 54.738331,
+"placeholder": false,
+"nearest": {
+"name": "Ardstraw 33kV Substation",
+"kv": 33,
+"km": 2.125
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21131",
+"name": "Willenhall Community Primary School, St James Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.17,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -1.460884,
+"lat": 52.386416,
+"placeholder": false,
+"nearest": {
+"name": "Whitley Substation",
+"kv": 132,
+"km": 1.672
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21132",
+"name": "Numatic International Limited, Millfield Industrial Estate - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.45,
+"region": "South West",
+"county": "Somerset",
+"lon": -2.949128,
+"lat": 50.870589,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 0.671
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21133",
+"name": "Sheepscar Tannery, Sheepscar Street North - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.15,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.539363,
+"lat": 53.813101,
+"placeholder": false,
+"nearest": {
+"name": "Leeds North Substation",
+"kv": 132,
+"km": 0.189
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21134",
+"name": "Lakeland Livestock Centre, Lakeland Agricultural Centre - Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Cumbria",
+"lon": -3.37634,
+"lat": 54.652784,
+"placeholder": false,
+"nearest": {
+"name": "Embleton ESS",
+"kv": 33,
+"km": 4.44
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21136",
+"name": "Rhydycar Business Park - Battery Energy Storage Systems",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.37,
+"region": "Wales",
+"county": "Mid Glamorgan",
+"lon": -3.379994,
+"lat": 51.739112,
+"placeholder": false,
+"nearest": {
+"name": "Pentrebach Primary Substation",
+"kv": 33,
+"km": 1.357
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21137",
+"name": "Bromley Football Club, Hayes Lane - Solar Photovoltaic Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.19,
+"region": "London",
+"county": "Kent",
+"lon": 0.017739,
+"lat": 51.390984,
+"placeholder": false,
+"nearest": {
+"name": "Shortlands DC Traction Substation",
+"kv": 33,
+"km": 2.464
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21138",
+"name": "Markham Road, Erin Road - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "East Midlands",
+"county": "Derbyshire",
+"lon": -1.3325,
+"lat": 53.246498,
+"placeholder": false,
+"nearest": {
+"name": "Arkwright Solar",
+"kv": 33,
+"km": 0.887
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21139",
+"name": "Corporation Road, Nant Y Felin - Micro Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "Wales",
+"county": "West Glamorgan",
+"lon": -3.989769,
+"lat": 51.641233,
+"placeholder": false,
+"nearest": {
+"name": "Swansea Trading Estate Primary Substation",
+"kv": 33,
+"km": 0.531
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21142",
+"name": "Eco Filters, St Peters Street - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.16,
+"region": "East Midlands",
+"county": "Nottinghamshire",
+"lon": -1.180501,
+"lat": 52.957687,
+"placeholder": false,
+"nearest": {
+"name": "Wollaton Road",
+"kv": 33,
+"km": 0.357
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21143",
+"name": "Woodterrill Farm, Hollocombe - Wind Turbine Repowering",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "South West",
+"county": "Devon",
+"lon": -3.955906,
+"lat": 50.880368,
+"placeholder": false,
+"nearest": {
+"name": "Tinkers Cross Substation",
+"kv": 33,
+"km": 2.06
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21144",
+"name": "Afl Telecommunications UK Limited, Davy Avenue - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.33,
+"region": "South East",
+"county": "Buckinghamshire",
+"lon": -0.769855,
+"lat": 52.0233,
+"placeholder": false,
+"nearest": {
+"name": "Childs Way Substation",
+"kv": 33,
+"km": 1.163
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21145",
+"name": "Wadsworth Road, Perivale - Solar PV Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.57,
+"region": "London",
+"county": "Middlesex",
+"lon": -0.314864,
+"lat": 51.536386,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.337
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21154",
+"name": "County Hall, Wynnstay Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.21,
+"region": "Wales",
+"county": "Clwyd",
+"lon": -3.308834,
+"lat": 53.114963,
+"placeholder": false,
+"nearest": {
+"name": "Ruthin Substation",
+"kv": 33,
+"km": 1.001
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21156",
+"name": "Byron House, Willow Drive - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.27,
+"region": "East Midlands",
+"county": "Nottinghamshire",
+"lon": -1.26018,
+"lat": 53.070549,
+"placeholder": false,
+"nearest": {
+"name": "Sherwood Park",
+"kv": 33,
+"km": 0.06
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21157",
+"name": "Vow Europe, Harrier Parkway - Plot 4500 - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 1.71,
+"region": "East Midlands",
+"county": "Leicestershire",
+"lon": -1.240206,
+"lat": 52.463527,
+"placeholder": false,
+"nearest": {
+"name": "Magna Park Substation",
+"kv": 33,
+"km": 1.755
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21158",
+"name": "C A Parsons Works, Shields Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "North East",
+"county": "Tyne And Wear",
+"lon": -1.565675,
+"lat": 54.981104,
+"placeholder": false,
+"nearest": {
+"name": "Fossway Substation",
+"kv": 66,
+"km": 0.163
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21159",
+"name": "Crowne Plaza, Bridgefoot - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.37,
+"region": "West Midlands",
+"county": "Warwickshire",
+"lon": -1.700481,
+"lat": 52.193192,
+"placeholder": false,
+"nearest": {
+"name": "Stratford Substation",
+"kv": 66,
+"km": 2.795
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21160",
+"name": "Grimshaw Road, Skelmersdale - Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Greater Manchester",
+"lon": -2.780258,
+"lat": 53.5444,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 2.216
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21161",
+"name": "Oathall Community College, Appledore Gardens - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "South East",
+"county": "West Sussex",
+"lon": -0.092131,
+"lat": 51.006476,
+"placeholder": false,
+"nearest": {
+"name": "Haywards Heath Primary",
+"kv": 33,
+"km": 1.146
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21164",
+"name": "Camas Nan Gall, Toberonochy - Wind Turbine",
+"technology": "wind_onshore",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "Scotland",
+"county": "Argyll and Bute",
+"lon": -5.65747,
+"lat": 56.214295,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 110,
+"km": 17.265
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21165",
+"name": "South Cliff Holiday Park Solar Farm, Pioneer Road - Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.37,
+"region": "Yorkshire and Humber",
+"county": "East Riding of Yorkshire",
+"lon": -0.22096,
+"lat": 54.061368,
+"placeholder": false,
+"nearest": {
+"name": "Brett Street",
+"kv": 66,
+"km": 3.263
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21167",
+"name": "Tate & Lyle Sugars, Ripley Drive - Solar Panels & Battery Energy Storage",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.400498,
+"lat": 53.702751,
+"placeholder": false,
+"nearest": {
+"name": "Premier Way North 1",
+"kv": 33,
+"km": 1.453
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21169",
+"name": "Burlerrow Farm - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.18,
+"region": "South West",
+"county": "Cornwall",
+"lon": -4.765623,
+"lat": 50.525076,
+"placeholder": false,
+"nearest": {
+"name": "Middle Treworder Farm Solar",
+"kv": 33,
+"km": 2.615
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21170",
+"name": "King George Hospital, Barley Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "London",
+"county": "Essex",
+"lon": 0.112136,
+"lat": 51.580544,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.331
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21171",
+"name": "Thurmaston Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.15,
+"region": "East Midlands",
+"county": "Leicestershire",
+"lon": -1.080085,
+"lat": 52.658546,
+"placeholder": false,
+"nearest": {
+"name": "Hamilton Substation",
+"kv": 33,
+"km": 0.104
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21172",
+"name": "Ash Park Business Centre, Ash Lane -Solar Panels & Battery Storage",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0.19,
+"region": "South East",
+"county": "Hampshire",
+"lon": -1.086792,
+"lat": 51.339128,
+"placeholder": false,
+"nearest": {
+"name": "Bramley Substation",
+"kv": 400,
+"km": 0.716
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21175",
+"name": "Howfield Farm, Howfield Lane - Solar Array",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.43,
+"region": "South East",
+"county": "Kent",
+"lon": 1.032957,
+"lat": 51.265027,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.134
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21179",
+"name": "Norwood Industrial Estate, Ellisons Road - Anaerobic Digestion Facility",
+"technology": "biomass",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "East Midlands",
+"county": "South Yorkshire",
+"lon": -1.304269,
+"lat": 53.33129,
+"placeholder": false,
+"nearest": {
+"name": "Halfway Substation",
+"kv": 33,
+"km": 2.531
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21182",
+"name": "Ballynakilly Road, Tamnamore Substation - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 250,
+"region": "Northern Ireland",
+"county": "Co. Mid Ulster",
+"lon": -6.701311,
+"lat": 54.534923,
+"placeholder": false,
+"nearest": {
+"name": "Tamnamore 275kV Substation",
+"kv": 275,
+"km": 2.855
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21184",
+"name": "Hailsham Leisure Centre, Vicarage Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.24,
+"region": "South East",
+"county": "East Sussex",
+"lon": 0.260402,
+"lat": 50.864992,
+"placeholder": false,
+"nearest": {
+"name": "Hailsham Primary",
+"kv": 33,
+"km": 1.27
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21185",
+"name": "Crown Business Park, Cowm Top Lane, Unit 7 - Energy Storage System",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Lancashire",
+"lon": -2.16602,
+"lat": 53.59393,
+"placeholder": false,
+"nearest": {
+"name": "Castleton",
+"kv": 132,
+"km": 0.844
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21186",
+"name": "Lindisfarne, Smethwick Lane - Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "North West",
+"county": "Cheshire",
+"lon": -2.292259,
+"lat": 53.167286,
+"placeholder": false,
+"nearest": {
+"name": "Congleton Substation",
+"kv": 33,
+"km": 5.917
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21187",
+"name": "Manchester Central Convention Complex, Windmill Street - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.24,
+"region": "North West",
+"county": "Greater Manchester",
+"lon": -2.247281,
+"lat": 53.476221,
+"placeholder": false,
+"nearest": {
+"name": "BLOOM ST GRID",
+"kv": 132,
+"km": 0.511
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21188",
+"name": "Longshaw Primary Academy School, Longshaw Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.17,
+"region": "London",
+"county": "London",
+"lon": 0.004564,
+"lat": 51.62029,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 0.982
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21189",
+"name": "Elmley Road, Minster-On-Sea - Solar Farm & BESS",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 37.5,
+"region": "South East",
+"county": "Kent",
+"lon": 0.777968,
+"lat": 51.407502,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 0.694
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21190",
+"name": "Elmley Road, Minster-On-Sea - Solar Farm & BESS",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "South East",
+"county": "Kent",
+"lon": 0.777968,
+"lat": 51.407502,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 0.694
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21192",
+"name": "Mill of Auchlin Repowering, New Aberdour - Wind Turbines",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 0.45,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.152622,
+"lat": 57.667095,
+"placeholder": false,
+"nearest": {
+"name": "Fraserburgh",
+"kv": 132,
+"km": 7.941
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21193",
+"name": "Ardglass Road - Wind Turbine",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 2.3,
+"region": "Northern Ireland",
+"county": "Co. Down",
+"lon": -5.560693,
+"lat": 54.309598,
+"placeholder": false,
+"nearest": {
+"name": "Bishopscourt Central 33 kV Substation",
+"kv": 33,
+"km": 3.265
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21195",
+"name": "University Of Salford, Statham Street - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.31,
+"region": "North West",
+"county": "Greater Manchester",
+"lon": -2.278535,
+"lat": 53.488548,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 0.186
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21196",
+"name": "AM Hydraulics, South Road Avenue - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.21,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -1.924906,
+"lat": 52.498143,
+"placeholder": false,
+"nearest": {
+"name": "Winson Green Substation",
+"kv": 132,
+"km": 1.261
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21197",
+"name": "Steven Eagell Toyota, Fort Dunlop - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.21,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -1.818671,
+"lat": 52.50914,
+"placeholder": false,
+"nearest": {
+"name": "Dunlop Substation",
+"kv": 132,
+"km": 0.609
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21200",
+"name": "Man Trucks And Bus, Bailey Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.23,
+"region": "North West",
+"county": "Greater Manchester",
+"lon": -2.328732,
+"lat": 53.472286,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 1.502
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21201",
+"name": "Bletchley Leisure Centre, Princes Way - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.15,
+"region": "South East",
+"county": "Buckinghamshire",
+"lon": -0.726762,
+"lat": 51.996471,
+"placeholder": false,
+"nearest": {
+"name": "Victoria Road",
+"kv": 33,
+"km": 0.561
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21202",
+"name": "King George Hospital, Barley Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.88,
+"region": "London",
+"county": "Essex",
+"lon": 0.112136,
+"lat": 51.580544,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.331
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21203",
+"name": "Dana Trading Estate, Transfesa Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.23,
+"region": "South East",
+"county": "Kent",
+"lon": 0.390806,
+"lat": 51.185253,
+"placeholder": false,
+"nearest": {
+"name": "Paddock Wood DC Traction Substation",
+"kv": 33,
+"km": 0.455
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21205",
+"name": "Gartree High School, Ridge Way - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.18,
+"region": "East Midlands",
+"county": "Leicestershire",
+"lon": -1.074234,
+"lat": 52.587623,
+"placeholder": false,
+"nearest": {
+"name": "Wigston Magna Substation",
+"kv": 33,
+"km": 1.895
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21206",
+"name": "Central Avenue - Battery Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "Wales",
+"county": "West Glamorgan",
+"lon": -3.822168,
+"lat": 51.619775,
+"placeholder": false,
+"nearest": {
+"name": "Briton Ferry South CSE Compound",
+"kv": 275,
+"km": 0.478
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21207",
+"name": "Kelham Road And Great North Road - Micro Battery Storage Project",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "East Midlands",
+"county": "Nottinghamshire",
+"lon": -0.817863,
+"lat": 53.080534,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.311
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21208",
+"name": "Sterling Pharma Solutions, Dudley Lane - Solar Array",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 1,
+"region": "North East",
+"county": "Northumberland",
+"lon": -1.594417,
+"lat": 55.062466,
+"placeholder": false,
+"nearest": {
+"name": "Seaton Burn Substation",
+"kv": 66,
+"km": 2.454
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21209",
+"name": "Cwmtillery Glass Centre, Festival Drive - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.83,
+"region": "Wales",
+"county": "Gwent",
+"lon": -3.201627,
+"lat": 51.761105,
+"placeholder": false,
+"nearest": {
+"name": "Ebbw Vale Primary Substation",
+"kv": 132,
+"km": 0.57
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21213",
+"name": "Caerhafod Isaf, Bontuchel - Wind Turbine",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 0.22,
+"region": "Wales",
+"county": "Clwyd",
+"lon": -3.389305,
+"lat": 53.094508,
+"placeholder": false,
+"nearest": {
+"name": "Llanfwrog Substation",
+"kv": 33,
+"km": 4.274
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21215",
+"name": "Leamore Windows, Reaymer Close - Solar PV Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -2.007104,
+"lat": 52.605757,
+"placeholder": false,
+"nearest": {
+"name": "Wallsall Substation",
+"kv": 132,
+"km": 0.988
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21216",
+"name": "Dalderse Sewage Works - Solar Array & Battery Storage",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 1.2,
+"region": "Scotland",
+"county": "Central",
+"lon": -3.763287,
+"lat": 56.018543,
+"placeholder": false,
+"nearest": {
+"name": "Bainsford",
+"kv": 132,
+"km": 0.598
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21217",
+"name": "Dalderse Sewage Works - Solar Array & Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Scotland",
+"county": "Central",
+"lon": -3.763287,
+"lat": 56.018543,
+"placeholder": false,
+"nearest": {
+"name": "Bainsford",
+"kv": 132,
+"km": 0.598
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21218",
+"name": "Salthouse Road - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Cumbria",
+"lon": -3.211822,
+"lat": 54.108753,
+"placeholder": false,
+"nearest": {
+"name": "Roosecote",
+"kv": 132,
+"km": 0.601
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21220",
+"name": "Forge Way, Ashburton Road - Battery Storage System",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Greater Manchester",
+"lon": -2.334355,
+"lat": 53.47085,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 1.123
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21222",
+"name": "Bowenhurst Farm, Mill Lane - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 100,
+"region": "South East",
+"county": "Surrey",
+"lon": -0.873055,
+"lat": 51.246644,
+"placeholder": false,
+"nearest": {
+"name": "Fleet Substation",
+"kv": 400,
+"km": 0.751
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21223",
+"name": "Towy Retail Park, Old Llangunnor Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "Wales",
+"county": "Dyfed",
+"lon": -4.3034,
+"lat": 51.853536,
+"placeholder": false,
+"nearest": {
+"name": "Trevaughan Substation",
+"kv": 33,
+"km": 1.659
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21224",
+"name": "Seagate Technology, Springtown Industrial Estate - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 17,
+"region": "Northern Ireland",
+"county": "Co. Derry & Strabane",
+"lon": -7.333038,
+"lat": 55.019638,
+"placeholder": false,
+"nearest": {
+"name": "Lenamore 33 kV Substation",
+"kv": 33,
+"km": 1.996
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21225",
+"name": "Lake Road, Trafford Park - Energy Storage System",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Greater Manchester",
+"lon": -2.316554,
+"lat": 53.473631,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 2.321
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21227",
+"name": "Orbit Business Park, Alfred Eley Close - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.47,
+"region": "East Midlands",
+"county": "Derbyshire",
+"lon": -1.57628,
+"lat": 52.771238,
+"placeholder": false,
+"nearest": {
+"name": "Gresley Substation",
+"kv": 132,
+"km": 1.706
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21228",
+"name": "Nucleus The Nuclear And Caithness Archives - Solar Panels & Battery",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Scotland",
+"county": "Highland",
+"lon": -3.089866,
+"lat": 58.450312,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.276
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21229",
+"name": "Nucleus The Nuclear And Caithness Archives - Solar Panels & Battery",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Scotland",
+"county": "Highland",
+"lon": -3.089866,
+"lat": 58.450312,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.276
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21230",
+"name": "Knoll Farm, White Ox Mead Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.21,
+"region": "South West",
+"county": "Somerset",
+"lon": -2.413557,
+"lat": 51.3221,
+"placeholder": false,
+"nearest": {
+"name": "Peasedown Substation",
+"kv": 33,
+"km": 1.317
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21231",
+"name": "Marubeni Komatsu, Padgets Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.18,
+"region": "West Midlands",
+"county": "Worcestershire",
+"lon": -1.903754,
+"lat": 52.308347,
+"placeholder": false,
+"nearest": {
+"name": "Ipsley Substation",
+"kv": 66,
+"km": 1.572
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21232",
+"name": "Fen Lane Farm, Fen Lane - Solar Arrays",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 1.39,
+"region": "East Midlands",
+"county": "Nottinghamshire",
+"lon": -0.766863,
+"lat": 53.06077,
+"placeholder": false,
+"nearest": {
+"name": "Fernwood Substation",
+"kv": 33,
+"km": 2.176
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21233",
+"name": "Yorkshire Building Society Head Office,Yorkshire Drive - Solar Canopies",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 0.24,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.74188,
+"lat": 53.769504,
+"placeholder": false,
+"nearest": {
+"name": "Staygate",
+"kv": 132,
+"km": 0.578
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21234",
+"name": "Yorkshire Building Society Head Office, Yorkshire Drive - Solar Canopies",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.74188,
+"lat": 53.769504,
+"placeholder": false,
+"nearest": {
+"name": "Staygate",
+"kv": 132,
+"km": 0.578
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21235",
+"name": "Future Industrial Services, Durham Way - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.18,
+"region": "South West",
+"county": "Devon",
+"lon": -3.207022,
+"lat": 50.792135,
+"placeholder": false,
+"nearest": {
+"name": "Honiton Heathfield Substation",
+"kv": 33,
+"km": 0.128
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21236",
+"name": "Morfa Bychan Caravan Park - Solar Farm",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 0.33,
+"region": "Wales",
+"county": "Dyfed",
+"lon": -4.108601,
+"lat": 52.37344,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 4.422
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21239",
+"name": "Tesco Store, Auld Brig Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.56,
+"region": "Scotland",
+"county": "Clackmannanshire",
+"lon": -3.787739,
+"lat": 56.113283,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.528
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21241",
+"name": "The Range Distribution Centre, Western Approach Distribution Park - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0,
+"region": "South West",
+"county": "Gloucestershire",
+"lon": -2.649304,
+"lat": 51.549104,
+"placeholder": false,
+"nearest": {
+"name": "Western Approach Substation",
+"kv": 33,
+"km": 0.08
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21244",
+"name": "York House School, Sarratt Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.15,
+"region": "Eastern",
+"county": "Hertfordshire",
+"lon": -0.459427,
+"lat": 51.662733,
+"placeholder": false,
+"nearest": {
+"name": "Rickmansworth Grid",
+"kv": 132,
+"km": 2.719
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21246",
+"name": "Conesby Solar Farm",
+"technology": "bess",
+"status": "under construction",
+"capacity_mw": 72,
+"region": "Yorkshire and Humber",
+"county": "Lincolnshire",
+"lon": -0.661392,
+"lat": 53.627173,
+"placeholder": false,
+"nearest": {
+"name": "Bagmoor WF",
+"kv": 33,
+"km": 0.346
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21247",
+"name": "Rochford Hospital, Union Lane - Solar PV Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.32,
+"region": "Eastern",
+"county": "Essex",
+"lon": 0.702811,
+"lat": 51.583964,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.144
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21248",
+"name": "Balfour Beatty Rail Plant, Old Railway Works - Solar PV",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.26,
+"region": "South East",
+"county": "Kent",
+"lon": 0.903067,
+"lat": 51.153311,
+"placeholder": false,
+"nearest": {
+"name": "Ashford Substation",
+"kv": 132,
+"km": 2.695
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21249",
+"name": "David Lloyd Club, The Boardwalk - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.29,
+"region": "South East",
+"county": "Hampshire",
+"lon": -1.084759,
+"lat": 50.816323,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 0.535
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21250",
+"name": "East Calder Wastewater Treatment Works, East Calder - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Scotland",
+"county": "Lothian",
+"lon": -3.478599,
+"lat": 55.896411,
+"placeholder": false,
+"nearest": {
+"name": "Livingston East Substation",
+"kv": 132,
+"km": 1.784
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21251",
+"name": "Linde Material Handling, Kingsclere Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "South East",
+"county": "Hampshire",
+"lon": -1.099589,
+"lat": 51.269916,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 0.758
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21253",
+"name": "The Food Warehouse, Weston Avenue - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.15,
+"region": "Eastern",
+"county": "Essex",
+"lon": 0.271442,
+"lat": 51.485804,
+"placeholder": false,
+"nearest": {
+"name": "Barclay Way Substation",
+"kv": 33,
+"km": 0.528
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21256",
+"name": "Dara Sealand, Marsh Farm Road - Solar Arrays",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 3,
+"region": "Wales",
+"county": "Clwyd",
+"lon": -2.997159,
+"lat": 53.223688,
+"placeholder": false,
+"nearest": {
+"name": "Flintshire Bridge Converter Station",
+"kv": 600,
+"km": 2.486
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21259",
+"name": "Sterling House, Langston Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.15,
+"region": "Eastern",
+"county": "Essex",
+"lon": 0.086898,
+"lat": 51.644943,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 4.381
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21260",
+"name": "Solar PV Array System Alterations in Ballymartin",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Northern Ireland",
+"county": "Co. Newry Mourne & Down",
+"lon": -5.95992,
+"lat": 54.074017,
+"placeholder": false,
+"nearest": {
+"name": "Kilkeel 33kV Substation",
+"kv": 33,
+"km": 5.217
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21262",
+"name": "Streets Meadow, Hanham Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.16,
+"region": "South West",
+"county": "Dorset",
+"lon": -1.984864,
+"lat": 50.800989,
+"placeholder": false,
+"nearest": {
+"name": "Wimborne",
+"kv": 33,
+"km": 0.911
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21263",
+"name": "Honeywood Parkway, Whitecliffs Business Park - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.31,
+"region": "South East",
+"county": "Kent",
+"lon": 1.304311,
+"lat": 51.152559,
+"placeholder": false,
+"nearest": {
+"name": "Dover Primary",
+"kv": 33,
+"km": 2.665
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21264",
+"name": "Venture Centre, Sir Williams Lyons Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.16,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -1.557544,
+"lat": 52.37815,
+"placeholder": false,
+"nearest": {
+"name": "University Of Warwick Substation",
+"kv": 33,
+"km": 0.774
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21265",
+"name": "Morfa Conwy Business Park, Ffordd Sam Pari, Unit 7 - BESS",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 0.25,
+"region": "Wales",
+"county": "Gwynedd",
+"lon": -3.854398,
+"lat": 53.287588,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.145
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21266",
+"name": "The Skinners Kent Academy, Sandown Park - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.17,
+"region": "South East",
+"county": "Kent",
+"lon": 0.292686,
+"lat": 51.140388,
+"placeholder": false,
+"nearest": {
+"name": "Tunbridge Wells Grid",
+"kv": 132,
+"km": 1.4
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21267",
+"name": "Cherwell Laboratories, Launton Business Centre - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.24,
+"region": "South East",
+"county": "Oxfordshire",
+"lon": -1.140424,
+"lat": 51.901359,
+"placeholder": false,
+"nearest": {
+"name": "Bicester North Substation",
+"kv": 132,
+"km": 0.985
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21268",
+"name": "Stour Centre Car Park, Station Road - Solar Panels",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "South East",
+"county": "Kent",
+"lon": 0.878745,
+"lat": 51.146502,
+"placeholder": false,
+"nearest": {
+"name": "Ashford Substation",
+"kv": 132,
+"km": 0.849
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21274",
+"name": "MK Business Park, Brickhill Road - Unit 5 - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.36,
+"region": "South East",
+"county": "Buckinghamshire",
+"lon": -0.699599,
+"lat": 51.995392,
+"placeholder": false,
+"nearest": {
+"name": "Victoria Road",
+"kv": 33,
+"km": 1.321
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21277",
+"name": "Amazon Mucklow Park, Innovation Drive - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.71,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -1.851978,
+"lat": 52.449574,
+"placeholder": false,
+"nearest": {
+"name": "Hall Green Substation",
+"kv": 132,
+"km": 1.201
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21278",
+"name": "Canal Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.41,
+"region": "West Midlands",
+"county": "Staffordshire",
+"lon": -2.214948,
+"lat": 53.052175,
+"placeholder": false,
+"nearest": {
+"name": "Burslem Substation",
+"kv": 132,
+"km": 0.876
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21279",
+"name": "Theobalds Business Park, Platinum Way - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.31,
+"region": "Eastern",
+"county": "Hertfordshire",
+"lon": -0.046023,
+"lat": 51.696328,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 0.419
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21280",
+"name": "Bridgewater High Upper School, Broomfields Road - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.23,
+"region": "North West",
+"county": "Cheshire",
+"lon": -2.575632,
+"lat": 53.363703,
+"placeholder": false,
+"nearest": {
+"name": "Warrington Substation",
+"kv": 132,
+"km": 2.85
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21281",
+"name": "Blocks C - F St. Davids, New Cut Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Wales",
+"county": "West Glamorgan",
+"lon": -3.938482,
+"lat": 51.626472,
+"placeholder": false,
+"nearest": {
+"name": "Strand Swansea Substation",
+"kv": 33,
+"km": 0.533
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21282",
+"name": "Bridgewater High Lower School, Hall Drive - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.26,
+"region": "North West",
+"county": "Cheshire",
+"lon": -2.576801,
+"lat": 53.357926,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 3.144
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21284",
+"name": "Paddington Academy, Marylands Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.18,
+"region": "London",
+"county": "London",
+"lon": -0.192119,
+"lat": 51.52535,
+"placeholder": false,
+"nearest": {
+"name": "Amberley Road B Substation",
+"kv": 132,
+"km": 0.293
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21288",
+"name": "Select Car Leasing Stadium, Shooters Way - Solar Panels",
+"technology": "solar_roof",
+"status": "awaiting construction",
+"capacity_mw": 0.58,
+"region": "South East",
+"county": "Berkshire",
+"lon": -0.983468,
+"lat": 51.422325,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 0.256
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21289",
+"name": "Eco Power Stadium, Stadium Way - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.74,
+"region": "Yorkshire and Humber",
+"county": "South Yorkshire",
+"lon": -1.112953,
+"lat": 53.50979,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 0.917
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21290",
+"name": "More Plus Central Park, Hudson Avenue - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.27,
+"region": "South West",
+"county": "South Gloucestershire",
+"lon": -2.646981,
+"lat": 51.534803,
+"placeholder": false,
+"nearest": {
+"name": "British Gas Hallen Substation",
+"kv": 33,
+"km": 0.816
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21292",
+"name": "Dairy Farm, Burgh Road - Solar Array & Battery Storage",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0.21,
+"region": "Eastern",
+"county": "Suffolk",
+"lon": 1.634135,
+"lat": 52.488535,
+"placeholder": false,
+"nearest": {
+"name": "Lowestoft Grid Substation",
+"kv": 132,
+"km": 7.238
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21293",
+"name": "Dairy Farm, Burgh Road - Solar Array & Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.24,
+"region": "Eastern",
+"county": "Suffolk",
+"lon": 1.634135,
+"lat": 52.488535,
+"placeholder": false,
+"nearest": {
+"name": "Lowestoft Grid Substation",
+"kv": 132,
+"km": 7.238
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21294",
+"name": "Fleets Corner Business Park - Unit A3 - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "South West",
+"county": "Dorset",
+"lon": -1.985053,
+"lat": 50.742007,
+"placeholder": false,
+"nearest": {
+"name": "Creekmoor",
+"kv": 33,
+"km": 0.775
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21295",
+"name": "Three Oaks Energy Park Extension - Wind Farm",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 25.2,
+"region": "Yorkshire and Humber",
+"county": "East Riding of Yorkshire",
+"lon": -0.319573,
+"lat": 54.052368,
+"placeholder": false,
+"nearest": {
+"name": "Fraisthorpe Fields",
+"kv": 66,
+"km": 3.917
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21297",
+"name": "Tesco Extra, Bishop Auckland Trade Park - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.28,
+"region": "North East",
+"county": "County Durham",
+"lon": -1.698328,
+"lat": 54.640783,
+"placeholder": false,
+"nearest": {
+"name": "Fylands Bridge",
+"kv": 66,
+"km": 1.141
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21298",
+"name": "Eco Power Stadium, Stadium Way - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.37,
+"region": "Yorkshire and Humber",
+"county": "South Yorkshire",
+"lon": -1.112953,
+"lat": 53.50979,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 0.917
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21299",
+"name": "East Surrey Hospital, Canada Avenue - Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 1,
+"region": "South East",
+"county": "Surrey",
+"lon": -0.161981,
+"lat": 51.219194,
+"placeholder": false,
+"nearest": {
+"name": "Whitebrushes DC Traction Substation",
+"kv": 33,
+"km": 0.404
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21300",
+"name": "Ferrybridge, Stranglands Lane - Battery Energy Storage",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 99.9,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.278891,
+"lat": 53.713397,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 400,
+"km": 0.477
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21301",
+"name": "Tesco Superstore, Victoria Avenue East - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.16,
+"region": "North West",
+"county": "Greater Manchester",
+"lon": -2.207645,
+"lat": 53.532546,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.161
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21302",
+"name": "Addenbrookes, Hills Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Eastern",
+"county": "Cambridgeshire",
+"lon": 0.140652,
+"lat": 52.174999,
+"placeholder": false,
+"nearest": {
+"name": "St Anthony Street Primary Substation",
+"kv": 33,
+"km": 2.589
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21303",
+"name": "Balfour Beatty Rail Plant, Old Railway Works - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.25,
+"region": "South East",
+"county": "Kent",
+"lon": 0.903067,
+"lat": 51.153311,
+"placeholder": false,
+"nearest": {
+"name": "Ashford Substation",
+"kv": 132,
+"km": 2.695
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21304",
+"name": "Welsh Assembly Government Buildings, Sarn Mynach - BESS",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.37,
+"region": "Wales",
+"county": "Gwynedd",
+"lon": -3.793328,
+"lat": 53.283749,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.226
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21306",
+"name": "Desborough Airfield, Desborough Road - Solar Farm & Energy Storage",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 99.9,
+"region": "East Midlands",
+"county": "Leicestershire",
+"lon": -0.814096,
+"lat": 52.476305,
+"placeholder": false,
+"nearest": {
+"name": "Desborough Substation",
+"kv": 33,
+"km": 3.456
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21307",
+"name": "Desborough Airfield, Desborough Road - Solar Farm & Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 100,
+"region": "East Midlands",
+"county": "Leicestershire",
+"lon": -0.814096,
+"lat": 52.476305,
+"placeholder": false,
+"nearest": {
+"name": "Desborough Substation",
+"kv": 33,
+"km": 3.456
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21308",
+"name": "Bearwood Park Training Ground, Mole Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.26,
+"region": "South East",
+"county": "Berkshire",
+"lon": -0.89497,
+"lat": 51.41594,
+"placeholder": false,
+"nearest": {
+"name": "Winnersh DC Traction Substation",
+"kv": 33,
+"km": 2.337
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21309",
+"name": "EBM Papst UK, Chelmsford Business Park - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.19,
+"region": "Eastern",
+"county": "Essex",
+"lon": 0.512543,
+"lat": 51.748838,
+"placeholder": false,
+"nearest": {
+"name": "Springfield BR Substation",
+"kv": 132,
+"km": 2.181
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21311",
+"name": "Midlock Farm, Campswater Road - Solar Panels",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0.3,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -3.648874,
+"lat": 55.474256,
+"placeholder": false,
+"nearest": {
+"name": "Clyde Wind Farm North Substation",
+"kv": 275,
+"km": 3.019
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21312",
+"name": "Express Park, Bristol Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 8.5,
+"region": "South West",
+"county": "Somerset",
+"lon": -2.994795,
+"lat": 51.148581,
+"placeholder": false,
+"nearest": {
+"name": "Bath Road Substation",
+"kv": 33,
+"km": 1.191
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21327",
+"name": "Rosehill Farm - Geothermal Power Plant",
+"technology": "geothermal",
+"status": "application submitted",
+"capacity_mw": 5,
+"region": "South West",
+"county": "Cornwall",
+"lon": -5.141309,
+"lat": 50.318585,
+"placeholder": false,
+"nearest": {
+"name": "Perranporth Substation",
+"kv": 33,
+"km": 1.05
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21330",
+"name": "Newham University Hospital, Glen Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.77,
+"region": "London",
+"county": "London",
+"lon": 0.034746,
+"lat": 51.522776,
+"placeholder": false,
+"nearest": {
+"name": "Nelson Street Substation",
+"kv": 66,
+"km": 1.918
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21331",
+"name": "Cardiff Metropolitan University Plas Gw, Llantrisant Road - PV",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Wales",
+"county": "South Glamorgan",
+"lon": -3.225709,
+"lat": 51.496373,
+"placeholder": false,
+"nearest": {
+"name": "Fairwater Primary Substation",
+"kv": 33,
+"km": 1.238
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21332",
+"name": "Cardiff Metropolitan University Plas Gw, Llantrisant Road - Battery",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Wales",
+"county": "South Glamorgan",
+"lon": -3.225709,
+"lat": 51.496373,
+"placeholder": false,
+"nearest": {
+"name": "Fairwater Primary Substation",
+"kv": 33,
+"km": 1.238
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21333",
+"name": "Green Lane, Scawthorpe - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Yorkshire and Humber",
+"county": "South Yorkshire",
+"lon": -1.177753,
+"lat": 53.55001,
+"placeholder": false,
+"nearest": {
+"name": "Bentley Substation",
+"kv": 33,
+"km": 2.596
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21334",
+"name": "Nevis Centre, Ardlinnhe Road - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Scotland",
+"county": "Highlands",
+"lon": -5.103851,
+"lat": 56.822253,
+"placeholder": false,
+"nearest": {
+"name": "Inverlochy SubStation",
+"kv": 33,
+"km": 1.152
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21337",
+"name": "Denso Manufacturing UK, Queensway - Solar Array",
+"technology": "solar",
+"status": "awaiting construction",
+"capacity_mw": 0.99,
+"region": "West Midlands",
+"county": "Shropshire",
+"lon": -2.477265,
+"lat": 52.714515,
+"placeholder": false,
+"nearest": {
+"name": "Sankey Substation",
+"kv": 33,
+"km": 0.541
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21338",
+"name": "Clayfield Close, Moulton Leys - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.31,
+"region": "East Midlands",
+"county": "Northamptonshire",
+"lon": -0.858872,
+"lat": 52.275608,
+"placeholder": false,
+"nearest": {
+"name": "Boothville Substation",
+"kv": 33,
+"km": 0.477
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21341",
+"name": "East Leylodge Farm, Kintore - Wind Turbine",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 0.45,
+"region": "Scotland",
+"county": "Aberdeenshire",
+"lon": -2.38143,
+"lat": 57.213202,
+"placeholder": false,
+"nearest": {
+"name": "Kintore Grid Supply Point",
+"kv": 275,
+"km": 0.618
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21344",
+"name": "Hopwood Hall College, Rochdale Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 1.22,
+"region": "North West",
+"county": "Greater Manchester",
+"lon": -2.188708,
+"lat": 53.569142,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.144
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21345",
+"name": "Capel Road, Bryngwyn Bach - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Wales",
+"county": "Dyfed",
+"lon": -4.13711,
+"lat": 51.688085,
+"placeholder": false,
+"nearest": {
+"name": "Maesarddafen Primary Substation",
+"kv": 33,
+"km": 1.347
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21346",
+"name": "Fradley Airfield, Hanger 5, Wood End Lane - Solar PV Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 2.87,
+"region": "West Midlands",
+"county": "Staffordshire",
+"lon": -1.796468,
+"lat": 52.716192,
+"placeholder": false,
+"nearest": {
+"name": "Lichfield Substation",
+"kv": 132,
+"km": 2.467
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21347",
+"name": "Lench Close - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -1.88411,
+"lat": 52.445213,
+"placeholder": false,
+"nearest": {
+"name": "Sparkbrook Substation",
+"kv": 132,
+"km": 2.457
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21348",
+"name": "ABP, Immingham - Wind Turbines",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 8.4,
+"region": "Yorkshire and Humber",
+"county": "Lincolnshire",
+"lon": -0.196996,
+"lat": 53.62106,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 0.679
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21349",
+"name": "Coaltown of Balgonie - Solar Array",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 10.8,
+"region": "Scotland",
+"county": "Fife",
+"lon": -3.139154,
+"lat": 56.16736,
+"placeholder": false,
+"nearest": {
+"name": "Redhouse Substation",
+"kv": 132,
+"km": 2.443
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21351",
+"name": "Invicta Park, New Hythe Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.34,
+"region": "South East",
+"county": "Kent",
+"lon": 0.457985,
+"lat": 51.310572,
+"placeholder": false,
+"nearest": {
+"name": "New Hythe DC Traction Substation",
+"kv": 33,
+"km": 0.235
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21352",
+"name": "Ystym Colwyn, Meifod - Anaerobic Digestion Plant",
+"technology": "biomass",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Wales",
+"county": "Powys",
+"lon": -3.195058,
+"lat": 52.733185,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 4.177
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21353",
+"name": "Hubbard Products, Crane Boulevard - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.31,
+"region": "Eastern",
+"county": "Suffolk",
+"lon": 1.203492,
+"lat": 52.035094,
+"placeholder": false,
+"nearest": {
+"name": "Cliff Quay Substation",
+"kv": 132,
+"km": 2.731
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21354",
+"name": "Shuttleworth Mead, Blackburn Road - Micro Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Lancashire",
+"lon": -2.323441,
+"lat": 53.795922,
+"placeholder": false,
+"nearest": {
+"name": "Padiham Substation",
+"kv": 400,
+"km": 0.169
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21355",
+"name": "Centrica Storage, Dimlington Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.36,
+"region": "Yorkshire and Humber",
+"county": "East Riding of Yorkshire",
+"lon": 0.115469,
+"lat": 53.657811,
+"placeholder": false,
+"nearest": {
+"name": "Easington",
+"kv": 33,
+"km": 0.287
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21356",
+"name": "Lloyd George Avenue, Butetown - Micro Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Wales",
+"county": "South Glamorgan",
+"lon": -3.165963,
+"lat": 51.466248,
+"placeholder": false,
+"nearest": {
+"name": "Cardiff South Primary Substation",
+"kv": 132,
+"km": 0.731
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21357",
+"name": "Nimbus House, Maidstone Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.23,
+"region": "South East",
+"county": "Buckinghamshire",
+"lon": -0.681607,
+"lat": 52.04013,
+"placeholder": false,
+"nearest": {
+"name": "Kingston",
+"kv": 33,
+"km": 0.406
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21358",
+"name": "Glebe Primary School, Church Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.15,
+"region": "South East",
+"county": "East Sussex",
+"lon": -0.242757,
+"lat": 50.834973,
+"placeholder": false,
+"nearest": {
+"name": "Southern Cross Substation",
+"kv": 132,
+"km": 1.315
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21359",
+"name": "Cardiff Metropolitan University, Llandaff Campus - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.42,
+"region": "Wales",
+"county": "South Glamorgan",
+"lon": -3.212125,
+"lat": 51.495831,
+"placeholder": false,
+"nearest": {
+"name": "Canton Primary Substation",
+"kv": 33,
+"km": 1.346
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21360",
+"name": "Cardiff Metropolitan University, Llandaff Campus - Solar Panels",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Wales",
+"county": "South Glamorgan",
+"lon": -3.212125,
+"lat": 51.495831,
+"placeholder": false,
+"nearest": {
+"name": "Canton Primary Substation",
+"kv": 33,
+"km": 1.346
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21361",
+"name": "The Liverpool Heart & Chest Hospital NHS, Thomas Drive - Solar PV Array",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "North West",
+"county": "Merseyside",
+"lon": -2.89799,
+"lat": 53.411169,
+"placeholder": false,
+"nearest": {
+"name": "Edge Lane Substation",
+"kv": 132,
+"km": 1.914
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21362",
+"name": "Noble Foods Limited, Hives Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.4,
+"region": "East Midlands",
+"county": "Lincolnshire",
+"lon": -0.735471,
+"lat": 53.19603,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 3.529
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21363",
+"name": "Magdalen College, High Street - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.22,
+"region": "South East",
+"county": "Oxfordshire",
+"lon": -1.246451,
+"lat": 51.751834,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 0.771
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21366",
+"name": "The Crowgreaves, Crowgreaves - Solar Panels",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "West Midlands",
+"county": "Shropshire",
+"lon": -2.372349,
+"lat": 52.592064,
+"placeholder": false,
+"nearest": {
+"name": "Worfield Substation",
+"kv": 33,
+"km": 3.269
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21374",
+"name": "Blackdyke, Silloth - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Cumbria",
+"lon": -3.371346,
+"lat": 54.860907,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.093
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21375",
+"name": "W M Morrison, Queen Katherines Avenue - Solar panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.29,
+"region": "North West",
+"county": "Cumbria",
+"lon": -2.733957,
+"lat": 54.34162,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 2.467
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21376",
+"name": "Klarius Products, New Haden Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 1.02,
+"region": "West Midlands",
+"county": "Staffordshire",
+"lon": -2.005722,
+"lat": 52.978929,
+"placeholder": false,
+"nearest": {
+"name": "Cheadle Substation",
+"kv": 33,
+"km": 0.27
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21378",
+"name": "Greencore, Red House Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.82,
+"region": "East Midlands",
+"county": "Northamptonshire",
+"lon": -0.870957,
+"lat": 52.277046,
+"placeholder": false,
+"nearest": {
+"name": "Boothville Substation",
+"kv": 33,
+"km": 1.081
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21379",
+"name": "Hook Lane - Solar Array",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0.99,
+"region": "South East",
+"county": "Hampshire",
+"lon": -1.276711,
+"lat": 50.845359,
+"placeholder": false,
+"nearest": {
+"name": "Chilling Lane Substation",
+"kv": 400,
+"km": 1.23
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21380",
+"name": "Evo Group, Express Way - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 1.86,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.411309,
+"lat": 53.719361,
+"placeholder": false,
+"nearest": {
+"name": "Premier Way North 1",
+"kv": 33,
+"km": 2.756
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21381",
+"name": "Morrisons, Dunwoody Way - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.33,
+"region": "North West",
+"county": "Cheshire",
+"lon": -2.45397,
+"lat": 53.098831,
+"placeholder": false,
+"nearest": {
+"name": "Electricity Street Substation",
+"kv": 33,
+"km": 0.933
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21382",
+"name": "New Forest Water Park, Ringwood Road - Floating Solar Panels",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "South East",
+"county": "Hampshire",
+"lon": -1.782408,
+"lat": 50.896882,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 4.856
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21383",
+"name": "Shimmin Road, Kent Science Park - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.51,
+"region": "South East",
+"county": "Kent",
+"lon": 0.724996,
+"lat": 51.31083,
+"placeholder": false,
+"nearest": {
+"name": "Sittingbourne Town Primary",
+"kv": 33,
+"km": 3.958
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21384",
+"name": "Tate & Lyle Sugars, Ripley Drive - Solar Panels & Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.6,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.400498,
+"lat": 53.702751,
+"placeholder": false,
+"nearest": {
+"name": "Premier Way North 1",
+"kv": 33,
+"km": 1.453
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21388",
+"name": "Loganhead Wind Farm",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 36,
+"region": "Scotland",
+"county": "Dumfries and Galloway",
+"lon": -3.104013,
+"lat": 55.170932,
+"placeholder": false,
+"nearest": {
+"name": "Ewe Hill Wind Farm Substation",
+"kv": 132,
+"km": 5.718
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21395",
+"name": "Tesco, Brocks Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.21,
+"region": "Eastern",
+"county": "Norfolk",
+"lon": 0.686033,
+"lat": 52.653591,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 1.66
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21396",
+"name": "Vownog Terrace, Porth-Y-Waen - Solar Array",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 1.23,
+"region": "West Midlands",
+"county": "Shropshire",
+"lon": -3.089718,
+"lat": 52.806947,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.398
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21397",
+"name": "Derby Road Campus, Derby Road - Solar Array",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.5,
+"region": "East Midlands",
+"county": "Nottinghamshire",
+"lon": -1.191507,
+"lat": 53.121674,
+"placeholder": false,
+"nearest": {
+"name": "Hermitage Lane Generation Substation",
+"kv": 33,
+"km": 2.13
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21400",
+"name": "Becketts Farm, Alcester Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.3,
+"region": "West Midlands",
+"county": "West Midlands",
+"lon": -1.886842,
+"lat": 52.3721,
+"placeholder": false,
+"nearest": {
+"name": "Highters Heath Substation",
+"kv": 132,
+"km": 3.755
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21403",
+"name": "Abbey Road And Fairfield Lane - Micro Energy Storage Project",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Cumbria",
+"lon": -3.215686,
+"lat": 54.123176,
+"placeholder": false,
+"nearest": {
+"name": "Barrow",
+"kv": 132,
+"km": 0.933
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21404",
+"name": "Beddington Farm Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.19,
+"region": "London",
+"county": "Croydon",
+"lon": -0.130022,
+"lat": 51.382896,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 0.485
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21405",
+"name": "Queensway & Napier Road - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "South East",
+"county": "East Sussex",
+"lon": 0.531905,
+"lat": 50.880912,
+"placeholder": false,
+"nearest": {
+"name": "Baldslow Primary",
+"kv": 33,
+"km": 1.325
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21406",
+"name": "Auchencrosh Converter Station, Ballantrae - Solar panels",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0.46,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -4.977978,
+"lat": 55.080997,
+"placeholder": false,
+"nearest": {
+"name": "Auchencrosh Static Inverter Plant",
+"kv": 275,
+"km": 1.27
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21407",
+"name": "Loguestown Road - Wind Turbine",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 0.25,
+"region": "Northern Ireland",
+"county": "Co Londonderry",
+"lon": -6.662899,
+"lat": 55.186119,
+"placeholder": false,
+"nearest": {
+"name": "Portstewart 33 kV Substation",
+"kv": 33,
+"km": 1.673
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21408",
+"name": "Mansbrook Boulevard - Micro Energy Battery Storage Facility",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Eastern",
+"county": "Suffolk",
+"lon": 1.198427,
+"lat": 52.027272,
+"placeholder": false,
+"nearest": {
+"name": "Cliff Quay Substation",
+"kv": 132,
+"km": 2.555
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21412",
+"name": "Veetee Foods, Sir Thomas Longley Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 1.3,
+"region": "South East",
+"county": "Kent",
+"lon": 0.514979,
+"lat": 51.391014,
+"placeholder": false,
+"nearest": {
+"name": "Strood DC Traction Substation",
+"kv": 33,
+"km": 1.207
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21413",
+"name": "Low Maidendale Farm, Hurworth Moor - Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 38,
+"region": "North East",
+"county": "County Durham",
+"lon": -1.499481,
+"lat": 54.502589,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.222
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21414",
+"name": "Southgate College, High Street - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.37,
+"region": "London",
+"county": "London",
+"lon": -0.129498,
+"lat": 51.630407,
+"placeholder": false,
+"nearest": {
+"name": "Palmers Green Grid Substation",
+"kv": 132,
+"km": 1.984
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21415",
+"name": "Well Heads Wind Farm, Denholme - Wind Turbines",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 0.45,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.877051,
+"lat": 53.792899,
+"placeholder": false,
+"nearest": {
+"name": "Denholme",
+"kv": 33,
+"km": 1.904
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21416",
+"name": "Murton Farm Steading, Murton - Micro Energy Storage System",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "North East",
+"county": "County Durham",
+"lon": -1.399993,
+"lat": 54.816954,
+"placeholder": false,
+"nearest": {
+"name": "Hawthorn Pit Grid",
+"kv": 66,
+"km": 1.195
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21417",
+"name": "Cedar Doors, Wimsey Way - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.24,
+"region": "East Midlands",
+"county": "Derbyshire",
+"lon": -1.378358,
+"lat": 53.084915,
+"placeholder": false,
+"nearest": {
+"name": "Somercotes Substation",
+"kv": 33,
+"km": 0.363
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21418",
+"name": "Birkfield Drive, Mallard Way - Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Eastern",
+"county": "Suffolk",
+"lon": 1.126466,
+"lat": 52.042633,
+"placeholder": false,
+"nearest": {
+"name": "Ipswich Grid (West End Road)",
+"kv": 132,
+"km": 1.625
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21419",
+"name": "Morrisons Supermarket, Olympian Way - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.32,
+"region": "North West",
+"county": "Lancashire",
+"lon": -2.695571,
+"lat": 53.699155,
+"placeholder": false,
+"nearest": {
+"name": "Carr Lane Substation",
+"kv": 33,
+"km": 0.555
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21420",
+"name": "Royal Mail, Padge Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 1.3,
+"region": "East Midlands",
+"county": "Nottinghamshire",
+"lon": -1.197821,
+"lat": 52.929928,
+"placeholder": false,
+"nearest": {
+"name": "Boots Substation",
+"kv": 33,
+"km": 0.937
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21421",
+"name": "Grove Way - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "East Midlands",
+"county": "Nottinghamshire",
+"lon": -1.199436,
+"lat": 53.163797,
+"placeholder": false,
+"nearest": {
+"name": "Mansfield Substation",
+"kv": 132,
+"km": 0.946
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21422",
+"name": "Bayston Hill Quarry, Sharpstones Lane - Solar Array",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 3,
+"region": "West Midlands",
+"county": "Shropshire",
+"lon": -2.75354,
+"lat": 52.676105,
+"placeholder": false,
+"nearest": {
+"name": "Bayston Hill Substation",
+"kv": 33,
+"km": 0.546
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21423",
+"name": "Bayston Hill Quarry, Sharpstones Lane - BESS",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "West Midlands",
+"county": "Shropshire",
+"lon": -2.75354,
+"lat": 52.676105,
+"placeholder": false,
+"nearest": {
+"name": "Bayston Hill Substation",
+"kv": 33,
+"km": 0.546
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21424",
+"name": "Royal Mail Sorting Office, Military Road - Solar PV Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.58,
+"region": "South East",
+"county": "Kent",
+"lon": 1.094478,
+"lat": 51.284446,
+"placeholder": false,
+"nearest": {
+"name": "Canterbury North Substation",
+"kv": 132,
+"km": 0.879
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21425",
+"name": "Castleham Road - Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "South East",
+"county": "East Sussex",
+"lon": 0.539811,
+"lat": 50.883276,
+"placeholder": false,
+"nearest": {
+"name": "Baldslow Primary",
+"kv": 33,
+"km": 0.726
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21426",
+"name": "Glenbourne Unit, Morlaix Drive - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.16,
+"region": "South West",
+"county": "Devon",
+"lon": -4.118,
+"lat": 50.415643,
+"placeholder": false,
+"nearest": {
+"name": "Alexandra Road Substation",
+"kv": 33,
+"km": 1.511
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21427",
+"name": "Whitehouse Farm, Church Road - Solar Panels",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0.25,
+"region": "Eastern",
+"county": "Essex",
+"lon": 1.037992,
+"lat": 51.844603,
+"placeholder": false,
+"nearest": {
+"name": "Alresford Substation",
+"kv": 33,
+"km": 3.504
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21428",
+"name": "Oaksmere Business Park, Cranswick House - Wind Turbine",
+"technology": "wind_onshore",
+"status": "application submitted",
+"capacity_mw": 2.5,
+"region": "Eastern",
+"county": "Suffolk",
+"lon": 1.120152,
+"lat": 52.327541,
+"placeholder": false,
+"nearest": {
+"name": "Yaxley Synchronous Condenser",
+"kv": 400,
+"km": 0.953
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21429",
+"name": "George Lambton Avenue, Bill Rickaby Drive - Battery Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Eastern",
+"county": "Suffolk",
+"lon": 0.401398,
+"lat": 52.253291,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 1.292
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21430",
+"name": "Royal Mail Sorting Office, Vale Rise - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.71,
+"region": "South East",
+"county": "Kent",
+"lon": 0.287025,
+"lat": 51.190125,
+"placeholder": false,
+"nearest": {
+"name": "Postern DC Traction Substation",
+"kv": 33,
+"km": 0.88
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21431",
+"name": "Landseer Park Entrance, Landseer Road - Micro Energy Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Eastern",
+"county": "Suffolk",
+"lon": 1.170794,
+"lat": 52.037526,
+"placeholder": false,
+"nearest": {
+"name": "Cliff Quay Substation",
+"kv": 132,
+"km": 0.538
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21432",
+"name": "Royal Mail House, Clifton Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.7,
+"region": "Eastern",
+"county": "Cambridgeshire",
+"lon": 0.137209,
+"lat": 52.192263,
+"placeholder": false,
+"nearest": {
+"name": "St Anthony Street Primary Substation",
+"kv": 33,
+"km": 0.962
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21433",
+"name": "Great Ness Poultry, Rodefern Lane - Solar Array",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0.22,
+"region": "West Midlands",
+"county": "Shropshire",
+"lon": -2.883921,
+"lat": 52.755394,
+"placeholder": false,
+"nearest": {
+"name": "Express Foods Substation",
+"kv": 33,
+"km": 4.716
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21435",
+"name": "Kingston Hospital, Galsworthy Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.67,
+"region": "London",
+"county": "Surrey",
+"lon": -0.282595,
+"lat": 51.414826,
+"placeholder": false,
+"nearest": {
+"name": "Norbiton DC Traction Substation",
+"kv": 33,
+"km": 1.066
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21436",
+"name": "Greencore Prepared Meals, Weasenham Lane - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.35,
+"region": "Eastern",
+"county": "Cambridgeshire",
+"lon": 0.159935,
+"lat": 52.652951,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.176
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21437",
+"name": "Royal Mail, MLO Short Street - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.66,
+"region": "Eastern",
+"county": "Essex",
+"lon": 0.712008,
+"lat": 51.545187,
+"placeholder": false,
+"nearest": {
+"name": "Prittlewell Substation",
+"kv": 33,
+"km": 0.572
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21438",
+"name": "Dartford Sorting Office, West Hill - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.46,
+"region": "South East",
+"county": "Kent",
+"lon": 0.209649,
+"lat": 51.4447,
+"placeholder": false,
+"nearest": {
+"name": "Dartford Grid Substation",
+"kv": 132,
+"km": 0.651
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21439",
+"name": "Morrisons Supermarket, The Common - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.32,
+"region": "Yorkshire and Humber",
+"county": "South Yorkshire",
+"lon": -1.463064,
+"lat": 53.445862,
+"placeholder": false,
+"nearest": {
+"name": "Ecclesfield",
+"kv": 66,
+"km": 0.742
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21440",
+"name": "Arla Taw Valley, Taw Bridge Cross - Solar Farm",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 5.4,
+"region": "South West",
+"county": "Devon",
+"lon": -3.912353,
+"lat": 50.796758,
+"placeholder": false,
+"nearest": {
+"name": "North Tawton Substation",
+"kv": 132,
+"km": 0.133
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21441",
+"name": "Pavillion Cafe, Pwll Road - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Wales",
+"county": "Dyfed",
+"lon": -4.209048,
+"lat": 51.688723,
+"placeholder": false,
+"nearest": {
+"name": "New Lodge Primary Substation",
+"kv": 33,
+"km": 1.327
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21443",
+"name": "Brookside, Units 13 and 14 - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.18,
+"region": "Eastern",
+"county": "Cambridgeshire",
+"lon": -0.284803,
+"lat": 52.443507,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 5.889
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21444",
+"name": "The West Yorkshire Transport Centre, Cleckheaton Road - Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Yorkshire and Humber",
+"county": "West Yorkshire",
+"lon": -1.754203,
+"lat": 53.750619,
+"placeholder": false,
+"nearest": {
+"name": "Low Moor",
+"kv": 33,
+"km": 0.701
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21445",
+"name": "Dyfatty Park Industrial Estate - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Wales",
+"county": "Dyfed",
+"lon": -4.229828,
+"lat": 51.68672,
+"placeholder": false,
+"nearest": {
+"name": "New Lodge Primary Substation",
+"kv": 33,
+"km": 0.19
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21446",
+"name": "Morrison Supermarket, Railway Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.33,
+"region": "North West",
+"county": "Lancashire",
+"lon": -2.479322,
+"lat": 53.748096,
+"placeholder": false,
+"nearest": {
+"name": "Blackburn Substation",
+"kv": 132,
+"km": 2.395
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21447",
+"name": "Beveridge Lane, Meets Regs Way - Micro Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "East Midlands",
+"county": "Leicestershire",
+"lon": -1.338653,
+"lat": 52.70041,
+"placeholder": false,
+"nearest": {
+"name": "Interlink Park Substation",
+"kv": 33,
+"km": 0.56
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21448",
+"name": "Barbana Road, Redwood Drive & Redwood Crescent - Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -4.231932,
+"lat": 55.770574,
+"placeholder": false,
+"nearest": {
+"name": "Busby Substation",
+"kv": 275,
+"km": 1.946
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21449",
+"name": "Snoots Bridge, Cambridge Road - Anaerobic Digestion Plant",
+"technology": "biomass",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Eastern",
+"county": "Cambridgeshire",
+"lon": 0.201415,
+"lat": 52.334027,
+"placeholder": false,
+"nearest": {
+"name": "Aldreth Primary Substation",
+"kv": 33,
+"km": 5.267
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21453",
+"name": "Barnsley District General Hospital, Gawber Road - Solar PV Carport",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0.46,
+"region": "Yorkshire and Humber",
+"county": "South Yorkshire",
+"lon": -1.499493,
+"lat": 53.55915,
+"placeholder": false,
+"nearest": {
+"name": "Barugh",
+"kv": 66,
+"km": 1.985
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21454",
+"name": "Burrows House, Priestley Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Greater Manchester",
+"lon": -2.355333,
+"lat": 53.513278,
+"placeholder": false,
+"nearest": {
+"name": "Kearsley Substation",
+"kv": 400,
+"km": 2.778
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21455",
+"name": "Millfield Lane, Haydock Industrial Estate - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "North West",
+"county": "Merseyside",
+"lon": -2.659344,
+"lat": 53.476231,
+"placeholder": false,
+"nearest": {
+"name": "Golborne Substation",
+"kv": 132,
+"km": 4.269
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21456",
+"name": "Leicester Mail Centre, Braunstone Town - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 1.02,
+"region": "East Midlands",
+"county": "Leicestershire",
+"lon": -1.194911,
+"lat": 52.61293,
+"placeholder": false,
+"nearest": {
+"name": "Hockley Farm Road Substation",
+"kv": 33,
+"km": 2.009
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21457",
+"name": "Morrisons, Hillheads Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.21,
+"region": "North East",
+"county": "Tyne And Wear",
+"lon": -1.452702,
+"lat": 55.03994,
+"placeholder": false,
+"nearest": {
+"name": "Monkseaton Primary",
+"kv": 33,
+"km": 1.161
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21461",
+"name": "Trecurus Farm, Trecerus - Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "South West",
+"county": "Cornwall",
+"lon": -4.953573,
+"lat": 50.53564,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 33,
+"km": 2.455
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21462",
+"name": "Morrisons, Stanley Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.4,
+"region": "North West",
+"county": "Greater Manchester",
+"lon": -2.295374,
+"lat": 53.552046,
+"placeholder": false,
+"nearest": {
+"name": "Radcliffe Substation",
+"kv": 132,
+"km": 2.963
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21463",
+"name": "Cardiff Metropolitan University, Cyncoed Road - Solar Panels & BESS",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 1.31,
+"region": "Wales",
+"county": "South Glamorgan",
+"lon": -3.16179,
+"lat": 51.510494,
+"placeholder": false,
+"nearest": {
+"name": "Cyncoed Primary Substation",
+"kv": 33,
+"km": 0.84
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21464",
+"name": "Cardiff Metropolitan University, Cyncoed Road - Solar Panels & BESS",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "Wales",
+"county": "South Glamorgan",
+"lon": -3.16179,
+"lat": 51.510494,
+"placeholder": false,
+"nearest": {
+"name": "Cyncoed Primary Substation",
+"kv": 33,
+"km": 0.84
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21466",
+"name": "Penarth Road, Leckwith - Solar PV Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 1.4,
+"region": "Wales",
+"county": "South Glamorgan",
+"lon": -3.193648,
+"lat": 51.465736,
+"placeholder": false,
+"nearest": {
+"name": "Grangetown Primary Substation",
+"kv": 132,
+"km": 0.23
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21467",
+"name": "Main Street - Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Scotland",
+"county": "Strathclyde",
+"lon": -4.551336,
+"lat": 55.311296,
+"placeholder": false,
+"nearest": {
+"name": "Dersalloch",
+"kv": 132,
+"km": 5.255
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21468",
+"name": "Morrisons Supermarket, Aylestone Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.36,
+"region": "East Midlands",
+"county": "Leicestershire",
+"lon": -1.132306,
+"lat": 52.61959,
+"placeholder": false,
+"nearest": {
+"name": "Leicester Substation",
+"kv": 132,
+"km": 0.688
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21469",
+"name": "Kings Cross Railway Station, Euston Road - Solar PV Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.24,
+"region": "London",
+"county": "London",
+"lon": -0.123492,
+"lat": 51.530792,
+"placeholder": false,
+"nearest": {
+"name": "Calshot Street Substation",
+"kv": 132,
+"km": 0.474
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21470",
+"name": "Felinfach, Swansea West Industrial Estate - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Wales",
+"county": "West Glamorgan",
+"lon": -3.991549,
+"lat": 51.641626,
+"placeholder": false,
+"nearest": {
+"name": "Swansea Trading Estate Primary Substation",
+"kv": 33,
+"km": 0.507
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21471",
+"name": "Morrisons, Brooke Street - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.37,
+"region": "North West",
+"county": "Lancashire",
+"lon": -2.625752,
+"lat": 53.648513,
+"placeholder": false,
+"nearest": {
+"name": "Chorley South",
+"kv": 33,
+"km": 0.068
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21472",
+"name": "Bell Lane, London Colney - Energy Storage System",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Eastern",
+"county": "Hertfordshire",
+"lon": -0.285657,
+"lat": 51.712173,
+"placeholder": false,
+"nearest": {
+"name": "Unnamed substation",
+"kv": 132,
+"km": 3.038
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21477",
+"name": "Llandovery Rugby Football Club, Church Bank - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Wales",
+"county": "Dyfed",
+"lon": -3.80476,
+"lat": 51.989733,
+"placeholder": false,
+"nearest": {
+"name": "Llandovery Substation",
+"kv": 33,
+"km": 0.219
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21478",
+"name": "Morrisons, Uxbridge Road - Solar Panels",
+"technology": "solar_roof",
+"status": "application submitted",
+"capacity_mw": 0.25,
+"region": "London",
+"county": "Middlesex",
+"lon": -0.364867,
+"lat": 51.608032,
+"placeholder": false,
+"nearest": {
+"name": "Hatch End Grid Substation",
+"kv": 132,
+"km": 1.54
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21479",
+"name": "Nettlefold Road, Meets Ocean Way - Micro Battery Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Wales",
+"county": "South Glamorgan",
+"lon": -3.153311,
+"lat": 51.474331,
+"placeholder": false,
+"nearest": {
+"name": "Trident Park Waste Generation Substation",
+"kv": 33,
+"km": 0.365
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21480",
+"name": "Plot U, Felin Fach - Micro Energy Storage",
+"technology": "bess",
+"status": "application submitted",
+"capacity_mw": 0.2,
+"region": "Wales",
+"county": "West Glamorgan",
+"lon": -3.992473,
+"lat": 51.644245,
+"placeholder": false,
+"nearest": {
+"name": "Swansea Trading Estate Primary Substation",
+"kv": 33,
+"km": 0.285
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21490",
+"name": "Waterperry House - Decarbonisation Works",
+"technology": "solar",
+"status": "application submitted",
+"capacity_mw": 0,
+"region": "South East",
+"county": "Oxfordshire",
+"lon": -1.088911,
+"lat": 51.751825,
+"placeholder": false,
+"nearest": {
+"name": "Wheatley",
+"kv": 33,
+"km": 2.388
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+},
+{
+"kind": "added",
+"repd_ref": "21493",
+"name": "Camblesforth Solar Farm",
+"technology": "bess",
+"status": "awaiting construction",
+"capacity_mw": 10,
+"region": "Yorkshire and Humber",
+"county": "North Yorkshire",
+"lon": -1.02053,
+"lat": 53.735923,
+"placeholder": false,
+"nearest": {
+"name": "Drax Primary 66kV",
+"kv": 66,
+"km": 1.396
+},
+"drawn_links": 5,
+"region_lat_mismatch": false
+}
+]
+}

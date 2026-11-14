@@ -1,0 +1,56 @@
+M1: REPD monthly update (the owner's instruction at 00:56: "I want REPD to be updated every month")
+
+Patch: patches/M1-monthly.patch (sha256 7ac13df73a665585a5a36d220151bf61d71b93866e58fc9be22fd1aa456322b1), against globalgrid2050 main
+(<workspace>/gg-wt HEAD 37ec3812). git apply --check is clean. Applied to a copy of that tree, 230 tests passed and 5 were skipped
+(logs/tests-monthly.txt). actionlint and shellcheck report nothing.
+
+The patch changes 11 files (+798/-68):
+- .github/workflows/repd-monthly.yml (NEW). It runs on cron '17 5 3 * *' and by workflow_dispatch (inputs: open_pr, default true;
+  release_folder, blank means now). Job "check" has contents:read only. Job "open-pr" is the only job with contents:write and
+  pull-requests:write. It pushes repd/<id>-monthly only (one git push line, with a guard against main) and opens a pull request (not a draft).
+- automation/repd/monthly.py (NEW) is the one helper. It reuses detect, fetch and config, plus the counters in scripts/repd_sources_v6.py.
+- automation/repd/run.py: 6 lines. The change report now diffs against dist/project_identity_<previous id>.json when that file exists;
+  otherwise it falls back to frozen V6 as before.
+- .github/workflows/repd-new-release-check.yml.disabled: REMOVED (superseded).
+- automation/repd/tests/test_monthly.py and tests/fixtures/monthly/*.json (NEW): 11 tests. test_run.py: the test for the removed file
+  is replaced by a test of the new workflow.
+- docs/repd/RUNBOOK.md (new section 6.1) and docs/repd/AUTOMATION.md (section 1.3): a few lines each, including how to run it by hand.
+
+How the job decides (by sha256, never by URL):
+- It downloads the newest CSV and XLSX the content API links to. If the content API fails, it reads the publication page instead.
+- If both hashes are already pinned in automation/repd/releases/*.json, the run is green with "No new REPD release". This is also what
+  happens when GOV.UK redirects an old URL to a replaced file.
+- If the bytes are new, it derives the release id from the file name or title; if neither names a quarter, it uses the last quarter
+  ended by the publication date. It then:
+  * writes releases/<id>.json and releases_v6/v6_<id>.json, with counts computed from the downloaded bytes;
+  * carries the previous release's acceptance waivers forward;
+  * adds allow-list lines for dist/project_identity_<id>.json, dist/repd_master_<id>.json and
+    uk_renewables_pipeline/<stamp>/fixtures/<id>/project_identity_<id>.json;
+  * runs run.py --offline on the same bytes;
+  * opens the pull request. Its body holds the summary, the change report and the run report.
+- If the bytes are new but the id already has a descriptor (a correction), the run goes red for a person and writes nothing.
+- If the branch already exists (an earlier pull request is still open), the run is green and nothing is pushed.
+- The deviation: no date-stamped label. run.py, config.py and the V6 scripts accept only 20xxqN, so the date fallback gives a quarter id.
+
+Dry runs (offline, real October files):
+1  Helper against the main descriptors: unchanged, exit 0. Both hashes equal the 2026q3 pins.
+   (logs/dryrun-1-no-new-release.txt)
+2  Newest descriptor 2026q2 (different hash), in a copy of main without the 2026q3 outputs:
+   - The helper reports new 2026q3. Counts 14968/14967/[7679]/3484/281, the same as the hand-made October descriptors.
+   - run.py overall ok: acceptance 43/0, hash guard 0 changed.
+   - The 4 root CSVs, repd_master_2026q3.json and the stability file are byte-identical to main. The other dist JSONs differ only in
+     validated_at/last_sync. (evidence/dryrun-2-run_report.md)
+3  Future quarter (October bytes re-encoded and named Q4_2026), against the full main tree:
+   - new 2026q4; run.py overall ok.
+   - The change report diffs against project_identity_2026q3.json.
+   - A missing waiver for cell 15915:Address had failed this run until the carry-forward was added.
+4  The workflow YAML's own run blocks (scripts/dryrun_workflow.py), no-new case: green; build and open-pr skipped.
+5  The same, new-release case:
+   - commit on repd/2026q3-monthly: 255 files added, 1 modified (the allow-list);
+   - stopped before the push; gh pr create was stubbed. (evidence/dryrun-5-*)
+
+UNVERIFIED:
+- No GitHub run yet.
+- The live gov.uk content API was not read (unreachable from here).
+- Opening the PR needs the repository setting "Allow GitHub Actions to create and approve pull requests".
+- A PR opened with GITHUB_TOKEN does not trigger the pull_request size guard; run.py applies the same 5 MB rule before the push.

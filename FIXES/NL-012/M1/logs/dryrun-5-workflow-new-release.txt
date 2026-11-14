@@ -1,0 +1,33 @@
+[check] RUN   Validate inputs
+[check] EMUL  Checkout main (blobless, sparse)  (actions/checkout@v4)
+[check] EMUL  Set up Python  (actions/setup-python@v5)
+[check] RUN   Install dependencies
+[check] RUN   Compare published REPD files with the known releases (by sha256)
+        | - Checked at 2026-11-14T01:13:53Z; newest known release: `2026q2`
+        | - Reason: published sha256 not pinned by any known release; derived 2026q3 from file name / attachment title
+        | - CSV: https://assets.publishing.service.gov.uk/media/6af42ff0a4004bdbe54e54a5/REPD_Publication_Q3_2026.csv (5219160 bytes, sha256 `48e76c49f33a1090e78108d1ea9bfe689b35963ea3be1bb4f6516d038a5ff862`)
+        | - XLSX: https://assets.publishing.service.gov.uk/media/6af42ffdb83b3cae0d0a21c9/REPD_Publication_Q3_2026.xlsx (5378656 bytes, sha256 `87811e249395a05b223db6855952334f425e66cc9a2106caea0e38fd9e5037ea`)
+        | - Counts: {"csv_rows": 14968, "unique_refs": 14967, "duplicate_refs": ["7679"], "solar_gt_1mw": 3484, "bess_gt_100mw": 281}
+        | - Release folder: `uk_renewables_pipeline/202611140117/`
+        outputs: {'status': 'new', 'release_id': '2026q3', 'release_folder': '202611140117', 'csv': '/tmp/repd-monthly/check/raw/REPD_Publication_Q3_2026.csv', 'xlsx': '/tmp/repd-monthly/check/raw/REPD_Publication_Q3_2026.xlsx'}
+[check] RUN   Build the new release (clean, validate, change report, datasets, hash guard)
+        | build_v6     ran       automation.repd.build_v6 (adapter adapt_build_v6) 
+        | build_news   ran       automation.repd.build_news (adapter adapt_build_news) 
+        | acceptance   ran       automation.repd.tests.acceptance.main 
+        | assemble_pr  ran       run.py assemble (orchestrator) 
+        | hash_guard   ran        
+        | overall: ok  report: /tmp/repd-monthly/out/run_report.md
+        outputs: {'overall': 'ok'}
+[check] EMUL  Upload the check, the build and the repository changes  (actions/upload-artifact@v4)
+check job: green; outputs {'status': 'new', 'release_id': '2026q3', 'overall': 'ok'}
+[open-pr] RUN   Validate branch name
+[open-pr] EMUL  Checkout main (blobless, only .github and automation materialised)  (actions/checkout@v4)
+[open-pr] EMUL  Download this run's build  (actions/download-artifact@v4)
+[open-pr] RUN   Stop green if the branch already exists (pull request already open from an earlier month)
+        outputs: {}
+[open-pr] RUN   Commit the new files on repd/<id>-monthly and push that branch (never main)
+        | WOULD PUSH b8d94647ba2ba88187142143690c24f5c9799c7e to refs/heads/repd/2026q3-monthly
+        | Switched to a new branch 'repd/2026q3-monthly'
+[open-pr] RUN   Open the pull request with the change report
+        | STUB gh pr create --base main --head repd/2026q3-monthly --title REPD 2026q3 monthly update: October 2026 --body-file /tmp/wf-new/tmp/body.md
+open-pr job: green

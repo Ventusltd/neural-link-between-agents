@@ -1,0 +1,10 @@
+--- a/uk_renewables_pipeline/202611132345/index.html
++++ b/uk_renewables_pipeline/202611132345/index.html
+@@ -59,6 +59,7 @@
+            by scripts/plugins/projects-v9-5-1.js if the live contract names a
+            different one - the same signal the MAP cells already follow. -->
+       <a href="https://ventusltd.github.io/gridatlas/atlas/" id="mapAtlasNav">MAP ATLAS</a>
++      <a href="../datacentres/">DATA CENTRES</a>
+       <a href="#" id="export">EXPORT CSV</a>
+     </nav>
+   </aside>

@@ -1,0 +1,48 @@
+{
+ "all_rows": {
+  "rows": 7775,
+  "live_202610312138": {
+   "RESOLVED (register point)": 5240,
+   "NOT_IN_ACTIVE_REGISTER (no identity card; map point from link only)": 2509,
+   "RESOLVED_UNMAPPED (identity, map not moved)": 20,
+   "RESOLVED (crown_estate_lease point)": 6
+  },
+  "live_202610312138_card_point_over_1km_from_link": 12,
+  "live_202610312138_register_name_differs": 4,
+  "preview_202611132345": {
+   "RESOLVED (register point)": 5305,
+   "NOT_IN_ACTIVE_REGISTER (no identity card; map point from link only)": 2444,
+   "RESOLVED_UNMAPPED (identity, map not moved)": 20,
+   "RESOLVED (crown_estate_lease point)": 6
+  },
+  "preview_202611132345_card_point_over_1km_from_link": 0,
+  "preview_202611132345_register_name_differs": 0,
+  "arrival": {
+   "MEASURED_FROM_LINK_POINT": 7749,
+   "NOT_MEASURED": 26
+  }
+ },
+ "new_vs_202609082224": {
+  "rows": 101,
+  "live_202610312138": {
+   "NOT_IN_ACTIVE_REGISTER (no identity card; map point from link only)": 88,
+   "RESOLVED (register point)": 13
+  },
+  "live_202610312138_card_point_over_1km_from_link": 0,
+  "live_202610312138_register_name_differs": 0,
+  "preview_202611132345": {
+   "RESOLVED (register point)": 95,
+   "NOT_IN_ACTIVE_REGISTER (no identity card; map point from link only)": 6
+  },
+  "preview_202611132345_card_point_over_1km_from_link": 0,
+  "preview_202611132345_register_name_differs": 0,
+  "arrival": {
+   "MEASURED_FROM_LINK_POINT": 101
+  }
+ },
+ "closed_by_preview": 94,
+ "still_not_in_preview": {
+  "NOT_IN_ACTIVE_REGISTER (no identity card; map point from link only)": 2444
+ },
+ "preview_card_vs_link_over_1km_examples": []
+}

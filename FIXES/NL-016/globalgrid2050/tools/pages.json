@@ -1,0 +1,178 @@
+[
+ {
+  "name": "jan__repd-atlas",
+  "url": "/jan/repd-atlas/",
+  "wait": 12000
+ },
+ {
+  "name": "jan__uk_grid-batteries",
+  "url": "/jan/uk_grid-batteries/",
+  "wait": 12000
+ },
+ {
+  "name": "jan__uk_operating_large_solar_farms",
+  "url": "/jan/uk_operating_large_solar_farms/",
+  "wait": 12000
+ },
+ {
+  "name": "jan__repd-uk-operational-solar",
+  "url": "/jan/repd-uk-operational-solar/",
+  "wait": 12000
+ },
+ {
+  "name": "jan__uk_offshore_wind_atlas",
+  "url": "/jan/uk_offshore_wind_atlas/",
+  "wait": 12000
+ },
+ {
+  "name": "jan__uk_onshore_wind_atlas",
+  "url": "/jan/uk_onshore_wind_atlas/",
+  "wait": 12000
+ },
+ {
+  "name": "jan__uk_solar_in-planning-1-50mw",
+  "url": "/jan/uk_solar_in-planning-1-50mw/",
+  "wait": 12000
+ },
+ {
+  "name": "jan__repd_atlas_grid_model",
+  "url": "/jan/repd_atlas_grid_model/",
+  "wait": 12000
+ },
+ {
+  "name": "oct__repd-atlas",
+  "url": "/oct/repd-atlas/",
+  "wait": 12000
+ },
+ {
+  "name": "oct__uk_grid-batteries",
+  "url": "/oct/uk_grid-batteries/",
+  "wait": 12000
+ },
+ {
+  "name": "oct__uk_operating_large_solar_farms",
+  "url": "/oct/uk_operating_large_solar_farms/",
+  "wait": 12000
+ },
+ {
+  "name": "oct__repd-uk-operational-solar",
+  "url": "/oct/repd-uk-operational-solar/",
+  "wait": 12000
+ },
+ {
+  "name": "oct__uk_offshore_wind_atlas",
+  "url": "/oct/uk_offshore_wind_atlas/",
+  "wait": 12000
+ },
+ {
+  "name": "oct__uk_onshore_wind_atlas",
+  "url": "/oct/uk_onshore_wind_atlas/",
+  "wait": 12000
+ },
+ {
+  "name": "oct__uk_solar_in-planning-1-50mw",
+  "url": "/oct/uk_solar_in-planning-1-50mw/",
+  "wait": 12000
+ },
+ {
+  "name": "oct__repd_atlas_grid_model",
+  "url": "/oct/repd_atlas_grid_model/",
+  "wait": 12000
+ },
+ {
+  "name": "jan__repd_grid_atlasv3",
+  "url": "/repd_grid_atlasv3/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "oct__repd_grid_atlasv3",
+  "url": "/repd_grid_atlasv3__oct/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "jan__repd_grid_atlasv4",
+  "url": "/repd_grid_atlasv4/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "oct__repd_grid_atlasv4",
+  "url": "/repd_grid_atlasv4__oct/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "jan__repd_grid_atlasv5",
+  "url": "/repd_grid_atlasv5/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "oct__repd_grid_atlasv5",
+  "url": "/repd_grid_atlasv5__oct/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "jan__repd_grid_atlasv6",
+  "url": "/repd_grid_atlasv6/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "oct__repd_grid_atlasv6",
+  "url": "/repd_grid_atlasv6__oct/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "jan__repd_grid_atlasv7",
+  "url": "/repd_grid_atlasv7/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "oct__repd_grid_atlasv7",
+  "url": "/repd_grid_atlasv7__oct/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "jan__repd_grid_atlasv8",
+  "url": "/repd_grid_atlasv8/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "oct__repd_grid_atlasv8",
+  "url": "/repd_grid_atlasv8__oct/",
+  "wait": 8000,
+  "toggle": true
+ },
+ {
+  "name": "jan__solar-bess-topology-v6__gis-sld-financial-sandbox",
+  "url": "/solar-bess-topology-v6/gis-sld-financial-sandbox/",
+  "wait": 12000,
+  "evalAfter": "(()=>{const ks=['solar_operational','wind_onshore_operational','wind_offshore_operational','bess_operational'];let n=0;for(const k of ks){if(typeof toggleAtlasV8OperatingAssetLayer==='function'){toggleAtlasV8OperatingAssetLayer(k);n++;}}const m=window.__maps&&window.__maps[0];if(m)m.jumpTo({center:[-2.5,54],zoom:5});return n;})()"
+ },
+ {
+  "name": "oct__solar-bess-topology-v6__gis-sld-financial-sandbox",
+  "url": "/solar-bess-topology-v6__oct/gis-sld-financial-sandbox/",
+  "wait": 12000,
+  "evalAfter": "(()=>{const ks=['solar_operational','wind_onshore_operational','wind_offshore_operational','bess_operational'];let n=0;for(const k of ks){if(typeof toggleAtlasV8OperatingAssetLayer==='function'){toggleAtlasV8OperatingAssetLayer(k);n++;}}const m=window.__maps&&window.__maps[0];if(m)m.jumpTo({center:[-2.5,54],zoom:5});return n;})()"
+ },
+ {
+  "name": "jan__solar-bess-topology-v7__gis-sld-financial-sandbox",
+  "url": "/solar-bess-topology-v7/gis-sld-financial-sandbox/",
+  "wait": 12000,
+  "evalAfter": "(()=>{const ks=['solar_operational','wind_onshore_operational','wind_offshore_operational','bess_operational'];let n=0;for(const k of ks){if(typeof toggleAtlasV8OperatingAssetLayer==='function'){toggleAtlasV8OperatingAssetLayer(k);n++;}}const m=window.__maps&&window.__maps[0];if(m)m.jumpTo({center:[-2.5,54],zoom:5});return n;})()"
+ },
+ {
+  "name": "oct__solar-bess-topology-v7__gis-sld-financial-sandbox",
+  "url": "/solar-bess-topology-v7__oct/gis-sld-financial-sandbox/",
+  "wait": 12000,
+  "evalAfter": "(()=>{const ks=['solar_operational','wind_onshore_operational','wind_offshore_operational','bess_operational'];let n=0;for(const k of ks){if(typeof toggleAtlasV8OperatingAssetLayer==='function'){toggleAtlasV8OperatingAssetLayer(k);n++;}}const m=window.__maps&&window.__maps[0];if(m)m.jumpTo({center:[-2.5,54],zoom:5});return n;})()"
+ }
+]

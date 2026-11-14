@@ -1,0 +1,32 @@
+
+data-contract parity for 202610312138-gridatlas-v9.188 (6 cartridges)
+
+streaming-parquet-bridge 202609241251: bytes name 0 product(s), entry declares 0
+uk-gazetteer-flyto 202609071213: bytes name 0 product(s), entry declares 0
+sld-sandbox 202609241334: bytes name 0 product(s), entry declares 2
+  FAIL sld-sandbox: declared source derived/gb-transmission-network.v1.json is named by the bytes
+  FAIL sld-sandbox: declared source derived/price-decade-rollup.json is named by the bytes
+substation-intelligence 202609062358: bytes name 0 product(s), entry declares 1
+  FAIL substation-intelligence: declared source derived/connection-points.v3.json is named by the bytes
+  PASS substation-intelligence: capability connection-points-v3-consumed agrees with a declared schema
+uk-lightning-overlay 202610312138: bytes name 2 product(s), entry declares 2
+  PASS uk-lightning-overlay: data/history/ fetched by the bytes is declared on the entry
+  PASS uk-lightning-overlay: data/history/ schema in the bytes is the schema the entry requires
+  PASS uk-lightning-overlay: data/uk_lightning.geojson fetched by the bytes is declared on the entry
+  PASS uk-lightning-overlay: data/uk_lightning.geojson schema in the bytes is the schema the entry requires
+  PASS uk-lightning-overlay: declared source data/uk_lightning.geojson is named by the bytes
+  PASS uk-lightning-overlay: declared source data/history/ is named by the bytes
+uk-offtakers-overlay 202610312138: bytes name 0 product(s), entry declares 0
+  PASS the composition manifest is the current generation
+  PASS streaming-parquet-bridge: the composition manifest declares the same sources as current.json
+  PASS uk-gazetteer-flyto: the composition manifest declares the same sources as current.json
+  PASS sld-sandbox: the composition manifest declares the same sources as current.json
+  PASS substation-intelligence: the composition manifest declares the same sources as current.json
+  PASS uk-lightning-overlay: the composition manifest declares the same sources as current.json
+  PASS uk-offtakers-overlay: the composition manifest declares the same sources as current.json
+
+14/17 checks passed
+FAILURES
+  sld-sandbox: declared source derived/gb-transmission-network.v1.json is named by the bytes
+  sld-sandbox: declared source derived/price-decade-rollup.json is named by the bytes
+  substation-intelligence: declared source derived/connection-points.v3.json is named by the bytes

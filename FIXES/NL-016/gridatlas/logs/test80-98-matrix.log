@@ -1,0 +1,10 @@
+ORIG  202610291043 real : not ok 80 - H3/I1/J2: tapping a flash opens a Lightning-owned docked card (not maplibregl.Popup): bar "Flash <UTC>", lat/lon + short ID row, full ID, honesty line # pass 206 # fail 1 
+ORIG  202610291043 00:05: not ok 80 - H3/I1/J2: tapping a flash opens a Lightning-owned docked card (not maplibregl.Popup): bar "Flash <UTC>", lat/lon + short ID row, full ID, honesty line not ok 98 - J3: STALE is the search frontier (not nextDue or a backfill-bumped generated_utc), shown as COLLECTOR LAST RAN …, on the latest page only # pass 205 # fail 2 
+ORIG  202610291043 10-26: # pass 207 # fail 0 
+FIXED 202610291043 real : # pass 207 # fail 0 
+FIXED 202610291043 00:05: # pass 207 # fail 0 
+ORIG  202611132345 real : not ok 80 - H3/I1/J2: tapping a flash opens a Lightning-owned docked card (not maplibregl.Popup): bar "Flash <UTC>", lat/lon + short ID row, full ID, honesty line # pass 206 # fail 1 
+ORIG  202611132345 00:05: not ok 80 - H3/I1/J2: tapping a flash opens a Lightning-owned docked card (not maplibregl.Popup): bar "Flash <UTC>", lat/lon + short ID row, full ID, honesty line not ok 98 - J3: STALE is the search frontier (not nextDue or a backfill-bumped generated_utc), shown as COLLECTOR LAST RAN …, on the latest page only # pass 205 # fail 2 
+ORIG  202611132345 10-26: # pass 207 # fail 0 
+FIXED 202611132345 real : # pass 207 # fail 0 
+FIXED 202611132345 00:05: # pass 207 # fail 0 

@@ -1,0 +1,960 @@
+diff --git a/.github/workflows/repd-monthly.yml b/.github/workflows/repd-monthly.yml
+new file mode 100644
+index 0000000..9e98cbf
+--- /dev/null
++++ b/.github/workflows/repd-monthly.yml
+@@ -0,0 +1,225 @@
++name: REPD monthly update
++# The owner's instruction of 14 Nov 2026: "I want REPD to be updated every month." This is the
++# one scheduled exception to 000_freeze_all_workflows_to_manual.yml (running that freeze again
++# strips the schedule below: put it back). It replaces repd-new-release-check.yml.disabled.
++#
++# On the 3rd of each month: download the CSV + XLSX the GOV.UK publication links to and compare
++# their sha256 with the descriptors in automation/repd/releases/ (hashes, not URLs: GOV.UK
++# redirects a replaced attachment's old URL to the new file). Same bytes = "no new release",
++# a green run (REPD is quarterly, so most months). New bytes = write the new descriptor, run
++# automation/repd/run.py (clean, validate, change report, new-named datasets, hash guard) and
++# open a pull request (not draft) on repd/<id>-monthly with the change report in the body.
++# Never pushes to main; only the open-pr job can write. Runbook: docs/repd/RUNBOOK.md.
++on:
++  schedule:
++    - cron: '17 5 3 * *'
++  workflow_dispatch:
++    inputs:
++      open_pr:
++        description: Open the pull request when a new release is found (false = build and upload only)
++        required: false
++        default: true
++        type: boolean
++      release_folder:
++        description: 12-digit UTC stamp for uk_renewables_pipeline/<stamp>/ (blank = now)
++        required: false
++        default: ''
++        type: string
++permissions:
++  contents: read
++
++concurrency:
++  group: repd-monthly
++  cancel-in-progress: false
++
++jobs:
++  check:
++    name: Check GOV.UK and build if new (read-only)
++    runs-on: ubuntu-latest
++    timeout-minutes: 45
++    permissions:
++      contents: read
++    outputs:
++      status: ${{ steps.check.outputs.status }}
++      release_id: ${{ steps.check.outputs.release_id }}
++      overall: ${{ steps.build.outputs.overall }}
++    env:
++      IN_FOLDER: ${{ inputs.release_folder }}
++      WORK: /tmp/repd-monthly
++      PYTHONDONTWRITEBYTECODE: '1'
++    steps:
++      - name: Validate inputs
++        shell: bash
++        run: |
++          set -euo pipefail
++          [[ -z "$IN_FOLDER" || "$IN_FOLDER" =~ ^20[0-9]{10}$ ]] || { echo "::error::release_folder must be 12 digits"; exit 1; }
++
++      # Same sparse, blobless checkout as repd-release-candidate.yml: only what the pipeline reads.
++      - name: Checkout main (blobless, sparse)
++        uses: actions/checkout@v4
++        with:
++          ref: main
++          fetch-depth: 1
++          filter: blob:none
++          persist-credentials: false
++          sparse-checkout: |
++            automation
++            scripts
++            config
++            dist
++            docs
++            data/repd
++            .github
++            uk_renewables_pipeline/202609082224
++
++      - name: Set up Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: '3.11'
++
++      - name: Install dependencies
++        run: python -m pip install --disable-pip-version-check 'pandas>=2,<3' 'openpyxl>=3.1,<4' 'pyproj>=3,<4' 'pyyaml>=6,<7'
++
++      - name: Compare published REPD files with the known releases (by sha256)
++        id: check
++        shell: bash
++        run: |
++          set -uo pipefail
++          args=(--out "$WORK/check" --repo-root .)
++          [[ -n "$IN_FOLDER" ]] && args+=(--release-folder "$IN_FOLDER")
++          python -m automation.repd.monthly "${args[@]}"
++          code=$?
++          cat "$WORK/check/summary.md" >> "$GITHUB_STEP_SUMMARY"
++          exit $code
++
++      - name: Build the new release (clean, validate, change report, datasets, hash guard)
++        id: build
++        if: steps.check.outputs.status == 'new'
++        shell: bash
++        env:
++          RID: ${{ steps.check.outputs.release_id }}
++          FOLDER: ${{ steps.check.outputs.release_folder }}
++          CSV: ${{ steps.check.outputs.csv }}
++          XLSX: ${{ steps.check.outputs.xlsx }}
++        run: |
++          set -uo pipefail
++          [[ "$RID" =~ ^20[0-9]{2}q[1-4]$ && "$FOLDER" =~ ^20[0-9]{10}$ ]] || { echo "::error::bad id/folder"; exit 1; }
++          python -m automation.repd.run --descriptor "automation/repd/releases/$RID.json" --label "$RID" \
++            --release-folder "$FOLDER" --out "$WORK/out" --repo-root . --offline --csv "$CSV" --xlsx "$XLSX"
++          code=$?
++          overall=$(python -c "import json,sys;print(json.load(open(sys.argv[1]))['overall'])" "$WORK/out/run_report.json" 2>/dev/null || echo failed)
++          echo "overall=$overall" >> "$GITHUB_OUTPUT"
++          [[ -f "$WORK/out/run_report.md" ]] && cat "$WORK/out/run_report.md" >> "$GITHUB_STEP_SUMMARY"
++          # The repository files the check step wrote (descriptors, waivers, allow-list lines) go in the PR too.
++          git status --porcelain --untracked-files=all | sed 's/^...//' > "$WORK/repo_changes.txt"
++          while IFS= read -r rel; do
++            case "$rel" in
++              automation/repd/releases/*.json|automation/repd/releases_v6/*.json|automation/repd/baselines/*_known_anomalies.json|.github/large-files-allowlist.txt) ;;
++              *) echo "::error::unexpected change in the checkout: $rel"; exit 1 ;;
++            esac
++            mkdir -p "$WORK/repo/$(dirname "$rel")"; cp "$rel" "$WORK/repo/$rel"
++          done < "$WORK/repo_changes.txt"
++          exit $code
++
++      - name: Upload the check, the build and the repository changes
++        if: always() && steps.check.outputs.status == 'new'
++        uses: actions/upload-artifact@v4
++        with:
++          name: repd-monthly-${{ github.run_number }}
++          path: |
++            /tmp/repd-monthly/check/result.json
++            /tmp/repd-monthly/check/summary.md
++            /tmp/repd-monthly/out/
++            /tmp/repd-monthly/repo/
++            /tmp/repd-monthly/repo_changes.txt
++          retention-days: 90
++          if-no-files-found: error
++
++  open-pr:
++    name: Push repd/<id>-monthly and open the pull request
++    needs: check
++    if: needs.check.outputs.status == 'new' && needs.check.outputs.overall == 'ok' && (github.event_name == 'schedule' || inputs.open_pr)
++    runs-on: ubuntu-latest
++    timeout-minutes: 20
++    permissions:
++      contents: write
++      pull-requests: write
++    env:
++      RID: ${{ needs.check.outputs.release_id }}
++      BRANCH: repd/${{ needs.check.outputs.release_id }}-monthly
++      ART: /tmp/repd-monthly-artifact
++      GH_TOKEN: ${{ github.token }}
++    steps:
++      - name: Validate branch name
++        shell: bash
++        run: |
++          set -euo pipefail
++          [[ "$BRANCH" =~ ^repd/20[0-9]{2}q[1-4]-monthly$ ]] || { echo "::error::bad branch $BRANCH"; exit 1; }
++
++      - name: Checkout main (blobless, only .github and automation materialised)
++        uses: actions/checkout@v4
++        with:
++          ref: main
++          fetch-depth: 1
++          filter: blob:none
++          sparse-checkout: |
++            .github
++            automation
++
++      - name: Download this run's build
++        uses: actions/download-artifact@v4
++        with:
++          name: repd-monthly-${{ github.run_number }}
++          path: ${{ env.ART }}
++
++      - name: Stop green if the branch already exists (pull request already open from an earlier month)
++        id: exists
++        shell: bash
++        run: |
++          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null; then
++            echo "exists=true" >> "$GITHUB_OUTPUT"
++            echo "Branch $BRANCH already exists: the $RID pull request is waiting for review. Nothing pushed." >> "$GITHUB_STEP_SUMMARY"
++          fi
++
++      - name: Commit the new files on repd/<id>-monthly and push that branch (never main)
++        if: steps.exists.outputs.exists != 'true'
++        shell: bash
++        run: |
++          set -euo pipefail
++          git config user.name 'github-actions[bot]'
++          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
++          main_sha="$(git rev-parse HEAD)"
++          git switch -c "$BRANCH"
++          for tree in "$ART/out/pr" "$ART/repo"; do
++            (cd "$tree" && find . -type f -print0) | while IFS= read -r -d '' f; do
++              rel="${f#./}"; mkdir -p "$(dirname "$rel")"; cp "$tree/$rel" "$rel"; git add --sparse -f -- "$rel"
++            done
++          done
++          # Additions only, except the size-guard allow-list, which gains lines for this release.
++          bad="$(git diff --cached --name-status --no-renames "$main_sha" | grep -v '^A' | grep -v $'^M\t.github/large-files-allowlist.txt$' || true)"
++          if [[ -n "$bad" ]]; then echo "::error::changes other than additions:"; echo "$bad"; exit 1; fi
++          git diff --cached --quiet && { echo "::error::nothing to commit"; exit 1; }
++          git commit -q -m "repd($RID): monthly update from run ${GITHUB_RUN_ID} (new files only)"
++          case "$(git rev-parse --abbrev-ref HEAD)" in main|master|gh-pages) exit 1;; esac
++          git push origin "HEAD:refs/heads/$BRANCH"
++
++      - name: Open the pull request with the change report
++        if: steps.exists.outputs.exists != 'true'
++        shell: bash
++        run: |
++          set -euo pipefail
++          body="$RUNNER_TEMP/body.md"
++          {
++            cat "$ART/check/summary.md"
++            echo
++            echo "Opened by .github/workflows/repd-monthly.yml, run $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID." \
++              "New files only, plus allow-list lines for this release's files over 5 MB. The owner reviews and merges;" \
++              "merging the new uk_renewables_pipeline/<stamp>/ folder deploys it. A pull request opened by GITHUB_TOKEN" \
++              "does not trigger pull_request workflows: run.py applied the 5 MB rule before the push."
++            echo
++            head -c 45000 "$ART/out/pr/docs/repd/releases/$RID/changelog_$RID.md" 2>/dev/null || echo "(no change report)"
++            printf '\n\n---\n\n'
++            head -c 12000 "$ART/out/run_report.md"
++          } > "$body"
++          title="REPD $RID monthly update: $(python3 -c "import json,sys;print(json.load(open(sys.argv[1]))['published']['label'])" "$ART/check/result.json")"
++          gh pr create --base main --head "$BRANCH" --title "$title" --body-file "$body"
+diff --git a/.github/workflows/repd-new-release-check.yml.disabled b/.github/workflows/repd-new-release-check.yml.disabled
+deleted file mode 100644
+index 6ce71ea..0000000
+--- a/.github/workflows/repd-new-release-check.yml.disabled
++++ /dev/null
+@@ -1,62 +0,0 @@
+-name: REPD new-release check (report only)
+-# DISABLED BY DEFAULT. The ".disabled" suffix means GitHub does not register this file
+-# (same convention as catalogue-gridatlas-v9.yml.disabled). It is report-only: read
+-# permission, no checkout writes, no commit, no push, no PR, no deploy. It asks the
+-# gov.uk content API for the newest REPD_Publication_Q?_YYYY csv+xlsx pair and writes
+-# a job summary saying whether that release is one the pipeline already knows.
+-#
+-# To enable (owner only): rename this file to repd-new-release-check.yml in a PR and
+-# merge it. Keep only workflow_dispatch if the manual-only freeze must hold strictly;
+-# the weekly schedule below is the optional report-only check the freeze rule allows.
+-# Running 000_freeze_all_workflows_to_manual.yml later would strip the schedule again.
+-# When it reports a new release, dispatch "REPD release candidate (manual, draft PR only)".
+-on:
+-  workflow_dispatch:
+-  schedule:
+-    - cron: '17 7 * * 1'
+-permissions:
+-  contents: read
+-
+-concurrency:
+-  group: repd-new-release-check
+-  cancel-in-progress: true
+-
+-jobs:
+-  check:
+-    runs-on: ubuntu-latest
+-    timeout-minutes: 10
+-    steps:
+-      - name: Checkout automation only
+-        uses: actions/checkout@v4
+-        with:
+-          fetch-depth: 1
+-          filter: blob:none
+-          persist-credentials: false
+-          sparse-checkout: |
+-            automation
+-
+-      - name: Set up Python
+-        uses: actions/setup-python@v5
+-        with:
+-          python-version: '3.11'
+-
+-      - name: Ask the publication page (report only, never fails on a new release)
+-        shell: bash
+-        run: |
+-          set -euo pipefail
+-          python -m pip install --disable-pip-version-check 'pandas>=2,<3' 'openpyxl>=3.1,<4' >/dev/null
+-          python -m automation.repd.run --detect-only --out "$RUNNER_TEMP/detect" > "$RUNNER_TEMP/detect.log"
+-          python - "$RUNNER_TEMP/detect/detect_report.json" >> "$GITHUB_STEP_SUMMARY" <<'PY'
+-          import json, sys
+-          r = json.load(open(sys.argv[1]))
+-          print("## REPD new-release check")
+-          print()
+-          print(f"- Newest on gov.uk: `{r.get('label')}` (page updated {r.get('public_updated_at')})")
+-          print(f"- CSV: {r.get('csv_url')}")
+-          print(f"- XLSX: {r.get('xlsx_url')}")
+-          print(f"- Known releases: {', '.join(r.get('known_labels', []))}")
+-          print(f"- **New release: {'YES - dispatch the release candidate workflow' if r.get('new_release') else 'no'}**")
+-          PY
+-          if grep -q '"new_release": true' "$RUNNER_TEMP/detect/detect_report.json"; then
+-            echo "::notice::A REPD release not yet known to automation/repd is on gov.uk"
+-          fi
+diff --git a/automation/repd/monthly.py b/automation/repd/monthly.py
+new file mode 100644
+index 0000000..3d46a53
+--- /dev/null
++++ b/automation/repd/monthly.py
+@@ -0,0 +1,303 @@
++#!/usr/bin/env python3
++"""Monthly REPD check: has GOV.UK published new REPD bytes? If so, prepare the release.
++
++Used by .github/workflows/repd-monthly.yml (3rd of each month). One decision, by hash:
++
++  * download the CSV and XLSX the publication currently links to (GOV.UK redirects a
++    replaced attachment's old URL to the new file, so URLs prove nothing: hashes do);
++  * if BOTH sha256 values are already pinned by a descriptor in automation/repd/releases/,
++    status = "unchanged" (the usual month: REPD is published about quarterly), exit 0;
++  * otherwise status = "new": derive the release id (2027q1 from the file name or
++    attachment title; failing that, from the publication date: the last quarter that had
++    ended by then), write releases/<id>.json and releases_v6/v6_<id>.json with the hashes
++    and counts of the downloaded files, add the three over-5-MB outputs of the release to
++    .github/large-files-allowlist.txt, exit 0;
++  * if the bytes are new but the derived id already has a descriptor (a same-quarter
++    correction) or is older than the newest one, status = "needs_person", exit 1:
++    a person decides, nothing is written.
++
++The downloaded files are kept in <out>/raw/ so the workflow feeds the same bytes to
++run.py (--offline --csv --xlsx). <out>/result.json and <out>/summary.md record the
++decision; with GITHUB_OUTPUT set, status/release_id/release_folder/csv/xlsx are exported.
++
++Offline (tests, dry runs): --api-file <saved content API JSON> --files-dir <dir holding
++files named as the attachment URLs>.
++"""
++from __future__ import annotations
++
++import argparse
++import datetime as dt
++import hashlib
++import json
++import os
++import sys
++from collections import Counter
++from pathlib import Path
++
++if __package__ in (None, ""):
++    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
++
++from automation.repd import config, detect  # noqa: E402
++from automation.repd.fetch import file_name, local_fetcher, urllib_fetcher, utc_now  # noqa: E402
++
++HERE = Path(__file__).resolve().parent
++QUARTER_MONTH = {1: "April", 2: "July", 3: "October", 4: "January"}
++
++
++class NeedsPerson(RuntimeError):
++    pass
++
++
++def quarter_from_date(day: str) -> tuple[int, int]:
++    """Last calendar quarter that had ended on `day` (YYYY-MM-DD): 2026-11-13 -> (2026, 3)."""
++    d = dt.date.fromisoformat(day[:10])
++    q = (d.month - 1) // 3          # quarters fully ended this year
++    return (d.year - 1, 4) if q == 0 else (d.year, q)
++
++
++def release_name(yq: tuple[int, int]) -> str:
++    year, q = yq
++    return f"{QUARTER_MONTH[q]} {year + 1 if q == 4 else year}"
++
++
++def find_published(fetcher, api_file: str | None = None) -> dict:
++    """Newest REPD CSV + XLSX attachment pair on the publication, with release id."""
++    errors = []
++    sources = [("content_api", None)] if api_file else [("content_api", config.CONTENT_API),
++                                                       ("publication_html", config.SOURCE_PAGE)]
++    for kind, url in sources:
++        try:
++            if api_file:
++                body = Path(api_file).read_text(encoding="utf-8")
++            else:
++                resp = fetcher(url)
++                if resp.status_chain[-1][0] != 200:
++                    raise RuntimeError(f"status {resp.status_chain}")
++                body = resp.body.decode("utf-8")
++            parsed = (detect.parse_content_api(body) if kind == "content_api"
++                      else detect.parse_publication_html(body))
++            if parsed["attachments"]:
++                break
++            errors.append(f"{kind}: no REPD attachments")
++        except Exception as exc:  # noqa: BLE001 - try the next source
++            errors.append(f"{kind}: {exc}")
++    else:
++        raise RuntimeError("cannot read the publication: " + "; ".join(errors))
++    when = parsed.get("page_last_updated") or utc_now()[:10]
++    try:
++        desc = detect.build_descriptor(parsed)
++        return {"release_id": desc.release_id, "label": desc.label, "csv_url": desc.csv_url,
++                "xlsx_url": desc.xlsx_url, "title": desc.dataset_title, "page_last_updated": when,
++                "govuk_public_updated_at": parsed.get("govuk_public_updated_at"),
++                "id_from": "file name / attachment title", "source": parsed["source"]}
++    except detect.DetectError as exc:
++        # Quarter not readable from names: one CSV + one XLSX, labelled by publication date.
++        pick = {}
++        for role in ("csv", "xlsx"):
++            cands = [a for a in parsed["attachments"] if a["role"] == role]
++            if len(cands) != 1:
++                raise NeedsPerson(f"{exc}; and {len(cands)} .{role} attachments, so no date fallback") from exc
++            pick[role] = cands[0]
++        yq = quarter_from_date(when)
++        return {"release_id": config.release_id_for(*yq), "label": release_name(yq),
++                "csv_url": pick["csv"]["url"], "xlsx_url": pick["xlsx"]["url"],
++                "title": pick["csv"]["title"] or None, "page_last_updated": when,
++                "govuk_public_updated_at": parsed.get("govuk_public_updated_at"),
++                "id_from": f"publication date {when} ({exc})", "source": parsed["source"]}
++
++
++def download(fetcher, url: str, role: str, raw_dir: Path) -> dict:
++    resp = fetcher(url)
++    if not resp.status_chain or resp.status_chain[-1][0] != 200:
++        raise RuntimeError(f"{url}: final status {resp.status_chain}")
++    body = resp.body
++    if body[:512].lstrip().lower().startswith((b"<!doctype", b"<html")):
++        raise RuntimeError(f"{url}: got an HTML page, not a data file")
++    if role == "xlsx" and not body.startswith(b"PK\x03\x04"):
++        raise RuntimeError(f"{url}: XLSX is not a zip container")
++    raw_dir.mkdir(parents=True, exist_ok=True)
++    path = raw_dir / file_name(url)        # saved under the descriptor URL's name (run.py offline)
++    path.write_bytes(body)
++    return {"url": url, "final_url": resp.final_url, "redirected": resp.redirected, "path": str(path),
++            "bytes": len(body), "sha256": hashlib.sha256(body).hexdigest()}
++
++
++def counts(csv_path: Path, xlsx_path: Path, repo_root: Path) -> dict:
++    """Rows, refs and threshold counts exactly as scripts/repd_sources_v6.py computes them."""
++    sys.path.insert(0, str(repo_root / "scripts"))
++    try:
++        import repd_sources_v6 as v6  # noqa: PLC0415 - July defaults; no descriptor env needed
++    finally:
++        sys.path.pop(0)
++    frame = v6.read_csv(csv_path.read_bytes())
++    refs = [v6.clean_ref(x) for x in frame["Ref ID"].tolist()]
++    dups = sorted(r for r, k in Counter(refs).items() if k > 1)
++    xlsx, _ = v6.read_xlsx(xlsx_path.read_bytes())
++    xlsx, _ = v6.drop_identical_duplicates(xlsx, "XLSX")
++    solar, bess = v6.threshold_counts(xlsx)
++    return {"csv_rows": len(frame), "unique_refs": len(set(refs)), "duplicate_refs": dups,
++            "solar_gt_1mw": solar, "bess_gt_100mw": bess}
++
++
++def first_existing(repo_root: Path, *rels: str) -> str | None:
++    return next((r for r in rels if r and (repo_root / r).is_file()), None)
++
++
++def write_descriptors(pub: dict, files: dict, n: dict, prev: str | None, auto_dir: Path,
++                      repo_root: Path) -> list[str]:
++    rid = pub["release_id"]
++    year, q = int(rid[:4]), int(rid[-1])
++    title = f"Renewable Energy Planning Database (REPD): {pub['label']} (Q{q} {year})"  # as releases_v6/v6_2026q3.json
++    desc = config.ReleaseDescriptor(
++        release_id=rid, label=pub["label"], quarter=config.quarter_text(year, q),
++        csv_url=pub["csv_url"], xlsx_url=pub["xlsx_url"], page_last_updated=pub["page_last_updated"],
++        govuk_public_updated_at=pub["govuk_public_updated_at"], dataset_title=title,
++        previous_release_id=prev,
++        baseline_path=first_existing(repo_root, f"repd-{prev}.csv" if prev else "", "repd.csv"),
++        expected=config.Expected(csv_sha256=files["csv"]["sha256"], xlsx_sha256=files["xlsx"]["sha256"],
++                                 csv_bytes=files["csv"]["bytes"], xlsx_bytes=files["xlsx"]["bytes"], **n),
++        provenance=[f"written by automation/repd/monthly.py at {utc_now()} from {pub['source']}; "
++                    f"release id from {pub['id_from']}; hashes and counts are of the downloaded files"],
++    )
++    path = auto_dir / "releases" / f"{rid}.json"
++    config.dump(desc, path)
++    prev_v6 = auto_dir / "releases_v6" / f"v6_{prev}.json"
++    v6 = json.loads(prev_v6.read_text(encoding="utf-8")) if prev and prev_v6.is_file() else {}
++    v6.update({
++        "schema": "globalgrid2050.repd-release-descriptor.v6", "release_id": rid, "quarter_label": f"Q{q}",
++        "output_suffix": rid, "csv_url": pub["csv_url"], "xlsx_url": pub["xlsx_url"],
++        "publication_date": pub["page_last_updated"],
++        "dataset_title": title,
++        "expected_rows": n["csv_rows"], "expected_unique_refs": n["unique_refs"],
++        "expected_solar_gt1": n["solar_gt_1mw"], "expected_bess_gt100": n["bess_gt_100mw"],
++        "expected_csv_sha256": files["csv"]["sha256"], "expected_xlsx_sha256": files["xlsx"]["sha256"],
++        "baseline_identity": first_existing(repo_root, f"dist/project_identity_{prev}.json",
++                                            "dist/project_identity_v6.json") or "dist/project_identity_v6.json",
++        "baseline_projects": first_existing(repo_root, f"dist/major_projects_{prev}.json",
++                                            "dist/major_projects_v6.json") or "dist/major_projects_v6.json",
++        "notes": f"Written by automation/repd/monthly.py at {utc_now()}; counts computed from the downloaded files.",
++    })
++    v6.setdefault("duplicate_row_policy", "drop_identical")
++    v6.setdefault("date_rule", "xlsx_typed_wins")
++    v6_path = auto_dir / "releases_v6" / f"v6_{rid}.json"
++    v6_path.parent.mkdir(parents=True, exist_ok=True)
++    v6_path.write_text(json.dumps(v6, indent=2) + "\n", encoding="utf-8")
++    written = [str(path), str(v6_path)]
++    # Reviewed acceptance waivers (cells the CSV cannot carry, e.g. a character outside cp1252)
++    # are carried forward from the previous release; acceptance.py lists every waived cell.
++    prev_known = auto_dir / "baselines" / f"{prev}_known_anomalies.json"
++    waive = (json.loads(prev_known.read_text(encoding="utf-8")).get("acceptance_waive_cells") or []
++             if prev and prev_known.is_file() else [])
++    new_known = auto_dir / "baselines" / f"{rid}_known_anomalies.json"
++    if waive and not new_known.exists():
++        new_known.write_text(json.dumps({
++            "schema": "globalgrid2050.repd-validate-known-anomalies.v1", "release_id": rid,
++            "note": f"Written by automation/repd/monthly.py: acceptance waivers carried forward from {prev}; "
++                    "no validation anomalies are pre-approved.",
++            "known": {}, "acceptance_waive_cells": waive}, indent=2) + "\n", encoding="utf-8")
++        written.append(str(new_known))
++    return written
++
++
++def allowlist_lines(rid: str, folder: str) -> list[str]:
++    return [f"dist/project_identity_{rid}.json", f"dist/repd_master_{rid}.json",
++            f"uk_renewables_pipeline/{folder}/fixtures/{rid}/project_identity_{rid}.json"]
++
++
++def add_allowlist(repo_root: Path, rid: str, folder: str) -> list[str]:
++    path = repo_root / ".github" / "large-files-allowlist.txt"
++    text = path.read_text(encoding="utf-8") if path.is_file() else ""
++    have = {ln.split("#", 1)[0].strip() for ln in text.splitlines()}
++    new = [ln for ln in allowlist_lines(rid, folder) if ln not in have]
++    if new:
++        sep = "" if not text or text.endswith("\n") else "\n"
++        path.write_text(text + sep + f"# REPD {rid} (automation/repd/monthly.py): identity registry and master GeoJSON.\n"
++                        + "".join(f"{ln}\n" for ln in new), encoding="utf-8")
++    return new
++
++
++def run(args, res: dict) -> dict:
++    out = Path(args.out)
++    out.mkdir(parents=True, exist_ok=True)
++    repo_root = Path(args.repo_root).resolve()
++    auto_dir = Path(args.automation_dir).resolve() if args.automation_dir else repo_root / "automation" / "repd"
++    fetcher = local_fetcher(args.files_dir) if args.files_dir else urllib_fetcher()
++    known = config.load_all(auto_dir / "releases")
++    newest = max(known) if known else None
++    res.update(newest_known=newest, known_releases=sorted(known))
++    pub = find_published(fetcher, args.api_file)
++    res["published"] = pub
++    files = {role: download(fetcher, pub[f"{role}_url"], role, out / "raw") for role in ("csv", "xlsx")}
++    res["files"] = files
++    registry = config.known_hashes(known)
++    owners = {role: registry.get(files[role]["sha256"]) for role in files}
++    if owners["csv"] and owners["xlsx"]:
++        res.update(status="unchanged", release_id=owners["csv"][0],
++                   reason=f"published CSV and XLSX sha256 equal the pinned hashes of {owners['csv'][0]}")
++        return res
++    rid = pub["release_id"]
++    if rid in known or (newest and rid < newest):
++        raise NeedsPerson(f"new bytes on GOV.UK but they name {rid}, and the newest known release is {newest}: "
++                          "a same-quarter correction or an older file. Review by hand, then update or add "
++                          f"automation/repd/releases/{rid}.json (CSV pinned by {owners['csv']}, XLSX by {owners['xlsx']}).")
++    folder = args.release_folder or dt.datetime.now(dt.timezone.utc).strftime("%Y%m%d%H%M")
++    n = counts(Path(files["csv"]["path"]), Path(files["xlsx"]["path"]), repo_root)
++    written = write_descriptors(pub, files, n, newest, auto_dir, repo_root)
++    allow = add_allowlist(repo_root, rid, folder) if not args.no_allowlist else []
++    res.update(status="new", release_id=rid, release_folder=folder, counts=n, descriptors=written,
++               allowlist_added=allow,
++               reason=f"published sha256 not pinned by any known release; derived {rid} from {pub['id_from']}")
++    return res
++
++
++def summary(res: dict) -> str:
++    st = res.get("status")
++    head = {"unchanged": "No new REPD release", "new": f"New REPD release {res.get('release_id')}",
++            "needs_person": "REPD changed: needs a person", "error": "REPD monthly check failed"}.get(st, st)
++    lines = [f"## {head}", "", f"- Checked at {res.get('checked_at')}; newest known release: "
++             f"`{res.get('newest_known')}`", f"- Reason: {res.get('reason')}"]
++    for role, f in (res.get("files") or {}).items():
++        lines.append(f"- {role.upper()}: {f['url']} ({f['bytes']} bytes, sha256 `{f['sha256']}`"
++                     + (f", redirected to {f['final_url']}" if f.get("redirected") else "") + ")")
++    if st == "new":
++        lines.append(f"- Counts: {json.dumps(res.get('counts'))}")
++        lines.append(f"- Release folder: `uk_renewables_pipeline/{res.get('release_folder')}/`")
++    return "\n".join(lines) + "\n"
++
++
++def main(argv=None) -> int:
++    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
++    ap.add_argument("--out", required=True, help="work directory (outside the repo)")
++    ap.add_argument("--repo-root", default=str(HERE.parents[1]))
++    ap.add_argument("--automation-dir", help="where releases/ and releases_v6/ live (default <repo>/automation/repd)")
++    ap.add_argument("--api-file", help="offline: saved GOV.UK content API JSON")
++    ap.add_argument("--files-dir", help="offline: directory with the attachment files by name")
++    ap.add_argument("--release-folder", help="12-digit stamp for uk_renewables_pipeline/<stamp>/ (default now)")
++    ap.add_argument("--no-allowlist", action="store_true", help="do not edit .github/large-files-allowlist.txt")
++    a = ap.parse_args(argv)
++    res = {"schema": "globalgrid2050.repd-monthly-check.v1", "checked_at": utc_now()}
++    try:
++        run(a, res)
++        code = 0
++    except NeedsPerson as exc:
++        res.update(status="needs_person", reason=str(exc))
++        code = 1
++    except Exception as exc:  # noqa: BLE001 - any failure is reported, never green
++        res.update(status="error", reason=f"{type(exc).__name__}: {exc}")
++        code = 2
++    out = Path(a.out)
++    out.mkdir(parents=True, exist_ok=True)
++    (out / "result.json").write_text(json.dumps(res, indent=2, default=str) + "\n", encoding="utf-8")
++    (out / "summary.md").write_text(summary(res), encoding="utf-8")
++    if os.environ.get("GITHUB_OUTPUT"):
++        with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
++            for key in ("status", "release_id", "release_folder"):
++                fh.write(f"{key}={res.get(key) or ''}\n")
++            for role in ("csv", "xlsx"):
++                fh.write(f"{role}={(res.get('files') or {}).get(role, {}).get('path', '')}\n")
++    print(summary(res))
++    return code
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/automation/repd/run.py b/automation/repd/run.py
+index 91ab994..447c8d0 100644
+--- a/automation/repd/run.py
++++ b/automation/repd/run.py
+@@ -584,7 +584,11 @@ def adapt_diff(mod, ctx: RunContext, out: Path) -> dict[str, Any]:
+         raise NotApplicable
+     d = ctx.descriptor
+     prev = d.get("diff_previous_path")
+-    prev = ctx.repo_root / prev if prev else ctx.repo_root / "dist" / "project_identity_v6.json"
++    pid = d.get("previous_release_id")
++    by_id = ctx.repo_root / "dist" / f"project_identity_{pid}.json" if pid else None
++    # Previous release's identity registry when it is on main (2026q3 onward), else frozen V6.
++    prev = (ctx.repo_root / prev if prev else by_id if by_id and by_id.is_file()
++            else ctx.repo_root / "dist" / "project_identity_v6.json")
+     if not prev.is_file():
+         prev = _previous_csv(ctx)
+     if not prev:
+diff --git a/automation/repd/tests/fixtures/monthly/content_api_2026q2_old_urls.json b/automation/repd/tests/fixtures/monthly/content_api_2026q2_old_urls.json
+new file mode 100644
+index 0000000..6f83f07
+--- /dev/null
++++ b/automation/repd/tests/fixtures/monthly/content_api_2026q2_old_urls.json
+@@ -0,0 +1,12 @@
++{
++  "base_path": "/government/publications/renewable-energy-planning-database-quarterly-extract",
++  "public_updated_at": "2026-08-03T09:30:00+01:00",
++  "details": {
++    "attachments": [
++      {"title": "Renewable Energy Planning Database (REPD): July 2026 (CSV)",
++       "url": "https://assets.publishing.service.gov.uk/media/6a6cbdc00c36759b5ccaa305/REPD_Publication_Q2_2026.csv"},
++      {"title": "Renewable Energy Planning Database (REPD): July 2026 (Excel)",
++       "url": "https://assets.publishing.service.gov.uk/media/6a6cbdd2862aaf18d9c62b02/REPD_Publication_Q2_2026.xlsx"}
++    ]
++  }
++}
+diff --git a/automation/repd/tests/fixtures/monthly/content_api_2027q1.json b/automation/repd/tests/fixtures/monthly/content_api_2027q1.json
+new file mode 100644
+index 0000000..368eac9
+--- /dev/null
++++ b/automation/repd/tests/fixtures/monthly/content_api_2027q1.json
+@@ -0,0 +1,14 @@
++{
++  "base_path": "/government/publications/renewable-energy-planning-database-quarterly-extract",
++  "public_updated_at": "2027-05-06T09:30:00+01:00",
++  "details": {
++    "attachments": [
++      {"title": "Renewable Energy Planning Database (REPD): April 2027 (CSV)",
++       "url": "https://assets.publishing.service.gov.uk/media/aaaa0000000000000000000a/REPD_Publication_Q1_2027.csv"},
++      {"title": "Renewable Energy Planning Database (REPD): April 2027 (Excel)",
++       "url": "https://assets.publishing.service.gov.uk/media/aaaa0000000000000000000b/REPD_Publication_Q1_2027.xlsx"},
++      {"title": "REPD preview",
++       "url": "https://assets.publishing.service.gov.uk/media/aaaa0000000000000000000a/csv-preview/REPD_Publication_Q1_2027.csv"}
++    ]
++  }
++}
+diff --git a/automation/repd/tests/fixtures/monthly/content_api_unnamed.json b/automation/repd/tests/fixtures/monthly/content_api_unnamed.json
+new file mode 100644
+index 0000000..0f391fc
+--- /dev/null
++++ b/automation/repd/tests/fixtures/monthly/content_api_unnamed.json
+@@ -0,0 +1,12 @@
++{
++  "base_path": "/government/publications/renewable-energy-planning-database-quarterly-extract",
++  "public_updated_at": "2027-02-04T09:30:00+00:00",
++  "details": {
++    "attachments": [
++      {"title": "Renewable Energy Planning Database (REPD) extract (CSV)",
++       "url": "https://assets.publishing.service.gov.uk/media/bbbb0000000000000000000a/repd-extract.csv"},
++      {"title": "Renewable Energy Planning Database (REPD) extract (Excel)",
++       "url": "https://assets.publishing.service.gov.uk/media/bbbb0000000000000000000b/repd-extract.xlsx"}
++    ]
++  }
++}
+diff --git a/automation/repd/tests/test_monthly.py b/automation/repd/tests/test_monthly.py
+new file mode 100644
+index 0000000..c5b5724
+--- /dev/null
++++ b/automation/repd/tests/test_monthly.py
+@@ -0,0 +1,186 @@
++"""Tests for automation/repd/monthly.py (the monthly workflow's helper). No network: content API
++fixtures in fixtures/monthly/, synthetic official-style CSV/XLSX from conftest, a temporary
++releases directory and a temporary repo root. The real October files are used if present."""
++import json
++import shutil
++import sys
++from pathlib import Path
++
++import pytest
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
++sys.path.insert(0, str(Path(__file__).resolve().parent))
++
++from automation.repd import config, monthly  # noqa: E402
++from conftest import base_rows, make_csv, make_xlsx  # noqa: E402
++
++FIX = Path(__file__).resolve().parent / "fixtures" / "monthly"
++PKG = Path(__file__).resolve().parents[1]
++REPO = PKG.parents[1]
++REAL = Path("<workspace>/<official-october-files>")
++Q3_CSV = "48e76c49f33a1090e78108d1ea9bfe689b35963ea3be1bb4f6516d038a5ff862"
++
++
++@pytest.fixture()
++def world(tmp_path):
++    """A repo root with scripts/ (for the V6 counters), an allow-list, and automation dirs."""
++    root = tmp_path / "repo"
++    (root / ".github").mkdir(parents=True)
++    (root / ".github" / "large-files-allowlist.txt").write_text("# allow-list\nglobal_ports.geojson\n")
++    (root / "scripts").symlink_to(REPO / "scripts")
++    auto = root / "automation" / "repd"
++    for sub in ("releases", "releases_v6", "baselines"):
++        (auto / sub).mkdir(parents=True)
++    shutil.copy(PKG / "releases" / "2026q2.json", auto / "releases")
++    files = tmp_path / "files"
++    files.mkdir()
++    return {"root": root, "auto": auto, "files": files, "out": tmp_path / "out"}
++
++
++def put(world, name, data):
++    (world["files"] / name).write_bytes(data)
++
++
++def synthetic(world, stem):
++    rows = base_rows(6)
++    put(world, f"{stem}.csv", make_csv(rows))
++    put(world, f"{stem}.xlsx", make_xlsx(rows))
++
++
++def run(world, api, *extra):
++    argv = ["--out", str(world["out"]), "--repo-root", str(world["root"]), "--api-file", str(FIX / api),
++            "--files-dir", str(world["files"]), "--release-folder", "202705060517", *extra]
++    code = monthly.main(argv)
++    return code, json.loads((world["out"] / "result.json").read_text())
++
++
++def test_quarter_from_date():
++    assert monthly.quarter_from_date("2026-11-13") == (2026, 3)
++    assert monthly.quarter_from_date("2027-02-04") == (2026, 4)
++    assert monthly.quarter_from_date("2027-05-06T09:30:00+01:00") == (2027, 1)
++    assert monthly.quarter_from_date("2026-07-31") == (2026, 2)
++    assert monthly.release_name((2026, 4)) == "January 2027"
++    assert monthly.release_name((2027, 1)) == "April 2027"
++
++
++def test_new_release_writes_descriptors_allowlist_and_counts(world):
++    synthetic(world, "REPD_Publication_Q1_2027")
++    code, res = run(world, "content_api_2027q1.json")
++    assert code == 0 and res["status"] == "new" and res["release_id"] == "2027q1"
++    assert res["published"]["label"] == "April 2027"
++    assert res["counts"] == {"csv_rows": 6, "unique_refs": 6, "duplicate_refs": [],
++                             "solar_gt_1mw": 3, "bess_gt_100mw": 3}
++    d = config.load(world["auto"] / "releases" / "2027q1.json")      # validates the schema
++    assert d.previous_release_id == "2026q2" and d.quarter == "Q1 2027"
++    assert d.dataset_title == "Renewable Energy Planning Database (REPD): April 2027 (Q1 2027)"
++    assert d.expected.csv_sha256 == res["files"]["csv"]["sha256"]
++    v6 = json.loads((world["auto"] / "releases_v6" / "v6_2027q1.json").read_text())
++    for key in ("release_id", "quarter_label", "output_suffix", "csv_url", "xlsx_url", "publication_date",
++                "dataset_title", "expected_rows", "expected_unique_refs", "expected_solar_gt1",
++                "expected_bess_gt100", "expected_csv_sha256", "expected_xlsx_sha256"):
++        assert v6.get(key) not in (None, ""), key          # every key scripts/repd_sources_v6.py requires
++    assert v6["output_suffix"] == "2027q1" and v6["expected_solar_gt1"] == 3
++    allow = (world["root"] / ".github" / "large-files-allowlist.txt").read_text()
++    for line in monthly.allowlist_lines("2027q1", "202705060517"):
++        assert f"\n{line}\n" in allow
++    assert (world["out"] / "raw" / "REPD_Publication_Q1_2027.csv").is_file()
++    assert "New REPD release 2027q1" in (world["out"] / "summary.md").read_text()
++
++
++def test_unchanged_when_hashes_are_pinned(world):
++    synthetic(world, "REPD_Publication_Q1_2027")
++    run(world, "content_api_2027q1.json")
++    before = sorted(p.name for p in (world["auto"] / "releases").iterdir())
++    allow = (world["root"] / ".github" / "large-files-allowlist.txt").read_text()
++    shutil.rmtree(world["out"])
++    code, res = run(world, "content_api_2027q1.json")
++    assert code == 0 and res["status"] == "unchanged" and res["release_id"] == "2027q1"
++    assert sorted(p.name for p in (world["auto"] / "releases").iterdir()) == before
++    assert (world["root"] / ".github" / "large-files-allowlist.txt").read_text() == allow
++    assert "No new REPD release" in (world["out"] / "summary.md").read_text()
++
++
++def test_redirected_old_url_is_judged_by_hash_not_url(world, tmp_path):
++    """GOV.UK serves the replaced July URL's file name with new bytes: hashes decide."""
++    synthetic(world, "REPD_Publication_Q1_2027")
++    run(world, "content_api_2027q1.json")              # pins the synthetic bytes as 2027q1
++    shutil.rmtree(world["out"])
++    for ext in ("csv", "xlsx"):                         # old July URL names now carry those bytes
++        shutil.copy(world["files"] / f"REPD_Publication_Q1_2027.{ext}",
++                    world["files"] / f"REPD_Publication_Q2_2026.{ext}")
++    code, res = run(world, "content_api_2026q2_old_urls.json")
++    assert code == 0 and res["status"] == "unchanged" and res["release_id"] == "2027q1"
++
++
++def test_same_quarter_with_new_bytes_needs_a_person(world):
++    synthetic(world, "REPD_Publication_Q1_2027")
++    run(world, "content_api_2027q1.json")
++    shutil.rmtree(world["out"])
++    rows = base_rows(7)                                 # a correction: one more row, same quarter
++    put(world, "REPD_Publication_Q1_2027.csv", make_csv(rows))
++    put(world, "REPD_Publication_Q1_2027.xlsx", make_xlsx(rows))
++    before = (world["auto"] / "releases" / "2027q1.json").read_text()
++    code, res = run(world, "content_api_2027q1.json")
++    assert code == 1 and res["status"] == "needs_person" and "2027q1" in res["reason"]
++    assert (world["auto"] / "releases" / "2027q1.json").read_text() == before
++    assert "needs a person" in (world["out"] / "summary.md").read_text()
++
++
++def test_unnamed_files_get_a_date_derived_id(world):
++    synthetic(world, "repd-extract")
++    code, res = run(world, "content_api_unnamed.json")
++    assert code == 0 and res["status"] == "new"
++    assert res["release_id"] == "2026q4" and res["published"]["label"] == "January 2027"
++    assert res["published"]["id_from"].startswith("publication date 2027-02-04")
++    config.load(world["auto"] / "releases" / "2026q4.json")
++
++
++def test_acceptance_waivers_carry_forward(world):
++    (world["auto"] / "baselines" / "2026q2_known_anomalies.json").write_text(json.dumps(
++        {"known": {"1": "x"}, "acceptance_waive_cells": ["15915:Address"]}))
++    synthetic(world, "REPD_Publication_Q1_2027")
++    code, res = run(world, "content_api_2027q1.json")
++    known = json.loads((world["auto"] / "baselines" / "2027q1_known_anomalies.json").read_text())
++    assert known["acceptance_waive_cells"] == ["15915:Address"] and known["known"] == {}
++
++
++def test_allowlist_is_idempotent_and_optional(world):
++    root = world["root"]
++    assert len(monthly.add_allowlist(root, "2027q1", "202705060517")) == 3
++    assert monthly.add_allowlist(root, "2027q1", "202705060517") == []
++    synthetic(world, "REPD_Publication_Q1_2027")
++    allow = (root / ".github" / "large-files-allowlist.txt").read_text()
++    (root / ".github" / "large-files-allowlist.txt").write_text("x\n")
++    run(world, "content_api_2027q1.json", "--no-allowlist")
++    assert (root / ".github" / "large-files-allowlist.txt").read_text() == "x\n"
++    assert allow.count("dist/repd_master_2027q1.json") == 1
++
++
++def test_unreadable_publication_is_an_error_not_green(world, tmp_path):
++    bad = tmp_path / "bad.json"
++    bad.write_text('{"details": {"attachments": []}}')
++    code = monthly.main(["--out", str(world["out"]), "--repo-root", str(world["root"]),
++                         "--api-file", str(bad), "--files-dir", str(world["files"])])
++    res = json.loads((world["out"] / "result.json").read_text())
++    assert code == 2 and res["status"] == "error"
++
++
++def test_github_output(world, monkeypatch, tmp_path):
++    out = tmp_path / "gh_output"
++    monkeypatch.setenv("GITHUB_OUTPUT", str(out))
++    synthetic(world, "REPD_Publication_Q1_2027")
++    run(world, "content_api_2027q1.json")
++    lines = dict(line.split("=", 1) for line in out.read_text().splitlines())
++    assert lines["status"] == "new" and lines["release_id"] == "2027q1"
++    assert lines["release_folder"] == "202705060517" and lines["csv"].endswith("REPD_Publication_Q1_2027.csv")
++
++
++@pytest.mark.skipif(not (REAL / "REPD_Publication_Q3_2026.csv").is_file(), reason="real October files absent")
++def test_real_october_files_are_unchanged_against_main(tmp_path):
++    out = tmp_path / "out"
++    code = monthly.main(["--out", str(out), "--repo-root", str(REPO), "--api-file",
++                         str(Path(__file__).resolve().parent / "fixtures" / "detect_fetch" / "content_api_2026q3.json"),
++                         "--files-dir", str(REAL)])
++    res = json.loads((out / "result.json").read_text())
++    assert code == 0 and res["status"] == "unchanged" and res["release_id"] == "2026q3"
++    assert res["files"]["csv"]["sha256"] == Q3_CSV
+diff --git a/automation/repd/tests/test_run.py b/automation/repd/tests/test_run.py
+index 5bb6ad8..5200544 100644
+--- a/automation/repd/tests/test_run.py
++++ b/automation/repd/tests/test_run.py
+@@ -18,7 +18,7 @@ sys.path.insert(0, str(REPO))
+ from automation.repd import run  # noqa: E402
+ 
+ WF = REPO / ".github" / "workflows" / "repd-release-candidate.yml"
+-WF_CHECK = REPO / ".github" / "workflows" / "repd-new-release-check.yml.disabled"
++WF_MONTHLY = REPO / ".github" / "workflows" / "repd-monthly.yml"
+ HEADER = ["Ref ID"] + [f"Col {i}" for i in range(2, 54)]
+ 
+ 
+@@ -350,11 +350,26 @@ def test_release_candidate_workflow_is_manual_and_safe():
+             assert "${{ inputs." not in step.get("run", ""), step.get("name")
+ 
+ 
+-def test_disabled_check_is_report_only():
+-    doc = yaml.safe_load(WF_CHECK.read_text(encoding="utf-8"))
+-    assert set(_on(doc)) == {"workflow_dispatch", "schedule"}
++def test_monthly_workflow_schedule_permissions_and_branch():
++    """repd-monthly.yml (owner's monthly instruction) replaced repd-new-release-check.yml.disabled."""
++    assert not (REPO / ".github" / "workflows" / "repd-new-release-check.yml.disabled").exists()
++    text = WF_MONTHLY.read_text(encoding="utf-8")
++    doc = yaml.safe_load(text)
++    on = _on(doc)
++    assert set(on) == {"workflow_dispatch", "schedule"} and on["schedule"] == [{"cron": "17 5 3 * *"}]
+     assert doc["permissions"] == {"contents": "read"}
+-    assert "git push" not in WF_CHECK.read_text() and "gh pr" not in WF_CHECK.read_text()
++    jobs = doc["jobs"]
++    assert jobs["check"]["permissions"] == {"contents": "read"}
++    assert jobs["open-pr"]["permissions"] == {"contents": "write", "pull-requests": "write"}
++    assert set(jobs) == {"check", "open-pr"}
++    assert "git push" not in json.dumps(jobs["check"]) and "gh pr" not in json.dumps(jobs["check"])
++    pushes = [ln.strip() for ln in text.splitlines() if "git push" in ln]
++    assert pushes == ['git push origin "HEAD:refs/heads/$BRANCH"']
++    assert jobs["open-pr"]["env"]["BRANCH"] == "repd/${{ needs.check.outputs.release_id }}-monthly"
++    assert "--draft" not in text and "main|master|gh-pages) exit 1" in text
++    for job in jobs.values():
++        for step in job["steps"]:
++            assert "${{ inputs." not in step.get("run", ""), step.get("name")
+ 
+ 
+ def _freeze_text_from(repo_root: Path):
+diff --git a/docs/repd/AUTOMATION.md b/docs/repd/AUTOMATION.md
+index 98e2266..db7e098 100644
+--- a/docs/repd/AUTOMATION.md
++++ b/docs/repd/AUTOMATION.md
+@@ -69,6 +69,11 @@ gate (`.github/workflows/v9-5-1-validate.yml:7-16`).
+   (`gridatlas:docs/RELEASE.md:49-55`). No automatic agent scheduling, push, merge or release is installed by the agent protocol
+   (`neural-link-between-agents:PROTOCOL.md:47`).
+ - `main` has no branch protection and no required checks (note 04 section 1). The draft PR is therefore the only review gate.
++- Exception, by the owner's direct instruction of 14 November 2026 ("I want REPD to be updated every month. Simple, don't
++  over-complicate"): `.github/workflows/repd-monthly.yml` runs on the 3rd of each month. It compares the published files' sha256 with the
++  descriptors and, only when the bytes are new, writes the descriptor (`automation/repd/monthly.py`), runs `run.py` and opens a normal
++  (not draft) pull request. It still never pushes to `main`, merges or deploys. It replaces `repd-new-release-check.yml.disabled`.
++  How to run it by hand: RUNBOOK section 6.1.
+ 
+ ## 2. The release descriptor
+ 
+diff --git a/docs/repd/RUNBOOK.md b/docs/repd/RUNBOOK.md
+index c1d2ed5..866814f 100644
+--- a/docs/repd/RUNBOOK.md
++++ b/docs/repd/RUNBOOK.md
+@@ -472,6 +472,22 @@ change (note 20 section 6).
+   wait on it (note 04 section 7). Nothing is required by branch protection; `main` is unprotected (note 04 section 1).
+ - The automation workflow `.github/workflows/repd-release-candidate.yml` is `workflow_dispatch` only and ends at this draft PR.
+ 
++### 6.1 The monthly job (owner's instruction, 14 November 2026: "I want REPD to be updated every month")
++
++- `.github/workflows/repd-monthly.yml` runs at 05:17 UTC on the 3rd of every month, and by hand from Actions > "REPD monthly update" >
++  Run workflow (inputs: `open_pr`, default true; `release_folder`, blank = now). It is the one scheduled exception to the manual-only
++  freeze; running `000_freeze_all_workflows_to_manual.yml` again strips its schedule, so put the `schedule:` block back afterwards.
++- It downloads the CSV and XLSX the publication links to and compares their sha256 with `automation/repd/releases/*.json`
++  (`python -m automation.repd.monthly`). Same bytes: a green run whose summary says "No new REPD release" (most months).
++  New bytes: it writes `releases/<id>.json` and `releases_v6/v6_<id>.json`, adds the three over-5-MB files to the allow-list, runs
++  `automation/repd/run.py --offline` on the downloaded bytes (steps 2 to 8) and opens a pull request (not draft) on `repd/<id>-monthly`
++  with the change report as its body. It never pushes to `main`; the owner reviews and merges, and then does steps 9 and 10 and any
++  repointing as before. New bytes for a quarter that already has a descriptor (a correction) stop the run red for a person.
++- Same commands by hand: `python -m automation.repd.monthly --out "$OUT/check"`, then, if `status` in `$OUT/check/result.json` is `new`,
++  `python -m automation.repd.run --descriptor automation/repd/releases/$REL.json --label $REL --release-folder <stamp> --out "$OUT/run"
++  --offline --csv "$OUT/check/raw/<csv name>" --xlsx "$OUT/check/raw/<xlsx name>"`. Offline: add `--api-file <saved content API JSON>
++  --files-dir <folder with the files>` to the first command.
++
+ ## 7. Rollback
+ 
+ Roll back in the reverse order of release: homepage pointer first, then Pipeline News and GridAtlas, then data. A release folder that the

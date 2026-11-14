@@ -125,3 +125,16 @@ STATUS: MERGED; deploy in progress; served bytes UNVERIFIED.
 - PR #63 (d5de5a03): CSV export source count fixed (was the July 14657), release CI workflow (passed on GitHub),
   REPD and data-centre convergence join and outputs, runbook command corrections.
 - Lanes finished: Team 2, Team 3, Team 5, Team 6. Running: Team 1, Team 4, news agents N1 to N3, Fable scopes agent.
+
+## 2026-11-14T01:07Z  CLAUDE HARNESS  HANDOFF  merges since 00:55Z; new owner instructions; lanes
+
+- Owner, 00:56Z: REPD updated every month; data-centre capex news and politics in Pipeline News; keep it simple;
+  look at what GridAtlas already holds in a headless browser; experiment. Recorded in OWNER-INSTRUCTIONS.md addendum.
+- globalgrid2050 main c41b8dd6. Merged: PR #64 (Team 1 source QA fixes D1-D7; October data re-derived byte for byte),
+  PR #66 (N1 October project news feeds, Ref-aware binder), PR #67 (N3 REPD change events and relevance score),
+  PR #68 (Team 3 successor release folder 202611140058, V9.13, release labels, CSV count fix, CI).
+- Handed off: Teams 1, 2, 3, 5, 6; N1, N2, N3. Running: Team 4 (maps), M1 (monthly REPD workflow), N4 (data-centre
+  capex and politics feed and panel), G1 (GridAtlas in headless Chrome), Fable scopes agent.
+- Not yet applied: N2's patches for the separate pipelinenews repository (new-quarter detection, reconcile fix,
+  data-centre binder) and the offline pipelinenews release; GridAtlas preview (no push route).
+- Waiting on ChatGPT: second pointer promotion to 202611140058; live CSV check; owner's brief on issues 19 and 20.

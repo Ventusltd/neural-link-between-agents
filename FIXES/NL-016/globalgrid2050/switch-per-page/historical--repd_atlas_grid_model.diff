@@ -1,0 +1,11 @@
+--- a/repd_atlas_grid_model.md
++++ b/repd_atlas_grid_model.md
+@@ -184,7 +184,7 @@
+         map.addLayer({ id: 'repd-unclustered', type: 'circle', source: 'repd', filter: ['!', ['has', 'point_count']], paint: { 'circle-color': '#00f2ff', 'circle-radius': 6, 'circle-stroke-width': 1, 'circle-stroke-color': '#fff' } });
+ 
+         // Load CSV (Mocking trigger for dashboard init)
+-        const csvUrl = '{{ site.baseurl }}/repd.csv'; // Ensure this path is correct in your repo
++        const csvUrl = '{{ site.baseurl }}/repd-2026q3.csv'; // Ensure this path is correct in your repo
+         Papa.parse(csvUrl, { 
+             download: true, 
+             header: true, 

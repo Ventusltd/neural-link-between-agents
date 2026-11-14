@@ -1,0 +1,67 @@
+CLEANED rows=14967 sha256=d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9 changes=832 counts={"header_whitespace_normalised": 0, "identical_duplicate_row_removed": 1, "edge_control_whitespace_trimmed": 572, "embedded_line_break_replaced": 8, "edge_space_trimmed": 0, "whitespace_only_cell_blanked": 0, "date_month_first_corrected": 24, "date_na_text_blanked": 16, "date_whitespace_blanked": 158, "date_text_normalised": 0, "number_stored_as_date_restored": 55, "capacity_excel_precision": 0}
+📡 VENTUS REPD UPDATER v6.0 | OFFICIAL REPD BINDING...
+🧪 REFINING OFFICIAL REPD MASTER DATASET...
+⚠️ Missing optional columns (degraded enrichment only): ['Local Planning Authority', 'Planning Permission Granted']
+✅ REPD V6 binding: 11293 viable geocoded assets; skipped 39 unusable-coordinate rows
+[PASS] validate_repd_sources_v6.py: REPD SOURCE RECONCILIATION PASS {"canonical_bess_gt100": 281, "canonical_combined_projects": 3765, "canonical_solar_gt1": 3484, "csv_bess_gt100": 281, "csv_native_solar_gt1_rounded": 3482, "csv_rows": 14968, "csv_unique_refs": 14967, "material_mismatches": 0, "representation_differences": {"capacity_precision": 1584, "control_code_whitespace": 70, "csv_month_first_date": 24, "na_date_text": 16, "planning_reference_leading_zero": 1, "planning_reference_missing_marker": 2}, "xlsx_bess_gt100": 281, "xlsx_canonical_solar_gt1": 3484, "xlsx_rows": 14968, "xlsx_unique_refs": 14967}
+[PASS] validate_v6_manifest_provenance.py: V6 MANIFEST PROVENANCE PASS source_rows=14968 solar=3484 bess=281
+[PASS] build_project_identity_v6.py: identity raw=14967 repd=14967 gg_only=0 groups=13144 coverage=100.000% public_projects=3765
+[PASS] validate_project_identity_v6.py: PROJECT IDENTITY 2026Q4 PASS {"bess_projects": 281, "development_groups": 13144, "identity_records": 14967, "news_articles": 8, "project_news_links": 8, "public_projects": 3765, "solar_projects": 3484}
+[INFO] gg_project_id preserved=14967 changed=0 new=0 retired=0; gg_development_id changed=0 []
+[PASS] protected files unchanged (447 hashed)
+PASS  official.read                      official CSV cp1252, 14968 rows x 53 columns; XLSX 14967 refs
+PASS  official.duplicates_identical      1 duplicated refs, all identical: ['7679']
+PASS  official.xlsx_agrees               XLSX has the same 53 columns and 14967 refs as the CSV
+PASS  cleaned.refs_exactly_once          14967 official refs, each exactly once in 14967 cleaned rows
+PASS  cleaned.header                     53 columns, same names as official
+PASS  cleaned.cells_classified           832 changed cells, all classified: {'month_first_date': 24, 'na_date': 16, 'whitespace_control': 311, 'embedded_line_break': 426, 'number_as_date': 55} [1 cell(s) waived by --waive-cell]
+PASS  cleaned.month_first_corrected      25 Excel month-first date cells, all written dd/mm/yyyy in the cleaned file
+PASS  cleaned.text_matches_excel         116849 text cells (Site Name, Operator (or Applicant), Address...) equal the Excel strings
+PASS  cleaned.utf8                       valid UTF-8
+PASS  cleaned.no_mojibake                no mojibake or U+FFFD introduced (2 cells keep mojibake already present in the official file)
+PASS  cleaned.no_bare_cr                 no bare CR
+PASS  cleaned.no_embedded_breaks         no line breaks inside fields
+PASS  cleaned.field_count                all 14967 records have 53 fields
+PASS  full.utf8                          valid UTF-8
+PASS  full.no_mojibake                   no mojibake or U+FFFD introduced (2 cells keep mojibake already present in the official file)
+PASS  full.no_bare_cr                    no bare CR
+PASS  full.no_embedded_breaks            no line breaks inside fields
+PASS  full.field_count                   all 14967 records have 53 fields
+PASS  batteries.utf8                     valid UTF-8
+PASS  batteries.no_mojibake              no mojibake or U+FFFD introduced
+PASS  batteries.no_bare_cr               no bare CR
+PASS  batteries.no_embedded_breaks       no line breaks inside fields
+PASS  batteries.field_count              all 2181 records have 53 fields
+PASS  solar_op.utf8                      valid UTF-8
+PASS  solar_op.no_mojibake               no mojibake or U+FFFD introduced
+PASS  solar_op.no_bare_cr                no bare CR
+PASS  solar_op.no_embedded_breaks        no line breaks inside fields
+PASS  solar_op.field_count               all 1229 records have 43 fields
+PASS  over4.utf8                         valid UTF-8
+PASS  over4.no_mojibake                  no mojibake or U+FFFD introduced
+PASS  over4.no_bare_cr                   no bare CR
+PASS  over4.no_embedded_breaks           no line breaks inside fields
+PASS  over4.field_count                  all 940 records have 53 fields
+PASS  full.equals_cleaned                14967 rows = identity applied to the cleaned file; every cell equal
+PASS  batteries.filter                   2181 rows = Battery + active short status filter applied to the cleaned file; every cell equal
+PASS  solar_op.header                    43-column header identical to the January repd-solar-operational.csv
+PASS  solar_op.filter                    1229 rows = Solar PV + Operational + >1 MW + Ground/Roof filter applied to the cleaned file; every cell equal
+PASS  over4.header                       53 columns, same as the cleaned file
+PASS  over4.filter                       940 rows = Solar PV + Operational + >4 MW filter applied to the cleaned file; every cell equal
+PASS  master.parses                      FeatureCollection with 11293 Point features
+PASS  master.features                    11293 features = 11293 viable geocoded records, refs and coordinates match
+PASS  master.keys_superset               every feature carries all 10 baseline property keys (+8 new)
+PASS  inputs.unchanged                   9 files hashed before and after, none changed
+-- 0 FAIL, 43 PASS, 0 SKIP
+detect       skipped   offline: release descriptor (no network) 
+fetch        ran       automation.repd.fetch (adapter adapt_fetch) 
+clean        ran       automation.repd.clean (adapter adapt_clean) 
+validate     ran       automation.repd.validate (adapter adapt_validate) 
+diff         ran       automation.repd.diff (adapter adapt_diff) 
+build_root   ran       automation.repd.build_root.build_root 
+build_v6     ran       automation.repd.build_v6 (adapter adapt_build_v6) 
+build_news   ran       automation.repd.build_news (adapter adapt_build_news) 
+acceptance   ran       automation.repd.tests.acceptance.main 
+assemble_pr  ran       run.py assemble (orchestrator) 
+hash_guard   ran        
+overall: ok  report: /tmp/m1-q4run/run_report.md

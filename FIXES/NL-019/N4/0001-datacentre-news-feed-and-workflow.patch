@@ -1,0 +1,915 @@
+diff --git a/.github/workflows/datacentre-news.yml b/.github/workflows/datacentre-news.yml
+new file mode 100644
+index 0000000..8c0d3a9
+--- /dev/null
++++ b/.github/workflows/datacentre-news.yml
+@@ -0,0 +1,91 @@
++name: Data-centre capex and politics news (daily, data branch)
++# Owner, 14 Nov 2026 00:56 UTC: "I want data centre CAPEX news and politics in the REPD pipeline. Simple."
++# This is an owner-requested scheduled workflow (an exception to the 000_freeze manual-only rule, like the monthly
++# REPD check). It reads a fixed list of public RSS/Atom feeds (automation/news/datacentre_feed.py, FEEDS), keeps
++# headlines and links only, and publishes ONE file, datacentre_news.json, to the branch datacentre-news-data.
++# It never pushes to main, never opens a PR, never deploys: the Pipeline News panel reads the file from
++# raw.githubusercontent.com on that branch, so a daily refresh needs no Pages rebuild. A push made with
++# GITHUB_TOKEN starts no other workflow. One feed failing is recorded in the file's "feeds" list and does not
++# fail the job; the job fails only when every feed failed and there is no earlier file.
++on:
++  schedule:
++    - cron: '23 5 * * *'
++  workflow_dispatch:
++permissions:
++  contents: write
++concurrency:
++  group: datacentre-news
++  cancel-in-progress: false
++env:
++  DATA_BRANCH: datacentre-news-data
++jobs:
++  refresh:
++    runs-on: ubuntu-latest
++    timeout-minutes: 10
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          ref: main
++          fetch-depth: 1
++      - uses: actions/setup-python@v5
++        with:
++          python-version: '3.12'
++      - name: Tests (offline fixtures)
++        run: |
++          python -m pip install --quiet pytest
++          python -m pytest -q -p no:cacheprovider automation/news/tests/test_datacentre_feed.py
++      - name: Bring in the previous file from the data branch (keeps older items)
++        run: |
++          mkdir -p dist
++          if git ls-remote --exit-code --heads origin "$DATA_BRANCH" >/dev/null; then
++            git fetch --depth=1 origin "$DATA_BRANCH"
++            git show FETCH_HEAD:dist/datacentre_news.json > dist/datacentre_news.json || rm -f dist/datacentre_news.json
++          fi
++      - name: Fetch feeds and build dist/datacentre_news.json
++        run: python automation/news/datacentre_feed.py --out dist/datacentre_news.json
++      - name: Summary
++        if: always()
++        run: |
++          python - <<'EOF' >> "$GITHUB_STEP_SUMMARY"
++          import json, pathlib
++          p = pathlib.Path("dist/datacentre_news.json")
++          if not p.exists():
++              print("no output"); raise SystemExit
++          d = json.loads(p.read_text())
++          print(f"**{d['status']}**  {json.dumps(d['counts'])}\n")
++          print("| feed | status | entries | kept | error |\n|---|---|---|---|---|")
++          for f in d["feeds"]:
++              print(f"| {f['url']} | {f['status']} | {f.get('entries','')} | {f.get('kept','')} | {f.get('error','')} |")
++          print("\n| date | lanes | source | title |\n|---|---|---|---|")
++          for i in d["items"][:15]:
++              print(f"| {i['date']} | {'+'.join(i['lanes'])} | {i['source']} | {i['title']} |")
++          EOF
++      - name: Publish to the data branch
++        run: |
++          git config user.name 'github-actions[bot]'
++          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
++          pub="$RUNNER_TEMP/pub"
++          if git ls-remote --exit-code --heads origin "$DATA_BRANCH" >/dev/null; then
++            git worktree add --detach "$pub" FETCH_HEAD
++          else
++            git worktree add --detach "$pub" HEAD
++            git -C "$pub" checkout --orphan datacentre-news-tmp
++            git -C "$pub" rm -rq --cached .
++            find "$pub" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
++          fi
++          mkdir -p "$pub/dist"
++          cp dist/datacentre_news.json "$pub/dist/datacentre_news.json"
++          printf '%s\n' "Published daily by .github/workflows/datacentre-news.yml on main. Headlines and links only." \
++            "Read by the Pipeline News panel scripts/plugins/datacentre-news.js. Do not edit by hand." > "$pub/README.txt"
++          git -C "$pub" add dist/datacentre_news.json README.txt
++          if git -C "$pub" diff --cached --quiet; then
++            echo "no change"; exit 0
++          fi
++          git -C "$pub" commit -q -m "data-centre news $(date -u +%Y-%m-%dT%H:%MZ)"
++          git -C "$pub" push origin "HEAD:refs/heads/$DATA_BRANCH"
++      - uses: actions/upload-artifact@v4
++        if: always()
++        with:
++          name: datacentre-news
++          path: dist/datacentre_news.json
++          retention-days: 14
+diff --git a/automation/news/datacentre_feed.py b/automation/news/datacentre_feed.py
+new file mode 100644
+index 0000000..3b812cc
+--- /dev/null
++++ b/automation/news/datacentre_feed.py
+@@ -0,0 +1,429 @@
++#!/usr/bin/env python3
++"""Data-centre capex and politics headlines for Pipeline News (owner line 11, 14 Nov 2026).
++
++Reads a short fixed list of public RSS/Atom feeds, keeps headlines about data centres that also talk about
++money (lane "capex") or policy (lane "politics"), and writes dist/datacentre_news.json.
++
++  python3 automation/news/datacentre_feed.py --out dist/datacentre_news.json
++
++Rules
++- Headlines and links only. The feed summary is read in memory to decide relevance and is never written out.
++  No article page is ever requested.
++- A feed that fails (network, HTTP, bad XML) is recorded in "feeds" and skipped; the run carries on. The exit
++  code is non-zero only when every feed failed AND there is no earlier output to keep.
++- Items from the previous output are kept (merged by canonical link), so a rolling feed does not make a story
++  vanish; the file holds the newest MAX_ITEMS, ordered by date (newest first) then link.
++- A data-centre site is attached only when the HEADLINE names a site or operator from the released UK
++  data-centre register (the 226-record GridAtlas baseline, read through the convergence output). REPD context
++  is the straight-line count and stated MW of live REPD projects within 10 km of that site, from
++  dist/convergence/<release>/datacentre_proximity.json. It is screening context, never a connection claim.
++"""
++from __future__ import annotations
++
++import argparse
++import datetime as dt
++import email.utils
++import hashlib
++import html
++import json
++import re
++import sys
++import urllib.parse
++import urllib.request
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++SCHEMA = "globalgrid2050.news.datacentre-capex-politics.v1"
++MAX_ITEMS = 200
++MAX_BYTES = 2_000_000
++TIMEOUT_S = 20
++USER_AGENT = "GlobalGrid2050-DatacentreNews/1.0 (+https://globalgrid2050.com)"
++REPD_RADIUS_KM = "10"
++SITES_PER_ITEM = 5
++
++# (url, source label, why it is on the list). Fixed and short on purpose.
++FEEDS = [
++    ("https://feeds.bbci.co.uk/news/technology/rss.xml", "BBC News",
++     "BBC technology section: hyperscaler and AI infrastructure announcements; BBC RSS is already used by "
++     "pipelinenews discovery/bbc_rss.py"),
++    ("https://feeds.bbci.co.uk/news/business/rss.xml", "BBC News",
++     "BBC business section: investment and capex headlines; already in bbc_rss.py SECTIONS"),
++    ("https://feeds.bbci.co.uk/news/politics/rss.xml", "BBC News",
++     "BBC politics section: ministers, bills and planning decisions on data centres and AI growth zones"),
++    ("https://feeds.bbci.co.uk/news/science_and_environment/rss.xml", "BBC News",
++     "BBC science and environment: energy, water and grid stories; already in bbc_rss.py SECTIONS"),
++    ("https://www.gov.uk/government/organisations/department-for-science-innovation-and-technology.atom",
++     "GOV.UK DSIT", "DSIT owns AI growth zones, compute strategy and data-centre critical national "
++     "infrastructure; GOV.UK organisation Atom feed"),
++    ("https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero.atom",
++     "GOV.UK DESNZ", "DESNZ owns grid connections reform and energy prices for large users; GOV.UK "
++     "organisation Atom feed (also used by the energy24 candidate, PR #65)"),
++    ("https://www.gov.uk/search/news-and-communications.atom?keywords=data+centre", "GOV.UK search",
++     "Every GOV.UK department's news mentioning data centres (planning, MHCLG, devolved statements); GOV.UK "
++     "finder Atom feed"),
++    ("https://bills.parliament.uk/rss/allbills.rss", "UK Parliament Bills",
++     "All public bills: catches bills on planning, AI, cyber resilience or energy that name data centres"),
++    ("https://www.datacenterdynamics.com/rss/", "DatacenterDynamics",
++     "Trade press for data-centre builds and capex (same URL as the energy24 candidate, PR #65)"),
++]
++
++# Word lists. Each is matched case-insensitively on word boundaries against title + feed summary.
++DATACENTRE_TERMS = {
++    "data centre": r"data[\s-]?cent(?:re|er)s?",
++    "hyperscale": r"hyperscal(?:e|er|ers)",
++    "AI infrastructure": r"AI infrastructure",
++    "AI growth zone": r"AI growth zones?",
++    "compute": r"compute|supercomputers?",
++}
++CAPEX_TERMS = {
++    "investment": r"invest(?:s|ed|ing|ment|ments|or|ors)?",
++    "capex": r"capex|capital expenditure|spend(?:s|ing)?",
++    "billion": r"billions?|£\s?\d[\d.,]*\s?bn|\$\s?\d[\d.,]*\s?bn|\d[\d.,]*\s?bn",
++    "million": r"millions?|£\s?\d[\d.,]*\s?m|\$\s?\d[\d.,]*\s?m",
++    "funding": r"fund(?:s|ed|ing)?",
++    "build": r"build(?:s|ing)?|construction",
++    "expansion": r"expan(?:d|ds|ded|ding|sion)",
++}
++POLITICS_TERMS = {
++    "planning": r"planning|planners?|council",
++    "grid connection": r"grid connections?|connection queue|National Grid|NESO|Ofgem",
++    "minister": r"ministers?|secretary of state|government|MPs?",
++    "bill": r"bills?|legislation|parliament",
++    "consultation": r"consultations?",
++    "growth zone": r"growth zones?",
++    "energy price": r"energy (?:prices?|costs?|bills?)|electricity (?:prices?|costs?)",
++    "water": r"water",
++}
++
++
++def _compile(terms):
++    return {k: re.compile(r"(?<![\w])(?:" + v + r")(?![\w])", re.I) for k, v in terms.items()}
++
++
++DC_RE, CAPEX_RE, POLITICS_RE = _compile(DATACENTRE_TERMS), _compile(CAPEX_TERMS), _compile(POLITICS_TERMS)
++TAG_RE = re.compile(r"<[^>]+>")
++TRACKING_PARAMS = re.compile(r"^(utm_|at_|ito$|ns_|ocid$|cmpid$|fbclid$|gclid$)", re.I)
++ATOM = "{http://www.w3.org/2005/Atom}"
++
++
++def clean_text(value, limit):
++    text = html.unescape(TAG_RE.sub(" ", value or ""))
++    return " ".join(text.split())[:limit]
++
++
++def canonical_link(value):
++    """https only, host lower-cased, fragment and tracking parameters removed. None if unusable."""
++    u = urllib.parse.urlsplit((value or "").strip())
++    if u.scheme not in ("https", "http") or not u.hostname or u.username or u.password:
++        return None
++    query = [(k, v) for k, v in urllib.parse.parse_qsl(u.query, keep_blank_values=True)
++             if not TRACKING_PARAMS.match(k)]
++    return urllib.parse.urlunsplit(("https", u.hostname.lower(), u.path or "/",
++                                    urllib.parse.urlencode(query), ""))
++
++
++def parse_date(value):
++    value = (value or "").strip()
++    if not value:
++        return None
++    try:
++        parsed = email.utils.parsedate_to_datetime(value)
++    except (TypeError, ValueError, IndexError, OverflowError):
++        try:
++            parsed = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
++        except ValueError:
++            return None
++    if parsed.tzinfo is None:
++        return None
++    return parsed.astimezone(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
++
++
++def parse_feed(body):
++    """Return [(title, link, date, summary)] from RSS 2.0 or Atom bytes. Raises ValueError on bad input."""
++    if len(body) > MAX_BYTES:
++        raise ValueError("feed exceeds %d bytes" % MAX_BYTES)
++    upper = body[:4096].upper()
++    if b"<!DOCTYPE" in upper or b"<!ENTITY" in body.upper():
++        raise ValueError("DTD or entity declaration rejected")
++    try:
++        root = ET.fromstring(body)
++    except ET.ParseError as error:
++        raise ValueError("not XML: %s" % error) from None
++    out = []
++    if root.tag == "rss" or root.find("channel") is not None:
++        for item in root.iter("item"):
++            out.append((item.findtext("title"), item.findtext("link"),
++                        item.findtext("pubDate") or item.findtext("{http://purl.org/dc/elements/1.1/}date"),
++                        item.findtext("description")))
++    elif root.tag == ATOM + "feed":
++        for entry in root.iter(ATOM + "entry"):
++            link = None
++            for el in entry.findall(ATOM + "link"):
++                if el.get("rel", "alternate") == "alternate":
++                    link = el.get("href")
++                    break
++            out.append((entry.findtext(ATOM + "title"), link,
++                        entry.findtext(ATOM + "published") or entry.findtext(ATOM + "updated"),
++                        entry.findtext(ATOM + "summary") or entry.findtext(ATOM + "content")))
++    else:
++        raise ValueError("neither RSS nor Atom: root <%s>" % root.tag)
++    return out
++
++
++def matches(regexes, text):
++    return sorted(k for k, rx in regexes.items() if rx.search(text))
++
++
++def classify(title, summary, register_named=False):
++    """(datacentre terms, lanes, lane terms) or None when the headline is out of scope.
++
++    register_named: the headline names a register site, or a data-centre operator from the register; that
++    counts as the data-centre term "register site"."""
++    text = title + " " + summary
++    dc = matches(DC_RE, text) + (["register site"] if register_named else [])
++    if not dc:
++        return None
++    capex, politics = matches(CAPEX_RE, text), matches(POLITICS_RE, text)
++    lanes = (["capex"] if capex else []) + (["politics"] if politics else [])
++    if not lanes:
++        return None
++    return dc, lanes, {"capex": capex, "politics": politics}
++
++
++# ---------------------------------------------------------------- data-centre register join
++
++GENERIC_NAMES = {"unnamed data centre", "data centre", "datacentre", "data center"}
++OPERATOR_ALIASES = {"amazon web services": ["AWS", "Amazon"]}
++MIN_NAME_LEN = 5
++# Register operators whose main business is not data centres. Naming one of them attaches its register sites
++# but does not by itself make a headline a data-centre story (a bank or a software launch is not one).
++GENERAL_OPERATORS = {"microsoft", "amazon web services", "aws", "amazon", "google", "meta", "santander",
++                     "morgan stanley", "goldman sachs", "nationwide building society", "vodafone", "verizon",
++                     "telefonica", "experian", "nyse euronext", "tata communications", "lumen technologies", "scc",
++                     "openai", "stargate uk"}
++
++
++def _alternatives(record):
++    """Yield (phrase, kind) pairs a headline may name for this register record."""
++    name = (record.get("name") or "").strip()
++    if len(name) >= MIN_NAME_LEN and name.lower() not in GENERIC_NAMES:
++        yield name, "site_name"
++    for alias in record.get("aliases") or []:
++        alias = alias.strip() if isinstance(alias, str) else ""
++        if len(alias) >= MIN_NAME_LEN and alias.lower() not in GENERIC_NAMES:
++            yield alias, "site_name"
++    for part in (record.get("operator") or "").split(";"):
++        part = re.sub(r"\(.*?\)", "", part).strip()
++        if part.lower().startswith("consortium"):
++            continue
++        if len(part) >= 3:
++            yield part, "operator"
++            for alias in OPERATOR_ALIASES.get(part.lower(), []):
++                yield alias, "operator"
++
++
++def repd_context(record):
++    """Live REPD projects within REPD_RADIUS_KM of the site (all four technologies, four live status groups)."""
++    if not record.get("proximity_reliable"):
++        return None
++    cells = (record.get("radii") or {}).get(REPD_RADIUS_KM)
++    if not cells:
++        return None
++    out = {"radius_km": int(REPD_RADIUS_KM), "projects": 0, "mw_stated": 0.0, "projects_mw_unknown": 0,
++           "mw_stated_by_technology": {}}
++    for tech in sorted(cells):
++        tech_mw = 0.0
++        for status in sorted(cells[tech]):
++            c = cells[tech][status]
++            out["projects"] += c.get("count", 0)
++            out["projects_mw_unknown"] += c.get("count_mw_unknown", 0)
++            tech_mw += c.get("mw_stated", 0.0) or 0.0
++        out["mw_stated_by_technology"][tech] = round(tech_mw, 2)
++        out["mw_stated"] += tech_mw
++    out["mw_stated"] = round(out["mw_stated"], 2)
++    return out
++
++
++class Register:
++    def __init__(self, records):
++        self.records = {r["id"]: r for r in records if r.get("id")}
++        self.patterns = []
++        for rid in sorted(self.records):
++            for phrase, kind in _alternatives(self.records[rid]):
++                flags = 0 if phrase.isupper() else re.I  # SCC, NTT, AWS: exact case only
++                rx = re.compile(r"(?<![\w])" + re.escape(phrase) + r"(?![\w])", flags)
++                self.patterns.append((rid, phrase, kind, rx))
++
++    @classmethod
++    def load(cls, proximity_path=None, geojson_path=None):
++        """Records from the convergence proximity output, enriched with aliases from the register GeoJSON."""
++        records = {}
++        if proximity_path and Path(proximity_path).exists():
++            for r in json.loads(Path(proximity_path).read_text(encoding="utf-8")).get("records", []):
++                records[r["id"]] = dict(r)
++        if geojson_path and Path(geojson_path).exists():
++            for f in json.loads(Path(geojson_path).read_text(encoding="utf-8")).get("features", []):
++                p = f.get("properties") or {}
++                if not p.get("id"):
++                    continue
++                r = records.setdefault(p["id"], {"id": p["id"], "name": p.get("name"),
++                                                 "operator": p.get("operator"), "status": p.get("status")})
++                r["aliases"] = p.get("aliases") or []
++        return cls(list(records.values()))
++
++    def match(self, title):
++        hits = {}
++        for rid, phrase, kind, rx in self.patterns:
++            if rx.search(title):
++                prev = hits.get(rid)
++                if prev is None or (kind == "site_name" and prev[1] == "operator"):
++                    hits[rid] = (phrase, kind)
++        ordered = sorted(hits.items(), key=lambda kv: (kv[1][1] != "site_name", kv[0]))
++        sites = []
++        for rid, (phrase, kind) in ordered[:SITES_PER_ITEM]:
++            r = self.records[rid]
++            sites.append({"id": rid, "name": r.get("name"), "status": r.get("status"), "matched_on": kind,
++                          "matched_text": phrase, "repd_nearby": repd_context(r)})
++        return sites, len(ordered)
++
++
++# ---------------------------------------------------------------- collection
++
++def fetch_url(url):
++    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT,
++                                               "Accept": "application/rss+xml, application/atom+xml, application/xml"})
++    with urllib.request.urlopen(req, timeout=TIMEOUT_S) as response:  # noqa: S310 (fixed https list)
++        return response.read(MAX_BYTES + 1)
++
++
++def collect(feeds, fetch, register, now_iso):
++    items, health = [], []
++    for url, source, _why in feeds:
++        try:
++            body = fetch(url)
++            entries = parse_feed(body)
++        except Exception as error:  # one feed failing never stops the run
++            health.append({"url": url, "source": source, "status": "failed",
++                           "error": (type(error).__name__ + ": " + str(error))[:200]})
++            continue
++        kept = 0
++        for title, link, date, summary in entries:
++            title = clean_text(title, 300)
++            link = canonical_link(link)
++            if not title or not link:
++                continue
++            sites, site_matches = register.match(title) if register else ([], 0)
++            named = any(s["matched_on"] == "site_name" or s["matched_text"].lower() not in GENERAL_OPERATORS
++                        for s in sites)
++            verdict = classify(title, clean_text(summary, 2000), named)
++            if verdict is None:
++                continue
++            dc_terms, lanes, lane_terms = verdict
++            items.append({"title": title, "link": link, "source": source, "date": parse_date(date),
++                          "first_seen": now_iso, "lanes": lanes,
++                          "matched_terms": {"datacentre": dc_terms, **lane_terms},
++                          "sites": sites, "site_matches": site_matches})
++            kept += 1
++        health.append({"url": url, "source": source, "status": "ok", "entries": len(entries), "kept": kept,
++                       "sha256": hashlib.sha256(body).hexdigest()})
++    return items, health
++
++
++def sort_key(item):
++    """Dated items newest first, then undated items by first_seen; link breaks ties (sorted in reverse)."""
++    return (item.get("date") is not None, item.get("date") or item.get("first_seen") or "", item["link"])
++
++
++def merge(previous, incoming, cap=MAX_ITEMS):
++    """Deduplicate by link. A fresh copy replaces an old one but keeps the earliest first_seen."""
++    by_link = {}
++    for item in list(previous) + list(incoming):
++        old = by_link.get(item["link"])
++        if old is not None:
++            item = dict(item, first_seen=min(old.get("first_seen") or item["first_seen"], item["first_seen"]))
++        by_link[item["link"]] = item
++    return sorted(by_link.values(), key=sort_key, reverse=True)[:cap]
++
++
++def build(previous, items, health, now_iso, cap=MAX_ITEMS):
++    merged = merge(previous.get("items", []), items, cap)
++    ok = sum(h["status"] == "ok" for h in health)
++    return {
++        "schema": SCHEMA,
++        "generated_at": now_iso,
++        "status": "ok" if ok == len(health) else ("partial" if ok else "failed"),
++        "counts": {"items": len(merged),
++                   "capex": sum("capex" in i["lanes"] for i in merged),
++                   "politics": sum("politics" in i["lanes"] for i in merged),
++                   "with_register_site": sum(bool(i["sites"]) for i in merged),
++                   "feeds_ok": ok, "feeds_failed": len(health) - ok},
++        "limits": {"max_items": cap, "sites_per_item": SITES_PER_ITEM, "repd_radius_km": int(REPD_RADIUS_KM)},
++        "scope": ("Headlines and links from public RSS/Atom feeds only; no article text is stored or republished. "
++                  "Kept when the headline or feed summary names data centres and either money (capex) or policy "
++                  "(politics)."),
++        "caveats": [
++            "A site is attached only when the headline names a site or operator in the UK data-centre register; "
++            "an operator match lists that operator's register sites, not necessarily the site in the story.",
++            "repd_nearby is the straight-line count and stated MW of live REPD solar, battery and wind projects "
++            "within 10 km of the register point; it is not a connection, offtake or capacity claim.",
++            "Blank REPD capacity is unknown, never zero: projects_mw_unknown counts them.",
++        ],
++        "feeds": health,
++        "items": merged,
++    }
++
++
++def main(argv=None):
++    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
++    ap.add_argument("--out", default="dist/datacentre_news.json")
++    ap.add_argument("--proximity", default="dist/convergence/2026q3/datacentre_proximity.json",
++                    help="convergence output with register ids, names, operators and REPD radii")
++    ap.add_argument("--register", default=None, help="optional register GeoJSON (adds aliases)")
++    ap.add_argument("--fixtures", default=None,
++                    help="offline: directory of <sha256(url)[:16]>.xml files used instead of the network")
++    ap.add_argument("--now", default=None, help="fixed UTC timestamp (tests)")
++    ap.add_argument("--max-items", type=int, default=MAX_ITEMS)
++    args = ap.parse_args(argv)
++
++    now_iso = args.now or dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
++    out = Path(args.out)
++    previous = {}
++    if out.exists():
++        try:
++            previous = json.loads(out.read_text(encoding="utf-8"))
++            if previous.get("schema") != SCHEMA:
++                previous = {}
++        except ValueError:
++            previous = {}
++    register = Register.load(args.proximity, args.register)
++
++    if args.fixtures:
++        fixture_dir = Path(args.fixtures)
++
++        def fetch(url):
++            path = fixture_dir / (fixture_name(url))
++            if not path.exists():
++                raise OSError("no fixture for %s" % url)
++            return path.read_bytes()
++    else:
++        fetch = fetch_url
++
++    items, health = collect(FEEDS, fetch, register, now_iso)
++    result = build(previous, items, health, now_iso, args.max_items)
++    out.parent.mkdir(parents=True, exist_ok=True)
++    tmp = out.with_suffix(".tmp")
++    tmp.write_text(json.dumps(result, ensure_ascii=False, indent=1, sort_keys=False) + "\n", encoding="utf-8")
++    tmp.replace(out)
++    print(json.dumps({"status": result["status"], **result["counts"], "register_records": len(register.records),
++                      "out": str(out)}))
++    if result["status"] == "failed" and not previous:
++        return 1
++    return 0
++
++
++def fixture_name(url):
++    return hashlib.sha256(url.encode()).hexdigest()[:16] + ".xml"
++
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/automation/news/schema/datacentre-news.v1.schema.json b/automation/news/schema/datacentre-news.v1.schema.json
+new file mode 100644
+index 0000000..66c8a83
+--- /dev/null
++++ b/automation/news/schema/datacentre-news.v1.schema.json
+@@ -0,0 +1,43 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "globalgrid2050.news.datacentre-capex-politics.v1",
++  "title": "Data-centre capex and politics headlines (dist/datacentre_news.json)",
++  "description": "Headlines and links only, from automation/news/datacentre_feed.py. Items newest first (dated before undated), then by link; at most limits.max_items.",
++  "type": "object",
++  "required": ["schema", "generated_at", "status", "counts", "limits", "scope", "caveats", "feeds", "items"],
++  "properties": {
++    "schema": {"const": "globalgrid2050.news.datacentre-capex-politics.v1"},
++    "generated_at": {"type": "string", "description": "UTC, ISO 8601 with Z"},
++    "status": {"enum": ["ok", "partial", "failed"], "description": "ok = every feed read; partial = some failed; failed = none read (earlier items kept)"},
++    "counts": {"type": "object", "required": ["items", "capex", "politics", "with_register_site", "feeds_ok", "feeds_failed"],
++               "additionalProperties": {"type": "integer", "minimum": 0}},
++    "limits": {"type": "object"},
++    "scope": {"type": "string"},
++    "caveats": {"type": "array", "items": {"type": "string"}},
++    "feeds": {"type": "array", "items": {"type": "object", "required": ["url", "source", "status"],
++      "properties": {"url": {"type": "string"}, "source": {"type": "string"}, "status": {"enum": ["ok", "failed"]},
++                     "entries": {"type": "integer"}, "kept": {"type": "integer"}, "sha256": {"type": "string"},
++                     "error": {"type": "string"}}}},
++    "items": {"type": "array", "items": {"type": "object",
++      "required": ["title", "link", "source", "date", "first_seen", "lanes", "matched_terms", "sites", "site_matches"],
++      "additionalProperties": false,
++      "properties": {
++        "title": {"type": "string", "maxLength": 300},
++        "link": {"type": "string", "pattern": "^https://"},
++        "source": {"type": "string"},
++        "date": {"type": ["string", "null"], "description": "feed date in UTC; null when the feed gives none (never guessed)"},
++        "first_seen": {"type": "string"},
++        "lanes": {"type": "array", "minItems": 1, "items": {"enum": ["capex", "politics"]}},
++        "matched_terms": {"type": "object", "required": ["datacentre", "capex", "politics"],
++                          "additionalProperties": {"type": "array", "items": {"type": "string"}}},
++        "site_matches": {"type": "integer", "minimum": 0, "description": "register records named; sites lists at most limits.sites_per_item"},
++        "sites": {"type": "array", "items": {"type": "object", "required": ["id", "name", "matched_on", "matched_text", "repd_nearby"],
++          "properties": {
++            "id": {"type": "string", "description": "data-centre register id (dcuk-...), never a REPD ref"},
++            "name": {"type": ["string", "null"]}, "status": {"type": ["string", "null"]},
++            "matched_on": {"enum": ["site_name", "operator"]}, "matched_text": {"type": "string"},
++            "repd_nearby": {"type": ["object", "null"], "description": "live REPD solar/battery/wind within radius_km straight line; null when the register point is not proximity-reliable",
++              "properties": {"radius_km": {"type": "integer"}, "projects": {"type": "integer"}, "mw_stated": {"type": "number"},
++                             "projects_mw_unknown": {"type": "integer"}, "mw_stated_by_technology": {"type": "object"}}}}}}}}}
++  }
++}
+diff --git a/automation/news/tests/fixtures/datacentre/01293ed63ef4defc.xml b/automation/news/tests/fixtures/datacentre/01293ed63ef4defc.xml
+new file mode 100644
+index 0000000..672f21b
+--- /dev/null
++++ b/automation/news/tests/fixtures/datacentre/01293ed63ef4defc.xml
+@@ -0,0 +1 @@
++<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>DESNZ (fixture)</title><subtitle>SYNTHETIC FIXTURE</subtitle><entry><title>FIXTURE: Data centre energy prices consultation headline</title><link rel="alternate" type="text/html" href="https://www.gov.uk/government/consultations/fixture-dc-energy-prices"/><summary>Fixture.</summary><updated>2026-11-13T14:00:00Z</updated></entry><entry><title>FIXTURE: Heat pump headline</title><link rel="alternate" type="text/html" href="https://www.gov.uk/government/news/fixture-heat-pumps"/><summary>Unrelated.</summary><updated>2026-11-13T12:00:00Z</updated></entry></feed>
+\ No newline at end of file
+diff --git a/automation/news/tests/fixtures/datacentre/37a645db62c6fb70.xml b/automation/news/tests/fixtures/datacentre/37a645db62c6fb70.xml
+new file mode 100644
+index 0000000..857d478
+--- /dev/null
++++ b/automation/news/tests/fixtures/datacentre/37a645db62c6fb70.xml
+@@ -0,0 +1 @@
++<rss><channel><title>broken
+\ No newline at end of file
+diff --git a/automation/news/tests/fixtures/datacentre/430105a510a11955.xml b/automation/news/tests/fixtures/datacentre/430105a510a11955.xml
+new file mode 100644
+index 0000000..1baf554
+--- /dev/null
++++ b/automation/news/tests/fixtures/datacentre/430105a510a11955.xml
+@@ -0,0 +1 @@
++<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Bills (fixture)</title><description>SYNTHETIC FIXTURE, not real news</description><item><title>FIXTURE: Data centres in a bill headline</title><link>https://bills.parliament.uk/bills/fixture-csr</link><description>Fixture.</description><pubDate>Mon, 09 Nov 2026 16:00:00 GMT</pubDate></item><item><title>FIXTURE: Undated data centre planning headline</title><link>https://bills.parliament.uk/bills/fixture-undated</link><description>Fixture.</description><pubDate></pubDate></item></channel></rss>
+\ No newline at end of file
+diff --git a/automation/news/tests/fixtures/datacentre/8fb86334c28d493c.xml b/automation/news/tests/fixtures/datacentre/8fb86334c28d493c.xml
+new file mode 100644
+index 0000000..2bea288
+--- /dev/null
++++ b/automation/news/tests/fixtures/datacentre/8fb86334c28d493c.xml
+@@ -0,0 +1 @@
++<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>BBC Technology (fixture)</title><description>SYNTHETIC FIXTURE, not real news</description><item><title>FIXTURE: Equinix data centre campus investment headline</title><link>https://www.bbc.co.uk/news/articles/fx0001?at_medium=RSS&amp;at_campaign=rss</link><description>Fixture summary.</description><pubDate>Thu, 12 Nov 2026 07:10:00 GMT</pubDate></item><item><title>FIXTURE: Hyperscaler AI infrastructure spending headline</title><link>https://www.bbc.co.uk/news/articles/fx0002?at_medium=RSS</link><description>Fixture summary about staff cuts.</description><pubDate>Wed, 11 Nov 2026 18:00:00 GMT</pubDate></item><item><title>FIXTURE: Phone launch headline</title><link>https://www.bbc.co.uk/news/articles/fx0003</link><description>Not about data centres.</description><pubDate>Wed, 11 Nov 2026 09:00:00 GMT</pubDate></item><item><title>FIXTURE: Data centre open day headline</title><link>https://www.bbc.co.uk/news/articles/fx0004</link><description>No money or policy words here.</description><pubDate>Tue, 10 Nov 2026 09:00:00 GMT</pubDate></item></channel></rss>
+\ No newline at end of file
+diff --git a/automation/news/tests/fixtures/datacentre/94537534d0ee5d24.xml b/automation/news/tests/fixtures/datacentre/94537534d0ee5d24.xml
+new file mode 100644
+index 0000000..b358ab0
+--- /dev/null
++++ b/automation/news/tests/fixtures/datacentre/94537534d0ee5d24.xml
+@@ -0,0 +1 @@
++<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>BBC Business (fixture)</title><description>SYNTHETIC FIXTURE, not real news</description><item><title>FIXTURE: Equinix data centre campus investment headline</title><link>https://www.bbc.co.uk/news/articles/fx0001?at_medium=RSS&amp;at_campaign=other</link><description>Same story, second feed.</description><pubDate>Thu, 12 Nov 2026 07:10:00 GMT</pubDate></item><item><title>FIXTURE: Nscale data centre expansion funding headline</title><link>https://www.bbc.co.uk/news/articles/fx0005</link><description>Fixture summary.</description><pubDate>Fri, 13 Nov 2026 06:30:00 GMT</pubDate></item><item><title>FIXTURE: Microsoft hyperscale site council planning and water headline</title><link>https://www.bbc.co.uk/news/articles/fx0006</link><description>Fixture.</description><pubDate>Fri, 13 Nov 2026 11:45:00 GMT</pubDate></item></channel></rss>
+\ No newline at end of file
+diff --git a/automation/news/tests/fixtures/datacentre/INDEX.txt b/automation/news/tests/fixtures/datacentre/INDEX.txt
+new file mode 100644
+index 0000000..f354dd1
+--- /dev/null
++++ b/automation/news/tests/fixtures/datacentre/INDEX.txt
+@@ -0,0 +1,7 @@
++8fb86334c28d493c.xml  https://feeds.bbci.co.uk/news/technology/rss.xml
++94537534d0ee5d24.xml  https://feeds.bbci.co.uk/news/business/rss.xml
++37a645db62c6fb70.xml  https://feeds.bbci.co.uk/news/politics/rss.xml
++b49e299fa1062b83.xml  https://www.gov.uk/government/organisations/department-for-science-innovation-and-technology.atom
++01293ed63ef4defc.xml  https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero.atom
++f8a289d27f6f4bbc.xml  https://www.gov.uk/search/news-and-communications.atom?keywords=data+centre
++430105a510a11955.xml  https://bills.parliament.uk/rss/allbills.rss
+diff --git a/automation/news/tests/fixtures/datacentre/b49e299fa1062b83.xml b/automation/news/tests/fixtures/datacentre/b49e299fa1062b83.xml
+new file mode 100644
+index 0000000..e7cb597
+--- /dev/null
++++ b/automation/news/tests/fixtures/datacentre/b49e299fa1062b83.xml
+@@ -0,0 +1 @@
++<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>DSIT (fixture)</title><subtitle>SYNTHETIC FIXTURE</subtitle><entry><title>FIXTURE: North Wales AI Growth Zone minister and grid connection headline</title><link rel="alternate" type="text/html" href="https://www.gov.uk/government/news/fixture-north-wales-aigz"/><summary>Fixture summary.</summary><updated>2026-11-12T10:00:00+00:00</updated></entry><entry><title>FIXTURE: Compute consultation headline</title><link rel="alternate" type="text/html" href="https://www.gov.uk/government/consultations/fixture-compute-roadmap"/><summary>Fixture summary.</summary><updated>2026-11-09T09:30:00Z</updated></entry><entry><title>FIXTURE: Cyber week headline</title><link rel="alternate" type="text/html" href="https://www.gov.uk/government/news/fixture-cyber"/><summary>Unrelated.</summary><updated>2026-11-08T09:30:00Z</updated></entry></feed>
+\ No newline at end of file
+diff --git a/automation/news/tests/fixtures/datacentre/f8a289d27f6f4bbc.xml b/automation/news/tests/fixtures/datacentre/f8a289d27f6f4bbc.xml
+new file mode 100644
+index 0000000..8357cea
+--- /dev/null
++++ b/automation/news/tests/fixtures/datacentre/f8a289d27f6f4bbc.xml
+@@ -0,0 +1 @@
++<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>GOV.UK search (fixture)</title><subtitle>SYNTHETIC FIXTURE</subtitle><entry><title>FIXTURE: North Wales AI Growth Zone minister and grid connection headline</title><link rel="alternate" type="text/html" href="https://www.gov.uk/government/news/fixture-north-wales-aigz?utm_source=feed"/><summary>Duplicate via search.</summary><updated>2026-11-12T10:00:00+00:00</updated></entry><entry><title>FIXTURE: Kao Data expansion investment headline</title><link rel="alternate" type="text/html" href="https://www.gov.uk/government/news/fixture-kao-harlow"/><summary>Fixture.</summary><updated>2026-11-07T08:00:00Z</updated></entry></feed>
+\ No newline at end of file
+diff --git a/automation/news/tests/test_datacentre_feed.py b/automation/news/tests/test_datacentre_feed.py
+new file mode 100644
+index 0000000..febc742
+--- /dev/null
++++ b/automation/news/tests/test_datacentre_feed.py
+@@ -0,0 +1,259 @@
++"""Tests for automation/news/datacentre_feed.py. Synthetic fixtures only; no network."""
++from __future__ import annotations
++
++import json
++import sys
++from pathlib import Path
++
++import pytest
++
++PKG = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(PKG))
++
++import datacentre_feed as D  # noqa: E402
++
++FIXTURES = Path(__file__).resolve().parent / "fixtures" / "datacentre"
++NOW = "2026-11-14T01:30:00Z"
++
++
++def cell(count=0, mw=0.0, unknown=0):
++    return {"count": count, "mw_stated": mw, "count_mw_unknown": unknown}
++
++
++def site(rid, name, operator, reliable=True, solar=(0, 0.0, 0), battery=(0, 0.0, 0)):
++    statuses = ("operational", "under_construction", "consented", "in_planning")
++    radii = {"10": {"solar": {s: cell() for s in statuses}, "battery": {s: cell() for s in statuses},
++                    "wind_onshore": {s: cell() for s in statuses}, "wind_offshore": {s: cell() for s in statuses}}}
++    radii["10"]["solar"]["consented"] = cell(*solar)
++    radii["10"]["battery"]["in_planning"] = cell(*battery)
++    return {"id": rid, "name": name, "operator": operator, "status": "pipeline", "proximity_reliable": reliable,
++            "radii": radii}
++
++
++REGISTER = [
++    site("dc-1", "Equinix LD8", "Equinix", solar=(3, 40.5, 1)),
++    site("dc-2", "Equinix MA1", "Equinix", battery=(2, 99.0, 0)),
++    site("dc-3", "North Wales AI Growth Zone", None, reliable=False),
++    site("dc-4", "Microsoft Newport data centre", "Microsoft"),
++    site("dc-5", "Unnamed data centre", None),
++    site("dc-6", "SCC", "SCC"),
++    site("dc-7", "AWS Example", "Amazon Web Services"),
++]
++
++
++def rss(*items):
++    body = "".join("<item><title>%s</title><link>%s</link><description>%s</description><pubDate>%s</pubDate></item>"
++                   % it for it in items)
++    return ('<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>%s</channel></rss>' % body).encode()
++
++
++def atom(*entries):
++    body = "".join('<entry><title>%s</title><link href="%s"/><summary>%s</summary><updated>%s</updated></entry>'
++                   % e for e in entries)
++    return ('<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"><title>t</title>%s</feed>'
++            % body).encode()
++
++
++# ----------------------------------------------------------------- classification
++
++@pytest.mark.parametrize("title,lanes", [
++    ("Firm to invest £2bn in new data centre", ["capex"]),
++    ("Datacentre expansion approved by council planning committee", ["capex", "politics"]),
++    ("Minister names second AI growth zone", ["politics"]),
++    ("Hyperscaler capex passes $190bn as staff cut", ["capex"]),
++    ("Data centres face water limits in drought", ["politics"]),
++    ("AI infrastructure build slows", ["capex"]),
++    ("Supercomputer consultation opens", ["politics"]),
++    ("Data center funding round closes", ["capex"]),
++])
++def test_classify_in_scope(title, lanes):
++    assert D.classify(title, "")[1] == lanes
++
++
++@pytest.mark.parametrize("title", [
++    "Council planning row over housing estate",       # policy but no data-centre term
++    "Data centre opens to visitors",                  # data centre but no money or policy term
++    "Computer prices rise",                           # 'compute' must be a whole word
++    "Datacentre-themed board game wins prize",        # no lane term
++])
++def test_classify_out_of_scope(title):
++    assert D.classify(title, "") is None
++
++
++def test_summary_is_used_for_matching_but_never_stored():
++    feed = rss(("Big announcement in Slough", "https://example.org/a", "A £1bn data centre investment, secret body",
++                "Thu, 12 Nov 2026 07:10:00 GMT"))
++    items, health = D.collect([("u", "S", "w")], lambda u: feed, None, NOW)
++    assert len(items) == 1 and items[0]["lanes"] == ["capex"]
++    assert "secret body" not in json.dumps(items)
++    assert set(items[0]) == {"title", "link", "source", "date", "first_seen", "lanes", "matched_terms", "sites",
++                             "site_matches"}
++
++
++# ----------------------------------------------------------------- parsing
++
++def test_parse_rss_and_atom_dates_and_links():
++    r = D.parse_feed(rss(("A", "https://x.org/1", "", "Thu, 12 Nov 2026 07:10:00 GMT")))
++    a = D.parse_feed(atom(("B", "https://x.org/2", "", "2026-11-12T10:00:00+01:00")))
++    assert r[0][:2] == ("A", "https://x.org/1") and a[0][:2] == ("B", "https://x.org/2")
++    assert D.parse_date(r[0][2]) == "2026-11-12T07:10:00Z"
++    assert D.parse_date(a[0][2]) == "2026-11-12T09:00:00Z"
++    assert D.parse_date("") is None and D.parse_date("not a date") is None
++    assert D.parse_date("2026-11-12T10:00:00") is None   # no timezone: unknown, not guessed
++
++
++def test_parse_rejects_dtd_entities_oversize_and_non_feeds():
++    with pytest.raises(ValueError):
++        D.parse_feed(b'<?xml version="1.0"?><!DOCTYPE x [<!ENTITY a "b">]><rss><channel/></rss>')
++    with pytest.raises(ValueError):
++        D.parse_feed(b"<html><body>hi</body></html>")
++    with pytest.raises(ValueError):
++        D.parse_feed(b"<rss><channel><title>broken")
++    with pytest.raises(ValueError):
++        D.parse_feed(b"<rss>" + b" " * (D.MAX_BYTES + 1) + b"</rss>")
++
++
++def test_canonical_link_strips_tracking_and_fragment():
++    a = D.canonical_link("https://www.BBC.co.uk/news/articles/x1?at_medium=RSS&at_campaign=rss#top")
++    b = D.canonical_link("https://www.bbc.co.uk/news/articles/x1?utm_source=feed")
++    assert a == b == "https://www.bbc.co.uk/news/articles/x1"
++    assert D.canonical_link("https://example.org/p?id=7&utm_medium=x") == "https://example.org/p?id=7"
++    assert D.canonical_link("javascript:alert(1)") is None
++    assert D.canonical_link("") is None
++
++
++def test_titles_are_plain_text():
++    assert D.clean_text("<b>Data</b> &amp; centres  &lt;bn&gt;", 300) == "Data & centres <bn>"
++
++
++# ----------------------------------------------------------------- register join
++
++def test_register_site_name_beats_operator_and_repd_context():
++    reg = D.Register(REGISTER)
++    sites, n = reg.match("Equinix LD8 expansion: £500m investment")
++    assert n == 2 and sites[0]["id"] == "dc-1" and sites[0]["matched_on"] == "site_name"
++    assert sites[1]["id"] == "dc-2" and sites[1]["matched_on"] == "operator"
++    ctx = sites[0]["repd_nearby"]
++    assert ctx["radius_km"] == 10 and ctx["projects"] == 3 and ctx["projects_mw_unknown"] == 1
++    assert ctx["mw_stated"] == 40.5 and ctx["mw_stated_by_technology"]["solar"] == 40.5
++    assert sites[1]["repd_nearby"]["mw_stated_by_technology"]["battery"] == 99.0
++
++
++def test_unreliable_point_has_no_repd_context_and_generic_names_never_match():
++    reg = D.Register(REGISTER)
++    sites, _ = reg.match("North Wales AI Growth Zone gets minister visit")
++    assert sites[0]["id"] == "dc-3" and sites[0]["repd_nearby"] is None
++    assert reg.match("Unnamed data centre planning row")[0] == []
++
++
++def test_short_uppercase_operator_is_case_exact_and_alias_works():
++    reg = D.Register(REGISTER)
++    assert reg.match("SCC wins data centre contract")[0][0]["id"] == "dc-6"
++    assert reg.match("Accessibility of data centre jobs")[0] == []
++    assert reg.match("AWS to invest £8bn in UK data centres")[0][0]["id"] == "dc-7"
++
++
++def test_general_operator_alone_does_not_make_a_datacentre_story():
++    reg = D.Register(REGISTER)
++    feed = rss(("Microsoft to invest £1bn in new office software", "https://e.org/1", "", ""),
++               ("Equinix secures £300m funding", "https://e.org/2", "", ""),
++               ("Microsoft data centre investment confirmed", "https://e.org/3", "", ""))
++    items, _ = D.collect([("u", "S", "w")], lambda u: feed, reg, NOW)
++    assert [i["link"] for i in items] == ["https://e.org/2", "https://e.org/3"]
++    assert "register site" in items[0]["matched_terms"]["datacentre"]
++    assert items[1]["sites"][0]["id"] == "dc-4"
++
++
++def test_sites_capped_per_item():
++    many = [site("dc-%02d" % i, "Op Site %d" % i, "Bigco") for i in range(9)]
++    sites, n = D.Register(many).match("Bigco data centre investment")
++    assert n == 9 and len(sites) == D.SITES_PER_ITEM
++
++
++# ----------------------------------------------------------------- collection, failure, merge, ordering
++
++def test_one_failing_feed_is_recorded_and_others_continue():
++    good = rss(("Data centre £1bn investment", "https://e.org/1", "", "Thu, 12 Nov 2026 07:10:00 GMT"))
++
++    def fetch(url):
++        if url == "bad":
++            raise OSError("network unreachable")
++        return good
++    items, health = D.collect([("bad", "X", "w"), ("good", "Y", "w")], fetch, None, NOW)
++    assert [h["status"] for h in health] == ["failed", "ok"] and "network unreachable" in health[0]["error"]
++    assert len(items) == 1
++    out = D.build({}, items, health, NOW)
++    assert out["status"] == "partial" and out["counts"]["feeds_failed"] == 1
++
++
++def test_merge_dedups_by_link_keeps_first_seen_orders_and_caps():
++    old = [{"link": "https://e.org/1", "date": "2026-11-01T00:00:00Z", "first_seen": "2026-11-01T01:00:00Z",
++            "lanes": ["capex"], "sites": [], "title": "old"}]
++    new = [{"link": "https://e.org/1", "date": "2026-11-01T00:00:00Z", "first_seen": NOW, "lanes": ["capex"],
++            "sites": [], "title": "new"},
++           {"link": "https://e.org/2", "date": None, "first_seen": NOW, "lanes": ["politics"], "sites": [],
++            "title": "undated"},
++           {"link": "https://e.org/3", "date": "2026-11-05T00:00:00Z", "first_seen": NOW, "lanes": ["politics"],
++            "sites": [], "title": "newer"}]
++    merged = D.merge(old, new)
++    assert [m["link"] for m in merged] == ["https://e.org/3", "https://e.org/1", "https://e.org/2"]
++    assert merged[1]["title"] == "new" and merged[1]["first_seen"] == "2026-11-01T01:00:00Z"
++    assert len(D.merge(old, new, cap=2)) == 2 and D.merge(old, new, cap=2)[-1]["link"] == "https://e.org/1"
++
++
++def test_fixture_run_end_to_end_is_deterministic(tmp_path):
++    reg = tmp_path / "prox.json"
++    reg.write_text(json.dumps({"records": REGISTER}), encoding="utf-8")
++    out1, out2 = tmp_path / "a.json", tmp_path / "b.json"
++    args = ["--fixtures", str(FIXTURES), "--proximity", str(reg), "--now", NOW]
++    assert D.main(args + ["--out", str(out1)]) == 0
++    assert D.main(args + ["--out", str(out2)]) == 0
++    a, b = out1.read_bytes(), out2.read_bytes()
++    assert a == b
++    data = json.loads(a)
++    assert data["schema"] == D.SCHEMA and data["status"] == "partial"
++    # 9 feeds: politics fixture is broken XML, science and DCD have no fixture (network failure stand-ins)
++    assert data["counts"]["feeds_ok"] == 6 and data["counts"]["feeds_failed"] == 3
++    links = [i["link"] for i in data["items"]]
++    assert len(links) == len(set(links)) == 9          # Kao Data is not in this synthetic register
++    assert links.count("https://www.bbc.co.uk/news/articles/fx0001") == 1     # same story via two feeds
++    assert data["items"][-1]["date"] is None                                  # undated last
++    dates = [i["date"] for i in data["items"] if i["date"]]
++    assert dates == sorted(dates, reverse=True)
++    eq = next(i for i in data["items"] if i["link"].endswith("fx0001"))
++    assert eq["lanes"] == ["capex"] and {s["id"] for s in eq["sites"]} == {"dc-1", "dc-2"}
++    # re-running over its own output keeps the file stable (merge is idempotent)
++    assert D.main(args + ["--out", str(out1)]) == 0
++    assert out1.read_bytes() == a
++
++
++def test_all_feeds_failing_without_previous_output_exits_nonzero(tmp_path):
++    empty = tmp_path / "none"
++    empty.mkdir()
++    out = tmp_path / "o.json"
++    assert D.main(["--fixtures", str(empty), "--proximity", str(tmp_path / "missing.json"), "--now", NOW,
++                   "--out", str(out)]) == 1
++    data = json.loads(out.read_text(encoding="utf-8"))
++    assert data["status"] == "failed" and data["items"] == []
++    # with an earlier good file the run keeps it and exits 0
++    out.write_text(json.dumps({"schema": D.SCHEMA, "items": [
++        {"link": "https://e.org/k", "date": None, "first_seen": NOW, "lanes": ["capex"], "sites": [],
++         "title": "kept"}]}), encoding="utf-8")
++    assert D.main(["--fixtures", str(empty), "--now", NOW, "--out", str(out)]) == 0
++    assert json.loads(out.read_text(encoding="utf-8"))["items"][0]["title"] == "kept"
++
++
++def test_feed_list_is_https_and_explained():
++    assert len(D.FEEDS) == len({u for u, _, _ in D.FEEDS}) <= 12
++    for url, source, why in D.FEEDS:
++        assert url.startswith("https://") and source and len(why) > 20
++
++
++def test_output_matches_json_schema(tmp_path):
++    jsonschema = pytest.importorskip("jsonschema")
++    reg = tmp_path / "prox.json"
++    reg.write_text(json.dumps({"records": REGISTER}), encoding="utf-8")
++    out = tmp_path / "o.json"
++    D.main(["--fixtures", str(FIXTURES), "--proximity", str(reg), "--now", NOW, "--out", str(out)])
++    schema = json.loads((PKG / "schema" / "datacentre-news.v1.schema.json").read_text(encoding="utf-8"))
++    jsonschema.validate(json.loads(out.read_text(encoding="utf-8")), schema)

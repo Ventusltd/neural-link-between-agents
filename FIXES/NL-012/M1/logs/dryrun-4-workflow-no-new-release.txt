@@ -1,0 +1,22 @@
+[check] RUN   Validate inputs
+[check] EMUL  Checkout main (blobless, sparse)  (actions/checkout@v4)
+[check] EMUL  Set up Python  (actions/setup-python@v5)
+[check] RUN   Install dependencies
+        | Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.13/site-packages (from pandas<3,>=2) (2026.6)
+        | Requirement already satisfied: tzdata>=2022.7 in /usr/local/lib/python3.13/site-packages (from pandas<3,>=2) (2026.6)
+        | Requirement already satisfied: et-xmlfile in /usr/local/lib/python3.13/site-packages (from openpyxl<4,>=3.1) (2.0.0)
+        | Requirement already satisfied: certifi in <root-path> (from pyproj<4,>=3) (2026.10.18)
+        | Requirement already satisfied: six>=1.5 in <root-path> (from python-dateutil>=2.8.2->pandas<3,>=2) (1.17.0)
+        | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment 
+[check] RUN   Compare published REPD files with the known releases (by sha256)
+        | ## No new REPD release
+        | 
+        | - Checked at 2026-11-14T01:13:47Z; newest known release: `2026q3`
+        | - Reason: published CSV and XLSX sha256 equal the pinned hashes of 2026q3
+        | - CSV: https://assets.publishing.service.gov.uk/media/6af42ff0a4004bdbe54e54a5/REPD_Publication_Q3_2026.csv (5219160 bytes, sha256 `48e76c49f33a1090e78108d1ea9bfe689b35963ea3be1bb4f6516d038a5ff862`)
+        | - XLSX: https://assets.publishing.service.gov.uk/media/6af42ffdb83b3cae0d0a21c9/REPD_Publication_Q3_2026.xlsx (5378656 bytes, sha256 `87811e249395a05b223db6855952334f425e66cc9a2106caea0e38fd9e5037ea`)
+        outputs: {'status': 'unchanged', 'release_id': '2026q3', 'release_folder': '', 'csv': '/tmp/repd-monthly/check/raw/REPD_Publication_Q3_2026.csv', 'xlsx': '/tmp/repd-monthly/check/raw/REPD_Publication_Q3_2026.xlsx'}
+[check] SKIP  Build the new release (clean, validate, change report, datasets, hash guard)  (if: steps.check.outputs.status == 'new')
+[check] SKIP  Upload the check, the build and the repository changes  (if: always() && steps.check.outputs.status == 'new')
+check job: green; outputs {'status': 'unchanged', 'release_id': '2026q3', 'overall': ''}
+open-pr job: SKIPPED (if: status == 'new' && overall == 'ok')

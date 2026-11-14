@@ -1,0 +1,113 @@
+NEWS AGENT N4: data-centre capex and politics in Pipeline News (owner line 11, 14 Nov 2026 00:56 UTC)
+=====================================================================================================
+
+Owner's words: "I want data centre CAPEX news and politics in the REPD pipeline. Simple, don't over-complicate."
+
+PATCHES (unified diffs; checked with git apply --check against globalgrid2050 main 402def0e and the earlier 149d381f)
+  0001-datacentre-news-feed-and-workflow.patch       12 new files, nothing existing touched
+      automation/news/datacentre_feed.py              the fetcher (standard library only)
+      automation/news/schema/datacentre-news.v1.schema.json
+      automation/news/tests/test_datacentre_feed.py   28 tests, offline
+      automation/news/tests/fixtures/datacentre/*     7 synthetic feeds (every headline starts "FIXTURE:")
+      .github/workflows/datacentre-news.yml           daily 05:23 UTC + workflow_dispatch
+  0002-pipelinenews-datacentre-panel-202611132345.patch   panel for the October folder
+  0003-pipelinenews-datacentre-panel-202611140058.patch   the same panel for the successor folder (V9.13)
+      each adds scripts/plugins/datacentre-news.js and ONE line to index.html:
+      <script defer src="scripts/plugins/datacentre-news.js?v=1"></script>
+      Apply 0002 or 0003 (or both) to whichever folder is operative; for another folder, replace the
+      folder stamp in the patch (sed 's#202611140058#<stamp>#g').
+  0001 also applies on top of the merged N3 automation/news package (PR #67); together: 69 passed, 6 skipped.
+
+WHAT IT DOES
+- Reads 9 fixed public feeds (list below). Keeps a headline when the headline or the feed summary names a data-centre
+  term (data centre/center, datacentre, hyperscale(r), AI infrastructure, AI growth zone, compute, supercomputer, or
+  a site or data-centre operator from the register) AND
+    capex lane:    investment, capex, capital expenditure, spending, billion/bn, million/m, funding, build,
+                   construction, expansion
+    politics lane: planning, council, grid connection, connection queue, National Grid, NESO, Ofgem, minister,
+                   government, MPs, bill, legislation, parliament, consultation, growth zone, energy prices/costs,
+                   water
+  An item can be in both lanes. Stored per item: title, link (tracking parameters removed), source, date (UTC, or
+  null when the feed gives none), first_seen, lanes, matched_terms, sites, site_matches. The feed summary is read
+  in memory only for matching and is never written. No article page is requested.
+- Deduplicated by canonical link; merged with the previous file so stories survive rolling feeds; newest 200;
+  ordering: dated items newest first, then undated, link as tie-break. Two runs on the same input give
+  byte-identical files (tested).
+- Register join: when the HEADLINE names a register site name (or alias) or operator, the register id (dcuk-...) is
+  attached, at most 5 per item, site-name matches first. Generic names ("Unnamed data centre") never match;
+  short upper-case operators (SCC, NTT) match case-exactly; AWS/Amazon alias for Amazon Web Services. Naming a
+  general company that also runs a register site (Microsoft, banks, telecoms) attaches the sites but does not by
+  itself make the headline a data-centre story.
+- REPD context per attached site: live REPD solar, battery, onshore and offshore wind projects within 10 km
+  (count, stated MW, by technology, projects with blank MW counted separately as unknown) from
+  dist/convergence/2026q3/datacentre_proximity.json (Team 6, on main). Null when the register point is not
+  proximity-reliable. Labelled on the page as straight-line context, not a connection.
+- Failure: each feed is fetched separately; an error (network, HTTP, bad XML, DTD/entity, >2 MB) is recorded in
+  "feeds" and the run continues. The job fails only if every feed failed and there is no earlier file.
+
+FEEDS (none reachable from this workspace: the first real fetch will happen on GitHub Actions)
+  https://feeds.bbci.co.uk/news/technology/rss.xml       BBC technology: hyperscaler / AI infrastructure news
+  https://feeds.bbci.co.uk/news/business/rss.xml         BBC business: investment and capex; already in pipelinenews bbc_rss.py
+  https://feeds.bbci.co.uk/news/politics/rss.xml         BBC politics: ministers, bills, planning decisions
+  https://feeds.bbci.co.uk/news/science_and_environment/rss.xml   energy, water, grid; already in bbc_rss.py
+  https://www.gov.uk/government/organisations/department-for-science-innovation-and-technology.atom
+                                                         DSIT: AI growth zones, compute, data centres as CNI
+  https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero.atom
+                                                         DESNZ: connections reform, energy prices (also in PR #65)
+  https://www.gov.uk/search/news-and-communications.atom?keywords=data+centre
+                                                         every department's news naming data centres (UNVERIFIED URL form)
+  https://bills.parliament.uk/rss/allbills.rss           all public bills (UNVERIFIED URL)
+  https://www.datacenterdynamics.com/rss/                trade press for builds and capex (same URL as PR #65; UNVERIFIED)
+  BBC sections follow the URL pattern pipelinenews already uses in production; the GOV.UK organisation Atom form is
+  the documented GOV.UK pattern. Hansard and select-committee pages have no stable RSS that could be confirmed, so
+  they are not on the list; the GOV.UK keyword feed and the Bills feed cover politics.
+
+WORKFLOW: WHY A DATA BRANCH (three sentences)
+The workflow writes dist/datacentre_news.json to its own branch, datacentre-news-data (an orphan branch holding
+only that file and a README), and the panel reads it from raw.githubusercontent.com with the site's own
+../../dist/datacentre_news.json as fallback. This keeps daily bot commits off main, needs no PR or PAT, and needs
+no Pages deploy: deploy-pages only publishes on pushes to allow-listed paths, dist/datacentre_news.json is not on
+that list, and pushes made with GITHUB_TOKEN start no workflow anyway. The page change itself (0002/0003) is
+inside a release folder, which is on the deploy allow-list, so it goes live with the ordinary merge.
+
+TESTS (this workspace)
+- pytest automation/news/tests/test_datacentre_feed.py: 28 passed (classification both ways, RSS and Atom
+  parsing, DTD/oversize/non-feed rejection, link canonicalisation, plain-text titles, register join rules, REPD
+  context, per-feed failure, dedup/merge/cap/order, determinism, idempotent re-run, all-feeds-failed exit code,
+  JSON Schema validation, feed list https and explained).
+- With N3's merged automation/news package: 69 passed, 6 skipped.
+- Fixture run against the real register (226 records) and convergence output: 9 feeds, 6 ok, 3 failed on purpose
+  (one broken XML, two with no fixture standing in for network failure); 10 items, 4 capex, 6 politics, 5 with a
+  register site; the same story arriving through two feeds kept once. File: sample-datacentre_news.fixture.json.
+- Workflow publish step simulated against a local bare repository: first run created the orphan branch with
+  only dist/datacentre_news.json and README.txt; second run added one commit.
+- Headless Chrome (/usr/bin/google-chrome via Playwright), local copy with python3 -m http.server, desktop
+  1440x1000 and mobile 390x844, both release folders: panel inserted directly after the newspaper; desktop two
+  columns (4 capex, 6 politics); mobile two tabs, tab switch shows the other lane; no horizontal overflow; no
+  page errors from the panel. File absent: no panel, no errors. Wrong schema: no panel. Screenshots in screens/.
+
+HARNESS: FIRST REAL RUN
+  1. Apply 0001 and merge to main (a workflow must be on the default branch to be dispatched or scheduled).
+  2. gh workflow run datacentre-news.yml -R Ventusltd/globalgrid2050 --ref main
+     gh run watch -R Ventusltd/globalgrid2050 $(gh run list -R Ventusltd/globalgrid2050 -w datacentre-news.yml -L 1 --json databaseId -q '.[0].databaseId')
+  3. gh api 'repos/Ventusltd/globalgrid2050/contents/dist/datacentre_news.json?ref=datacentre-news-data' -q .download_url
+  A correct first result: the job is green; the run summary shows 9 feeds, most "ok" (a "failed" feed is reported
+  with its error and does not fail the job; drop or replace any feed that fails twice); status "ok" or "partial";
+  branch datacentre-news-data exists with exactly dist/datacentre_news.json and README.txt; the file has
+  "schema": "globalgrid2050.news.datacentre-capex-politics.v1", items newest first, every link https, every item
+  with at least one lane, and some items carrying a dcuk- site id with repd_nearby. Expected item count on day one
+  is a few to a few dozen (UNVERIFIED: it depends on what the feeds carry that day; zero items with all feeds
+  "ok" means the term lists are too strict, not that the job is broken).
+  4. Apply 0002 or 0003 to the operative folder and merge; the panel appears under the newspaper once the file
+  exists, and stays hidden until then.
+
+LIMITS AND OPEN POINTS
+- No feed was fetched for real; three feed URLs are UNVERIFIED (marked above).
+- raw.githubusercontent.com CORS for the page fetch is UNVERIFIED from here (it is normally open); if blocked, the
+  panel quietly uses ../../dist/datacentre_news.json, which needs the file on main instead.
+- The workflow is scheduled, an exception to the 000_freeze manual-only rule; it follows the owner's 00:56
+  instructions for this lane. The harness may set it to dispatch-only by deleting the schedule lines.
+- Overlap: ChatGPT PR #65 (automation/energy24) scans DESNZ and DCD for a separate page. This lane does not
+  touch it; the two can share the feed list later.
+- The 10 km REPD context reads the 2026q3 convergence output; when a new quarter's output lands, change the
+  --proximity default (one line).

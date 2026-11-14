@@ -1,0 +1,7 @@
+[{"name":"02-offtakers-desktop","url":"https://ventusltd.github.io/gridatlas/atlas/","viewport":[1400,900],
+ "steps":[
+ {"wait":25000,"label":"toggle","eval":"(()=>{const t=document.querySelector('[data-offtakers-group=main] [data-offtakers-control=toggle]');if(!t)return 'no toggle';t.click();return 'clicked'})()"},
+ {"wait":15000,"label":"state","eval":"(()=>{const S=window.__GRIDATLAS_MODULES__.ukOfftakers.state;const d=S.data;return {on:S.on,err:S.err,pe:S.pe,counts:d&&d.counts,dots:d&&d.dots.length,pl:d&&d.pl&&{o:d.pl.o.length,bad:d.pl.bad},sample:d&&d.dots.filter(r=>r.k=='c').slice(0,2).map(r=>({a:r.a,keys:Object.keys(r),n:r.n})),status:document.querySelector('[data-offtakers-group=main] [data-offtakers-status]').innerText}})()","shot":"uk"},
+ {"label":"fly","eval":"(()=>{const m=window.__GRIDATLAS_V9_MAP__;m.jumpTo({center:[-0.49,52.09],zoom:11});return m.getZoom()})()","waitAfter":6000},
+ {"label":"tap","eval":"(()=>{const m=window.__GRIDATLAS_V9_MAP__;const p=m.project([-0.49,52.09]);window.__tapPt=[p.x,p.y];const r=m.getCanvas().getBoundingClientRect();return [p.x+r.left,p.y+r.top]})()"}
+ ]}]

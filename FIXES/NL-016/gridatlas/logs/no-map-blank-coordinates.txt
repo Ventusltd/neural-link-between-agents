@@ -1,0 +1,17 @@
+active October records with blank X or Y: 36 | of these present in the October records parquet (would get a MAP): 36
+parquet rows at lon=0,lat=0: 0
+  offshore, no coordinate -> NO MAP: ('10913', 'North Falls Offshore Wind Farm', 'Wind Offshore', '1000')
+  offshore, no coordinate -> NO MAP: ('10919', 'Morgan Offshore Wind Farm', 'Wind Offshore', '1500')
+  offshore, no coordinate -> NO MAP: ('10922', 'Morecombe Offshore Windfarm', 'Wind Offshore', '480')
+  offshore, no coordinate -> NO MAP: ('11109', 'Dogger Bank South East', 'Wind Offshore', '1500')
+  offshore, no coordinate -> NO MAP: ('20217', 'Dogger Bank South West', 'Wind Offshore', '1500')
+  offshore, no coordinate -> NO MAP: ('10920', 'Morven North Offshore Wind Farm', 'Wind Offshore', '1450')
+  offshore, no coordinate -> NO MAP: ('11613', 'Fraserburgh - Buchan Floating Wind Project', 'Wind Offshore', '1000')
+  offshore, no coordinate -> NO MAP: ('13417', 'Cluaran Deas Ear / Ayre Wind Farm  (Thistle South East) (NE2)', 'Wind Offshore', '1008')
+  offshore, no coordinate -> NO MAP: ('13428', 'Machair', 'Wind Offshore', '2000')
+  offshore, no coordinate -> NO MAP: ('13429', 'Ossian', 'Wind Offshore', '3600')
+  offshore, no coordinate -> NO MAP: ('13431', 'Muir Mhòr', 'Wind Offshore', '1000')
+  offshore, no coordinate -> NO MAP: ('13432', 'Marram', 'Wind Offshore', '3000')
+  offshore, no coordinate -> NO MAP: ('13528', 'Cenos Offshore Wind Farm', 'Wind Offshore', '1350')
+  offshore, no coordinate -> NO MAP: ('13735', 'Spiorad na Mara', 'Wind Offshore', '900')
+  offshore, no coordinate -> NO MAP: ('21087', 'Morven South Offshore Wind Farm', 'Wind Offshore', '1450')

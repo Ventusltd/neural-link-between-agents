@@ -1,0 +1,402 @@
+--- a/repd_atlas_grid_model.md
++++ b/repd_atlas_grid_model.md
+@@ -184,7 +184,7 @@
+         map.addLayer({ id: 'repd-unclustered', type: 'circle', source: 'repd', filter: ['!', ['has', 'point_count']], paint: { 'circle-color': '#00f2ff', 'circle-radius': 6, 'circle-stroke-width': 1, 'circle-stroke-color': '#fff' } });
+ 
+         // Load CSV (Mocking trigger for dashboard init)
+-        const csvUrl = '{{ site.baseurl }}/repd.csv'; // Ensure this path is correct in your repo
++        const csvUrl = '{{ site.baseurl }}/repd-2026q3.csv'; // Ensure this path is correct in your repo
+         Papa.parse(csvUrl, { 
+             download: true, 
+             header: true, 
+--- a/repd_grid_atlasv3/index.html
++++ b/repd_grid_atlasv3/index.html
+@@ -458,18 +458,18 @@
+     {
+         group: "REPD (GeoJSON)",
+         layers: [
+-            { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
+-            { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
+-            { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
+-            { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
+-            { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
+-            { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
+-            { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
+-            { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
+-            { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
+-            { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
+-            { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
+-            { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
++            { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
++            { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
++            { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
++            { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
++            { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
++            { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
++            { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
++            { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
++            { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
++            { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
++            { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
++            { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
+         ]
+     }
+ ]);
+--- a/repd_grid_atlasv4/index.html
++++ b/repd_grid_atlasv4/index.html
+@@ -455,18 +455,18 @@
+     {
+         group: "REPD (GeoJSON)",
+         layers: [
+-            { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
+-            { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
+-            { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
+-            { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
+-            { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
+-            { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
+-            { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
+-            { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
+-            { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
+-            { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
+-            { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
+-            { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
++            { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
++            { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
++            { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
++            { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
++            { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
++            { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
++            { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
++            { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
++            { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
++            { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
++            { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
++            { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
+         ]
+     }
+ ]);
+@@ -1636,18 +1636,18 @@
+     {
+         group: "REPD (GeoJSON)",
+         layers: [
+-            { id: "solar",      label: "Solar PV",                color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
+-            { id: "solar_roof", label: "Solar Roof",              color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
+-            { id: "wind",       label: "Wind",                    color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
+-            { id: "bess",       label: "Battery Storage",         color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
+-            { id: "biomass",    label: "Biomass & EfW",           color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
+-            { id: "tidal",      label: "Tidal & Wave",            color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
+-            { id: "hydrogen",   label: "Hydrogen",                color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
+-            { id: "hydro",      label: "Hydro & Pumped Storage",  color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
+-            { id: "flywheel",   label: "Flywheel",                color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
+-            { id: "act",        label: "Advanced Conversion",     color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
+-            { id: "geothermal", label: "Geothermal",              color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
+-            { id: "caes",       label: "Compressed Air Storage",  color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
++            { id: "solar",      label: "Solar PV",                color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
++            { id: "solar_roof", label: "Solar Roof",              color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
++            { id: "wind",       label: "Wind",                    color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
++            { id: "bess",       label: "Battery Storage",         color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
++            { id: "biomass",    label: "Biomass & EfW",           color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
++            { id: "tidal",      label: "Tidal & Wave",            color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
++            { id: "hydrogen",   label: "Hydrogen",                color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
++            { id: "hydro",      label: "Hydro & Pumped Storage",  color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
++            { id: "flywheel",   label: "Flywheel",                color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
++            { id: "act",        label: "Advanced Conversion",     color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
++            { id: "geothermal", label: "Geothermal",              color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
++            { id: "caes",       label: "Compressed Air Storage",  color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
+         ]
+     }
+ ]);
+@@ -2584,15 +2584,15 @@
+     {
+         group: "REPD (GeoJSON)",
+         layers: [
+-            { id: "solar",      label: "Solar PV",   color: "#ffff00", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
+-            { id: "solar_roof", label: "Solar Roof", color: "#ffcc00", type: "point", radius: 14, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
+-            { id: "wind",       label: "Wind",       color: "#00ffff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
+-            { id: "bess",       label: "BESS",       color: "#ffae00", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
+-            { id: "biomass",    label: "Biomass",    color: "#39ff14", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
+-            { id: "tidal",      label: "Tidal/Wave", color: "#00bfff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
+-            { id: "hydrogen",   label: "Hydrogen",   color: "#ffffff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
+-            { id: "flywheel",   label: "Flywheel",   color: "#ff69b4", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
+-            { id: "hydro",      label: "Hydro",      color: "#00aaff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false }
++            { id: "solar",      label: "Solar PV",   color: "#ffff00", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
++            { id: "solar_roof", label: "Solar Roof", color: "#ffcc00", type: "point", radius: 14, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
++            { id: "wind",       label: "Wind",       color: "#00ffff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
++            { id: "bess",       label: "BESS",       color: "#ffae00", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
++            { id: "biomass",    label: "Biomass",    color: "#39ff14", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
++            { id: "tidal",      label: "Tidal/Wave", color: "#00bfff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
++            { id: "hydrogen",   label: "Hydrogen",   color: "#ffffff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
++            { id: "flywheel",   label: "Flywheel",   color: "#ff69b4", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
++            { id: "hydro",      label: "Hydro",      color: "#00aaff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false }
+         ]
+     }
+ ]);
+@@ -3238,15 +3238,15 @@
+     {
+         group: "REPD (GeoJSON)",
+         layers: [
+-            { id: "solar",      label: "Solar PV",   color: "#ffff00", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
+-            { id: "solar_roof", label: "Solar Roof", color: "#ffcc00", type: "point", radius: 14, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
+-            { id: "wind",       label: "Wind",       color: "#00ffff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
+-            { id: "bess",       label: "BESS",       color: "#ffae00", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
+-            { id: "biomass",    label: "Biomass",    color: "#39ff14", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
+-            { id: "tidal",      label: "Tidal/Wave", color: "#00bfff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
+-            { id: "hydrogen",   label: "Hydrogen",   color: "#ffffff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
+-            { id: "flywheel",   label: "Flywheel",   color: "#ff69b4", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
+-            { id: "hydro",      label: "Hydro",      color: "#00aaff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false }
++            { id: "solar",      label: "Solar PV",   color: "#ffff00", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
++            { id: "solar_roof", label: "Solar Roof", color: "#ffcc00", type: "point", radius: 14, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
++            { id: "wind",       label: "Wind",       color: "#00ffff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
++            { id: "bess",       label: "BESS",       color: "#ffae00", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
++            { id: "biomass",    label: "Biomass",    color: "#39ff14", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
++            { id: "tidal",      label: "Tidal/Wave", color: "#00bfff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
++            { id: "hydrogen",   label: "Hydrogen",   color: "#ffffff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
++            { id: "flywheel",   label: "Flywheel",   color: "#ff69b4", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
++            { id: "hydro",      label: "Hydro",      color: "#00aaff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false }
+         ]
+     }
+ ]);
+@@ -3763,15 +3763,15 @@
+     {
+         group: "REPD (GeoJSON)",
+         layers: [
+-            { id: "solar",      label: "Solar PV",   color: "#ffff00", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
+-            { id: "solar_roof", label: "Solar Roof", color: "#ffcc00", type: "point", radius: 14, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
+-            { id: "wind",       label: "Wind",       color: "#00ffff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
+-            { id: "bess",       label: "BESS",       color: "#ffae00", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
+-            { id: "biomass",    label: "Biomass",    color: "#39ff14", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
+-            { id: "tidal",      label: "Tidal/Wave", color: "#00bfff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
+-            { id: "hydrogen",   label: "Hydrogen",   color: "#ffffff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
+-            { id: "flywheel",   label: "Flywheel",   color: "#ff69b4", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
+-            { id: "hydro",      label: "Hydro",      color: "#00aaff", type: "point", radius: 8,  url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false }
++            { id: "solar",      label: "Solar PV",   color: "#ffff00", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
++            { id: "solar_roof", label: "Solar Roof", color: "#ffcc00", type: "point", radius: 14, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
++            { id: "wind",       label: "Wind",       color: "#00ffff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
++            { id: "bess",       label: "BESS",       color: "#ffae00", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
++            { id: "biomass",    label: "Biomass",    color: "#39ff14", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
++            { id: "tidal",      label: "Tidal/Wave", color: "#00bfff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
++            { id: "hydrogen",   label: "Hydrogen",   color: "#ffffff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
++            { id: "flywheel",   label: "Flywheel",   color: "#ff69b4", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
++            { id: "hydro",      label: "Hydro",      color: "#00aaff", type: "point", radius: 8,  url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false }
+         ]
+     }
+ ]);
+@@ -4288,13 +4288,13 @@
+     {
+         group: "REPD (GeoJSON)",
+         layers: [
+-            { id: "solar",    label: "Solar PV",   color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],    preload: false },
+-            { id: "wind",     label: "Wind Farm",  color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],     preload: false },
+-            { id: "bess",     label: "BESS",       color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],     preload: false },
+-            { id: "biomass",  label: "Biomass",    color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],  preload: false },
+-            { id: "tidal",    label: "Tidal/Wave", color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],    preload: false },
+-            { id: "hydrogen", label: "Hydrogen",   color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'], preload: false },
+-            { id: "flywheel", label: "Flywheel",   color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'], preload: false }
++            { id: "solar",    label: "Solar PV",   color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],    preload: false },
++            { id: "wind",     label: "Wind Farm",  color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],     preload: false },
++            { id: "bess",     label: "BESS",       color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],     preload: false },
++            { id: "biomass",  label: "Biomass",    color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],  preload: false },
++            { id: "tidal",    label: "Tidal/Wave", color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],    preload: false },
++            { id: "hydrogen", label: "Hydrogen",   color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'], preload: false },
++            { id: "flywheel", label: "Flywheel",   color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'], preload: false }
+         ]
+     }
+ ]);
+--- a/repd_grid_atlasv5/index.html
++++ b/repd_grid_atlasv5/index.html
+@@ -223,18 +223,18 @@
+         {
+             group: "REPD (GeoJSON)",
+             layers: [
+-                { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
+-                { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
+-                { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
+-                { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
+-                { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
+-                { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
+-                { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
+-                { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
+-                { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
+-                { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
+-                { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
+-                { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
++                { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
++                { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
++                { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
++                { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
++                { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
++                { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
++                { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
++                { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
++                { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
++                { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
++                { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
++                { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
+             ]
+         }
+     ];
+--- a/repd_grid_atlasv6/index.html
++++ b/repd_grid_atlasv6/index.html
+@@ -224,22 +224,22 @@
+         {
+             group: "REPD (GeoJSON)",
+             layers: [
+-                { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
+-                { id: "solar_operational", label: "Solar PV (Operational Only)", color: "#00ff88", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 10, 10, 14, 50, 18, 100, 22, 200, 28, 350, 35, 500, 42], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'tech'], 'solar'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
+-                { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
+-                { id: "wind_onshore_operational",  label: "Onshore Wind (Operational Only)",  color: "#00ffcc", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Onshore'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "wind_offshore_operational", label: "Offshore Wind (Operational Only)", color: "#0066ff", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Offshore'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
+-                { id: "bess_operational", label: "Battery Storage (Operational Only)", color: "#ff69b4", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'tech'], 'bess'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
+-                { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
+-                { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
+-                { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
+-                { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
+-                { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
+-                { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
+-                { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
++                { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
++                { id: "solar_operational", label: "Solar PV (Operational Only)", color: "#00ff88", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 10, 10, 14, 50, 18, 100, 22, 200, 28, 350, 35, 500, 42], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'tech'], 'solar'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
++                { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
++                { id: "wind_onshore_operational",  label: "Onshore Wind (Operational Only)",  color: "#00ffcc", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Onshore'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "wind_offshore_operational", label: "Offshore Wind (Operational Only)", color: "#0066ff", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Offshore'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
++                { id: "bess_operational", label: "Battery Storage (Operational Only)", color: "#ff69b4", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'tech'], 'bess'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
++                { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
++                { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
++                { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
++                { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
++                { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
++                { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
++                { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
+             ]
+         }
+     ];
+--- a/repd_grid_atlasv7/index.html
++++ b/repd_grid_atlasv7/index.html
+@@ -235,22 +235,22 @@
+         {
+             group: "REPD (GeoJSON)",
+             layers: [
+-                { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
+-                { id: "solar_operational", label: "Solar PV (Operational Only)", color: "#00ff88", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 10, 10, 14, 50, 18, 100, 22, 200, 28, 350, 35, 500, 42], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'tech'], 'solar'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
+-                { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
+-                { id: "wind_onshore_operational",  label: "Onshore Wind (Operational Only)",  color: "#00ffcc", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Onshore'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "wind_offshore_operational", label: "Offshore Wind (Operational Only)", color: "#0066ff", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Offshore'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
+-                { id: "bess_operational", label: "Battery Storage (Operational Only)", color: "#ff69b4", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'tech'], 'bess'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
+-                { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
+-                { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
+-                { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
+-                { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
+-                { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
+-                { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
+-                { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
++                { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
++                { id: "solar_operational", label: "Solar PV (Operational Only)", color: "#00ff88", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 10, 10, 14, 50, 18, 100, 22, 200, 28, 350, 35, 500, 42], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'tech'], 'solar'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
++                { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
++                { id: "wind_onshore_operational",  label: "Onshore Wind (Operational Only)",  color: "#00ffcc", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Onshore'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "wind_offshore_operational", label: "Offshore Wind (Operational Only)", color: "#0066ff", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Offshore'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
++                { id: "bess_operational", label: "Battery Storage (Operational Only)", color: "#ff69b4", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'tech'], 'bess'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
++                { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
++                { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
++                { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
++                { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
++                { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
++                { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
++                { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
+             ]
+         }
+     ];
+--- a/repd_grid_atlasv8/index.html
++++ b/repd_grid_atlasv8/index.html
+@@ -236,22 +236,22 @@
+         {
+             group: "REPD (GeoJSON)",
+             layers: [
+-                { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
+-                { id: "solar_operational", label: "Solar PV (Operational Only)", color: "#00ff88", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 10, 10, 14, 50, 18, 100, 22, 200, 28, 350, 35, 500, 42], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'tech'], 'solar'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
+-                { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
+-                { id: "wind_onshore_operational",  label: "Onshore Wind (Operational Only)",  color: "#00ffcc", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Onshore'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "wind_offshore_operational", label: "Offshore Wind (Operational Only)", color: "#0066ff", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Offshore'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
+-                { id: "bess_operational", label: "Battery Storage (Operational Only)", color: "#ff69b4", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master.json", filter: ['all', ['==', ['get', 'tech'], 'bess'], ['==', ['get', 'status'], 'operational']], preload: false },
+-                { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
+-                { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
+-                { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
+-                { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
+-                { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
+-                { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
+-                { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
+-                { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
++                { id: "solar",      label: "Solar PV",               color: "#ffff00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar'],      preload: false },
++                { id: "solar_operational", label: "Solar PV (Operational Only)", color: "#00ff88", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 10, 10, 14, 50, 18, 100, 22, 200, 28, 350, 35, 500, 42], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'tech'], 'solar'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "solar_roof", label: "Solar Roof",             color: "#ffcc00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'solar_roof'], preload: false },
++                { id: "wind",       label: "Wind",                   color: "#00ffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'wind'],       preload: false },
++                { id: "wind_onshore_operational",  label: "Onshore Wind (Operational Only)",  color: "#00ffcc", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Onshore'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "wind_offshore_operational", label: "Offshore Wind (Operational Only)", color: "#0066ff", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'raw_tech'], 'Wind Offshore'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "bess",       label: "Battery Storage",        color: "#ffae00", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'bess'],       preload: false },
++                { id: "bess_operational", label: "Battery Storage (Operational Only)", color: "#ff69b4", type: "point", radius: ['interpolate', ['linear'], ['coalesce', ['get', 'capacity'], 0], 0, 8, 10, 12, 50, 16, 100, 20, 200, 26, 350, 32, 500, 38], url: "/dist/repd_master_2026q3.json", filter: ['all', ['==', ['get', 'tech'], 'bess'], ['==', ['get', 'status'], 'operational']], preload: false },
++                { id: "biomass",    label: "Biomass & EfW",          color: "#39ff14", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'biomass'],    preload: false },
++                { id: "tidal",      label: "Tidal & Wave",           color: "#00bfff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'tidal'],      preload: false },
++                { id: "hydrogen",   label: "Hydrogen",               color: "#ffffff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydrogen'],   preload: false },
++                { id: "hydro",      label: "Hydro & Pumped Storage", color: "#00aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'hydro'],      preload: false },
++                { id: "flywheel",   label: "Flywheel",               color: "#ff69b4", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'flywheel'],   preload: false },
++                { id: "act",        label: "Advanced Conversion",    color: "#ff6600", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'act'],        preload: false },
++                { id: "geothermal", label: "Geothermal",             color: "#ff3300", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'geothermal'], preload: false },
++                { id: "caes",       label: "Compressed Air Storage", color: "#88aaff", type: "point", radius: 8, url: "/dist/repd_master_2026q3.json", filter: ['==', ['get', 'tech'], 'caes'],       preload: false }
+             ]
+         }
+     ];
+--- a/solar-bess-topology-v6/gis-sld-financial-sandbox/gis-sld-v5-map.js
++++ b/solar-bess-topology-v6/gis-sld-financial-sandbox/gis-sld-v5-map.js
+@@ -168,7 +168,7 @@
+     // They help users inspect nearby operating solar, wind and battery assets before drawing a new array.
+     map.addSource("atlas-v8-repd-operating-assets", {
+         type: "geojson",
+-        data: "/dist/repd_master.json"
++        data: "/dist/repd_master_2026q3.json"
+     });
+ 
+     map.addLayer({
+--- a/solar-bess-topology-v7/gis-sld-financial-sandbox/gis-sld-v5-map.js
++++ b/solar-bess-topology-v7/gis-sld-financial-sandbox/gis-sld-v5-map.js
+@@ -217,7 +217,7 @@
+     // They help users inspect nearby operating solar, wind and battery assets before drawing a new array.
+     map.addSource("atlas-v8-repd-operating-assets", {
+         type: "geojson",
+-        data: "/dist/repd_master.json"
++        data: "/dist/repd_master_2026q3.json"
+     });
+ 
+     map.addLayer({
+--- a/solar-bess-topology-v7/gis-sld-financial-sandbox/gis-sld-v5-ui.js
++++ b/solar-bess-topology-v7/gis-sld-financial-sandbox/gis-sld-v5-ui.js
+@@ -372,7 +372,7 @@
+     if (gisSearchReady) return;
+     try {
+         const [repdRes, subsRes] = await Promise.all([
+-            fetch("/dist/repd_master.json", { cache: "no-cache" }),
++            fetch("/dist/repd_master_2026q3.json", { cache: "no-cache" }),
+             fetch(SUBSTATIONS_URL, { cache: "no-cache" })
+         ]);
+ 
+@@ -632,7 +632,7 @@
+ 
+     try {
+         const [repdRes, subsRes, ...gridResponses] = await Promise.all([
+-            fetch("/dist/repd_master.json", { cache: "no-cache" }),
++            fetch("/dist/repd_master_2026q3.json", { cache: "no-cache" }),
+             fetch(SUBSTATIONS_URL, { cache: "no-cache" }),
+             fetch(siteIntelGridUrls["66 kV"], { cache: "no-cache" }),
+             fetch(siteIntelGridUrls["132 kV"], { cache: "no-cache" }),

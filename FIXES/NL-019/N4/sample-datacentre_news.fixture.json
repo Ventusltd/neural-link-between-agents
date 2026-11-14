@@ -1,0 +1,544 @@
+{
+ "schema": "globalgrid2050.news.datacentre-capex-politics.v1",
+ "generated_at": "2026-11-14T01:30:00Z",
+ "status": "partial",
+ "counts": {
+  "items": 10,
+  "capex": 4,
+  "politics": 6,
+  "with_register_site": 5,
+  "feeds_ok": 6,
+  "feeds_failed": 3
+ },
+ "limits": {
+  "max_items": 200,
+  "sites_per_item": 5,
+  "repd_radius_km": 10
+ },
+ "scope": "Headlines and links from public RSS/Atom feeds only; no article text is stored or republished. Kept when the headline or feed summary names data centres and either money (capex) or policy (politics).",
+ "caveats": [
+  "A site is attached only when the headline names a site or operator in the UK data-centre register; an operator match lists that operator's register sites, not necessarily the site in the story.",
+  "repd_nearby is the straight-line count and stated MW of live REPD solar, battery and wind projects within 10 km of the register point; it is not a connection, offtake or capacity claim.",
+  "Blank REPD capacity is unknown, never zero: projects_mw_unknown counts them."
+ ],
+ "feeds": [
+  {
+   "url": "https://feeds.bbci.co.uk/news/technology/rss.xml",
+   "source": "BBC News",
+   "status": "ok",
+   "entries": 4,
+   "kept": 2,
+   "sha256": "af28f79a91e5e3b37230a4508e5f928b63c739ac170b59f53ceee117abc036ff"
+  },
+  {
+   "url": "https://feeds.bbci.co.uk/news/business/rss.xml",
+   "source": "BBC News",
+   "status": "ok",
+   "entries": 3,
+   "kept": 3,
+   "sha256": "d1a02ae829af2b59f3c5e4468cfe47a942bfb18dbb4c931564a1800e02048617"
+  },
+  {
+   "url": "https://feeds.bbci.co.uk/news/politics/rss.xml",
+   "source": "BBC News",
+   "status": "failed",
+   "error": "ValueError: not XML: no element found: line 1, column 27"
+  },
+  {
+   "url": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+   "source": "BBC News",
+   "status": "failed",
+   "error": "OSError: no fixture for https://feeds.bbci.co.uk/news/science_and_environment/rss.xml"
+  },
+  {
+   "url": "https://www.gov.uk/government/organisations/department-for-science-innovation-and-technology.atom",
+   "source": "GOV.UK DSIT",
+   "status": "ok",
+   "entries": 3,
+   "kept": 2,
+   "sha256": "7116920359d6a12f3eb7d2e4b2e04e28402c06376f786aa38292abfec54a24f7"
+  },
+  {
+   "url": "https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero.atom",
+   "source": "GOV.UK DESNZ",
+   "status": "ok",
+   "entries": 2,
+   "kept": 1,
+   "sha256": "21ef9d0cbb5d0f9ddc834928e71880caa5d53a29c81381904c4784b3a8609a0c"
+  },
+  {
+   "url": "https://www.gov.uk/search/news-and-communications.atom?keywords=data+centre",
+   "source": "GOV.UK search",
+   "status": "ok",
+   "entries": 2,
+   "kept": 2,
+   "sha256": "cdae21881b1d4e55b3a2845a59d9adfbc44426c1a799375ae83af78b723e9e4a"
+  },
+  {
+   "url": "https://bills.parliament.uk/rss/allbills.rss",
+   "source": "UK Parliament Bills",
+   "status": "ok",
+   "entries": 2,
+   "kept": 2,
+   "sha256": "7a08fac13cf635b54f6ca57f25caa39a7154a54cf5cf46d9d793e765b27c2998"
+  },
+  {
+   "url": "https://www.datacenterdynamics.com/rss/",
+   "source": "DatacenterDynamics",
+   "status": "failed",
+   "error": "OSError: no fixture for https://www.datacenterdynamics.com/rss/"
+  }
+ ],
+ "items": [
+  {
+   "title": "FIXTURE: Data centre energy prices consultation headline",
+   "link": "https://www.gov.uk/government/consultations/fixture-dc-energy-prices",
+   "source": "GOV.UK DESNZ",
+   "date": "2026-11-13T14:00:00Z",
+   "first_seen": "2026-11-14T01:30:00Z",
+   "lanes": [
+    "politics"
+   ],
+   "matched_terms": {
+    "datacentre": [
+     "data centre"
+    ],
+    "capex": [],
+    "politics": [
+     "consultation",
+     "energy price"
+    ]
+   },
+   "sites": [],
+   "site_matches": 0
+  },
+  {
+   "title": "FIXTURE: Microsoft hyperscale site council planning and water headline",
+   "link": "https://www.bbc.co.uk/news/articles/fx0006",
+   "source": "BBC News",
+   "date": "2026-11-13T11:45:00Z",
+   "first_seen": "2026-11-14T01:30:00Z",
+   "lanes": [
+    "politics"
+   ],
+   "matched_terms": {
+    "datacentre": [
+     "hyperscale"
+    ],
+    "capex": [],
+    "politics": [
+     "planning",
+     "water"
+    ]
+   },
+   "sites": [
+    {
+     "id": "dcuk-0da224822f07a7c8",
+     "name": "Microsoft Ireland",
+     "status": "operational",
+     "matched_on": "operator",
+     "matched_text": "Microsoft",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 13,
+      "mw_stated": 113.25,
+      "projects_mw_unknown": 3,
+      "mw_stated_by_technology": {
+       "battery": 85.9,
+       "solar": 12.2,
+       "wind_offshore": 0.0,
+       "wind_onshore": 15.15
+      }
+     }
+    },
+    {
+     "id": "dcuk-9c6c76a0ecec3baf",
+     "name": "Microsoft Newport data centre",
+     "status": "operational",
+     "matched_on": "operator",
+     "matched_text": "Microsoft",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 40,
+      "mw_stated": 1765.24,
+      "projects_mw_unknown": 6,
+      "mw_stated_by_technology": {
+       "battery": 1485.88,
+       "solar": 267.26,
+       "wind_offshore": 0.0,
+       "wind_onshore": 12.1
+      }
+     }
+    }
+   ],
+   "site_matches": 2
+  },
+  {
+   "title": "FIXTURE: Nscale data centre expansion funding headline",
+   "link": "https://www.bbc.co.uk/news/articles/fx0005",
+   "source": "BBC News",
+   "date": "2026-11-13T06:30:00Z",
+   "first_seen": "2026-11-14T01:30:00Z",
+   "lanes": [
+    "capex"
+   ],
+   "matched_terms": {
+    "datacentre": [
+     "data centre",
+     "register site"
+    ],
+    "capex": [
+     "expansion",
+     "funding"
+    ],
+    "politics": []
+   },
+   "sites": [
+    {
+     "id": "dcuk-040ed031c3acf5bd",
+     "name": "Cobalt Park Data Centres",
+     "status": "operational",
+     "matched_on": "operator",
+     "matched_text": "Nscale",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 73,
+      "mw_stated": 358.73,
+      "projects_mw_unknown": 10,
+      "mw_stated_by_technology": {
+       "battery": 290.0,
+       "solar": 67.93,
+       "wind_offshore": 0.0,
+       "wind_onshore": 0.8
+      }
+     }
+    },
+    {
+     "id": "dcuk-1bcb8c057e992e2f",
+     "name": "Nscale sovereign AI data centre, Loughton",
+     "status": "announced",
+     "matched_on": "operator",
+     "matched_text": "Nscale",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 38,
+      "mw_stated": 100.29,
+      "projects_mw_unknown": 1,
+      "mw_stated_by_technology": {
+       "battery": 30.0,
+       "solar": 70.29,
+       "wind_offshore": 0.0,
+       "wind_onshore": 0.0
+      }
+     }
+    }
+   ],
+   "site_matches": 2
+  },
+  {
+   "title": "FIXTURE: North Wales AI Growth Zone minister and grid connection headline",
+   "link": "https://www.gov.uk/government/news/fixture-north-wales-aigz",
+   "source": "GOV.UK search",
+   "date": "2026-11-12T10:00:00Z",
+   "first_seen": "2026-11-14T01:30:00Z",
+   "lanes": [
+    "politics"
+   ],
+   "matched_terms": {
+    "datacentre": [
+     "AI growth zone",
+     "register site"
+    ],
+    "capex": [],
+    "politics": [
+     "grid connection",
+     "growth zone",
+     "minister"
+    ]
+   },
+   "sites": [
+    {
+     "id": "dcuk-272457d5691075fb",
+     "name": "North Wales AI Growth Zone",
+     "status": "announced",
+     "matched_on": "site_name",
+     "matched_text": "North Wales AI Growth Zone",
+     "repd_nearby": null
+    }
+   ],
+   "site_matches": 1
+  },
+  {
+   "title": "FIXTURE: Equinix data centre campus investment headline",
+   "link": "https://www.bbc.co.uk/news/articles/fx0001",
+   "source": "BBC News",
+   "date": "2026-11-12T07:10:00Z",
+   "first_seen": "2026-11-14T01:30:00Z",
+   "lanes": [
+    "capex"
+   ],
+   "matched_terms": {
+    "datacentre": [
+     "data centre",
+     "register site"
+    ],
+    "capex": [
+     "investment"
+    ],
+    "politics": []
+   },
+   "sites": [
+    {
+     "id": "dcuk-1eb7a9b456df7b23",
+     "name": "Equinix MA1",
+     "status": "operational",
+     "matched_on": "operator",
+     "matched_text": "Equinix",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 106,
+      "mw_stated": 691.04,
+      "projects_mw_unknown": 7,
+      "mw_stated_by_technology": {
+       "battery": 657.29,
+       "solar": 33.75,
+       "wind_offshore": 0.0,
+       "wind_onshore": 0.0
+      }
+     }
+    },
+    {
+     "id": "dcuk-283376746095fb39",
+     "name": "Joule House",
+     "status": "operational",
+     "matched_on": "operator",
+     "matched_text": "Equinix",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 91,
+      "mw_stated": 1687.42,
+      "projects_mw_unknown": 6,
+      "mw_stated_by_technology": {
+       "battery": 1653.69,
+       "solar": 33.73,
+       "wind_offshore": 0.0,
+       "wind_onshore": 0.0
+      }
+     }
+    },
+    {
+     "id": "dcuk-42c25b70da0f6945",
+     "name": "Equinix LD8",
+     "status": "operational",
+     "matched_on": "operator",
+     "matched_text": "Equinix",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 67,
+      "mw_stated": 224.62,
+      "projects_mw_unknown": 7,
+      "mw_stated_by_technology": {
+       "battery": 100.2,
+       "solar": 119.02,
+       "wind_offshore": 0.0,
+       "wind_onshore": 5.4
+      }
+     }
+    },
+    {
+     "id": "dcuk-4c3f3830d3e65c6c",
+     "name": "Equinix LD10",
+     "status": "operational",
+     "matched_on": "operator",
+     "matched_text": "Equinix",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 22,
+      "mw_stated": 86.9,
+      "projects_mw_unknown": 5,
+      "mw_stated_by_technology": {
+       "battery": 80.0,
+       "solar": 6.9,
+       "wind_offshore": 0.0,
+       "wind_onshore": 0.0
+      }
+     }
+    },
+    {
+     "id": "dcuk-7724601c55bf6ceb",
+     "name": "Equinix high-performance data centre campus, Hertfordshire",
+     "status": "announced",
+     "matched_on": "operator",
+     "matched_text": "Equinix",
+     "repd_nearby": null
+    }
+   ],
+   "site_matches": 11
+  },
+  {
+   "title": "FIXTURE: Hyperscaler AI infrastructure spending headline",
+   "link": "https://www.bbc.co.uk/news/articles/fx0002",
+   "source": "BBC News",
+   "date": "2026-11-11T18:00:00Z",
+   "first_seen": "2026-11-14T01:30:00Z",
+   "lanes": [
+    "capex"
+   ],
+   "matched_terms": {
+    "datacentre": [
+     "AI infrastructure",
+     "hyperscale"
+    ],
+    "capex": [
+     "capex"
+    ],
+    "politics": []
+   },
+   "sites": [],
+   "site_matches": 0
+  },
+  {
+   "title": "FIXTURE: Data centres in a bill headline",
+   "link": "https://bills.parliament.uk/bills/fixture-csr",
+   "source": "UK Parliament Bills",
+   "date": "2026-11-09T16:00:00Z",
+   "first_seen": "2026-11-14T01:30:00Z",
+   "lanes": [
+    "politics"
+   ],
+   "matched_terms": {
+    "datacentre": [
+     "data centre"
+    ],
+    "capex": [],
+    "politics": [
+     "bill"
+    ]
+   },
+   "sites": [],
+   "site_matches": 0
+  },
+  {
+   "title": "FIXTURE: Compute consultation headline",
+   "link": "https://www.gov.uk/government/consultations/fixture-compute-roadmap",
+   "source": "GOV.UK DSIT",
+   "date": "2026-11-09T09:30:00Z",
+   "first_seen": "2026-11-14T01:30:00Z",
+   "lanes": [
+    "politics"
+   ],
+   "matched_terms": {
+    "datacentre": [
+     "compute"
+    ],
+    "capex": [],
+    "politics": [
+     "consultation"
+    ]
+   },
+   "sites": [],
+   "site_matches": 0
+  },
+  {
+   "title": "FIXTURE: Kao Data expansion investment headline",
+   "link": "https://www.gov.uk/government/news/fixture-kao-harlow",
+   "source": "GOV.UK search",
+   "date": "2026-11-07T08:00:00Z",
+   "first_seen": "2026-11-14T01:30:00Z",
+   "lanes": [
+    "capex"
+   ],
+   "matched_terms": {
+    "datacentre": [
+     "register site"
+    ],
+    "capex": [
+     "expansion",
+     "investment"
+    ],
+    "politics": []
+   },
+   "sites": [
+    {
+     "id": "dcuk-72220dd067fc68df",
+     "name": "Kao Data KLON-05",
+     "status": "operational",
+     "matched_on": "operator",
+     "matched_text": "Kao Data",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 83,
+      "mw_stated": 28.01,
+      "projects_mw_unknown": 14,
+      "mw_stated_by_technology": {
+       "battery": 0.2,
+       "solar": 27.81,
+       "wind_offshore": 0.0,
+       "wind_onshore": 0.0
+      }
+     }
+    },
+    {
+     "id": "dcuk-dd74fb9a5a3122ad",
+     "name": "Kao Data KLON-01",
+     "status": "operational",
+     "matched_on": "operator",
+     "matched_text": "Kao Data",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 17,
+      "mw_stated": 117.99,
+      "projects_mw_unknown": 0,
+      "mw_stated_by_technology": {
+       "battery": 30.2,
+       "solar": 87.79,
+       "wind_offshore": 0.0,
+       "wind_onshore": 0.0
+      }
+     }
+    },
+    {
+     "id": "dcuk-fb25475320ba96df",
+     "name": "Kao Data KLON-06",
+     "status": "operational",
+     "matched_on": "operator",
+     "matched_text": "Kao Data",
+     "repd_nearby": {
+      "radius_km": 10,
+      "projects": 23,
+      "mw_stated": 91.95,
+      "projects_mw_unknown": 4,
+      "mw_stated_by_technology": {
+       "battery": 80.0,
+       "solar": 11.95,
+       "wind_offshore": 0.0,
+       "wind_onshore": 0.0
+      }
+     }
+    }
+   ],
+   "site_matches": 3
+  },
+  {
+   "title": "FIXTURE: Undated data centre planning headline",
+   "link": "https://bills.parliament.uk/bills/fixture-undated",
+   "source": "UK Parliament Bills",
+   "date": null,
+   "first_seen": "2026-11-14T01:30:00Z",
+   "lanes": [
+    "politics"
+   ],
+   "matched_terms": {
+    "datacentre": [
+     "data centre"
+    ],
+    "capex": [],
+    "politics": [
+     "planning"
+    ]
+   },
+   "sites": [],
+   "site_matches": 0
+  }
+ ]
+}

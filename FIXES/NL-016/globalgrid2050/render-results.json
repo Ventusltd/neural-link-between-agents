@@ -1,0 +1,1762 @@
+[
+ {
+  "name": "jan__repd-atlas",
+  "url": "/jan/repd-atlas/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd.csv",
+    "status": 200,
+    "bytes": 4865340
+   }
+  ],
+  "ms": 13773,
+  "counts": {
+   "leafletCircleMarkers": 13970,
+   "leafletMarkers": 0,
+   "tables": [
+    13970
+   ],
+   "bodyTextSample": "Minimum Project Size: 0 MW 25 3 24 186 419 5 141 523 387 1172 532 236 138 347 2448 10 81 590 438 3512 2751 + \u2212 Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Systems: Site Name Technology MW Status County Berwick Bank Offshore Wind Farm Wind Offshore 4100 Planning Permission Granted Offsho",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/jan__repd-atlas.png"
+ },
+ {
+  "name": "jan__uk_grid-batteries",
+  "url": "/jan/uk_grid-batteries/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-grid-batteries.csv",
+    "status": 200,
+    "bytes": 738374
+   }
+  ],
+  "ms": 12614,
+  "counts": {
+   "leafletCircleMarkers": 2022,
+   "leafletMarkers": 0,
+   "tables": [
+    2022
+   ],
+   "bodyTextSample": "Minimum Project Size: 0 MW 53 20 34 72 69 27 4 58 193 20 25 46 129 166 281 184 640 + \u2212 Leaflet | \u00a9 OSM Show 10 25 50 100 entries Search: Site Name MW Status County Thorpe Marsh Power Station - Battery Energy Storage 1450 Planning Permission Granted South Yorkshire Thorpe Marsh Power Station, Marsh L",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/jan__uk_grid-batteries.png"
+ },
+ {
+  "name": "jan__uk_operating_large_solar_farms",
+  "url": "/jan/uk_operating_large_solar_farms/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-solar-operational-over-4mw.csv",
+    "status": 200,
+    "bytes": 311815
+   }
+  ],
+  "ms": 12446,
+  "counts": {
+   "leafletCircleMarkers": 923,
+   "leafletMarkers": 0,
+   "tables": [
+    923
+   ],
+   "bodyTextSample": "Minimum Project Size: 0 MW 8 6 28 19 13 69 199 125 110 244 101 + \u2212 Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Systems: Site Name Technology MW Status County Cleve Hill Solar Project Solar Photovoltaics 373 Operational Kent Llanwern Solar Farm & Battery Storage Solar Photovoltaics 75 Op",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/jan__uk_operating_large_solar_farms.png"
+ },
+ {
+  "name": "jan__repd-uk-operational-solar",
+  "url": "/jan/repd-uk-operational-solar/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-solar-operational.csv",
+    "status": 200,
+    "bytes": 395843
+   }
+  ],
+  "ms": 12633,
+  "counts": {
+   "leafletCircleMarkers": 1208,
+   "leafletMarkers": 0,
+   "tables": [
+    1208
+   ],
+   "bodyTextSample": "Minimum Project Size: 0 MW 5 12 21 27 58 260 81 96 10 77 48 92 420 + \u2212 Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Systems: Site Name Technology MW Status County Cleve Hill Solar Project Solar Photovoltaics 373 Operational Kent Llanwern Solar Farm & Battery Storage Solar Photovoltaics 7",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/jan__repd-uk-operational-solar.png"
+ },
+ {
+  "name": "jan__uk_offshore_wind_atlas",
+  "url": "/jan/uk_offshore_wind_atlas/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd.csv",
+    "status": 200,
+    "bytes": 4865340
+   }
+  ],
+  "ms": 12648,
+  "counts": {
+   "leafletCircleMarkers": 93,
+   "leafletMarkers": 0,
+   "tables": [
+    93
+   ],
+   "bodyTextSample": "Minimum Offshore Wind Size: 0 MW 23 3 5 20 42 + \u2212 Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Offshore Arrays: Site Name Technology MW Status County Berwick Bank Offshore Wind Farm Wind Offshore 4100 Planning Permission Granted Offshore Hornsea 3 Wind Offshore 2955 Planning Permission G",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/jan__uk_offshore_wind_atlas.png"
+ },
+ {
+  "name": "jan__uk_onshore_wind_atlas",
+  "url": "/jan/uk_onshore_wind_atlas/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd.csv",
+    "status": 200,
+    "bytes": 4865340
+   }
+  ],
+  "ms": 12919,
+  "counts": {
+   "leafletCircleMarkers": 2695,
+   "leafletMarkers": 0,
+   "tables": [
+    2695
+   ],
+   "bodyTextSample": "Minimum Wind Farm Size: 0 MW 17 5 21 396 56 105 129 269 574 270 15 85 147 133 116 95 157 105 + \u2212 Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Wind Systems: Site Name Technology MW Status County Lewis Wind Farm (Barvas Moor) Wind Onshore 652 Planning Permission Refused Western Isles Scoop",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/jan__uk_onshore_wind_atlas.png"
+ },
+ {
+  "name": "jan__uk_solar_in-planning-1-50mw",
+  "url": "/jan/uk_solar_in-planning-1-50mw/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd.csv",
+    "status": 200,
+    "bytes": 4865340
+   }
+  ],
+  "ms": 12817,
+  "counts": {
+   "leafletCircleMarkers": 1657,
+   "leafletMarkers": 0,
+   "tables": [
+    1657
+   ],
+   "bodyTextSample": "\u2600\ufe0f Active Solar Pipeline Filter Minimum Size: 1 MW Maximum Size: 50 MW 21 9 69 28 5 105 86 83 55 189 441 22 396 147 + \u2212 400kV Lines 275kV Lines 132kV Lines Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Systems: Site Name Technology MW Status County Kells Solar Farm Solar Photovoltaics 50 ",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/jan__uk_solar_in-planning-1-50mw.png"
+ },
+ {
+  "name": "jan__repd_atlas_grid_model",
+  "url": "/jan/repd_atlas_grid_model/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd.csv",
+    "status": 200,
+    "bytes": 4865340
+   }
+  ],
+  "ms": 12602,
+  "counts": {
+   "tables": [],
+   "maps": [
+    {
+     "sources": {
+      "repd": 13970
+     },
+     "rendered": {
+      "layers": 3,
+      "visible": 3,
+      "features": 91,
+      "perLayer": {
+       "repd-clusters": 88,
+       "repd-count": 0,
+       "repd-unclustered": 3
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "LONDON / LISBON Sat 14 Nov 01:13:32 TIME TO 2050 NET ZERO TARGET 8448D : 22H : 46M SFO 17:13 NYC 20:13 ZUR 02:13 DXB 05:13 TYO 10:13 SYD 12:13 \ud83d\udd0d Map Filters Technology Type: All Technologies Solar PV Wind Onshore Wind Offshore Battery Storage Minimum Size (MW): Site Name Operator Technology MW Stat",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots4/jan__repd_atlas_grid_model.png"
+ },
+ {
+  "name": "oct__repd-atlas",
+  "url": "/oct/repd-atlas/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-2026q3.csv",
+    "status": 200,
+    "bytes": 5201558
+   }
+  ],
+  "ms": 14385,
+  "counts": {
+   "leafletCircleMarkers": 14931,
+   "leafletMarkers": 0,
+   "tables": [
+    14931
+   ],
+   "bodyTextSample": "Minimum Project Size: 0 MW 160 175 29 24 3 557 5 274 4 82 569 1265 581 245 150 365 2594 10 86 639 331 3807 2975 + \u2212 Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Systems: Site Name Technology MW Status County Berwick Bank Offshore Wind Farm Wind Offshore 4100 Planning Permission Granted O",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/oct__repd-atlas.png"
+ },
+ {
+  "name": "oct__uk_grid-batteries",
+  "url": "/oct/uk_grid-batteries/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-grid-batteries-2026q3.csv",
+    "status": 200,
+    "bytes": 796142
+   }
+  ],
+  "ms": 12999,
+  "counts": {
+   "leafletCircleMarkers": 2177,
+   "leafletMarkers": 0,
+   "tables": [
+    2177
+   ],
+   "bodyTextSample": "Minimum Project Size: 0 MW 52 22 39 7 66 51 34 146 165 300 212 682 11 42 210 105 27 5 + \u2212 Leaflet | \u00a9 OSM Show 10 25 50 100 entries Search: Site Name MW Status County Thorpe Marsh Power Station - Battery Energy Storage 1450 Planning Permission Granted South Yorkshire Thorpe Marsh Power Station, Mars",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/oct__uk_grid-batteries.png"
+ },
+ {
+  "name": "oct__uk_operating_large_solar_farms",
+  "url": "/oct/uk_operating_large_solar_farms/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-solar-operational-over-4mw-2026q3.csv",
+    "status": 200,
+    "bytes": 323299
+   }
+  ],
+  "ms": 12543,
+  "counts": {
+   "leafletCircleMarkers": 939,
+   "leafletMarkers": 0,
+   "tables": [
+    939
+   ],
+   "bodyTextSample": "Minimum Project Size: 0 MW 6 5 6 28 19 13 70 202 131 112 245 102 + \u2212 Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Systems: Site Name Technology MW Status County Cleve Hill Solar Project Solar Photovoltaics 373 Operational Kent Llanwern Solar Farm & Battery Storage Solar Photovoltaics 75 ",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/oct__uk_operating_large_solar_farms.png"
+ },
+ {
+  "name": "oct__repd-uk-operational-solar",
+  "url": "/oct/repd-uk-operational-solar/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-solar-operational-2026q3.csv",
+    "status": 200,
+    "bytes": 407413
+   }
+  ],
+  "ms": 12440,
+  "counts": {
+   "leafletCircleMarkers": 1228,
+   "leafletMarkers": 0,
+   "tables": [
+    1228
+   ],
+   "bodyTextSample": "Minimum Project Size: 0 MW 12 6 2 21 39 24 71 69 224 173 110 336 141 + \u2212 Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Systems: Site Name Technology MW Status County Cleve Hill Solar Project Solar Photovoltaics 373 Operational Kent Llanwern Solar Farm & Battery Storage Solar Photovoltaics",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/oct__repd-uk-operational-solar.png"
+ },
+ {
+  "name": "oct__uk_offshore_wind_atlas",
+  "url": "/oct/uk_offshore_wind_atlas/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-2026q3.csv",
+    "status": 200,
+    "bytes": 5201558
+   }
+  ],
+  "ms": 12312,
+  "counts": {
+   "leafletCircleMarkers": 96,
+   "leafletMarkers": 0,
+   "tables": [
+    96
+   ],
+   "bodyTextSample": "Minimum Offshore Wind Size: 0 MW 6 20 42 12 3 13 + \u2212 Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Offshore Arrays: Site Name Technology MW Status County Berwick Bank Offshore Wind Farm Wind Offshore 4100 Planning Permission Granted Offshore Hornsea 3 Wind Offshore 2955 Under Construction",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/oct__uk_offshore_wind_atlas.png"
+ },
+ {
+  "name": "oct__uk_onshore_wind_atlas",
+  "url": "/oct/uk_onshore_wind_atlas/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-2026q3.csv",
+    "status": 200,
+    "bytes": 5201558
+   }
+  ],
+  "ms": 12950,
+  "counts": {
+   "leafletCircleMarkers": 2771,
+   "leafletMarkers": 0,
+   "tables": [
+    2771
+   ],
+   "bodyTextSample": "Minimum Wind Farm Size: 0 MW 15 90 149 137 123 98 166 108 38 2 385 236 704 130 123 246 20 + \u2212 Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Wind Systems: Site Name Technology MW Status County Lewis Wind Farm (Barvas Moor) Wind Onshore 652 Planning Permission Refused Western Isles Dorenell",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/oct__uk_onshore_wind_atlas.png"
+ },
+ {
+  "name": "oct__uk_solar_in-planning-1-50mw",
+  "url": "/oct/uk_solar_in-planning-1-50mw/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-2026q3.csv",
+    "status": 200,
+    "bytes": 5201558
+   }
+  ],
+  "ms": 12440,
+  "counts": {
+   "leafletCircleMarkers": 1730,
+   "leafletMarkers": 0,
+   "tables": [
+    1730
+   ],
+   "bodyTextSample": "\u2600\ufe0f Active Solar Pipeline Filter Minimum Size: 1 MW Maximum Size: 50 MW 89 98 59 195 454 24 408 155 35 21 78 4 58 50 + \u2212 400kV Lines 275kV Lines 132kV Lines Leaflet | \u00a9 OpenStreetMap Show 10 25 50 100 entries Scan Systems: Site Name Technology MW Status County Fraserburgh Road - Kirkton Solar PV Farm",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots1/oct__uk_solar_in-planning-1-50mw.png"
+ },
+ {
+  "name": "oct__repd_atlas_grid_model",
+  "url": "/oct/repd_atlas_grid_model/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/repd-2026q3.csv",
+    "status": 200,
+    "bytes": 5201558
+   }
+  ],
+  "ms": 12277,
+  "counts": {
+   "tables": [],
+   "maps": [
+    {
+     "sources": {
+      "repd": 14931
+     },
+     "rendered": {
+      "layers": 3,
+      "visible": 3,
+      "features": 91,
+      "perLayer": {
+       "repd-clusters": 86,
+       "repd-count": 0,
+       "repd-unclustered": 5
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "LONDON / LISBON Sat 14 Nov 01:13:45 TIME TO 2050 NET ZERO TARGET 8448D : 22H : 46M SFO 17:13 NYC 20:13 ZUR 02:13 DXB 05:13 TYO 10:13 SYD 12:13 \ud83d\udd0d Map Filters Technology Type: All Technologies Solar PV Wind Onshore Wind Offshore Battery Storage Minimum Size (MW): Site Name Operator Technology MW Stat",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots4/oct__repd_atlas_grid_model.png"
+ },
+ {
+  "name": "jan__repd_grid_atlasv3",
+  "url": "/repd_grid_atlasv3/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master.json",
+    "status": 200,
+    "bytes": 4256963
+   }
+  ],
+  "toggled": 12,
+  "ms": 23558,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-stadiums": 0,
+      "src-elizabeth": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 10784
+     },
+     "rendered": {
+      "layers": 14,
+      "visible": 14,
+      "features": 12994,
+      "perLayer": {
+       "l-solar-glow": 1916,
+       "l-solar": 2819,
+       "l-solar_roof-glow": 314,
+       "l-solar_roof": 3240,
+       "l-wind": 1538,
+       "l-bess": 2066,
+       "l-biomass": 823,
+       "l-tidal": 16,
+       "l-hydrogen": 62,
+       "l-hydro": 151,
+       "l-flywheel": 1,
+       "l-act": 37,
+       "l-geothermal": 7,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SYSTEM TIME 00:37:16 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODCAST & ALL PARTICIPANTS TO DATE",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots2/jan__repd_grid_atlasv3.png"
+ },
+ {
+  "name": "oct__repd_grid_atlasv3",
+  "url": "/repd_grid_atlasv3__oct/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master_2026q3.json",
+    "status": 200,
+    "bytes": 7062184
+   }
+  ],
+  "toggled": 12,
+  "ms": 23344,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-stadiums": 0,
+      "src-elizabeth": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 11293
+     },
+     "rendered": {
+      "layers": 14,
+      "visible": 14,
+      "features": 13558,
+      "perLayer": {
+       "l-solar-glow": 1949,
+       "l-solar": 2892,
+       "l-solar_roof-glow": 339,
+       "l-solar_roof": 3528,
+       "l-wind": 1574,
+       "l-bess": 2167,
+       "l-biomass": 825,
+       "l-tidal": 16,
+       "l-hydrogen": 63,
+       "l-hydro": 155,
+       "l-flywheel": 0,
+       "l-act": 38,
+       "l-geothermal": 8,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SYSTEM TIME 00:37:40 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODCAST & ALL PARTICIPANTS TO DATE",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots2/oct__repd_grid_atlasv3.png"
+ },
+ {
+  "name": "jan__repd_grid_atlasv4",
+  "url": "/repd_grid_atlasv4/",
+  "errors": [
+   "Identifier 'GRID_CONFIG' has already been declared",
+   "Identifier 'GRID_CONFIG' has already been declared",
+   "Identifier 'GRID_CONFIG' has already been declared",
+   "Identifier 'GRID_CONFIG' has already been declared",
+   "Identifier 'GRID_CONFIG' has already been declared",
+   "Identifier 'GRID_CONFIG' has already been declared"
+  ],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master.json",
+    "status": 200,
+    "bytes": 4256963
+   }
+  ],
+  "toggled": 12,
+  "ms": 24043,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-iceland": 0,
+      "src-farmfoods": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-spar": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 10784
+     },
+     "rendered": {
+      "layers": 14,
+      "visible": 14,
+      "features": 12994,
+      "perLayer": {
+       "l-solar-glow": 1916,
+       "l-solar": 2819,
+       "l-solar_roof-glow": 314,
+       "l-solar_roof": 3240,
+       "l-wind": 1538,
+       "l-bess": 2066,
+       "l-biomass": 823,
+       "l-tidal": 16,
+       "l-hydrogen": 62,
+       "l-hydro": 151,
+       "l-flywheel": 1,
+       "l-act": 37,
+       "l-geothermal": 7,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "supermarkets layer added SYSTEM TIME 00:38:04 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODCAST &",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots2/jan__repd_grid_atlasv4.png"
+ },
+ {
+  "name": "oct__repd_grid_atlasv4",
+  "url": "/repd_grid_atlasv4__oct/",
+  "errors": [
+   "Identifier 'GRID_CONFIG' has already been declared",
+   "Identifier 'GRID_CONFIG' has already been declared",
+   "Identifier 'GRID_CONFIG' has already been declared",
+   "Identifier 'GRID_CONFIG' has already been declared",
+   "Identifier 'GRID_CONFIG' has already been declared",
+   "Identifier 'GRID_CONFIG' has already been declared"
+  ],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master_2026q3.json",
+    "status": 200,
+    "bytes": 7062184
+   }
+  ],
+  "toggled": 12,
+  "ms": 23559,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-iceland": 0,
+      "src-farmfoods": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-spar": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 11293
+     },
+     "rendered": {
+      "layers": 14,
+      "visible": 14,
+      "features": 13558,
+      "perLayer": {
+       "l-solar-glow": 1949,
+       "l-solar": 2892,
+       "l-solar_roof-glow": 339,
+       "l-solar_roof": 3528,
+       "l-wind": 1574,
+       "l-bess": 2167,
+       "l-biomass": 825,
+       "l-tidal": 16,
+       "l-hydrogen": 63,
+       "l-hydro": 155,
+       "l-flywheel": 0,
+       "l-act": 38,
+       "l-geothermal": 8,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "supermarkets layer added SYSTEM TIME 00:38:29 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODCAST &",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots2/oct__repd_grid_atlasv4.png"
+ },
+ {
+  "name": "jan__repd_grid_atlasv5",
+  "url": "/repd_grid_atlasv5/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master.json",
+    "status": 200,
+    "bytes": 4256963
+   }
+  ],
+  "toggled": 12,
+  "ms": 23646,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-radius-area": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-zonedraw-fill": 0,
+      "src-zonedraw-line": 0,
+      "src-zonedraw-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-eurostar_route": 0,
+      "src-eurostar_station": 0,
+      "src-stadiums": 0,
+      "src-subsea_data_cables": 0,
+      "src-global_ports_major": 0,
+      "src-global_ports_minor": 0,
+      "src-global_hydrocarbons": 0,
+      "src-motorway_services": 0,
+      "src-elizabeth": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 10784
+     },
+     "rendered": {
+      "layers": 14,
+      "visible": 14,
+      "features": 12994,
+      "perLayer": {
+       "l-solar-glow": 1916,
+       "l-solar": 2819,
+       "l-solar_roof-glow": 314,
+       "l-solar_roof": 3240,
+       "l-wind": 1538,
+       "l-bess": 2066,
+       "l-biomass": 823,
+       "l-tidal": 16,
+       "l-hydrogen": 62,
+       "l-hydro": 151,
+       "l-flywheel": 1,
+       "l-act": 37,
+       "l-geothermal": 7,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SYSTEM TIME 00:44:30 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25f5 RADIUS AREA \u2b21 POLY ZONE \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODCAST ",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots3/jan__repd_grid_atlasv5.png"
+ },
+ {
+  "name": "oct__repd_grid_atlasv5",
+  "url": "/repd_grid_atlasv5__oct/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master_2026q3.json",
+    "status": 200,
+    "bytes": 7062184
+   }
+  ],
+  "toggled": 12,
+  "ms": 23263,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-radius-area": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-zonedraw-fill": 0,
+      "src-zonedraw-line": 0,
+      "src-zonedraw-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-eurostar_route": 0,
+      "src-eurostar_station": 0,
+      "src-stadiums": 0,
+      "src-subsea_data_cables": 0,
+      "src-global_ports_major": 0,
+      "src-global_ports_minor": 0,
+      "src-global_hydrocarbons": 0,
+      "src-motorway_services": 0,
+      "src-elizabeth": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 11293
+     },
+     "rendered": {
+      "layers": 14,
+      "visible": 14,
+      "features": 13558,
+      "perLayer": {
+       "l-solar-glow": 1949,
+       "l-solar": 2892,
+       "l-solar_roof-glow": 339,
+       "l-solar_roof": 3528,
+       "l-wind": 1574,
+       "l-bess": 2167,
+       "l-biomass": 825,
+       "l-tidal": 16,
+       "l-hydrogen": 63,
+       "l-hydro": 155,
+       "l-flywheel": 0,
+       "l-act": 38,
+       "l-geothermal": 8,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SYSTEM TIME 00:44:55 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25f5 RADIUS AREA \u2b21 POLY ZONE \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODCAST ",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots3/oct__repd_grid_atlasv5.png"
+ },
+ {
+  "name": "jan__repd_grid_atlasv6",
+  "url": "/repd_grid_atlasv6/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master.json",
+    "status": 200,
+    "bytes": 4256963
+   }
+  ],
+  "toggled": 16,
+  "ms": 23202,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-radius-area": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-zonedraw-fill": 0,
+      "src-zonedraw-line": 0,
+      "src-zonedraw-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-eurostar_route": 0,
+      "src-eurostar_station": 0,
+      "src-stadiums": 0,
+      "src-subsea_data_cables": 0,
+      "src-global_ports_major": 0,
+      "src-global_ports_minor": 0,
+      "src-global_hydrocarbons": 0,
+      "src-motorway_services": 0,
+      "src-elizabeth": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 10784
+     },
+     "rendered": {
+      "layers": 22,
+      "visible": 22,
+      "features": 16034,
+      "perLayer": {
+       "l-solar-glow": 1916,
+       "l-solar": 2819,
+       "l-solar_operational-glow": 295,
+       "l-solar_operational": 1221,
+       "l-solar_roof-glow": 314,
+       "l-solar_roof": 3240,
+       "l-wind": 1538,
+       "l-wind_onshore_operational-glow": 379,
+       "l-wind_onshore_operational": 774,
+       "l-wind_offshore_operational-glow": 47,
+       "l-wind_offshore_operational": 48,
+       "l-bess": 2066,
+       "l-bess_operational-glow": 107,
+       "l-bess_operational": 169,
+       "l-biomass": 823,
+       "l-tidal": 16,
+       "l-hydrogen": 62,
+       "l-hydro": 151,
+       "l-flywheel": 1,
+       "l-act": 37,
+       "l-geothermal": 7,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SYSTEM TIME 00:39:39 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25f5 RADIUS AREA \u2b21 POLY ZONE \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODCAST ",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots2/jan__repd_grid_atlasv6.png"
+ },
+ {
+  "name": "oct__repd_grid_atlasv6",
+  "url": "/repd_grid_atlasv6__oct/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master_2026q3.json",
+    "status": 200,
+    "bytes": 7062184
+   }
+  ],
+  "toggled": 16,
+  "ms": 23243,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-radius-area": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-zonedraw-fill": 0,
+      "src-zonedraw-line": 0,
+      "src-zonedraw-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-eurostar_route": 0,
+      "src-eurostar_station": 0,
+      "src-stadiums": 0,
+      "src-subsea_data_cables": 0,
+      "src-global_ports_major": 0,
+      "src-global_ports_minor": 0,
+      "src-global_hydrocarbons": 0,
+      "src-motorway_services": 0,
+      "src-elizabeth": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 11293
+     },
+     "rendered": {
+      "layers": 22,
+      "visible": 22,
+      "features": 16675,
+      "perLayer": {
+       "l-solar-glow": 1949,
+       "l-solar": 2892,
+       "l-solar_operational-glow": 306,
+       "l-solar_operational": 1241,
+       "l-solar_roof-glow": 339,
+       "l-solar_roof": 3528,
+       "l-wind": 1574,
+       "l-wind_onshore_operational-glow": 384,
+       "l-wind_onshore_operational": 781,
+       "l-wind_offshore_operational-glow": 48,
+       "l-wind_offshore_operational": 49,
+       "l-bess": 2167,
+       "l-bess_operational-glow": 121,
+       "l-bess_operational": 187,
+       "l-biomass": 825,
+       "l-tidal": 16,
+       "l-hydrogen": 63,
+       "l-hydro": 155,
+       "l-flywheel": 0,
+       "l-act": 38,
+       "l-geothermal": 8,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SYSTEM TIME 00:40:03 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25f5 RADIUS AREA \u2b21 POLY ZONE \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODCAST ",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots2/oct__repd_grid_atlasv6.png"
+ },
+ {
+  "name": "jan__repd_grid_atlasv7",
+  "url": "/repd_grid_atlasv7/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master.json",
+    "status": 200,
+    "bytes": 4256963
+   }
+  ],
+  "toggled": 16,
+  "ms": 23248,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-radius-area": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-zonedraw-fill": 0,
+      "src-zonedraw-line": 0,
+      "src-zonedraw-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-eurostar_route": 0,
+      "src-eurostar_station": 0,
+      "src-stadiums": 0,
+      "src-subsea_data_cables": 0,
+      "src-global_ports_major": 0,
+      "src-global_ports_minor": 0,
+      "src-global_hydrocarbons": 0,
+      "src-motorway_services": 0,
+      "src-naei_co2": 0,
+      "src-elizabeth": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 10784
+     },
+     "rendered": {
+      "layers": 22,
+      "visible": 22,
+      "features": 16009,
+      "perLayer": {
+       "l-solar-glow": 1916,
+       "l-solar": 2819,
+       "l-solar_operational-glow": 295,
+       "l-solar_operational": 1221,
+       "l-solar_roof-glow": 314,
+       "l-solar_roof": 3240,
+       "l-wind": 1524,
+       "l-wind_onshore_operational-glow": 378,
+       "l-wind_onshore_operational": 770,
+       "l-wind_offshore_operational-glow": 47,
+       "l-wind_offshore_operational": 48,
+       "l-bess": 2065,
+       "l-bess_operational-glow": 107,
+       "l-bess_operational": 169,
+       "l-biomass": 823,
+       "l-tidal": 11,
+       "l-hydrogen": 62,
+       "l-hydro": 151,
+       "l-flywheel": 1,
+       "l-act": 37,
+       "l-geothermal": 7,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SYSTEM TIME 00:40:28 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS ``` Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25f5 RADIUS AREA \u2b21 POLY ZONE \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODC",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots2/jan__repd_grid_atlasv7.png"
+ },
+ {
+  "name": "oct__repd_grid_atlasv7",
+  "url": "/repd_grid_atlasv7__oct/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master_2026q3.json",
+    "status": 200,
+    "bytes": 7062184
+   }
+  ],
+  "toggled": 16,
+  "ms": 23782,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-radius-area": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-zonedraw-fill": 0,
+      "src-zonedraw-line": 0,
+      "src-zonedraw-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-eurostar_route": 0,
+      "src-eurostar_station": 0,
+      "src-stadiums": 0,
+      "src-subsea_data_cables": 0,
+      "src-global_ports_major": 0,
+      "src-global_ports_minor": 0,
+      "src-global_hydrocarbons": 0,
+      "src-motorway_services": 0,
+      "src-naei_co2": 0,
+      "src-elizabeth": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 11293
+     },
+     "rendered": {
+      "layers": 22,
+      "visible": 22,
+      "features": 16650,
+      "perLayer": {
+       "l-solar-glow": 1949,
+       "l-solar": 2892,
+       "l-solar_operational-glow": 306,
+       "l-solar_operational": 1241,
+       "l-solar_roof-glow": 339,
+       "l-solar_roof": 3528,
+       "l-wind": 1560,
+       "l-wind_onshore_operational-glow": 383,
+       "l-wind_onshore_operational": 777,
+       "l-wind_offshore_operational-glow": 48,
+       "l-wind_offshore_operational": 49,
+       "l-bess": 2166,
+       "l-bess_operational-glow": 121,
+       "l-bess_operational": 187,
+       "l-biomass": 825,
+       "l-tidal": 11,
+       "l-hydrogen": 63,
+       "l-hydro": 155,
+       "l-flywheel": 0,
+       "l-act": 38,
+       "l-geothermal": 8,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SYSTEM TIME 00:41:02 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS ``` Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25f5 RADIUS AREA \u2b21 POLY ZONE \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODC",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots2/oct__repd_grid_atlasv7.png"
+ },
+ {
+  "name": "jan__repd_grid_atlasv8",
+  "url": "/repd_grid_atlasv8/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master.json",
+    "status": 200,
+    "bytes": 4256963
+   }
+  ],
+  "toggled": 16,
+  "ms": 23188,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-radius-area": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-zonedraw-fill": 0,
+      "src-zonedraw-line": 0,
+      "src-zonedraw-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-mainline_rail": 0,
+      "src-eurostar_route": 0,
+      "src-eurostar_station": 0,
+      "src-stadiums": 0,
+      "src-subsea_data_cables": 0,
+      "src-global_ports_major": 0,
+      "src-global_ports_minor": 0,
+      "src-global_hydrocarbons": 0,
+      "src-motorways": 0,
+      "src-trunk_roads": 0,
+      "src-primary_roads": 0,
+      "src-motorway_services": 0,
+      "src-naei_co2": 0,
+      "src-elizabeth": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 10784
+     },
+     "rendered": {
+      "layers": 22,
+      "visible": 22,
+      "features": 16034,
+      "perLayer": {
+       "l-solar-glow": 1916,
+       "l-solar": 2819,
+       "l-solar_operational-glow": 295,
+       "l-solar_operational": 1221,
+       "l-solar_roof-glow": 314,
+       "l-solar_roof": 3240,
+       "l-wind": 1538,
+       "l-wind_onshore_operational-glow": 379,
+       "l-wind_onshore_operational": 774,
+       "l-wind_offshore_operational-glow": 47,
+       "l-wind_offshore_operational": 48,
+       "l-bess": 2066,
+       "l-bess_operational-glow": 107,
+       "l-bess_operational": 169,
+       "l-biomass": 823,
+       "l-tidal": 16,
+       "l-hydrogen": 62,
+       "l-hydro": 151,
+       "l-flywheel": 1,
+       "l-act": 37,
+       "l-geothermal": 7,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SYSTEM TIME 00:41:25 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25f5 RADIUS AREA \u2b21 POLY ZONE \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODCAST ",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots2/jan__repd_grid_atlasv8.png"
+ },
+ {
+  "name": "oct__repd_grid_atlasv8",
+  "url": "/repd_grid_atlasv8__oct/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master_2026q3.json",
+    "status": 200,
+    "bytes": 7062184
+   }
+  ],
+  "toggled": 16,
+  "ms": 23356,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "src-radius-circle": 0,
+      "src-radius-area": 0,
+      "src-measure-line": 0,
+      "src-measure-fill": 0,
+      "src-measure-points": 0,
+      "src-zonedraw-fill": 0,
+      "src-zonedraw-line": 0,
+      "src-zonedraw-points": 0,
+      "src-400": 4106,
+      "src-275": 2935,
+      "src-220": 126,
+      "src-132": 6227,
+      "src-66": 1171,
+      "src-11kv": 0,
+      "src-subs": 5800,
+      "src-nuc": 178,
+      "src-gas": 178,
+      "src-ind": 5878,
+      "src-dc": 240,
+      "src-air": 810,
+      "src-rail": 3596,
+      "src-tesco": 0,
+      "src-sainsburys": 0,
+      "src-asda": 0,
+      "src-morrisons": 0,
+      "src-aldi": 0,
+      "src-lidl": 0,
+      "src-waitrose": 0,
+      "src-ms": 0,
+      "src-coop": 0,
+      "src-costco": 0,
+      "src-booths": 0,
+      "src-mainline_rail": 0,
+      "src-eurostar_route": 0,
+      "src-eurostar_station": 0,
+      "src-stadiums": 0,
+      "src-subsea_data_cables": 0,
+      "src-global_ports_major": 0,
+      "src-global_ports_minor": 0,
+      "src-global_hydrocarbons": 0,
+      "src-motorways": 0,
+      "src-trunk_roads": 0,
+      "src-primary_roads": 0,
+      "src-motorway_services": 0,
+      "src-naei_co2": 0,
+      "src-elizabeth": 0,
+      "src-lu": 0,
+      "src-metros": 0,
+      "src-hs2": 0,
+      "src-ev": 0,
+      "src-repd": 11293
+     },
+     "rendered": {
+      "layers": 22,
+      "visible": 22,
+      "features": 16675,
+      "perLayer": {
+       "l-solar-glow": 1949,
+       "l-solar": 2892,
+       "l-solar_operational-glow": 306,
+       "l-solar_operational": 1241,
+       "l-solar_roof-glow": 339,
+       "l-solar_roof": 3528,
+       "l-wind": 1574,
+       "l-wind_onshore_operational-glow": 384,
+       "l-wind_onshore_operational": 781,
+       "l-wind_offshore_operational-glow": 48,
+       "l-wind_offshore_operational": 49,
+       "l-bess": 2167,
+       "l-bess_operational-glow": 121,
+       "l-bess_operational": 187,
+       "l-biomass": 825,
+       "l-tidal": 16,
+       "l-hydrogen": 63,
+       "l-hydro": 155,
+       "l-flywheel": 0,
+       "l-act": 38,
+       "l-geothermal": 8,
+       "l-caes": 4
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SYSTEM TIME 00:41:50 14/11/2026 VENTUS CABLES & CONNECTIVITY\u00ae 2050 TARGET 8448 DAYS Data \u00a9 OpenStreetMap contributors | \u00a9 CARTO | EV data \u00a9 Open Charge Map \u26f6 GO \u2b07 EXPORT CSV \u25ce RADIUS SEARCH \u25f5 RADIUS AREA \u2b21 POLY ZONE \u25d1 STATUS COLOURS \ud83d\udccf MEASURE IN SUPPORT OF THE FUTURE OF SOLAR PHOTOVOLTAICS PODCAST ",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots2/oct__repd_grid_atlasv8.png"
+ },
+ {
+  "name": "jan__solar-bess-topology-v6__gis-sld-financial-sandbox",
+  "url": "/solar-bess-topology-v6/gis-sld-financial-sandbox/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master.json",
+    "status": 200,
+    "bytes": 4256963
+   }
+  ],
+  "evalAfter": 4,
+  "ms": 22331,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "atlas-v8-grid-66kv": "url:../../repd_grid_atlasv8/data/grid_66kv.geojson",
+      "atlas-v8-grid-132kv": "url:../../repd_grid_atlasv8/data/grid_132kv.geojson",
+      "atlas-v8-grid-275kv": "url:../../repd_grid_atlasv8/data/grid_275kv.geojson",
+      "atlas-v8-grid-400kv": "url:../../repd_grid_atlasv8/data/grid_400kv.geojson",
+      "src-subs": 5800,
+      "atlas-v8-repd-operating-assets": "url:/dist/repd_master.json",
+      "topology": 0
+     },
+     "rendered": {
+      "layers": 4,
+      "visible": 4,
+      "features": 2212,
+      "perLayer": {
+       "atlas-v8-asset-solar-operational": 1221,
+       "atlas-v8-asset-wind-onshore-operational": 774,
+       "atlas-v8-asset-wind-offshore-operational": 48,
+       "atlas-v8-asset-bess-operational": 169
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SOLAR PHOTOVOLTAIC (PV) DEVELOPMENT, ENGINEERING, PROCUREMENT AND CONSTRUCTION (EPC) AND GRID ANALYSIS FLY STRING CENTRAL DIMENSIONS & PHYSICS Module Rating (Wp) Mod L x W (m) Mounting & GCR East-West Dome (~75%) Fixed Tilt South (~45%) Tracker (~35%) Gross Site Factor ARRAY HIERARCHY (STRING) DC/AC",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots3/jan__solar-bess-topology-v6__gis-sld-financial-sandbox.png"
+ },
+ {
+  "name": "oct__solar-bess-topology-v6__gis-sld-financial-sandbox",
+  "url": "/solar-bess-topology-v6__oct/gis-sld-financial-sandbox/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master_2026q3.json",
+    "status": 200,
+    "bytes": 7062184
+   }
+  ],
+  "evalAfter": 4,
+  "ms": 22774,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "atlas-v8-grid-66kv": "url:../../repd_grid_atlasv8/data/grid_66kv.geojson",
+      "atlas-v8-grid-132kv": "url:../../repd_grid_atlasv8/data/grid_132kv.geojson",
+      "atlas-v8-grid-275kv": "url:../../repd_grid_atlasv8/data/grid_275kv.geojson",
+      "atlas-v8-grid-400kv": "url:../../repd_grid_atlasv8/data/grid_400kv.geojson",
+      "src-subs": 5800,
+      "atlas-v8-repd-operating-assets": "url:/dist/repd_master_2026q3.json",
+      "topology": 0
+     },
+     "rendered": {
+      "layers": 4,
+      "visible": 4,
+      "features": 2258,
+      "perLayer": {
+       "atlas-v8-asset-solar-operational": 1241,
+       "atlas-v8-asset-wind-onshore-operational": 781,
+       "atlas-v8-asset-wind-offshore-operational": 49,
+       "atlas-v8-asset-bess-operational": 187
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SOLAR PHOTOVOLTAIC (PV) DEVELOPMENT, ENGINEERING, PROCUREMENT AND CONSTRUCTION (EPC) AND GRID ANALYSIS FLY STRING CENTRAL DIMENSIONS & PHYSICS Module Rating (Wp) Mod L x W (m) Mounting & GCR East-West Dome (~75%) Fixed Tilt South (~45%) Tracker (~35%) Gross Site Factor ARRAY HIERARCHY (STRING) DC/AC",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots3/oct__solar-bess-topology-v6__gis-sld-financial-sandbox.png"
+ },
+ {
+  "name": "jan__solar-bess-topology-v7__gis-sld-financial-sandbox",
+  "url": "/solar-bess-topology-v7/gis-sld-financial-sandbox/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master.json",
+    "status": 200,
+    "bytes": 4256963
+   }
+  ],
+  "evalAfter": 4,
+  "ms": 22364,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "atlas-v8-grid-66kv": "url:../../repd_grid_atlasv8/data/grid_66kv.geojson",
+      "atlas-v8-grid-132kv": "url:../../repd_grid_atlasv8/data/grid_132kv.geojson",
+      "atlas-v8-grid-275kv": "url:../../repd_grid_atlasv8/data/grid_275kv.geojson",
+      "atlas-v8-grid-400kv": "url:../../repd_grid_atlasv8/data/grid_400kv.geojson",
+      "src-subs": 5800,
+      "atlas-v8-repd-operating-assets": "url:/dist/repd_master.json",
+      "topology": 0
+     },
+     "rendered": {
+      "layers": 4,
+      "visible": 1,
+      "features": 2066,
+      "perLayer": {
+       "atlas-v8-asset-bess-operational": 2066
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SOLAR PHOTOVOLTAIC (PV) DEVELOPMENT, ENGINEERING, PROCUREMENT AND CONSTRUCTION (EPC) AND GRID ANALYSIS FLY STRING CENTRAL DIMENSIONS & PHYSICS Module Rating (Wp) Mod L x W (m) Mounting & GCR East-West Dome (~75%) Fixed Tilt South (~45%) Tracker (~35%) Gross Site Factor ARRAY HIERARCHY (STRING) Targe",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots3/jan__solar-bess-topology-v7__gis-sld-financial-sandbox.png"
+ },
+ {
+  "name": "oct__solar-bess-topology-v7__gis-sld-financial-sandbox",
+  "url": "/solar-bess-topology-v7__oct/gis-sld-financial-sandbox/",
+  "errors": [],
+  "failed": [],
+  "aborted": [],
+  "data": [
+   {
+    "url": "/dist/repd_master_2026q3.json",
+    "status": 200,
+    "bytes": 7062184
+   }
+  ],
+  "evalAfter": 4,
+  "ms": 22376,
+  "counts": {
+   "maps": [
+    {
+     "sources": {
+      "atlas-v8-grid-66kv": "url:../../repd_grid_atlasv8/data/grid_66kv.geojson",
+      "atlas-v8-grid-132kv": "url:../../repd_grid_atlasv8/data/grid_132kv.geojson",
+      "atlas-v8-grid-275kv": "url:../../repd_grid_atlasv8/data/grid_275kv.geojson",
+      "atlas-v8-grid-400kv": "url:../../repd_grid_atlasv8/data/grid_400kv.geojson",
+      "src-subs": 5800,
+      "atlas-v8-repd-operating-assets": "url:/dist/repd_master_2026q3.json",
+      "topology": 0
+     },
+     "rendered": {
+      "layers": 4,
+      "visible": 1,
+      "features": 2167,
+      "perLayer": {
+       "atlas-v8-asset-bess-operational": 2167
+      }
+     }
+    }
+   ],
+   "bodyTextSample": "SOLAR PHOTOVOLTAIC (PV) DEVELOPMENT, ENGINEERING, PROCUREMENT AND CONSTRUCTION (EPC) AND GRID ANALYSIS FLY STRING CENTRAL DIMENSIONS & PHYSICS Module Rating (Wp) Mod L x W (m) Mounting & GCR East-West Dome (~75%) Fixed Tilt South (~45%) Tracker (~35%) Gross Site Factor ARRAY HIERARCHY (STRING) Targe",
+   "replacementChars": 0
+  },
+  "screenshot": "<workspace>/teams/4/b/shots3/oct__solar-bess-topology-v7__gis-sld-financial-sandbox.png"
+ }
+]

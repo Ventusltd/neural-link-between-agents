@@ -1,0 +1,453 @@
+{
+ "register_rows": 10784,
+ "joined_q2_202608290716": 10503,
+ "joined_oct_csv_precision_202611132345": 10423,
+ "transition_q2_to_oct": {
+  "multi->multi": 48,
+  "none->none": 227,
+  "none->one": 6,
+  "one->none": 86,
+  "one->one": 10417
+ },
+ "lost_q2_to_oct_by_reason": {
+  "ref not in the October snapshot (left the active statuses, outside bbox or withdrawn)": 45,
+  "October record changed: MW": 24,
+  "October record changed: point": 12,
+  "October record changed: name": 4,
+  "October record changed: point+MW": 1
+ },
+ "lost_examples": {
+  "October record changed: MW": [
+   {
+    "ref": "4658",
+    "register_name": "Hook Moor",
+    "q2": [
+     "Hook Moor",
+     10.3,
+     "operational"
+    ],
+    "oct": [
+     "Hook Moor",
+     10.0,
+     "operational",
+     -1.335521,
+     53.811902
+    ]
+   },
+   {
+    "ref": "9546",
+    "register_name": "Oaklands Solar Farm Project - Solar Farm & Battery Storage",
+    "q2": [
+     "Oaklands Solar Farm Project - Solar Farm & Battery Storage",
+     138.0,
+     "awaiting construction"
+    ],
+    "oct": [
+     "Oaklands Solar Farm Project - Solar Farm & Battery Storage",
+     152.4,
+     "under construction",
+     -1.641997,
+     52.748324
+    ]
+   },
+   {
+    "ref": "9584",
+    "register_name": "Astra Centre, Royal Barn Road - Energy Storage",
+    "q2": [
+     "Astra Centre, Royal Barn Road - Energy Storage",
+     40.0,
+     "under construction"
+    ],
+    "oct": [
+     "Astra Centre, Royal Barn Road - Energy Storage",
+     35.0,
+     "operational",
+     -2.178949,
+     53.596617
+    ]
+   },
+   {
+    "ref": "10657",
+    "register_name": "Horsham Road - Solar Farm & Battery Storage",
+    "q2": [
+     "Horsham Road - Solar Farm & Battery Storage",
+     49.9,
+     "application submitted"
+    ],
+    "oct": [
+     "Horsham Road - Solar Farm & Battery Storage",
+     19.3,
+     "awaiting construction",
+     -0.3217,
+     50.909493
+    ]
+   },
+   {
+    "ref": "10881",
+    "register_name": "Lodge Farm -  Solar Farm & Battery Storage",
+    "q2": [
+     "Lodge Farm - Solar Farm & Battery Storage",
+     0.0,
+     "application submitted"
+    ],
+    "oct": [
+     "Lodge Farm - Solar Farm & Battery Storage",
+     49.9,
+     "awaiting construction",
+     -1.055275,
+     52.548815
+    ]
+   },
+   {
+    "ref": "11403",
+    "register_name": "Richborough Solar Farm - Solar Farm",
+    "q2": [
+     "Richborough Solar Farm - Solar Farm",
+     0.0,
+     "awaiting construction"
+    ],
+    "oct": [
+     "Richborough Solar Farm - Solar Farm",
+     30.0,
+     "awaiting construction",
+     1.348697,
+     51.310178
+    ]
+   }
+  ],
+  "ref not in the October snapshot (left the active statuses, outside bbox or withdrawn)": [
+   {
+    "ref": "6865",
+    "register_name": "EFDA JJET Fusion Flywheel",
+    "q2": [
+     "EFDA JJET Fusion Flywheel",
+     400.0,
+     "operational"
+    ],
+    "oct": null
+   },
+   {
+    "ref": "8921",
+    "register_name": "Teviot Wind Farm",
+    "q2": [
+     "Teviot Wind Farm",
+     350.0,
+     "application submitted"
+    ],
+    "oct": null
+   },
+   {
+    "ref": "9035",
+    "register_name": "Clay Tye Road - Solar Farm",
+    "q2": [
+     "Clay Tye Road - Solar Farm",
+     49.9,
+     "application submitted"
+    ],
+    "oct": null
+   },
+   {
+    "ref": "9313",
+    "register_name": "Abertillery - Wind farm",
+    "q2": [
+     "Abertillery - Wind farm",
+     39.6,
+     "application submitted"
+    ],
+    "oct": null
+   },
+   {
+    "ref": "9681",
+    "register_name": "Minster Abbey, Bedlam Court Lane - Solar PV panels",
+    "q2": [
+     "Minster Abbey, Bedlam Court Lane - Solar PV panels",
+     33.0,
+     "under construction"
+    ],
+    "oct": null
+   },
+   {
+    "ref": "9837",
+    "register_name": "Rosehill Farm - Geothermal Power Plant",
+    "q2": [
+     "Rosehill Farm - Geothermal Power Plant",
+     0.0,
+     "awaiting construction"
+    ],
+    "oct": null
+   }
+  ],
+  "October record changed: point": [
+   {
+    "ref": "7871",
+    "register_name": "Artfield Forest Wind Farm",
+    "q2": [
+     "Artfield Forest Wind Farm",
+     67.2,
+     "awaiting construction"
+    ],
+    "oct": [
+     "Artfield Forest Wind Farm",
+     67.2,
+     "awaiting construction",
+     -4.747218,
+     54.967447
+    ]
+   },
+   {
+    "ref": "10467",
+    "register_name": "Kintore Battery Energy Storage Project",
+    "q2": [
+     "Kintore Battery Energy Storage Project",
+     300.0,
+     "awaiting construction"
+    ],
+    "oct": [
+     "Kintore Battery Energy Storage Project",
+     300.0,
+     "awaiting construction",
+     -2.335355,
+     57.220547
+    ]
+   },
+   {
+    "ref": "10638",
+    "register_name": "Rothienorman - Battery Storage",
+    "q2": [
+     "Rothienorman - Battery Storage",
+     49.9,
+     "awaiting construction"
+    ],
+    "oct": [
+     "Rothienorman - Battery Storage",
+     49.9,
+     "awaiting construction",
+     -2.492176,
+     57.420816
+    ]
+   },
+   {
+    "ref": "10701",
+    "register_name": "Broomhill BESS - Battery Energy Storage",
+    "q2": [
+     "Broomhill BESS - Battery Energy Storage",
+     49.0,
+     "awaiting construction"
+    ],
+    "oct": [
+     "Broomhill BESS - Battery Energy Storage",
+     49.0,
+     "awaiting construction",
+     -2.347223,
+     57.216553
+    ]
+   },
+   {
+    "ref": "12711",
+    "register_name": "A981 Fraserburgh - Battery Energy Storage",
+    "q2": [
+     "A981 Fraserburgh - Battery Energy Storage",
+     45.0,
+     "awaiting construction"
+    ],
+    "oct": [
+     "A981 Fraserburgh - Battery Energy Storage",
+     45.0,
+     "awaiting construction",
+     -2.026323,
+     57.671397
+    ]
+   },
+   {
+    "ref": "13290",
+    "register_name": "Corshellach Battery Energy Storage",
+    "q2": [
+     "Corshellach Battery Energy Storage",
+     49.9,
+     "awaiting construction"
+    ],
+    "oct": [
+     "Corshellach Battery Energy Storage",
+     49.9,
+     "awaiting construction",
+     -3.566332,
+     57.490784
+    ]
+   }
+  ],
+  "October record changed: point+MW": [
+   {
+    "ref": "8842",
+    "register_name": "Cullerlie Solar Farm",
+    "q2": [
+     "Cullerlie Solar Farm",
+     13.0,
+     "awaiting construction"
+    ],
+    "oct": [
+     "Cullerlie Solar Farm",
+     15.0,
+     "operational",
+     -2.365735,
+     57.116214
+    ]
+   }
+  ],
+  "October record changed: name": [
+   {
+    "ref": "11656",
+    "register_name": "Little Beanit Farm, Balsall Common - Battery Storage",
+    "q2": [
+     "Little Beanit Farm, Balsall Common - Battery Storage",
+     200.0,
+     "under construction"
+    ],
+    "oct": [
+     "Little Beanit Farm, Balsall Common - Berkswell Battery Storage",
+     200.0,
+     "under construction",
+     -1.625067,
+     52.386124
+    ]
+   },
+   {
+    "ref": "12820",
+    "register_name": "Camsiscan Farm, Craigie - Battery Energy Storage System",
+    "q2": [
+     "Camsiscan Farm, Craigie - Battery Energy Storage System",
+     350.0,
+     "awaiting construction"
+    ],
+    "oct": [
+     "Camsiscan Farm, Craigie - Kilmarnock South Battery Energy Storage System",
+     350.0,
+     "under construction",
+     -4.447525,
+     55.555129
+    ]
+   },
+   {
+    "ref": "15530",
+    "register_name": "Braston New Energy",
+    "q2": [
+     "Braston New Energy",
+     500.0,
+     "awaiting construction"
+    ],
+    "oct": [
+     "Braston New Energy / The Wallace Project",
+     500.0,
+     "awaiting construction",
+     -4.594515,
+     55.443088
+    ]
+   },
+   {
+    "ref": "19230",
+    "register_name": "Chediston Hall - 40MW Solar Panels",
+    "q2": [
+     "Chediston Hall - 40MW Solar Panels",
+     40.0,
+     "application submitted"
+    ],
+    "oct": [
+     "Chediston Hall - Solar Panels",
+     40.0,
+     "application submitted",
+     1.479972,
+     52.345776
+    ]
+   }
+  ]
+ },
+ "oct_joins_broken_by_xlsx_precision": 1450,
+ "oct_joined_with_xlsx_precision_upper_bound": 8973,
+ "xlsx_break_examples": [
+  {
+   "ref": "6816",
+   "name": "Moog Controls Factory",
+   "csv_mw": "0.38",
+   "parquet_mw": 0.38,
+   "xlsx_mw": "0.384",
+   "register_mw": 0.38
+  },
+  {
+   "ref": "7478",
+   "name": "Pall Europe Building",
+   "csv_mw": "0.58",
+   "parquet_mw": 0.58,
+   "xlsx_mw": "0.579",
+   "register_mw": 0.58
+  },
+  {
+   "ref": "7557",
+   "name": "Home Farm",
+   "csv_mw": "25",
+   "parquet_mw": 25.0,
+   "xlsx_mw": "24.995",
+   "register_mw": 25.0
+  },
+  {
+   "ref": "7758",
+   "name": "Hutchesons Grammar School",
+   "csv_mw": "0.18",
+   "parquet_mw": 0.18,
+   "xlsx_mw": "0.175",
+   "register_mw": 0.18
+  },
+  {
+   "ref": "8184",
+   "name": "Gas Governor Station Solar System",
+   "csv_mw": "0.26",
+   "parquet_mw": 0.26,
+   "xlsx_mw": "0.259",
+   "register_mw": 0.26
+  },
+  {
+   "ref": "8203",
+   "name": "Stody Estate Solar Array",
+   "csv_mw": "0.49",
+   "parquet_mw": 0.49,
+   "xlsx_mw": "0.485",
+   "register_mw": 0.49
+  },
+  {
+   "ref": "8204",
+   "name": "Albert Road Rooftop Solar Panels",
+   "csv_mw": "0.18",
+   "parquet_mw": 0.18,
+   "xlsx_mw": "0.175",
+   "register_mw": 0.18
+  },
+  {
+   "ref": "8212",
+   "name": "Kirby Road Solar Panels",
+   "csv_mw": "0.49",
+   "parquet_mw": 0.49,
+   "xlsx_mw": "0.487",
+   "register_mw": 0.49
+  },
+  {
+   "ref": "8222",
+   "name": "British Geological, Keywork Solar Panels",
+   "csv_mw": "0.62",
+   "parquet_mw": 0.62,
+   "xlsx_mw": "0.623",
+   "register_mw": 0.62
+  },
+  {
+   "ref": "8229",
+   "name": "Caernarfon Road Solar Panels",
+   "csv_mw": "0.44",
+   "parquet_mw": 0.44,
+   "xlsx_mw": "0.439",
+   "register_mw": 0.44
+  }
+ ],
+ "register_capacity_decimal_places": {
+  "0": 4380,
+  "1": 3527,
+  "2": 2872,
+  "3": 5
+ }
+}

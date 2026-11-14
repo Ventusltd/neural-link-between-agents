@@ -1,0 +1,20 @@
+--- a/solar-bess-topology-v7/gis-sld-financial-sandbox/gis-sld-v5-ui.js
++++ b/solar-bess-topology-v7/gis-sld-financial-sandbox/gis-sld-v5-ui.js
+@@ -372,7 +372,7 @@
+     if (gisSearchReady) return;
+     try {
+         const [repdRes, subsRes] = await Promise.all([
+-            fetch("/dist/repd_master.json", { cache: "no-cache" }),
++            fetch("/dist/repd_master_2026q3.json", { cache: "no-cache" }),
+             fetch(SUBSTATIONS_URL, { cache: "no-cache" })
+         ]);
+ 
+@@ -632,7 +632,7 @@
+ 
+     try {
+         const [repdRes, subsRes, ...gridResponses] = await Promise.all([
+-            fetch("/dist/repd_master.json", { cache: "no-cache" }),
++            fetch("/dist/repd_master_2026q3.json", { cache: "no-cache" }),
+             fetch(SUBSTATIONS_URL, { cache: "no-cache" }),
+             fetch(siteIntelGridUrls["66 kV"], { cache: "no-cache" }),
+             fetch(siteIntelGridUrls["132 kV"], { cache: "no-cache" }),

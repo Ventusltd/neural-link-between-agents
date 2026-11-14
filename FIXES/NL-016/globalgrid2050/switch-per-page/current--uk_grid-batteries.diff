@@ -1,0 +1,11 @@
+--- a/uk_grid-batteries.md
++++ b/uk_grid-batteries.md
+@@ -55,7 +55,7 @@
+     const markers = L.markerClusterGroup({ disableClusteringAtZoom: 13 });
+     
+     // Linked to the BESS CSV shown in your image
+-    const csvUrl = '{{ site.baseurl }}/repd-grid-batteries.csv';
++    const csvUrl = '{{ site.baseurl }}/repd-grid-batteries-2026q3.csv';
+ 
+     Papa.parse(csvUrl, {
+         download: true, header: true, skipEmptyLines: true,
