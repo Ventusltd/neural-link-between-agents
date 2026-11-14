@@ -1,0 +1,233 @@
+[
+  {
+    "ref_id": "13043",
+    "project": "Springwell, Lincoln - Springwell Solar Farm & Battery Storage",
+    "date": null,
+    "headline": "PINS project page for EN010149 (Springwell)",
+    "url": "https://national-infrastructure-consenting.planninginspectorate.gov.uk/projects/EN010149?lang=en",
+    "source": "Planning Inspectorate (NSIP)",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Reference EN010149 matched. Secretary of State DCO decision letter is in the PINS document library (EN010149-001062); no in-window document seen."
+  },
+  {
+    "ref_id": "13043",
+    "project": "Springwell, Lincoln - Springwell Solar Farm & Battery Storage",
+    "date": "2026-04-13",
+    "headline": "Government grants development consent order for Springwell solar farm",
+    "url": "https://www.energyglobal.com/solar/13042026/government-grants-development-consent-order-for-springwell-solar-farm/",
+    "source": "Energy Global",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "DCO grant reported in April 2026, outside the 24-hour window. Headline names the same site."
+  },
+  {
+    "ref_id": "15252",
+    "project": "Steeple Renewables Project",
+    "date": null,
+    "headline": "Steeple Renewables Project: Development Consent Order page (gov.uk)",
+    "url": "https://www.gov.uk/government/publications/steeple-renewables-project-development-consent-order-planning-act-2008",
+    "source": "GOV.UK / Planning Inspectorate",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Reference EN010163 matched. Decision-stage consultation submissions (XD04) are dated July 2026 per document title; nothing in-window seen."
+  },
+  {
+    "ref_id": "15252",
+    "project": "Steeple Renewables Project",
+    "date": "2026-10-12",
+    "headline": "Steeple Renewables Project receives green light from UK Government",
+    "url": "https://www.energyglobal.com/solar/12102026/steeple-renewables-project-receives-green-light-from-uk-government/",
+    "source": "Energy Global",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Consent reported 12 October 2026, outside the window. Headline names the same project."
+  },
+  {
+    "ref_id": "15252",
+    "project": "Steeple Renewables Project",
+    "date": null,
+    "headline": "RES Secures UK Approval for 450 MW Solar and 150 MW BESS Project",
+    "url": "https://www.blackridgeresearch.com/news-releases/res-secures-uk-approval-for-450-mw-solar-and-150-mw-bess-project",
+    "source": "Black Ridge Research (press release)",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Undated press release on the same project and operator. Not in the window on the evidence seen."
+  },
+  {
+    "ref_id": "11278",
+    "project": "Wentlooge Renewable Energy Hub",
+    "date": null,
+    "headline": "Plans for huge solar farm in the Gwent Levels progressing",
+    "url": "https://uk.news.yahoo.com/plans-huge-solar-farm-gwent-134111088.html",
+    "source": "Yahoo News (syndicated local report)",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Gwent Levels location match only; the headline does not name Wentlooge. Undated."
+  },
+  {
+    "ref_id": "11278",
+    "project": "Wentlooge Renewable Energy Hub",
+    "date": null,
+    "headline": "Welsh Government refuse plans for huge solar farm at the Gwent Levels",
+    "url": "https://www.inkl.com/news/welsh-government-refuse-plans-for-huge-solar-farm-at-the-gwent-levels",
+    "source": "inkl (aggregator)",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Refusal headline on the Gwent Levels; not clearly tied to CAS-01772-Z5P5D2 and undated. Conflicts with the slice status (Appeal Lodged), so verify before use."
+  },
+  {
+    "ref_id": "11278",
+    "project": "Wentlooge Renewable Energy Hub",
+    "date": null,
+    "headline": "Welsh Government planning decisions being considered by the Welsh Ministers (called in)",
+    "url": "https://www.gov.wales/sites/default/files/publications/2026-01/planning-decisions-being-considered-by-the-welsh-ministers-called-in.pdf",
+    "source": "Welsh Government",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Official list dated January 2026. Reference CAS-01772-Z5P5D2 was not seen in the extract; the register entry itself was not reached."
+  },
+  {
+    "ref_id": "14540",
+    "project": "Fernishaw Solar Farm & Battery Energy Storage Facility",
+    "date": null,
+    "headline": "Energy consents (Scottish Government guidance page)",
+    "url": "https://www.gov.scot/policies/energy-infrastructure/energy-consents/",
+    "source": "Scottish Government",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "No Energy Consents Unit record for ECU00004871 surfaced in search. Only a general reference page is linked."
+  },
+  {
+    "ref_id": "7858",
+    "project": "Plas Power Estate Solar Farm",
+    "date": null,
+    "headline": "Plas Power Solar and Energy Storage Project (Lightsource BP project page)",
+    "url": "https://lightsourcebp.com/?p=35141",
+    "source": "Lightsource BP",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Name and developer match. Welsh DNS reference DNS/3253253 was not seen on the page."
+  },
+  {
+    "ref_id": "7858",
+    "project": "Plas Power Estate Solar Farm",
+    "date": "2026-06-01",
+    "headline": "Planning approval secured for solar and energy storage project in Wales",
+    "url": "https://www.energyglobal.com/electric-hybrid/01062026/planning-approval-secured-for-solar-and-energy-storage-project-in-wales/",
+    "source": "Energy Global",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Likely this project given the Wales solar-plus-storage match, but the headline does not name Plas Power. Dated 1 June 2026, outside the window."
+  },
+  {
+    "ref_id": "9050",
+    "project": "Bypass Solar Farm",
+    "date": null,
+    "headline": "Large solar farm north of Grantham wins approval",
+    "url": "https://grantham.nub.news/n/39large39-solar-farm-north-of-grantham-wins-approval",
+    "source": "Grantham Journal (nub news)",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Location fits the Bypass site north of Grantham, but the headline does not name it. Undated; South Kesteven reference S20/1433 was not seen."
+  },
+  {
+    "ref_id": "9050",
+    "project": "Bypass Solar Farm",
+    "date": null,
+    "headline": "Bypass solar farm (developer listing)",
+    "url": "https://sserenewables.com/solar-and-battery/solar/bypass-solar",
+    "source": "SSE Renewables",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Developer page for the site. The South Kesteven register entry for S20/1433 was not reached."
+  },
+  {
+    "ref_id": "13969",
+    "project": "Middle Road Farm - Solar Farm & Battery Storage",
+    "date": null,
+    "headline": "Middle Road Farm solar farm and battery storage (listing)",
+    "url": "https://locara.co.uk/power/uk-energy-battery-storage-middle-road-farm-solar-farm-battery-storage",
+    "source": "Locara (asset listing)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Asset listing only. No Stratford-on-Avon register page for 23/01305/FUL surfaced, so the planning file is not verified."
+  },
+  {
+    "ref_id": "5186",
+    "project": "Awre Penisular Farmer's Community Solar Scheme",
+    "date": null,
+    "headline": "No Forest of Dean register page for P0664/15/FUL surfaced",
+    "url": null,
+    "source": "Forest of Dean District Council (not reached)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Register not reached. The refusal is reported in the archive entry below."
+  },
+  {
+    "ref_id": "5186",
+    "project": "Awre Penisular Farmer's Community Solar Scheme",
+    "date": null,
+    "headline": "50MW Awre Peninsula solar farm application rejected by council",
+    "url": "https://www.solarpowerportal.co.uk/solar-projects/50mw-awre-peninsula-solar-farm-application-rejected-by-council",
+    "source": "Solar Power Portal",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Refusal reported on the same site (Awre Peninsula). Date not visible in the result, so it is not treated as in-window."
+  },
+  {
+    "ref_id": "7887",
+    "project": "Hasland Photovoltaic Solar Park",
+    "date": null,
+    "headline": "No North East Derbyshire register page for 20/01283/FL surfaced",
+    "url": null,
+    "source": "North East Derbyshire District Council (not reached)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Search returned committee packs for other references only. Nothing in the window and no news hit for this site."
+  },
+  {
+    "ref_id": "8100",
+    "project": "Camblesforth Solar Farm",
+    "date": null,
+    "headline": "Report 20210788EIA - Land North and South of Camela Lane Camblesforth (Selby committee report)",
+    "url": "https://democracy.selby.gov.uk/documents/s16437/Report%2020210788EIA%20-%20Land%20North%20and%20South%20of%20Camela%20Lane%20Camblesforth.pdf",
+    "source": "Selby District Council",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Reference 2021/0788/EIA matched in the committee report title. Committee cycle 2022. Nothing in-window seen."
+  },
+  {
+    "ref_id": "8100",
+    "project": "Camblesforth Solar Farm",
+    "date": null,
+    "headline": "Enray Power's Camblesforth Solar Farm Reaches Financial Close",
+    "url": "https://www.omnescapital.com/press-release/enray-powers-camblesforth-solar-farm-reaches-financial-close",
+    "source": "Omnes Capital (press release)",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Financial close on the same site and operator. Undated in the result, so not treated as in-window."
+  },
+  {
+    "ref_id": "8503",
+    "project": "Tuxford Road Solar Farm",
+    "date": null,
+    "headline": "Tuxford Road solar farm project timeline (Enso Energy)",
+    "url": "https://ensoenergy.co.uk/projects/tuxford-road-solar-farm/",
+    "source": "Enso Energy",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Developer page. Newark and Sherwood reference 21/01577/FULM was not reached on the register."
+  },
+  {
+    "ref_id": "8503",
+    "project": "Tuxford Road Solar Farm",
+    "date": null,
+    "headline": "Cero and Enso JV has three 50MW solar-plus-storage sites approved",
+    "url": "https://www.solarpowerportal.co.uk/solar-projects/cero-and-enso-jv-has-three-50mw-solar-plus-storage-sites-approved",
+    "source": "Solar Power Portal",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Enso approval news, but the headline does not name Tuxford Road. Undated."
+  }
+]

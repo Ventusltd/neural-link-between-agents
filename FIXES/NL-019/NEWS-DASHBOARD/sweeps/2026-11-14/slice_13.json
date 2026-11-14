@@ -1,0 +1,134 @@
+[
+  {
+    "ref_id": "12281",
+    "project": "Tillbridge Solar Farm, Hemswell - Solar Panels",
+    "date": null,
+    "headline": "Tillbridge Solar project given Government approval",
+    "url": "https://www.lincolnshire.gov.uk/news/article/2504/tillbridge-solar-project-given-government-approval",
+    "source": "Lincolnshire County Council",
+    "tier": "official",
+    "confidence": "confirmed",
+    "note": "Site named in headline. Approval notice; the search result gave no date, so it is not shown to fall in the 24h window. Straight-line screening for grid or data-centre proximity not performed."
+  },
+  {
+    "ref_id": "12409",
+    "project": "Byers Gill Solar Farm",
+    "date": "2026-11-03",
+    "headline": "Government approves 200 million Byers Gill solar farm",
+    "url": "https://www.sustainabletimes.co.uk/post/government-approves-200-million-byers-gill-solar-farm",
+    "source": "Sustainable Times",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Site named in headline. Dated 3 Nov 2026, so outside the 24h window. Headline operator is RWE; REPD row says JBM Solar Projects Limited. Some coverage mentions a battery element."
+  },
+  {
+    "ref_id": "12409",
+    "project": "Byers Gill Solar Farm",
+    "date": null,
+    "headline": "Byers Gill solar development consent decision announced",
+    "url": "https://www.gov.uk/government/news/byers-gill-solar-development-consent-decision-announced",
+    "source": "GOV.UK",
+    "tier": "official",
+    "confidence": "confirmed",
+    "note": "Official DESNZ press release on the consent decision; no date shown in the search result, so not shown to fall in the 24h window."
+  },
+  {
+    "ref_id": "20768",
+    "project": "Dupplin Solar - Solar Array",
+    "date": null,
+    "headline": "Not checked: WebSearch budget exhausted before this project was searched",
+    "url": null,
+    "source": "Scottish Government Energy Consents Unit (ECU00006264)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Search returned no headline naming Dupplin. Adjacent BLC Energy hits concern Binn Farm, a different 39 MW site, so not used. Public register not checked."
+  },
+  {
+    "ref_id": "7862",
+    "project": "Elwy Solar Energy Farm",
+    "date": null,
+    "headline": "Not checked: WebSearch budget exhausted before this project was searched",
+    "url": null,
+    "source": "Welsh Government (NSIP) DNS/3247619",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Application refused. Public register not checked."
+  },
+  {
+    "ref_id": "8991",
+    "project": "Little Staughton Solar Farm",
+    "date": null,
+    "headline": "Not checked: WebSearch budget exhausted before this project was searched",
+    "url": null,
+    "source": "Huntingdonshire planning register 22/01813/FUL",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Public register not checked."
+  },
+  {
+    "ref_id": "9739",
+    "project": "Burnt House Farm - Solar Farm",
+    "date": null,
+    "headline": "Not checked: WebSearch budget exhausted before this project was searched",
+    "url": null,
+    "source": "Northumberland planning register 22/01082/RENE",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Public register not checked."
+  },
+  {
+    "ref_id": "19007",
+    "project": "Thornton Estate - Solar PV Panels",
+    "date": null,
+    "headline": "Not checked: WebSearch budget exhausted before this project was searched",
+    "url": null,
+    "source": "Buckinghamshire planning register 25/02132/APP",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Public register not checked."
+  },
+  {
+    "ref_id": "7519",
+    "project": "Corner Copse Solar Farm",
+    "date": null,
+    "headline": "Not checked: WebSearch budget exhausted before this project was searched",
+    "url": null,
+    "source": "Swindon planning register S/19/1097",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Under construction. Public register not checked."
+  },
+  {
+    "ref_id": "8038",
+    "project": "Claydon Farm - Solar Farm & Battery Storage",
+    "date": null,
+    "headline": "Not checked: WebSearch budget exhausted before this project was searched",
+    "url": null,
+    "source": "Tewkesbury planning register 21/00259/FUL",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Public register not checked."
+  },
+  {
+    "ref_id": "8323",
+    "project": "Stowey Road, Stowey - Solar Farm",
+    "date": null,
+    "headline": "Not checked: WebSearch budget exhausted before this project was searched",
+    "url": null,
+    "source": "Bath and North East Somerset planning register 24/04156/EFUL",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Public register not checked."
+  },
+  {
+    "ref_id": "8834",
+    "project": "Canon Barns Road - Solar PV Arrays & Battery Storage",
+    "date": null,
+    "headline": "Not checked: WebSearch budget exhausted before this project was searched",
+    "url": null,
+    "source": "Chelmsford planning register 21/00394/FUL",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Public register not checked."
+  }
+]

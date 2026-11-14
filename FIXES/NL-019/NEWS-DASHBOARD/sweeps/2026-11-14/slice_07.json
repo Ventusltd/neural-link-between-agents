@@ -1,0 +1,211 @@
+[
+  {
+    "ref_id": "14806",
+    "project": "One Earth Solar Farm",
+    "date": null,
+    "headline": "EN010159 001569 One Earth Solar Farm - Decision Letter - Redacted",
+    "url": "https://nsip-documents.planninginspectorate.gov.uk/published-documents/EN010159-001569-One Earth Solar Farm - Decision Letter - Redacted.pdf",
+    "source": "Planning Inspectorate NSIP document library",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Decision letter is on the EN010159 register; date not visible in the search result, so the 24h window is not confirmed."
+  },
+  {
+    "ref_id": "14806",
+    "project": "One Earth Solar Farm",
+    "date": null,
+    "headline": "One Earth solar farm development consent decision announced",
+    "url": "https://www.gov.uk/government/news/one-earth-solar-farm-development-consent-decision-announced",
+    "source": "GOV.UK",
+    "tier": "official",
+    "confidence": "confirmed",
+    "note": "Official decision announcement; date not shown in the search result, so it needs a date check on the PINS project page before counting as recent."
+  },
+  {
+    "ref_id": "6502",
+    "project": "Cleve Hill Solar Project",
+    "date": null,
+    "headline": "Cleve Hill Solar Park Now Fully Operational, Becomes UK's Largest at 373MW Capacity",
+    "url": "https://www.sustainabletimes.co.uk/post/cleve-hill-solar-park-now-fully-operational-becomes-uk-s-largest-at-373mw-capacity",
+    "source": "Sustainable Times",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Site named in headline; undated in the search result and not a 24h item."
+  },
+  {
+    "ref_id": "6502",
+    "project": "Cleve Hill Solar Project",
+    "date": null,
+    "headline": "Cleve Hill project updates (EN010085)",
+    "url": "https://national-infrastructure-consenting.planninginspectorate.gov.uk/projects/EN010085/project-updates",
+    "source": "Planning Inspectorate NSIP project page",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "No in-window news found; PINS project updates page listed for the EN010085 reference (page not opened)."
+  },
+  {
+    "ref_id": "10085",
+    "project": "Stonestreet Green - Solar Farm & Battery Storage",
+    "date": null,
+    "headline": "Stonestreet Green Solar development consent decision announced",
+    "url": "https://www.gov.uk/government/news/stonestreet-green-solar-development-consent-decision-announced",
+    "source": "GOV.UK",
+    "tier": "official",
+    "confidence": "confirmed",
+    "note": "Official decision announcement; date not shown in the search result, so it needs a date check before counting as recent."
+  },
+  {
+    "ref_id": "10085",
+    "project": "Stonestreet Green - Solar Farm & Battery Storage",
+    "date": null,
+    "headline": "EN010135 001289 Decision Letter - Stonestreet Green Solar",
+    "url": "https://nsip-documents.planninginspectorate.gov.uk/published-documents/EN010135-001289-Decision Letter - Stonestreet Green Solar.pdf",
+    "source": "Planning Inspectorate NSIP document library",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Decision letter is on the EN010135 register; date not visible in the search result."
+  },
+  {
+    "ref_id": "2203",
+    "project": "Bradenstoke solar park",
+    "date": null,
+    "headline": "Bluefield acquires 70MWp solar plant in Wiltshire",
+    "url": "https://www.solarpowerportal.co.uk/utility-scale-solar/bluefield-acquires-70mwp-solar-plant-in-wiltshire",
+    "source": "Solar Power Portal",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Headline does not name Bradenstoke; size matches, but the link is name-only and undated."
+  },
+  {
+    "ref_id": "2203",
+    "project": "Bradenstoke solar park",
+    "date": null,
+    "headline": "No Wiltshire register document located for 14/06989/FUL in search",
+    "url": null,
+    "source": "Wiltshire Council planning register (search only)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Reference did not match any Wiltshire result; the register was not opened, so the reference should be rechecked."
+  },
+  {
+    "ref_id": "20021",
+    "project": "Brailsford Solar Park, Main Road - Solar Panels",
+    "date": "2026-07-07",
+    "headline": "132,000-panel solar farm will turn our village into a prison",
+    "url": "https://now.solar/2026/07/07/132000-panel-solar-farm-will-turn-our-village-into-a-prison-discover-swns/",
+    "source": "Now.Solar (SWNS syndication)",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Local opposition story from July 2026; the village is not named in the headline, so the match is name-only."
+  },
+  {
+    "ref_id": "20021",
+    "project": "Brailsford Solar Park, Main Road - Solar Panels",
+    "date": null,
+    "headline": "No Derbyshire Dales register document confirmed for 26/00495/EIA in search",
+    "url": null,
+    "source": "Derbyshire Dales planning register (search only)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Public notice portal hits were not confirmed as this reference; the register was not opened."
+  },
+  {
+    "ref_id": "9394",
+    "project": "Crimscote Solar Farm and Storage Project",
+    "date": null,
+    "headline": "No Stratford-on-Avon register document located for 21/02017/FUL in search",
+    "url": null,
+    "source": "Stratford-on-Avon District Council planning register (search only)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Council results returned were unrelated notices; the register was not opened."
+  },
+  {
+    "ref_id": "15247",
+    "project": "Worset Lane - Solar Farm",
+    "date": null,
+    "headline": "Plans approved for huge solar farm on outskirts of Hartlepool",
+    "url": "https://hartlepoolmail.co.uk/news/politics/council/plans-approved-for-huge-solar-farm-on-outskirts-of-hartlepool-3359948",
+    "source": "Hartlepool Mail",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Headline names Hartlepool outskirts, not Worset Lane; undated, so name-only."
+  },
+  {
+    "ref_id": "15247",
+    "project": "Worset Lane - Solar Farm",
+    "date": null,
+    "headline": "No Hartlepool register document located for H/2020/0175 in search",
+    "url": null,
+    "source": "Hartlepool Borough Council planning register (search only)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Reference not found in council results; the register was not opened."
+  },
+  {
+    "ref_id": "7223",
+    "project": "Inkersall Grange Farm",
+    "date": null,
+    "headline": "No Newark and Sherwood register document located for 19/01165/FULM in search",
+    "url": null,
+    "source": "Newark and Sherwood District Council planning register (search only)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Reference not found; results were unrelated appeal and NSIP papers. The register was not opened."
+  },
+  {
+    "ref_id": "7945",
+    "project": "Cornwell Solar Farm",
+    "date": null,
+    "headline": "Land to North West of Stoke Talmage P20S3244 FUL (committee papers)",
+    "url": "https://southoxon.gov.uk/wp-content/uploads/sites/2/2021/10/7.-Land-to-North-West-of-Stoke-Talmage-P20S3244-FUL-p.pdf",
+    "source": "South Oxfordshire District Council",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Reference P20/S3244/FUL matches the committee papers; no in-window news found."
+  },
+  {
+    "ref_id": "7945",
+    "project": "Cornwell Solar Farm",
+    "date": "2026-09-28",
+    "headline": "Low Carbon confirms plans to develop 500 MW West Oxfordshire energy park",
+    "url": "https://www.energyglobal.com/solar/28092026/low-carbon-confirms-plans-to-develop-500-mw-west-oxfordshire-energy-park/",
+    "source": "Energy Global",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Same operator (Low Carbon) but a different site and capacity; outside the 24h window; operator match only."
+  },
+  {
+    "ref_id": "8181",
+    "project": "Haunton Solar Farm",
+    "date": "2025-01-17",
+    "headline": "New solar farm which could power almost 8,000 homes is given green light",
+    "url": "https://www.expressandstar.com/news/2025/01/17/new-solar-farm-which-could-power-almost-8000-homes-is-given-green-light",
+    "source": "Express & Star",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Headline does not name Haunton; name-only lead from 2025, outside the window."
+  },
+  {
+    "ref_id": "8181",
+    "project": "Haunton Solar Farm",
+    "date": null,
+    "headline": "No Lichfield register document located for 20/01245/FULM in search",
+    "url": null,
+    "source": "Lichfield District Council planning register (search only)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Reference not found; Lichfield committee papers in results did not match. The register was not opened."
+  },
+  {
+    "ref_id": "8523",
+    "project": "Arlingham Solar Farm - Solar PV Panels & Battery Storage Facility",
+    "date": null,
+    "headline": "No Stroud register document located for S.22/1371/FUL in search",
+    "url": null,
+    "source": "Stroud District Council planning register (search only)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Reference not found; Stroud results were older committee papers. The register was not opened."
+  }
+]

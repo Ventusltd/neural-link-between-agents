@@ -1,0 +1,123 @@
+[
+  {
+    "ref_id": "17699",
+    "project": "Whitestone Solar Farm",
+    "date": null,
+    "headline": "Planning Inspectorate examination library and s51/s56 advice documents for Whitestone Solar Farm (EN0110020)",
+    "url": "https://nsip-documents.planninginspectorate.gov.uk/published-documents/EN0110020-000261-Whitestone%20Solar%20Farm%20(EN0110020)%20Section%2056%20Notice%20.pdf",
+    "source": "Planning Inspectorate",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "NSIP register shows acceptance-stage documents; no dated item in the last 24h. Press items (The Star, Doncaster Council opposition) are undated and not confirmed in window."
+  },
+  {
+    "ref_id": "15347",
+    "project": "East Park Energy",
+    "date": null,
+    "headline": "East Park Energy (EN010141) project page and examination documents on the Planning Inspectorate register",
+    "url": "https://national-infrastructure-consenting.planninginspectorate.gov.uk/projects/EN010141",
+    "source": "Planning Inspectorate",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Examination hearings and LIR documents are dated March and April 2026, outside the window. Brockwell 400MW solar and 100MW BESS consultation item is undated."
+  },
+  {
+    "ref_id": "17948",
+    "project": "Bodelwyddan, Abergele Road - Solar Farm & Battery Storage",
+    "date": null,
+    "headline": "Bodelwyddan solar farm representations (2026 commentary)",
+    "url": "https://www.planninggeek.co.uk/2026/bodelwyddan-solar-representations/",
+    "source": "Planning Geek",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Welsh Government (NSIP) decision record not surfaced by search; the commentary page is undated in results. Name match only for the wider scheme."
+  },
+  {
+    "ref_id": "8051",
+    "project": "Larks Green Solar Farm",
+    "date": null,
+    "headline": "Joint venture between GIG and Enso moves forward with plans for 50MW bifacial site",
+    "url": "https://www.solarpowerportal.co.uk/solar-projects/joint-venture-between-gig-and-enso-moves-forward-with-plans-for-50mw-bifacial-site",
+    "source": "Solar Power Portal",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "South Gloucestershire register entry P20/13909/F not surfaced; only older trade press (c.2020-2023) found. Nothing in window."
+  },
+  {
+    "ref_id": "8131",
+    "project": "Darlington Road, Skeeby",
+    "date": null,
+    "headline": "Harmony Energy energises new 35MW/70MWh BESS in North Yorkshire",
+    "url": "https://www.solarpowerportal.co.uk/battery-storage/harmony-energy-energises-new-35mw-70mwh-bess-in-north-yorkshire",
+    "source": "Solar Power Portal",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Headline does not name Skeeby; location match unverified. North Yorkshire register 21/00931/FULL not opened. Date unknown, not in window."
+  },
+  {
+    "ref_id": "9365",
+    "project": "Wymondley Solar Farm, Great Wymondley",
+    "date": null,
+    "headline": "North Hertfordshire Council solar farm public inquiry page",
+    "url": "https://north-herts.gov.uk/solar-farm-public-inquiry",
+    "source": "North Hertfordshire District Council",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Council inquiry material for the Great Wymondley site (ref 21/03380/FP) is dated 2022-2023. Nothing in window."
+  },
+  {
+    "ref_id": "15180",
+    "project": "Mareham Lane, Solar PV Panels",
+    "date": null,
+    "headline": "No register entry for 23/1419/FUL surfaced by search",
+    "url": null,
+    "source": "North Kesteven District Council (not reached)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Search returned unrelated Lincolnshire solar items and a different reference (S23/0511). Register check not completed; no news found."
+  },
+  {
+    "ref_id": "6561",
+    "project": "Cayton Solar farm",
+    "date": null,
+    "headline": "Huge solar farm to be built on 50 hectares of farmland in North Yorkshire will power 15,000 homes",
+    "url": "https://www.yorkshirepost.co.uk/news/politics/huge-solar-farm-to-be-built-on-50-hectares-of-farmland-in-north-yorkshire-will-power-15000-homes-3358782",
+    "source": "Yorkshire Post",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Likely scheme match on size only; location and reference 19/02259/FULMAJ not confirmed. Elgin 112MW portfolio item is not clearly this site. Nothing in window."
+  },
+  {
+    "ref_id": "7944",
+    "project": "Perrinpit Farm",
+    "date": null,
+    "headline": "BayWa r.e. granted planning permission for second 49.9MW project in the UK with Grune Energien Solar GmbH",
+    "url": "https://www.pv-magazine.com/press-releases/baywa-r-e-granted-planning-permission-for-second-49-9mw-project-in-the-uk-with-grune-energien-solar-gmbh/",
+    "source": "pv magazine (press release)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Operator consent notice (older release). Matches operator and size; register P21/01624/F not opened. Nothing in window."
+  },
+  {
+    "ref_id": "8149",
+    "project": "Bunkers Hill Farm - Solar farm & Battery stations",
+    "date": null,
+    "headline": "Bunkers Hill solar farm (Hart District, ref 21/00552/FUL) local group page",
+    "url": "https://whitewatervalley.org.uk/bunkers-hill-solar-farm-3/",
+    "source": "Whitewater Valley Preservation Society",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Hart committee packs from 2021 surfaced in search; register not opened. A 2023 JBM to Vantage RE sale item is archive. Battery stations listed on a locara asset page. Nothing in window."
+  },
+  {
+    "ref_id": "8517",
+    "project": "Vicarage Drove - Solar farm & Battery storage",
+    "date": null,
+    "headline": "Committee report: land south east of Vicarage Drove, Bicker Bar, Boston",
+    "url": "https://democracy.boston.gov.uk/documents/s21362/2.%20B.24.0363%20-%20Committee%20Report%20-%20Land%20to%20the%20south%20east%20of%20Vicarage%20Drove%20Bicker%20Bar%20Boston%20-%20check.pdf",
+    "source": "Boston Borough Council",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Committee report uses ref B.24.0363, not B/21/0443, so the link is unverified. Renewable Connections 50MW consent item is undated. Nothing in window."
+  }
+]

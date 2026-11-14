@@ -1,0 +1,200 @@
+[
+  {
+    "ref_id": "12926",
+    "project": "The Tween Bridge Solar Farm",
+    "date": "2025-09-29",
+    "headline": "RWE submits planning application for Tween Bridge solar development project",
+    "url": "https://uk.rwe.com/press-and-news/2025-09-29-rwe-submits-planning-application-for-tween-bridge-solar-development-project/",
+    "source": "RWE (company press release)",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Company release from 29 Sep 2025, outside the 24h window; names the site and operator."
+  },
+  {
+    "ref_id": "12926",
+    "project": "The Tween Bridge Solar Farm",
+    "date": "2026-01-12",
+    "headline": "EN010148 Tween Bridge Solar Farm - Formal Pause Request Letter (12 January 2026)",
+    "url": "https://nsip-documents.planninginspectorate.gov.uk/published-documents/EN010148-000439-Tween%20Bridge%20Solar%20Farm%20-%20Formal%20Pause%20Request%20Letter%20-%2012th%20January%202026.pdf",
+    "source": "Planning Inspectorate (NSIP document store)",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Latest dated Planning Inspectorate item found; nothing in the 24h window. Register not checked beyond search results."
+  },
+  {
+    "ref_id": "10916",
+    "project": "West Burton Solar Project",
+    "date": "2025-01-27",
+    "headline": "Solar project West Burton to go ahead",
+    "url": "https://governmentbusiness.co.uk/news/27012025/solar-project-west-burton-go-ahead",
+    "source": "Government Business",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Development consent news from Jan 2025, outside the window; consistent with the Awaiting Construction status."
+  },
+  {
+    "ref_id": "10916",
+    "project": "West Burton Solar Project",
+    "date": null,
+    "headline": "EN010132 Decision letter",
+    "url": "https://infrastructure.planninginspectorate.gov.uk/wp-content/ipc/uploads/projects/EN010132/EN010132-002064-Decision%20letter.pdf",
+    "source": "Planning Inspectorate (NSIP document store)",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Decision letter for the EN010132 DCO found; date not shown in the search result. No 24h news found."
+  },
+  {
+    "ref_id": "14096",
+    "project": "Frodsham Solar Project & Battery Storage",
+    "date": "2026-05-05",
+    "headline": "Frodsham solar NSIP closes examination phase",
+    "url": "https://www.cubicoinvest.com/news/frodsham-solar-nsip-closes-examination-phase/",
+    "source": "Cubico Sustainable Investments (company news)",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Company news dated 5 May 2026 per the search result; outside the window. REPD status Application Submitted may be out of date."
+  },
+  {
+    "ref_id": "14096",
+    "project": "Frodsham Solar Project & Battery Storage",
+    "date": null,
+    "headline": "Frodsham solar development consent decision announced",
+    "url": "https://www.gov.uk/government/news/frodsham-solar-development-consent-decision-announced",
+    "source": "GOV.UK",
+    "tier": "official",
+    "confidence": "possible",
+    "note": "Undated search headline, not opened. If it is a live decision notice, the REPD status is stale. Needs a date check."
+  },
+  {
+    "ref_id": "14096",
+    "project": "Frodsham Solar Project & Battery Storage",
+    "date": "2025-10-30",
+    "headline": "EN010153 Frodsham R13(6) Notice",
+    "url": "https://nsip-documents.planninginspectorate.gov.uk/published-documents/EN010153-000248-251030%20Frodsham%20R13(6)%20Notice.pdf",
+    "source": "Planning Inspectorate (NSIP document store)",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Date taken from the filename prefix (251030). No 24h item found."
+  },
+  {
+    "ref_id": "14293",
+    "project": "Houston Solar PV Farm & Energy Storage Facility",
+    "date": null,
+    "headline": "Houston Solar PV Farm & Energy Storage Facility (Locara power-site record)",
+    "url": "https://locara.co.uk/power/uk-energy-solar-generator-houston-solar-pv-farm-energy-storage-facility",
+    "source": "Locara (third-party aggregator)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "ECU00004825 not found in results and no Scottish Government or Renfrewshire record retrieved. Aggregator only. No 24h news found."
+  },
+  {
+    "ref_id": "18477",
+    "project": "Craigo Glenskinno - Solar and Battery Farm",
+    "date": null,
+    "headline": "Report 225/24 Glenskinno, Montrose (Angus Council committee report)",
+    "url": "https://www.angus.gov.uk/sites/default/files/2024-08/Report%20225_24_Glenskinno%20Montrose.pdf",
+    "source": "Angus Council",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Glenskinno site and Angus location match, but the report is not tied to ECU00006104 in the result. A 2023 Glenskinno Farm report also appears. No 24h news found."
+  },
+  {
+    "ref_id": "9014",
+    "project": "Soay Solar Farm and Greener Grid Park",
+    "date": null,
+    "headline": "Soay Solar & Greener Grid Park - project updates",
+    "url": "https://projects.statkraft.co.uk/soay/project-updates/",
+    "source": "Statkraft (operator project page)",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Operator page names the Soay site. Undated in result. 21/04505/STPLF not matched in East Riding results. No 24h news found."
+  },
+  {
+    "ref_id": "13339",
+    "project": "Bluestone Farm, Low Lands - Solar Farm",
+    "date": "2024-01-11",
+    "headline": "Bluestone Solar committee report (Durham County Council County Planning Committee)",
+    "url": "https://democracy.durham.gov.uk/documents/s183736/Bluestone%20Solar%20Committee%20Report%20FINAL%20UPDATED.pdf",
+    "source": "Durham County Council",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Committee record for the Bluestone solar scheme; DM/23/00486/FPA is not in the headline. Date from the committee pack title."
+  },
+  {
+    "ref_id": "13339",
+    "project": "Bluestone Farm, Low Lands - Solar Farm",
+    "date": "2024-01-12",
+    "headline": "County Durham solar farm plan approved",
+    "url": "https://bdaily.co.uk/articles/2024/01/12/county-durham-solar-farm-plan-approved",
+    "source": "bdaily",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Jan 2024 approval report, outside the window. Headline does not name Bluestone."
+  },
+  {
+    "ref_id": "4968",
+    "project": "RAF Desborough",
+    "date": "2015-08-25",
+    "headline": "KET20150297 Desborough Airfield, Desborough Road, Stoke Albany (Kettering committee report)",
+    "url": "https://kettering.gov.uk/download/meetings/id/11410/54_-_ket20150297_-_desborough_airfield_desborough_road_stoke_albany",
+    "source": "Kettering Borough Council",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Original 2015 application (ref in headline). Date is the planning committee meeting. Status in REPD is Planning Permission Expired."
+  },
+  {
+    "ref_id": "4968",
+    "project": "RAF Desborough",
+    "date": null,
+    "headline": "Community presentation set for June 14 on proposed Desborough Airfield solar farm and battery storage",
+    "url": "https://feedbagel.com/post/residents-living-near-proposed-desborough-airfield-solar-farm-invited-to-informa",
+    "source": "Feedbagel (local news aggregator)",
+    "tier": "recent_news",
+    "confidence": "possible",
+    "note": "Undated, not opened. Could be a newer proposal including BESS, or outside the window. Needs a date check before reporting."
+  },
+  {
+    "ref_id": "7840",
+    "project": "Croome Airfield Solar Farm",
+    "date": null,
+    "headline": "Defford Aerodrome solar farm (gem.wiki)",
+    "url": "https://gem.wiki/Defford_Aerodrome_solar_farm",
+    "source": "Global Energy Monitor wiki",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Possibly the same or an adjacent site. 19/02632/FUL not found in Wychavon results. REPD status Operational. No 24h news found."
+  },
+  {
+    "ref_id": "8097",
+    "project": "Marsh Farm",
+    "date": "2024-03-22",
+    "headline": "Appeal decision APP/M1595/W/23/3328712: land south of Marsh Farm, Marsh Lane, Fobbing, solar farm allowed",
+    "url": "https://www.northwarks.gov.uk/downloads/file/2106/7-4-land-to-south-of-marsh-farm-fobbing-ss17-9jw-app-m1595-w-23-3328712-fobbing-solar-farm-allowed-22nd-march-2024",
+    "source": "Planning Inspectorate appeal decision (hosted by North Warwickshire Borough Council)",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Site named in the headline; allowed 22 Mar 2024. Thurrock 21/01635/FUL is the underlying application per the 2023 committee papers. REPD status Revised. No 24h news found."
+  },
+  {
+    "ref_id": "8501",
+    "project": "Horton Wood - Solar park",
+    "date": null,
+    "headline": "Horton Woods Solar Park Planning Application",
+    "url": "https://www.hugofox.com/news/horton-woods-solar-park-planning-application-59051",
+    "source": "Hugofox (local news aggregator)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Undated. Site named but 22/02599/FUL and the operator not confirmed in the headline. Sevenoaks register not retrieved. No 24h news found."
+  },
+  {
+    "ref_id": "9069",
+    "project": "Felsted School Road - Solar Photovoltaic Farm & Battery storage",
+    "date": null,
+    "headline": "S62A 22 0007 Decision Notice and Statement of Reasons",
+    "url": "https://assets.publishing.service.gov.uk/media/648ac0055f7bb700127faa74/S62A_22_0007_Decision_Notice_and_Statement_of_Reasons.pdf",
+    "source": "GOV.UK (Planning Inspectorate S62A decision)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Reference 22 0007 matches UTT/22/0007/FUL, but the headline does not name the site. A related Uttlesford document names Land East of School Road, Felsted. No 24h news found."
+  }
+]

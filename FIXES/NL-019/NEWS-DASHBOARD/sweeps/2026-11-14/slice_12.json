@@ -1,0 +1,112 @@
+[
+  {
+    "ref_id": "9806",
+    "project": "Heckington Fen Solar Park",
+    "date": null,
+    "headline": "Osborne Clarke advises Ecotricity on the consent for The Heckington Fen Solar Park DCO",
+    "url": "https://www.osborneclarke.com/news/osborne-clarke-advises-ecotricity-consent-heckington-fen-solar-park-dco",
+    "source": "Osborne Clarke",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Names the site and operator, but the page is undated and describes past consent, not news inside the 24h window."
+  },
+  {
+    "ref_id": "9806",
+    "project": "Heckington Fen Solar Park",
+    "date": null,
+    "headline": "ed miliband passes big solar farm plan",
+    "url": "https://www.lincsonline.co.uk/sleaford/ed-miliband-passes-big-solar-farm-plan-9401561",
+    "source": "LincsOnline",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Undated; headline does not name the site, so the link to this project is inferred."
+  },
+  {
+    "ref_id": "11476",
+    "project": "Helios Renewable Energy Project",
+    "date": null,
+    "headline": "UK approves development of 190MW Helios solar project",
+    "url": "https://www.nsenergybusiness.com/news/uk-approves-development-of-190mw-helios-solar-project/",
+    "source": "NS Energy Business",
+    "tier": "recent_news",
+    "confidence": "possible",
+    "note": "Headline names Helios and 190MW (matches REPD MW); operator not named and the search result gave no date, so the 24h window is unverified."
+  },
+  {
+    "ref_id": "11476",
+    "project": "Helios Renewable Energy Project",
+    "date": null,
+    "headline": "EN010140 001160 SoS Decision letter",
+    "url": "https://nsip-documents.planninginspectorate.gov.uk/published-documents/EN010140-001160-SoS Decision letter.pdf",
+    "source": "Planning Inspectorate (NSIP document library)",
+    "tier": "official",
+    "confidence": "possible",
+    "note": "Secretary of State decision letter for EN010140; the date is not shown in the search result."
+  },
+  {
+    "ref_id": "19975",
+    "project": "North Ray Solar Farm, Lincoln Gate - Solar Panels",
+    "date": null,
+    "headline": "North Ray Solar Farm",
+    "url": "https://solar.totalenergies.co.uk/northray",
+    "source": "TotalEnergies Solar UK",
+    "tier": "official",
+    "confidence": "confirmed",
+    "note": "Operator project page names the site and operator; no dated news inside the 24h window was found."
+  },
+  {
+    "ref_id": "19975",
+    "project": "North Ray Solar Farm, Lincoln Gate - Solar Panels",
+    "date": "2026-04-16",
+    "headline": "FOI 25/319 North Ray 2 solar project, 16 April 2026",
+    "url": "https://www.neso.energy/foi-25-319-north-ray-2-solar-project-16-april-2026",
+    "source": "NESO",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Dated 16 April 2026, outside the window; 'North Ray 2' may not be the same scheme as this REPD row."
+  },
+  {
+    "ref_id": "7191",
+    "project": "Wentlooge Renewable Energy Hub",
+    "date": null,
+    "headline": "Welsh government refuse plans for huge solar farm at the Gwent Levels",
+    "url": "https://www.inkl.com/news/welsh-government-refuse-plans-for-huge-solar-farm-at-the-gwent-levels",
+    "source": "inkl",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Undated; the Gwent Levels refusal may concern a different application from this REPD row (status is Revised)."
+  },
+  {
+    "ref_id": "7701",
+    "project": "Pancross & Oaklands Solar Farm",
+    "date": "2025-09-25",
+    "headline": "Infinis accelerates solar and storage growth with flagship projects",
+    "url": "https://www.energyglobal.com/solar/25092025/infinis-accelerates-solar-and-storage-growth-with-flagship-projects/",
+    "source": "Energy Global",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Dated 25 Sep 2025 from the URL, outside the window; headline does not name the site."
+  },
+  {
+    "ref_id": "7701",
+    "project": "Pancross & Oaklands Solar Farm",
+    "date": null,
+    "headline": "UNITED KINGDOM: Infinis buys consented Welsh solar and BESS project from Sirius-EcoDev",
+    "url": "https://newprojectmedia.com/?p=9903",
+    "source": "New Project Media",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Undated; a Welsh solar and BESS project with Infinis, but the headline does not name Pancross or Oaklands."
+  },
+  {
+    "ref_id": "7701",
+    "project": "Pancross & Oaklands Solar Farm",
+    "date": null,
+    "headline": "Oaklands Farm Solar Park development consent decision announced",
+    "url": "https://www.gov.uk/government/news/oaklands-farm-solar-park-development-consent-decision-announced",
+    "source": "GOV.UK",
+    "tier": "official",
+    "confidence": "possible",
+    "note": "Official DCO decision notice; undated in the search result and not shown to be inside the window."
+  }
+]
