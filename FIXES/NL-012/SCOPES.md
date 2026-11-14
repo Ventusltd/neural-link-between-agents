@@ -27,6 +27,10 @@ Revised only when a lane's findings or ChatGPT's posts change what a lane should
 | 8a | Converge REPD with data centres: the join | Team 6 (NL-020) | Deterministic files with manifest, negative tests | Files, manifest, test log |
 | 8b | Data-centre projects inside Pipeline News as their own category | **No lane** (see G13) | A new release folder shows Data Centres as a separate category from Team 6's file, with no REPD id and no MAP without geometry | not started |
 | 9 | Fable reasoner: read scopes, improve them | Coordinator (NL-012) | This file, one comment per issue, Part 3 kept current | this folder |
+| 10 | REPD refreshed every month | M1 (public folder `FIXES/NL-012/M1`) | One scheduled workflow that does nothing when the published files are unchanged and opens a pull request when they changed | Workflow file, one recorded "no change" run on GitHub, a simulated-change test |
+| 11 | Data-centre capex news and politics in Pipeline News | N4 (NL-019) | One feed file and one panel on the operative page, hidden when the file is absent | Feed schema, fixture tests, headless screenshot |
+| 12 | Use what GridAtlas already holds, through a headless browser | G1 (NL-016) | An inventory of GridAtlas layers with counts, ids and screenshots, and a list of what other lanes can reuse instead of building | Inventory file, screenshots |
+| 13 | Simple, exploratory, keep moving | Every lane; the coordinator names the cuts (section 2b) | Each duplicate in section 2b has one owner or is removed | section 2b |
 
 ## 1. The whole job in one picture
 
@@ -158,6 +162,108 @@ Proposed successor scopes (each is one agent, patches only, same rules as the la
   the source of truth are among the six questions. Outcome: on a further new release folder, a DATA CENTRES tab on the
   interconnector pattern and one context line per REPD row from Team 6's file, with contract hash; data centres keep their
   own ids; no MAP without geometry; distances labelled straight line.
+
+## 2b. Revision 2 (01:07Z): the 00:56 instructions, new lanes, and simplicity
+
+State: handed off: Teams 1, 2, 3 (twice), 5, 6, N1, N2, N3. Working: Team 4, M1, N4, G1, and ChatGPT on draft PR #65.
+globalgrid2050 main `10cc4b40` (PRs #57, #60, #61, #63, #64, #66 merged; #67 open). S-A was adopted: Team 3 delivered
+successor folder 202611140058. S-B and S-C are still proposals.
+
+### Simplicity (brief line 13): what to cut or merge
+
+The owner's 00:56 words: "Simple. Do not over-complicate." Measured against that, the night has produced duplicates.
+One owner each, or remove:
+
+| Duplicate | Where | Proposal |
+|---|---|---|
+| Three article-to-project binders | N1 `scripts/news_binder_refaware.py` (on main, PR #66); N3 `automation/news/binder.py` (PR #67; precision 1.00, recall 0.98 on 133 items); N2's binders inside its pipelinenews patch 01 | Keep N3's as the one binder. N1's stays only as the legacy builders' internal step until it is switched to call N3's; no new work on it. N2's is not applied unless pipelinenews is revived (owner decision) |
+| Two news fetchers for the same feeds, each with its own scheduled workflow | ChatGPT PR #65 `automation/energy24/scan.py` (hourly; DESNZ, DCD, Energy-Storage.news, pv magazine); N4 `automation/news/datacentre_feed.py` (daily; BBC, GOV.UK, Parliament, DCD) | One fetcher and one scheduled workflow writing one headlines file with one schema. See the N4 scope below |
+| Two event sources for "what changed in REPD" | `automation/repd/diff.py` change reports; N3 `events.py` | Not a duplicate in code (events read the diff), but only N3's events should be shown to readers |
+| Two served copies of the October page | 202611132345 (fixed in place by PR #63) and successor 202611140058 | After the successor is promoted, the harness restores the three files of 202611132345 as it has said (6868920602); no third folder for the same data |
+| Three draft QA pull requests | #58 (targets a merged branch), #59, #62 | ChatGPT closes them once their run ids are on the link, or merges the one workflow worth keeping |
+| Evidence branches and one-off workflows | 7 `repd/2026-10-reviewed-evidence-*` branches; three October one-off workflows tied to expiring artifacts | Keep the two archive branches that hold original bytes (July archive, final October evidence); prune the rest (owner's word needed, Team 5 decision 5) |
+| Status documents | `FIXES/NL-017/STATUS.md`, PR #18 ACTIVITY.md, this folder's LOG.md, OWNER-INSTRUCTIONS.md Part 3 | One progress table: OWNER-INSTRUCTIONS.md Part 3. STATUS.md retired. LOG.md stays as the append-only record |
+| Legacy news runners | 14 of 15 lineage runners fail in both folders by design (Team 3) | Leave; do not carry them into further successors beyond what the pattern requires |
+
+Not for cutting, because the owner asked for it or it protects his work: hash pins, the additive rule, restore points,
+the 43-check acceptance, the release folder's own tests.
+
+### New lanes
+
+**M1, monthly REPD (brief line 10).**
+- Outcome: REPD on the site follows the government publication without anyone asking. The publication is quarterly, so
+  the monthly job is a check that acts only when the published files have changed.
+- Done when: (1) one workflow file with a monthly schedule and manual dispatch; (2) step one compares the publication's
+  current CSV and XLSX hashes with the latest release descriptor in `automation/repd/releases/` and exits "no change"
+  when equal; (3) on change it runs the existing `automation/repd/run.py` (no second pipeline) and opens a pull request
+  with the change report; it never pushes to main and never moves a pointer; (4) the three failure cases are tested:
+  publication unreachable, files changed but validation fails, old URL serving new bytes (which happened this quarter:
+  the July URLs returned October bytes); (5) one recorded run on GitHub ending "no change" against the October hashes
+  `48e76c49…` and `87811e24…`; (6) a paragraph in the runbook; (7) patch passes `git apply --check` on main; HANDOFF on
+  issue 12 with files in `FIXES/NL-012/M1`.
+- Inputs: main `10cc4b40` with Team 1's fixes (PR #64: `run.py --offline` now passes, sparse checkout fixed).
+- Must not touch: existing data files; the freeze on other workflows (the owner's override covers this one only).
+- Simplicity: no new detector service, no new data format, no auto-merge. Whether new Pipeline News contract figures are
+  auto-accepted (`--accept-expected`, Team 5 finding c) must be stated one way or the other in the workflow.
+- Overlap: Team 5's proposed S-B item "procedure for the next release" becomes this lane's runbook paragraph. The old
+  `repd_sync.yml` (ChatGPT, 6867976784) commits to the running branch: M1 states whether it is retired.
+- Not covered: Pipeline News release folder and GridAtlas for the new data. M1 should say plainly that after its pull
+  request the page still needs a release folder build (`build_news.py`) and a pointer move, and who does that.
+
+**N4, data-centre capex and politics (brief line 11).**
+- Outcome: a small feed of headlines in two groups (capex, politics) and one panel on the operative Pipeline News page.
+- Done when: (1) one JSON file, newest items first, each with headline, link, source, published time, group, and, only
+  on an exact name or alias match, a data-centre id from the 226-record register; (2) headlines and links only, no
+  article text; (3) keyword rules listed in one place and tested on fixtures, including false-positive cases; (4) the
+  panel is one script, hidden when the file is absent or empty, shown on the successor folder rather than patched into
+  a served one; (5) headless screenshot desktop and mobile; (6) patch passes `git apply --check`; HANDOFF on issue 19.
+- One fetcher, with ChatGPT's PR #65 (ChatGPT asked the coordinator for a non-overlapping plan in 6868955209). Proposal:
+  the scheduled fetch lives in one place. ChatGPT can reach the feeds and N4 cannot, so the fetcher and its workflow are
+  ChatGPT's `automation/energy24/scan.py`, extended with N4's source list (BBC sections, GOV.UK DSIT and DESNZ Atom,
+  Parliament bills) and N4's two groups; N4 delivers the classification rules, the register join, the fixtures and the
+  Pipeline News panel, reading the file the fetcher writes. N4 does not add a second workflow. If ChatGPT prefers the
+  reverse (N4's module fetches, Energy24 reads its file), that is equally simple; what matters is one schema and one
+  schedule. The schema is agreed on issue 19 before either side builds further.
+- Rules both sides have already stated and that the single feed keeps: REPD Ref ID is the only key for a UK renewable
+  project and is attached only on exact evidence; data-centre ids are separate; proximity from Team 6's file is shown as
+  straight-line context; no cost-per-MW inference; neutral wording.
+- Size: the owner's words to Claude ask for simple; the specification relayed by ChatGPT describes six market clocks,
+  an hourly watch, and cybersecurity and ethics sections on a separate Energy24 page. This file does not rule between
+  them. It records that the panel (N4) is the part brief line 11 asks for, and that the Energy24 page is ChatGPT's lane
+  under its own relay; the owner decides how much of it he wants.
+- Must not touch: pinned feeds; served folders in place; N3's module except to import it.
+- Overlap: N3's scoring can rank these items later through the same interface; not required for done. S-C (data centres
+  as a table category) is a different thing: N4 shows news about data centres, S-C shows the data centres themselves.
+
+**G1, GridAtlas exploration (brief line 12).**
+- Outcome: a plain inventory of what GridAtlas already holds and shows, taken from the running page in a headless
+  browser, so that other lanes reuse it instead of building.
+- Done when: (1) a table of layers (offtakers, data centres, substations, REPD register, others found) with record
+  counts, id fields, source and generation, each with a screenshot; (2) what the data-centre tap card shows today (Team 6
+  reports it lists 30 REPD sites within 40 km and 30 substations from the map's own register); (3) for each of Team 6's
+  questions 1, 2 and 4 (source of truth, grid rule, first surface), what GridAtlas already implies as the answer;
+  (4) a short list: "already in GridAtlas, do not rebuild" against N4, S-C and Team 6's proposal; (5) the live-map
+  behaviour for a sample of the 97 active rows absent from the live registry, if Team 4 has not reported it;
+  (6) HANDOFF on issue 16, files in `FIXES/NL-016/G1`.
+- Inputs: gridatlas clone `41729af` served locally; live generation 202610312138.
+- Must not touch: gridatlas, `atlas/current.json`, `STATE.md`. Exploration only; any build it suggests is a new decision.
+- Overlap: Team 4 owns the preview package and the legacy pages; G1 owns the inventory. Item (5) belongs to whichever
+  reports first; the other cites it.
+
+### Changes to existing scopes in this revision
+
+- NL-013 Team 1: met. Left to the owner: D9 and D10.
+- NL-015 Team 3: S-A met as patches (successor 202611140058, comment 6869028602). Remaining steps are the harness's
+  (apply S1 to S3), ChatGPT's (gates, second promotion) and then the harness's again (restore the three files, S2).
+- NL-016 Team 4: unchanged, but it has posted nothing since its ACK at 00:25Z; under line 13 its first deliverable
+  should be the smallest useful one: item A3 and the per-page table, before the preview package.
+- NL-019 N1, N2, N3: met as patches. The binder duplicate is in the table above. N2's work applies only to the
+  pipelinenews repository, where every discovery workflow is disabled and there is no push route: it waits on an
+  owner decision whether that repository is revived, and should not be extended meanwhile.
+- NL-020 Team 6: unchanged; on main as data.
+- S-B (rollback rehearsal, Jekyll exclusion, `--news-review-expected`, pruning): still unowned. The next-release
+  procedure moves to M1.
+- S-C (brief line 8b): still unowned and still waiting on Team 6's questions 3 and 4; G1's inventory may answer 4.
 
 ## 3. Scope per lane
 
@@ -369,6 +475,8 @@ Traces to brief lines 3, 4, 5 and 9.
 ## Revisions
 
 - 2026-11-14T00:48Z first issue.
+- 2026-11-14T01:07Z revision 2: owner's 00:56 instructions folded in as brief lines 10 to 13; lanes M1, N4, G1 scoped;
+  simplicity table; integration proposal for ChatGPT's PR #65 and N4; Teams 1 and 3 and N1 to N3 handed off.
 - 2026-11-14T00:53Z revision 1: Teams 3, 5 and 6 handed off (comments 6868814345, 6868817609, 6868817840); section 2a lists
   what is left over and proposes successor scopes S-A, S-B, S-C; gaps G16 to G19 added.
 - 2026-11-14T00:51Z traced to OWNER-INSTRUCTIONS.md Part 2 (section 0); gaps G13 to G15 added; Team 4 legacy switch

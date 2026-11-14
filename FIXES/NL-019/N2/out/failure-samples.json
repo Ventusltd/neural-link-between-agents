@@ -1,0 +1,319 @@
+{
+ "schema": "nl019.n2.failure-samples.v1",
+ "source": "Pipeline News release 202609060232 news + sector + BBC RSS corpus (167 URLs)",
+ "items": [
+  {
+   "headline": "Meadow Partners Acquires 113-Acre Ground Lease for 1,000 MWh Coalburn II Battery Energy Storage System",
+   "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQY1ZUamJVSVMySFhvNkNOVDlSQ2p5Z1BBVWlMOFhqQ0RJZk00R3QtRXJmMEpfeXZPYVR4U2IyMjF3b1FlMVkwRDRzR21FUUQ5MnNkZld1UWlIMTFMWUw2NjdieEw1ejlwN0tfbno2ekVTanJnd28wS1doUDdsZ1ZxenRCNWxCX2FxQ1Rkekt5TTRjR2VjTTV0VE1XMTg0RWpEQnVSQmwyazY2VjlPUlk3aUlfRHFZYzdhVmU0S284cUlQeTJ6Tnh6dnlJZTlDc2lpbFJFZmNfUHBLemU5WnMyM3lZYUhINnotMnptdTd3SQ?oc=5",
+   "expected_repd_ref": "12206",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "11034",
+    "project": "Coalburn Energy - Battery Storage"
+   },
+   "n2_binder_q3": {
+    "outcome": "PRIMARY_MATCH",
+    "reason": "HEADLINE_PROPER_NOUN_WITH_TECHNOLOGY",
+    "repd_ref": "12206",
+    "capacity_check": "UNKNOWN",
+    "reported_mw": [],
+    "register_mw": 1000,
+    "candidates": [
+     "12206:Coalburn II Energy Storage Facility - Battery Storage Facility"
+    ],
+    "related": []
+   },
+   "note": "curated 11034 looks wrong: headline names Coalburn II (12206)"
+  },
+  {
+   "headline": "Solar farm planned for site near York village",
+   "url": "https://www.bbc.co.uk/news/articles/c5ymp949e1zo",
+   "expected_repd_ref": null,
+   "curated": {
+    "role": "UNMATCHED_REQUIRES_REVIEW",
+    "repd_ref": null
+   },
+   "n2_binder_q3": {
+    "outcome": "NO_MATCH",
+    "reason": "WEAK_ALIAS_WITHOUT_CORROBORATION",
+    "repd_ref": null,
+    "capacity_check": null,
+    "candidates": [
+     "5482:York Solar Farm"
+    ],
+    "related": []
+   },
+   "note": "place name; 5482 York Solar Farm is a false positive for a naive name match"
+  },
+  {
+   "headline": "Qair reaches financial close on 46 MWp Brecks Solar Farm, its first UK project to secure financing",
+   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE92U0czNXdXMll4MUtrRmJacWxLaGFuSmNzQ29Ra1VZUWtjY1Z2eDFSZDhCZFFHZFl3bktlX3Ywc0hRNGlmczB0UmxZQzV3cWdvMzFkX3cwdjdrYnZDUlZUbU80V3ZvbkRseUlJQ1RiUE5VcUk?oc=5",
+   "expected_repd_ref": "10087",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "10087",
+    "project": "Brecks Solar Farm"
+   },
+   "n2_binder_q3": {
+    "outcome": "PRIMARY_MATCH",
+    "reason": "HEADLINE",
+    "repd_ref": "10087",
+    "capacity_check": "CONSISTENT",
+    "reported_mw": [
+     46
+    ],
+    "register_mw": 45.4,
+    "candidates": [
+     "10087:Brecks Solar Farm"
+    ],
+    "related": []
+   },
+   "note": "'reaches' must not hit 1673 Reaches Farm Solar Park"
+  },
+  {
+   "headline": "Lincolnshire farmer says turning to solar is only way to survive",
+   "url": "https://www.bbc.co.uk/news/articles/cz64qyy59g4o",
+   "expected_repd_ref": null,
+   "curated": {
+    "role": "RELATED_MENTION",
+    "repd_ref": null,
+    "project": "Windsock Solar Farm"
+   },
+   "n2_binder_q3": {
+    "outcome": "CONTEXT_ONLY",
+    "reason": "NAMED_IN_SNIPPET_ONLY",
+    "repd_ref": null,
+    "capacity_check": null,
+    "candidates": [
+     "13599:Beacon Fen Energy Park"
+    ],
+    "related": []
+   },
+   "note": "Beacon Fen named in snippet only: related context, not primary (Windsock is not in REPD)"
+  },
+  {
+   "headline": "Huge Norfolk solar farm near Long Stratton set to cost £1bn",
+   "url": "https://www.bbc.co.uk/news/articles/clyelee255do",
+   "expected_repd_ref": "17494",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "17494",
+    "project": "East Pye Solar Farm"
+   },
+   "n2_binder_q3": {
+    "outcome": "CONTEXT_ONLY",
+    "reason": "NAMED_IN_SNIPPET_ONLY",
+    "repd_ref": null,
+    "capacity_check": null,
+    "candidates": [
+     "17494:East Pye Solar Farm"
+    ],
+    "related": []
+   },
+   "note": "curated primary; project named only in snippet; needs article enrichment"
+  },
+  {
+   "headline": "Heckington solar farm approval may face legal challenge",
+   "url": "https://www.bbc.co.uk/news/articles/c93e5lndl9vo",
+   "expected_repd_ref": "13599",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "13599",
+    "project": "Beacon Fen Energy Park"
+   },
+   "n2_binder_q3": {
+    "outcome": "NO_MATCH",
+    "reason": "NO_REGISTER_NAME_IN_TEXT",
+    "repd_ref": null,
+    "capacity_check": null,
+    "candidates": [],
+    "related": []
+   },
+   "note": "place (Heckington) not name; curated via article text"
+  },
+  {
+   "headline": "Kells solar farm plan setback after archaeological find",
+   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPcXQtaEIwMFhobDVWQ1kwM2I3cXYxck51ZFRvdk1xQ21FcjU2YjRzTGpCdk4yMDAtazR5MXdpMmNMZklZVVpWd0RyZ0J1YmE4X2pKdDY2SDhrM2xtUlI4WWg0SjZyck1jTWdicnVETWxLYmtjSUJnOWVCM194R1ExSkdJOGowQmUzNENJXzVhTVNraVNJQ2RlNmZGdG9KUQ?oc=5",
+   "expected_repd_ref": null,
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "5967",
+    "project": "Kells Solar Farm"
+   },
+   "n2_binder_q3": {
+    "outcome": "AMBIGUOUS",
+    "reason": "SEVERAL_DEVELOPMENTS_NAMED",
+    "repd_ref": null,
+    "capacity_check": null,
+    "candidates": [
+     "5967:Kells Solar Farm",
+     "6012:Kells Solar Farm"
+    ],
+    "related": []
+   },
+   "note": "two REPD Kells Solar Farms (5967 Derry, 6012 Antrim): ambiguous without county"
+  },
+  {
+   "headline": "Kells solar farm refusal of planning appealed",
+   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPZUVlbFJiQjNYMHduem1GZmlQV08taUxUQk9tX3pCQlVqb2J1VGNDcWhPVjdCc1RINDVDZ1RkZHAtVGg4dHFYOFh3VVpLYjl4THhYSENjQmJwYW9uUU1pRDU4Tk01cWZsR3ZsMV9nbVI4cUZTTFZ3YkdXSlR4cVRGTjJySWoxYTJTYTFFRjI0a20?oc=5",
+   "expected_repd_ref": null,
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "5967",
+    "project": "Kells Solar Farm"
+   },
+   "n2_binder_q3": {
+    "outcome": "AMBIGUOUS",
+    "reason": "SEVERAL_DEVELOPMENTS_NAMED",
+    "repd_ref": null,
+    "capacity_check": null,
+    "candidates": [
+     "5967:Kells Solar Farm",
+     "6012:Kells Solar Farm"
+    ],
+    "related": []
+   },
+   "note": "as above"
+  },
+  {
+   "headline": "Fidra Energy reaches financial close on 500 MW West Burton C BESS project",
+   "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPVXlfMGdRWEU5T0FucEFrWkFHSC1ldkI1ZlZoOWNlSFk1emE4dHlIR1o5VkFCQUFOME1SS3BUWUdXeF9yRU1yMEhrUlgtd1VDdmVmaVFVdElHSHZZMHBySTA5WTh6YXFtMVowanJxTkhJNWRqa1BJbW85MHVuYkpHYUZKMlNSTnJKbEYxV1k5YVJQQ1F6X05XRC1aSG9GUmtzTEwtYVJXVF9ES3dFTllMWF9vYzhNekIxMzF1ODFLRG9TM1AxYUE?oc=5",
+   "expected_repd_ref": null,
+   "curated": {
+    "role": "DISCOVERY_ONLY",
+    "repd_ref": null,
+    "project": "West Burton Power Station, North Road - Battery Storage"
+   },
+   "n2_binder_q3": {
+    "outcome": "AMBIGUOUS",
+    "reason": "SEVERAL_DEVELOPMENTS_NAMED",
+    "repd_ref": null,
+    "capacity_check": null,
+    "candidates": [
+     "6920:West Burton",
+     "10917:West Burton Solar Project"
+    ],
+    "related": []
+   },
+   "note": "'West Burton C' is not a REPD name; 6920/10917 ambiguous"
+  },
+  {
+   "headline": "Monk Fryston BESS Set to Become One of the UK’s Largest Battery Storage Assets",
+   "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQc1ZBeWFqVUFkWGc3SGQ2b0hSaV9ORy1oZ1FNN2xLMUladjZMeDNWU1pzcllrTk9HNV9VQnEwMU5vVHBqZk5fQ0hQWldXelRWOVRud1lwTHRRWmdKWXZCOEtGV3RqMm1rbl9xUmpTQlJLemZaT29YOU02eHRON2ZVY1B5LVpLT3I0bmc1T1FVSFZ6OUlHZFE?oc=5",
+   "expected_repd_ref": null,
+   "curated": {
+    "role": "DISCOVERY_ONLY",
+    "repd_ref": null,
+    "project": "Monk Fryston Battery Storage"
+   },
+   "n2_binder_q3": {
+    "outcome": "AMBIGUOUS",
+    "reason": "SEVERAL_COMPONENTS_OF_ONE_DEVELOPMENT",
+    "repd_ref": null,
+    "capacity_check": null,
+    "candidates": [
+     "15164:Monk Fryston Battery Storage",
+     "19593:Monk Fryston Battery Storage"
+    ],
+    "related": []
+   },
+   "note": "two BESS refs 15164/19593 share the name"
+  },
+  {
+   "headline": "Government approves new 1,900MW Camblesforth solar farm",
+   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1OTFFtWkV1Wm9SUnpvU3pzdDZhdHh5blZCWG82ZjdweURsYVFLWlRyWG1FUjZvTG5SSmwxSlZ0TlRxU29Hc0Q1VGJ3SklVT3UtVFRfU0I0WmxqTThW?oc=5",
+   "expected_repd_ref": "8100",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "8100",
+    "project": "Camblesforth Solar Farm"
+   },
+   "n2_binder_q3": {
+    "outcome": "PRIMARY_MATCH",
+    "reason": "HEADLINE",
+    "repd_ref": "8100",
+    "capacity_check": "CONFLICT",
+    "reported_mw": [
+     1900
+    ],
+    "register_mw": 49.9,
+    "candidates": [
+     "8100:Camblesforth Solar Farm"
+    ],
+    "related": [
+     "21493"
+    ]
+   },
+   "note": "binds by name but reported 1,900 MW vs register 49.9 MW: capacity conflict, review"
+  },
+  {
+   "headline": "Beacon Fen Energy Park development consent decision announced",
+   "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPWDQydUp0MHVEVzBaQWg4amx2ejVQUU9CZlVoaE9oR2habGdxTUkxaEdtNmtIMDhXOFc5TFpsSzRTbHVIX3FPaGRPSjNJVWx5dk1IWTlPVHRPYkRVNUNQc0ZwcDA1QmFndjF5dWtxdXJFU0RjT1B2enRwcUFnWHIwNXU2bWR6cS02c3MxTFJ5aWthekpiblNPeE1FWHk?oc=5",
+   "expected_repd_ref": "13599",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "13599",
+    "project": "Beacon Fen Energy Park"
+   },
+   "n2_binder_q3": {
+    "outcome": "PRIMARY_MATCH",
+    "reason": "HEADLINE_DEFAULT_GENERATING_COMPONENT",
+    "repd_ref": "13599",
+    "capacity_check": "UNKNOWN",
+    "reported_mw": [],
+    "register_mw": 400,
+    "candidates": [
+     "13599:Beacon Fen Energy Park"
+    ],
+    "related": [
+     "13600"
+    ]
+   },
+   "note": "co-located solar 13599 + BESS 13600; generating component primary, BESS related"
+  },
+  {
+   "headline": "Plans to build Solent Gateway 2 on Dibden Bay near Southampton",
+   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1PbjdYRms1VkNwQlZSZWVfMlRWS2ZKU3U0RVBiWUE4SzM3a2lLbl9kcFp6WnFjUXR5V1I4aFVselNQNWk2dTdDUHBCMjhqckxHZ3ZuNndSeEhvaHpo?oc=5",
+   "expected_repd_ref": null,
+   "curated": {
+    "role": "DISCOVERY_ONLY",
+    "repd_ref": null,
+    "project": "Fanny House Farm, Bay Gateway - Battery Storage"
+   },
+   "n2_binder_q3": {
+    "outcome": "NO_MATCH",
+    "reason": "WEAK_ALIAS_WITHOUT_CORROBORATION",
+    "repd_ref": null,
+    "capacity_check": null,
+    "candidates": [
+     "10309:Gateway Energy Centre - Battery Energy Storage",
+     "21073:Southampton Battery Energy Storage"
+    ],
+    "related": []
+   },
+   "note": "21073 Southampton BESS (new in Q3) is a place-name false positive"
+  },
+  {
+   "headline": "Data centre planned for Microsoft UK HQ at Thames Valley Park",
+   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFAzaHc5dklrR29UOURjWVJ2bVRwdWtTS2xKdWVmQlFPYWdnakxtdXppeGlISENpVFA1NFktb3ZnSUhzOHhWS0JOcHU2LURIYTVYS2xoNVl6enBFdURk?oc=5",
+   "expected_repd_ref": null,
+   "curated": {
+    "role": "DISCOVERY_ONLY",
+    "repd_ref": null,
+    "project": "Rover Way, Splott - Energy Park & Data Centre"
+   },
+   "n2_binder_q3": {
+    "outcome": "NO_MATCH",
+    "reason": "WEAK_ALIAS_WITHOUT_CORROBORATION",
+    "repd_ref": null,
+    "capacity_check": null,
+    "candidates": [
+     "17227:Data Centre, Dennison House, Stanhope Road - Solar Panels",
+     "17628:Data Centre, Dennison House, Stanhope Road - Solar Panels"
+    ],
+    "related": []
+   },
+   "note": "DATA_CENTRES topic; operator only (2 Microsoft sites incl. 'Microsoft Ireland' in a UK register): no site id"
+  }
+ ]
+}

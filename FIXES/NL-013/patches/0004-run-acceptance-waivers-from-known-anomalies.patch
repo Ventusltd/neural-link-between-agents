@@ -1,0 +1,42 @@
+--- a/automation/repd/run.py
++++ b/automation/repd/run.py
+@@ -1018,6 +1018,18 @@
+     return _build_stage(ctx, "build_news", mapper)
+ 
+ 
++def acceptance_waivers(label: str, base: Path | None = None) -> list[str]:
++    """REF:COLUMN cells listed under "acceptance_waive_cells" in baselines/<label>_known_anomalies.json."""
++    path = (base or Path(__file__).resolve().parent / "baselines") / f"{label}_known_anomalies.json"
++    if not path.is_file():
++        return []
++    cells = json.loads(path.read_text(encoding="utf-8")).get("acceptance_waive_cells") or []
++    bad = [c for c in cells if not isinstance(c, str) or ":" not in c or not c.split(":", 1)[0].strip()]
++    if bad:
++        raise StageError(f"acceptance_waive_cells in {path.name} must be 'REF:COLUMN' strings: {bad}")
++    return list(cells)
++
++
+ def stage_acceptance(ctx: RunContext) -> dict[str, Any]:
+     """Optional end-to-end gate (automation/repd/tests/acceptance.py) on the root-format datasets."""
+     out = ctx.stage_dir("acceptance")
+@@ -1043,11 +1055,19 @@
+         argv += [flag, rel]
+     if (ctx.repo_root / "dist" / "repd_master.json").is_file():
+         argv += ["--baseline-master", str(ctx.repo_root / "dist" / "repd_master.json")]
++    # Source cells the official CSV cannot carry exactly (e.g. a character outside cp1252 that the
++    # CSV shows as '?') differ from the workbook by construction. They are listed, reviewed, under
++    # "acceptance_waive_cells" in baselines/<label>_known_anomalies.json and passed as --waive-cell,
++    # which acceptance.py reports as waived (never silently). Nothing else is waived.
++    waivers = acceptance_waivers(ctx.label)
++    for cell in waivers:
++        argv += ["--waive-cell", cell]
+     code = mod.main(argv)
+     if code != 0:
+         raise StageError(f"acceptance.py exit {code}; see {out / f'acceptance_{ctx.label}.json'}")
+     ctx.artifacts.setdefault("validation_reports", []).append(str(out / f"acceptance_{ctx.label}.json"))
+-    return {"impl": f"{mod.__name__}.main", "report": str(out / f"acceptance_{ctx.label}.json")}
++    return {"impl": f"{mod.__name__}.main", "report": str(out / f"acceptance_{ctx.label}.json"),
++            "waived_cells": waivers}
+ 
+ 
+ def stage_assemble(ctx: RunContext) -> dict[str, Any]:

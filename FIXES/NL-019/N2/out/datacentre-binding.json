@@ -1,0 +1,76 @@
+{
+ "register_sites": 226,
+ "sites_with_name_identity": 174,
+ "alias_count": 253,
+ "map_status": {
+  "APPROXIMATE": 25,
+  "EXACT_SITE": 200,
+  "NO_MAP": 1
+ },
+ "items": 162,
+ "frozen_data_centre_topic_items": 7,
+ "counts": {
+  "TOPIC_ONLY": 5,
+  "NOT_DATA_CENTRE_TOPIC": 156,
+  "OPERATOR_ONLY": 1
+ },
+ "rows": [
+  {
+   "headline": "More data centres approved for west London",
+   "outcome": "TOPIC_ONLY",
+   "reason": "NO_REGISTER_SITE_NAMED",
+   "dc_site_id": null,
+   "site": null,
+   "map": null,
+   "candidates": []
+  },
+  {
+   "headline": "Analysis: Recent AI data centre BESS technology and deployment partnerships - Energy-Storage.News",
+   "outcome": "TOPIC_ONLY",
+   "reason": "NO_REGISTER_SITE_NAMED",
+   "dc_site_id": null,
+   "site": null,
+   "map": null,
+   "candidates": []
+  },
+  {
+   "headline": "Why are thousands of people opposing a new data centre?",
+   "outcome": "TOPIC_ONLY",
+   "reason": "NO_REGISTER_SITE_NAMED",
+   "dc_site_id": null,
+   "site": null,
+   "map": null,
+   "candidates": []
+  },
+  {
+   "headline": "Data centre planned for Microsoft UK HQ at Thames Valley Park",
+   "outcome": "OPERATOR_ONLY",
+   "reason": "OPERATOR_NAMED_2_SITES",
+   "dc_site_id": null,
+   "site": null,
+   "map": null,
+   "candidates": [
+    "dcuk-0da224822f07a7c8:Microsoft Ireland",
+    "dcuk-9c6c76a0ecec3baf:Microsoft Newport data centre"
+   ]
+  },
+  {
+   "headline": "Will our peaceful rural life be destroyed by a huge AI data centre?",
+   "outcome": "TOPIC_ONLY",
+   "reason": "NO_REGISTER_SITE_NAMED",
+   "dc_site_id": null,
+   "site": null,
+   "map": null,
+   "candidates": []
+  },
+  {
+   "headline": "ees Europe 2026: Grid-forming PCS, DC-coupling, C&I and data centre solutions among product launches and market debuts - Energy-Storage.News",
+   "outcome": "TOPIC_ONLY",
+   "reason": "NO_REGISTER_SITE_NAMED",
+   "dc_site_id": null,
+   "site": null,
+   "map": null,
+   "candidates": []
+  }
+ ]
+}

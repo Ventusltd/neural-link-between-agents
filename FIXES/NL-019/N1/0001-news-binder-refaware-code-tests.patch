@@ -1,0 +1,3674 @@
+diff --git a/scripts/news_binder_refaware.py b/scripts/news_binder_refaware.py
+new file mode 100644
+index 0000000..8f8ef07
+--- /dev/null
++++ b/scripts/news_binder_refaware.py
+@@ -0,0 +1,704 @@
++#!/usr/bin/env python3
++"""Ref-aware news-to-REPD binder (successor candidate to the V6 matcher).
++
++This module is ADDITIVE. It does not modify scripts/major_project_news_v6.py,
++whose bytes are pinned by the V9.5.1 gates (v9-5-1-validate.yml). It reuses that
++module's normalisation, provenance scoring, foreign-location rules and score
++components, and changes only the decisions listed below. Every change is
++covered by scripts/test_news_binder_refaware.py and measured against the
++labelled set tests/fixtures/news_binding_labels_2026q3.json.
++
++Changes versus major_project_news_v6.evaluate_candidate / _resolve_story:
++
++ C1 capacity extraction understands thousands separators ("1,900MW" was read as
++    900 MW) and MWp; a stated capacity more than CAPACITY_CONTRADICTION_RATIO
++    away from the official capacity on every stated value vetoes a name-only
++    binding (planning-reference bindings are exempt).
++ C2 stem token count uses the raw stem ("coalburn ii" has two tokens; the V6
++    code dropped "ii" as a short token and then refused the stem), and a
++    phase/version qualifier after the stem ("Coalburn II", "West Burton C")
++    must agree: a project whose stem matches but which lacks a qualifier that
++    another universe project carries is vetoed (qualifier_conflict).
++ C3 a full exact (non-duplicate) project name is never downgraded because a
++    different project shares its stem ("Carlton Solar Farm" vs "Carlton Farm").
++ C4 a multi-token distinctive stem immediately followed by technology wording
++    ("Monk Fryston BESS", "Green Hill Solar Farm") is identity evidence on its
++    own, as single-token stems already were.
++ C5 operator normalisation: the REPD "Operator (or Applicant)" field is split
++    into parties on & / , and "and"; legal and generic suffixes are stripped
++    (normalise_operator_parties). A party hit counts as operator evidence.
++ C6 operator-corroborated route (no project name in the article): operator
++    party in the headline + technology + capacity or location agreement +
++    exactly one universe project satisfying that evidence + no portfolio
++    wording + no capacity contradiction. Tagged binding_route
++    OPERATOR_CORROBORATED with its own confidence floor.
++ C7 stale-record rule: a record whose official status is terminal
++    (refused / withdrawn / abandoned / expired / appeal refused) and whose
++    Record Last Updated is more than STALE_RECORD_YEARS before the article can
++    bind only on its full exact name; otherwise it is reported as
++    stale_record_candidate, never PRIMARY_MATCH.
++ C8 Ref-aware binding: an explicit "REPD 12345" / "REPD ref 12345" in the text
++    binds that ref; planning references must be >= 6 characters and match on
++    word boundaries; a winner whose official status is "Revised" and whose
++    record names a CURRENT_VERSION ref in the universe is re-bound to that
++    current record, the superseded ref being kept as context.
++ C9 event vocabulary widened (operations, online, energises, green light,
++    permit, says yes, recommended for approval, finance deal, appeal
++    allowed/fails, ...); refusal still precedes consent.
++ C10 county demonyms (Cornish, Welsh, Scottish, ...) count as location evidence.
++
++The REPD status stays official and separate (NEWS_SIGNAL_V5.md): nothing here
++writes a status. Status transitions from automation/repd/diff.py are surfaced
++separately by repd_status_change_candidates() as REPD_STATUS_CHANGE entries
++that are never eligible to drive a headline NEWS SIGNAL.
++"""
++from __future__ import annotations
++
++import hashlib
++import json
++import re
++import sys
++from collections import Counter
++from datetime import date, datetime, timezone
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(ROOT / "scripts"))
++
++import major_project_news_v6 as base  # noqa: E402
++
++BINDER_VERSION = "refaware-1"
++CAPACITY_CONTRADICTION_RATIO = 5.0
++STALE_RECORD_YEARS = 3
++FLOOR_OPERATOR_ROUTE = 60
++TERMINAL_STATUSES = {
++    "application refused", "application withdrawn", "abandoned",
++    "planning permission expired", "appeal refused", "appeal withdrawn",
++}
++QUALIFIERS = {"ii", "iii", "iv", "2", "3", "4", "b", "c", "d", "north", "south", "east", "west", "extension"}
++PORTFOLIO_WORDS = {"portfolio", "portfolios", "pipeline", "projects", "assets", "fund", "sites", "cluster"}
++OPERATOR_SUFFIXES = {
++    "ltd", "limited", "plc", "llp", "llc", "uk", "gb", "group", "holdings", "holding", "co", "company",
++    "investments", "investment", "developments", "development", "dev", "spv", "the", "renewables",
++    "renewable", "energy", "power", "solar", "storage", "services", "management", "asset", "assets",
++    "project", "projects", "partners", "capital", "international", "europe", "generation", "of", "and",
++    "infrastructure", "e", "d", "s",
++}
++GENERIC_OPERATOR_CORES = {"green", "solar", "energy", "power", "grid", "low", "res", "uk", "new", "boom", "field"}
++DEMONYMS = {
++    "cornish": "cornwall", "welsh": "wales", "scottish": "scotland", "devonian": "devon",
++    "yorkshire": "yorkshire", "northern irish": "northern ireland", "english": "england",
++}
++EVENTS_V2 = [
++    ("REFUSAL", ["refused", "rejected", "refusal", "turned down", "dismissed", "appeal fails", "blocked",
++                 "throws out", "thrown out"]),
++    ("DELAY", ["delayed", "delay", "judicial review", "postponed", "deferred", "legal challenge", "setback",
++               "high court"]),
++    ("OPERATIONAL", ["commercial operation", "operational", "operations", "energised", "energized", "energises",
++                     "commissioned", "goes live", "entered operation", "enters operation", "online",
++                     "switched on", "begins generating", "completes construction"]),
++    ("CONSTRUCTION", ["construction", "breaking ground", "build begins", "under construction",
++                      "construction starts", "work starts", "work begins", "starts work", "epc"]),
++    ("CONSENT", ["development consent", "consent awarded", "grants dco", "dco granted", "planning consent",
++                 "approved", "approval", "approves", "consented", "permission granted", "planning permission",
++                 "green light", "wins permit", "permit", "says yes", "recommended for approval",
++                 "appeal allowed", "secures planning", "approved on appeal"]),
++    ("FINANCIAL CLOSE", ["financial close", "financing", "funding secured", "debt financing", "finance deal",
++                         "finances", "investment decision", "refinancing"]),
++    ("ACQUISITION", ["acquires", "acquired", "acquisition", "sold to", "sale of", "portfolio sale", "buys",
++                     "new owners", "ground lease"]),
++    ("GRID CONNECTION", ["grid connection", "connected to the grid", "connection agreement", "grid offer"]),
++    ("CONTRACT", ["to optimise", "to optimize", "partner on", "awarded contract", "secures contract",
++                  "tolling agreement", "o and m", "cppa", "cppas", "ppa"]),
++    ("PLANNING APPLICATION", ["submits planning application", "planning application", "plans revealed",
++                              "plan for", "proposed", "consultation", "have say"]),
++    ("EXPANSION", ["expansion", "expanded", "extension", "upsized"]),
++]
++REPD_REF_RE = re.compile(r"\brepd(?:\s+ref(?:erence)?)?(?:\s+id)?\s*[:#]?\s*(\d{1,6})\b", re.I)
++CAPACITY_RE = re.compile(r"(?<![\d.,])(\d{1,3}(?:,\d{3})+|\d{1,5})(\.\d+)?\s*mw(?:p|ac|dc)?\b", re.I)
++
++
++# ---------------------------------------------------------------------------
++# Normalisation shared with REPD cleaning (operator / site name)
++# ---------------------------------------------------------------------------
++def normalise_operator_parties(value: str) -> list[str]:
++    """Split an REPD operator/applicant string into normalised party cores.
++
++    "Fidra Energy & Drax" -> ["fidra", "drax"]; "JBM Solar & RWE" -> ["jbm", "rwe"];
++    "Innagreen Investments & RES" -> ["innagreen", "res"]; "Lightsource BP" -> ["lightsource bp"].
++    The same function lets automation/repd/diff.py tell a cosmetic operator edit
++    ("/" -> "&", "Ltd" -> "Limited") from a change of party.
++    """
++    text = base.clean(value)
++    if not text:
++        return []
++    text = re.sub(r"\([^)]*\)", " ", text)
++    parts = re.split(r"\s*(?:&|/|,|;|\+|\band\b)\s*", text, flags=re.I)
++    cores: list[str] = []
++    for part in parts:
++        tokens = base.norm(part).split()
++        while tokens and tokens[-1] in OPERATOR_SUFFIXES:
++            tokens.pop()
++        while tokens and tokens[0] in {"the"}:
++            tokens.pop(0)
++        core = " ".join(tokens)
++        if core and core not in cores:
++            cores.append(core)
++    return cores
++
++
++def operator_party_key(value: str) -> tuple[str, ...]:
++    return tuple(sorted(normalise_operator_parties(value)))
++
++
++def raw_stem_tokens(stem: str) -> list[str]:
++    return [token for token in stem.split() if token]
++
++
++def stem_qualifier(name: str, stem: str) -> str:
++    """Return the qualifier written straight after the stem in the official name, if any."""
++    if not stem:
++        return ""
++    head = base.SEGMENT_SPLIT_RE.split(base.clean(name), maxsplit=1)[0]
++    tokens = base.norm(head).split()
++    stem_tokens = stem.split()
++    for index in range(len(tokens) - len(stem_tokens) + 1):
++        if tokens[index:index + len(stem_tokens)] == stem_tokens:
++            after = index + len(stem_tokens)
++            if after < len(tokens) and tokens[after] in QUALIFIERS:
++                return tokens[after]
++            return ""
++    return ""
++
++
++def extract_capacities(raw_text: str) -> list[float]:
++    values: list[float] = []
++    for whole, fraction in CAPACITY_RE.findall(raw_text or ""):
++        try:
++            value = float(whole.replace(",", "") + (fraction or ""))
++        except ValueError:
++            continue
++        if value > 0 and value not in values:
++            values.append(value)
++    return values
++
++
++def _word_in(text: str, phrase: str) -> bool:
++    return bool(phrase) and f" {phrase} " in f" {text} "
++
++
++def _parse_day(value) -> date | None:
++    try:
++        return date.fromisoformat(str(value)[:10])
++    except (TypeError, ValueError):
++        return None
++
++
++# ---------------------------------------------------------------------------
++# Universe preparation
++# ---------------------------------------------------------------------------
++def prepare_projects(projects: list[dict], snapshot: dict | None = None) -> list[dict]:
++    """Add the refaware fields to projects loaded by base.load_project_snapshot()."""
++    raw_rows = {str(row.get("repd_ref")): row for row in (snapshot or {}).get("projects") or []}
++    for project in projects:
++        row = raw_rows.get(project["repd_ref"], {})
++        stem = project["_name_stem_norm"]
++        project["_stem_raw_tokens"] = raw_stem_tokens(stem)
++        project["_stem_qualifier"] = stem_qualifier(project["name"], stem)
++        project["_operator_parties"] = normalise_operator_parties(project["operator"])
++        project["_lifecycle"] = row.get("lifecycle")
++        project["_status_norm"] = base.norm(project["status"])
++        project["_record_updated"] = _parse_day(project.get("repd_record_updated"))
++        project["_current_version_refs"] = [
++            str(rel.get("repd_ref")) for rel in row.get("relationships") or []
++            if rel.get("type") == "CURRENT_VERSION" and rel.get("repd_ref")
++        ]
++        project["_planning_ref_ok"] = bool(
++            len(project["_planning_ref_norm"].replace(" ", "")) >= 6
++            and re.search(r"\d", project["_planning_ref_norm"])
++        )
++    qualified = Counter()
++    for project in projects:
++        if project["_stem_qualifier"]:
++            qualified[(project["_name_stem_norm"], project["_stem_qualifier"])] += 1
++        tokens = project["_stem_raw_tokens"]
++        if len(tokens) >= 2 and tokens[-1] in QUALIFIERS - {"north", "south", "east", "west"}:
++            # "coalburn ii" registers qualifier "ii" on the bare stem "coalburn"
++            qualified[(" ".join(tokens[:-1]), tokens[-1])] += 1
++    for project in projects:
++        project["_qualifiers_on_stem"] = {
++            qualifier for (stem, qualifier) in qualified if stem == project["_name_stem_norm"]
++        }
++    return projects
++
++
++# ---------------------------------------------------------------------------
++# Story context and events
++# ---------------------------------------------------------------------------
++def event_v2(text: str) -> str:
++    normalized = f" {base.norm(text)} "
++    for label, needles in EVENTS_V2:
++        if any(f" {base.norm(needle)} " in normalized for needle in needles):
++            return label
++    return "PROJECT UPDATE"
++
++
++def story_context(story: dict) -> dict:
++    context = base._story_context(story)
++    raw_text = " ".join((story.get("title", ""), story.get("description", "")))
++    context["news_capacities_mw"] = extract_capacities(raw_text)
++    location_text = context["text"]
++    for demonym, place in DEMONYMS.items():
++        if _word_in(location_text, demonym):
++            location_text += " " + place
++    context["location_text"] = location_text
++    context["location_tokens"] = set(location_text.split())
++    context["portfolio"] = bool(PORTFOLIO_WORDS & context["tokens"])
++    context["explicit_repd_refs"] = REPD_REF_RE.findall(raw_text)
++    context["event"] = event_v2(raw_text)
++    padded = f" {context['text']} "
++    context["new_scheme"] = any(f" {base.norm(phrase)} " in padded for phrase in NEW_SCHEME_PHRASES)
++    return context
++
++
++def _capacity_relation(project: dict, capacities: list[float]) -> str:
++    if not capacities:
++        return "none_stated"
++    official = project["capacity_mw"]
++    if any(abs(value - official) <= max(2.0, official * 0.15) for value in capacities):
++        return "match"
++    if all(value > official * CAPACITY_CONTRADICTION_RATIO or value < official / CAPACITY_CONTRADICTION_RATIO
++           for value in capacities):
++        return "contradiction"
++    return "differs"
++
++
++NEW_SCHEME_PHRASES = ("new solar farm", "new solar park", "new battery", "plans revealed", "plan for", "plans for",
++                      "proposed", "planning application", "submits")
++
++
++def _stale(project: dict, published: date | None, context: dict | None = None) -> bool:
++    """C7: an old terminal record, or an old operational record for an article about a new scheme."""
++    updated = project.get("_record_updated")
++    if not updated or not published or (published - updated).days <= STALE_RECORD_YEARS * 365:
++        return False
++    if project["_status_norm"] in TERMINAL_STATUSES:
++        return True
++    return bool(context and context.get("new_scheme") and project["_status_norm"] == "operational")
++
++
++# ---------------------------------------------------------------------------
++# Candidate evaluation
++# ---------------------------------------------------------------------------
++def evaluate_candidate(project: dict, story: dict, context: dict) -> tuple[dict | None, str]:
++    text, title_text, tokens = context["text"], context["title_text"], context["tokens"]
++    location_text, location_tokens = context["location_text"], context["location_tokens"]
++    stem = project["_name_stem_norm"]
++    stem_tokens = project["_stem_raw_tokens"]
++    single_stem = len(stem_tokens) == 1
++
++    explicit_ref = project["repd_ref"] in context["explicit_repd_refs"]
++    planning_ref_hit = bool(project["_planning_ref_ok"] and _word_in(text, project["_planning_ref_norm"]))
++    name_exact = _word_in(text, project["_name_norm"])
++    title_name_exact = _word_in(title_text, project["_name_norm"])
++    raw_variant = _word_in(text, stem)
++    raw_title_variant = _word_in(title_text, stem)
++    padded_text, padded_title = f" {text} ", f" {title_text} "
++
++    def adjacent(padded: str) -> bool:
++        if single_stem:
++            return base.descriptor_adjacent(padded, stem)
++        return any(f" {stem} {descriptor} " in padded for descriptor in base.NEWS_TECHNOLOGY_DESCRIPTORS)
++
++    variant = raw_variant and (not single_stem or adjacent(padded_text))
++    title_variant = raw_title_variant and (not single_stem or adjacent(padded_title))
++    multi_token_adjacent = (not single_stem) and bool(stem) and adjacent(padded_title or padded_text)
++
++    # C2 qualifier agreement
++    story_qualifier = ""
++    if raw_variant:
++        match = re.search(rf"(?:^| ){re.escape(stem)} (\S+)", text)
++        if match and match.group(1) in QUALIFIERS:
++            story_qualifier = match.group(1)
++    if story_qualifier and project["_stem_qualifier"] != story_qualifier and story_qualifier in project["_qualifiers_on_stem"]:
++        return None, "qualifier_conflict"
++    if project["_stem_qualifier"] and raw_variant and story_qualifier != project["_stem_qualifier"]:
++        qualified_stem = f"{stem} {project['_stem_qualifier']}"
++        if not _word_in(text, qualified_stem):
++            return None, "qualifier_conflict"
++    qualified_variant = bool(project["_stem_qualifier"]) and _word_in(text, f"{stem} {project['_stem_qualifier']}")
++
++    name_tokens = project["_name_tokens"]
++    overlap = len(name_tokens & tokens)
++    overlap_required = max(2, min(3, len(name_tokens))) if name_tokens else 99
++    name_overlap = overlap >= overlap_required
++
++    distinctive_parties = [p for p in project["_operator_parties"] if p not in GENERIC_OPERATOR_CORES and len(p) >= 3]
++    operator_party_hit = any(_word_in(text, party) for party in distinctive_parties)
++    operator_party_in_title = any(_word_in(title_text, party) for party in distinctive_parties)
++    operator_hit = base._phrase_hit(project["operator"], text, tokens) or operator_party_hit
++    county_hit = base._phrase_hit(project["county"], location_text, location_tokens)
++    region_hit = base._phrase_hit(project["region"], location_text, location_tokens)
++    authority_hit = base._phrase_hit(project["planning_authority"], location_text, location_tokens)
++    country_hit = bool(project["country"]) and _word_in(location_text, base.norm(project["country"]))
++    location_hit = county_hit or region_hit or authority_hit
++    corroborating = operator_hit or location_hit
++
++    technology_hit = context["solar_context"] if project["technology"] == "solar" else context["bess_context"]
++    conflicting_technology = bool(not technology_hit and (
++        context["wind_context"]
++        or (project["technology"] == "solar" and context["bess_context"])
++        or (project["technology"] == "bess" and context["solar_context"])
++    ))
++    capacity_relation = _capacity_relation(project, context["news_capacities_mw"])
++    full_exact = name_exact or title_name_exact
++    variant_exact = variant or title_variant or qualified_variant
++
++    if project["_name_stem_foreign_collision"] and not full_exact and not explicit_ref:
++        return None, "foreign_stem_collision"
++    detected_foreign, unexplained_foreign = base._foreign_locations(text, project)
++    if unexplained_foreign and not explicit_ref:
++        return None, "foreign_location_veto"
++    if conflicting_technology and not explicit_ref:
++        return None, "technology_conflict_gate"
++    specific_event = context["event"] != "PROJECT UPDATE"
++    official_bypass = bool(context["official_source"] and (full_exact or (variant_exact and not project["_generic_name"])))
++    technology_inferred = bool(not technology_hit and ((planning_ref_hit and context["official_source"]) or official_bypass or explicit_ref))
++    if not technology_hit and not technology_inferred:
++        return None, "technology_gate"
++
++    route = "NAME"
++    stem_duplicate = project["_name_stem_duplicate"] and not qualified_variant
++    if explicit_ref:
++        identity, route = True, "EXPLICIT_REPD_REF"
++    elif planning_ref_hit:
++        identity, route = True, "PLANNING_REFERENCE"
++    elif project["_generic_name"]:
++        identity = full_exact and corroborating
++    elif project["_name_duplicate"]:
++        identity = full_exact and (corroborating or context["official_source"])
++    elif full_exact:  # C3
++        identity = True
++    elif variant_exact and stem_duplicate:
++        identity = corroborating or context["official_source"]
++    elif variant_exact:
++        identity = (
++            single_stem or qualified_variant or multi_token_adjacent  # C4
++            or corroborating or context["official_source"] or specific_event
++        )
++    elif single_stem and raw_variant and operator_party_hit:  # C5 (operator disambiguates a shared stem)
++        identity, route = True, "STEM_PLUS_OPERATOR"
++    else:
++        identity = name_overlap and corroborating
++    if not identity:
++        return None, "identity_gate"
++
++    published = story["published"].date() if isinstance(story.get("published"), datetime) else None
++    if _stale(project, published, context) and not full_exact and route not in {"EXPLICIT_REPD_REF", "PLANNING_REFERENCE"}:
++        return None, "stale_record_candidate"  # C7
++    if capacity_relation == "contradiction" and route not in {"EXPLICIT_REPD_REF", "PLANNING_REFERENCE"}:
++        return None, "capacity_contradiction"  # C1
++
++    components = {
++        "planning_reference": 52 if (planning_ref_hit or explicit_ref) else 0,
++        "project_name": (
++            42 if title_name_exact else 38 if (title_variant or (qualified_variant and raw_title_variant))
++            else 34 if name_exact else 32 if variant_exact else 24 if route == "STEM_PLUS_OPERATOR"
++            else min(18, overlap * 6)
++        ),
++        "operator": 13 if operator_hit else 0,
++        "location_or_authority": 12 if location_hit else 0,
++        "technology": 10 if technology_hit else 6 if technology_inferred else 0,
++        "official_source": 8 if context["official_source"] else 0,
++        "capacity_corroboration": 5 if capacity_relation == "match" else 0,
++        "event_specificity": 5 if specific_event else 0,
++    }
++    try:
++        age_days = max(0, (base.scoring_reference() - story["published"]).days)
++    except Exception:
++        age_days = base.LOOKBACK_DAYS
++    components["recency"] = 10 if age_days <= 14 else 8 if age_days <= 30 else 5 if age_days <= 90 else 2
++    components["source_quality"] = context["source_quality_score"]
++    score = min(100, sum(components.values()))
++    strong = bool(
++        explicit_ref or planning_ref_hit or full_exact or qualified_variant
++        or (variant_exact and len(stem_tokens) >= 2 and not stem_duplicate)
++    )
++    rank = (
++        6 if explicit_ref else 5 if planning_ref_hit
++        else 4 if (title_name_exact or title_variant) and corroborating
++        else 3 if title_name_exact or title_variant or qualified_variant
++        else 2 if name_exact or variant_exact else 1
++    )
++    evidence = {
++        "binder": BINDER_VERSION, "binding_route": route,
++        "identity_gate_passed": True, "technology_gate_passed": True,
++        "foreign_location_gate_passed": True, "foreign_veto_passed": True,
++        "duplicate_name_gate_passed": True, "capacity_only": False,
++        "capacity_is_corroboration_only": True,
++        "explicit_repd_ref_hit": explicit_ref, "planning_reference_hit": planning_ref_hit,
++        "exact_project_name_hit": name_exact, "exact_project_name_in_headline": title_name_exact,
++        "distinctive_name_variant_hit": variant, "distinctive_name_variant_in_headline": title_variant,
++        "qualified_stem_hit": qualified_variant, "distinctive_name_stem": stem or None,
++        "stem_qualifier": project["_stem_qualifier"] or None, "story_qualifier": story_qualifier or None,
++        "multi_token_stem_descriptor_adjacent": multi_token_adjacent,
++        "strong_identity_anchor": strong, "operator_hit": operator_hit,
++        "operator_party_hit": operator_party_hit, "operator_parties": project["_operator_parties"],
++        "county_hit": county_hit, "region_hit": region_hit, "planning_authority_hit": authority_hit,
++        "country_hit": country_hit, "technology_context_hit": technology_hit,
++        "technology_context_inferred": technology_inferred, "official_source": context["official_source"],
++        "priority_source": context["priority_source"], "source_quality_tier": context["source_quality_tier"],
++        "capacity_relation": capacity_relation, "capacity_match": capacity_relation == "match",
++        "duplicate_project_name": project["_name_duplicate"], "stale_record": _stale(project, published, context),
++        "foreign_locations_detected": detected_foreign, "score_components": components,
++        "event_v2": context["event"],
++    }
++    return {"project": project, "score": score, "evidence": evidence, "anchor_rank": rank, "strong_anchor": strong,
++            "operator_party_in_title": operator_party_in_title, "location_hit": location_hit or country_hit,
++            "capacity_relation": capacity_relation}, "accepted_candidate"
++
++
++def _operator_route(story: dict, context: dict, projects: list[dict]) -> tuple[dict | None, str]:
++    """C6: bind an unnamed article only when operator + evidence identify one project."""
++    if context["portfolio"]:
++        return None, "operator_route_portfolio"
++    title = context["title_text"]
++    capacities = context["news_capacities_mw"]
++    pool = []
++    for project in projects:
++        parties = [p for p in project["_operator_parties"] if p not in GENERIC_OPERATOR_CORES and len(p) >= 3]
++        if not parties or not any(_word_in(title, party) for party in parties):
++            continue
++        technology_hit = context["solar_context"] if project["technology"] == "solar" else context["bess_context"]
++        if not technology_hit:
++            continue
++        relation = _capacity_relation(project, capacities)
++        if relation in {"contradiction", "differs"}:
++            continue
++        location = (
++            base._phrase_hit(project["county"], context["location_text"], context["location_tokens"])
++            or base._phrase_hit(project["region"], context["location_text"], context["location_tokens"])
++            or base._phrase_hit(project["planning_authority"], context["location_text"], context["location_tokens"])
++            or (bool(project["country"]) and project["country"].lower() != "england"
++                and _word_in(context["location_text"], base.norm(project["country"])))
++        )
++        if relation != "match" and not location:
++            continue
++        published = story["published"].date() if isinstance(story.get("published"), datetime) else None
++        if _stale(project, published, context) or project["_status_norm"] in TERMINAL_STATUSES:
++            continue
++        foreign, unexplained = base._foreign_locations(context["text"], project)
++        if unexplained:
++            continue
++        pool.append((project, relation, location))
++    # Narrow by the strongest evidence present: location first, then capacity.
++    if any(location for _p, _r, location in pool):
++        pool = [entry for entry in pool if entry[2]]
++    if any(relation == "match" for _p, relation, _l in pool):
++        pool = [entry for entry in pool if entry[1] == "match"]
++    developments = {project["gg_development_id"] for project, _r, _l in pool}
++    if len(developments) != 1:
++        return None, "operator_route_not_unique" if pool else "operator_route_no_candidate"
++    pool.sort(key=lambda entry: (entry[1] != "match", entry[0]["repd_ref"]))
++    project, relation, location = pool[0]
++    components = {
++        "operator": 25, "capacity_corroboration": 15 if relation == "match" else 0,
++        "location_or_authority": 15 if location else 0, "technology": 10,
++        "event_specificity": 5 if context["event"] != "PROJECT UPDATE" else 0,
++        "official_source": 8 if context["official_source"] else 0,
++        "source_quality": context["source_quality_score"],
++    }
++    score = min(100, sum(components.values()))
++    evidence = {
++        "binder": BINDER_VERSION, "binding_route": "OPERATOR_CORROBORATED",
++        "identity_gate_passed": True, "technology_gate_passed": True, "foreign_location_gate_passed": True,
++        "foreign_veto_passed": True, "duplicate_name_gate_passed": True, "capacity_only": False,
++        "capacity_is_corroboration_only": True, "operator_parties": project["_operator_parties"],
++        "capacity_relation": relation, "location_hit": bool(location), "strong_identity_anchor": False,
++        "unique_operator_candidate_development": True, "score_components": components,
++        "event_v2": context["event"],
++    }
++    if score < FLOOR_OPERATOR_ROUTE:
++        return None, "operator_route_below_floor"
++    return {"project": project, "score": score, "evidence": evidence, "anchor_rank": 0, "strong_anchor": False}, "accepted"
++
++
++def _rebind_current_version(project: dict, by_ref: dict[str, dict]) -> tuple[dict, str | None]:
++    """C8: a Revised record whose CURRENT_VERSION is in the universe re-binds to it."""
++    if project["_status_norm"] != "revised":
++        return project, None
++    for ref in project.get("_current_version_refs") or []:
++        current = by_ref.get(ref)
++        if current is not None and current["technology"] == project["technology"]:
++            return current, project["repd_ref"]
++    return project, None
++
++
++def resolve_story(story: dict, projects: list[dict], by_ref: dict[str, dict] | None = None) -> tuple[dict | None, str, dict]:
++    by_ref = by_ref or {project["repd_ref"]: project for project in projects}
++    context = story_context(story)
++    text, tokens = context["text"], context["tokens"]
++    pool = []
++    for project in projects:
++        name_tokens = project["_name_tokens"]
++        need = max(2, min(3, len(name_tokens))) if name_tokens else 99
++        if (
++            project["repd_ref"] in context["explicit_repd_refs"]
++            or (project["_planning_ref_ok"] and _word_in(text, project["_planning_ref_norm"]))
++            or _word_in(text, project["_name_norm"])
++            or _word_in(text, project["_name_stem_norm"])
++            or len(name_tokens & tokens) >= need
++        ):
++            pool.append(project)
++    reasons: Counter = Counter()
++    candidates = []
++    for project in pool:
++        candidate, reason = evaluate_candidate(project, story, context)
++        reasons[reason] += 1
++        if candidate is not None:
++            candidates.append(candidate)
++    qualified = [c for c in candidates if c["score"] >= (base.FLOOR_STRONG if c["strong_anchor"] else base.FLOOR_WEAK)]
++    route_detail = None
++    if not qualified and not candidates:
++        operator_candidate, route_detail = _operator_route(story, context, projects)
++        if operator_candidate is not None:
++            qualified = [operator_candidate]
++    if not qualified:
++        reason = "below_confidence_threshold" if candidates else (
++            "stale_record_candidate" if reasons.get("stale_record_candidate") else "no_canonical_identity")
++        return None, reason, {"identity_candidates": len(candidates), "qualified_candidates": 0,
++                              "pair_reasons": dict(reasons), "operator_route": route_detail}
++    qualified.sort(key=lambda c: (-c["score"], -c["anchor_rank"], c["project"]["repd_ref"]))
++    winner = qualified[0]
++    runner = qualified[1] if len(qualified) > 1 else None
++    margin = None
++    if runner:
++        margin = winner["score"] - runner["score"]
++        exclusive = winner["anchor_rank"] >= 5 and runner["anchor_rank"] < 5
++        same_dev = winner["project"]["gg_development_id"] == runner["project"]["gg_development_id"]
++        if margin < base.AMBIGUITY_MARGIN and not exclusive and not same_dev:
++            return None, "ambiguous_primary_match", {
++                "identity_candidates": len(candidates), "qualified_candidates": len(qualified),
++                "top_repd_ref": winner["project"]["repd_ref"], "runner_up_repd_ref": runner["project"]["repd_ref"],
++                "score_margin": margin, "pair_reasons": dict(reasons)}
++    project, superseded = _rebind_current_version(winner["project"], by_ref)
++    evidence = dict(winner["evidence"])
++    evidence.update({
++        "candidate_project_count": len(candidates), "qualified_project_count": len(qualified),
++        "runner_up_score": runner["score"] if runner else None, "score_margin": margin,
++        "confidence_floor": (FLOOR_OPERATOR_ROUTE if evidence["binding_route"] == "OPERATOR_CORROBORATED"
++                             else base.FLOOR_STRONG if winner["strong_anchor"] else base.FLOOR_WEAK),
++        "superseded_repd_ref": superseded,
++    })
++    capacities = context["news_capacities_mw"]
++    item = {
++        "gg_article_id": base._article_id(story), "project_id": project["repd_ref"],
++        "primary_repd_ref": project["repd_ref"], "repd_ref": project["repd_ref"],
++        "gg_project_id": project["gg_project_id"], "gg_development_id": project["gg_development_id"],
++        "identity_status": project["identity_status"], "role": "PRIMARY_MATCH",
++        "eligible_for_news_signal": True, "repd_record_updated": project["repd_record_updated"],
++        "planning_application_reference": project["planning_application_reference"],
++        "planning_authority": project["planning_authority"], "project": project["name"],
++        "technology": project["technology"], "capacity_mw": project["capacity_mw"],
++        "news_capacity_mw": capacities[0] if len(capacities) == 1 else None,
++        "news_capacities_mw": capacities, "operator": project["operator"], "county": project["county"],
++        "region": project["region"], "country": project["country"], "status": project["status"],
++        "event": event_v2(story["title"] + " " + story.get("description", "")),
++        "headline": re.sub(r"\s+-\s+[^-]{2,80}$", "", story["title"]).strip(),
++        "published": story["published"].date().isoformat(), "source": story.get("source") or "Google News",
++        "source_url": story.get("source_url"), "url": story["link"], "confidence": winner["score"],
++        "match_evidence": evidence,
++        "news_binding_rule": "one globally best PRIMARY_MATCH; capacity is corroboration only; refaware-1",
++    }
++    return item, "accepted", {"identity_candidates": len(candidates), "qualified_candidates": len(qualified),
++                              "pair_reasons": dict(reasons)}
++
++
++def load_universe(path: Path) -> tuple[dict, list[dict]]:
++    """Load any major-projects.v6-schema snapshot; counts come from the snapshot itself."""
++    snapshot = json.loads(Path(path).read_text(encoding="utf-8"))
++    rows = snapshot.get("projects") or []
++    solar = sum(str(r.get("technology")).lower() == "solar" for r in rows)
++    bess = sum(str(r.get("technology")).lower() == "bess" for r in rows)
++    if "solar_count" in snapshot and (snapshot["solar_count"], snapshot["bess_count"]) != (solar, bess):
++        raise RuntimeError("snapshot declared solar/bess counts disagree with its rows")
++    saved = (base.PROJECTS_PATH, base.EXPECTED_SOLAR_PROJECTS, base.EXPECTED_BESS_PROJECTS, base.EXPECTED_PROJECTS)
++    try:
++        base.PROJECTS_PATH = Path(path)
++        base.EXPECTED_SOLAR_PROJECTS, base.EXPECTED_BESS_PROJECTS = solar, bess
++        base.EXPECTED_PROJECTS = solar + bess
++        snap, projects = base.load_project_snapshot()
++    finally:
++        base.PROJECTS_PATH, base.EXPECTED_SOLAR_PROJECTS, base.EXPECTED_BESS_PROJECTS, base.EXPECTED_PROJECTS = saved
++    return snap, prepare_projects(projects, snap)
++
++
++# ---------------------------------------------------------------------------
++# Status-change-driven candidates (automation/repd/diff.py output)
++# ---------------------------------------------------------------------------
++MILESTONE_EVENTS = {
++    "consented": "CONSENT", "under_construction": "CONSTRUCTION", "operational": "OPERATIONAL",
++    "refused": "REFUSAL", "withdrawn": "WITHDRAWN",
++}
++
++
++def repd_status_change_candidates(diff: dict, projects: list[dict]) -> list[dict]:
++    """Official REPD status transitions for universe projects, as news candidates.
++
++    These are REPD facts, not headlines: role REPD_STATUS_CHANGE,
++    eligible_for_news_signal False, so they never become a NEWS SIGNAL and never
++    alter the official status shown in the table (NEWS_SIGNAL_V5.md).
++    """
++    by_ref = {project["repd_ref"]: project for project in projects}
++    previous_status: dict[str, str | None] = {}
++    for transition in (diff.get("status_transitions") or {}).get("transitions") or []:
++        for ref in transition.get("refs") or []:
++            previous_status[str(ref)] = transition.get("from")
++    labels = (diff.get("new") or {}).get("label"), (diff.get("previous") or {}).get("label")
++    out = []
++    for category, block in ((diff.get("milestones") or {}).get("categories") or {}).items():
++        event = MILESTONE_EVENTS.get(category)
++        if not event:
++            continue
++        for ref in block.get("refs") or []:
++            project = by_ref.get(str(ref))
++            if project is None:
++                continue
++            ref = str(ref)
++            basis = "transition" if ref in previous_status else "new_record"
++            key = f"{ref}|{category}|{labels[0]}"
++            out.append({
++                "gg_status_change_id": "GG2050-REPDCHG-" + hashlib.sha256(key.encode()).hexdigest()[:16].upper(),
++                "role": "REPD_STATUS_CHANGE", "eligible_for_news_signal": False,
++                "repd_ref": ref, "gg_project_id": project["gg_project_id"],
++                "gg_development_id": project["gg_development_id"], "project": project["name"],
++                "technology": project["technology"], "capacity_mw": project["capacity_mw"],
++                "operator": project["operator"], "county": project["county"], "region": project["region"],
++                "country": project["country"], "event": event, "milestone": category,
++                "milestone_label": block.get("label"), "basis": basis,
++                "previous_status": previous_status.get(ref), "status": project["status"],
++                "repd_record_updated": project["repd_record_updated"],
++                "release_from": labels[1], "release_to": labels[0],
++                "headline": f"REPD {labels[0]}: {project['name']} ({project['capacity_mw']:g} MW {project['technology']}) "
++                            f"{(block.get('label') or category).lower()}",
++                "corroborating_articles": [],
++            })
++    out.sort(key=lambda item: (-item["capacity_mw"], item["milestone"], int(item["repd_ref"])))
++    return out
++
++
++def corroborate(status_changes: list[dict], articles: list[dict]) -> int:
++    """Attach article IDs whose PRIMARY_MATCH and event agree with an official transition."""
++    by_ref: dict[str, list[dict]] = {}
++    for article in articles:
++        by_ref.setdefault(str(article.get("repd_ref")), []).append(article)
++    linked = 0
++    for change in status_changes:
++        for article in by_ref.get(change["repd_ref"], []):
++            if article.get("event") == change["event"] or (
++                change["event"] == "REFUSAL" and article.get("event") == "DELAY"
++            ):
++                change["corroborating_articles"].append(article["gg_article_id"])
++                article.setdefault("corroborates_repd_status_change", []).append(change["gg_status_change_id"])
++                linked += 1
++    return linked
+diff --git a/scripts/build_news_feed_2026q3.py b/scripts/build_news_feed_2026q3.py
+new file mode 100644
+index 0000000..e831d39
+--- /dev/null
++++ b/scripts/build_news_feed_2026q3.py
+@@ -0,0 +1,285 @@
++#!/usr/bin/env python3
++"""Build an October 2026 (Q3) REPD-bound Pipeline News feed from cached articles.
++
++Offline. Reads only committed files; writes only the --out file (a NEW name).
++It never touches dist/major_project_news_v9_5_1.json or any Q2 V4/V5/V6 file.
++
++Two binders:
++  --binder legacy    the existing V9.5.1 algorithm (build_news_feed_v9_5_1.py):
++                     V5 headlines re-resolved by major_project_news_v6._resolve_story,
++                     V6 PRIMARY_MATCH items kept if their ref is in the universe,
++                     against the October universe. Default out:
++                     dist/major_project_news_2026q3.json
++  --binder refaware  scripts/news_binder_refaware.py over V4+V5+V6 headlines, plus
++                     REPD status-change candidates from automation/repd/diff.py
++                     output. Default out: dist/major_project_news_2026q3_refaware.json
++
++No article is fetched: the inputs are the August 2026 crawls committed in
++dist/major_project_news_v4/v5/v6.json. A live crawl needs news.google.com
++(major_project_news_v6.fetch_rss); see REPORT.md. Counts are derived from the
++universe file, never pinned. Binding is scored at the crawl instant (the newest
++input `updated`), so a rebuild is byte-identical; freshness against the edition
++instant (the universe's validated_at) is reported per item, not used to score.
++"""
++from __future__ import annotations
++
++import argparse
++import copy
++import hashlib
++import json
++import sys
++from collections import Counter
++from datetime import datetime, timezone
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(ROOT / "scripts"))
++
++import major_project_news_v6 as matcher  # noqa: E402
++import news_binder_refaware as refaware  # noqa: E402
++
++NEWS_HORIZON_DAYS = matcher.LOOKBACK_DAYS
++DEFAULT_UNIVERSE = "dist/major_projects_2026q3.json"
++DEFAULT_DIFF = "docs/repd/2026q3/changes-jul-to-oct/diff.json"
++PROTECTED = (
++    "dist/major_project_news_v4.json", "dist/major_project_news_v5.json", "dist/major_project_news_v6.json",
++    "dist/major_project_news_v9_5_1.json", "dist/major_projects_v6.json", "dist/project_news_links_v6.json",
++)
++
++
++def sha256_file(path: Path) -> str:
++    return hashlib.sha256(path.read_bytes()).hexdigest()
++
++
++def read_json(path: Path) -> dict:
++    return json.loads(path.read_text(encoding="utf-8"))
++
++
++def parse_instant(value: object) -> datetime:
++    parsed = datetime.fromisoformat(str(value).strip().replace("Z", "+00:00"))
++    return (parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)).astimezone(timezone.utc)
++
++
++def story_key(item: dict) -> tuple[str, str, str]:
++    return (matcher.norm(item.get("headline")), matcher.norm(item.get("source_url") or item.get("source")),
++            str(item.get("published") or "")[:10])
++
++
++def as_story(item: dict) -> dict:
++    return {"title": str(item.get("headline") or ""), "description": "", "source": str(item.get("source") or ""),
++            "source_url": str(item.get("source_url") or ""), "link": str(item.get("url") or ""),
++            "published": parse_instant(str(item.get("published"))[:10])}
++
++
++def freshness(item: dict, edition: datetime) -> dict:
++    age = (edition.date() - parse_instant(str(item["published"])[:10]).date()).days
++    return {"age_days_at_edition": age, "within_news_horizon_at_edition": 0 <= age <= NEWS_HORIZON_DAYS}
++
++
++LEGACY_PROJECT_FIELDS = ("project", "project_id", "technology", "capacity_mw", "operator", "county", "status")
++
++
++def strip_unverified_label(item: dict) -> None:
++    """V4/V5 headlines carry the project their name-token scorer picked (wrong for 70 of
++    114 labelled V5 items). The V9.5.1 page prints that label beside DISCOVERY_ONLY
++    stories; keep it only as legacy_* fields and derive technology from the text."""
++    item["legacy_unverified_label"] = {field: item.pop(field) for field in LEGACY_PROJECT_FIELDS if field in item}
++    context = refaware.story_context(as_story(item))
++    item["technology"] = "solar" if context["solar_context"] else "bess" if context["bess_context"] else ""
++
++
++def discovery_item(source: dict, origin: str, canonical_by_key: dict, strip_labels: bool = False) -> dict:
++    item = copy.deepcopy(source)
++    if strip_labels and origin in {"V4_BASELINE", "V5_BASELINE"}:
++        strip_unverified_label(item)
++    canonical = canonical_by_key.get(story_key(source))
++    item["discovery_origin"] = origin
++    item["canonical_relevant"] = canonical is not None
++    if canonical:
++        for field in ("gg_article_id", "repd_ref", "primary_repd_ref", "gg_project_id", "gg_development_id", "role",
++                      "eligible_for_news_signal", "confidence", "match_evidence", "event"):
++            item[field] = copy.deepcopy(canonical.get(field))
++        item["canonical_project"] = canonical.get("project")
++        item["canonical_technology"] = canonical.get("technology")
++        item["canonical_capacity_mw"] = canonical.get("capacity_mw")
++    else:
++        item["role"] = "DISCOVERY_ONLY"
++        item["eligible_for_news_signal"] = False
++        for field in ("repd_ref", "primary_repd_ref", "gg_project_id", "gg_development_id", "match_evidence"):
++            item.pop(field, None)
++    return item
++
++
++def merge(items: list[dict]) -> list[dict]:
++    merged: dict = {}
++    for item in items:
++        key = story_key(item)
++        if key not in merged or float(item.get("confidence") or 0) > float(merged[key].get("confidence") or 0):
++            merged[key] = item
++    return sorted(merged.values(), key=lambda i: (str(i.get("published")), int(i.get("confidence") or 0),
++                                                 i.get("headline") or ""), reverse=True)
++
++
++def build(args: argparse.Namespace) -> dict:
++    root = Path(args.root)
++    before = {p: sha256_file(root / p) for p in PROTECTED if (root / p).exists()}
++    v4, v5, v6 = (read_json(root / f"dist/major_project_news_{v}.json") for v in ("v4", "v5", "v6"))
++    universe_path = root / args.universe
++    scoring_instant = max(str(v5["updated"]), str(v6["updated"]), str(v4["updated"]) if args.binder == "refaware" else "")
++    matcher.pin_scoring_reference(scoring_instant)
++    snapshot, projects = refaware.load_universe(universe_path)
++    by_ref = {p["repd_ref"]: p for p in projects}
++    edition = parse_instant(snapshot.get("validated_at"))
++
++    origins = [("V5_BASELINE", v5["items"]), ("V6_CANONICAL", v6.get("items") or [])]
++    if args.binder == "refaware":
++        origins.insert(0, ("V4_BASELINE", v4["items"]))
++    rejections: Counter = Counter()
++    canonical: list[dict] = []
++    v6_kept = v6_demoted = 0
++    for origin, items in origins:
++        for source in items:
++            story = as_story(source)
++            if args.binder == "legacy":
++                if origin == "V6_CANONICAL":
++                    ref = str(source.get("repd_ref") or "")
++                    if source.get("role") != "PRIMARY_MATCH" or ref not in by_ref \
++                            or source.get("gg_project_id") != f"GG2050-REPD-{ref}":
++                        rejections["v6_ref_not_in_universe"] += 1
++                        continue
++                    item = copy.deepcopy(source)
++                    v6_kept += 1
++                else:
++                    item, reason, _ = matcher._resolve_story(story, projects)
++                    if item is None:
++                        rejections[reason] += 1
++                        continue
++            else:
++                item, reason, _ = refaware.resolve_story(story, projects, by_ref)
++                if item is None and origin == "V6_CANONICAL":
++                    # V6 bound with an RSS description that is not cached; keep the
++                    # original ref unless the refaware rules reject that project.
++                    ref = str(source.get("repd_ref") or "")
++                    project = by_ref.get(ref)
++                    context = refaware.story_context(story)
++                    if project is None:
++                        reason = "v6_ref_not_in_universe"
++                    elif refaware._stale(project, story["published"].date(), context):
++                        reason = "v6_stale_record_demoted"
++                    else:
++                        item = copy.deepcopy(source)
++                        item["match_evidence"] = dict(item.get("match_evidence") or {},
++                                                      binder="v6-description-bound (not reproducible headline-only)")
++                        reason = "v6_retained"
++                    if item is None:
++                        v6_demoted += 1
++                    else:
++                        v6_kept += 1
++                if item is None:
++                    rejections[reason] += 1
++                    continue
++            item["discovery_origin"] = origin
++            item["legacy_project_label"] = source.get("project")
++            canonical.append(item)
++    canonical = merge(canonical)
++    matcher._build_links(canonical, projects)
++    for item in canonical:
++        item.update(freshness(item, edition))
++    canonical_by_key = {story_key(i): i for i in canonical}
++
++    all_by_key: dict = {}
++    for origin, items in origins:
++        for source in items:
++            all_by_key[story_key(source)] = discovery_item(source, origin, canonical_by_key,
++                                                           strip_labels=args.binder == "refaware")
++    all_items = sorted(all_by_key.values(), key=lambda i: (str(i.get("published")), i.get("headline") or ""),
++                       reverse=True)
++    for item in all_items:
++        item.update(freshness(item, edition))
++
++    # Invariants (structural, no pinned counts)
++    for item in canonical:
++        assert item["role"] == "PRIMARY_MATCH" and item["eligible_for_news_signal"] is True
++        assert item["repd_ref"] in by_ref and item["gg_project_id"] == f"GG2050-REPD-{item['repd_ref']}"
++    keys = {story_key(i) for i in all_items}
++    assert {story_key(i) for i in v5["items"]} <= keys, "V5 discovery truncated"
++    assert sum(i["canonical_relevant"] for i in all_items) == len(canonical)
++
++    payload = {
++        "schema": "globalgrid2050.major-project-news.2026q3",
++        "binder": "major_project_news_v6 (V9.5.1 algorithm)" if args.binder == "legacy" else refaware.BINDER_VERSION,
++        "repd_edition": snapshot.get("source_dataset_title"),
++        "edition_instant": snapshot.get("validated_at"),
++        "scoring_reference": scoring_instant,
++        "news_horizon_days": NEWS_HORIZON_DAYS,
++        "all_headline_count": len(all_items),
++        "relevant_headline_count": len(canonical),
++        "relevant_within_horizon_count": sum(i["within_news_horizon_at_edition"] for i in canonical),
++        "rules": {
++            "relevant_requires_canonical_primary_match": True,
++            "project_signal_requires_exact_repd_ref": True,
++            "discovery_only_drives_project_signal": False,
++            "official_repd_facts_overwritten": False,
++            "repd_status_change_drives_news_signal": False,
++        },
++        "project_snapshot": {
++            "path": args.universe, "sha256": sha256_file(universe_path), "schema": snapshot.get("schema"),
++            "project_count": len(projects), "solar_count": sum(p["technology"] == "solar" for p in projects),
++            "bess_count": sum(p["technology"] == "bess" for p in projects),
++            "projects_sha256": snapshot.get("projects_sha256"),
++        },
++        "inputs": {p: before[p] for p in PROTECTED if p.startswith("dist/major_project_news_v") and p in before
++                   and p != "dist/major_project_news_v9_5_1.json"},
++        "network": {"articles_fetched": 0, "note": "cached August 2026 crawls only; live crawl needs news.google.com"},
++        "telemetry": {
++            "headlines_considered": sum(len(items) for _o, items in origins),
++            "rejection_reasons": dict(sorted(rejections.items())),
++            "v6_items_retained": v6_kept, "v6_items_demoted": v6_demoted,
++            "by_origin": dict(sorted(Counter(i["discovery_origin"] for i in canonical).items())),
++        },
++        "canonical_items": canonical,
++        "all_items": all_items,
++    }
++    if args.binder == "refaware" and args.diff:
++        diff_path = root / args.diff
++        diff = read_json(diff_path)
++        changes = refaware.repd_status_change_candidates(diff, projects)
++        linked = refaware.corroborate(changes, canonical)
++        payload["repd_status_changes"] = {
++            "source": {"path": args.diff, "sha256": sha256_file(diff_path), "schema": diff.get("schema"),
++                       "from": (diff.get("previous") or {}).get("label"), "to": (diff.get("new") or {}).get("label")},
++            "rule": "official REPD status transitions for universe projects; never a NEWS SIGNAL; never alters status",
++            "count": len(changes),
++            "by_event": dict(sorted(Counter(c["event"] for c in changes).items())),
++            "corroborated_by_article_links": linked,
++            "items": changes,
++        }
++    after = {p: sha256_file(root / p) for p in before}
++    if after != before:
++        raise RuntimeError("a protected Q2 news/project file changed during the build")
++    return payload
++
++
++def main(argv: list[str] | None = None) -> dict:
++    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
++    parser.add_argument("--binder", choices=("legacy", "refaware"), default="legacy")
++    parser.add_argument("--universe", default=DEFAULT_UNIVERSE)
++    parser.add_argument("--diff", default=DEFAULT_DIFF)
++    parser.add_argument("--root", default=str(ROOT))
++    parser.add_argument("--out", default=None)
++    args = parser.parse_args(argv)
++    out = Path(args.out or (Path(args.root) / ("dist/major_project_news_2026q3.json" if args.binder == "legacy"
++                                               else "dist/major_project_news_2026q3_refaware.json")))
++    resolved = out.resolve()
++    if any(resolved == (Path(args.root) / p).resolve() for p in PROTECTED):
++        raise SystemExit("refusing to overwrite a protected Q2 feed")
++    payload = build(args)
++    out.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
++    print(f"{out.name}: {payload['all_headline_count']} ALL, {payload['relevant_headline_count']} RELEVANT "
++          f"({payload['relevant_within_horizon_count']} within {NEWS_HORIZON_DAYS} d of {payload['edition_instant']})"
++          + (f", {payload['repd_status_changes']['count']} REPD status changes" if "repd_status_changes" in payload else ""))
++    return payload
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/test_news_binder_refaware.py b/scripts/test_news_binder_refaware.py
+new file mode 100644
+index 0000000..2c19650
+--- /dev/null
++++ b/scripts/test_news_binder_refaware.py
+@@ -0,0 +1,226 @@
++#!/usr/bin/env python3
++"""Offline tests for scripts/news_binder_refaware.py and scripts/build_news_feed_2026q3.py.
++
++Run: python3 scripts/test_news_binder_refaware.py   (or pytest scripts/test_news_binder_refaware.py)
++Needs only committed files: dist/major_projects_v6.json, dist/major_projects_2026q3.json,
++dist/major_project_news_v4/v5/v6/v9_5_1.json, docs/repd/2026q3/changes-jul-to-oct/diff.json and
++scripts/fixtures/news_binding_labels_2026q3.json. No network. Writes nothing in the repository.
++"""
++from __future__ import annotations
++
++import hashlib
++import json
++import re
++import sys
++import tempfile
++from datetime import datetime, timezone
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(ROOT / "scripts"))
++
++import major_project_news_v6 as base  # noqa: E402
++import news_binder_refaware as nb  # noqa: E402
++import build_news_feed_2026q3 as feed  # noqa: E402
++
++LABELS = ROOT / "scripts" / "fixtures" / "news_binding_labels_2026q3.json"
++Q2 = ROOT / "dist" / "major_projects_v6.json"
++Q3 = ROOT / "dist" / "major_projects_2026q3.json"
++CRAWL_INSTANT = "2026-08-22T20:45:25.507638+00:00"
++
++
++def story(title, source="Example News", url="https://example.com", published=None):
++    return {"title": title, "description": "", "source": source, "source_url": url, "link": "https://example.test/x",
++            "published": published or datetime(2026, 8, 1, tzinfo=timezone.utc)}
++
++
++def sha(path: Path) -> str:
++    return hashlib.sha256(path.read_bytes()).hexdigest()
++
++
++base.pin_scoring_reference(CRAWL_INSTANT)
++_, Q3P = nb.load_universe(Q3)
++Q3BY = {p["repd_ref"]: p for p in Q3P}
++
++
++def resolve(title, **kw):
++    item, reason, _ = nb.resolve_story(story(title, **kw), Q3P, Q3BY)
++    return (item["repd_ref"] if item else None), reason
++
++
++# ---- unit rules -----------------------------------------------------------
++def test_operator_parties():
++    assert nb.normalise_operator_parties("Fidra Energy & Drax") == ["fidra", "drax"]
++    assert nb.normalise_operator_parties("JBM Solar & RWE") == ["jbm", "rwe"]
++    assert nb.normalise_operator_parties("Innagreen Investments & RES") == ["innagreen", "res"]
++    assert nb.normalise_operator_parties("Photovolt Development Partners / SolarFive") == \
++        nb.normalise_operator_parties("Photovolt Development Partners & SolarFive")
++    assert nb.operator_party_key("Low Carbon Limited") == nb.operator_party_key("Low Carbon Ltd")
++
++
++def test_capacity_extraction():
++    assert nb.extract_capacities("Government approves new 1,900MW Camblesforth solar farm") == [1900.0]
++    assert nb.extract_capacities("46.5MW Brecks") == [46.5]
++    assert nb.extract_capacities("49.9MWp Staffordshire") == [49.9]
++    assert nb.extract_capacities("1GWh Coalburn 1 battery") == []
++
++
++def test_c1_capacity_contradiction_blocks_camblesforth():
++    assert resolve("Government approves new 1,900MW Camblesforth solar farm")[0] is None
++    assert resolve("Government approves new 49.9MW Camblesforth solar farm")[0] == "8100"
++
++
++def test_c2_qualifier_coalburn_ii():
++    ref, _ = resolve("Meadow Partners Acquires Ground Lease for Coalburn II Battery Storage Project in Scotland")
++    assert ref == "12206", ref
++    assert resolve("1GWh Coalburn 1 battery energy storage enters operations in Scotland")[0] == "11034"
++
++
++def test_c3_full_exact_name_not_downgraded_by_shared_stem():
++    assert resolve("Greencells signs 71 MW Carlton solar farm EPC deal",
++                   source="Solar Power Portal", url="https://www.solarpowerportal.co.uk")[0] == "12017"
++
++
++def test_c4_multi_token_stem_adjacent_descriptor():
++    assert resolve("Monk Fryston BESS Set to Become One of the UK's Largest Battery Storage Assets")[0] == "15164"
++    assert resolve("More than 1,000 people have say on Green Hill Solar Farm", source="BBC",
++                   url="https://www.bbc.co.uk")[0] == "15793"
++
++
++def test_c6_operator_route_and_vetoes():
++    assert resolve("Lightsource bp secures planning approval at 57MW solar-plus-storage project in Wales",
++                   source="Solar Power Portal", url="https://www.solarpowerportal.co.uk")[0] == "7858"
++    # portfolio wording and capacity contradiction keep unnamed stories unbound
++    assert resolve("NextEnergy UK I Acquires 107 MW Battery Storage Portfolio in the UK")[0] is None
++    assert resolve("Harmony Energy energises new 35MW/70MWh BESS in North Yorkshire")[0] is None
++    assert resolve("Eelpower Energy acquires 50MW/100MWh BESS project in Devon")[0] is None
++
++
++def test_c7_stale_records():
++    assert resolve("Solar farm plan for North Tawton field", published=datetime(2026, 8, 21, tzinfo=timezone.utc))[1] \
++        in {"stale_record_candidate", "no_canonical_identity"}
++    assert resolve("Solar farm plan for North Tawton field")[0] is None
++    # full exact name still binds a stale-status site, flagged in evidence
++    item, _, _ = nb.resolve_story(story("Work on solar farm at former Williamthorpe Colliery site starts"), Q3P, Q3BY)
++    assert item and item["repd_ref"] == "5533" and item["match_evidence"]["stale_record"] is True
++
++
++def test_c8_ref_aware():
++    assert resolve("Update on REPD ref 13599 solar scheme")[0] == "13599"
++    item, _, _ = nb.resolve_story(story("Kells solar farm refusal of planning appealed", source="BBC",
++                                        url="https://www.bbc.co.uk"), Q3P, Q3BY)
++    assert item["repd_ref"] == "6012" and item["match_evidence"]["superseded_repd_ref"] == "5967"
++
++
++def test_west_burton_c_is_fidra_11928():
++    assert resolve("Fidra Energy reaches financial close on 500 MW West Burton C BESS project")[0] == "11928"
++    # the V9.5 hostile fixture (no operator, no corroboration) still does not bind
++    assert resolve("West Burton C BESS project reaches financial close", source="Energy-Storage.News",
++                   url="https://energy-storage.news")[0] is None
++
++
++def test_v9_5_fixtures_on_both_universes():
++    src = (ROOT / "scripts" / "test_news_binder_v9_5.py").read_text(encoding="utf-8")
++    positives = eval(re.search(r"positives = (\(.*?\n\))\n", src, re.S).group(1))  # noqa: S307 (own repo file)
++    negatives = eval(re.search(r"negatives = (\(.*?\n\))\n", src, re.S).group(1))  # noqa: S307
++    for path in (Q2, Q3):
++        _, projects = nb.load_universe(path)
++        by_ref = {p["repd_ref"]: p for p in projects}
++        hits = 0
++        for title, source, url, expected in positives:
++            item, _, _ = nb.resolve_story(story(title, source, url), projects, by_ref)
++            hits += bool(item and item["repd_ref"] == expected)
++        assert hits == len(positives), (path.name, hits)
++        for title in negatives:
++            item, _, _ = nb.resolve_story(story(title, "Energy-Storage.News", "https://energy-storage.news"),
++                                          projects, by_ref)
++            assert item is None, (path.name, title, item and item["repd_ref"])
++
++
++def test_status_change_candidates_synthetic():
++    diff = {"previous": {"label": "P"}, "new": {"label": "N"},
++            "status_transitions": {"transitions": [{"from": "Application Submitted", "to": "Awaiting Construction",
++                                                     "refs": ["13599"]}]},
++            "milestones": {"categories": {"consented": {"label": "Newly consented", "refs": ["13599", "99999999"]},
++                                          "refused": {"label": "Newly refused", "refs": []}}}}
++    changes = nb.repd_status_change_candidates(diff, Q3P)
++    assert [c["repd_ref"] for c in changes] == ["13599"]
++    change = changes[0]
++    assert change["role"] == "REPD_STATUS_CHANGE" and change["eligible_for_news_signal"] is False
++    assert change["event"] == "CONSENT" and change["basis"] == "transition"
++    article = {"gg_article_id": "A1", "repd_ref": "13599", "event": "CONSENT"}
++    assert nb.corroborate(changes, [article]) == 1 and change["corroborating_articles"] == ["A1"]
++
++
++# ---- measured precision / recall on the labelled set ----------------------
++def evaluate(resolver) -> dict:
++    labels = json.loads(LABELS.read_text(encoding="utf-8"))["pairs"]
++    tp = fp = fn = tn = 0
++    n_true = sum(p["label"] == "TRUE" for p in labels)
++    for pair in labels:
++        if pair["label"] == "UNCERTAIN":
++            continue
++        got = resolver(story(pair["headline"], pair["source"] or "", pair["source_url"] or "",
++                             datetime.fromisoformat(pair["published"]).replace(tzinfo=timezone.utc)))
++        truth = pair["true_repd_refs"]
++        if got is None:
++            fn += bool(truth)
++            tn += not truth
++        elif got in truth:
++            tp += 1
++        else:
++            fp += 1
++    return {"tp": tp, "fp": fp, "fn": fn, "tn": tn, "precision": round(tp / (tp + fp), 3),
++            "recall": round(tp / n_true, 3)}
++
++
++def test_labelled_precision_recall():
++    legacy = evaluate(lambda s: (lambda r: r[0] and r[0]["repd_ref"])(base._resolve_story(s, Q3P)))
++    refaware = evaluate(lambda s: (lambda r: r[0] and r[0]["repd_ref"])(nb.resolve_story(s, Q3P, Q3BY)))
++    print("legacy  ", legacy)
++    print("refaware", refaware)
++    assert legacy["fp"] == 4 and legacy["tp"] == 40, legacy        # recorded baseline
++    assert refaware["precision"] >= 0.98 and refaware["recall"] >= 0.85, refaware
++    assert refaware["tp"] > legacy["tp"] and refaware["fp"] < legacy["fp"]
++
++
++# ---- the October feed builder ---------------------------------------------
++def test_feed_builder_is_additive_and_deterministic():
++    protected = {p: sha(ROOT / p) for p in feed.PROTECTED}
++    with tempfile.TemporaryDirectory() as tmp:
++        outs = {}
++        for binder in ("legacy", "refaware"):
++            for run in (1, 2):
++                out = Path(tmp) / f"{binder}{run}.json"
++                feed.main(["--binder", binder, "--out", str(out)])
++                outs[(binder, run)] = out.read_bytes()
++        assert outs[("legacy", 1)] == outs[("legacy", 2)]
++        assert outs[("refaware", 1)] == outs[("refaware", 2)]
++        legacy = json.loads(outs[("legacy", 1)])
++        refaware = json.loads(outs[("refaware", 1)])
++    assert {p: sha(ROOT / p) for p in feed.PROTECTED} == protected
++    q2 = json.loads((ROOT / "dist" / "major_project_news_v9_5_1.json").read_text(encoding="utf-8"))
++    key = lambda i: (i["headline"], i["repd_ref"])  # noqa: E731
++    assert sorted(map(key, legacy["canonical_items"])) == sorted(map(key, q2["canonical_items"]))
++    assert legacy["project_snapshot"]["project_count"] == len(Q3P)
++    refs = {i["repd_ref"] for i in refaware["canonical_items"]}
++    assert {"1044", "2377", "5452", "8100"}.isdisjoint(refs)       # known false/stale bindings removed
++    assert {"12206", "11928", "6502", "15164"} <= refs               # known misses recovered
++    assert all("project" not in i for i in refaware["all_items"] if i["role"] == "DISCOVERY_ONLY"
++               and i["discovery_origin"] in {"V4_BASELINE", "V5_BASELINE"})  # no unverified V5 labels shown
++    assert refaware["repd_status_changes"]["count"] > 0
++    assert all(c["eligible_for_news_signal"] is False for c in refaware["repd_status_changes"]["items"])
++    try:
++        feed.main(["--out", str(ROOT / "dist" / "major_project_news_v9_5_1.json")])
++    except SystemExit:
++        pass
++    else:
++        raise AssertionError("builder must refuse to overwrite the pinned V9.5.1 feed")
++
++
++if __name__ == "__main__":
++    tests = [(name, fn) for name, fn in sorted(globals().items()) if name.startswith("test_") and callable(fn)]
++    for name, fn in tests:
++        fn()
++        print("PASS", name)
++    print(f"news_binder_refaware: {len(tests)} tests PASS")
+diff --git a/scripts/fixtures/news_binding_labels_2026q3.json b/scripts/fixtures/news_binding_labels_2026q3.json
+new file mode 100644
+index 0000000..8ca4f01
+--- /dev/null
++++ b/scripts/fixtures/news_binding_labels_2026q3.json
+@@ -0,0 +1,2434 @@
++{
++ "schema": "globalgrid2050.news-binding-labels.n1.v1",
++ "universe": "dist/major_projects_2026q3.json (3,765: solar >1 MW 3,484 + BESS >100 MW 281)",
++ "labeller": "NEWS AGENT N1 (Claude Opus), manual judgement from headline + October identity file; UNCERTAIN excluded from metrics",
++ "counts": {
++  "TRUE": 69,
++  "NONE": 58,
++  "UNCERTAIN": 13
++ },
++ "pairs": [
++  {
++   "id": "N1-000",
++   "headline": "Beacon Fen Energy Park development consent decision announced",
++   "source": "GOV.UK",
++   "source_url": "https://www.gov.uk",
++   "published": "2026-08-21",
++   "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPWDQydUp0MHVEVzBaQWg4amx2ejVQUU9CZlVoaE9oR2habGdxTUkxaEdtNmtIMDhXOFc5TFpsSzRTbHVIX3FPaGRPSjNJVWx5dk1IWTlPVHRPYkRVNUNQc0ZwcDA1QmFndjF5dWtxdXJFU0RjT1B2enRwcUFnWHIwNXU2bWR6cS02c3MxTFJ5aWthekpiblNPeE1FWHk?oc=5",
++   "origins": [
++    "v4",
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "13599"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-001",
++   "headline": "Triple Point acquires 49.2MW Hessay Solar project from Recurrent Energy",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-08-18",
++   "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQVHZ6NXhSdjhiT1J1bm9DY3poR3I3dG5wM3MwOHNIS1JLUVZuRXhrS0p6ZlVzQ2xKRnlId3JfbldHVzZtNzFUM1kzSkJSbThYbGY3VEFmWWNNWDdveVptQzJrakE3YXVHODNvVmN5QXZtZWZtM2d2OUh4NjBmeHlsQ0VRR00wck80SnlJbVVVOFNFcUVNWU15RjZSNi03d1UtcmVhOGNscUQzcEV1YXltamFEZjZ1cVE5c2RSMm96ZVZTQWhW?oc=5",
++   "origins": [
++    "v4",
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11974"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-002",
++   "headline": "NextEnergy Capital acquires 107 MW UK operational BESS portfolio",
++   "source": "Solarbytes",
++   "source_url": "https://solarbytes.info",
++   "published": "2026-08-17",
++   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQTTV5N1N5c3IzRTE3Ujh6T0d0SnVpS09CVjdNeFJ4Q05QR0EzRDhuWWNzN0FhRzFJczE5T3FoN29mSFZPMEdmNy1JM2xFWTc1MUpCdTJmekJ4UU5JZl9ac3BFTE8xOWxGT0tBQkROa3FDbm1uUjVDQnByUVVfYWdfLTBPdm9oSmd5bTJpUkEwTWtsRXlSVTktUC0tc3RrVzJmejRFbjBYUm9kbmdLeUc4RzVnNA?oc=5",
++   "origins": [
++    "v4",
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-003",
++   "headline": "NORD/LB consortium finances Larks Green solar-BESS cluster in UK",
++   "source": "ESS News",
++   "source_url": "https://www.ess-news.com",
++   "published": "2026-07-23",
++   "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNZDctN3IzZFlWdDk5Qy1PYm9OSDY3d3ROZjJvUU1GQ2RHTXowVmdOWjBpRXBVbF9PU1ZPa3E1cGNPVWhPNU96SWtGdlh6WEdEampEYmNYdGhJV3JTTVpkNm1DbDB6dl8xcmROakJJS2NUQ1NyVzFiNzJSMnN5QlM3N2lvMmxxSEpjWE9vODZONzRpXzFJZV9WYzdoWDBwRm9VSDdz?oc=5",
++   "origins": [
++    "v4"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "8051"
++   ],
++   "confidence": "medium",
++   "note": "Larks Green solar 70 MW (BESS 49.5 MW is outside the >100 MW BESS universe)"
++  },
++  {
++   "id": "N1-004",
++   "headline": "Financial close for Fidra Energy’s 500MW West Burton C battery energy storage system",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-07-20",
++   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPSEhaelBueFZZR2ZEaXFDcHBGOG82MUw2VHdVWUdLN3NsLW52NVNqUGtyNlI0WHlYQTlOdlFMcFVnWkx0c19rSy1UYUhyUll6QjN3MGJJaHdwb1NCUDBxZjEtdG51TnpnVXV0SWxsZHdfWlZ5cGQ1aHRmeHgtSGdPVmZySEZaU3RwZ1dhZDlMSGZhbHRfOG5IMnlsLVlpYjE3RU42WExDWjJWWXc3alZiTVFoTmQyZVJlZ09ITmhETjNIU3ZWWG5ldFJhWUdWeDVV?oc=5",
++   "origins": [
++    "v4"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11928"
++   ],
++   "confidence": "high",
++   "note": "West Burton C = REPD 11928, Fidra Energy & Drax, 500 MW BESS"
++  },
++  {
++   "id": "N1-005",
++   "headline": "‘Supporting renewable energy does not remove our responsibility to ensure developments are appropriate’ say councillors amid concerns over flood risk of Mallard Pass solar farm",
++   "source": "LincsOnline",
++   "source_url": "https://www.lincsonline.co.uk",
++   "published": "2026-07-10",
++   "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOWE5ocnhHTE9zeDFwMk1NR3YwYko4UzB0M28xTXFZNWVaVlR1OFNqc01yODZ1SzZqY2NxVmFmMnZPdjVvZ2lKQTRVbWxscFVUWEtIMFluUVpSZ1hTejFURUpsZUFORTFnTjdCeDVQdDFDTUMyX3RBQUl1R05KOGprTlFqMWNHMlNkb19nYlNjRFNPWUpTV3JRcC1lNzlxUXROU2hFaGktbUlRN3RyN1lfSjNB?oc=5",
++   "origins": [
++    "v4"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "9904"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-006",
++   "headline": "One Earth Solar Farm development consent decision announced",
++   "source": "GOV.UK",
++   "source_url": "https://www.gov.uk",
++   "published": "2026-07-08",
++   "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPUWQxUXNqc0hYZGdXUEZvcm4zM3RMTU0wd0RGQXlkZjNTRVV3YzVDc25QQklfTWswYVBIMERFTTlyWldPS2cyNEVQSWJZUkpwYm5IbmlKd254UU1teUstclpqMW83eENydEpxOWdSVjRJV2ZpWFhGUGtEdjBCSUxjeHdFRXo2QTFmMjgwbmdJblA5YjlDSkdzVVRR?oc=5",
++   "origins": [
++    "v4"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "14806"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-007",
++   "headline": "Dean Moor Solar Farm Secures Development Consent for 150 MW Solar Project in Cumbria",
++   "source": "SolarQuarter",
++   "source_url": "https://solarquarter.com",
++   "published": "2026-07-07",
++   "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQekdWd2JIV1hDSW0zdWdUQng0N3NaUVJ5YldvX2FYNU82M0hJUUVyQmJCUnlxbUdFX3dfTklUNXVQZ1hmVHVzb2R5LVhXOGFmRlByUXprYllyYTNPenhxeEVHbFVla3lXVW9rMk5HOGhZYVpOWjVQYk91TnpianhyM2lDazJNZVE4bWQtWjNTZ19GempXcFJ6SVpHbTZXR3RVUU8tOFhyZHJJMExCM1VnYklRLU14MlhKNDh0Rm53?oc=5",
++   "origins": [
++    "v4",
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "14550"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-008",
++   "headline": "New Jersey Board of Public Utilities releases 150MW BTM energy storage proposal - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-08-21",
++   "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQekF5Q0thenh4UnBQcXB4Z2lpbENGMW9xSnpRTkgtZXFPVlo5ZXdUdWhhWjRxMFdJRWE1TFZhWjNwQzJYX2NoS3I1S2x4bGhjN2lYUnRVd196aXg4RlBoOVJaUHBxNkVqNHRmYm9ub1NpUDdaTVVZalJOSTlmYUltNGMyaU0xbC1KQlNjRjBxd1dIWGxQYmI3T1puLUVkSjJCUjBDMzh1T0NrbEd4QlJwb3VR?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-009",
++   "headline": "Low Carbon wins permit for 400MW UK solar farm",
++   "source": "reNEWS",
++   "source_url": "https://www.renews.biz",
++   "published": "2026-08-21",
++   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPMjhWOUFjOTNhVUFFRkV5Zk9yS1d0a2hFQ2ZHck9nZHZza1o5NGEtSC1jRUkwRTNyMHBuaS12Q0p6YzY3Ung1QmVKdTZkbUlOcE1vUFFZZnU5WnBuSXF6eVZZRy1HY3JMT3FjMm5DaGZ2QjM2YVk1b01pZ0kyY0NXWmNB?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "13599"
++   ],
++   "confidence": "high",
++   "note": "Low Carbon 400 MW = Beacon Fen; no name in headline"
++  },
++  {
++   "id": "N1-010",
++   "headline": "The Grange celebrates Forest Healthcare’s National Care Award",
++   "source": "Yahoo News UK",
++   "source_url": "https://uk.news.yahoo.com",
++   "published": "2026-08-20",
++   "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOei1FYWl2MGhNbGRhb0owa3FIWXZ6ejFuZGJvcGp1NHJRYS05Y1EzM21wRFctdVVibHVsVDRtczlkaEg1YTQzZUw1THFYQXpWcGl0azhyQmZqWHNFc2puaVRMaW04OXNQTmhLWmI0aFRlMzZZZUlYaG5jMHo2YmNFeFNrYzBMcndSX21kQUhn?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-011",
++   "headline": "Capital Dynamics acquires 170MW/680MWh BESS in County Kerry, Ireland",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-08-20",
++   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOMGI5Y3R3NVY2NDV3UUFja2p2eGs4ODdreV90NkdBY3NoMTFSNTNEMDVrUXpsMjZjaDRrd2I4dUp4ZG1xdlhqUjlkNmdURUhGSlRuMkJKQ2l3UnFzLTA0S1p2RWpmRDJ2eWMzdWZ5SGU0ZVQ4aUw0NUlDR3IyR3NCTTgyTXVpdFpCSHBqeDlocUI5U3owLWlqa05FSXpEeGczNE5tYmRORkVGVVpQZ1ZiLUM5YS1pSDJXTmc?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-012",
++   "headline": "US ROUNDUP: BESS projects and deals for EDP Renewables, Tucson Electric Power, and EDF - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-08-20",
++   "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNY2pSS0NlQUVvZk5fV21TMjlQUkROaWhfWFVkaEttbG5mMGpvVWM2WFFEZXJDeElfc3REcGdBMnRlRE1tUXQ3SEVZTE9FS0s3c25aOWlrVnpUMWlCN1lSNmQ1cTRvVFlNOFZvdDVKOVZ4MFcyMXA2dnJDWnI4TmJhN0s3MzQwSkVJclJacllDZFc1SjFjUW1HeUxuRHItSFQ2eGQ0bmIwU1FibktwV3pueHRCTU5tQW8?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-013",
++   "headline": "Blocked BESS in Britain: Clearstone’s appeal fails for 150 MW site at Axminster",
++   "source": "pv magazine Global",
++   "source_url": "https://www.pv-magazine.com",
++   "published": "2026-08-20",
++   "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxORlMxRnpkRWNSZ1AwQzU4azhnejRsS2pTNHg0WXhidGIxMndESVl2WlFXQjQtSXdHUE5wVU5rNVNwU1ZIZUJobG1BYkM1SGlPcmE4enIzTGphWTh2VENTVm5MeWh2ZUJCd2JQeV9BdERBREI3a2VkTGE5OFNLeFdvS0FTWWRaaGczWXYzeGhrajdUMTktQWVuY2pWS29XYlFNejhfbjk5MnJ1RTJabFJyMFBxMWtSRjhI?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-014",
++   "headline": "Harmony Energy energises new 35MW/70MWh BESS in North Yorkshire",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-08-20",
++   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQS3lTYndlaUZZT2g0cDhraldfN05jWURLZVhwbFYtQlMyRllxR3F1eTF1dlJpYnFZZ2ZSTVQxUllQR2xpUFluOXBoX3lkNzlHWHBpSG9MTTVjWnZYWmtoWjFjMkJPd2E2b2J1dzk1V3dqX3NqVDNZRFhwOTBVdkZfNzBoUUJSOE15NE9GM052Q2gyNlgxVjZiQ09pYWUtMURWZUFwR1FVY0g0TmhHTTlla05rV2U?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-015",
++   "headline": "APA to build 104MWh battery storage system for Evolution Mining's Ernest Henry operations in Australia - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-08-20",
++   "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOcDdGY2NleS1rcFkxMGV3UFE2b3J3em50R09uRi1WRlVkVXVmZHh5TmtmN2JLeUk0eGNfbG1sWEVwTDVIbEs1dVpNaVdfRy1vajF6R1NlR01WRUwxQ1Vab1lKRWZSWkp3OU5fYjkxWGlLTlhITVlUbWZVSFV6OWh4VTdNMnJDVkFRTHlBM3F5Qld3VkFuZXJBUmpyRUM0S05xczBZWUpsOFZsdm1tWG9BcFRJRENLY296Y0Y2clpkSjF4dVJWdGl0OEtLVFllLTQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-016",
++   "headline": "‘One market into many’: AER says battery storage systems are reshaping Australia’s NEM - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-08-20",
++   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQR0wyRjZOampzbGJwMDhINzBLSF9iT3hPMGpPMDAwZm42bm80UHhHUnpnQ2hhVHlrX041NVN3eU8xSE9Vc3FXSF9CMGZRRXZITEJIVzZCalNQS0F0cjFhWDNOajVYSWIwMlB4cHFTSG1XOC1KQWlPQzhQeExyN1pNdm44OGp1MEZQemxnVDRGUXlzNEVLYzNzYi1YQ2ZvV2JhSERkVkQ3cFd1NW9kMExieDk4WDE3dw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-017",
++   "headline": "US utilities Appalachian Power and 3CE launch RFPS seeking BESS capacity in Virginia, California - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-08-19",
++   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQMjJNb3dlRmVheS1WNmdncTJMWlBvYmJxbV9qUlJUUzVRMG9KUlF1OUN1anJvd0thNGhNazEyOTFNdG16bXl6elc0ZDg4LWtOczhFbXFEYmpGRGRUOFpmR285TkxwUEtZWnJFaTVHNnFUWWFBV1pGZzBocWktdTlvQ05ybDBKRm4xN2xyem0tV05LZVQ3NnpBYm9PSVlCSm9adDlSRDY3c0xTQUpCNlNDZ2FkZW5qclowQjNNV0NOTzVKbW1rM0tR?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-018",
++   "headline": "Copenhagen Infrastructure Partners closes US$3 billion energy fund targeting 'high-growth, middle-income markets' - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-08-19",
++   "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPTnV0U29uc3dhN0QwcC1GQWhEVk5xQ1lONjNLUU5IRzRJVjFBWElKeW9Qd2tlTndWVzdnNkNwVTUtcDBxdlRUd0tjS2ZQNjhaMGl5NUJzYUtGWU9icnJVT1Q3cUctbTFUTXB1dmF1bkZ0VWpHUXV2ZENEbUFjbTVzWDJLYTRNMnNaa0xwTVRiZ1daSkxfbXZWM1Y5MUZZeEpHVEZhT0Zua2RSemdldnFVSzdEMWtHQ3BKQUZQMjd2VmpQeVcyZFM0TVEyNmZ4RHBaTENLc1VTYmdsQQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-019",
++   "headline": "California advances two bills to expand virtual power plants, reduce energy rates - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-08-18",
++   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVzh4RlJ4NHBZQzkzVWZzbG93Nm9xbzNuai1lZDJVOW0zQTJwYTU4cW00LUl1ZnYwb2tCVzh3ZWFhb2ZPOUkyb3g0TW15RDFhcl9BMU5xYmVyRHMtWFZnUWhKNGZoS3ZwVEFjelpfVUxMSWFWbmlUdGVrVmxMQnZzWVpxZ2tBUkcwNkdWYS0wSFA2VUUtMXJHeGxJajdqZmRHNW1vSWt2RkJTZG5na08zSW55Yw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-020",
++   "headline": "NextEnergy UK I Acquires 107 MW Battery Storage Portfolio in the UK",
++   "source": "Mercom Capital Group",
++   "source_url": "https://mercomcapital.com",
++   "published": "2026-08-18",
++   "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOOFN4ay1KQ1JocnJNRHUzN3pRbEFIem53TTY0blBlZ053a1N6cDZiUnpkQ2N0NGtoRHFqX0pyVFYzTTJHdWV6RWZ6emNzUGpLS2pCWEptejlvcHQ3cHhWc1RVbGRXV1pnMjBtdWZXeldBRDdWOWc2QVRsYW0yV1JLVV8wR2ZqaS1UaVdtMEJyYw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-021",
++   "headline": "Statkraft’s Cornish solar farm secures planning permission after appeal",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-08-18",
++   "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNMjNlbi1xTWRuMTk4YlhYeHlQQXBfOEZoSHE2U0lYRjdvME91Slh2VmVhV1dfc2laLXotZTNvSTNkTFowcWltR3J6UUlsY1ZYY0l4Rl94ZXlJdVpyMTdJSzNnbkNBWWV1VlhaU1I0a1lGZUhfWXhoSGFzNm5lTk1yUDk2cXhzejBfU0paQ09iRlpPdFJLVzVrbk15Q25XdkZYcEp1UFZHVE90RmxpaUNBWGR6OFNNemFETW1ZWGVTRzNSVWRP?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "12910"
++   ],
++   "confidence": "medium",
++   "note": "only Statkraft solar in Cornwall (Speedwell, 40 MW)"
++  },
++  {
++   "id": "N1-022",
++   "headline": "Canadian Solar says patent dispute with Maxeon is formally terminated",
++   "source": "pv magazine Global",
++   "source_url": "https://www.pv-magazine.com",
++   "published": "2026-08-18",
++   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNMW1wNEFpM3lTU2RlVzh0Z0tQVkZNSVZYZndHYkZydUNCQjJWaW9FbkdIUlVfY3VJcFN3Rl9HQmlpV0FldHNwV3MtZ19SX3JXbTl6TXZfeG85V1BvanFhbHZKQllHcmY1VVQ2d1BpSXd2Nm5veUpEa3JxQWJma2Eza0MxMXc4dGx4M3k2S2I4S1F1VWJFY2hHelV2cUlLZGs3eDBvaWNWNHl0RWpsWWc?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-023",
++   "headline": "Econergy signs financing agreements for 150MW solar-plus-storage project in Romania - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-08-17",
++   "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQeEtyRHNSWDB5c2h5WFF2VFVBMHBFUGlzM00zRDAxQ2VETDkzbUUyeWg1c2hoQVQ1UjZ4eEtncGlCUkFzcFJ2RFdoLTh6WkpKcWpaa0tqX0kzVXMzeDdIMDR2U3lOZnJKQTBTVUVUZGtGUklTak93VW9ocUM2Q04yd0RHX0NFcFIwRkM0dlZzaVZjakpnSmZ5LUR0OFIxdS1HQWhaVE1lNVVfR3NXZUFVcU9qUzNWN1k?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-024",
++   "headline": "Fluence and German utility LEAG begin construction of second large-scale BESS project under partnership - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-08-17",
++   "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPZUFPRmpwX1hVY3BzSzRpajY4YWVoeFlEc2lUeFYxaWFTTHhCVWd5N1piU1Z5RThqYUVfZm5EUFJjZ21uODVzd2JrN0J6Nl9EMGtLM1dFckVyOUc1N2RVaXZvSlhKVzB1VXh3VEpRVzdVWkpBTE5uSGIyT204LWVEVDVaSHkyWGVMbHp1N0wtZ0ZjRUQ2QXdBRmlhUTF0a0NHS2NYbjNpUWFSZkRCWjhxZE1lcTJHTXZGcWRXbm9GRklBZERXT0VUbUZ1b0x1WDI3d3c?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-025",
++   "headline": "British households earn £100 million from solar in past year, Octopus says",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-08-17",
++   "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNQXM0d05TVHVIOGRWclZYX1VoemtpOFUzeEFqcUFFa2stMzR5LUlMWnl6YXVnUWRWZi1fRldEaDcyQzNFbFE4Nzh6b01lQVUxZ29odjhMb3JOYUpUVkZLbTZ2QWNMVVlOempHQ1duRzQtNWtlbjVMam45dE5jVW4xbTR2d1Y5RUtLYmxITHA3blF5QU9rRTNUNi1XMF9pNWtNWUhRX0l3bzNRdjhNVDhCM2ltd3pLOFAxcl91ZlE0dlJ4Y2JGYkVYdUhTcFVPY3VITEx1T2N0bVk?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-026",
++   "headline": "Pathfinder Clean Energy reaches investment decision on Hertfordshire solar and BESS",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-08-14",
++   "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNQ2F2ZjlhZGUtVFQ1ZWZYSGdiU1luc1A4T25YODB0NkdaU0Q3bGpIZkFDS19IWUtiU2tQQmt0OWVZX040TURjSldpOTUxZll6Mmk4SmlZX0l3RTZHLWRmd05rbThkLWR4SHBaWkliVm1Ccjd3emdxWG9LRnpGbG9zbjdIZlI5Q0xGSVh4elNkYjU1NXBDblhwbTJRaldBUVpTM0pvNWVMa1VZVDVkT2VGZnpRVVExZ2xMOHJYWlllVTlObW1CQVFvTEt0eC0?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "9037"
++   ],
++   "confidence": "medium",
++   "note": "only Pathfinder solar+BESS in Hertfordshire (Tophams)"
++  },
++  {
++   "id": "N1-027",
++   "headline": "1GWh Coalburn 1 battery energy storage enters operations in Scotland",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-08-13",
++   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQTm1iamxWcUgyd2NOTS13cWgwbExYOGpqM0tLczhsY0hpTThiZ1N1U3V4eXJoT0dxLTFIREhqaHNuRUk2NV9FR3dWVUpyYVBNUDBpajRiZDRFMkRPY2dfbDdNWW90YWZ0UzBuSURpZTdXTDFUS3p2UXJuTzYtNDhNa0RjWU5tZzdoYmpLYklyZm1KMnRGeGkxX2tTTDlMZ0xkZm9EaVNpNURjYmlodnJCYjd6ZEU5Zw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11034"
++   ],
++   "confidence": "high",
++   "note": "Coalburn 1 = Coalburn Energy 500 MW"
++  },
++  {
++   "id": "N1-028",
++   "headline": "More data centres approved for west London",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-08-12",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE0zb1B1aHBPd0FjZkxDYVM2eDJZb3B4dkdTRTNBRWFSX2ViaWs2SUVZWlZhS2FtcnNqZ2ZqdEtvbjJGNTI4OUl3SWhfa01xQ2ZNcUFWV0NBTEhMbGlh?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-029",
++   "headline": "KKR’s ContourGlobal begins construction of ‘Sun at Night’ solar-plus-storage project in Chile - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-08-05",
++   "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOMnpoYmlFalN4S0M2STZnXzdNWGpTa0d4dnJBa0tPMHp4ZUJsQnR6d0dycDkza2JFVkxJSlU1U1JRZnktNXVDNTNXYTV0VzNqc1VWUUpld3lUV2tpV3BMY1hGUm1lU1Q0NEhoUzN1eU10Q0JtT0Eza2k0MDZxYmN5WGItZmNjcUNSMmVZWWpMTzg4QUZFWkgtdjJjX3ZwZGdxbUtVNFllQkdGalJUcWw4d2J4cERPdGhNVXNCWUxid2Y?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-030",
++   "headline": "Push Power solar-plus-storage project bags approval in Essex",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-08-05",
++   "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQWFRFQ0RyXzNnR2VNRFFTekJ5TzVoR0dWS0RsYTVkV3NocHAyeWRlWE1DanFfNTZvakZRU1loS3VzQ0k3ZGZpSS1lcFIxaWE0UTl1VXhmTmUzQy0zS3g1UHdaTFNCTmd6SHM1dWx0OENVNFB6MWtmLWlSSVpDS1N1M0VHNXdsUl8zeU5lREhHYVJhdnBrMFQ0UnFmcmhFeWVUUXhjNS1jckEwbVltYmZj?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "Push Power Essex: no 2026 record clearly matches"
++  },
++  {
++   "id": "N1-031",
++   "headline": "Analysis: Recent AI data centre BESS technology and deployment partnerships - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-07-23",
++   "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPZ3dwLTRiNkhGT3FZR19NbWZhNWZaUDdyQVJCN2tBRkF3MDdTaHFMMEFvTDV6UUM3UmV3dU1qcG9BMThRUjJVemtuUVB6UElDNEFYbHB2eXhxN3p6YlVmcTdrZ292UU1kdDVjSEotNFcwc3AtcHZiLTJ1N0hkYWk5ZjVHcmdvZ0ZEZE1waDYwOE9IdzluS0taT1FqRlF0VndlLUxIQW4wTVRhWGc?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-032",
++   "headline": "WFW advises lenders on £231m financing for Fidra Energy’s West Burton C BESS project",
++   "source": "Watson Farley & Williams",
++   "source_url": "https://www.wfw.com",
++   "published": "2026-07-20",
++   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOcjlLaE55TWQyamhHYUNOWjBaZVl4bDJFV3NLNllSLWlCODcyTDl0RDNGWllvSHFrYTN1ZWJCUGU0Z3NxcFBteFlEVEhMcEFSYTRMaFpXSWUzZ3BCYVEtVlMyVXBWeWhuc2dLV0NtZmR2LTZvSzVhWFV2UWl3S1dlNFQ2ZFpmLVFLUXFISXc3RVFLbXBlblgxYVNTQmRkVTZjNGlBajk5ck42aXI2T3c?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11928"
++   ],
++   "confidence": "high",
++   "note": "West Burton C"
++  },
++  {
++   "id": "N1-033",
++   "headline": "Fidra Energy reaches financial close on 500 MW West Burton C BESS project",
++   "source": "Energy Global",
++   "source_url": "https://www.energyglobal.com",
++   "published": "2026-07-17",
++   "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPVXlfMGdRWEU5T0FucEFrWkFHSC1ldkI1ZlZoOWNlSFk1emE4dHlIR1o5VkFCQUFOME1SS3BUWUdXeF9yRU1yMEhrUlgtd1VDdmVmaVFVdElHSHZZMHBySTA5WTh6YXFtMVowanJxTkhJNWRqa1BJbW85MHVuYkpHYUZKMlNSTnJKbEYxV1k5YVJQQ1F6X05XRC1aSG9GUmtzTEwtYVJXVF9ES3dFTllMWF9vYzhNekIxMzF1ODFLRG9TM1AxYUE?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11928"
++   ],
++   "confidence": "high",
++   "note": "West Burton C"
++  },
++  {
++   "id": "N1-034",
++   "headline": "Sol Systems reaches financial close on 123MW Illinois solar portfolio",
++   "source": "PV Tech",
++   "source_url": "https://www.pv-tech.org",
++   "published": "2026-07-17",
++   "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNQVk3MVZwVHo1T2QycjZlMkYyRThIUS1ONVRIRzgyUVFONVJMcHFSUXZ0Q0xUOWs0YjFYTEtJNTRDMG9EanI2dzBRazFlVjc5S0w5cHZfNzY0UG1wbC1LWHowWDNiWUV0WjBtaWN5bDE2S19JNVh4TlZkTUMxUG01ZmhwdkFYRlAzVVAxc28tRkFrQ1d5T0NibENB?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-035",
++   "headline": "Enviromena solar plant on South Yorkshire green belt recommended for planning approval",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-07-13",
++   "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPd21vcDYwRXVCUTdma05QOHhKRVdKUE9McHFfaDBvOU13UzZ2cmEzWVZwUmg4YlFXMjZPTVBhNm5wTkplRmZMZFB2ZU1kMXlOdWVWd24yWWx6b2dRdmhGN1hYRFAyNkQzWjFHOTlsQzg3SG1rRFdjQ3NDNFJuQUwyaHo3QS1nRVlNTjBzVjhhWFJKb3NqWXQ5ZkxFcVhxRWJDNWUwZ1U2TjB6ZTVlaWFHUUR4cEVQQlA5eXR3LXNIQXNFU2t1MGpYdmRPb0JBT1lHWVE?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "18118"
++   ],
++   "confidence": "medium",
++   "note": "Enviromena South Yorkshire green belt, refused 2026-08-24 after recommendation"
++  },
++  {
++   "id": "N1-036",
++   "headline": "Dean Moor Solar farm will be Cumbria's largest",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-07-11",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5fRHNsY202RTZwellHTmxuZU0ycnViaFl2YzBvMnNMRDNDbV9UWXlQNUtUbFBfQ0d5dmVCNHhubk02Ny0wOHFKTTFoT2JnNXB0c1Z5VFlqRkQ5TXBE?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "14550"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-037",
++   "headline": "Construction and delivery risk in BESS projects: why risk allocation matters for financing",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-07-10",
++   "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQTTh5d0lfUFk1Wm9WbHUwelhaek52b1VrZDMzLU1iWXpBVzRyTlVZU1FWbW1vOU1SUk93VEJkOGEwcHJuYl9Bb2t1YXJld21iamJBYm1qcC1hTlg3RG9Rdk1NY3JfdFliU1I5NDRNS1lkdVd3eER5QXZidV9TOEZxMm42QmQ1eGtPQ2c1MWQtMkFVcloxalpjMFZDeV9HLVotbzVzOVdKMmYtTU50Zy1GazZpMlZBNExydENaZXVoVE9vZWw2cEN1dE1Qel90bmpha25XVFRJQQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-038",
++   "headline": "Why are thousands of people opposing a new data centre?",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-07-09",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFAwV1poMWRqWmJHZ3dCWWc2bUhsSU9JRVdLd2UtZnpRRFFIeWxOaEtGY3lEdFNKYklRdWpSUHhleHI1c0xYbmltSnQzWlhNeHpQNzU4cm5NTzJqQy1O?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-039",
++   "headline": "Swiss firm Alpiq acquires 90% stake in BESS developer-operator Harmony Energy - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-07-09",
++   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBQTXlubWtHQnlUTVgzbE52ZXEwTENWS1lscnZXdHpsQkFTZV9kV3J2UzlKdVdyMWRtYW1tVnQ1Zk9vM0xRSkhzTHF0ckNDeC1SN3ZvR1ZKc0Y5WUd3TUtra0Z6NDJ4WmNieEFMdTdGbw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-040",
++   "headline": "UK ROUNDUP: Field closes financing on 1GWh portfolio; Pulse Clean Energy selects Envision for 310MWh project - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-07-09",
++   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQWDlQYlI4UmZFZ3hXV19UREg3c1pldHhjY1Jid3M0SWVjZTJXY0o1bW11ZjE2U3ZKOWFIQm1NSnlqeERmU1pCVDdmajhVQk9BZm1CNGh3S2V6QUdJTUt3YWZtMUlpdEEwV2R2RXh4MjdJQmF2TTQweVFZUk1qVzhoWlRvVHFwbm1ZeThrVnl5R0d1ZDVyOVBxQ2VfUHlsZTduS0JYNThRd0xIRDZYM2p1R3ZSY1lrOUxEZnh6ZFV1dzhhUGY5NW5vOHBPNUxfZjlaUk5Ob0x3?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-041",
++   "headline": "UK approves 740MW One Earth solar farm",
++   "source": "reNEWS",
++   "source_url": "https://www.renews.biz",
++   "published": "2026-07-08",
++   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1ncXRpRTR1MjRmNHVQY1Z3RFkzdXN2ZEZFSHBManRGamo3SkV3Z0N3X1hBZ0ptOUFPaGYtcU12TFF3QTIzY0JKNmNzTk5fU3NiR0lpVkNEbE14QnpoX2ptS3hSQlNmZzU4aHRCSHhUQUVRSkNuc3VJ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "14806"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-042",
++   "headline": "British govt says yes to 740-MW One Earth solar project",
++   "source": "Renewables Now",
++   "source_url": "https://renewablesnow.com",
++   "published": "2026-07-08",
++   "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOTFlSQkQxcmVXUnJTWmZVQlZKeldTZVB4UjZtcndUVk5aOWFlMEZiR0YzRVd0NEtjdUtQdFZlbnRORTF2eGo3dTBNSkIxNzJNTktfQ05IMW5iU2Zkem5Jdi0ta1FOS0hsSmpVOXNYYy1nVmtMWFhxWll1c0JCQmUxWHIxYWVaRVdCVTNXUkc1TE1hRXRvRWhESDI1SQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "14806"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-043",
++   "headline": "Akaysha Energy begins construction of 82MWh BESS in southern Japan with Itochu-Tokyo Century JV - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-07-08",
++   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOeF9vamdRNkRLdHhyQlRUcTROTUt3X3d1ZmU1RTJJd291RHlkNUlTV0twT0lRcFA1UzVHeEE3UjllVy1rRlRWYWVNZ1UwVUI3dWxCekJlaW5QNFlHNENaZ1lBaGFYdVB0MGNJT2hORENBSVctVU9kODZtak05cXdpNGpmTlZwSXZlMnp6YXNUVGRLLXg1b3lIcEtBU2d2N29rRFVxWHN1QlNJRFUyMktBOWZhQnY2MWdvN213YzFZRnhvRkFyVDg0?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-044",
++   "headline": "Fvs Dean Moor Ltd Receives Development Consent For Dean Moor Solar Farm",
++   "source": "megaproject.com",
++   "source_url": "https://megaproject.com",
++   "published": "2026-07-07",
++   "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNaG5QNlhBMzZzVFdKVkwtcGpNT2hDamNVdUNUOWhyNTM2N1BqR3RFZTlfY29vNXZXLU9oVDFzcmo3enJZcDNsWjdDTUVSX2VJUVVIRlhyQmJldzctaDZyYk1uaWR4MkNidFB4TW1vc19CRVpVWjdNT0pWUGpyYmRfRFp6UjlKRFFlZWV0SjBoTjlEdHVxcW00dXFxVm43OTlqampvYjNlcjZ1RGlBTWNOcg?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "14550"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-045",
++   "headline": "Field reaches financial close on 1GWh UK BESS portfolio",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-07-07",
++   "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQelZOSTJiQjQ1ZUxWRW1ReGhTdktwYVplTkxGdDM2LTVOb1QzVEFZb2dNN0ZGdWstc2RnN3FJc0ZGbnVrVEp4eUJsYXZQcnFiSTFoVmY1SWxZYWM3RzhiUEdUNVc2QUdZLVE4Y2xjUVlDd3I5UlFodHBkYThMNEdyemFjV0hyNkVWdngyM19fOUpvczdVNDJCTGEzbkh5MHE2MjdiVS1VRDZqZw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-046",
++   "headline": "Peartree Hill solar farm near Beverley approved",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-07-03",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9WeVBuUWQ3VGhtOWkzTFpmczZmbnJuaXhadC15ajRSMlVXaWhQc21PelRxS1NuSzRHXy04dzM1YVF4LUFEV3NVV0pRWmlVRlYteFQyWHFrQk95dTVD?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "15000"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-047",
++   "headline": "DESNZ grants DCO for 150MW Dean Moor solar project in Cumbria",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-07-03",
++   "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNb0daVWdoSFdOR1JCWjNjY0tyd3IteE54cWR4WVhPMFNGemlEaUhwYUNPMTAycGlKX1NKYjlLLUNySW9iT0hMeXRDcU10d0JqNUhTczF5R1lOa1Jwd0RrQzFyOFZQc3ZJZUJZVS0yZldmSTh4ZExSeHdnZkc2Ym9abVNDaUU5RnhCbVdXOENpMmtzY0Y1eFZmY1hEQWFwc3NHZUE4YlVLeFlfTVR0RFVEYQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "14550"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-048",
++   "headline": "Peartree Hill Solar Farm development consent decision announced",
++   "source": "GOV.UK",
++   "source_url": "https://www.gov.uk",
++   "published": "2026-07-02",
++   "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNeWdvRFItQ05Wd2ZKSThwR1E4cmVXV2xwQW9oVVg1N1NWWEE4SnFESlR0RnB2dFJCcEVhSllhMFAybk1mbEEzSGkxNWZDZk1UZjgxRUdDeGRIbTl4R1BZTWxHbC04U3dybkpMMkc2cUxKNURJWnFJUkZ4WGRMQVh4alNHMkc3Nl9sdmpkclZXenRUX3JSR0dhMGVHdlN5LTg?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "15000"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-049",
++   "headline": "Dean Moor Solar Farm development consent decision announced",
++   "source": "GOV.UK",
++   "source_url": "https://www.gov.uk",
++   "published": "2026-07-02",
++   "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNZDNGdGtoRlhzRWhhWGpaczUzRllKdHJtMUh0c2sxc2dFeHVpY2d2NGdablFYVUVfRUxZclJNSGtsY0RONm83dk9IV0VDUXNEdHJRNU52TUk3NHhhaW5xWGV6RHhscGgwV1oyeU1EQXFKTmhZWTFnLVdyOEFhZXYyZWFRUjNvc2ZlTDhFRmxUMUxFYUl4a0xQSFNR?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "14550"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-050",
++   "headline": "Data centre planned for Microsoft UK HQ at Thames Valley Park",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-07-02",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFAzaHc5dklrR29UOURjWVJ2bVRwdWtTS2xKdWVmQlFPYWdnakxtdXppeGlISENpVFA1NFktb3ZnSUhzOHhWS0JOcHU2LURIYTVYS2xoNVl6enBFdURk?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-051",
++   "headline": "RWE scores DCO for 320MW East Riding solar power plant",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-07-02",
++   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOTHRsYUN1ck0taTFwN05VM0RVZlhkLXlhNWh0Z083REpybUY1VS1kaTc5aUtBSlJ6eUFVTmNUYk5BMXVFb21sc0p2ZVpkLW4yb010X3NZNkdIWVFRQk5YUGQwbl9tcmh4M1YzYTBtd2p1Vm0tZkEyS3FYQlFxNlNqOTVEb1hTcGl3Q0wxd2xORXAxSEstUkV2Tk5oUmxySURqdEh6TTR6ZGhyc2ZOc2c?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "15000"
++   ],
++   "confidence": "high",
++   "note": "RWE 320 MW East Riding DCO = Peartree Hill"
++  },
++  {
++   "id": "N1-052",
++   "headline": "RWE, PPC complete 930 MW solar cluster in Greece",
++   "source": "pv magazine Global",
++   "source_url": "https://www.pv-magazine.com",
++   "published": "2026-07-01",
++   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQcC1hQlRTejJtN3BuQ3hBUEQyaUYxWE1OcXhMTVhIZzNfalZJOEx5eXI3YUxOQlBNVkJ1ODU5aUV2elB1WDZJZU5tZktvbjFYSDZvblRXOHRKQTRnbDBrbEFZQmtjempWUW9ZT01ZUXlmWGdibms0ZTBxZHZ0S3BqTnRlRlVoZ2lUN044RGExX2g?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-053",
++   "headline": "Neoen Australia begins construction on 963MWh battery storage system at 440MWp solar PV plant - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-06-30",
++   "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQOGVhOUNKTmRfZ24zU1dMeEpoelhOZl9CUTBfY3F4LWRHUERseUVLQ1pWNkJoZVJLcnhETGIyaXB5Tld3MHRha2w0UEJEOS0yd1dUa2IwMlY2OEN1cF9tVlc5R0JKcGRXYS13bzU1aTQ1WHJKOEZXUTJIMGNHUUtfVGFHRHQ4S01mNmdCWk90WXEyRFZqT2ZNbkwzXzl1NVFMX2daWld3cHJPdXdSazI3WVBJa005eHBEUzlKTVZPS3QzR1gz?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-054",
++   "headline": "ContourGlobal enters UK market with 500MW/2,000MWh Scottish BESS acquisition",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-06-25",
++   "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPZDlSMmFUMzQxZ2JWOFROM2ZmTTRTMzJaZ0E3UzkxdXlmQVRxdDF0bWtoUklTcVpESE83TTUwYmJuUWVVQVVMMERyanI1RGxucUVoZ0FkbVA5cmhtUV96cVRkYTJNaEVYOXFrRnNmWUhYNVY0clBSWUhiTGllZmsybm0yWDJQMVNxdUJOa05vMEFRLXNKWGRLMlNybjlteS1Ucy0yZmRHME5WSGRfcm5ySEZ3M2p4MGp6ZjZ0aDR5QlZTNmFBdkE?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "ContourGlobal Scottish BESS unnamed"
++  },
++  {
++   "id": "N1-055",
++   "headline": "Will our peaceful rural life be destroyed by a huge AI data centre?",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-06-25",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE95YmVjckUtWDVaZFJyekN1QWV4SjlTcVJ1dU14ZDJ0UGVXdjllQVlaaEpqaUFUMEtfbU5sM0V1MEw3S2FRTFRUWHhUb3Z2RC1RMGE3Nm9vSDRReG1X?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-056",
++   "headline": "ees Europe 2026: Grid-forming PCS, DC-coupling, C&I and data centre solutions among product launches and market debuts - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-06-25",
++   "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxORGQ2aElGby03UjNVRW00NzBZN2JWRFc5cXk0a1BGUFhpUWpOVzhNczJpT0t6aUJmSVh5TjFEei11bjlzM21pOHZQT1pYUEFjSFViSFFPd0Z2cndhX0NnYk5uaktJdlo3cGR3YkFfTnVRWmpUYnd2UXY4M205QWJFdE8wenpJWnVOeU4wd3JFYVNwckh0cGlaa09sU2pWbWRTUU91Qmd1QUZsQmhBejlINldiXzFMYzNmOWV5dFZrSzc4dnVTWjl0c2Fycmw0Y3lfcHNPRlZBX3RBcF9xUWZsYg?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-057",
++   "headline": "Innagreen acquires Longhedge solar farm from RES",
++   "source": "Energy Global",
++   "source_url": "https://www.energyglobal.com",
++   "published": "2026-06-24",
++   "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNZ1NSTDZmY3ZzSTM2VU5DUm55TVpjckw5c3hXV3llZTN2MHFSV2JrVXByRHJFQ01QTHZjTTdVX1gwVExKMDZReTY0anFJR3h1ak1VR3ZicVR3N3ZUN0NnOHppSDJ5WFRzQlB1R3NoT3hQTkVFdWswZ1k3NlR4TDlGSEk3ekN3MFF5bUsyMWVPRFRHNEJHb1I5QQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11063"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-058",
++   "headline": "Innagreen acquires 50MW UK PV site from RES | Solar",
++   "source": "reNEWS",
++   "source_url": "https://www.renews.biz",
++   "published": "2026-06-24",
++   "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBJNWdrUzRaU0tLaHdRaXczUHgtYUdoTG9WalcyZExUamktNnREcEVjYTlzSFprWDJzQTF1TC1jSUlnbDJDYVdTZ2VLM1dwR0h6WGd0M3BOT18yQUVHSkdPd3JUWERyZHp6TTNSVzlkY1I0S2NPUS1Eek9idGRqZw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11063"
++   ],
++   "confidence": "high",
++   "note": "Innagreen 50 MW from RES = Longhedge"
++  },
++  {
++   "id": "N1-059",
++   "headline": "Meadow Partners Acquires 113-Acre Ground Lease for 1,000 MWh Coalburn II Battery Energy Storage System",
++   "source": "Business Wire",
++   "source_url": "https://www.businesswire.com",
++   "published": "2026-06-23",
++   "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQY1ZUamJVSVMySFhvNkNOVDlSQ2p5Z1BBVWlMOFhqQ0RJZk00R3QtRXJmMEpfeXZPYVR4U2IyMjF3b1FlMVkwRDRzR21FUUQ5MnNkZld1UWlIMTFMWUw2NjdieEw1ejlwN0tfbno2ekVTanJnd28wS1doUDdsZ1ZxenRCNWxCX2FxQ1Rkekt5TTRjR2VjTTV0VE1XMTg0RWpEQnVSQmwyazY2VjlPUlk3aUlfRHFZYzdhVmU0S284cUlQeTJ6Tnh6dnlJZTlDc2lpbFJFZmNfUHBLemU5WnMyM3lZYUhINnotMnptdTd3SQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "12206"
++   ],
++   "confidence": "high",
++   "note": "Coalburn II = REPD 12206 (1,000 MW), not Coalburn 1"
++  },
++  {
++   "id": "N1-060",
++   "headline": "Zenobē reaches financial close for four-hour Scottish BESS",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-06-19",
++   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQQUlWeDBjWVhLd1l2NWdzbllOOVQ2MHd5dU9qWXdkVDFMMWNTYTMzRU1Ud1Jzb0xlNWJGcjdYcmtZVXFwWFl3VjRTZUEtQ1BvX3ZlalZvLVFpNVFZMWdfdS1nOFdFTGtRelJTYjV6VnR5RmRaZ01BajZiMnZKaXlTVHZIUVpxQjJ4Y3BiV3h5Rl9rUjBmZXBkU0poVzkzbWRJZ19VY0o4dEt4UHFB?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "Zenobe Scottish BESS unnamed"
++  },
++  {
++   "id": "N1-061",
++   "headline": "Approval for East Yorkshire offshore wind farm substation",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-06-18",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9zSUNDcUEtWTNOYnd2VXI5c1hCQ2tSV3dDcEZ4RVBmU29qY0tYcWhLOW5SYUhrUHRrQXlvUWhwTzZOMmR3VGs3ZDNhWk9OcmlSenROWGFBUVdOWkN5?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-062",
++   "headline": "Zenobe closes financing for 200-MW Coalburn BESS project in Scotland",
++   "source": "Renewables Now",
++   "source_url": "https://renewablesnow.com",
++   "published": "2026-06-18",
++   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPZnlqdmdwUVB3TjFoa3BxV2EzbUI5QTJJV19XOENTSkxSbHdDS2tIVFRfZFp6M1Q5bmJVbGludVd1NklGTXM0ZkhEVllyYXNWam1YREcxSkJBWFo0LUF4cTY0a19tWVpwYkw0dkZmOVZSMGE1U0lGMkZDMWd2WldWck53ZmFTNTJRU0FtNnhwUWtjbExqaC1odkg2NkYwUUl4c0RPdnlzeVpTZHI4?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "Zenobe 200 MW Coalburn: REPD Coalburn BESS are Alcemi 500/1000 MW"
++  },
++  {
++   "id": "N1-063",
++   "headline": "Frontier Power acquires zinc LDES projects in Scotland from Apatura Energy",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-06-17",
++   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQb08ya2dESUw3c1hQd0NfRHowNDNES1lKcFoxMXg4VDQ0RVRhTHNjT21kUmp0NVhGWFliRm5yRGNUTl9oeEhFRmt2QkdGRGU5NmFrNUY1TGV6amNBb1RPeXM0YnZtUWNNWmVmSUxGTW54REpjTGlUalNzNWd1QzUtTkZEYWNHRTNuSXhDanhPM2VocTVlOTlfN1pBN1BEQ19DMktlQnllSldNdmR2dVRQa1pSTW10LWRVQThVSlp1RDdNX28?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-064",
++   "headline": "IPP Elgin launches construction on 112MW of solar PV across England and Wales",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-06-15",
++   "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNWVIyVzR6alMyZmd1cER6eE5felBGcDVLQkhVSkQwbzNGQzFMSXBtb1JEVWlZZXIySjB3ZHF0Sy1aaEh2T3JCYnpPZTE5MzBnWDJIX012bjg2ZWxoZDVyNDhLVVBEZHUtLVZjNjFPejRYUWJCZDFOZ1ZnMllIUW9Rd2Y2T2Jjb2ZsanNRamRMNTFIWWtralhwZjFJcEZIRk1WSWR5WDk4Z2s3TzhYLWFJR3JvNDRfenJ0UzhwdEszclVFMUxw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-065",
++   "headline": "Enray Power Secures GBP 43 Million Financing for 71-MW Carlton Solar Farm in North Yorkshire",
++   "source": "SolarQuarter",
++   "source_url": "https://solarquarter.com",
++   "published": "2026-06-12",
++   "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQTnNCOHM3WG5DMkZRbnpGLTFMYnlNcFBfU1R5MFNoYWpqblBad3pJYjFYOE5zcG1CaVZ2by1ndEdjYlExQ1V6QTRERkJEcWtxdGVfbHhTUUJ4LTRrZm1jdnFkWGp3cm1MeFdKZkZXdEt4UkFRd181WUg1ZlhpeGY3b0lFSDEyUnVhdGI4SkFfQ3lRV2pLTFAwTzBZOS01ZHhYTWZEVFAzeG8xdjF2Nm9jTXNkTF84SVl5NThfOURpR0JDRERPb1k3UQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "12017"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-066",
++   "headline": "UK High Court dismisses legal challenge against BOOM Power’s 29.7MW Yorkshire solar PV project",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-06-12",
++   "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNZnBKZmdTZUxIUnhmUTRuSGZTZW9oRlRLRGYweDJqWmM3YVlCTlM0eTlGY1FUcXNYRTJXZkNhb2t4aWRDaFdxaTVIcmZiWklhQXdiRzJqQ3M4VU1MUm1OQnVFNGpDWHVva2todkRUTzBMSzByVEtpSHFBQ0lBbTFJcGQzZ2huVUx4ajUzS1NPMGQ1RHNoMUxrVUR0QklDSlRhcHEzYzY1R3J6VkNpY2F5YnBaVnBTOEtDUFpMSFBYbWJqV0I3YjU0TUR0SEhXaTVINkZrckFROEtoM19Y?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "BOOM 29.7 MW Yorkshire: no matching REPD record"
++  },
++  {
++   "id": "N1-067",
++   "headline": "Exagen Secures Planning Approval for 50 MW Solar and Battery Storage Project in England",
++   "source": "SolarQuarter",
++   "source_url": "https://solarquarter.com",
++   "published": "2026-06-11",
++   "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPdUlUS2JEVWxjTEhBUWR6RGgwaWpjTEdfXzRpUm12M0ttYnNvYTF0MldjWUZrVWpQMUotMGxzQlJ6VWtvT2pKSVRfQ040UTZvNk5JQk9tSFBkb24zT0NCTjluWUdkZGlaZXlOX2x4YTFXXzdpWm16ekE5UHp4QkRwN3ltZU5MTklCekw1Tk1YWkZObGlHWV9KX0dSRkpsXy13NkpPb1ZEZDNEemNlaWhzMlI0a3ZJZHhPM1ZUZF92bHg5Zw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "Exagen 50 MW unnamed"
++  },
++  {
++   "id": "N1-068",
++   "headline": "Enviromena secures £175 million financing for UK solar portfolio",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-06-11",
++   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOUUxicTY4T2ZHTFVINzhRbWFNQ2gzdk8xa2VUMUtfeld2QU9WN1dJUy05ZnZycjBJRThOOGVGREthc3pEMUhNd3hHZFZSQXAwU09BMFFUakZYOTBmTWFhMTY4TzVmZU05VkhNcUpJeDFVek05UlVqTkI1TE4tUDk3LURwLUpEeElHeFduWFItYmhCYkJQLWFkdTgwSUxPRGFfZmtBeFFWbWhhZ3VicnVGUkJnYnhQWU9XUDVrVm1fbl9VbTRzVzA0?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-069",
++   "headline": "Qair reaches financial close on first UK solar PV project",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-06-09",
++   "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOZDFKUGhMOEU2eDh2cV9ucE5fVUFrWEsxZkt6YzNGak9VQ2ZXeUZYQnVpeGl2a3pFVzh6X21HRk5GZ1BTamNtbXdGYm5zYkt0cFhjWk1OSXpNeDVmRTU3WmdjZUhDa2k5T2xXV1p5YTJ1ZWtqWlNpNTZCaThZVXFNdGhDb3VONk5ucUhlOWFxc1E5bG5rb1hfSS0yNkVpdXh3VGxwR2pqbERYdw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "10087"
++   ],
++   "confidence": "high",
++   "note": "Qair first UK solar FC = Brecks"
++  },
++  {
++   "id": "N1-070",
++   "headline": "Drax signs 10-year PPA with Global Switch, attempts $755m Bluefield Solar purchase",
++   "source": "pv magazine Global",
++   "source_url": "https://www.pv-magazine.com",
++   "published": "2026-06-05",
++   "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPZk8yWXRKZE9wd081STB3MXN2cExnakJxYlZJX0psbFZTa3BLZ3FuUGhIUjh5RlhWUFdtVDVJMFNOTWRkMlVDMkJPR1ZaY2NXMUN4SWY0U2ZIakVZTXJ1cjk4Z1VVQ3djQTZGekx4aVgtUzVEVlI3SFBiN0gxSnI4akNIdVZwMm5lUFdvT0NGSTBneWZBUFRiSmhZVGtDb3QxRHdjUkVBNGtKaWdCWEEzaDlTSG1lODdndFQybw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-071",
++   "headline": "Sonnedix closes financing on 102MW PV portfolio in Spain and Italy",
++   "source": "PV Tech",
++   "source_url": "https://www.pv-tech.org",
++   "published": "2026-06-04",
++   "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQZjNXQnNIUmoxN0VWbjNUb2NXRE9FQVRUa2l0ZHpHZ2VKUVZvNjlnTm80RHd2M1VmMy11Z0ZSTWVtRV9HOGxFcTNSb2tXTjRaQ2NFUXhMU3NRRjhPWVV1X2NiNmhnZG1ncHlFbzRzY1NsbW85dzJnR3hFeWdoel8tdU5GanlEV2pLNTBTek00eVYza0dUb0E?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-072",
++   "headline": "Aura Power secures financing for 49.9MWp Staffordshire solar project",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-06-04",
++   "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPZEszSHJsZDRibHJybjZ3RXRFN1Y3eWNSeWZURFkyUFkxR3NMMVZrUl9ZYWRhRy1zdVdSVXZUaUt2VjZldkxVY1BkNjRBVWRPdlY3WENRUHo2Nl9RWDB1QTRZWUt3NFVfRXR4d18xTGhuQ2RRc0NFYTRqb3h2dzZ3R1FFSkIyWXJ1SE84RUktRVFKaTRGYUluTFZsejJreUpKLUxuN3hVWkRfd1ViUW1NZnAtVXJXOWZ6?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "17591"
++   ],
++   "confidence": "medium",
++   "note": "only Aura Power 49.9 MW solar in Staffordshire"
++  },
++  {
++   "id": "N1-073",
++   "headline": "Greencells signs 71 MW Carlton solar farm EPC deal",
++   "source": "Solarbytes",
++   "source_url": "https://solarbytes.info",
++   "published": "2026-06-03",
++   "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPbFRoREg3SWowMm1sbGd5ZlBlU25FNThUT05KbEtYX0hjOGloV25qcXF2cHJVeU56XzdkdnNvZUlXSHVGMWxyS3Vua2VaTjB6RUJQVkpNal80Z2tSc09pVElpVmlwV1RGUkdPNE1OZWczaW1LWGQ1X0pOdi1UZnRrZ0VGa0JjelMwa3VmVzJuekREMVk5OTVSSzBqMkVMWXlJTUFOYzE3QVlzZEE?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "12017"
++   ],
++   "confidence": "high",
++   "note": "Carlton 71 MW, same project as item 65"
++  },
++  {
++   "id": "N1-074",
++   "headline": "Lightsource bp secures planning approval at 57MW solar-plus-storage project in Wales",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-06-02",
++   "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNRjZjQWJwUzFJZHlqdS1zTzJhT19vcHc1TVUzZklZUkhHWHdvTHpqdlJTZTVqSUk4Yy1lb0x2WlRySmsyN29xUXZycThfT3dkYjZzWE42N0hKNHQzQk9nVU9Icy1xN2hXaEJSeUpVMG9WWXRZZXVjSE1KbG9FdGZuc19OYno1LXF3T3hMYTVfNVROQVRoQXpjc0lvcW1Db0p3dnVEdVBTUC1FbnJVVFpWRGZEU05VMUdkT0FGakhlMk44R2ZFS3Z3TnM3QU1kTU0?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "7858"
++   ],
++   "confidence": "high",
++   "note": "Lightsource bp 57 MW Wales = Plas Power Estate"
++  },
++  {
++   "id": "N1-075",
++   "headline": "Drax buys Bluefield Solar Income Fund in £548 million deal",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-06-01",
++   "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOVVRSckpSNDFTWXhMdWphd3FWZEl2YU84bEt2TmRoRlVnNDE2Nm02U0xscWRnTDJYWGxOZzVMU04zbFZfUWt2eFpTRHo1Q21hVXVzdlVfc21tUUVZZnlhMDYwTjJEYkZhVDIwbnNrTE1SNE91dnZ6OXVMTGZKcE1Mb3VjZ0NfUHhpZlF0UlphN0pXUHVmTFhpMDZZSjUwMDdadFFFVVZMRDVnQQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-076",
++   "headline": "Chelmsford: Longfield Solar Farm Limited to close Wheelers Hill and Cranham Road",
++   "source": "InYourArea",
++   "source_url": "https://www.inyourarea.co.uk",
++   "published": "2026-05-28",
++   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQMUNNMi0wamo3SExnYmdzQmJyOXRuYnJDRGEtR0txb1lkMnFrS0g3cUkzSHExNFozanpzRWQ5ZUNsLW5Yc0dTRGFUYWRsZW9OLXh3WnlBQllra2cxVU5sd3BGUmZldWkzUFNlQXl1aUx0aVN2MmlKbXQya2ZxbDQzcmQzRFJpQ2F5MDRsYUpJVVhLSENSZnJUU3piendwZUJiVldlcjVlT190ekNZS3l0TWlDOA?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "8162"
++   ],
++   "confidence": "high",
++   "note": "Longfield Solar Farm Limited road closures"
++  },
++  {
++   "id": "N1-077",
++   "headline": "Eelpower Energy acquires 50MW/100MWh BESS project in Devon",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-05-28",
++   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQdTJKZ3ZJVFo4YjI3U2oxWlhhTjVWeHdfZU5JUGdvUG16T2xEUWFmeU1mMmYwZzUzLUxabjZaQzBQTkVPYlE3ZHZtckhCUDZwOG5yc1FrZllPcmpQRW1VcjU4THFBaTl5MmY3SXlIWjFjT05VemdvUWFKbUdPcWR1dm91cVBkWS0zMjh2ZjZBUlE1ejI2UDQtcjVTRGN3eElRYkhRWUhjTVFQeVFNNVE?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-078",
++   "headline": "EU Roundup: TagEnergy, Iberdrola commission France and Spain's largest batteries, construction launched elsewhere - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-05-28",
++   "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQb1FWNDRyRC16TVNxWFdaNGM0TVlZVzhEeWxUNlY2WjhQNWpOeGdDczVjc2hKcnVDbVZzcVlwbEUwbmtzWE5SNWJpS3hBVHEzckVpTm91ekZjU2ZGdHkxbWFUc19VUXRxalRpLThKYVlUUHpRM2xiUlBpVnNva2Q0TV8yUDRWM3FZNmh4WGcxdUpKcVpSQ3hMb3ZWblcyOHVNQW9PSEx1dlVGU1ZhcHNwaHpnWWxHaE9aQTNNZEtoVjdCb3czSFE5UE9od2tRMTVGRWlUYm9fSTQxUQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-079",
++   "headline": "AGR Renewables closes financing on 310MW/250MWh solar, storage assets",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-05-27",
++   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPdXJYSURuQXZFeTAyZUVOc1JLQTBrTDdHd1ZsLUdsUDF3Y1BUaUpUOElWUTZZNU42YXpISGNYSmNZSVdKU251aTlGZFVvZHc2WUVCcm5PNHNTbUJ6cXFMSmJ3Szl2dGVWaG9ONzg0bnNpeEY2WW81czdULUVobkswMXFoRjRwbDBoVERqNmtsdlR0TFZxNzl6emRTN0VlRUllNEZmLWtpcFZ6UlljaFJKUmJmdng2TGU1VVE?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-080",
++   "headline": "Gresham House to acquire 480MW BESS, completes financing on 397MW portfolio",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-05-26",
++   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQMFdFSjgwV2c1WE8yQm9HYkpzbk05UWI0R1NPUHRxa09KVURmZUJFZjVqdC1SZXJMWjYxQk1aV3NNcTVyT2g1UnhJTW4wTGJGVVJnU2szYlJPOFlxUEpUZ0V6QnFwdk9rMDFwaks5d0JBRTNIR3pHZDYyWjB2SkwwZlFiTnRGaElaYkRBOXQ5TGRxU2hPdUp5WE5tSkUtb1lVXzBHa0IxZjEtM0xucGNTUUFlWm8zM0x1VTY5R0Fia0pXMGM?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-081",
++   "headline": "British Solar Renewables buys 56MW Essex PV plant",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-05-13",
++   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNcmthTC1RamxLTUVBVFZHcFJScGdEQ3p3bXpRVzdsWGkwOFVucmZZWGh6a3phRlZnUTBSUGZuT3dWbEpuNjV3MXZyMk56SUlyWUctcVNRMlhWLUREM1BFaTgzWktNMy1ST2VGdXZZcVgzZ213cmFZMWM5NmhDRnhrT05KQVBBSTlXSHhiVU1kMUZQOHhocUYzUG9fZGk3YXR3?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "BSR 56 MW Essex unnamed"
++  },
++  {
++   "id": "N1-082",
++   "headline": "Elements Green acquires 300 MW Newarthill BESS project",
++   "source": "Energy Global",
++   "source_url": "https://www.energyglobal.com",
++   "published": "2026-05-08",
++   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQbU9icGRUcGtHQlhHMkRLMGRxeWhwZFRIWDIwQ2FmYjNIZmhRSkJkVjBDQTNzRFdHMlY0YWFoUktvOFdvN2x0V1lJX2ZMc1NvRnNzWlRldEFRTFc4SlROUnJqUmExMlBCQzJselhZdXRoX0RZQVhiNVpxcXY5VzFrWVppaVhYTUptajRrZFNHQjBxNnl6OS03ekNzMFp3UG1QMmdyQ2U5emlhMU1H?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "14763"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-083",
++   "headline": "EDF to optimise BW ESS’s 350MW/1,243MWh Hams Hall BESS project",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-04-28",
++   "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNS3VQT1piNnRuc1Q1ZXJ3YmRnaUcydlB4MnpTM1pkT2V6SmZZeU1iTGFOeWhhOTRORGdnODJwbi1CclRiRzBQWE5hbjdoRkpyd0dXLTNwWjJ6UEdJZEJyaWNoSlhibF95QVhucVRsall3elY0bzgzSjlaSVhLZGdHMnJ4b3ROc0x2eU9yemlKbXBFXzNCd1JTRnA5dlExMTNXdk1Yb3lQNEFoTktPaU5vbXRjMXc5aGtMMzhhVkpCZDhHWk9n?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "9427"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-084",
++   "headline": "EDF and BW ESS partner on 350MW Hams Hall battery storage project",
++   "source": "theenergyst.com",
++   "source_url": "https://theenergyst.com",
++   "published": "2026-04-28",
++   "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNY3FBRVJQOWtXdVFlZklLSzk5eTI3X0Y4Z2dUSzh0cFVCelJ5dUtaOUtxdWx6RGdCNUxMOGdKTTNLN1kyMVJqdVNVc25IaXBxVURmS0hoQmVQc25xUDhNRm5EMTlzNi1kSWRPTUcwOVppeG1faGd1d0xFendacURubjJEemJJV2V0U0h2bVN1NGJyTV9B?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "9427"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-085",
++   "headline": "Eccles battery storage system plan secures £245m finance deal",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-04-28",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9YVkJpOW84bzh0UmRXcGtETnRHcEZSb1c4bC0wWWc5OGlkd3kyUU5qSVVPVHU4TU9zeWFwc2o1R2JDZG56OTFzOGpVTlRmM1UxWlM4Q05aMmhFa190?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11867"
++   ],
++   "confidence": "medium",
++   "note": "Zenobe Eccles 400 MW (not Eccles II 500 MW Matrix, not 50 MW)"
++  },
++  {
++   "id": "N1-086",
++   "headline": "New ring road surrounding 'gigafactory' approved",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-04-20",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1KQm1yQ3pMZzhkaW9HUWpYSTJORl9pcGJNZFh5M1dDWVNSemdDSmtNQ0FIWkVHc0wwcmowTUhYdWYtRWRONWtoMkN4V3Y3YzBKcE9SYkh2YzhlMF9M?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-087",
++   "headline": "Monk Fryston BESS Set to Become One of the UK’s Largest Battery Storage Assets",
++   "source": "Construction Review",
++   "source_url": "https://constructionreviewonline.com",
++   "published": "2026-04-16",
++   "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQc1ZBeWFqVUFkWGc3SGQ2b0hSaV9ORy1oZ1FNN2xLMUladjZMeDNWU1pzcllrTk9HNV9VQnEwMU5vVHBqZk5fQ0hQWldXelRWOVRud1lwTHRRWmdKWXZCOEtGV3RqMm1rbl9xUmpTQlJLemZaT29YOU02eHRON2ZVY1B5LVpLT3I0bmc1T1FVSFZ6OUlHZFE?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "15164"
++   ],
++   "confidence": "high",
++   "note": "320 MW SSE record; 57 MW twin is outside universe"
++  },
++  {
++   "id": "N1-088",
++   "headline": "British Gas owner Centrica activates 40MW BESS projects in Sweden, subsidiary to optimise - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-04-15",
++   "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOSUVyYWdTT0g1X3dseXY4OVJhNVhtR251MFpXaVRMN09wRF9kUVVqRjFOMXNSbHgwWWpzVmRTYVdSdzFEQVlwRlVaVmpEeW1BZkVfQmE0TG9sOXUzVXkyc2tXNEJiQ0ZZWHVnUVZGSGU3MGIyTlh3ZlJ5Mmo1TzRCMk5HcTcyLTRpNmZLNnNkSVQxUjRrTFVTeFQyc0xFNTlRallNLUFfSllta2x4MHJjWjJSRDVpWlZZVGdGOGlR?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-089",
++   "headline": "Country lane solar farm could power 13,000 homes",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-04-13",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1nZDVYLXBJQ3NVMXlaSFVwdWlHWC1OS2EwZnlwTGpMQW1HdWJ0NldGeEhTeUF1YkhRdEpNOWNKRnk0NmVhZjVYU2d3RTFaclRDQm1CM0FOSGxseHZG?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "unnamed"
++  },
++  {
++   "id": "N1-090",
++   "headline": "EDF receives development consent order for 800MW PV project in England",
++   "source": "PV Tech",
++   "source_url": "https://www.pv-tech.org",
++   "published": "2026-04-09",
++   "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOUEx2QkRRemc3VjhyYnZxdkllM2Q2TXE3R21PdUx3dGhsTDRHMndpQ0dnX1hWalV3ODlsTjdBOFJpSGtMX3RIS1A3U3R6cGEzRTFFNi1BUFZUY2pTTVVQbjRldmJrUFdzaXRHUWxnOEQzMlo1WFhhV1VvelRrb3JWWkYwb3JNZ0Z3djhCSHZURFdtbXVRc0g3YzVXVQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "13043"
++   ],
++   "confidence": "high",
++   "note": "EDF 800 MW DCO = Springwell"
++  },
++  {
++   "id": "N1-091",
++   "headline": "Rag Lane Solar Farm",
++   "source": "libertyglobal.com",
++   "source_url": "https://www.libertyglobal.com",
++   "published": "2026-04-04",
++   "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNcEV1el93SjRoV2FZYTlDRlhRaDREWTVCb1JWVXJZSkQ0UDJlTnk2TjBtc0ZwTnhqUmZ3ODNxT2VNRmc3REwxOVN0eG1jSjVLS1lmdURHZ2NkWmY5NExmb2VqNUpYNHllSVlrRXd1Ulh0V2swcEdOVnZoTjU0RU9EUExMQm9IN3NNNjZkcEV6TFVvQXRxQ3JaVg?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "8393"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-092",
++   "headline": "Kells solar farm refusal of planning appealed",
++   "source": "Meath Chronicle",
++   "source_url": "https://www.meathchronicle.ie",
++   "published": "2026-04-03",
++   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPZUVlbFJiQjNYMHduem1GZmlQV08taUxUQk9tX3pCQlVqb2J1VGNDcWhPVjdCc1RINDVDZ1RkZHAtVGg4dHFYOFh3VVpLYjl4THhYSENjQmJwYW9uUU1pRDU4Tk01cWZsR3ZsMV9nbVI4cUZTTFZ3YkdXSlR4cVRGTjJySWoxYTJTYTFFRjI0a20?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "5967",
++    "6012"
++   ],
++   "confidence": "medium",
++   "note": "Kells, two NI records"
++  },
++  {
++   "id": "N1-093",
++   "headline": "Drax acquires UK-based AI-enabled asset optimisation platform Flexitricity",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-04-02",
++   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPRmhTN0R3X2V4eFBjNFpzaGpOTHNWd181ODJtbEsyTGYzaENuQkt3M2NqbFdhNlV2YnI0NHpsRWpLc2ZZaW52VVl3dzVvZ3lURThwZ1dEQXpHUFUzQU5iWXpGRENyV2ZnOWJNSDhKaVVvUGNRdDRWZmQzMHV6YjZiMWtiWVRFS1ozMG1McUFIZ1A2dTQ5YlVVM2psbmhsRU1SZzI3eVI2ajhlTWtreWxVUUNpSW40ckdmVlpFS1YtX3pHc2M?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-094",
++   "headline": "The Grange Care Centre Faringdon recognised as Top 20 Care Home",
++   "source": "Swindon Advertiser",
++   "source_url": "https://www.swindonadvertiser.co.uk",
++   "published": "2026-02-26",
++   "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPMnVPdFVnZVhYQTFuSlhIMVJYUFVpQ2JKSXNuMFNCNlZUMG41d2l3aUt6V1RJSzRHM1owenRqWnNNWXNaVlBoTXpDd3FXaHR3VFBpYlE5ZHNTbXRuU1loWFRVRldDRWNMYW9vejlrUVR2MTdjbDdpXzFjaGpGOUt6ZHA2bnBFUTh4ZmtlQ0dxOXZ2MndjNGJaMjdNeXl6aEFMQ0gtelJtVDRYbzg?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-095",
++   "headline": "Campaigners speak of 'shock' at sale of massive East Yorkshire solar power scheme",
++   "source": "The York Press",
++   "source_url": "https://www.yorkpress.co.uk",
++   "published": "2026-02-23",
++   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPOF9icWczcnlORzNmQjViLW1udlNRM0hvU3VwQUROWHl1dS00UnpaVkZGVEVWbFZsSEVTY1l0RGpRYzI5d3dQTEppR1JWOHFqX181SFdTZHFhREExMVZ2Tm4xQ2lJLW1ITHpXVG4tSElsSFFRUW5QZFA2THQ2QXR5UGNacVo0Tmk4ZTh4WnpmNm5KS29uZTJJ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11678"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-096",
++   "headline": "UK: Ampyr Solar Europe announces acquisition of East Yorkshire Solar Farm Project in the UK - energy-pedia.com",
++   "source": "energy-pedia.com",
++   "source_url": "https://www.energy-pedia.com",
++   "published": "2026-02-22",
++   "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOUk9TYWEtOUo1Z19jeXFzdHdsQ1dELVVLQ1dTWWFPQ0h2LTlKVFhDeHN0VVZfZ3VmUXI2X3N5ck5pbTdyMEM3ZlBYSlFPRHM5SHpnbDNVQWRqUFJOeXprTUJ4WnRrZy1xN285bllVUzBzX2FFTnRLd0dfLXMxdnZ3T284TnViZHByNTdlMF84Slg5d3BDLUpwcFJIMllaRUlPMnpBd3dFa0YzWWYyNGhsNDkySGZPaHVTVG5pSUlXQWQ4ZFVVa18zRkF1eWVYeU9XWkE?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11678"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-097",
++   "headline": "Ampyr acquires 530MW East Yorkshire Solar Farm",
++   "source": "reNEWS",
++   "source_url": "https://www.renews.biz",
++   "published": "2026-02-20",
++   "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNdndmMVZ0T2djS2Z0VEVnS3RkN21LRHF1TTg0OVBza2lwb3hBZ3ZuNmt2UEZKSWY1U1dnOEdlNlVXd3VpVlU3YU1tLTJnWER6YkswS3h4VHowTHl3LVZ1V1VMVm9ydVhnMFd1OXdGa0kyY05pU21mcFJuS3l6d0VKMUdEbEJKeHZOclBsaA?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11678"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-098",
++   "headline": "New owners for East Yorkshire solar farm 'as big as the city of Durham'",
++   "source": "The York Press",
++   "source_url": "https://www.yorkpress.co.uk",
++   "published": "2026-02-20",
++   "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQVHZ2SjR1ODFqa0ROcEUtOFVmWWNYbVhKNS1hejFnbE9QdThQLWhtS3ZXZTVQNlBEN2xlVHJKZGZwWGs2WXlHSi1pbURVVWVLSDVqRXFsRkNJM09Ybk9jdDhKU3M2bkVHNzNkdUpwR1hEWVlKZ0dvWHJON0FWNWZNRmRCcmc5OXZMc3lkSU1WX053UkVELXFVZ2txb1ZoOTVTV2c?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11678"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-099",
++   "headline": "Fenwick Solar Farm development consent decision announced",
++   "source": "GOV.UK",
++   "source_url": "https://www.gov.uk",
++   "published": "2026-02-18",
++   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOYzd6VWl5bXY4TmVRNDNUaFB0bW1JNk9sdF9Qdi1VV0YzWnhWLXVjYlBubXZxaEI0NG4wMU9FT3lNYk91ZXdFaW56OVZrUGpkX21TUFFJMFRCZ0ZWd252ZDlHVVFzSmx5dS1VNUxfcHJtZkNHYnp2bFpEbTlhTFlVNHZuSWtwSV9ZdUJERDdZaWtDOEVRMlhr?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "14098"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-100",
++   "headline": "EDF inks Tye Lane solar CPPAs UK",
++   "source": "reNEWS",
++   "source_url": "https://www.renews.biz",
++   "published": "2026-02-05",
++   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1XRGxyaVp3Mm1nUnFYcDE5Y3RldGtwTWNYMTVCNlV1ZFVxUEJLVnlzcm01U01vWDVCV0RvOTh2RFRvdFpxNi1KMTlSWUJnTkppLWVVN2VNdUk4djA0THRzSlNjelZmQ1N4YXlsVUtJQXRra0V3OENNMzh3?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "9610"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-101",
++   "headline": "Drax signs tolling agreement with West Burton C for 250MW/500MWh UK BESS",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-01-30",
++   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPU3ZBUG03UGRFdndhd0VFTmo4a3YwejZYc0Nlek9YWjVDZUlFNE1UTW4ycEhXS1RCYTRFSTJuM2xaQWVvZEZMSTNUaV9vOGlfRUFLN0JzZWVYOEduUC0zSW44NnMyMXlnaDFEZU1QYWRoMzd5SmtkVkx1X2o4N0dyWmtJVjJqYk9POUdlUTJNM0RNQ0txX1QtVWMySjExUFZlNUh5d0REN255NFlTOWk0SGoza2N0OXU1Nk9IRzF0OA?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11928"
++   ],
++   "confidence": "high",
++   "note": "West Burton C tolling"
++  },
++  {
++   "id": "N1-102",
++   "headline": "RWE starting construction on 400MW/800MWh Germany BESS - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-01-29",
++   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOaWk1Rkp0RUxCcVh0ckJjT2xScVNkbmE5QVJpVF9uOGRwYWNmQVE2dmEycjF0c3BReWp2OXBhSkgzNDlzdEg4ME52Z0x4QmJYOHhqZDJLV1ZtdHpNZ2lab0NmcWFDcFZ0STZMZHBPMTAydGU0RE51azNaalpjbG1PM2JtemI2OXY5T0J5V2FyQk0?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-103",
++   "headline": "Masdar reaches financial close on 300 MW Uzbek solar project",
++   "source": "pv magazine Global",
++   "source_url": "https://www.pv-magazine.com",
++   "published": "2026-01-19",
++   "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPdW43TmJrMlVzZ19HRksydjFzVTNRdmFYYXk0RzlLUVBCRjl0N1J3eEtKdEl2UUZWX04yMTU2MVVfRVRybXlaRWZXZHVYN1h3Q2NoTmI4dWVwQWRhbkhvMjBnVHQyaWlwbl9scnBSaUt3VHpvU01lS1FpVTM5SXVSLTFRVGRXRkEyR3JWQmctSkYwekEwVzc4Si1zaWZzOW9Qa2c?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-104",
++   "headline": "Statera secures planning consent for 8-hour energy storage site in Bedfordshire",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-01-16",
++   "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQd2czZ0NiNGgwaXNQT2lDTHVEWW4zT2g3MmdQNnlRb0lncnV3eFVYeHlNNFM5c3BvWEhFc2JPOEN2UEZadWJERllzaUtscHRhbUI0X0IwcWpjMEFUQzZmbHNsR1UtWXFSVUVqVURtR0ZJSUZwUFNFVTZhbTdlYVhsVGdEXzdKWnBWdHFocTFPSEpkYTFKa0loWU1pYl9hRG9WMzNNUVNpQjZvbV84aTJ5d1FaS3NPT24ycTlTbmRSMUxTX2sxQURqTkhB?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "18777"
++   ],
++   "confidence": "high",
++   "note": "only Statera BESS in Bedfordshire (Sundon)"
++  },
++  {
++   "id": "N1-105",
++   "headline": "Neoen and French TSO to trial grid-forming services with retrofitted BESS - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2026-01-14",
++   "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQUktkbkY1bXZvQUZrUTVLNUE1TjVpSHlUbEpSQXB0Tm1BZ3lRNGxrX3VBazB5NDJXSUVqbDdOM3lrbUUyd1lEaTc2NEljRGxOSGFwM0pNT2hUTTloNWx5TWhiRFU4eHloaGR6Wjk0ZDRUQmpTQ1YxSHZZLVVmN00ybHVETFpOeVFBRlY3Q1lVdkw1TXdWd01PU245Qk9sUV9maHFPZ1RGc0xGUQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-106",
++   "headline": "UK secures record supply of offshore wind but price rises",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-01-14",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE02X1dld2o3R0VCWERadjZYMVR6Z1JGSEUyb1U1RU1OME9VdGt2SnZGRi1DcXNLSHltOFpWRTY5WG40cGY0Q0xvU1dJOHY1WWJvTEN2azRWaUpNV1NO?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-107",
++   "headline": "Project acquisition: Elements Green’s 149MW BESS, Downing’s 72.1MW solar PV portfolio",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-01-13",
++   "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOTDNsWjVLZ3pOcE04eTcxRFR6VW5ta0tKU2JuSHVCQkwyb0lhZEFlN1A1ZFBQcld0SjVDRUQ4bXQ2cWR4STYxQUlTNzlSaEMyR3p1ZEViN3J3NUlXLV9kcXZCb1RvWEg2eGtydzZqMkdCTUpSZWd1NzNNX3REakFCZm9SMm4wTWxkcTV3c3RZWExJallubGJ0QWZaa2NWN1hOOVZlMzJiX3BpX28xQnEtZ3pqeExEVElwTC1sNE1PNXcycTIwemNTZklURkxEUQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "two-project acquisition headline"
++  },
++  {
++   "id": "N1-108",
++   "headline": "Elements Green completes acquisition of 149MW Bolney Green Energy Hub",
++   "source": "theenergyst.com",
++   "source_url": "https://theenergyst.com",
++   "published": "2026-01-12",
++   "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNQWRYak4yU1EzR3BLTUd2N3ZxVTRxNG1WX252cURUczhUYUZhOVlpcXl0NlJ3eEtodVhZRGttdFhXMzVTcTNIODRMZjJqVG5xbzd6bU9OZHpzSFNrcllHTnp4TG1wMGV2T3FzQ2dRWWNxNW9BWlhJV1FEYmcxejU1VVZENlRxOTA5NmMzLUpwdjh2N1V3NEJHMzlYS2MwVG9QeURkM285QTNSU1pJaHNGazRnRG9ycjJQUkRyblVaeUZ6MDQy?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "13880"
++   ],
++   "confidence": "high",
++   "note": "Bolney, Elements Green (REPD 200 MW vs article 149 MW)"
++  },
++  {
++   "id": "N1-109",
++   "headline": "METLEN to deliver EPC work at EDF’s 400MW Longfield solar farm",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2025-12-19",
++   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxON1BZWWZXbW9DZ21jZWg0ZnBwelRLNExOYVVuTUxzb1cxOWZEUWJJYlp2c3RBZG1kQUtFSWU0MjBNbzVPZzlXVTdqRi01S2xwbWQ3QTEtQ1ZCTVpjQ3YzdnhXUlZ4UU8zTXNHYzFlWkVuVnQ4M0JDTnF6WThvOVBmMlFiY01HMERQVTNoenJuSFdLMUtYOGI5WW80dDhicVMxbFBaYzRETTJKXzlHUFk1V0xxdw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "8162"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-110",
++   "headline": "Hatton solar farm approved on appeal after 378 objections",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2025-12-19",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE43R3Q5N0R1dmk3Z08wRkl0eXhidVEyc2wxX29PNEQ2d3Y4TVhmaEc3dkQ0ZzN1U3FCOXNkWHl6UW9xRHVJWldyZEJzd0xjUWs0TzQ0MEpQZ2hMUTJS?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11460"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-111",
++   "headline": "Green light for offshore wind farm to power 1m homes",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2025-12-18",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1JUTBBR3M4YXV6YW54MXlqSy1PRmV1R2ZjZXhCT01qYWlfLWRuWVZzNDdsdF8xWlg4OEpYZEI3dklTWnB0Mmt3Sm00dldPVUlvbzNENUZRSTZZbmlw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-112",
++   "headline": "Enviromena wins approval for 40MW solar plant at appeal",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2025-12-16",
++   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOVUNHa0huZ1hRQUJRYkVnWUlLaUdJQkhUdVQ0TkNKRUNVcUN5b1JGTjlJODhwNElONUJsNkFvc0VtWGFtUFVKZUhDRW5ialZpZTNGWUtweURsSVBSWF9uaGRqNnhudW5fQ1lqS0w4NkRIZ1J2YUJNTW5MLWJRYkU5QV9fclhycE9PSG9JNXFiaXpIbzU3SDJfejhydGZWeU5KS05MWXNHRFY?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "Enviromena 40 MW appeal: Marr Hall Farm 13372 shows Application Refused"
++  },
++  {
++   "id": "N1-113",
++   "headline": "Consent awarded for Clifton Marsh Solar Farm",
++   "source": "Vattenfall",
++   "source_url": "https://group.vattenfall.com",
++   "published": "2025-12-11",
++   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOX3ZfYXVMemQ1TEhTREtKYjlFUzh4cHBZY3RIQTdZWF9KcjJDRFkzVVRhRUZOSDdKcFgxZW5lR2owb0tQRTE0Xzh1WjBidmMteHhtdFRZQ0EyVmdTU0o2Sk91ekgtbVQ1Wi1WRXNFTnIxdGd5Y3B6V0ZRbEVVVExFRHhmNWk2QnNtMjRrM1A0dDNldW5xMW9LZjU0a0pMbHNtVExoSnFfTQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "13763"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-114",
++   "headline": "Government approves new 1,900MW Camblesforth solar farm",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2025-12-04",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1OTFFtWkV1Wm9SUnpvU3pzdDZhdHh5blZCWG82ZjdweURsYVFLWlRyWG1FUjZvTG5SSmwxSlZ0TlRxU29Hc0Q1VGJ3SklVT3UtVFRfU0I0WmxqTThW?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11476"
++   ],
++   "confidence": "medium",
++   "note": "1,900MW is a misprint of 190 MW; Helios at Camblesforth decided 2025-12-03; REPD 8100 Camblesforth Solar Farm is a different 49.9 MW scheme"
++  },
++  {
++   "id": "N1-115",
++   "headline": "Helios Renewable Energy Project development consent decision announced",
++   "source": "GOV.UK",
++   "source_url": "https://www.gov.uk",
++   "published": "2025-12-03",
++   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOMjFhNGpENExHdWl1WjlaLVF2U3VjZEJpUHV6NVAtdk9YQ1RjbkoxYTFodGNUaEJaVkplQXNwWnJ0MGU5eUNrUHEwTU9OYjc3TV9wQmhhNWdDSGVpYjZ2QmFnaV9CLWphSS1QelRPRlpNOVRYWWxJZFhfY0U5cnNUTG05cHN1QUJ2X0xBTkE3R05sRzFJSmQxRTVzMFJiVmprNFBYNl9Ob0w?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "11476"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-116",
++   "headline": "EDF to optimise Chinese lithium giant Ganfeng’s 160MWh Kintore battery storage system",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2025-11-25",
++   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQZ1g1STVvMzJIM0hFVE5samJ0d1hScF9hcEd1OWpLRkJlTno3UzQ3NUtubThzWVJvMGF5VHdmSmNreHR4VU9CbXBLUzhvY2xLSkdNXy1JVFVSN0szYk5XWFg5cFFqY1U3RDdIQVhZZXcyRUZ5QnVQeW1faEhIZFFvREZPQXNLVld3UjJYTWx3SUdJOHhCbzRTdjNlMW5YSU8xVnVJQVF2U0U1b3hpdUVtZE0xVXZpdjFWckUtS2trb040cHUwNWNyeVZCY0xTajZa?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "Kintore 160 MWh: capacity below universe or a different site"
++  },
++  {
++   "id": "N1-117",
++   "headline": "Kells solar farm plan setback after archaeological find",
++   "source": "Meath Chronicle",
++   "source_url": "https://www.meathchronicle.ie",
++   "published": "2025-11-13",
++   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPcXQtaEIwMFhobDVWQ1kwM2I3cXYxck51ZFRvdk1xQ21FcjU2YjRzTGpCdk4yMDAtazR5MXdpMmNMZklZVVpWd0RyZ0J1YmE4X2pKdDY2SDhrM2xtUlI4WWg0SjZyck1jTWdicnVETWxLYmtjSUJnOWVCM194R1ExSkdJOGowQmUzNENJXzVhTVNraVNJQ2RlNmZGdG9KUQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "5967",
++    "6012"
++   ],
++   "confidence": "medium",
++   "note": "Kells"
++  },
++  {
++   "id": "N1-118",
++   "headline": "Miliband grants DCO for Stonestreet Green solar-plus-storage NSIP",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2025-10-24",
++   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPSnVYYV95d2szYmtjTVlLVnIwMU80SXRnTmo3RlFxY3Q2RHhkMVRnaGJKNUp3aVpKS2FONXotTk1WOUhBSjk3TzdvRWU4czBpTUllYW5RcTVtU2pRZnpVRWliOS00ZTRBVlZlaXZYdTN0V2w1Mzk4ZWFrMEVqaHluNENsV1N2c2s3M3Rab3VxSk10bWlKWlpRZkE2cU1mbXpka2xYRkx4ZUsyWWloQkpGOTB2d0NQZw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "10085"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-119",
++   "headline": "Stonestreet Green Solar development consent decision announced",
++   "source": "GOV.UK",
++   "source_url": "https://www.gov.uk",
++   "published": "2025-10-23",
++   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNZjhycEY0MTNSS1J4R1BWcU02MlFVS1dFTXZxZ2pYbmNpV2dMcXhsRXJpVkVCbUY2LXB1cEVVMU9iZDYtWnVWLWhScHdtelEtSzBZemtnZXlYTmxVX1lkeThhNUNKeFJEakx3c2RVaUFoMUZna2E5VHJwSWxPYXdvNGdQaVFwZFhxSzlFSFEzNUlnOWtjeXVwZ3FNVXBoUQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "10085"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-120",
++   "headline": "Downing Renewable Developments Cornwall solar approved",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2025-10-23",
++   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNSHRHQjYyczFESGVXY2VqMjNQN04wUTVXZFVQWWVKUVdqWjBSM0JpTVlyY1JzNEFQNVVOYlRoOTJtUXNHVXRJS25JVWhVUnB6ZWZzaXdpT2xMRk5EUkk1ZDRJaTRfNi1oMm53QjV0VHBRc2lrS09OZk5aY3lwRlBTWFZjbFdCNWhTN0dyWHJDWEN5Z3JaaEdZOVVKcUlWM2dIcVdJU3o4YjI4d0xKUlFrSGdwbWZVZVN3aWc?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "13760"
++   ],
++   "confidence": "medium",
++   "note": "Downing Cornwall approved Oct 2025 = Fair Park"
++  },
++  {
++   "id": "N1-121",
++   "headline": "RWE submits planning application for £125m Tween Bridge Solar development project",
++   "source": "Doncaster Free Press",
++   "source_url": "https://www.doncasterfreepress.co.uk",
++   "published": "2025-10-20",
++   "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOQlFHZVV0aVVHUG9fNUt1NFNXdTlLQVM5c3ZOYnhua3d2akRsLTVjZ1JLWlFHQWpwNkZHSDZ0Y3pZLTh4UkIzZmlyQWgyUXMyUTNXd2o2WGFXMEFPZlJwWmFrbllieFhTbTd2MjlfVTg5cTRjM1BWY1RabFhqQnZQX2pKRS1IUHNpSUtnaXRYQzdMWmx6LWdwWHg2QzdpVFJqc2JsUXh5TmM1MFhWeE81aU9pZnI1Skt0YXpkdVloWnpRdThwNFljbUtMbWl0UXBTQ1ZvcktpQWMyNGtF?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "12926"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-122",
++   "headline": "UK’s Cleve Hill Solar Park begins operations with 373 MW capacity and battery storage",
++   "source": "Energies Media",
++   "source_url": "https://energiesmedia.com",
++   "published": "2025-10-16",
++   "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1sWGhmZHp6QTI0bXh0RXRhelFDcjh4cnRpSzRSQUVUa3RoVHlsR0tyVDZhbFhDSXdsT0llZ1lZeW9xTDA4SmF4LXV4dHd5YU43RDM5cVRUS18zSnY0SDRIeXoxQzRzU09GWDNibzc4UXY0WGdOX1N4RS00QkE?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "6502"
++   ],
++   "confidence": "high",
++   "note": "Cleve Hill begins operations"
++  },
++  {
++   "id": "N1-123",
++   "headline": "Epic Energy brings 200MWh Mannum battery storage system online in South Australia - Energy-Storage.News",
++   "source": "Energy-Storage.News",
++   "source_url": "https://www.energy-storage.news",
++   "published": "2025-10-14",
++   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNMkpxSWwwMjVXYXM2NEk4dEl6QUtjTXRTMkp0aFNfbXp0QnYzcm44SV9XSlZNT054SHpaVnd1LVJEdVNkM1JINWFtcEFqU3VZYl9GdWhrUVo5WjZKNDRHSnVjcHg3d2hkNHZFUmd4ZkJoOHBFTUF3OFpwYWNUUWtxTjVvTXlGeFg0cUxPUkJKWHJmbUc4enZPblVETHhnTzBpOE8wM0pleTQ5U3FXQlFleHJKdlQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-124",
++   "headline": "More than 1,000 people have say on Green Hill Solar Farm",
++   "source": "BBC",
++   "source_url": "https://www.bbc.com",
++   "published": "2025-10-13",
++   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5CYnNDc2czUDZucmRILVZLb0hCT2l5M2ZaVlVDMnJlOUUzOXFXd1pVV0Z2cUJPcVB1S3B1RVJKV1htNEJtWl9aMERHOU0zVjRhRnFRYWxmeHVJdw?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "15793"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-125",
++   "headline": "RES secures three-year O&M contract for Cleve Hill solar project",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2025-09-26",
++   "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxORVFHckdrTkwybUZZUG9ITHFoQ21nNWM3TF9MdXp2eG1LOXlwdjN4QUh1LUo3TVdnUWJ4OTdrdjNMdml0N0Y3eDV2enZxdkUxLWRJc3F6YThZZm5ISlZMRFZDbF9lTlpOR0ZUT2RWTmtvWU1KaUpINzlNX201Qm5VZlJGRWt4bVhjcnF2cVRtVEwyazEwLVVWcDZ4UQ?oc=5",
++   "origins": [
++    "v5",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "6502"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-126",
++   "headline": "Adaptogen Capital closes battery storage fund with 100MW BESS acquisition",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2025-09-24",
++   "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNMjdmcGNkcUpSQlJzRkF2ZjF6ZXhyVEdKM2Fza0wxUlQ5bEQ4b0I2aDFQVHkyQzNmR0JXQ044eVpDVUd5RHk0Zzk5V2UzcUNXZVg1THVkM0NlNVJfVVM0YzBtbDZuN24ybXpsQVRUTXRkVnJMbzNXcDI5SHFVTVdhMGthd1VjS0NZMFZBYlVqaTlDMjNZVWZmMnVMZ0hZQ1NaN0F6dXV4UHVNNXl5NHhuQUk2Z3RCN1N1QjA1Wk5QZDU?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-127",
++   "headline": "Plans to build Solent Gateway 2 on Dibden Bay near Southampton",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2025-09-16",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1PbjdYRms1VkNwQlZSZWVfMlRWS2ZKU3U0RVBiWUE4SzM3a2lLbl9kcFp6WnFjUXR5V1I4aFVselNQNWk2dTdDUHBCMjhqckxHZ3ZuNndSeEhvaHpo?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "foreign, portfolio, data centre, wind, out-of-universe or not about one project"
++  },
++  {
++   "id": "N1-128",
++   "headline": "Proposed Sutton-on-the-Forest solar farm attracts local criticism",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2025-08-24",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE90NWdoSFdMaHBNb0FUT0tpQ3VXRlpOUVh6ZnpyTnBWUUtRYnVXSzhBbFFKTnByZDk2eXU0cDJDMGxjakg2ZG1YQmw2bnIwcnpqZ3hDZS1hMGhfeEdf?oc=5",
++   "origins": [
++    "v5",
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "19658"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-129",
++   "headline": "Solar farm plan for North Tawton field",
++   "source": "Crediton Courier",
++   "source_url": "https://www.creditoncourier.co.uk",
++   "published": "2026-08-21",
++   "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOZ0UzaHRwbjVaRmRIVWYzLWJYV3VrTUZXTk1kUjFWN0FZbzhzd0gwc3Y1bmV5Z0huS3Qwd1B4Y0hFcEp6OVZlZkxMaDlXb1kyTlJ6ZjhTUFl4T0FfUGkyNkpkWmpxRkt4Ull1VUo4WmQzUWZrMHhhS0pCQVV2b19yZWtKWU51WEtXOWwteXFhYWhLVFVrYS1Maw?oc=5",
++   "origins": [
++    "v6",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "new North Tawton plan; 1044 is a 5 MW application refused in 2011"
++  },
++  {
++   "id": "N1-130",
++   "headline": "Meadow Partners Acquires Ground Lease for Coalburn II Battery Storage Project in Scotland",
++   "source": "citybiz",
++   "source_url": "https://www.citybiz.co",
++   "published": "2026-06-23",
++   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxObWZLSUpHUktYY3hnNzBuMWw0RkJPd1AzRjlTN0o0bzkwZ2d0S2ZGSnpQV0ItbHhuU25yXzgtSks4R0lwbXpqNzRRNGY3YVZreUF5NThFVW05UEJtN282eUs5NFRIQkJHUXF0ejY3bzJEU1ZBTnRuUmNNWkZtbkZITnFNcnY4d1lzMGtkM09YZWVianJ1ZmRuVlJ4bzZpU2tfdzY4aGpGM01iY0xIR1lFenNzNUlWeVBEWkRheHJQZXRyVHJ6LU5n?oc=5",
++   "origins": [
++    "v6",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "12206"
++   ],
++   "confidence": "high",
++   "note": "Coalburn II"
++  },
++  {
++   "id": "N1-131",
++   "headline": "Qair reaches financial close on 46 MWp Brecks Solar Farm, its first UK project to secure financing",
++   "source": "Energies Media",
++   "source_url": "https://energiesmedia.com",
++   "published": "2026-06-10",
++   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE92U0czNXdXMll4MUtrRmJacWxLaGFuSmNzQ29Ra1VZUWtjY1Z2eDFSZDhCZFFHZFl3bktlX3Ywc0hRNGlmczB0UmxZQzV3cWdvMzFkX3cwdjdrYnZDUlZUbU80V3ZvbkRseUlJQ1RiUE5VcUk?oc=5",
++   "origins": [
++    "v6",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "10087"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-132",
++   "headline": "Qair secures its first UK financial close for 46 MWp Brecks solar farm",
++   "source": "Energy Global",
++   "source_url": "https://www.energyglobal.com",
++   "published": "2026-06-05",
++   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOWEdFa1pQSE5GMmJaYjFfQ19oOGY0YUtOalJiM2JEUzM2QjlidDNFcDJjSThqWUU5SmlNZjFJczc3YnF6VWYzbndVMEl0T0RFRlRub2NIQ29ZbDB2Vm1KZVpsTENhWjcwUkxpWHJoRGkzd2NxcmxraDNyaUtSd1JjNmRlT1ZGd3A5OF9FX0lpbjIwZk5uMXJNajd6V25PZzNiR2JHNXcxVmNDMy1PSWRzd1ZpTlkzZw?oc=5",
++   "origins": [
++    "v6",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "10087"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-133",
++   "headline": "More reaction after plans revealed for major new solar farm near Burton Joyce bypass",
++   "source": "Gedling Eye",
++   "source_url": "https://www.gedlingeye.co.uk",
++   "published": "2026-05-15",
++   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQSjFPTTI3ZV9samJpWUh0cHFMdW9Ed096TVRKSFBHX0ZReDlZMTI4QmlDRzlvQ1JLZ2pTdFdfWGNTNkU1WmY3Rkl2NDc0aUtHU005UGZOWmNwa2liT0NMT29FbkF1Z2JnS1VLRmJST1FvSGE1aEg4OXR5czl1N2NVc203OG8ycHJwX1dkRVdrMVhiUDR2X1g5R29KOWpsM1YwSHlVVW0xUzdXX1M5cUJKbVdMRy0?oc=5",
++   "origins": [
++    "v6",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "new Burton Joyce plan has no REPD record; 2377 Gedling Solar Farm is a 5.7 MW 2018 operational site"
++  },
++  {
++   "id": "N1-134",
++   "headline": "Work on solar farm at former Williamthorpe Colliery site starts",
++   "source": "BBC",
++   "source_url": "https://www.bbc.co.uk",
++   "published": "2026-05-12",
++   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9tanJsVVNFbjdTdy1hc0NWajFnLVhwYnlUQm5EbGFFZXRJY3Y1dUp0bzRNelNwaDNHWUpmNzRiblg4RmhTTUZpUzc0WklZRkZ0a2g0aDZZN2RTRmtF?oc=5",
++   "origins": [
++    "v6",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "5533"
++   ],
++   "confidence": "medium",
++   "note": "same site; REPD record 5533 is Planning Permission Expired (2019) so it is a stale record"
++  },
++  {
++   "id": "N1-135",
++   "headline": "Qair contracts INTEC to provide EPC and O&M services at 46.5MW Brecks solar farm",
++   "source": "Solar Power Portal",
++   "source_url": "https://www.solarpowerportal.co.uk",
++   "published": "2026-05-08",
++   "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPYUVOUi1jemV6VW9FdnJOdlZ1QVdveGt4S0c4YVdpR1RkeDZaNmRsSEhUN0Z5M1JZZURDNkRjR19qRndaSXJuU3c0UUhUQXV2SXlYemV3aVRtWVJhdjg2UHl3ckxQbHZ2SFhrekd6aTEzM2R4ZU5FMTNzc0RVY25YalpZbEtpMDgzZ3oyUjM0c1NaZFlIZi1NLWxLRGpLek5zUW9fVUlpWE5nV2JnUXRwQmlTNUZIV3ZWRnE1MEx2VUxtMU9iRTE2R1hB?oc=5",
++   "origins": [
++    "v6",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "10087"
++   ],
++   "confidence": "high",
++   "note": "named"
++  },
++  {
++   "id": "N1-136",
++   "headline": "New solar farm heading for Gloucestershire Highnam - Punchline-Gloucester.com",
++   "source": "Punchline-Gloucester.com",
++   "source_url": "https://www.punchline-gloucester.com",
++   "published": "2026-03-27",
++   "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxObXRfaXZTSktQVEliMVV3cWZoOVRUdXpVaWJrLVNndFJFcHlteXRxRElYTHp6WXBjakVBQkRmSzVxZFNnWmFpOFFFQnl5ZkVkNGpsclBwMlhNdGZydTdEUFlOWVdJS0R2VkFraUJ3aGhaVUZsNWxMZzdnSE1JZmMtaHRFdzhLUWMyeDVJRVVKRWpBX09iZW5CNGtvVEtXcHBmOTRYMmxn?oc=5",
++   "origins": [
++    "v6",
++    "v8fast",
++    "v951c"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "Highnam 2026 plan: 19389 or 20772, not 5452 (abandoned 2019)"
++  },
++  {
++   "id": "N1-137",
++   "headline": "Lincolnshire farmer says turning to solar is only way to survive",
++   "source": "BBC News",
++   "source_url": "",
++   "published": "2026-08-27",
++   "url": "https://www.bbc.co.uk/news/articles/cz64qyy59g4o",
++   "origins": [
++    "v8fast"
++   ],
++   "label": "NONE",
++   "true_repd_refs": [],
++   "confidence": "high",
++   "note": "Windsock: no REPD record"
++  },
++  {
++   "id": "N1-138",
++   "headline": "Huge Norfolk solar farm near Long Stratton set to cost £1bn",
++   "source": "BBC News",
++   "source_url": "",
++   "published": "2026-08-25",
++   "url": "https://www.bbc.co.uk/news/articles/clyelee255do",
++   "origins": [
++    "v8fast"
++   ],
++   "label": "TRUE",
++   "true_repd_refs": [
++    "17494"
++   ],
++   "confidence": "medium",
++   "note": "Long Stratton 1bn = East Pye 500 MW"
++  },
++  {
++   "id": "N1-139",
++   "headline": "Heckington solar farm approval may face legal challenge",
++   "source": "BBC News",
++   "source_url": "",
++   "published": "2026-08-24",
++   "url": "https://www.bbc.co.uk/news/articles/c93e5lndl9vo",
++   "origins": [
++    "v8fast"
++   ],
++   "label": "UNCERTAIN",
++   "true_repd_refs": [],
++   "confidence": "-",
++   "note": "Heckington: Beacon Fen 13599 or Heckington Fen 9806"
++  }
++ ]
++}
+\ No newline at end of file

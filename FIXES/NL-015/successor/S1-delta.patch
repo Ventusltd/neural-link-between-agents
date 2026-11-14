@@ -1,0 +1,434 @@
+diff -ruN a/uk_renewables_pipeline/202611140058/CHANGES.md b/uk_renewables_pipeline/202611140058/CHANGES.md
+--- a/uk_renewables_pipeline/202611140058/CHANGES.md	2026-11-14 01:03:30.101656920 +0000
++++ b/uk_renewables_pipeline/202611140058/CHANGES.md	2026-11-14 01:03:30.045248175 +0000
+@@ -1,69 +1,27 @@
+-# 202611132345
++# 202611140058
+ 
+-Parent: `202609082224` (V9.10, the operative page; tree `6247a0c3c00e8e88324d9ea55b22d67dbbb1be90`).
+-One change: **the REPD spine is rebuilt from the DESNZ October 2026 (Q3 2026) publication.**
+-No JavaScript, stylesheet, newspaper or interconnector byte changes.
++Parent: `202611132345` (V9.12, REPD October 2026 candidate). Accepted parent trees, either of:
++- `a3f76f610dff9da15090df56181fdbccc2e210fa` - the bytes at globalgrid2050 `f9ccd703`, which were
++  served and hash-verified when the homepage was first pointed at 202611132345;
++- `0c7a4ed5ea369e4a4e71a45cfa6fe9c186fae773` - the same folder after PR #63 (`d5de5a03`) changed three
++  files in place (CHANGES.md, scripts/plugins/projects-v9-8.js, tests/run_v9_12.sh).
++
++The register, every data byte and every runtime script are the parent's. What changes:
++
++1. **Release label, not candidate label.** `index.html` title, brand, nav, h1 and meta line read
++   `V9.13 ... RELEASE ... 14 November 2026` in the shape 202609082224 uses
++   (`V<version> · <scope> · <state> · <date>`). The nav gains a link back to 202611132345.
++2. **CSV source count from the start.** `scripts/plugins/projects-v9-8.js` is the corrected file
++   (sha256 pinned in `tests/run_v9_13.sh`): the "Source Reconciliation" column reads
++   `source_record_count` from `data/v9.1/build_manifest.json` (14,967) instead of the Q2 literal.
++3. **Fixtures referenced, not copied.** `fixtures/2026q3/` (23 MB) is not in this folder.
++   `contracts/release.v9.1.json` is byte-identical to the parent's and names
++   `uk_renewables_pipeline/202611132345/fixtures/2026q3/...` with their sha256; the page never reads
++   fixtures, and the spine rebuild resolves them from the repository root. No large-files allowlist
++   change is needed.
++4. **Runner.** `tests/run_v9_13.sh` + `tests/check_v9_13.mjs` replace `run_v9_12.sh` + `check_v9_12.mjs`
++   (the parent's add/remove pattern). They check the parent's tree, byte parity, the spine and
++   interconnector rebuilds, the page's own loader, every MAP href and the CSV source-count text.
+ 
+-## The register moves to Q3 2026
+-
+-| | Q2 2026 (parent) | Q3 2026 (this release) |
+-|---|---|---|
+-| REPD source records | 14,657 | 14,967 (14,968 published rows; ref 7679 is an identical duplicate) |
+-| Spine records, solar/BESS/wind >= 1 MW | 7,680 | 7,775 |
+-| Capacity | 356,474.09 MW | 365,474.49 MW |
+-| Largest single site | 4,100 MW | 4,100 MW |
+-| Solar / BESS / onshore / offshore | 3,563 / 1,609 / 2,399 / 109 | 3,604 / 1,644 / 2,417 / 110 |
+-| With valid geometry / without | 7,652 / 28 | 7,749 / 26 |
+-
+-Built with the existing builders, nothing re-implemented:
+-
+-1. `fixtures/2026q3/project_identity_2026q3.json` - the repo's
+-   `scripts/build_project_identity_v6.py` (`read_official_rows` + `build_registry`, unchanged)
+-   run on the reconciled October canonical CSV (official CSV values, official Excel capacity
+-   precision and planning reference, 25 month-first CSV dates restored from typed Excel dates,
+-   the identical duplicate of ref 7679 removed).
+-2. `fixtures/2026q3/repd_2026q3_coordinates.json` - `scripts/data/build_v7_2_spine.py --repd-xlsx`
+-   on the official October workbook (sha256 `87811e24...`); Ref-ID set, technology, capacity and
+-   site name reconcile exactly with the identity fixture. Its V7.2 by-products were written to a
+-   scratch directory, never to `uk_renewables_pipeline/v7`.
+-3. `data/v9.1/*` - `scripts/data/build_v9_1_spine.py`, with one line changed so it reads this
+-   folder's contract and writes this folder's `data/v9.1` instead of `uk_renewables_pipeline/v9`
+-   (the same builder with that line reproduces the parent's 35 spine files byte for byte).
+-4. `contracts/release.v9.1.json` - dataset label, the two fixture paths and sha256s, the workbook
+-   sha256 and the seven `expected` figures. `contracts/release.v9.5.1.json` - its `expected`
+-   block. Every other key is the parent's.
+-
+-The inherited Q2 fixtures (`fixtures/v6`, `fixtures/v7.2`) are kept byte for byte as lineage
+-evidence; this release's builder no longer reads them.
+-
+-## The newspaper is unchanged
+-
+-The page still reads the repo-root `dist/major_project_news_v9_5_1.json` (sha256 `cea104c3...`),
+-which is not rebuilt. News binds to projects only by exact `repd_ref` (PRIMARY_MATCH); all 29
+-refs it binds resolve in the Q3 spine, and Beacon Fen (REPD 13599) is still 400 MW. The
+-international ledger `data/v9.7` and the 16 interconnectors `data/v9.8` are the parent's.
+-
+-## Known source issue carried, not corrected
+-
+-REPD 18561 and 18562 (Salters Lane, Tyne and Wear) carry the published coordinates
+-E 492983 / N 188837, which resolve near High Wycombe. They are inside the validity box, so they
+-map there. Correcting them would be inventing data; it is left to DESNZ or an owner decision.
+-
+-## What this release changes, one file at a time
+-
+-- `index.html` - states its own identity and the Q3 register figures.
+-- `README.md`, `CHANGES.md` - this text.
+-- `contracts/release.v9.1.json`, `contracts/release.v9.5.1.json` - as above.
+-- `scripts/data/build_v9_1_spine.py` - line 12 only.
+-- `fixtures/2026q3/*` - new.
+-- `data/v9.1/*` - rebuilt (16 project parts, 18 atlas parts, manifest).
+-- `tests/run_v9_12.sh`, `tests/check_v9_12.mjs` - new runner and check; `tests/run_v9_10.sh` and
+-  `tests/check_v9_10.mjs` are removed (they assert the Q2 spine and the parent's identity).
+-
+-## Review fix (Team 3, NL-015, 14 Nov 2026)
+-
+-- `scripts/plugins/projects-v9-8.js`: the filtered CSV's "Source Reconciliation" column was a literal
+-  `14657/14657 canonical REPD Ref IDs` (the Q2 2026 count) and so was wrong on every exported row of this
+-  release. It is now read from `data/v9.1/build_manifest.json` `source_record_count` (14,967 here). No other
+-  column, row or count changes. The file is added to `CHANGED_FROM_PARENT` in `tests/run_v9_12.sh`, which
+-  also now fails if the literal comes back.
++Not changed: the newspaper (`dist/major_project_news_v9_5_1.json`, cea104c3), the data, the MAP
++contract, the unpinned Chart.js CDN inherited from 202609082224.
+diff -ruN a/uk_renewables_pipeline/202611140058/README.md b/uk_renewables_pipeline/202611140058/README.md
+--- a/uk_renewables_pipeline/202611140058/README.md	2026-11-14 01:03:30.089970450 +0000
++++ b/uk_renewables_pipeline/202611140058/README.md	2026-11-14 01:03:30.040066268 +0000
+@@ -1,13 +1,15 @@
+-# GlobalGrid2050 UK Renewables Pipeline 202611132345 (V9.12)
++# GlobalGrid2050 UK Renewables Pipeline 202611140058 (V9.13)
+ 
+ ## Status
+ 
+-Candidate dated 13 November 2026. Parent `202609082224` (V9.10, the operative page)
+-is the exact frozen parent. **V9.12 rebuilds the REPD spine from the DESNZ October 2026
+-(Q3 2026) publication: 7,775 records, 365,474.49 MW.** Every other byte - JavaScript,
+-styles, newspaper, the v9.8 interconnector product - is the parent's, proven so by
+-`tests/run_v9_12.sh`. See `CHANGES.md`. The text below is the parent's scope, still true
+-except for the register figures.
++Release dated 14 November 2026. Parent `202611132345` (V9.12, the October 2026 candidate the
++homepage was first pointed at) is the exact parent. **V9.13 is the same REPD October 2026
++(Q3 2026) register - 7,775 records, 365,474.49 MW, byte for byte the parent's `data/v9.1` -
++under a release label instead of a candidate label, with the CSV source-count fix from the
++start.** The identity and coordinate fixtures are not copied: the contract
++`contracts/release.v9.1.json` is the parent's, byte for byte, and binds the parent's
++`fixtures/2026q3/` by path and sha256. Everything is proven by `tests/run_v9_13.sh`. See
++`CHANGES.md`. The text below is the scope inherited through V9.12 and V9.10, still true.
+ 
+ **V9.10 bounds the ACTIONS column so a sentence cannot widen it**, and removes
+ the offshore sentence V9.9 printed on every offshore row. The MAP link is
+@@ -35,8 +37,8 @@
+ 
+ ## Validate
+ 
+-    bash tests/run_v9_12.sh                    # parent tree, byte parity, spine + interconnector rebuild, page loader, all MAP hrefs
+-    REPD_XLSX=REPD_Publication_Q3_2026.xlsx bash tests/run_v9_12.sh   # plus the coordinate fixture rebuilt from the workbook
++    bash tests/run_v9_13.sh                    # parent tree, byte parity, spine + interconnector rebuild, page loader, all MAP hrefs, CSV text
++    REPD_XLSX=REPD_Publication_Q3_2026.xlsx bash tests/run_v9_13.sh   # plus the coordinate fixture rebuilt from the workbook
+ 
+ ## Inherited unchanged
+ 
+diff -ruN a/uk_renewables_pipeline/202611140058/index.html b/uk_renewables_pipeline/202611140058/index.html
+--- a/uk_renewables_pipeline/202611140058/index.html	2026-11-14 01:03:30.077590156 +0000
++++ b/uk_renewables_pipeline/202611140058/index.html	2026-11-14 01:03:30.028428974 +0000
+@@ -3,7 +3,7 @@
+ <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width,initial-scale=1">
+-  <title>GlobalGrid2050 | UK Renewables Pipeline 202611132345</title>
++  <title>GlobalGrid2050 | UK Renewables Pipeline 202611140058</title>
+   <!-- The deep-link contract this page verifies its MAP receiver against lives
+        on a second origin. Nothing waits on that request any more, but it still
+        costs DNS + TCP + TLS on a cold mobile radio the first time it is made;
+@@ -23,10 +23,11 @@
+   <aside class="sidebar">
+     <div class="brand">
+       <b>GLOBALGRID2050</b>
+-      <small>UK RENEWABLES PIPELINE · V9.12</small>
++      <small>UK RENEWABLES PIPELINE · V9.13</small>
+     </div>
+     <nav class="nav">
+-      <a class="active" href="#">V9.12 CANDIDATE · REPD Q3 2026</a>
++      <a class="active" href="#">V9.13 RELEASE · REPD Q3 2026</a>
++      <a href="../202611132345/">V9.12 202611132345 · REPD Q3 2026</a>
+       <a href="../202609082224/">V9.10 202609082224 · REPD Q2 2026</a>
+       <a href="../202609061329/">V9.7 202609061329</a>
+       <a href="../v9.6.2/">V9.6.2 LIVE VALIDATED</a>
+@@ -64,11 +65,11 @@
+   </aside>
+   <main class="main">
+     <div class="header">
+-      <h1>UK RENEWABLES PIPELINE 202611132345</h1>
++      <h1>UK RENEWABLES PIPELINE 202611140058</h1>
+       <div class="status">● 133 HEADLINES · 45 UK · 19 INTERNATIONAL · FULL ≥1 MW</div>
+     </div>
+     <div class="meta">
+-      <strong>V9.12 · REPD OCTOBER 2026 (Q3) DATA REFRESH · CANDIDATE · 13 November 2026</strong>
++      <strong>V9.13 · REPD OCTOBER 2026 (Q3) DATA REFRESH · RELEASE · 14 November 2026</strong>
+       <span>Canonical DESNZ REPD Q3 2026 (October 2026): 7,775 solar, BESS and wind records at ≥1 MW. Sixteen GB interconnectors on their own tab, outside the REPD spine.</span>
+       <span id="releaseMeta" class="release-meta">Loading canonical release contract…</span>
+       <a href="https://www.gov.uk/government/publications/renewable-energy-planning-database-quarterly-extract" target="_blank" rel="noopener">Official REPD source</a>
+diff -ruN a/uk_renewables_pipeline/202611140058/tests/check_v9_13.mjs b/uk_renewables_pipeline/202611140058/tests/check_v9_13.mjs
+--- a/uk_renewables_pipeline/202611140058/tests/check_v9_13.mjs	1970-01-01 01:00:00.000000000 +0100
++++ b/uk_renewables_pipeline/202611140058/tests/check_v9_13.mjs	2026-11-14 01:03:30.065735075 +0000
+@@ -0,0 +1,114 @@
++/* check_v9_13.mjs - the REPD Q3 2026 (October 2026) release, proven from the
++ * bytes and through the page's OWN loaders.
++ *
++ *   1. The contracts bind the PARENT's (202611132345) fixtures by path and
++ *      sha256, and the fixtures on disk there are those bytes.
++ *   2. The page's own loader chain - canonical-projects-v9-5-1.js, which runs
++ *      canonical-projects-v9-1.js - is imported unmodified and executed against
++ *      the files in this folder through a same-origin fetch shim. Every
++ *      invariant the browser asserts is therefore asserted here, over all rows.
++ *   3. The spine partitions are what the manifest says (sha256 and counts).
++ *   4. The UK newspaper is still the repo-root Q2 feed, byte for byte, and the
++ *      refs it binds to all resolve in the new spine (the page tolerates
++ *      unknown refs, but none are lost in this refresh).
++ *   5. The interconnector product and contract are the parent's, byte for byte.
++ *   6. The page states its own identity, a release label (no candidate label)
++ *      and the register figures.
++ *
++ * Run: node tests/check_v9_13.mjs
++ */
++import assert from "node:assert/strict";
++import { createHash } from "node:crypto";
++import { readFile } from "node:fs/promises";
++import { fileURLToPath } from "node:url";
++import { basename, dirname, join } from "node:path";
++
++const HERE = dirname(fileURLToPath(import.meta.url));
++const RELEASE = join(HERE, "..");
++const ID = basename(RELEASE);
++const ROOT = join(RELEASE, "..", "..");
++const PARENT_ID = "202611132345";
++const PARENT = join(RELEASE, "..", PARENT_ID);
++const text = (p) => readFile(p, "utf8");
++const json = async (p) => JSON.parse(await text(p));
++const sha256 = (b) => createHash("sha256").update(b).digest("hex");
++
++const NEWS_FEED_SHA256 = "cea104c3e9cfc07971680afdf5f64073e1d4825b63bfaf4e969266df8386ebbd";
++
++// 1. contracts bind fixtures
++const c91 = await json(join(RELEASE, "contracts", "release.v9.1.json"));
++const c951 = await json(join(RELEASE, "contracts", "release.v9.5.1.json"));
++assert.equal(c91.source.dataset, "DESNZ Renewable Energy Planning Database Q3 2026");
++for (const [pathKey, shaKey] of [["identity_fixture", "identity_fixture_sha256"], ["coordinate_fixture", "coordinate_fixture_sha256"]]) {
++  const rel = c91.source[pathKey];
++  assert.ok(rel.startsWith(`uk_renewables_pipeline/${PARENT_ID}/fixtures/`), `${pathKey} must be the parent's fixture: ${rel}`);
++  assert.equal(sha256(await readFile(join(ROOT, rel))), c91.source[shaKey], `${pathKey} bytes`);
++}
++const coords = await json(join(ROOT, c91.source.coordinate_fixture));
++assert.equal(coords.source_workbook_sha256, c91.source.workbook_sha256, "coordinate fixture names the contract workbook");
++const identity = await json(join(ROOT, c91.source.identity_fixture));
++assert.equal(identity.schema, "globalgrid2050.project-identity.v6");
++assert.equal(identity.records.length, identity.raw_record_count);
++assert.equal(coords.source_records, identity.raw_record_count, "workbook and identity hold the same refs");
++
++// 2. the page's own loader, unmodified, against these bytes
++const ORIGIN = "http://release.invalid";
++const BASE = `${ORIGIN}/uk_renewables_pipeline/${ID}/`;
++globalThis.window = { location: { origin: ORIGIN, href: BASE } };
++globalThis.fetch = async (path) => {
++  const url = new URL(path, BASE);
++  assert.ok(url.pathname.startsWith(`/uk_renewables_pipeline/${ID}/`), `loader fetched outside the release: ${url}`);
++  const file = join(RELEASE, decodeURIComponent(url.pathname.slice(`/uk_renewables_pipeline/${ID}/`.length)));
++  const body = await text(file);
++  return { ok: true, status: 200, url: url.href, json: async () => JSON.parse(body) };
++};
++const loader = await import(new URL("../scripts/data/canonical-projects-v9-5-1.js", import.meta.url).href);
++const model = await loader.loadCanonicalProjectsV9_5_1();
++assert.equal(model.projects.length, c951.expected.project_count);
++assert.equal(Math.round(model.metadata.capacity_mw), c951.expected.displayed_capacity_mw);
++
++// 3. partitions are the manifest's bytes
++const manifest = await json(join(RELEASE, "data", "v9.1", "build_manifest.json"));
++for (const part of [...manifest.project_partitions, ...manifest.atlas_partitions]) {
++  assert.equal(sha256(await readFile(join(RELEASE, part.path))), part.sha256, `${part.path} hash`);
++}
++const atlasFeatures = manifest.atlas_partitions.reduce((n, p) => n + p.feature_count, 0);
++assert.equal(atlasFeatures, manifest.geometry_count, "atlas features = valid geometries");
++for (const key of Object.keys(c91.expected)) assert.equal(manifest[key], c91.expected[key], `manifest ${key}`);
++assert.equal(manifest.source_dataset, c91.source.dataset);
++assert.equal(manifest.source_record_count, identity.raw_record_count);
++
++// 4. the newspaper: unchanged Q2 feed, every bound ref still resolves
++const feedBytes = await readFile(join(ROOT, "dist", "major_project_news_v9_5_1.json"));
++assert.equal(sha256(feedBytes), NEWS_FEED_SHA256, "dist/major_project_news_v9_5_1.json must not be rebuilt by this release");
++const feed = JSON.parse(feedBytes);
++const byRef = new Map(model.projects.map((p) => [p.repd_ref, p]));
++const boundRefs = new Set(feed.canonical_items.map((item) => String(item.repd_ref)));
++const unresolved = [...boundRefs].filter((ref) => !byRef.has(ref));
++const beacon = byRef.get(feed.beacon_fen_contract.repd_ref);
++assert.ok(beacon, "Beacon Fen must be in the spine");
++assert.equal(beacon.capacity_mw, feed.beacon_fen_contract.official_capacity_mw, "Beacon Fen official capacity");
++
++// 5. interconnectors are the parent's
++for (const rel of ["contracts/interconnectors.v9.8.json", "data/v9.8/interconnectors.json", "data/v9.8/interconnectors_manifest.json"]) {
++  assert.equal(sha256(await readFile(join(RELEASE, rel))), sha256(await readFile(join(PARENT, rel))), `${rel} is the parent's`);
++}
++
++// 6. page identity
++const fmt = (n) => n.toLocaleString("en-GB");
++const html = await text(join(RELEASE, "index.html"));
++assert.ok(html.includes(`UK RENEWABLES PIPELINE ${ID}`), "index.html h1 names this release");
++assert.ok(new RegExp(`Canonical DESNZ REPD Q3 2026[^<]*${fmt(manifest.project_count)} solar, BESS and wind records`).test(html), "index.html states the Q3 register count");
++assert.ok(!html.includes("REPD Q2 2026: 7,680"), "index.html must not claim the Q2 register");
++assert.ok(html.includes("scripts/app-v9-8.js"), "index.html loads the v9.8 app");
++const label = html.slice(html.indexOf("<body>"), html.indexOf('<section class="newspaper">'));
++assert.ok(!/CANDIDATE/.test(label), "brand, nav, h1 and meta carry no candidate label");
++assert.ok(label.includes('<small>UK RENEWABLES PIPELINE · V9.13</small>'), "brand names V9.13");
++assert.ok(label.includes('<a class="active" href="#">V9.13 RELEASE · REPD Q3 2026</a>'), "nav names the release");
++assert.ok(label.includes(`<a href="../${PARENT_ID}/">`), "nav links back to the parent");
++assert.ok(/<strong>V9\.13 · REPD OCTOBER 2026 \(Q3\) DATA REFRESH · RELEASE · 14 November 2026<\/strong>/.test(label), "meta line in the 202609082224 shape");
++assert.ok(html.includes(`<title>GlobalGrid2050 | UK Renewables Pipeline ${ID}</title>`), "title names this release");
++
++console.log(`check_v9_13: ${ID} loader PASS - ${fmt(model.projects.length)} records, ${model.metadata.capacity_mw.toLocaleString("en-GB", { minimumFractionDigits: 2 })} MW, `
++  + `${manifest.geometry_count} with geometry / ${manifest.missing_geometry_count} without; news feed unchanged, `
++  + `${boundRefs.size - unresolved.length}/${boundRefs.size} bound refs resolve${unresolved.length ? ` (unresolved: ${unresolved.join(", ")})` : ""}`);
+diff -ruN a/uk_renewables_pipeline/202611140058/tests/run_v9_13.sh b/uk_renewables_pipeline/202611140058/tests/run_v9_13.sh
+--- a/uk_renewables_pipeline/202611140058/tests/run_v9_13.sh	1970-01-01 01:00:00.000000000 +0100
++++ b/uk_renewables_pipeline/202611140058/tests/run_v9_13.sh	2026-11-14 01:03:30.056587743 +0000
+@@ -0,0 +1,137 @@
++#!/usr/bin/env bash
++# run_v9_13.sh - REPD October 2026 (Q3 2026) release: the V9.12 candidate's register
++# under a release label, with the CSV source-count fix. Offline, in a git checkout
++# or a plain copy.
++set -euo pipefail
++
++HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
++RELEASE="$(cd "$HERE/.." && pwd)"
++ID="$(basename "$RELEASE")"
++PARENT_ID="202611132345"
++PARENT="$(cd "$RELEASE/../$PARENT_ID" && pwd)"
++ROOT="$(cd "$RELEASE/../.." && pwd)"
++# The parent by git tree of the bytes ON DISK. Two trees are accepted, both named:
++#   a3f76f61... = globalgrid2050 f9ccd703, the bytes served and hash-verified when the
++#                 homepage was first pointed at 202611132345;
++#   0c7a4ed5... = the same folder after PR #63 (d5de5a03) changed CHANGES.md,
++#                 scripts/plugins/projects-v9-8.js and tests/run_v9_12.sh in place.
++# Restoring those three files returns the parent to the first tree; either way the
++# data and the fixtures this release binds are the same bytes.
++PARENT_TREES=(a3f76f610dff9da15090df56181fdbccc2e210fa 0c7a4ed5ea369e4a4e71a45cfa6fe9c186fae773)
++
++SCRATCH="$(mktemp -d)"
++trap 'rm -rf "$SCRATCH"' EXIT
++git init -q --bare "$SCRATCH/objects.git"
++(cd "$ROOT" && find "uk_renewables_pipeline/$PARENT_ID" -type f -not -path '*/__pycache__/*' -not -name '*.pyc' -not -path '*/node_modules/*' | sort) \
++  | GIT_DIR="$SCRATCH/objects.git" GIT_WORK_TREE="$ROOT" GIT_INDEX_FILE="$SCRATCH/index" \
++    git -C "$ROOT" -c core.autocrlf=false update-index --add --stdin
++actual_tree="$(GIT_DIR="$SCRATCH/objects.git" GIT_INDEX_FILE="$SCRATCH/index" git write-tree --prefix="uk_renewables_pipeline/$PARENT_ID/")"
++tree_ok=0
++for tree in "${PARENT_TREES[@]}"; do [[ "$actual_tree" == "$tree" ]] && tree_ok=1; done
++test "$tree_ok" = 1 || { echo "parent $PARENT_ID tree is $actual_tree, expected one of ${PARENT_TREES[*]}" >&2; exit 1; }
++
++# WHAT THIS RELEASE CHANGES FROM ITS PARENT, NAMED ONE FILE AT A TIME.
++CHANGED_FROM_PARENT=(
++  index.html
++  README.md
++  CHANGES.md
++  tests/run_v9_13.sh
++  tests/check_v9_13.mjs
++)
++# Pinned by content, not by parity: the parent holds either the pre-fix or the
++# fixed bytes of this file (see PARENT_TREES); this release always holds the fix.
++PINNED_FILES=(scripts/plugins/projects-v9-8.js)
++PINNED_SHA256=(f4174d3af1b867a911ec49d3cfdfdd7823225384e25e8e1cb711ff07c7fe90d6)
++REMOVED_FROM_PARENT=(
++  tests/run_v9_12.sh
++  tests/check_v9_12.mjs
++  fixtures/2026q3/project_identity_2026q3.json
++  fixtures/2026q3/repd_2026q3_coordinates.json
++)
++is_listed() {
++  local needle="$1"; shift
++  for entry in "$@"; do [[ "$entry" == "$needle" ]] && return 0; done
++  return 1
++}
++walk() { find "$1" -type f -not -path '*/__pycache__/*' -not -name '*.pyc' -not -path '*/node_modules/*' | sort; }
++
++while IFS= read -r file; do
++  relative="${file#$PARENT/}"
++  is_listed "$relative" "${CHANGED_FROM_PARENT[@]}" && continue
++  is_listed "$relative" "${PINNED_FILES[@]}" && continue
++  if is_listed "$relative" "${REMOVED_FROM_PARENT[@]}"; then
++    test ! -e "$RELEASE/$relative" || { echo "should not be copied: $relative" >&2; exit 1; }
++    continue
++  fi
++  cmp -s "$file" "$RELEASE/$relative" || { echo "inherited file differs from parent: $relative" >&2; exit 1; }
++done < <(walk "$PARENT")
++while IFS= read -r file; do
++  relative="${file#$RELEASE/}"
++  is_listed "$relative" "${CHANGED_FROM_PARENT[@]}" && continue
++  test -e "$PARENT/$relative" || { echo "unlisted new file: $relative" >&2; exit 1; }
++done < <(walk "$RELEASE")
++for relative in "${CHANGED_FROM_PARENT[@]}"; do
++  test -f "$RELEASE/$relative"
++  if [[ -f "$PARENT/$relative" ]] && cmp -s "$PARENT/$relative" "$RELEASE/$relative"; then
++    echo "listed as changed but identical to parent: $relative" >&2; exit 1
++  fi
++done
++for i in "${!PINNED_FILES[@]}"; do
++  got="$(sha256sum "$RELEASE/${PINNED_FILES[$i]}" | cut -d' ' -f1)"
++  test "$got" = "${PINNED_SHA256[$i]}" || { echo "${PINNED_FILES[$i]} is $got, expected ${PINNED_SHA256[$i]}" >&2; exit 1; }
++done
++
++# The fixtures are the parent's: the contract is the parent's byte for byte and
++# names them under uk_renewables_pipeline/$PARENT_ID/fixtures/ with their sha256.
++cmp -s "$PARENT/contracts/release.v9.1.json" "$RELEASE/contracts/release.v9.1.json"
++grep -q "\"identity_fixture\": \"uk_renewables_pipeline/$PARENT_ID/fixtures/2026q3/project_identity_2026q3.json\"" "$RELEASE/contracts/release.v9.1.json"
++grep -q '^V9 = Path(__file__).resolve().parents\[2\]' "$RELEASE/scripts/data/build_v9_1_spine.py"
++
++# CSV text: the "Source Reconciliation" column comes from the build manifest, never
++# from the Q2 literal.
++if grep -n '14657/14657' "$RELEASE/scripts/plugins/projects-v9-8.js"; then
++  echo "projects-v9-8.js carries the Q2 reconciliation count" >&2; exit 1
++fi
++grep -q 'reconciliationNote()' "$RELEASE/scripts/plugins/projects-v9-8.js"
++python3 -c 'import json,sys; m=json.load(open(sys.argv[1])); assert m["source_record_count"]==14967, m["source_record_count"]' "$RELEASE/data/v9.1/build_manifest.json"
++
++# Spine and interconnector product rebuilt in a scratch root that holds this release
++# and, at the parent's path, only the two fixtures the contract binds. They must
++# reproduce the committed bytes.
++SROOT="$SCRATCH/root"
++COPY="$SROOT/uk_renewables_pipeline/$ID"
++mkdir -p "$SROOT/uk_renewables_pipeline/$PARENT_ID/fixtures"
++cp -a "$PARENT/fixtures/2026q3" "$SROOT/uk_renewables_pipeline/$PARENT_ID/fixtures/"
++cp -a "$RELEASE" "$COPY"
++rm -rf "$COPY/data/v9.1"
++PYTHONDONTWRITEBYTECODE=1 python3 "$COPY/scripts/data/build_v9_1_spine.py"
++diff -r "$RELEASE/data/v9.1" "$COPY/data/v9.1"
++node "$COPY/scripts/build/interconnectors-v9-8.mjs" >/dev/null
++diff -r "$RELEASE/data/v9.8" "$COPY/data/v9.8"
++test ! -e "$SROOT/uk_renewables_pipeline/v9"
++
++if [[ -n "${REPD_XLSX:-}" ]]; then
++  python3 - "$RELEASE" "$COPY" "$REPD_XLSX" <<'PY'
++import json, sys
++from pathlib import Path
++release, copy, xlsx = map(Path, sys.argv[1:])
++c = json.loads((release / "contracts/release.v9.1.json").read_text())
++root = release.parents[1]
++sys.path.insert(0, str(copy / "scripts/data"))
++import build_v7_2_spine as b
++ident = json.loads((root / c["source"]["identity_fixture"]).read_text())["records"]
++out = copy.parent / "rebuilt_coordinates.json"
++b.build_coordinate_fixture(xlsx, ident, out)
++assert b.sha256(out) == c["source"]["coordinate_fixture_sha256"], "coordinate fixture does not rebuild byte-for-byte"
++print("coordinate fixture rebuilt byte-for-byte from", xlsx.name)
++PY
++fi
++
++node "$HERE/check_v9_13.mjs"
++node "$HERE/check_map_contract_all_rows.mjs"
++
++while IFS= read -r source; do
++  node --check "$source"
++done < <(find "$RELEASE/scripts" -type f \( -name '*.js' -o -name '*.mjs' \) -print | sort)
++
++echo "V9.13 ($ID) validation suite: PASS ($ROOT)"

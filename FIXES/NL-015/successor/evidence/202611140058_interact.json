@@ -1,0 +1,187 @@
+{
+ "initial": {
+  "r": "7,775 of 7,775 records · 365,474 MW · largest 4,100 MW",
+  "f": "7775",
+  "rows": 20,
+  "pager": "← PREV1–20 of 7,775 · page 1 of 389NEXT →",
+  "url": ""
+ },
+ "tech": {
+  "solar": {
+   "r": "3,604 of 7,775 records · 68,855 MW · largest 840 MW",
+   "f": "3604",
+   "rows": 20,
+   "pager": "← PREV1–20 of 3,604 · page 1 of 181NEXT →",
+   "url": "?technology=solar"
+  },
+  "bess": {
+   "r": "1,644 of 7,775 records · 153,777 MW · largest 1,450 MW",
+   "f": "1644",
+   "rows": 20,
+   "pager": "← PREV1–20 of 1,644 · page 1 of 83NEXT →",
+   "url": "?technology=bess"
+  },
+  "wind_onshore": {
+   "r": "2,417 of 7,775 records · 62,207 MW · largest 652 MW",
+   "f": "2417",
+   "rows": 20,
+   "pager": "← PREV1–20 of 2,417 · page 1 of 121NEXT →",
+   "url": "?technology=wind_onshore"
+  },
+  "wind_offshore": {
+   "r": "110 of 7,775 records · 80,635 MW · largest 4,100 MW",
+   "f": "110",
+   "rows": 20,
+   "pager": "← PREV1–20 of 110 · page 1 of 6NEXT →",
+   "url": "?technology=wind_offshore"
+  },
+  "interconnector": {
+   "r": "16 of 16 interconnector records (outside the REPD spine) · 17,950 MW · largest 2,000 MW",
+   "f": "16",
+   "rows": 16,
+   "pager": "← PREV1–16 of 16 · page 1 of 1NEXT →",
+   "url": "?technology=interconnector"
+  },
+  "all": {
+   "r": "7,775 of 7,775 records · 365,474 MW · largest 4,100 MW",
+   "f": "7775",
+   "rows": 20,
+   "pager": "← PREV1–20 of 7,775 · page 1 of 389NEXT →",
+   "url": ""
+  }
+ },
+ "status": {
+  "Operational": {
+   "r": "2,247 of 7,775 records · 48,553 MW · largest 1,320 MW",
+   "f": "2247",
+   "rows": 20,
+   "pager": "← PREV1–20 of 2,247 · page 1 of 113NEXT →",
+   "url": "?status=Operational"
+  },
+  "Under Construction": {
+   "r": "292 of 7,775 records · 28,100 MW · largest 2,955 MW",
+   "f": "292",
+   "rows": 20,
+   "pager": "← PREV1–20 of 292 · page 1 of 15NEXT →",
+   "url": "?status=Under+Construction"
+  },
+  "Awaiting Construction": {
+   "r": "2,001 of 7,775 records · 144,288 MW · largest 4,100 MW",
+   "f": "2001",
+   "rows": 20,
+   "pager": "← PREV1–20 of 2,001 · page 1 of 101NEXT →",
+   "url": "?status=Awaiting+Construction"
+  },
+  "Application Submitted": {
+   "r": "794 of 7,775 records · 83,768 MW · largest 3,600 MW",
+   "f": "794",
+   "rows": 20,
+   "pager": "← PREV1–20 of 794 · page 1 of 40NEXT →",
+   "url": "?status=Application+Submitted"
+  },
+  "All": {
+   "r": "7,775 of 7,775 records · 365,474 MW · largest 4,100 MW",
+   "f": "7775",
+   "rows": 20,
+   "pager": "← PREV1–20 of 7,775 · page 1 of 389NEXT →",
+   "url": ""
+  }
+ },
+ "search": {
+  "18561": {
+   "r": "2 of 7,775 records · 60 MW · largest 42 MW",
+   "f": "2",
+   "rows": 2,
+   "pager": "← PREV1–2 of 2 · page 1 of 1NEXT →",
+   "url": "?q=18561",
+   "first": "Salters Lane - Solar Panels"
+  },
+  "Salters Lane": {
+   "r": "5 of 7,775 records · 121 MW · largest 42 MW",
+   "f": "5",
+   "rows": 5,
+   "pager": "← PREV1–5 of 5 · page 1 of 1NEXT →",
+   "url": "?q=Salters+Lane",
+   "first": "Salters Lane - Solar Panels"
+  },
+  "Berwick Bank": {
+   "r": "1 of 7,775 records · 4,100 MW · largest 4,100 MW",
+   "f": "1",
+   "rows": 1,
+   "pager": "← PREV1–1 of 1 · page 1 of 1NEXT →",
+   "url": "?q=Berwick+Bank",
+   "first": "Berwick Bank Offshore Wind Farm"
+  },
+  "GG2050-REPD-19459": {
+   "r": "0 of 7,775 records · 0 MW · largest 0 MW",
+   "f": "0",
+   "rows": 0,
+   "pager": "no records match the current filters",
+   "url": "?q=GG2050-REPD-19459",
+   "first": null
+  },
+  "Forsinain": {
+   "r": "1 of 7,775 records · 86 MW · largest 86.4 MW",
+   "f": "1",
+   "rows": 1,
+   "pager": "← PREV1–1 of 1 · page 1 of 1NEXT →",
+   "url": "?q=Forsinain",
+   "first": "Forsinain Forest Wind Farm"
+  },
+  "zzznotfound": {
+   "r": "0 of 7,775 records · 0 MW · largest 0 MW",
+   "f": "0",
+   "rows": 0,
+   "pager": "no records match the current filters",
+   "url": "?q=zzznotfound",
+   "first": null
+  }
+ },
+ "page2": {
+  "r": "7,775 of 7,775 records · 365,474 MW · largest 4,100 MW",
+  "f": "7775",
+  "rows": 20,
+  "pager": "← PREV21–40 of 7,775 · page 2 of 389NEXT →",
+  "url": ""
+ },
+ "lastPage": {
+  "r": "7,775 of 7,775 records · 365,474 MW · largest 4,100 MW",
+  "f": "7775",
+  "rows": 15,
+  "pager": "← PREV7,761–7,775 of 7,775 · page 389 of 389NEXT →",
+  "url": ""
+ },
+ "urlNoAppMade": {
+  "r": "7,775 of 7,775 records · 365,474 MW · largest 4,100 MW",
+  "f": "7775",
+  "rows": 20,
+  "pager": "← PREV1–20 of 7,775 · page 1 of 389NEXT →",
+  "url": "?status=No%20Application%20Made"
+ },
+ "urlBessUC": {
+  "r": "100 of 7,775 records · 10,590 MW · largest 1,000 MW",
+  "f": "100",
+  "rows": 20,
+  "pager": "← PREV1–20 of 100 · page 1 of 5NEXT →",
+  "url": "?technology=bess&status=Under%20Construction"
+ },
+ "county": {
+  "value": "Avon",
+  "r": "34 of 7,775 records · 271 MW · largest 21 MW",
+  "f": "34",
+  "rows": 20,
+  "pager": "← PREV1–20 of 34 · page 1 of 2NEXT →",
+  "url": "?county=Avon"
+ },
+ "exportAll": {
+  "file": "successor/interact/202611140058_export_all.csv",
+  "name": "globalgrid2050_uk_renewables_pipeline_v9_8_2026-11-14.csv",
+  "exportMeta": "7,775 filtered records exported"
+ },
+ "exportUC": {
+  "file": "successor/interact/202611140058_export_under_construction.csv",
+  "name": "globalgrid2050_uk_renewables_pipeline_v9_8_2026-11-14.csv",
+  "exportMeta": "292 filtered records exported"
+ },
+ "pageErrors": []
+}

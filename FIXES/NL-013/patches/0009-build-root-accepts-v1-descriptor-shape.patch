@@ -1,0 +1,41 @@
+--- a/automation/repd/build_root.py
++++ b/automation/repd/build_root.py
+@@ -84,6 +84,20 @@
+ 
+ def _sha256(path: Path) -> str:
+     return hashlib.sha256(path.read_bytes()).hexdigest()
++
++
++def normalise_descriptor(descriptor: dict | None) -> dict:
++    """Accept both descriptor shapes: run.py's flat dict and the committed release descriptor
++    (schema globalgrid2050.repd-release-descriptor.v1, hashes nested under "expected", the publication
++    date as "page_last_updated", the release id as "release_id"). Flat keys win; nothing is invented."""
++    d = dict(descriptor or {})
++    expected = d.get("expected") if isinstance(d.get("expected"), dict) else {}
++    for flat, nested in (("expected_csv_sha256", "csv_sha256"), ("expected_xlsx_sha256", "xlsx_sha256")):
++        if not d.get(flat) and expected.get(nested):
++            d[flat] = expected[nested]
++    if not d.get("page_last_updated") and d.get("published"):
++        d["page_last_updated"] = d["published"]
++    return d
+ 
+ 
+ def solar_operational_header(official_header: list[str], legacy_file: Path | None) -> list[str]:
+@@ -117,7 +131,7 @@
+ def build_root(canonical_csv, out_dir, repo_root=None, descriptor=None, label=None) -> dict:
+     canonical_csv, out_dir = Path(canonical_csv), Path(out_dir)
+     repo_root = Path(repo_root) if repo_root else Path(__file__).resolve().parents[2]
+-    descriptor = descriptor or {}
++    descriptor = normalise_descriptor(descriptor)
+     out_dir.mkdir(parents=True, exist_ok=True)
+ 
+     header, rows = read_canonical(canonical_csv)
+@@ -186,7 +200,7 @@
+         "official_record_update_field": "Record Last Updated (dd/mm/yyyy)",
+         "record_count": len(rows),
+         "feature_count": len(geojson["features"]),
+-        "release_label": label or descriptor.get("label"),
++        "release_label": label or descriptor.get("release_id") or descriptor.get("label"),
+         "status": "CANDIDATE",
+     }
+     manifest_path = out_dir / "dist" / "manifest_v4.json"

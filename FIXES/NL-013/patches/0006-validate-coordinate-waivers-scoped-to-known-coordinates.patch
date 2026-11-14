@@ -1,0 +1,101 @@
+--- a/automation/repd/run.py
++++ b/automation/repd/run.py
+@@ -558,16 +558,18 @@
+         raise StageError("validate: no baseline (automation/repd/baselines/<previous_release_id>.json or a previous CSV)")
+     kfile = bdir / f"{ctx.label}_known_anomalies.json"
+     known = mod.load_known(str(kfile)) if kfile.is_file() else {}
++    kcoord = mod.load_known_coordinates(str(kfile)) if kfile.is_file() and hasattr(mod, "load_known_coordinates") else None
++    kw = {"known_coordinates": kcoord} if kcoord is not None else {}
+     exp_raw = {k: v for k, v in {
+         "rows": d.get("expected_rows"), "unique_refs": d.get("expected_unique_refs"),
+         "csv_sha256": d.get("expected_csv_sha256"), "xlsx_sha256": d.get("expected_xlsx_sha256"),
+         "csv_bytes": d.get("expected_csv_bytes"), "xlsx_bytes": d.get("expected_xlsx_bytes"),
+         "duplicate_refs": d.get("duplicate_refs")}.items() if v is not None}
+     raw_rep, _ = mod.run_check(str(ctx.artifacts["raw_csv"]), str(ctx.artifacts["raw_xlsx"]), baseline, known,
+-                               None, False, False, exp_raw or None)
++                               None, False, False, exp_raw or None, **kw)
+     n = d.get("expected_unique_refs")
+     cand_rep, _ = mod.run_check(str(ctx.artifacts["canonical_csv"]), None, baseline, known, None, True, False,
+-                                {"rows": n, "unique_refs": n} if n else None)
++                                {"rows": n, "unique_refs": n} if n else None, **kw)
+     raw_path = write_json(out / f"validation_raw_{ctx.label}.json", raw_rep)
+     cand_path = write_json(out / f"validation_{ctx.label}.json", cand_rep)
+     failures = [f"raw:{g}" for g in raw_rep["failed_gates"]] + [f"candidate:{g}" for g in cand_rep["failed_gates"]]
+--- a/automation/repd/validate.py
++++ b/automation/repd/validate.py
+@@ -378,7 +378,7 @@
+           summ, baseline_release=base.get('release_id'), **det)
+ 
+ 
+-def coordinate_gates(G, c, known_refs):
++def coordinate_gates(G, c, known_refs, known_scope='all known refs (legacy file without known_coordinates)'):
+     try:
+         from pyproj import Transformer
+         t_bng = Transformer.from_crs('EPSG:27700', 'EPSG:4326', always_xy=True)
+@@ -480,7 +480,7 @@
+           f'({len(unknown_hard)} not on known list); blank both {len(blank_both)}; one blank {len(blank_one)}',
+           hard_bounds={'E': HARD_E, 'N': HARD_N}, non_numeric=nonnum, outside_hard_bounds=hard_out,
+           blank_both=sorted(blank_both, key=_refkey), blank_one=sorted(blank_one, key=_refkey),
+-          pyproj_box_tests=t_bng is not None)
++          pyproj_box_tests=t_bng is not None, known_scope=known_scope)
+     return anomalies
+ 
+ 
+@@ -536,6 +536,19 @@
+           known_list=known, anomalies=found)
+ 
+ 
++def load_known_coordinates(path):
++    """Refs whose coordinates are known to be wrong or legitimately outside the boxes ("known_coordinates"
++    in the known-anomalies file). None when the file has no such key: C4 then falls back to the whole
++    known list (legacy behaviour, reported as such in the gate detail)."""
++    if not path:
++        return None
++    k = json.load(open(path, encoding='utf-8'))
++    if not isinstance(k, dict) or 'known_coordinates' not in k:
++        return None
++    items = k['known_coordinates']
++    return {str(a): b for a, b in items.items()} if isinstance(items, dict) else {str(i): '' for i in items}
++
++
+ def load_known(path):
+     if not path:
+         return {}
+@@ -548,7 +561,7 @@
+ 
+ # =================================================================== driver
+ def run_check(csv_path, xlsx_path=None, baseline=None, known=None, asof=None, csv_only=False, strict_vocab=False,
+-              expectations=None, sheet=None, max_examples=10):
++              expectations=None, sheet=None, max_examples=10, known_coordinates=None):
+     """Run every gate; returns (report_dict, verify_release_data). Raises OSError/ValueError on unusable input."""
+     asof = asof or datetime.date.today()
+     known = known or {}
+@@ -567,7 +580,13 @@
+     source_gates(G, rep, c, x, baseline, csv_only)
+     date_gates(G, c, x, asof)
+     vocab_gates(G, c, baseline, strict_vocab)
+-    coord_anoms = coordinate_gates(G, c, known)
++    if known_coordinates is None:
++        coord_anoms = coordinate_gates(G, c, known)
++    else:
++        # a ref on the known list for another reason (a date, a duplicate) must not waive a coordinate failure
++        coord_anoms = coordinate_gates(G, c, known_coordinates, 'known_coordinates only')
++        for a in coord_anoms:
++            a['known'] = a['known'] or (a['anomaly'] not in ('OUTSIDE_HARD_BOUNDS',) and a['ref'] in known)
+     anomaly_gate(G, c, x, rep, coord_anoms, known)
+     failed = G.failed()
+     report = {
+@@ -634,10 +653,12 @@
+             return 2
+         baseline = load_baseline(a.baseline)
+         known = load_known(a.known_anomalies)
++        known_coordinates = load_known_coordinates(a.known_anomalies)
+         asof = datetime.date.fromisoformat(a.asof) if a.asof else datetime.datetime.now(datetime.timezone.utc).date()
+         exp = {k: v for k, v in (('rows', a.expect_rows), ('unique_refs', a.expect_unique_refs),
+                                  ('csv_sha256', a.expect_csv_sha256), ('xlsx_sha256', a.expect_xlsx_sha256)) if v is not None}
+-        report, vdata = run_check(a.csv, a.xlsx, baseline, known, asof, a.csv_only, a.strict_vocab, exp or None, a.sheet)
++        report, vdata = run_check(a.csv, a.xlsx, baseline, known, asof, a.csv_only, a.strict_vocab, exp or None, a.sheet,
++                                  known_coordinates=known_coordinates)
+     except (OSError, ValueError, KeyError, json.JSONDecodeError) as e:
+         print(f'ERROR: cannot run validation: {e}', file=sys.stderr)
+         return 2

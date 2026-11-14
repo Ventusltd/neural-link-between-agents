@@ -1,0 +1,3222 @@
+{
+  "schema": "pipelinenews.register-delta.v1",
+  "previous": {
+    "release": "202609060232-pipelinenews",
+    "path": "releases/202609060232-pipelinenews/data/202608270055-8ab1807551bc-v8-fast-projects.json",
+    "sha256": "c06aedef176d2d38fd135806306a8ef81b4af9994c7be31e8bd760304149f862",
+    "dataset": "DESNZ Renewable Energy Planning Database Q2 2026",
+    "project_count": 7680
+  },
+  "next": {
+    "release": "202611132345-pipelinenews",
+    "path": "releases/202611132345-pipelinenews/data/202611132345-b86eecde9f43-repd-2026q3-fast-projects.json",
+    "sha256": "0b89be3554a99111f919a50b1bfe3e7cb7b3a5dc6f40c20df663bcfb1b151ddc",
+    "dataset": "DESNZ Renewable Energy Planning Database Q3 2026",
+    "project_count": 7775
+  },
+  "counts": {
+    "added": 101,
+    "removed": 6,
+    "retained": 7674,
+    "operator_renamed": 33,
+    "operator_respelled": 371,
+    "site_renamed": 4,
+    "status_changed": 155,
+    "status_signal": 153,
+    "capacity_changed": 17,
+    "technology_changed": 1
+  },
+  "gate": {
+    "status": "PASS",
+    "reasons": [],
+    "limits": {
+      "max_removed_fraction": 0.02,
+      "max_added_fraction": 0.05,
+      "max_operator_change_fraction": 0.15,
+      "min_projects": 1000
+    }
+  },
+  "added": [
+    "9159",
+    "10881",
+    "11058",
+    "11290",
+    "11403",
+    "11844",
+    "11869",
+    "12446",
+    "12565",
+    "12688",
+    "12689",
+    "12884",
+    "13156",
+    "13422",
+    "13439",
+    "14665",
+    "14851",
+    "14991",
+    "15172",
+    "15550",
+    "15551",
+    "15788",
+    "15866",
+    "16768",
+    "17137",
+    "17138",
+    "17141",
+    "17146",
+    "17150",
+    "17439",
+    "17554",
+    "17931",
+    "18079",
+    "18084",
+    "18326",
+    "18411",
+    "18467",
+    "18477",
+    "18478",
+    "18499",
+    "18502",
+    "18503",
+    "18561",
+    "18562",
+    "19041",
+    "19042",
+    "19093",
+    "19100",
+    "19139",
+    "19470",
+    "19471",
+    "19472",
+    "19582",
+    "19635",
+    "19768",
+    "20149",
+    "20909",
+    "20991",
+    "21073",
+    "21104",
+    "21109",
+    "21111",
+    "21123",
+    "21126",
+    "21135",
+    "21157",
+    "21182",
+    "21189",
+    "21193",
+    "21208",
+    "21216",
+    "21222",
+    "21224",
+    "21232",
+    "21246",
+    "21256",
+    "21295",
+    "21299",
+    "21300",
+    "21306",
+    "21307",
+    "21310",
+    "21312",
+    "21344",
+    "21346",
+    "21348",
+    "21349",
+    "21376",
+    "21380",
+    "21388",
+    "21396",
+    "21412",
+    "21413",
+    "21420",
+    "21422",
+    "21428",
+    "21440",
+    "21456",
+    "21463",
+    "21466",
+    "21493"
+  ],
+  "removed": [
+    "9035",
+    "9681",
+    "11885",
+    "14471",
+    "18949",
+    "19567"
+  ],
+  "operator_renamed": [
+    {
+      "repd_ref": "10919",
+      "from": "BP Oil UK Limited / ENBW UK Limited",
+      "to": "Unknown"
+    },
+    {
+      "repd_ref": "15530",
+      "from": "New Energy Partnership",
+      "to": "ContourGlobal"
+    },
+    {
+      "repd_ref": "10535",
+      "from": "Amp Energy",
+      "to": "Revera Energy"
+    },
+    {
+      "repd_ref": "12820",
+      "from": "Noriker Power Limited",
+      "to": "Noriker Power Limited / CIP"
+    },
+    {
+      "repd_ref": "11406",
+      "from": "Clearstone Energy",
+      "to": "Field Energy"
+    },
+    {
+      "repd_ref": "3417",
+      "from": "Boralex/Infinergy",
+      "to": "Boralex/Infinergy & Infinergy"
+    },
+    {
+      "repd_ref": "17593",
+      "from": "Renewable Connections Developments Limited",
+      "to": "Schroders Greencoat"
+    },
+    {
+      "repd_ref": "8100",
+      "from": "Island Green Power UK",
+      "to": "Enray Power"
+    },
+    {
+      "repd_ref": "19475",
+      "from": "Castle Hills Solar Farm Limited",
+      "to": "Castle Hills Solar Farm Limited & Total Energies"
+    },
+    {
+      "repd_ref": "8920",
+      "from": "Sirius Renewables",
+      "to": "Engie Regeneration Limited"
+    },
+    {
+      "repd_ref": "10239",
+      "from": "Private Developer",
+      "to": "Eelpower"
+    },
+    {
+      "repd_ref": "7230",
+      "from": "Immersa",
+      "to": "SMS"
+    },
+    {
+      "repd_ref": "11063",
+      "from": "Renewable Energy Systems",
+      "to": "Innagreen Investments & RES"
+    },
+    {
+      "repd_ref": "16561",
+      "from": "RES Limited",
+      "to": "Eelpower Limited"
+    },
+    {
+      "repd_ref": "11620",
+      "from": "Melksham Calne Green Limited",
+      "to": "Aura Power"
+    },
+    {
+      "repd_ref": "7221",
+      "from": "ENGIE Renewables",
+      "to": "Lyceum Solar"
+    },
+    {
+      "repd_ref": "7012",
+      "from": "Flexible Grid Power",
+      "to": "Gresham House"
+    },
+    {
+      "repd_ref": "19595",
+      "from": "Trio Power Limited",
+      "to": "Trio Power Limited & BLC Energy"
+    },
+    {
+      "repd_ref": "9584",
+      "from": "Arlington Energy Limited",
+      "to": "Masdar Arlington Energy Limited"
+    },
+    {
+      "repd_ref": "10047",
+      "from": "Energi Generation 12 Limited",
+      "to": "Energi Generation & Infinis Energy"
+    },
+    {
+      "repd_ref": "7827",
+      "from": "ENGIE Renewables",
+      "to": "Lyceum Solar"
+    },
+    {
+      "repd_ref": "16550",
+      "from": "AR Toot Hill Limited",
+      "to": "Triple Point Investment Management LLP"
+    },
+    {
+      "repd_ref": "10530",
+      "from": "Novus Renewable Services Limited",
+      "to": "Enviromena"
+    },
+    {
+      "repd_ref": "9398",
+      "from": "Caerphilly County Borough Council",
+      "to": "Fuse Energy"
+    },
+    {
+      "repd_ref": "11447",
+      "from": "Pelagic Energy Development",
+      "to": "Fuse EPC Limited"
+    },
+    {
+      "repd_ref": "10657",
+      "from": "Bolney Green Limited",
+      "to": "Gülermak"
+    },
+    {
+      "repd_ref": "10000",
+      "from": "Anesco Limited",
+      "to": "Anesco Limited & Shell"
+    },
+    {
+      "repd_ref": "8842",
+      "from": "Elgin Energy ES Co Limited",
+      "to": "Pennon Group"
+    },
+    {
+      "repd_ref": "13557",
+      "from": "Innova Renewables",
+      "to": "Uniper UK Limited"
+    },
+    {
+      "repd_ref": "15574",
+      "from": "Ylem Energy Limited",
+      "to": "Root-Power Limited"
+    },
+    {
+      "repd_ref": "19596",
+      "from": "Trio Power Limited",
+      "to": "Trio Power Limited & BLC Energy"
+    },
+    {
+      "repd_ref": "7179",
+      "from": "Boralex/Infinergy",
+      "to": "Boralex/Infinergy & Infinergy"
+    },
+    {
+      "repd_ref": "19476",
+      "from": "Castle Hills Solar Farm Limited",
+      "to": "Castle Hills Solar Farm Limited & Total Energies"
+    }
+  ],
+  "operator_respelled": [
+    {
+      "repd_ref": "13432",
+      "from": "Shell New Energies / ScottishPower Renewables",
+      "to": "Shell New Energies & ScottishPower Renewables"
+    },
+    {
+      "repd_ref": "10772",
+      "from": "Total Energies / RIDG",
+      "to": "Total Energies & RIDG"
+    },
+    {
+      "repd_ref": "11109",
+      "from": "RWE Renewables UK Limited / Masdar",
+      "to": "RWE Renewables UK Limited & Masdar"
+    },
+    {
+      "repd_ref": "20217",
+      "from": "RWE Renewables UK Limited / Masdar",
+      "to": "RWE Renewables UK Limited & Masdar"
+    },
+    {
+      "repd_ref": "10918",
+      "from": "BP Oil UK Limited / ENBW UK Limited",
+      "to": "BP Oil UK Limited & ENBW UK Limited"
+    },
+    {
+      "repd_ref": "11663",
+      "from": "Green Investment Group / Total Energies",
+      "to": "Green Investment Group & Total Energies"
+    },
+    {
+      "repd_ref": "10920",
+      "from": "BP Oil UK Limited / ENBW UK Limited",
+      "to": "BP Oil UK Limited & ENBW UK Limited"
+    },
+    {
+      "repd_ref": "21087",
+      "from": "BP Oil UK Limited / ENBW UK Limited",
+      "to": "BP Oil UK Limited & ENBW UK Limited"
+    },
+    {
+      "repd_ref": "13644",
+      "from": "West Burton Energy / Banks Group",
+      "to": "West Burton Energy & Banks Group"
+    },
+    {
+      "repd_ref": "2540",
+      "from": "SSE / Seagreen Wind Energy Ltd",
+      "to": "SSE & Seagreen Wind Energy Ltd"
+    },
+    {
+      "repd_ref": "10913",
+      "from": "RWE Generation UK Plc / SSE Renewables (Ireland)",
+      "to": "RWE Generation UK Plc & SSE Renewables (Ireland)"
+    },
+    {
+      "repd_ref": "12588",
+      "from": "Photovolt Development Partners / SolarFive",
+      "to": "Photovolt Development Partners & SolarFive"
+    },
+    {
+      "repd_ref": "14806",
+      "from": "Orsted UK Limited / PS Renewables",
+      "to": "Orsted UK Limited & PS Renewables"
+    },
+    {
+      "repd_ref": "2521",
+      "from": "Scottish & Southern Energy (SSE) / Repsol / CIP",
+      "to": "Scottish & Southern Energy (SSE) & Repsol & CIP"
+    },
+    {
+      "repd_ref": "11851",
+      "from": "Flotation Energy / Vårgrønn",
+      "to": "Flotation Energy & Vårgrønn"
+    },
+    {
+      "repd_ref": "14144",
+      "from": "SSE / Seagreen Wind Energy Ltd",
+      "to": "SSE & Seagreen Wind Energy Ltd"
+    },
+    {
+      "repd_ref": "2510",
+      "from": "Airtricity / Fluor Ltd",
+      "to": "Airtricity & Fluor Ltd"
+    },
+    {
+      "repd_ref": "11928",
+      "from": "Fidra Energy / Drax",
+      "to": "Fidra Energy & Drax"
+    },
+    {
+      "repd_ref": "10922",
+      "from": "Cobra Instalaciones y Servicios S.A / Flotation Energy",
+      "to": "Cobra Instalaciones y Servicios S.A & Flotation Energy"
+    },
+    {
+      "repd_ref": "2538",
+      "from": "Statoil / Statkraft",
+      "to": "Statoil & Statkraft"
+    },
+    {
+      "repd_ref": "13977",
+      "from": "Windel Energy / Canadian Solar",
+      "to": "Windel Energy & Canadian Solar"
+    },
+    {
+      "repd_ref": "9427",
+      "from": "Welbar Energy Storage Limited / Penso Power (BW ESS)",
+      "to": "Welbar Energy Storage Limited & Penso Power (BW ESS)"
+    },
+    {
+      "repd_ref": "4622",
+      "from": "Viking Energy / Scottish and Southern",
+      "to": "Viking Energy & Scottish and Southern"
+    },
+    {
+      "repd_ref": "4011",
+      "from": "Scottish and Southern Energy (SSE)/ Greencoat UK Wind",
+      "to": "Scottish and Southern Energy (SSE)& Greencoat UK Wind"
+    },
+    {
+      "repd_ref": "14100",
+      "from": "Windel Energy / Canadian Solar",
+      "to": "Windel Energy & Canadian Solar"
+    },
+    {
+      "repd_ref": "9904",
+      "from": "Canadian Solar UK (Recurrent Energy ) / Windel Energy",
+      "to": "Canadian Solar UK (Recurrent Energy ) & Windel Energy"
+    },
+    {
+      "repd_ref": "12710",
+      "from": "Novus Renewable Services Limited / Story Construction",
+      "to": "Novus Renewable Services Limited & Story Construction"
+    },
+    {
+      "repd_ref": "3489",
+      "from": "CRE Energy/ Scottish Power",
+      "to": "CRE Energy& Scottish Power"
+    },
+    {
+      "repd_ref": "15000",
+      "from": "JBM Solar / RWE",
+      "to": "JBM Solar & RWE"
+    },
+    {
+      "repd_ref": "11719",
+      "from": "Solarcentury Limited / Statkraft Uk Limited",
+      "to": "Solarcentury Limited & Statkraft Uk Limited"
+    },
+    {
+      "repd_ref": "2515",
+      "from": "Orsted (formerly Dong Energy)/ Macquarie Group",
+      "to": "Orsted (formerly Dong Energy)& Macquarie Group"
+    },
+    {
+      "repd_ref": "6501",
+      "from": "Orsted (formerly Dong Energy)/ Macquarie Group",
+      "to": "Orsted (formerly Dong Energy)& Macquarie Group"
+    },
+    {
+      "repd_ref": "6372",
+      "from": "EDF Energy Renewables/ Force 9",
+      "to": "EDF Energy Renewables& Force 9"
+    },
+    {
+      "repd_ref": "2544",
+      "from": "E.ON Humber Wind Ltd/ Balfour Beatty Investments and Equitix.",
+      "to": "E.ON Humber Wind Ltd& Balfour Beatty Investments and Equitix."
+    },
+    {
+      "repd_ref": "10596",
+      "from": "Energy GridPower Ltd / Revera Energy",
+      "to": "Energy GridPower Ltd & Revera Energy"
+    },
+    {
+      "repd_ref": "17325",
+      "from": "RE Projects Development (REPD) / Field",
+      "to": "RE Projects Development (REPD) & Field"
+    },
+    {
+      "repd_ref": "6665",
+      "from": "EDF Renewables UK / ESB",
+      "to": "EDF Renewables UK & ESB"
+    },
+    {
+      "repd_ref": "18567",
+      "from": "Orsted / Simply Blue Group",
+      "to": "Orsted & Simply Blue Group"
+    },
+    {
+      "repd_ref": "4244",
+      "from": "EDF Energy Renewables/ Infinergy",
+      "to": "EDF Energy Renewables& Infinergy"
+    },
+    {
+      "repd_ref": "4178",
+      "from": "Scottish and Southern Energy (SSE)/ GIB",
+      "to": "Scottish and Southern Energy (SSE)& GIB"
+    },
+    {
+      "repd_ref": "6518",
+      "from": "RES/ SIMEC",
+      "to": "RES& SIMEC"
+    },
+    {
+      "repd_ref": "14550",
+      "from": "Firma Energy / IB Vogt",
+      "to": "Firma Energy & IB Vogt"
+    },
+    {
+      "repd_ref": "5181",
+      "from": "Forsa (formerly 2020 Renewables/ Buccleuch)",
+      "to": "Forsa (formerly 2020 Renewables& Buccleuch)"
+    },
+    {
+      "repd_ref": "10036",
+      "from": "ESB / Coriolis Energy",
+      "to": "ESB & Coriolis Energy"
+    },
+    {
+      "repd_ref": "14999",
+      "from": "Energy Isles / Stratcraft",
+      "to": "Energy Isles & Stratcraft"
+    },
+    {
+      "repd_ref": "9816",
+      "from": "Enso Energy / Cero Generation",
+      "to": "Enso Energy & Cero Generation"
+    },
+    {
+      "repd_ref": "2477",
+      "from": "E.On / Energie 2",
+      "to": "E.On & Energie 2"
+    },
+    {
+      "repd_ref": "13001",
+      "from": "Kinmuck Energy Storage Limited / Island Green Power",
+      "to": "Kinmuck Energy Storage Limited & Island Green Power"
+    },
+    {
+      "repd_ref": "6057",
+      "from": "Coriolis Energy/ ESB",
+      "to": "Coriolis Energy& ESB"
+    },
+    {
+      "repd_ref": "10311",
+      "from": "Cambridge Power Limited / Pivot Power",
+      "to": "Cambridge Power Limited & Pivot Power"
+    },
+    {
+      "repd_ref": "16047",
+      "from": "Walker & Son (Hauliers) Limited / Vox Energy Limited",
+      "to": "Walker & Son (Hauliers) Limited & Vox Energy Limited"
+    },
+    {
+      "repd_ref": "11989",
+      "from": "Highland Wind Limited / Copenhagen Infrastructure Partners / Eurus Energy",
+      "to": "Highland Wind Limited & Copenhagen Infrastructure Partners & Eurus Energy"
+    },
+    {
+      "repd_ref": "11035",
+      "from": "Orsted / Simply Blue Group",
+      "to": "Orsted & Simply Blue Group"
+    },
+    {
+      "repd_ref": "10058",
+      "from": "Renewable Connections Ltd / Pivot Power",
+      "to": "Renewable Connections Ltd & Pivot Power"
+    },
+    {
+      "repd_ref": "18370",
+      "from": "Firstway Energy / Net Zero Twenty Six Limited",
+      "to": "Firstway Energy & Net Zero Twenty Six Limited"
+    },
+    {
+      "repd_ref": "11852",
+      "from": "Flotation Energy / Cobra Instalaciones Servicios",
+      "to": "Flotation Energy & Cobra Instalaciones Servicios"
+    },
+    {
+      "repd_ref": "7088",
+      "from": "Statera Energy / Dollymans Storage",
+      "to": "Statera Energy & Dollymans Storage"
+    },
+    {
+      "repd_ref": "16318",
+      "from": "Aludra Bess Limited / Renewable Energy Systems RES ltd (Beaufort)",
+      "to": "Aludra Bess Limited & Renewable Energy Systems RES ltd (Beaufort)"
+    },
+    {
+      "repd_ref": "19173",
+      "from": "European Energy A/S / Locogen Limited",
+      "to": "European Energy A&S & Locogen Limited"
+    },
+    {
+      "repd_ref": "6405",
+      "from": "Coriolis Energy / ESB",
+      "to": "Coriolis Energy & ESB"
+    },
+    {
+      "repd_ref": "4480",
+      "from": "North British Wind / Invenergy",
+      "to": "North British Wind & Invenergy"
+    },
+    {
+      "repd_ref": "2767",
+      "from": "Corolis Energy/ ESB",
+      "to": "Corolis Energy& ESB"
+    },
+    {
+      "repd_ref": "9815",
+      "from": "Enso Energy / Cero Generation",
+      "to": "Enso Energy & Cero Generation"
+    },
+    {
+      "repd_ref": "8051",
+      "from": "Enso Energy / Iron Acton Green",
+      "to": "Enso Energy & Iron Acton Green"
+    },
+    {
+      "repd_ref": "2203",
+      "from": "Defence Infrastructure Organisation / BSR",
+      "to": "Defence Infrastructure Organisation & BSR"
+    },
+    {
+      "repd_ref": "3503",
+      "from": "E.ON Renewables / Red Rock Power Limited",
+      "to": "E.ON Renewables & Red Rock Power Limited"
+    },
+    {
+      "repd_ref": "13625",
+      "from": "Octopus Energy / Wind 2 Limited",
+      "to": "Octopus Energy & Wind 2 Limited"
+    },
+    {
+      "repd_ref": "17623",
+      "from": "Greenfield Energy Developments Limited / Renewable Power Capital",
+      "to": "Greenfield Energy Developments Limited & Renewable Power Capital"
+    },
+    {
+      "repd_ref": "10468",
+      "from": "Falck Renewables / REG Windpower",
+      "to": "Falck Renewables & REG Windpower"
+    },
+    {
+      "repd_ref": "14764",
+      "from": "Wind2 / Octopus Energy",
+      "to": "Wind2 & Octopus Energy"
+    },
+    {
+      "repd_ref": "15535",
+      "from": "REG Windpower Limited / ESB Energy Limited",
+      "to": "REG Windpower Limited & ESB Energy Limited"
+    },
+    {
+      "repd_ref": "14796",
+      "from": "RWE Generation / Innogy",
+      "to": "RWE Generation & Innogy"
+    },
+    {
+      "repd_ref": "2840",
+      "from": "Eneco / ScottishWater",
+      "to": "Eneco & ScottishWater"
+    },
+    {
+      "repd_ref": "7479",
+      "from": "Pivot Power / EDF Renewables",
+      "to": "Pivot Power & EDF Renewables"
+    },
+    {
+      "repd_ref": "14922",
+      "from": "Enso Energy / Bolney Green Energy Hub",
+      "to": "Enso Energy & Bolney Green Energy Hub"
+    },
+    {
+      "repd_ref": "19593",
+      "from": "Pelagic Energy / Constantine",
+      "to": "Pelagic Energy & Constantine"
+    },
+    {
+      "repd_ref": "13678",
+      "from": "Enso Green Holdings Limited / Cero Generation",
+      "to": "Enso Green Holdings Limited & Cero Generation"
+    },
+    {
+      "repd_ref": "11112",
+      "from": "Blue Energy Company / BayWa r.e. UK Limited",
+      "to": "Blue Energy Company & BayWa r.e. UK Limited"
+    },
+    {
+      "repd_ref": "8131",
+      "from": "Atrato Onsite Energy / Harmony Energy",
+      "to": "Atrato Onsite Energy & Harmony Energy"
+    },
+    {
+      "repd_ref": "4309",
+      "from": "ARC NI 1 / Windy Fields",
+      "to": "ARC NI 1 & Windy Fields"
+    },
+    {
+      "repd_ref": "4262",
+      "from": "InfraRed Capital Partners/ E.on",
+      "to": "InfraRed Capital Partners& E.on"
+    },
+    {
+      "repd_ref": "7178",
+      "from": "EDF Energy Renewables/ Force 9",
+      "to": "EDF Energy Renewables& Force 9"
+    },
+    {
+      "repd_ref": "16557",
+      "from": "Ylem Energy Limited / Root Power",
+      "to": "Ylem Energy Limited & Root Power"
+    },
+    {
+      "repd_ref": "6953",
+      "from": "Statera Energy / Melksham East Storage",
+      "to": "Statera Energy & Melksham East Storage"
+    },
+    {
+      "repd_ref": "6833",
+      "from": "Arise AB / Lomond Energy",
+      "to": "Arise AB & Lomond Energy"
+    },
+    {
+      "repd_ref": "14874",
+      "from": "Ashfield District Council / Voltalia UK",
+      "to": "Ashfield District Council & Voltalia UK"
+    },
+    {
+      "repd_ref": "16075",
+      "from": "NextEnergy Solar Fund / Eelpower Limited",
+      "to": "NextEnergy Solar Fund & Eelpower Limited"
+    },
+    {
+      "repd_ref": "7168",
+      "from": "Public Power Solutions (PPS) / West Sussex County Council",
+      "to": "Public Power Solutions (PPS) & West Sussex County Council"
+    },
+    {
+      "repd_ref": "6952",
+      "from": "Statera Energy / Minety North Storage",
+      "to": "Statera Energy & Minety North Storage"
+    },
+    {
+      "repd_ref": "9273",
+      "from": "British Solar Renewables / BayWa r.e. UK Limited",
+      "to": "British Solar Renewables & BayWa r.e. UK Limited"
+    },
+    {
+      "repd_ref": "9240",
+      "from": "Solarcentury Limited / Statkraft Uk Limited",
+      "to": "Solarcentury Limited & Statkraft Uk Limited"
+    },
+    {
+      "repd_ref": "7185",
+      "from": "Statera Energy / Gresham House",
+      "to": "Statera Energy & Gresham House"
+    },
+    {
+      "repd_ref": "8529",
+      "from": "Darlington Borough Council / Aura Power Solar",
+      "to": "Darlington Borough Council & Aura Power Solar"
+    },
+    {
+      "repd_ref": "7272",
+      "from": "Aura Power / Pivot Power",
+      "to": "Aura Power & Pivot Power"
+    },
+    {
+      "repd_ref": "7026",
+      "from": "Immersa / Kirkby Battery Storage 2",
+      "to": "Immersa & Kirkby Battery Storage 2"
+    },
+    {
+      "repd_ref": "7945",
+      "from": "Low Carbon / EDF Energy Renewables",
+      "to": "Low Carbon & EDF Energy Renewables"
+    },
+    {
+      "repd_ref": "7954",
+      "from": "Lightrock Power / Bluefield Solar Income Fund",
+      "to": "Lightrock Power & Bluefield Solar Income Fund"
+    },
+    {
+      "repd_ref": "7044",
+      "from": "Statera Energy / Gresham House",
+      "to": "Statera Energy & Gresham House"
+    },
+    {
+      "repd_ref": "9795",
+      "from": "Ridge Clean Energy Limited / L&G NTR Clean Power",
+      "to": "Ridge Clean Energy Limited & L&G NTR Clean Power"
+    },
+    {
+      "repd_ref": "9796",
+      "from": "Ridge Clean Energy Limited / L&G NTR Clean Power",
+      "to": "Ridge Clean Energy Limited & L&G NTR Clean Power"
+    },
+    {
+      "repd_ref": "7089",
+      "from": "Statera Energy / Grendon Storage",
+      "to": "Statera Energy & Grendon Storage"
+    },
+    {
+      "repd_ref": "15627",
+      "from": "XRE Gamma Limited / EDF",
+      "to": "XRE Gamma Limited & EDF"
+    },
+    {
+      "repd_ref": "7740",
+      "from": "Arenko Cleantech / Stratcraft",
+      "to": "Arenko Cleantech & Stratcraft"
+    },
+    {
+      "repd_ref": "8101",
+      "from": "Aura Power / Infinis Energy Services",
+      "to": "Aura Power & Infinis Energy Services"
+    },
+    {
+      "repd_ref": "13949",
+      "from": "Infinergy Limited / Boralex",
+      "to": "Infinergy Limited & Boralex"
+    },
+    {
+      "repd_ref": "8053",
+      "from": "Gresham House / Anesco Limited",
+      "to": "Gresham House & Anesco Limited"
+    },
+    {
+      "repd_ref": "7078",
+      "from": "Abham Storage / Statera Energy",
+      "to": "Abham Storage & Statera Energy"
+    },
+    {
+      "repd_ref": "9315",
+      "from": "Pivot Power / EDF Energy Renewables",
+      "to": "Pivot Power & EDF Energy Renewables"
+    },
+    {
+      "repd_ref": "14873",
+      "from": "Ashfield District Council / Voltalia UK",
+      "to": "Ashfield District Council & Voltalia UK"
+    },
+    {
+      "repd_ref": "8916",
+      "from": "Gigabox Developments Limited / Whirlwind Renewables",
+      "to": "Gigabox Developments Limited & Whirlwind Renewables"
+    },
+    {
+      "repd_ref": "8052",
+      "from": "Enso Energy / Iron Acton Green",
+      "to": "Enso Energy & Iron Acton Green"
+    },
+    {
+      "repd_ref": "7335",
+      "from": "RNA Energy / Harmony Energy Storage/ Tag Energy UK",
+      "to": "RNA Energy & Harmony Energy Storage& Tag Energy UK"
+    },
+    {
+      "repd_ref": "1073",
+      "from": "Sunsave 10 (FAREHAM) / Vogt Solar",
+      "to": "Sunsave 10 (FAREHAM) & Vogt Solar"
+    },
+    {
+      "repd_ref": "6898",
+      "from": "Statera Energy/ InfraRed Capital",
+      "to": "Statera Energy& InfraRed Capital"
+    },
+    {
+      "repd_ref": "11725",
+      "from": "Prime Energy Development Limited / Valero Energy / Sambar Power",
+      "to": "Prime Energy Development Limited & Valero Energy & Sambar Power"
+    },
+    {
+      "repd_ref": "8468",
+      "from": "Energiekontor UK Limited / Uniper",
+      "to": "Energiekontor UK Limited & Uniper"
+    },
+    {
+      "repd_ref": "11883",
+      "from": "RE Projects Development / Solarig",
+      "to": "RE Projects Development & Solarig"
+    },
+    {
+      "repd_ref": "9820",
+      "from": "Renewable Connections Developments Limited / European Energy UK Ltd",
+      "to": "Renewable Connections Developments Limited & European Energy UK Ltd"
+    },
+    {
+      "repd_ref": "5393",
+      "from": "Greencoat (formerly 3R Energy/Blue Energy) / BayWa r.e",
+      "to": "Greencoat (formerly 3R Energy&Blue Energy) & BayWa r.e"
+    },
+    {
+      "repd_ref": "8802",
+      "from": "Renewable Energy System Limited / Ripple Energy",
+      "to": "Renewable Energy System Limited & Ripple Energy"
+    },
+    {
+      "repd_ref": "18360",
+      "from": "South Lanarkshire Council / Brockwell Energy Limited",
+      "to": "South Lanarkshire Council & Brockwell Energy Limited"
+    },
+    {
+      "repd_ref": "6099",
+      "from": "Buccleuch Estate/ 2020 Renewables",
+      "to": "Buccleuch Estate& 2020 Renewables"
+    },
+    {
+      "repd_ref": "2848",
+      "from": "Coriolis Energy / ESB",
+      "to": "Coriolis Energy & ESB"
+    },
+    {
+      "repd_ref": "4142",
+      "from": "Gaelectric Developments/ CGN Europe Energy",
+      "to": "Gaelectric Developments& CGN Europe Energy"
+    },
+    {
+      "repd_ref": "16317",
+      "from": "EDP Renewables / Wind2",
+      "to": "EDP Renewables & Wind2"
+    },
+    {
+      "repd_ref": "20397",
+      "from": "G2 Energy / SMS Energy Services Ltd",
+      "to": "G2 Energy & SMS Energy Services Ltd"
+    },
+    {
+      "repd_ref": "12803",
+      "from": "Eku Energy / Statkraft",
+      "to": "Eku Energy & Statkraft"
+    },
+    {
+      "repd_ref": "5431",
+      "from": "GreenHedge (BayWa r.e.) / Next Energy Capital",
+      "to": "GreenHedge (BayWa r.e.) & Next Energy Capital"
+    },
+    {
+      "repd_ref": "9524",
+      "from": "DIF Capital Partners / Green Investment Group",
+      "to": "DIF Capital Partners & Green Investment Group"
+    },
+    {
+      "repd_ref": "1835",
+      "from": "Inazin Energy Limited / Low Carbon",
+      "to": "Inazin Energy Limited & Low Carbon"
+    },
+    {
+      "repd_ref": "9090",
+      "from": "Novus Renewable Services / Innova Renewables",
+      "to": "Novus Renewable Services & Innova Renewables"
+    },
+    {
+      "repd_ref": "7163",
+      "from": "Coronation Power / Persimmon Homes",
+      "to": "Coronation Power & Persimmon Homes"
+    },
+    {
+      "repd_ref": "4605",
+      "from": "Renewables Infrastructure Group / Renewable Energy Systems (RES)",
+      "to": "Renewables Infrastructure Group & Renewable Energy Systems (RES)"
+    },
+    {
+      "repd_ref": "14205",
+      "from": "Atrato Onsite Energy / Harmony Energy",
+      "to": "Atrato Onsite Energy & Harmony Energy"
+    },
+    {
+      "repd_ref": "13626",
+      "from": "Octopus Energy / Wind 2 Limited",
+      "to": "Octopus Energy & Wind 2 Limited"
+    },
+    {
+      "repd_ref": "2085",
+      "from": "Foresight/ Vogt solar",
+      "to": "Foresight& Vogt solar"
+    },
+    {
+      "repd_ref": "4061",
+      "from": "ESB (Cambrian Renewable Energy Ltd / Betws Common Holdings Ltd)",
+      "to": "ESB (Cambrian Renewable Energy Ltd & Betws Common Holdings Ltd)"
+    },
+    {
+      "repd_ref": "15174",
+      "from": "Blue Energy Company / BayWa r.e. UK Limited",
+      "to": "Blue Energy Company & BayWa r.e. UK Limited"
+    },
+    {
+      "repd_ref": "11481",
+      "from": "Naturalis Energy / REG Wind Power / Falck Renewables",
+      "to": "Naturalis Energy & REG Wind Power & Falck Renewables"
+    },
+    {
+      "repd_ref": "4648",
+      "from": "RWE Npower Renewables/ Innogy",
+      "to": "RWE Npower Renewables& Innogy"
+    },
+    {
+      "repd_ref": "10145",
+      "from": "Walker & Son (Hauliers) Limited / Vox Energy Limited",
+      "to": "Walker & Son (Hauliers) Limited & Vox Energy Limited"
+    },
+    {
+      "repd_ref": "10035",
+      "from": "Renewable Connections Developments Limited / European Energy UK Ltd",
+      "to": "Renewable Connections Developments Limited & European Energy UK Ltd"
+    },
+    {
+      "repd_ref": "3488",
+      "from": "CRE Energy/ Scottish Power",
+      "to": "CRE Energy& Scottish Power"
+    },
+    {
+      "repd_ref": "11151",
+      "from": "FPC Electric Land Limited / Pulse Clean Energy",
+      "to": "FPC Electric Land Limited & Pulse Clean Energy"
+    },
+    {
+      "repd_ref": "8385",
+      "from": "Peak Reserve Power Limited / Centrica / Cragside",
+      "to": "Peak Reserve Power Limited & Centrica & Cragside"
+    },
+    {
+      "repd_ref": "11366",
+      "from": "Low Carbon Alliance / Taiyo Power & Storage",
+      "to": "Low Carbon Alliance & Taiyo Power & Storage"
+    },
+    {
+      "repd_ref": "9038",
+      "from": "Stark Energy / SSE Renewables",
+      "to": "Stark Energy & SSE Renewables"
+    },
+    {
+      "repd_ref": "14888",
+      "from": "Infinis Solar Developments Limited / Green Earth Developments",
+      "to": "Infinis Solar Developments Limited & Green Earth Developments"
+    },
+    {
+      "repd_ref": "14287",
+      "from": "BayWa r.e. UKLimited / Grüne Energien Projekt UG",
+      "to": "BayWa r.e. UKLimited & Grüne Energien Projekt UG"
+    },
+    {
+      "repd_ref": "4669",
+      "from": "CRE Energy/ Scottish Power",
+      "to": "CRE Energy& Scottish Power"
+    },
+    {
+      "repd_ref": "3292",
+      "from": "CRE Energy/ Scottish Power",
+      "to": "CRE Energy& Scottish Power"
+    },
+    {
+      "repd_ref": "6562",
+      "from": "Renewable Energy Systems (RES) / Innagreen Investments",
+      "to": "Renewable Energy Systems (RES) & Innagreen Investments"
+    },
+    {
+      "repd_ref": "7482",
+      "from": "Cambridgeshire County Council / Bouygues ES",
+      "to": "Cambridgeshire County Council & Bouygues ES"
+    },
+    {
+      "repd_ref": "9631",
+      "from": "Innova Renewables / ISGRenewables",
+      "to": "Innova Renewables & ISGRenewables"
+    },
+    {
+      "repd_ref": "2238",
+      "from": "Cambridge Solar Power/ Vogt Solar",
+      "to": "Cambridge Solar Power& Vogt Solar"
+    },
+    {
+      "repd_ref": "7363",
+      "from": "British Solar Renewables / BayWa r.e. UK Limited",
+      "to": "British Solar Renewables & BayWa r.e. UK Limited"
+    },
+    {
+      "repd_ref": "3388",
+      "from": "North British Wind / Invenergy",
+      "to": "North British Wind & Invenergy"
+    },
+    {
+      "repd_ref": "3487",
+      "from": "CRE Energy/ Scottish Power",
+      "to": "CRE Energy& Scottish Power"
+    },
+    {
+      "repd_ref": "2151",
+      "from": "Solar century / Magnetar Solar",
+      "to": "Solar century & Magnetar Solar"
+    },
+    {
+      "repd_ref": "3575",
+      "from": "Renewable Energy Systems (RES) / BP Energy",
+      "to": "Renewable Energy Systems (RES) & BP Energy"
+    },
+    {
+      "repd_ref": "4125",
+      "from": "Wind Prospect Developments/ EDF",
+      "to": "Wind Prospect Developments& EDF"
+    },
+    {
+      "repd_ref": "5013",
+      "from": "Wirsol / Elgar Middleton",
+      "to": "Wirsol & Elgar Middleton"
+    },
+    {
+      "repd_ref": "14304",
+      "from": "Canadian Solar / Novergy",
+      "to": "Canadian Solar & Novergy"
+    },
+    {
+      "repd_ref": "7557",
+      "from": "Canadian Solar / Novergy",
+      "to": "Canadian Solar & Novergy"
+    },
+    {
+      "repd_ref": "13677",
+      "from": "Enso Green Holdings Limited / Cero Generation",
+      "to": "Enso Green Holdings Limited & Cero Generation"
+    },
+    {
+      "repd_ref": "6644",
+      "from": "Next Power SPV 7 / Intelligent Alternatives",
+      "to": "Next Power SPV 7 & Intelligent Alternatives"
+    },
+    {
+      "repd_ref": "5276",
+      "from": "Warrington Borough Council / Statkraft",
+      "to": "Warrington Borough Council & Statkraft"
+    },
+    {
+      "repd_ref": "4673",
+      "from": "B9 / Renewable Energy Systems (RES)",
+      "to": "B9 & Renewable Energy Systems (RES)"
+    },
+    {
+      "repd_ref": "14887",
+      "from": "Infinis Solar Developments Limited / Green Earth Developments",
+      "to": "Infinis Solar Developments Limited & Green Earth Developments"
+    },
+    {
+      "repd_ref": "6207",
+      "from": "2020 Renewables/ Forsa Energy",
+      "to": "2020 Renewables& Forsa Energy"
+    },
+    {
+      "repd_ref": "7708",
+      "from": "Infinergy / Boralex",
+      "to": "Infinergy & Boralex"
+    },
+    {
+      "repd_ref": "1362",
+      "from": "Sunsave 10 (FAREHAM) / Vogt Solar",
+      "to": "Sunsave 10 (FAREHAM) & Vogt Solar"
+    },
+    {
+      "repd_ref": "5198",
+      "from": "Hoolan Energy/ Hesta Head Wind Farm",
+      "to": "Hoolan Energy& Hesta Head Wind Farm"
+    },
+    {
+      "repd_ref": "1955",
+      "from": "Solar century / Magnetar Solar",
+      "to": "Solar century & Magnetar Solar"
+    },
+    {
+      "repd_ref": "7460",
+      "from": "Douglas West Extension / 3R Energy Solutions",
+      "to": "Douglas West Extension & 3R Energy Solutions"
+    },
+    {
+      "repd_ref": "3253",
+      "from": "Wind Farm Developments / RES UK & Ireland",
+      "to": "Wind Farm Developments & RES UK & Ireland"
+    },
+    {
+      "repd_ref": "11675",
+      "from": "Falck Renewables / REG Windpower",
+      "to": "Falck Renewables & REG Windpower"
+    },
+    {
+      "repd_ref": "14765",
+      "from": "Wind2 / Octopus Energy",
+      "to": "Wind2 & Octopus Energy"
+    },
+    {
+      "repd_ref": "14766",
+      "from": "Wind2 / Octopus Energy",
+      "to": "Wind2 & Octopus Energy"
+    },
+    {
+      "repd_ref": "5444",
+      "from": "Wirsol / Island Green Power",
+      "to": "Wirsol & Island Green Power"
+    },
+    {
+      "repd_ref": "6918",
+      "from": "Hazel Capital/ Noriker Power",
+      "to": "Hazel Capital& Noriker Power"
+    },
+    {
+      "repd_ref": "9274",
+      "from": "British Solar Renewables / BayWa r.e. UK Limited",
+      "to": "British Solar Renewables & BayWa r.e. UK Limited"
+    },
+    {
+      "repd_ref": "8257",
+      "from": "Gresham House / Anesco Limited",
+      "to": "Gresham House & Anesco Limited"
+    },
+    {
+      "repd_ref": "8897",
+      "from": "Gresham House / Anesco Limited",
+      "to": "Gresham House & Anesco Limited"
+    },
+    {
+      "repd_ref": "2580",
+      "from": "MANWEB Generation Holdings/ National Windpower",
+      "to": "MANWEB Generation Holdings& National Windpower"
+    },
+    {
+      "repd_ref": "2581",
+      "from": "MANWEB Generation Holdings Ltd/ National Windpower",
+      "to": "MANWEB Generation Holdings Ltd& National Windpower"
+    },
+    {
+      "repd_ref": "11698",
+      "from": "North Farm Mannington Solar Limited / BayWa r.e.",
+      "to": "North Farm Mannington Solar Limited & BayWa r.e."
+    },
+    {
+      "repd_ref": "10040",
+      "from": "Anesco Limited / Gresham House",
+      "to": "Anesco Limited & Gresham House"
+    },
+    {
+      "repd_ref": "4988",
+      "from": "Corolis Energy/ ESB / Ripple Energy",
+      "to": "Corolis Energy& ESB & Ripple Energy"
+    },
+    {
+      "repd_ref": "1332",
+      "from": "Sunsave 25 (Wix Lodge Farm) Limited/ Vogt Solar",
+      "to": "Sunsave 25 (Wix Lodge Farm) Limited& Vogt Solar"
+    },
+    {
+      "repd_ref": "4114",
+      "from": "Greencoat UK Wind/Bay Wa .r.e/ SunGift",
+      "to": "Greencoat UK Wind&Bay Wa .r.e& SunGift"
+    },
+    {
+      "repd_ref": "15536",
+      "from": "REG Windpower Limited / ESB Energy Limited",
+      "to": "REG Windpower Limited & ESB Energy Limited"
+    },
+    {
+      "repd_ref": "13401",
+      "from": "Naturalis Energy / REG Wind Power / Falck Renewables",
+      "to": "Naturalis Energy & REG Wind Power & Falck Renewables"
+    },
+    {
+      "repd_ref": "3129",
+      "from": "Powergen / Wind Prospects",
+      "to": "Powergen & Wind Prospects"
+    },
+    {
+      "repd_ref": "4691",
+      "from": "Wind Prospect / Community Windpower",
+      "to": "Wind Prospect & Community Windpower"
+    },
+    {
+      "repd_ref": "4510",
+      "from": "EDF / Your Energy",
+      "to": "EDF & Your Energy"
+    },
+    {
+      "repd_ref": "4067",
+      "from": "RES/ Aviva",
+      "to": "RES& Aviva"
+    },
+    {
+      "repd_ref": "5603",
+      "from": "Earthworm/ EW Capital",
+      "to": "Earthworm& EW Capital"
+    },
+    {
+      "repd_ref": "17627",
+      "from": "Renewable Energy Systems (RES) / Innagreen Investments",
+      "to": "Renewable Energy Systems (RES) & Innagreen Investments"
+    },
+    {
+      "repd_ref": "4671",
+      "from": "RDC Scotland Ltd/ Falck Renewables",
+      "to": "RDC Scotland Ltd& Falck Renewables"
+    },
+    {
+      "repd_ref": "1919",
+      "from": "Push Energy/ NextEnergy Solar Fund (NESF)",
+      "to": "Push Energy& NextEnergy Solar Fund (NESF)"
+    },
+    {
+      "repd_ref": "9372",
+      "from": "BeBa Energy UK Limited / University of Lancaster",
+      "to": "BeBa Energy UK Limited & University of Lancaster"
+    },
+    {
+      "repd_ref": "3607",
+      "from": "Wind Prospect / TXU",
+      "to": "Wind Prospect & TXU"
+    },
+    {
+      "repd_ref": "11676",
+      "from": "Falck Renewables / REG Windpower",
+      "to": "Falck Renewables & REG Windpower"
+    },
+    {
+      "repd_ref": "2260",
+      "from": "Solar century / Magnetar Solar",
+      "to": "Solar century & Magnetar Solar"
+    },
+    {
+      "repd_ref": "2011",
+      "from": "BayWa/ SunGift",
+      "to": "BayWa& SunGift"
+    },
+    {
+      "repd_ref": "4501",
+      "from": "John Laing Environmental Assets Group/ REG Power Management",
+      "to": "John Laing Environmental Assets Group& REG Power Management"
+    },
+    {
+      "repd_ref": "3448",
+      "from": "AMEC/ Border Winds",
+      "to": "AMEC& Border Winds"
+    },
+    {
+      "repd_ref": "3294",
+      "from": "CRE Energy/ Scottish Power",
+      "to": "CRE Energy& Scottish Power"
+    },
+    {
+      "repd_ref": "1982",
+      "from": "Suncredit UK/ Vogt Solar",
+      "to": "Suncredit UK& Vogt Solar"
+    },
+    {
+      "repd_ref": "14958",
+      "from": "Wind 2 / EDPR",
+      "to": "Wind 2 & EDPR"
+    },
+    {
+      "repd_ref": "4197",
+      "from": "RWE / npower renewables",
+      "to": "RWE & npower renewables"
+    },
+    {
+      "repd_ref": "3451",
+      "from": "Eurus Energy / Ecogen",
+      "to": "Eurus Energy & Ecogen"
+    },
+    {
+      "repd_ref": "1223",
+      "from": "Solar Century/ Bluefield Solar",
+      "to": "Solar Century& Bluefield Solar"
+    },
+    {
+      "repd_ref": "2274",
+      "from": "Hadstone Energy/ Communities for Renewables",
+      "to": "Hadstone Energy& Communities for Renewables"
+    },
+    {
+      "repd_ref": "9946",
+      "from": "Springfield Limited / Aggreko",
+      "to": "Springfield Limited & Aggreko"
+    },
+    {
+      "repd_ref": "3934",
+      "from": "Gaelectric Developments/ CGN Europe Energy",
+      "to": "Gaelectric Developments& CGN Europe Energy"
+    },
+    {
+      "repd_ref": "4653",
+      "from": "Gaelectric Developments/ CGN Europe Energy",
+      "to": "Gaelectric Developments& CGN Europe Energy"
+    },
+    {
+      "repd_ref": "4245",
+      "from": "Gaelectric Developments/ CGN Europe Energy",
+      "to": "Gaelectric Developments& CGN Europe Energy"
+    },
+    {
+      "repd_ref": "4063",
+      "from": "Arnish Electric Ltd / Farm Energy Ltd",
+      "to": "Arnish Electric Ltd & Farm Energy Ltd"
+    },
+    {
+      "repd_ref": "4316",
+      "from": "REG Windpower/ BlackRock",
+      "to": "REG Windpower& BlackRock"
+    },
+    {
+      "repd_ref": "2252",
+      "from": "Sunsave 7 Luscott Barton Ltd/ vogt Solar",
+      "to": "Sunsave 7 Luscott Barton Ltd& vogt Solar"
+    },
+    {
+      "repd_ref": "3467",
+      "from": "Border Wind / Scottish and Southern (SSE)",
+      "to": "Border Wind & Scottish and Southern (SSE)"
+    },
+    {
+      "repd_ref": "15537",
+      "from": "REG Windpower Limited / ESB Energy Limited",
+      "to": "REG Windpower Limited & ESB Energy Limited"
+    },
+    {
+      "repd_ref": "1944",
+      "from": "Sunsave 17 / Vogt Solar",
+      "to": "Sunsave 17 & Vogt Solar"
+    },
+    {
+      "repd_ref": "4143",
+      "from": "Gaelectric Developments/ CGN Europe Energy",
+      "to": "Gaelectric Developments& CGN Europe Energy"
+    },
+    {
+      "repd_ref": "8079",
+      "from": "Iqony SENS UK Limited / Wessex Solar Energy",
+      "to": "Iqony SENS UK Limited & Wessex Solar Energy"
+    },
+    {
+      "repd_ref": "4155",
+      "from": "Gaelectric Developments/ CGN Europe Energy",
+      "to": "Gaelectric Developments& CGN Europe Energy"
+    },
+    {
+      "repd_ref": "1648",
+      "from": "Sunsave 12 (Derriton Fields) Limited./ Vogt solar",
+      "to": "Sunsave 12 (Derriton Fields) Limited.& Vogt solar"
+    },
+    {
+      "repd_ref": "3244",
+      "from": "B9 Energy / RES",
+      "to": "B9 Energy & RES"
+    },
+    {
+      "repd_ref": "1382",
+      "from": "Sunsave 20 (Knowlton) Ltd/ Vogt Solar",
+      "to": "Sunsave 20 (Knowlton) Ltd& Vogt Solar"
+    },
+    {
+      "repd_ref": "1590",
+      "from": "NESF (formerly Lumicity) / Next Energy",
+      "to": "NESF (formerly Lumicity) & Next Energy"
+    },
+    {
+      "repd_ref": "1322",
+      "from": "Lightsource Renewable Energy / Push Energy",
+      "to": "Lightsource Renewable Energy & Push Energy"
+    },
+    {
+      "repd_ref": "2154",
+      "from": "Sigma Solar Limited / OPDE",
+      "to": "Sigma Solar Limited & OPDE"
+    },
+    {
+      "repd_ref": "6984",
+      "from": "Aura Power / South East Grid Storage Two",
+      "to": "Aura Power & South East Grid Storage Two"
+    },
+    {
+      "repd_ref": "4901",
+      "from": "Ecotricity / Next Generation",
+      "to": "Ecotricity & Next Generation"
+    },
+    {
+      "repd_ref": "4680",
+      "from": "B9 / Renewable Energy Systems (RES)",
+      "to": "B9 & Renewable Energy Systems (RES)"
+    },
+    {
+      "repd_ref": "2618",
+      "from": "Wharrels Hill Windfarm Ltd/ National Windpower",
+      "to": "Wharrels Hill Windfarm Ltd& National Windpower"
+    },
+    {
+      "repd_ref": "2663",
+      "from": "Eastern Wind Farms Ltd/ RES",
+      "to": "Eastern Wind Farms Ltd& RES"
+    },
+    {
+      "repd_ref": "12791",
+      "from": "Warrington Borough Council / Statkraft",
+      "to": "Warrington Borough Council & Statkraft"
+    },
+    {
+      "repd_ref": "7177",
+      "from": "Low Carbon Storage Investment Company/ VLC",
+      "to": "Low Carbon Storage Investment Company& VLC"
+    },
+    {
+      "repd_ref": "4651",
+      "from": "REG Windpower / BlackRock",
+      "to": "REG Windpower & BlackRock"
+    },
+    {
+      "repd_ref": "6264",
+      "from": "Hexicon AB/ Dounreay Tri",
+      "to": "Hexicon AB& Dounreay Tri"
+    },
+    {
+      "repd_ref": "6915",
+      "from": "Anesco/ Green Hedge Energy UK",
+      "to": "Anesco& Green Hedge Energy UK"
+    },
+    {
+      "repd_ref": "20396",
+      "from": "Gore Street Capital / Flexitricity Limited",
+      "to": "Gore Street Capital & Flexitricity Limited"
+    },
+    {
+      "repd_ref": "6916",
+      "from": "Anesco/ Green Hedge Energy UK",
+      "to": "Anesco& Green Hedge Energy UK"
+    },
+    {
+      "repd_ref": "5923",
+      "from": "Earthworm/ EW Capital",
+      "to": "Earthworm& EW Capital"
+    },
+    {
+      "repd_ref": "2210",
+      "from": "Kappa Solar/ OPDE",
+      "to": "Kappa Solar& OPDE"
+    },
+    {
+      "repd_ref": "5730",
+      "from": "Earthworm/ EW Capital",
+      "to": "Earthworm& EW Capital"
+    },
+    {
+      "repd_ref": "4713",
+      "from": "Primrose Solar / Mongoose Energy",
+      "to": "Primrose Solar & Mongoose Energy"
+    },
+    {
+      "repd_ref": "6926",
+      "from": "Belectric UK / Foresight",
+      "to": "Belectric UK & Foresight"
+    },
+    {
+      "repd_ref": "4846",
+      "from": "Omega Solar / OPDE",
+      "to": "Omega Solar & OPDE"
+    },
+    {
+      "repd_ref": "3731",
+      "from": "Ecotricity / Next Generation",
+      "to": "Ecotricity & Next Generation"
+    },
+    {
+      "repd_ref": "4861",
+      "from": "Sunsave 27 (Twemlows)/ Vogt solar",
+      "to": "Sunsave 27 (Twemlows)& Vogt solar"
+    },
+    {
+      "repd_ref": "10415",
+      "from": "Dragon LNG Limited / Anesco Limited",
+      "to": "Dragon LNG Limited & Anesco Limited"
+    },
+    {
+      "repd_ref": "2578",
+      "from": "South Western Power / Renewable Energy Systems (RES) / NOVERA",
+      "to": "South Western Power & Renewable Energy Systems (RES) & NOVERA"
+    },
+    {
+      "repd_ref": "4312",
+      "from": "E.On / Eurus (TPG Wind)",
+      "to": "E.On & Eurus (TPG Wind)"
+    },
+    {
+      "repd_ref": "11384",
+      "from": "Regener8 Power / Environmena",
+      "to": "Regener8 Power & Environmena"
+    },
+    {
+      "repd_ref": "2642",
+      "from": "South Wales Power / SWALEC",
+      "to": "South Wales Power & SWALEC"
+    },
+    {
+      "repd_ref": "2645",
+      "from": "South Wales Power / SWALEC",
+      "to": "South Wales Power & SWALEC"
+    },
+    {
+      "repd_ref": "3911",
+      "from": "LocoGen/ Green Cat Renewables",
+      "to": "LocoGen& Green Cat Renewables"
+    },
+    {
+      "repd_ref": "1359",
+      "from": "Sunsave 16 Ltd/ Vogt Solar",
+      "to": "Sunsave 16 Ltd& Vogt Solar"
+    },
+    {
+      "repd_ref": "3240",
+      "from": "Windjen Power Ltd / Dulas Ltd",
+      "to": "Windjen Power Ltd & Dulas Ltd"
+    },
+    {
+      "repd_ref": "11672",
+      "from": "City of Edinburgh Council / Edinburgh Airport/ Ampyr Energy UK Development Limited",
+      "to": "City of Edinburgh Council & Edinburgh Airport& Ampyr Energy UK Development Limited"
+    },
+    {
+      "repd_ref": "4272",
+      "from": "Point Power & Energy Ltd / SgurrEnergy",
+      "to": "Point Power & Energy Ltd & SgurrEnergy"
+    },
+    {
+      "repd_ref": "5096",
+      "from": "British Solar Renewables / NextEenrgy Solar Fund (NESF)",
+      "to": "British Solar Renewables & NextEenrgy Solar Fund (NESF)"
+    },
+    {
+      "repd_ref": "3242",
+      "from": "B9 Energy / RES",
+      "to": "B9 Energy & RES"
+    },
+    {
+      "repd_ref": "12801",
+      "from": "Aberdeenshire Council / BP UK",
+      "to": "Aberdeenshire Council & BP UK"
+    },
+    {
+      "repd_ref": "2192",
+      "from": "Solar century / Magnetar Solar",
+      "to": "Solar century & Magnetar Solar"
+    },
+    {
+      "repd_ref": "1727",
+      "from": "Sunsave 9 (Old Rides) Ltd/ Vogt solar",
+      "to": "Sunsave 9 (Old Rides) Ltd& Vogt solar"
+    },
+    {
+      "repd_ref": "3055",
+      "from": "Ecotricity / Next Generation",
+      "to": "Ecotricity & Next Generation"
+    },
+    {
+      "repd_ref": "2629",
+      "from": "NOVERA / Renewable Energy Systems (RES)",
+      "to": "NOVERA & Renewable Energy Systems (RES)"
+    },
+    {
+      "repd_ref": "2643",
+      "from": "South Wales Power / SWALEC / National Windpower",
+      "to": "South Wales Power & SWALEC & National Windpower"
+    },
+    {
+      "repd_ref": "2646",
+      "from": "South Wales Power / SWALEC / National Windpower",
+      "to": "South Wales Power & SWALEC & National Windpower"
+    },
+    {
+      "repd_ref": "5277",
+      "from": "Infinergy/ Muirhall Energy",
+      "to": "Infinergy& Muirhall Energy"
+    },
+    {
+      "repd_ref": "7113",
+      "from": "AMDC Energy / Balanced Grid Solutions",
+      "to": "AMDC Energy & Balanced Grid Solutions"
+    },
+    {
+      "repd_ref": "20327",
+      "from": "Camborne Energy / Noriker Power",
+      "to": "Camborne Energy & Noriker Power"
+    },
+    {
+      "repd_ref": "3925",
+      "from": "2020 Renewables/ NTR",
+      "to": "2020 Renewables& NTR"
+    },
+    {
+      "repd_ref": "5331",
+      "from": "RAD Energy One/ Island Green Power",
+      "to": "RAD Energy One& Island Green Power"
+    },
+    {
+      "repd_ref": "11161",
+      "from": "GAM Capital Limited / Infinis Energy Services Limited",
+      "to": "GAM Capital Limited & Infinis Energy Services Limited"
+    },
+    {
+      "repd_ref": "4360",
+      "from": "Force 9 Energy / Catamount Energy/ Green Cat",
+      "to": "Force 9 Energy & Catamount Energy& Green Cat"
+    },
+    {
+      "repd_ref": "3756",
+      "from": "Honda / Ecotricity",
+      "to": "Honda & Ecotricity"
+    },
+    {
+      "repd_ref": "1094",
+      "from": "Sunsave 4 Ltd/ Vogt Solar",
+      "to": "Sunsave 4 Ltd& Vogt Solar"
+    },
+    {
+      "repd_ref": "5342",
+      "from": "Greencoat/ Renesola",
+      "to": "Greencoat& Renesola"
+    },
+    {
+      "repd_ref": "2365",
+      "from": "Sunsave 23 Limited/ Vogt solar",
+      "to": "Sunsave 23 Limited& Vogt solar"
+    },
+    {
+      "repd_ref": "3453",
+      "from": "A7 Energy / Green Energy",
+      "to": "A7 Energy & Green Energy"
+    },
+    {
+      "repd_ref": "2918",
+      "from": "Novera / West Coast Energy",
+      "to": "Novera & West Coast Energy"
+    },
+    {
+      "repd_ref": "2187",
+      "from": "Push Energy/ NextEnergy Solar Fund (NESF)",
+      "to": "Push Energy& NextEnergy Solar Fund (NESF)"
+    },
+    {
+      "repd_ref": "2625",
+      "from": "Windprospect / Windcluster",
+      "to": "Windprospect & Windcluster"
+    },
+    {
+      "repd_ref": "2300",
+      "from": "Solar Century/ Bluefield Solar",
+      "to": "Solar Century& Bluefield Solar"
+    },
+    {
+      "repd_ref": "5453",
+      "from": "Solar Century/ Bluefield Solar",
+      "to": "Solar Century& Bluefield Solar"
+    },
+    {
+      "repd_ref": "5900",
+      "from": "Earthworm/ EW Capital",
+      "to": "Earthworm& EW Capital"
+    },
+    {
+      "repd_ref": "4769",
+      "from": "Public Power Solutions/ Swindon Borough Council",
+      "to": "Public Power Solutions& Swindon Borough Council"
+    },
+    {
+      "repd_ref": "5321",
+      "from": "Suncredit UK/ Vogt solar",
+      "to": "Suncredit UK& Vogt solar"
+    },
+    {
+      "repd_ref": "4246",
+      "from": "Gaelectric Developments/ CGN Europe Energy",
+      "to": "Gaelectric Developments& CGN Europe Energy"
+    },
+    {
+      "repd_ref": "3103",
+      "from": "B9 Energy Services Ltd/ ScottishPower Renewables",
+      "to": "B9 Energy Services Ltd& ScottishPower Renewables"
+    },
+    {
+      "repd_ref": "2332",
+      "from": "Push Energy/ NextEnergy Solar Fund (NESF)",
+      "to": "Push Energy& NextEnergy Solar Fund (NESF)"
+    },
+    {
+      "repd_ref": "1981",
+      "from": "Thanet Solar Ltd/ Vogt Solar",
+      "to": "Thanet Solar Ltd& Vogt Solar"
+    },
+    {
+      "repd_ref": "3106",
+      "from": "B9 Energy Services Ltd/ ScottishPower Renewables",
+      "to": "B9 Energy Services Ltd& ScottishPower Renewables"
+    },
+    {
+      "repd_ref": "1991",
+      "from": "Push Energy/ NextEnergy Solar Fund (NESF)",
+      "to": "Push Energy& NextEnergy Solar Fund (NESF)"
+    },
+    {
+      "repd_ref": "5847",
+      "from": "Haymaker Energy / Trina Solar",
+      "to": "Haymaker Energy & Trina Solar"
+    },
+    {
+      "repd_ref": "1464",
+      "from": "Push Energy/ NextEnergy Solar Fund (NESF)",
+      "to": "Push Energy& NextEnergy Solar Fund (NESF)"
+    },
+    {
+      "repd_ref": "7375",
+      "from": "Push Energy / Kingmoor Park",
+      "to": "Push Energy & Kingmoor Park"
+    },
+    {
+      "repd_ref": "1294",
+      "from": "Kingspan Insulation/ Eneco",
+      "to": "Kingspan Insulation& Eneco"
+    },
+    {
+      "repd_ref": "1165",
+      "from": "BOA Property / AEE Renewables UK",
+      "to": "BOA Property & AEE Renewables UK"
+    },
+    {
+      "repd_ref": "5425",
+      "from": "Actrees Solar Power/ Vogt Solar",
+      "to": "Actrees Solar Power& Vogt Solar"
+    },
+    {
+      "repd_ref": "5428",
+      "from": "British Solar Renewables / NextEnergy Solar Fund (NESF)",
+      "to": "British Solar Renewables & NextEnergy Solar Fund (NESF)"
+    },
+    {
+      "repd_ref": "5292",
+      "from": "Kronos Solar/ Vogt Solar",
+      "to": "Kronos Solar& Vogt Solar"
+    },
+    {
+      "repd_ref": "5429",
+      "from": "British Solar Renewables / NextEnergy Solar Fund (NESF)",
+      "to": "British Solar Renewables & NextEnergy Solar Fund (NESF)"
+    },
+    {
+      "repd_ref": "5483",
+      "from": "Solar Century/ Bluefield Solar",
+      "to": "Solar Century& Bluefield Solar"
+    },
+    {
+      "repd_ref": "1045",
+      "from": "ZW Bushfurlong Ltd / WRS Energy",
+      "to": "ZW Bushfurlong Ltd & WRS Energy"
+    },
+    {
+      "repd_ref": "5913",
+      "from": "Earthworm/ EW Capital",
+      "to": "Earthworm& EW Capital"
+    },
+    {
+      "repd_ref": "11312",
+      "from": "Infinergy / Boralex",
+      "to": "Infinergy & Boralex"
+    },
+    {
+      "repd_ref": "5887",
+      "from": "Push Energy/ NextEnergy Solar Fund (NESF)",
+      "to": "Push Energy& NextEnergy Solar Fund (NESF)"
+    },
+    {
+      "repd_ref": "5543",
+      "from": "Solar Century/ Bluefield Solar",
+      "to": "Solar Century& Bluefield Solar"
+    },
+    {
+      "repd_ref": "1128",
+      "from": "Solar Century/ Bluefield Solar",
+      "to": "Solar Century& Bluefield Solar"
+    },
+    {
+      "repd_ref": "5914",
+      "from": "Innova / Lark Energy",
+      "to": "Innova & Lark Energy"
+    },
+    {
+      "repd_ref": "4729",
+      "from": "Pylle Solar/ John Laing Environmental",
+      "to": "Pylle Solar& John Laing Environmental"
+    },
+    {
+      "repd_ref": "3112",
+      "from": "B9 Energy Services Ltd/ ScottishPower Renewables",
+      "to": "B9 Energy Services Ltd& ScottishPower Renewables"
+    },
+    {
+      "repd_ref": "5296",
+      "from": "Solar Century/ Bluefield Solar",
+      "to": "Solar Century& Bluefield Solar"
+    },
+    {
+      "repd_ref": "5465",
+      "from": "Sunsave 38/ Vogt Solar",
+      "to": "Sunsave 38& Vogt Solar"
+    },
+    {
+      "repd_ref": "1333",
+      "from": "Solar Century/ Bluefield Solar",
+      "to": "Solar Century& Bluefield Solar"
+    },
+    {
+      "repd_ref": "3034",
+      "from": "Solutia / Vestas",
+      "to": "Solutia & Vestas"
+    },
+    {
+      "repd_ref": "5487",
+      "from": "Sunsave 30 (Strettington)/ Vogt solar",
+      "to": "Sunsave 30 (Strettington)& Vogt solar"
+    },
+    {
+      "repd_ref": "5559",
+      "from": "First Renewable Developments/ Harworth Group",
+      "to": "First Renewable Developments& Harworth Group"
+    },
+    {
+      "repd_ref": "2319",
+      "from": "Green Energy UK Direct Ltd/ Vogt Solar",
+      "to": "Green Energy UK Direct Ltd& Vogt Solar"
+    },
+    {
+      "repd_ref": "4889",
+      "from": "Sunsave 24/ Vogt solar",
+      "to": "Sunsave 24& Vogt solar"
+    },
+    {
+      "repd_ref": "4887",
+      "from": "Hive Energy/ Vogt Solar",
+      "to": "Hive Energy& Vogt Solar"
+    },
+    {
+      "repd_ref": "5527",
+      "from": "Public Power Solutions/ Swindon Borough Council",
+      "to": "Public Power Solutions& Swindon Borough Council"
+    },
+    {
+      "repd_ref": "5320",
+      "from": "Nissan / On-Site Land Solutions",
+      "to": "Nissan & On-Site Land Solutions"
+    },
+    {
+      "repd_ref": "5637",
+      "from": "Mongoose (formerly Energy Law Unlimited/ Pogbie Windfarm)",
+      "to": "Mongoose (formerly Energy Law Unlimited& Pogbie Windfarm)"
+    },
+    {
+      "repd_ref": "3855",
+      "from": "2020 Renewables/ NTR",
+      "to": "2020 Renewables& NTR"
+    },
+    {
+      "repd_ref": "2624",
+      "from": "Windprospect / Windcluster",
+      "to": "Windprospect & Windcluster"
+    },
+    {
+      "repd_ref": "2226",
+      "from": "Sunsave 19 (Wambrook)/ Vogt Solar",
+      "to": "Sunsave 19 (Wambrook)& Vogt Solar"
+    },
+    {
+      "repd_ref": "5150",
+      "from": "Suncredit UK/ Vogt solar",
+      "to": "Suncredit UK& Vogt solar"
+    },
+    {
+      "repd_ref": "1975",
+      "from": "Core Pisces / Gower Power Co-op CIC",
+      "to": "Core Pisces & Gower Power Co-op CIC"
+    },
+    {
+      "repd_ref": "5910",
+      "from": "Earthworm/ EW Capital",
+      "to": "Earthworm& EW Capital"
+    },
+    {
+      "repd_ref": "4412",
+      "from": "REG Windpower/ BlackRock",
+      "to": "REG Windpower& BlackRock"
+    },
+    {
+      "repd_ref": "2953",
+      "from": "EcoGen Projects / Fenpower",
+      "to": "EcoGen Projects & Fenpower"
+    },
+    {
+      "repd_ref": "6723",
+      "from": "Amazon UK Services/ Push Energy",
+      "to": "Amazon UK Services& Push Energy"
+    },
+    {
+      "repd_ref": "3306",
+      "from": "Arnish Electric Ltd / Farm Energy",
+      "to": "Arnish Electric Ltd & Farm Energy"
+    },
+    {
+      "repd_ref": "7027",
+      "from": "Amazon UK Services / Push Energy",
+      "to": "Amazon UK Services & Push Energy"
+    },
+    {
+      "repd_ref": "6715",
+      "from": "Amazon UK Services / Push Energy",
+      "to": "Amazon UK Services & Push Energy"
+    },
+    {
+      "repd_ref": "6523",
+      "from": "United Utilities Water/ Preston City Council",
+      "to": "United Utilities Water& Preston City Council"
+    },
+    {
+      "repd_ref": "15662",
+      "from": "DC Smith Skelmonae Wind Farm Limited / Formartine Partnership / JKR Contractors Ltd",
+      "to": "DC Smith Skelmonae Wind Farm Limited & Formartine Partnership & JKR Contractors Ltd"
+    },
+    {
+      "repd_ref": "2591",
+      "from": "Border Windfarm Limited / AMEC",
+      "to": "Border Windfarm Limited & AMEC"
+    },
+    {
+      "repd_ref": "4008",
+      "from": "Longearth Ltd/ Farm Energy",
+      "to": "Longearth Ltd& Farm Energy"
+    },
+    {
+      "repd_ref": "3529",
+      "from": "Longearth Ltd / Farm Energy",
+      "to": "Longearth Ltd & Farm Energy"
+    },
+    {
+      "repd_ref": "6403",
+      "from": "Next/ Eneco",
+      "to": "Next& Eneco"
+    },
+    {
+      "repd_ref": "2822",
+      "from": "Mornflake Oats/ Hamlyns Oats",
+      "to": "Mornflake Oats& Hamlyns Oats"
+    },
+    {
+      "repd_ref": "3382",
+      "from": "Sibelco/ Golconda",
+      "to": "Sibelco& Golconda"
+    },
+    {
+      "repd_ref": "3433",
+      "from": "Greencoat UK Wind/Bay Wa .r.e/ SunGift",
+      "to": "Greencoat UK Wind&Bay Wa .r.e& SunGift"
+    },
+    {
+      "repd_ref": "3537",
+      "from": "Natural Power Consultants / Powergen",
+      "to": "Natural Power Consultants & Powergen"
+    },
+    {
+      "repd_ref": "2638",
+      "from": "THREE WAY WIND LTD/ TXU Europower Ltd",
+      "to": "THREE WAY WIND LTD& TXU Europower Ltd"
+    },
+    {
+      "repd_ref": "11606",
+      "from": "Environmental Gain Limited / Bath & West Community Energy Limited",
+      "to": "Environmental Gain Limited & Bath & West Community Energy Limited"
+    },
+    {
+      "repd_ref": "7250",
+      "from": "Amazon UK Services / Push Energy",
+      "to": "Amazon UK Services & Push Energy"
+    },
+    {
+      "repd_ref": "6696",
+      "from": "Amazon UK Services / Push Energy",
+      "to": "Amazon UK Services & Push Energy"
+    },
+    {
+      "repd_ref": "2695",
+      "from": "Ecotricity / Next Generation",
+      "to": "Ecotricity & Next Generation"
+    },
+    {
+      "repd_ref": "3713",
+      "from": "Gaelectric Developments/ CGN Europe Energy",
+      "to": "Gaelectric Developments& CGN Europe Energy"
+    },
+    {
+      "repd_ref": "6846",
+      "from": "University of Sheffield/ Eon/ Uniper",
+      "to": "University of Sheffield& Eon& Uniper"
+    },
+    {
+      "repd_ref": "3210",
+      "from": "Ecotricity / Prudential",
+      "to": "Ecotricity & Prudential"
+    },
+    {
+      "repd_ref": "5720",
+      "from": "NR16/ RenEnergy",
+      "to": "NR16& RenEnergy"
+    },
+    {
+      "repd_ref": "6726",
+      "from": "Amazon UK Services/ Push Energy",
+      "to": "Amazon UK Services& Push Energy"
+    },
+    {
+      "repd_ref": "3150",
+      "from": "Parker Farms of Leicester / National Wind Power",
+      "to": "Parker Farms of Leicester & National Wind Power"
+    },
+    {
+      "repd_ref": "6712",
+      "from": "Amazon UK Services / Push Energy",
+      "to": "Amazon UK Services & Push Energy"
+    },
+    {
+      "repd_ref": "7016",
+      "from": "Amazon UK Services / Push Energy",
+      "to": "Amazon UK Services & Push Energy"
+    },
+    {
+      "repd_ref": "5969",
+      "from": "Barclays Bank / Innogy (previously BELECTRIC Solar)",
+      "to": "Barclays Bank & Innogy (previously BELECTRIC Solar)"
+    },
+    {
+      "repd_ref": "7248",
+      "from": "Amazon UK Services / Push Energy",
+      "to": "Amazon UK Services & Push Energy"
+    },
+    {
+      "repd_ref": "2550",
+      "from": "Western Windpower / Ecotricity",
+      "to": "Western Windpower & Ecotricity"
+    },
+    {
+      "repd_ref": "9499",
+      "from": "Clean Earth Energy / Imerys Minerals Limited",
+      "to": "Clean Earth Energy & Imerys Minerals Limited"
+    },
+    {
+      "repd_ref": "6711",
+      "from": "Amazon UK Services / Push Energy",
+      "to": "Amazon UK Services & Push Energy"
+    }
+  ],
+  "site_renamed": [
+    {
+      "repd_ref": "15530",
+      "from": "Braston New Energy",
+      "to": "Braston New Energy / The Wallace Project"
+    },
+    {
+      "repd_ref": "12820",
+      "from": "Camsiscan Farm, Craigie - Battery Energy Storage System",
+      "to": "Camsiscan Farm, Craigie - Kilmarnock South Battery Energy Storage System"
+    },
+    {
+      "repd_ref": "11656",
+      "from": "Little Beanit Farm, Balsall Common - Battery Storage",
+      "to": "Little Beanit Farm, Balsall Common - Berkswell Battery Storage"
+    },
+    {
+      "repd_ref": "19230",
+      "from": "Chediston Hall - 40MW Solar Panels",
+      "to": "Chediston Hall - Solar Panels"
+    }
+  ],
+  "status_changed": [
+    {
+      "repd_ref": "13429",
+      "from": "Awaiting Construction",
+      "to": "Application Submitted",
+      "signal": false
+    },
+    {
+      "repd_ref": "12307",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17559",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19634",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18069",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "13600",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17552",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "11034",
+      "from": "Under Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "15793",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "15794",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19561",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "15252",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "13599",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "16114",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "12179",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "10535",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18638",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "12820",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "8921",
+      "from": "Application Submitted",
+      "to": "Application Withdrawn",
+      "signal": true
+    },
+    {
+      "repd_ref": "16381",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "20451",
+      "from": "Application Submitted",
+      "to": "Application Withdrawn",
+      "signal": true
+    },
+    {
+      "repd_ref": "18621",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18249",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "20012",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "9546",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18649",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "15253",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "16685",
+      "from": "Application Refused",
+      "to": "Revised",
+      "signal": false
+    },
+    {
+      "repd_ref": "14194",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19207",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "11442",
+      "from": "Application Submitted",
+      "to": "Application Withdrawn",
+      "signal": true
+    },
+    {
+      "repd_ref": "18128",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19469",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "20307",
+      "from": "Application Submitted",
+      "to": "Appeal Lodged",
+      "signal": true
+    },
+    {
+      "repd_ref": "14193",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18668",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18680",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "14288",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18491",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "7858",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "16709",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "9388",
+      "from": "Operational",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19391",
+      "from": "Application Submitted",
+      "to": "Application Withdrawn",
+      "signal": true
+    },
+    {
+      "repd_ref": "17470",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17429",
+      "from": "Application Refused",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "14321",
+      "from": "Awaiting Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "19007",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "12162",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19475",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "13890",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "13763",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "8920",
+      "from": "Awaiting Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "9013",
+      "from": "Under Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "18118",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "10239",
+      "from": "Awaiting Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "15619",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "7889",
+      "from": "Under Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "19734",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "7230",
+      "from": "Abandoned",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "16619",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "10779",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "12607",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "11620",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "9876",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "9877",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17386",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "9820",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "10087",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18919",
+      "from": "Application Submitted",
+      "to": "Application Withdrawn",
+      "signal": true
+    },
+    {
+      "repd_ref": "7221",
+      "from": "Planning Permission Expired",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "11005",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17471",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "7012",
+      "from": "Abandoned",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "19389",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18440",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "20961",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "20962",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "9313",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "19595",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19213",
+      "from": "Application Refused",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "9547",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "9584",
+      "from": "Under Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "14205",
+      "from": "Under Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "14773",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "11441",
+      "from": "Application Submitted",
+      "to": "Application Withdrawn",
+      "signal": true
+    },
+    {
+      "repd_ref": "11843",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "12903",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "19806",
+      "from": "Application Refused",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "10183",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "12608",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "16630",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "13669",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18536",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17858",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19963",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "7827",
+      "from": "Planning Permission Expired",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "17887",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17888",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19220",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "16791",
+      "from": "Application Refused",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19964",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18754",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "14154",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "15524",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "15319",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17083",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "10633",
+      "from": "Application Refused",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17395",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17600",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17859",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "10038",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19465",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "10549",
+      "from": "Under Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "10657",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17499",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "13679",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "15318",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19657",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "8842",
+      "from": "Awaiting Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "13983",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "9503",
+      "from": "Under Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "17226",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19076",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "20622",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19390",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19282",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17510",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "15152",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19596",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "17601",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19780",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "13146",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "20096",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19476",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "20661",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "21019",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "16287",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "20441",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "21016",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18482",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "21003",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "20804",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18814",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "21006",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "21030",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "19769",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "18545",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "21002",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "16294",
+      "from": "Awaiting Construction",
+      "to": "Operational",
+      "signal": true
+    },
+    {
+      "repd_ref": "17873",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "20967",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "20867",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "20470",
+      "from": "Application Submitted",
+      "to": "Application Refused",
+      "signal": true
+    },
+    {
+      "repd_ref": "20819",
+      "from": "Application Submitted",
+      "to": "Awaiting Construction",
+      "signal": true
+    },
+    {
+      "repd_ref": "13234",
+      "from": "Awaiting Construction",
+      "to": "Under Construction",
+      "signal": true
+    }
+  ],
+  "capacity_changed": [
+    {
+      "repd_ref": "12307",
+      "from": 900,
+      "to": 1000
+    },
+    {
+      "repd_ref": "17559",
+      "from": 1100,
+      "to": 1000
+    },
+    {
+      "repd_ref": "15793",
+      "from": 600,
+      "to": 500
+    },
+    {
+      "repd_ref": "15794",
+      "from": 600,
+      "to": 500
+    },
+    {
+      "repd_ref": "9546",
+      "from": 138,
+      "to": 152.4
+    },
+    {
+      "repd_ref": "17438",
+      "from": 191,
+      "to": 132
+    },
+    {
+      "repd_ref": "14193",
+      "from": 100,
+      "to": 98
+    },
+    {
+      "repd_ref": "14288",
+      "from": 84.6,
+      "to": 64.8
+    },
+    {
+      "repd_ref": "16709",
+      "from": 53.8,
+      "to": 53
+    },
+    {
+      "repd_ref": "7221",
+      "from": 18,
+      "to": 44.5
+    },
+    {
+      "repd_ref": "7012",
+      "from": 19,
+      "to": 40
+    },
+    {
+      "repd_ref": "9584",
+      "from": 40,
+      "to": 35
+    },
+    {
+      "repd_ref": "7827",
+      "from": 24,
+      "to": 25
+    },
+    {
+      "repd_ref": "10657",
+      "from": 49.9,
+      "to": 19.3
+    },
+    {
+      "repd_ref": "8842",
+      "from": 13,
+      "to": 15
+    },
+    {
+      "repd_ref": "4658",
+      "from": 10.3,
+      "to": 10
+    },
+    {
+      "repd_ref": "15923",
+      "from": 6,
+      "to": 5.6
+    }
+  ],
+  "technology_changed": [
+    {
+      "repd_ref": "19476",
+      "from": "solar",
+      "to": "bess"
+    }
+  ]
+}

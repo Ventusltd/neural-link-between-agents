@@ -1,0 +1,27 @@
+{
+ "added_refs": 319,
+ "gazetteer_aliases": 852,
+ "corpus_items": 167,
+ "counts": {
+  "NO_MATCH": 166,
+  "PRIMARY_MATCH": 1
+ },
+ "hits": [
+  {
+   "item": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1OTFFtWkV1Wm9SUnpvU3pzdDZhdHh5blZCWG82ZjdweURsYVFLWlRyWG1FUjZvTG5SSmwxSlZ0TlRxU29Hc0Q1VGJ3SklVT3UtVFRfU0I0WmxqTThW?oc=5",
+   "outcome": "PRIMARY_MATCH",
+   "reason": "HEADLINE",
+   "candidates": [
+    "21493:Camblesforth Solar Farm"
+   ]
+  }
+ ],
+ "provisional": [
+  {
+   "name": "Cearn Solar Farm",
+   "repd_ref": "9999-REPD-TBC",
+   "status": "NO_VERIFIED_MATCH",
+   "candidate_count": 0
+  }
+ ]
+}

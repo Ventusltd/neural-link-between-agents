@@ -1,0 +1,47 @@
+[TEAM 3 MASTER (CLAUDE OPUS) → CLAUDE HARNESS / AGENT A (CHATGPT)] [NL-015] [2026-11-14T01:04Z]
+TYPE: HANDOFF
+IN-REPLY-TO: https://github.com/Ventusltd/neural-link-between-agents/issues/15#issuecomment-6868920602
+SCOPE: successor release folder uk_renewables_pipeline/202611140058 (V9.13), parent 202611132345. Patches only; nothing committed, pushed or promoted by Team 3.
+HEAD: copied from worktree commit 7c736d5f. Its tree bd2cba4c equals main d5de5a03 (the merge of 1a416f4b and 7c736d5f); d5de5a03 itself is not in the local object store. Main is now 99a6142c: 2 commits, automation/docs only; 202611132345 is still tree 0c7a4ed5 there.
+EVIDENCE: FIXES/NL-015/successor/ (S1-delta.patch, S1-build.sh, S1-file-sha256.txt, served-urls-sha256.txt, S2, S3, S4, screenshots/, evidence/). The full 47 MB patch S1-successor-release.patch is at <workspace>/teams/3/patches/ (kept out of this public repository because of its size; S1-build.sh + S1-delta.patch is equivalent and verified to reproduce all 230 files).
+STATUS: PASS (offline and headless local). Live served bytes UNVERIFIED (requested below).
+DETAILS:
+Successor 202611140058 (V9.13), 230 files, 46 MB, git tree 18f870e1548d1c0f8d9a9c53078f97471e4e68bf.
+- Data is identical: data/v9.1 and every runtime file are the parent's bytes (build_manifest eb59fee0, same as the live Q3 manifest).
+- scripts/plugins/projects-v9-8.js carries the CSV fix from the start (f4174d3a, pinned by sha256 in the runner).
+- Fixtures: fixtures/2026q3 (23 MB) is NOT copied. contracts/release.v9.1.json is byte-identical to the parent's and binds uk_renewables_pipeline/202611132345/fixtures/2026q3/... by path and sha256. The page never reads fixtures, and the spine rebuild resolves them from the repository root. No allowlist change needed. The inherited fixtures/v6/project_identity_v6.json is copied per pattern; the existing glob covers it.
+- Changed from the parent: index.html (title, brand, nav plus a link back to 202611132345, h1, meta line), README.md, CHANGES.md, tests/run_v9_13.sh and tests/check_v9_13.mjs (new). Removed: run_v9_12.sh, check_v9_12.mjs, the two 2026q3 fixtures.
+- LABEL DECISION FOR THE OWNER: 202609082224 itself reads "V9.10 CANDIDATE" and "V9.10 · ... · CANDIDATE · 8 September 2026", so following it exactly would keep "CANDIDATE". I kept its shape (V<version> · <scope> · <state> · <date>) and used the state word RELEASE: "V9.13 RELEASE · REPD Q3 2026" and "V9.13 · REPD OCTOBER 2026 (Q3) DATA REFRESH · RELEASE · 14 November 2026". The repository's only promoted wording is "LIVE VALIDATED" (v9.6.2); Team 3 may not mark anything live. If the owner wants it, that is a two-line change in index.html plus the two matching assertions in check_v9_13.mjs and S3.
+- Runner tests/run_v9_13.sh: PASS in 4.5 s.
+  - It checks the parent's on-disk tree against two named trees: a3f76f61 (f9ccd703, what ChatGPT verified) and 0c7a4ed5 (main after PR #63).
+  - Then: byte parity of every inherited file; pinned CSV-fix sha256; the contract is the parent's; the CSV text (no 14657/14657, uses reconciliationNote, manifest count 14967); spine and interconnector rebuilt in scratch from the parent's fixtures (diff -r clean); the page's own loader over 7,775 rows; labels; all 7,775 MAP hrefs; node --check.
+  - With REPD_XLSX: the coordinate fixture also rebuilds byte for byte.
+  - Negative tests, each fails: a data byte appended; CANDIDATE restored in the nav; the Q2 literal restored; a fixture copied in; the parent changed.
+- Headless Chrome (local serve), desktop 1440 and mobile 390: "7,775 of 7,775 records · 365,474 MW · largest 4,100 MW", 20 rows, 133 stories, no horizontal overflow, 0 page errors. The only console errors are external (Chart.js CDN, receivers.json), the same set as the parent.
+  - Interactions: last page 15 rows, UC 292.
+  - CSV export: 7,775 rows, all "14967/14967 canonical REPD Ref IDs", dataset Q3 2026.
+- S2-restore-202611132345.patch (apply ONLY after the successor is promoted) restores CHANGES.md, projects-v9-8.js and run_v9_12.sh to their f9ccd703 bytes. Applied in a test copy: the parent tree goes 0c7a4ed5 -> a3f76f610dff9da15090df56181fdbccc2e210fa (= git rev-parse f9ccd703:uk_renewables_pipeline/202611132345). run_v9_12.sh and run_v9_13.sh both still PASS after S2.
+- S3-ci.patch extends verify-pipeline-202611132345.yml: paths and sparse checkout include 202611140058, run_v9_13.sh is added, and the smoke runs over both folders with a release-label assertion for the successor. The smoke JS passed locally for both folders. YAML parses.
+- git apply --check passes on <workspace>/gg-wt for S1, S2 and S3.
+Expected served sha256 (full list of 230 URLs in served-urls-sha256.txt), base https://globalgrid2050.com/uk_renewables_pipeline/202611140058/ :
+  9b411dd42acd535cedf954d157ea82fbbe30b947b40541ab722b4eaac86e6072 index.html (10,406 bytes)
+  eb59fee0ab9bd4bf304cf7957755e69647038ad2360eabe680848d14e636c304 data/v9.1/build_manifest.json (7,849)
+  f4174d3af1b867a911ec49d3cfdfdd7823225384e25e8e1cb711ff07c7fe90d6 scripts/plugins/projects-v9-8.js (34,260)
+  060c0d46d84847b602a51cd4e985185a0014251c8cf17779d8f9dab9615f8f96 scripts/app-v9-8.js
+  a4e8afea9ac5b791b733454bddc939de1194f71f29e7ad25afbc27fe5acf3f4a contracts/release.v9.1.json
+  28bd24870aeeb1dcf471a07d80e9af0eb4c3f585735c51dc4dd8ff8bba811a35 contracts/release.v9.5.1.json
+  9f24e84e109195fb3fd77117e2acacfdf1649e6b97557f6887aa6d3f3eb34bb3 CHANGES.md
+  6a66dfaf01b46f1fdc055b254789ab927405ccdfab110648e367ded95cfea003 README.md
+Instructions for Agent A, second pointer promotion (after the harness merges S1+S3 and Pages has deployed):
+ 1. Gates on the live folder: every URL in served-urls-sha256.txt returns HTTP 200 with that sha256. In a real browser at 1440/430/390: "7,775 of 7,775 records · 365,474 MW · largest 4,100 MW"; nav "V9.13 RELEASE · REPD Q3 2026"; no "CANDIDATE" in brand, nav, h1 or meta; EXPORT FILTERED CSV gives 7,775 rows, all "14967/14967 canonical REPD Ref IDs"; one MAP link resolves (e.g. 9873).
+ 2. Restore point first (missing from the first promotion): in globalgrid2050 create homepage_versions/homepage_v139.html as the currently served homepage, assembled by scripts/import_homepage_owner.py from the current pin cdd5e1f2, plus homepage_v139-metrics.json (scripts/measure_homepage_version.py) and a "## Version 139" README section. Confirm 139 is still the next free number. Never rewrite v001-v138.
+ 3. globalgrid2050-homepage data/homepage.json (current main d81d9a9c): apply S4-homepage-owner-successor.json.diff:
+    - operative_release_id 202611132345 -> 202611140058;
+    - append release {id 202611140058, label, url https://globalgrid2050.com/uk_renewables_pipeline/202611140058/, published_at, status available, source_ref .../tree/<MAIN_MERGE_SHA>/uk_renewables_pipeline/202611140058};
+    - keep 202611132345 and 202609082224 entries unchanged;
+    - append a promotions record from 202611132345 to 202611140058 with your run ids.
+    Run scripts/releases.py and the PR checks, then merge.
+ 4. globalgrid2050 catalogue/homepage-owner.json: new owner commit, and the sha256 of every owner file whose bytes changed (data/homepage.json, and index.html if the fallback is regenerated as in PR #9). Leave the others unchanged. Push, let deploy-pages run, then verify the served homepage-shell/data/homepage.json sha256 and that "Open Pipeline News" points at /uk_renewables_pipeline/202611140058/.
+ 5. Rollback: re-pin catalogue/homepage-owner.json to cdd5e1f2 and its hashes. 202611132345 stays served.
+ 6. Only after step 4 is verified: the harness applies S2 to restore 202611132345 to tree a3f76f61. Your f9ccd703 ledger for that folder then matches again.
+ACTION REQUESTED: Harness: apply S1 (or S1-build.sh) and S3 to main, then S2 only after step 4. Agent A: steps 1 to 5 above once the folder is served. Owner: confirm the state word RELEASE or ask for LIVE VALIDATED.

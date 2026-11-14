@@ -1,0 +1,135 @@
+{
+  "schema": "pipelinenews.priority-solar-news.v1",
+  "checked_at": "2026-09-26T12:05:00+00:00",
+  "last_success_at": "2026-09-13T16:17:09.712269+00:00",
+  "status": "seeded_from_public_web_evidence_pending_collector_rerun",
+  "items": [
+    {
+      "id": "bbc:ck62mevl376yo",
+      "url": "https://www.bbc.co.uk/news/articles/ck62mevl376yo",
+      "headline": "Thousands respond to huge solar farm consultation",
+      "publisher": "BBC News",
+      "source_priority": 1,
+      "topic": "solar",
+      "capacity_mw_max": null,
+      "capacity_gate": "UNKNOWN_RETAIN_FOR_MATCH",
+      "source_published_at": "2026-09-26",
+      "first_observed_at": "2026-09-26T12:05:00+00:00",
+      "last_seen_at": "2026-09-26T12:05:00+00:00",
+      "feed_urls": [
+        "https://feeds.bbci.co.uk/news/england/south_yorkshire/rss.xml"
+      ],
+      "repd_ref": null,
+      "binding_status": "UNMATCHED_REQUIRES_REVIEW",
+      "eligible_for_project_signal": false,
+      "evidence_note": "Public BBC-indexed page observed 2026-09-26; RSS collector has not yet rerun."
+    },
+    {
+      "id": "bbc:c68jdnz4z09po",
+      "url": "https://www.bbc.co.uk/news/articles/c68jdnz4z09po",
+      "headline": "Solar farm approved for development",
+      "publisher": "BBC News",
+      "source_priority": 1,
+      "topic": "solar",
+      "capacity_mw_max": 20,
+      "capacity_gate": "ABOVE_1MW",
+      "source_published_at": "2026-09-25",
+      "first_observed_at": "2026-09-26T12:05:00+00:00",
+      "last_seen_at": "2026-09-26T12:05:00+00:00",
+      "feed_urls": [
+        "https://feeds.bbci.co.uk/news/england/berkshire/rss.xml"
+      ],
+      "repd_ref": null,
+      "binding_status": "UNMATCHED_REQUIRES_REVIEW",
+      "eligible_for_project_signal": false,
+      "evidence_note": "BBC-indexed article states 20 MW; public page observed 2026-09-26."
+    },
+    {
+      "id": "spp:erova-finlight-sign-15-year-ppa-for-107mw-uk-solar-portfolio",
+      "url": "https://www.solarpowerportal.co.uk/solar-projects/erova-finlight-sign-15-year-ppa-for-107mw-uk-solar-portfolio/",
+      "headline": "Erova, Finlight sign 15-year PPA for 107MW UK solar portfolio",
+      "publisher": "Solar Power Portal",
+      "source_priority": 2,
+      "topic": "solar",
+      "capacity_mw_max": 107,
+      "capacity_gate": "ABOVE_1MW",
+      "source_published_at": "2026-09-25",
+      "first_observed_at": "2026-09-26T12:05:00+00:00",
+      "last_seen_at": "2026-09-26T12:05:00+00:00",
+      "feed_urls": [
+        "https://www.solarpowerportal.co.uk/feed/"
+      ],
+      "repd_ref": null,
+      "binding_status": "UNMATCHED_REQUIRES_REVIEW",
+      "eligible_for_project_signal": false,
+      "evidence_note": "Solar Power Portal article observed 2026-09-26; 107 MW portfolio in England."
+    },
+    {
+      "id": "spp:bsr-inks-10-year-50mw-ppa-with-canary-wharf-group-engie",
+      "url": "https://www.solarpowerportal.co.uk/solar-projects/bsr-inks-10-year-50mw-ppa-with-canary-wharf-group-engie/",
+      "headline": "BSR inks 10-year 50MW PPA with Canary Wharf Group, Engie",
+      "publisher": "Solar Power Portal",
+      "source_priority": 2,
+      "topic": "solar",
+      "capacity_mw_max": 50,
+      "capacity_gate": "ABOVE_1MW",
+      "source_published_at": "2026-09-23",
+      "first_observed_at": "2026-09-26T12:05:00+00:00",
+      "last_seen_at": "2026-09-26T12:05:00+00:00",
+      "feed_urls": [
+        "https://www.solarpowerportal.co.uk/feed/"
+      ],
+      "repd_ref": null,
+      "binding_status": "UNMATCHED_REQUIRES_REVIEW",
+      "eligible_for_project_signal": false,
+      "evidence_note": "Solar Power Portal article observed 2026-09-26; 50 MW Knowl Green Solar Farm, Essex."
+    },
+    {
+      "id": "pvmag:the-great-british-takeoff",
+      "url": "https://www.pv-magazine.com/2026/09/22/the-great-british-takeoff/",
+      "headline": "The great British takeoff",
+      "publisher": "pv magazine",
+      "source_priority": 3,
+      "topic": "solar",
+      "capacity_mw_max": null,
+      "capacity_gate": "UNKNOWN_RETAIN_FOR_MATCH",
+      "source_published_at": "2026-09-22",
+      "first_observed_at": "2026-09-26T12:05:00+00:00",
+      "last_seen_at": "2026-09-26T12:05:00+00:00",
+      "feed_urls": [
+        "https://www.pv-magazine.com/feed/"
+      ],
+      "repd_ref": null,
+      "binding_status": "UNMATCHED_REQUIRES_REVIEW",
+      "eligible_for_project_signal": false,
+      "evidence_note": "pv magazine UK solar market article observed 2026-09-26; capacity not treated as a project signal."
+    }
+  ],
+  "feeds": [],
+  "limits": {
+    "feeds": 0,
+    "bytes_per_feed": 1048576,
+    "retained_items": 500,
+    "retention_days": 30
+  },
+  "source_priority": {
+    "1": "BBC News",
+    "2": "Solar Power Portal",
+    "3": "pv magazine"
+  },
+  "scope": "Priority UK solar discovery: BBC national/local first, Solar Power Portal second, pv magazine third. Explicit <=1 MW-only items excluded; unknown MW retained for project matching/review. No inferred REPD match.",
+  "receipt": {
+    "classification": "MANUAL_PUBLIC_WEB_EVIDENCE_SEED",
+    "reason": "The scheduled RSS collector has not produced a run since 2026-09-13; this seed is explicit and does not claim to be an RSS run.",
+    "collector_last_verified_run": "2026-09-13T16:17:09.712269+00:00"
+  },
+  "submitted_articles": [
+    {
+      "url": "https://www.bbc.co.uk/news/articles/ck62mevl376yo",
+      "intake_id": "bbc-whitestone-20260926",
+      "status": "PUBLIC_WEB_EVIDENCE_SEEDED",
+      "headline": "Thousands respond to huge solar farm consultation",
+      "note": "Not REPD-bound; retained for review."
+    }
+  ]
+}

@@ -1,0 +1,4653 @@
+{
+ "summary": {
+  "CAPACITY_VERY_LARGE": {
+   "count": 1,
+   "unknown": 1
+  },
+  "DANGLING_CROSS_REFERENCE": {
+   "count": 47,
+   "unknown": 47
+  },
+  "EXPIRED_BEFORE_GRANTED": {
+   "count": 539,
+   "unknown": 539
+  },
+  "FUTURE_EVENT_DATE": {
+   "count": 2,
+   "unknown": 2
+  },
+  "GRANTED_BEFORE_SUBMITTED": {
+   "count": 8,
+   "unknown": 8
+  },
+  "MOJIBAKE_IN_SOURCE": {
+   "count": 2,
+   "unknown": 2
+  },
+  "OPERATIONAL_BEFORE_CONSTRUCTION": {
+   "count": 26,
+   "unknown": 26
+  },
+  "OPERATIONAL_LONG_BEFORE_SUBMISSION": {
+   "count": 10,
+   "unknown": 10
+  },
+  "PLANNING_AUTHORITY_TEXT_CHANGED_VS_JULY": {
+   "count": 1,
+   "unknown": 1
+  },
+  "PRE_OPERATIONAL_STATUS_WITH_OPERATIONAL_DATE": {
+   "count": 2,
+   "unknown": 2
+  },
+  "QUESTION_MARK_REPLACEMENT_CHAR": {
+   "count": 1,
+   "unknown": 1
+  },
+  "SELF_REFERENCE": {
+   "count": 34,
+   "unknown": 34
+  },
+  "SITE_NAME_CHANGED_VS_JULY": {
+   "count": 5,
+   "unknown": 5
+  },
+  "SOLAR_WITH_TURBINES": {
+   "count": 1,
+   "unknown": 1
+  },
+  "STATUS_OPERATIONAL_NO_DATE": {
+   "count": 24,
+   "unknown": 9
+  },
+  "STATUS_REGRESSION_VS_JULY": {
+   "count": 2,
+   "unknown": 2
+  },
+  "VERY_OLD_DATE": {
+   "count": 42,
+   "unknown": 42
+  }
+ },
+ "same_name_coords_tech_status_groups": 68,
+ "same_name_examples": {
+  "barry docks|Biomass (dedicated)|Revised": [
+   "170",
+   "5943"
+  ],
+  "hillhead of coldwells, longhaven - biomass boilers|Biomass (dedicated)|Awaiting Construction": [
+   "11587",
+   "12744"
+  ],
+  "a981 fraserburgh - battery energy storage|Battery|Awaiting Construction": [
+   "10222",
+   "12711"
+  ],
+  "laurels farm|Wind Onshore|Revised": [
+   "2749",
+   "3730"
+  ],
+  "fordtown energy storage|Battery|Revised": [
+   "7234",
+   "7764"
+  ],
+  "orby windfarm|Wind Onshore|Revised": [
+   "3138",
+   "3270"
+  ],
+  "hoddlesden moss|Wind Onshore|Revised": [
+   "3349",
+   "4702"
+  ],
+  "burnside wind cluster|Wind Onshore|Revised": [
+   "2788",
+   "2877"
+  ],
+  "aultmore wind farm|Wind Onshore|Revised": [
+   "3099",
+   "4252"
+  ],
+  "glenbuck|Wind Onshore|Operational": [
+   "3961",
+   "3962"
+  ],
+  "teindland wind farm|Wind Onshore|Application Submitted": [
+   "11854",
+   "19173"
+  ],
+  "the sawmill|Biomass (dedicated)|Revised": [
+   "5753",
+   "5754"
+  ],
+  "milton farm - energy storage system|Battery|Awaiting Construction": [
+   "13846",
+   "16895"
+  ],
+  "kelvin energy recovery facility|EfW Incineration|Under Construction": [
+   "6310",
+   "14685"
+  ],
+  "cross banks road|Anaerobic Digestion|Revised": [
+   "6430",
+   "6539"
+  ]
+ },
+ "anomalies": {
+  "EXPIRED_BEFORE_GRANTED": [
+   {
+    "ref": "1",
+    "site": "Aberthaw Power Station Biomass",
+    "detail": "granted 2004-09-03 expired 2003-09-03",
+    "known": false
+   },
+   {
+    "ref": "4",
+    "site": "Thetford Biomass Power Station",
+    "detail": "granted 1995-05-05 expired 1993-05-05",
+    "known": false
+   },
+   {
+    "ref": "14",
+    "site": "Chilton Energy Plant",
+    "detail": "granted 2009-11-24 expired 2003-11-24",
+    "known": false
+   },
+   {
+    "ref": "32",
+    "site": "Clean Renewable Plant at Old Llynfi Power Station",
+    "detail": "granted 2006-02-16 expired 2003-02-16",
+    "known": false
+   },
+   {
+    "ref": "33",
+    "site": "Balcas Timber Biomass CHP Plant",
+    "detail": "granted 2004-06-01 expired 2003-06-01",
+    "known": false
+   },
+   {
+    "ref": "35",
+    "site": "Wilton International",
+    "detail": "granted 2006-11-07 expired 2003-11-07",
+    "known": false
+   },
+   {
+    "ref": "37",
+    "site": "South View Farm",
+    "detail": "granted 2006-10-24 expired 2003-10-24",
+    "known": false
+   },
+   {
+    "ref": "54",
+    "site": "The Yeld Biomass Project",
+    "detail": "granted 2005-09-19 expired 2003-09-19",
+    "known": false
+   },
+   {
+    "ref": "57",
+    "site": "Western Wood Energy Plant",
+    "detail": "granted 2004-04-27 expired 2003-04-27",
+    "known": false
+   },
+   {
+    "ref": "59",
+    "site": "Charlton Sawmill",
+    "detail": "granted 2006-03-31 expired 2003-03-31",
+    "known": false
+   },
+   {
+    "ref": "71",
+    "site": "Roves Farm",
+    "detail": "granted 2006-11-13 expired 2003-11-13",
+    "known": false
+   },
+   {
+    "ref": "78",
+    "site": "Elean Business Park Biomass Plant",
+    "detail": "granted 1996-02-22 expired 1993-02-22",
+    "known": false
+   },
+   {
+    "ref": "84",
+    "site": "Rugby Cement Works",
+    "detail": "granted 2007-03-17 expired 2003-03-17",
+    "known": false
+   },
+   {
+    "ref": "4075",
+    "site": "Gremista Wind Farm",
+    "detail": "granted 2012-02-24 expired 2011-02-24",
+    "known": false
+   },
+   {
+    "ref": "109",
+    "site": "Cardiff Dock Heat and Power",
+    "detail": "granted 2009-02-06 expired 2003-02-06",
+    "known": false
+   },
+   {
+    "ref": "115",
+    "site": "Lynemouth Power Station",
+    "detail": "granted 2015-03-06 expired 2012-03-06",
+    "known": false
+   },
+   {
+    "ref": "121",
+    "site": "Cramlington CHP",
+    "detail": "granted 2013-01-21 expired 2011-01-21",
+    "known": false
+   },
+   {
+    "ref": "122",
+    "site": "Tyrone Energy 1",
+    "detail": "granted 2009-12-08 expired 2003-12-08",
+    "known": false
+   },
+   {
+    "ref": "132",
+    "site": "SAICA Paper Mill",
+    "detail": "granted 2008-12-30 expired 2003-12-30",
+    "known": false
+   },
+   {
+    "ref": "135",
+    "site": "Hudson Dock East Biomass",
+    "detail": "granted 2009-05-01 expired 2003-05-01",
+    "known": false
+   },
+   {
+    "ref": "136",
+    "site": "Tenax Road - Renewable Energy Biomass Plant",
+    "detail": "granted 2009-06-29 expired 2003-06-29",
+    "known": false
+   },
+   {
+    "ref": "138",
+    "site": "Former Parkside Colliery",
+    "detail": "granted 2006-05-19 expired 2003-05-19",
+    "known": false
+   },
+   {
+    "ref": "146",
+    "site": "Bracknell Forest Biomass Centre",
+    "detail": "granted 2006-12-21 expired 2003-12-21",
+    "known": false
+   },
+   {
+    "ref": "147",
+    "site": "Elswick",
+    "detail": "granted 2005-12-14 expired 2003-12-14",
+    "known": false
+   },
+   {
+    "ref": "163",
+    "site": "Teesside Renewable Energy Plant",
+    "detail": "granted 2014-07-23 expired 2013-07-23",
+    "known": false
+   },
+   {
+    "ref": "167",
+    "site": "Tesco Distribution Centre, Goole",
+    "detail": "granted 2008-07-17 expired 2003-07-17",
+    "known": false
+   },
+   {
+    "ref": "6828",
+    "site": "Viking Wind Farm ",
+    "detail": "granted 2019-05-24 expired 2014-05-24",
+    "known": false
+   },
+   {
+    "ref": "206",
+    "site": "Sleaford Renewable Energy Plant",
+    "detail": "granted 2008-11-04 expired 2003-11-04",
+    "known": false
+   },
+   {
+    "ref": "257",
+    "site": "Colwick Industrial Estate (Farm and Food waste)",
+    "detail": "granted 2013-09-02 expired 2012-09-02",
+    "known": false
+   },
+   {
+    "ref": "260",
+    "site": "Singleton Birch (Farm AD)",
+    "detail": "granted 2013-03-11 expired 2012-03-11",
+    "known": false
+   },
+   {
+    "ref": "261",
+    "site": "Bryn Pica AD / Tomorrow's Valley (Waste AD) - resubmission",
+    "detail": "granted 2013-10-07 expired 2011-10-07",
+    "known": false
+   },
+   {
+    "ref": "274",
+    "site": "Kenninghall Renewable Energy Facility (Waste AD)",
+    "detail": "granted 2011-11-09 expired 2010-11-09",
+    "known": false
+   },
+   {
+    "ref": "288",
+    "site": "Wyke Farms Biogas (Farm AD)",
+    "detail": "granted 2012-11-01 expired 2011-11-01",
+    "known": false
+   },
+   {
+    "ref": "290",
+    "site": "Energy Works Hull - AD (Waste AD)",
+    "detail": "granted 2011-10-20 expired 2010-10-20",
+    "known": false
+   },
+   {
+    "ref": "306",
+    "site": "Granox Biogas Plant",
+    "detail": "granted 2012-10-19 expired 2011-10-19",
+    "known": false
+   },
+   {
+    "ref": "328",
+    "site": "Dagenham Docks Biogas (Waste AD)",
+    "detail": "granted 2013-11-11 expired 2011-11-11",
+    "known": false
+   },
+   {
+    "ref": "330",
+    "site": "Leeming Bar (Waste AD)",
+    "detail": "granted 2015-04-02 expired 2010-04-02",
+    "known": false
+   },
+   {
+    "ref": "350",
+    "site": "North Moor Farm AD Plant (Farm AD)",
+    "detail": "granted 2012-10-19 expired 2010-10-19",
+    "known": false
+   },
+   {
+    "ref": "356",
+    "site": "Wingmoor Farm (Waste AD)",
+    "detail": "granted 2014-05-20 expired 2013-05-20",
+    "known": false
+   },
+   {
+    "ref": "6136",
+    "site": "Kincardine Offshore Windfarm",
+    "detail": "granted 2017-03-07 expired 2016-03-07",
+    "known": false
+   },
+   {
+    "ref": "2540",
+    "site": "Seagreen",
+    "detail": "granted 2017-05-16 expired 2010-05-16",
+    "known": false
+   },
+   {
+    "ref": "13001",
+    "site": "Kinmuck Battery Energy Storage",
+    "detail": "granted 2025-05-08 expired 2022-05-08",
+    "known": false
+   },
+   {
+    "ref": "9523",
+    "site": "Wastewater Treatment Works, Fraserburgh",
+    "detail": "granted 2020-12-15 expired 2018-12-15",
+    "known": false
+   },
+   {
+    "ref": "2505",
+    "site": "European Offshore Wind Deployment Centre (EOWDC) (Aberdeen B",
+    "detail": "granted 2013-03-26 expired 2011-03-26",
+    "known": false
+   },
+   {
+    "ref": "15441",
+    "site": "Fish Yard Burgons Limited, Harbour Road - Solar Panels",
+    "detail": "granted 2024-01-31 expired 2021-01-31",
+    "known": false
+   },
+   {
+    "ref": "6519",
+    "site": "Cardinghill Wind Turbine",
+    "detail": "granted 2019-07-09 expired 2011-07-09",
+    "known": false
+   },
+   {
+    "ref": "771",
+    "site": "Lower Spen Landfill Scheme",
+    "detail": "granted 1998-07-17 expired 1900-07-17",
+    "known": false
+   },
+   {
+    "ref": "6585",
+    "site": "Skelmonae Farm",
+    "detail": "granted 2021-12-01 expired 2021-04-27",
+    "known": false
+   },
+   {
+    "ref": "876",
+    "site": "Wednesbury",
+    "detail": "granted 2013-12-02 expired 2012-12-02",
+    "known": false
+   },
+   {
+    "ref": "910",
+    "site": "Battlefield EfW",
+    "detail": "granted 2012-01-10 expired 2011-01-10",
+    "known": false
+   },
+   {
+    "ref": "919",
+    "site": "Energy Works (Hull)",
+    "detail": "granted 2011-10-20 expired 2010-10-20",
+    "known": false
+   },
+   {
+    "ref": "941",
+    "site": "North Yard EfW",
+    "detail": "granted 2012-02-03 expired 2010-02-03",
+    "known": false
+   },
+   {
+    "ref": "3190",
+    "site": "Tullo Farm",
+    "detail": "granted 2004-06-30 expired 2003-06-30",
+    "known": false
+   },
+   {
+    "ref": "956",
+    "site": "Canford",
+    "detail": "granted 2013-07-01 expired 2011-07-01",
+    "known": false
+   },
+   {
+    "ref": "976",
+    "site": "Newhurst Quarry ",
+    "detail": "granted 2012-06-28 expired 2010-06-28",
+    "known": false
+   },
+   {
+    "ref": "1013",
+    "site": "East London Sustainable Energy Facility (Thames Gateway Powe",
+    "detail": "granted 2012-08-30 expired 2010-08-30",
+    "known": false
+   },
+   {
+    "ref": "1058",
+    "site": "Shacks Barn Solar Farm",
+    "detail": "granted 2012-08-03 expired 2011-08-03",
+    "known": false
+   },
+   {
+    "ref": "1064",
+    "site": "Tredinnick Fields",
+    "detail": "granted 2012-08-31 expired 2011-08-31",
+    "known": false
+   },
+   {
+    "ref": "1090",
+    "site": "NOTTINGTON LANE SOLAR FARM",
+    "detail": "granted 2012-09-20 expired 2011-09-20",
+    "known": false
+   },
+   {
+    "ref": "1176",
+    "site": "Hatchlands Farm",
+    "detail": "granted 2012-10-23 expired 2011-10-23",
+    "known": false
+   },
+   {
+    "ref": "1230",
+    "site": "Langunnett Solar Farm",
+    "detail": "granted 2012-07-30 expired 2010-07-30",
+    "known": false
+   },
+   {
+    "ref": "1244",
+    "site": "West Farm (Solar)",
+    "detail": "granted 2012-11-28 expired 2011-11-28",
+    "known": false
+   },
+   {
+    "ref": "1274",
+    "site": "Sandys Moor Road",
+    "detail": "granted 2013-02-01 expired 2012-02-01",
+    "known": false
+   },
+   {
+    "ref": "1278",
+    "site": "Aldi Distribution Centre - Darlington",
+    "detail": "granted 2013-09-17 expired 2011-09-17",
+    "known": false
+   },
+   {
+    "ref": "1298",
+    "site": "Langley Hall Farm",
+    "detail": "granted 2013-09-27 expired 2011-09-27",
+    "known": false
+   },
+   {
+    "ref": "1303",
+    "site": "Nether Mill Farm ",
+    "detail": "granted 2014-02-19 expired 2011-02-19",
+    "known": false
+   },
+   {
+    "ref": "1304",
+    "site": "NEWNTON DAIRY FARM",
+    "detail": "granted 2013-09-10 expired 2012-09-10",
+    "known": false
+   },
+   {
+    "ref": "1306",
+    "site": "Pierces Farm",
+    "detail": "granted 2014-03-19 expired 2013-03-19",
+    "known": false
+   },
+   {
+    "ref": "1362",
+    "site": "Newlands Farm Solar ",
+    "detail": "granted 2013-09-27 expired 2010-09-27",
+    "known": false
+   },
+   {
+    "ref": "1367",
+    "site": "Fen Road",
+    "detail": "granted 2013-12-10 expired 2011-12-10",
+    "known": false
+   },
+   {
+    "ref": "1390",
+    "site": "Aldi Distribution Centre - Neston",
+    "detail": "granted 2013-09-13 expired 2011-09-13",
+    "known": false
+   },
+   {
+    "ref": "1428",
+    "site": "Kellygreen Farm",
+    "detail": "granted 2014-06-23 expired 2012-06-23",
+    "known": false
+   },
+   {
+    "ref": "1454",
+    "site": "Dunkeswell Airfield",
+    "detail": "granted 2014-03-11 expired 2010-03-11",
+    "known": false
+   },
+   {
+    "ref": "1502",
+    "site": "Mingay Farm - extension",
+    "detail": "granted 2013-10-30 expired 2011-10-30",
+    "known": false
+   },
+   {
+    "ref": "1528",
+    "site": "Ermine Street Farm solar park",
+    "detail": "granted 2013-12-06 expired 2010-12-06",
+    "known": false
+   },
+   {
+    "ref": "1529",
+    "site": "Eynsham Solar Farm",
+    "detail": "granted 2013-12-04 expired 2012-12-04",
+    "known": false
+   },
+   {
+    "ref": "1592",
+    "site": "Broxted Solar Farm (Stradishall Airfield)",
+    "detail": "granted 2012-12-10 expired 2010-12-10",
+    "known": false
+   },
+   {
+    "ref": "1603",
+    "site": "Culmhead Solar Farm ",
+    "detail": "granted 2012-10-19 expired 2011-10-19",
+    "known": false
+   },
+   {
+    "ref": "1619",
+    "site": "CRAYSMARSH SOLAR FARM",
+    "detail": "granted 2012-06-20 expired 2010-06-20",
+    "known": false
+   },
+   {
+    "ref": "1630",
+    "site": "Canworthy Water",
+    "detail": "granted 2013-01-21 expired 2012-01-21",
+    "known": false
+   },
+   {
+    "ref": "1639",
+    "site": "Bodwen Solar Park",
+    "detail": "granted 2015-03-24 expired 2012-03-24",
+    "known": false
+   },
+   {
+    "ref": "1716",
+    "site": "Goose Willow Farm",
+    "detail": "granted 2012-12-11 expired 2011-12-11",
+    "known": false
+   },
+   {
+    "ref": "1719",
+    "site": "Caeremlyn Solar Farm",
+    "detail": "granted 2013-01-14 expired 2011-01-14",
+    "known": false
+   },
+   {
+    "ref": "1724",
+    "site": "Sevor Farm",
+    "detail": "granted 2013-05-28 expired 2011-05-28",
+    "known": false
+   },
+   {
+    "ref": "1727",
+    "site": "Old Rides solar Farm",
+    "detail": "granted 2013-02-14 expired 2012-02-14",
+    "known": false
+   },
+   {
+    "ref": "1733",
+    "site": "Mickram Limited",
+    "detail": "granted 2013-02-05 expired 2012-02-05",
+    "known": false
+   },
+   {
+    "ref": "1814",
+    "site": "The Royal Bath & West Showground Solar Farm",
+    "detail": "granted 2011-04-20 expired 2010-04-20",
+    "known": false
+   },
+   {
+    "ref": "1816",
+    "site": "East Lenham Solar Farm",
+    "detail": "granted 2012-11-01 expired 2010-11-01",
+    "known": false
+   },
+   {
+    "ref": "1817",
+    "site": "Steventon Solar Park",
+    "detail": "granted 2012-10-17 expired 2011-10-17",
+    "known": false
+   },
+   {
+    "ref": "1820",
+    "site": "Meadow Farm solar park",
+    "detail": "granted 2013-07-30 expired 2011-07-30",
+    "known": false
+   },
+   {
+    "ref": "1878",
+    "site": "Salcey Solar Farm",
+    "detail": "granted 2014-03-07 expired 2012-03-07",
+    "known": false
+   },
+   {
+    "ref": "1889",
+    "site": "Playters Solar Farm",
+    "detail": "granted 2014-07-22 expired 2012-07-22",
+    "known": false
+   },
+   {
+    "ref": "1890",
+    "site": "Bypass Nurseries Solar Farm",
+    "detail": "granted 2013-04-02 expired 2010-04-02",
+    "known": false
+   },
+   {
+    "ref": "1899",
+    "site": "Epwell Grounds Farm solar park",
+    "detail": "granted 2014-01-13 expired 2011-01-13",
+    "known": false
+   },
+   {
+    "ref": "1903",
+    "site": "Tengore Lane ",
+    "detail": "granted 2014-06-24 expired 2011-06-24",
+    "known": false
+   },
+   {
+    "ref": "1912",
+    "site": "Gosfield Airfield",
+    "detail": "granted 2014-04-17 expired 2013-04-17",
+    "known": false
+   },
+   {
+    "ref": "1920",
+    "site": "Hadley Farm (Orta Membury Solar Farm)",
+    "detail": "granted 2014-05-27 expired 2011-05-27",
+    "known": false
+   },
+   {
+    "ref": "1931",
+    "site": "Grange Farm",
+    "detail": "granted 2014-06-19 expired 2010-06-19",
+    "known": false
+   },
+   {
+    "ref": "1945",
+    "site": "Castle Eaton Farm",
+    "detail": "granted 2013-03-25 expired 2011-03-25",
+    "known": false
+   },
+   {
+    "ref": "1968",
+    "site": "Blackwell Grange Solar Farm",
+    "detail": "granted 2016-03-01 expired 2011-03-01",
+    "known": false
+   },
+   {
+    "ref": "1976",
+    "site": "Bulls Head Farm North",
+    "detail": "granted 2014-04-01 expired 2012-04-01",
+    "known": false
+   },
+   {
+    "ref": "1999",
+    "site": "Highfields Farm (Braintree)",
+    "detail": "granted 2013-09-03 expired 2011-09-03",
+    "known": false
+   },
+   {
+    "ref": "2000",
+    "site": "Highfields Farm (Colchester)",
+    "detail": "granted 2013-09-25 expired 2011-09-25",
+    "known": false
+   },
+   {
+    "ref": "2026",
+    "site": "Field House Solar / Hursley Road",
+    "detail": "granted 2014-07-04 expired 2013-07-04",
+    "known": false
+   },
+   {
+    "ref": "2033",
+    "site": "Lower Slade Farm",
+    "detail": "granted 2014-08-11 expired 2011-08-11",
+    "known": false
+   },
+   {
+    "ref": "2045",
+    "site": "New Stone House",
+    "detail": "granted 2014-07-17 expired 2010-07-17",
+    "known": false
+   },
+   {
+    "ref": "2052",
+    "site": "Oaklands Plantation",
+    "detail": "granted 2014-11-07 expired 2010-11-07",
+    "known": false
+   },
+   {
+    "ref": "2071",
+    "site": "The Flit",
+    "detail": "granted 2014-08-07 expired 2010-08-07",
+    "known": false
+   },
+   {
+    "ref": "2072",
+    "site": "The Old Airfield",
+    "detail": "granted 2014-03-04 expired 2013-03-04",
+    "known": false
+   },
+   {
+    "ref": "2080",
+    "site": "Troughton Farm",
+    "detail": "granted 2014-07-22 expired 2011-07-22",
+    "known": false
+   },
+   {
+    "ref": "2082",
+    "site": "Upper Farm solar park",
+    "detail": "granted 2014-08-12 expired 2013-08-12",
+    "known": false
+   },
+   {
+    "ref": "2086",
+    "site": "Wedgehill Farm",
+    "detail": "granted 2014-01-17 expired 2012-01-17",
+    "known": false
+   },
+   {
+    "ref": "2088",
+    "site": "West Raynham",
+    "detail": "granted 2013-12-20 expired 2011-12-20",
+    "known": false
+   },
+   {
+    "ref": "2090",
+    "site": "Westover Farm ",
+    "detail": "granted 2013-03-13 expired 2012-03-13",
+    "known": false
+   },
+   {
+    "ref": "2119",
+    "site": "HALVASSO - SOLAR FARM",
+    "detail": "granted 2018-01-11 expired 2010-01-11",
+    "known": false
+   },
+   {
+    "ref": "2127",
+    "site": "Pitts Farm",
+    "detail": "granted 2013-06-07 expired 2010-06-07",
+    "known": false
+   },
+   {
+    "ref": "2166",
+    "site": "Priest Weston",
+    "detail": "granted 2014-07-18 expired 2012-07-18",
+    "known": false
+   },
+   {
+    "ref": "2186",
+    "site": "Bumpers Farm Phase 1",
+    "detail": "granted 2015-10-26 expired 2011-10-26",
+    "known": false
+   },
+   {
+    "ref": "2200",
+    "site": "Prestop Park Farm",
+    "detail": "granted 2014-09-30 expired 2011-09-30",
+    "known": false
+   },
+   {
+    "ref": "2208",
+    "site": "Nowhere Farm",
+    "detail": "granted 2014-09-17 expired 2012-09-17",
+    "known": false
+   },
+   {
+    "ref": "2256",
+    "site": "Stokeford Farm",
+    "detail": "granted 2021-02-26 expired 2011-02-26",
+    "known": false
+   },
+   {
+    "ref": "2282",
+    "site": "Chapel Lane Parley Solar Farm Phase 1",
+    "detail": "granted 2013-03-28 expired 2012-03-28",
+    "known": false
+   },
+   {
+    "ref": "2283",
+    "site": "Welbeck Colliery",
+    "detail": "granted 2013-02-11 expired 2011-02-11",
+    "known": false
+   },
+   {
+    "ref": "2286",
+    "site": "Hendre Fawr Farm",
+    "detail": "granted 2014-07-06 expired 2011-07-06",
+    "known": false
+   },
+   {
+    "ref": "2308",
+    "site": "Christchurch Energy",
+    "detail": "granted 2014-08-29 expired 2011-08-29",
+    "known": false
+   },
+   {
+    "ref": "2331",
+    "site": "Coombeshead Solar Farm",
+    "detail": "granted 2014-08-29 expired 2011-08-29",
+    "known": false
+   },
+   {
+    "ref": "2333",
+    "site": "Easington Farm (Chalgrove)",
+    "detail": "granted 2014-08-14 expired 2013-08-14",
+    "known": false
+   },
+   {
+    "ref": "2351",
+    "site": "Lodge Farm (Poulshot)",
+    "detail": "granted 2014-02-27 expired 2013-02-27",
+    "known": false
+   },
+   {
+    "ref": "2355",
+    "site": "Saron Road solar park",
+    "detail": "granted 2013-09-19 expired 2012-09-19",
+    "known": false
+   },
+   {
+    "ref": "2359",
+    "site": "West Hall Solar Farm",
+    "detail": "granted 2014-01-17 expired 2011-01-17",
+    "known": false
+   },
+   {
+    "ref": "2370",
+    "site": "Hendai Farm",
+    "detail": "granted 2014-04-10 expired 2010-04-10",
+    "known": false
+   },
+   {
+    "ref": "2375",
+    "site": "Ashlawn Farm",
+    "detail": "granted 2014-05-14 expired 2011-05-14",
+    "known": false
+   },
+   {
+    "ref": "2377",
+    "site": "Gedling Solar Farm",
+    "detail": "granted 2013-10-23 expired 2011-10-23",
+    "known": false
+   },
+   {
+    "ref": "2380",
+    "site": "Wellingborough Solar Farm",
+    "detail": "granted 2013-10-09 expired 2012-10-09",
+    "known": false
+   },
+   {
+    "ref": "2407",
+    "site": "Lynmouth Tidal Demo",
+    "detail": "granted 2012-04-27 expired 2011-04-27",
+    "known": false
+   },
+   {
+    "ref": "4109",
+    "site": "Meikle Carewe ",
+    "detail": "granted 2010-05-20 expired 2000-05-20",
+    "known": false
+   },
+   {
+    "ref": "2437",
+    "site": "SeaGen Wales Tidal Farm",
+    "detail": "granted 2013-02-27 expired 2010-02-27",
+    "known": false
+   },
+   {
+    "ref": "2504",
+    "site": "Kentish Flats 2",
+    "detail": "granted 2013-02-19 expired 2011-02-19",
+    "known": false
+   },
+   {
+    "ref": "2514",
+    "site": "Teeside Offshore Wind Farm",
+    "detail": "granted 2007-09-17 expired 2000-09-17",
+    "known": false
+   },
+   {
+    "ref": "2515",
+    "site": "Race Bank (Phase 1)",
+    "detail": "granted 2012-07-06 expired 2010-07-06",
+    "known": false
+   },
+   {
+    "ref": "2519",
+    "site": "West of Duddon Sands",
+    "detail": "granted 2008-09-04 expired 2000-09-04",
+    "known": false
+   },
+   {
+    "ref": "2544",
+    "site": "Humber Gateway A",
+    "detail": "granted 2011-02-09 expired 2010-02-09",
+    "known": false
+   },
+   {
+    "ref": "2563",
+    "site": "Cefn Croes Wind Farm",
+    "detail": "granted 2001-12-10 expired 2000-12-10",
+    "known": false
+   },
+   {
+    "ref": "2653",
+    "site": "Moel Maelogen A",
+    "detail": "granted 1999-12-15 expired 1900-12-15",
+    "known": false
+   },
+   {
+    "ref": "4179",
+    "site": "Quixwood Moor",
+    "detail": "granted 2013-04-02 expired 2012-04-02",
+    "known": false
+   },
+   {
+    "ref": "4601",
+    "site": "Kinegar Quarry ",
+    "detail": "granted 2013-03-21 expired 2010-03-21",
+    "known": false
+   },
+   {
+    "ref": "205",
+    "site": "Macphie of Glenbervie",
+    "detail": "granted 2007-09-27 expired 2003-09-27",
+    "known": false
+   },
+   {
+    "ref": "2873",
+    "site": "Bryn Blaen Wind Farm",
+    "detail": "granted 2016-08-23 expired 2014-08-23",
+    "known": false
+   },
+   {
+    "ref": "2928",
+    "site": "Bagmoor",
+    "detail": "granted 2006-04-01 expired 2000-04-01",
+    "known": false
+   },
+   {
+    "ref": "6388",
+    "site": "Ferneylea Farm",
+    "detail": "granted 2012-03-07 expired 2011-03-07",
+    "known": false
+   },
+   {
+    "ref": "4591",
+    "site": "Aikengall IIa Community Wind Farm",
+    "detail": "granted 2016-10-19 expired 2011-10-19",
+    "known": false
+   },
+   {
+    "ref": "4332",
+    "site": "Aikengall II, Wester Dod Community Wind Farm",
+    "detail": "granted 2013-03-01 expired 2012-03-01",
+    "known": false
+   },
+   {
+    "ref": "11705",
+    "site": "Arbikie, Inverkeilor - Green Hydrogen Project & Wind Turbine",
+    "detail": "granted 2022-07-28 expired 2013-07-28",
+    "known": false
+   },
+   {
+    "ref": "3247",
+    "site": "Loscar Farm",
+    "detail": "granted 2008-03-28 expired 2000-03-28",
+    "known": false
+   },
+   {
+    "ref": "4360",
+    "site": "Deuchries",
+    "detail": "granted 2014-04-17 expired 2010-04-17",
+    "known": false
+   },
+   {
+    "ref": "3382",
+    "site": "Sibelco Brassington",
+    "detail": "granted 2012-03-21 expired 2011-03-21",
+    "known": false
+   },
+   {
+    "ref": "4036",
+    "site": "Spurness Wind Farm",
+    "detail": "granted 2003-01-01 expired 2000-01-01",
+    "known": false
+   },
+   {
+    "ref": "4114",
+    "site": "Kildrummy Windfarm",
+    "detail": "granted 2009-08-06 expired 2005-08-06",
+    "known": false
+   },
+   {
+    "ref": "3370",
+    "site": "Bonerbo Wind Turbines",
+    "detail": "granted 2013-05-14 expired 2011-05-14",
+    "known": false
+   },
+   {
+    "ref": "15414",
+    "site": "Former Madras College, Kilrymont Road - Solar panels",
+    "detail": "granted 2024-01-30 expired 2017-01-30",
+    "known": false
+   },
+   {
+    "ref": "3602",
+    "site": "Rusholme Wind Farm",
+    "detail": "granted 2006-10-16 expired 2000-10-16",
+    "known": false
+   },
+   {
+    "ref": "3686",
+    "site": "Burnt House Farm",
+    "detail": "granted 2011-07-08 expired 2010-07-08",
+    "known": false
+   },
+   {
+    "ref": "3776",
+    "site": "Upper Wheedlemont Farm",
+    "detail": "granted 2012-10-04 expired 2011-10-04",
+    "known": false
+   },
+   {
+    "ref": "3739",
+    "site": "Stonish Hill (Bilsthorpe)",
+    "detail": "granted 2009-03-16 expired 2000-03-16",
+    "known": false
+   },
+   {
+    "ref": "3765",
+    "site": "Glass moor Extension",
+    "detail": "granted 2012-04-10 expired 2011-04-10",
+    "known": false
+   },
+   {
+    "ref": "3807",
+    "site": "The Limes Wind Turbines",
+    "detail": "granted 2012-11-19 expired 2011-11-19",
+    "known": false
+   },
+   {
+    "ref": "4730",
+    "site": "Sustainable Power and Research Campus",
+    "detail": "granted 2014-02-10 expired 2013-02-10",
+    "known": false
+   },
+   {
+    "ref": "16018",
+    "site": "New Craigie Retail Park - Battery Energy Storage",
+    "detail": "granted 2024-05-22 expired 2014-05-22",
+    "known": false
+   },
+   {
+    "ref": "3890",
+    "site": "Marston Vale Country Park Wind Turbine",
+    "detail": "granted 2012-02-01 expired 2011-02-01",
+    "known": false
+   },
+   {
+    "ref": "4072",
+    "site": "Edintore Wind Farm",
+    "detail": "granted 2012-08-28 expired 2011-08-28",
+    "known": false
+   },
+   {
+    "ref": "3917",
+    "site": "Garlenick Estate 2 - Wind Turbines",
+    "detail": "granted 2013-01-31 expired 2011-01-31",
+    "known": false
+   },
+   {
+    "ref": "3924",
+    "site": "Bloodhills - repowering",
+    "detail": "granted 2013-05-14 expired 2012-05-14",
+    "known": false
+   },
+   {
+    "ref": "3975",
+    "site": "Derwydd Bach Wind Farm",
+    "detail": "granted 2011-07-21 expired 2010-07-21",
+    "known": false
+   },
+   {
+    "ref": "3985",
+    "site": "South Sharpley Wind Farm (Revised)",
+    "detail": "granted 2011-04-10 expired 2010-04-10",
+    "known": false
+   },
+   {
+    "ref": "4007",
+    "site": "St. Breock Re-Power",
+    "detail": "granted 2003-01-30 expired 2000-01-30",
+    "known": false
+   },
+   {
+    "ref": "4022",
+    "site": "Braich Ddu",
+    "detail": "granted 2004-09-13 expired 2000-09-13",
+    "known": false
+   },
+   {
+    "ref": "4029",
+    "site": "High Pow Farm ",
+    "detail": "granted 2004-10-07 expired 2000-10-07",
+    "known": false
+   },
+   {
+    "ref": "15437",
+    "site": "Elmpark Sawmill, Leven Mills - Solar PV Panels",
+    "detail": "granted 2024-01-24 expired 2014-01-24",
+    "known": false
+   },
+   {
+    "ref": "4044",
+    "site": "Green Rigg",
+    "detail": "granted 2010-03-26 expired 2000-03-26",
+    "known": false
+   },
+   {
+    "ref": "4061",
+    "site": "Mynydd y Betws",
+    "detail": "granted 2007-06-17 expired 2000-06-17",
+    "known": false
+   },
+   {
+    "ref": "4067",
+    "site": "Turncole Wind Farm",
+    "detail": "granted 2014-02-14 expired 2010-02-14",
+    "known": false
+   },
+   {
+    "ref": "4070",
+    "site": "Goole Fields ll Wind Farm",
+    "detail": "granted 2014-05-22 expired 2013-05-22",
+    "known": false
+   },
+   {
+    "ref": "4081",
+    "site": "Thornog Windfarm Extension",
+    "detail": "granted 2012-09-11 expired 2011-09-11",
+    "known": false
+   },
+   {
+    "ref": "4090",
+    "site": "Killington Wind Farm",
+    "detail": "granted 2014-02-11 expired 2011-02-11",
+    "known": false
+   },
+   {
+    "ref": "4104",
+    "site": "Tallentire Hill",
+    "detail": "granted 2011-02-04 expired 2010-02-04",
+    "known": false
+   },
+   {
+    "ref": "15749",
+    "site": "Duniface Gas Peaking Plant - Battery Energy Storage System",
+    "detail": "granted 2024-09-26 expired 2022-09-26",
+    "known": false
+   },
+   {
+    "ref": "172",
+    "site": "Diageo Biomass Energy Project",
+    "detail": "granted 2008-11-04 expired 2003-11-04",
+    "known": false
+   },
+   {
+    "ref": "4151",
+    "site": "Curraghamulkin (Dooish Wind Farm)",
+    "detail": "granted 2017-11-10 expired 2012-11-10",
+    "known": false
+   },
+   {
+    "ref": "4154",
+    "site": "Smulgedon",
+    "detail": "granted 2012-10-02 expired 2011-10-02",
+    "known": false
+   },
+   {
+    "ref": "4175",
+    "site": "Woolley Hill Wind Farm",
+    "detail": "granted 2012-03-23 expired 2011-03-23",
+    "known": false
+   },
+   {
+    "ref": "4177",
+    "site": "Furness Wind Farm/High Winds (Harlock Repowering) ",
+    "detail": "granted 2014-07-24 expired 2011-07-24",
+    "known": false
+   },
+   {
+    "ref": "4190",
+    "site": "Cam Burn Wind Farm",
+    "detail": "granted 2016-12-22 expired 2011-12-22",
+    "known": false
+   },
+   {
+    "ref": "4194",
+    "site": "Mynydd Portref Wind Farm extension",
+    "detail": "granted 2014-12-19 expired 2011-12-19",
+    "known": false
+   },
+   {
+    "ref": "4196",
+    "site": "Longlands Lane",
+    "detail": "granted 2013-11-06 expired 2011-11-06",
+    "known": false
+   },
+   {
+    "ref": "4206",
+    "site": "Ryder Point Quarry Wind Turbines",
+    "detail": "granted 2013-07-11 expired 2011-07-11",
+    "known": false
+   },
+   {
+    "ref": "4363",
+    "site": "Earlseat",
+    "detail": "granted 2012-03-02 expired 2011-03-02",
+    "known": false
+   },
+   {
+    "ref": "15427",
+    "site": "Gretna Green Battery Storage",
+    "detail": "granted 2025-03-17 expired 2014-03-17",
+    "known": false
+   },
+   {
+    "ref": "5247",
+    "site": "Millerhill EfW",
+    "detail": "granted 2015-09-17 expired 2011-09-17",
+    "known": false
+   },
+   {
+    "ref": "4236",
+    "site": "Evishagaran Wind Farm",
+    "detail": "granted 2016-04-04 expired 2013-04-04",
+    "known": false
+   },
+   {
+    "ref": "4244",
+    "site": "Dorenell Wind Farm (Previously Site A and B Scaut Hill)",
+    "detail": "granted 2012-01-03 expired 2011-01-03",
+    "known": false
+   },
+   {
+    "ref": "4260",
+    "site": "Keadby Wind Farm",
+    "detail": "granted 2008-02-28 expired 2000-02-28",
+    "known": false
+   },
+   {
+    "ref": "3285",
+    "site": "Achairn",
+    "detail": "granted 2006-03-01 expired 2000-03-01",
+    "known": false
+   },
+   {
+    "ref": "4449",
+    "site": "Solwaybank Wind Farm",
+    "detail": "granted 2014-09-24 expired 2013-09-24",
+    "known": false
+   },
+   {
+    "ref": "11155",
+    "site": "Kirkcaldy W W T W, Nether Street- Solar Panels",
+    "detail": "granted 2022-06-10 expired 2011-06-10",
+    "known": false
+   },
+   {
+    "ref": "4345",
+    "site": "Boardinghouse Wind Farm",
+    "detail": "granted 2011-07-06 expired 2010-07-06",
+    "known": false
+   },
+   {
+    "ref": "3701",
+    "site": "Hillhead of Auquhirie",
+    "detail": "granted 2011-01-10 expired 2010-01-10",
+    "known": false
+   },
+   {
+    "ref": "4404",
+    "site": "Noble Foods",
+    "detail": "granted 2011-11-15 expired 2010-11-15",
+    "known": false
+   },
+   {
+    "ref": "4374",
+    "site": "Greenvale AP Wind Turbine ",
+    "detail": "granted 2012-09-24 expired 2010-09-24",
+    "known": false
+   },
+   {
+    "ref": "4415",
+    "site": "Red Gap Moor Wind Farm",
+    "detail": "granted 2011-03-31 expired 2010-03-31",
+    "known": false
+   },
+   {
+    "ref": "4419",
+    "site": "Todmorden Moor  ",
+    "detail": "granted 2011-04-01 expired 2000-04-01",
+    "known": false
+   },
+   {
+    "ref": "4633",
+    "site": "Crossdykes",
+    "detail": "granted 2019-06-27 expired 2018-06-27",
+    "known": false
+   },
+   {
+    "ref": "4009",
+    "site": "Drumderg",
+    "detail": "granted 2005-02-11 expired 2000-02-11",
+    "known": false
+   },
+   {
+    "ref": "15531",
+    "site": "Sainsburys, Craigleith Road - Solar Array",
+    "detail": "granted 2024-02-14 expired 2021-02-14",
+    "known": false
+   },
+   {
+    "ref": "4078",
+    "site": "Clentrie Wind Farm (Gevens)",
+    "detail": "granted 2014-05-15 expired 2012-05-15",
+    "known": false
+   },
+   {
+    "ref": "16137",
+    "site": "Coupar Angus, Pleasance Road - Battery Energy Facility",
+    "detail": "granted 2024-09-11 expired 2023-09-11",
+    "known": false
+   },
+   {
+    "ref": "15426",
+    "site": "Mossmorran Battery Storage",
+    "detail": "granted 2025-05-06 expired 2013-05-06",
+    "known": false
+   },
+   {
+    "ref": "4647",
+    "site": "Fraisthorpe Wind Farm",
+    "detail": "granted 2013-01-22 expired 2012-01-22",
+    "known": false
+   },
+   {
+    "ref": "4656",
+    "site": "Llynfi Renewable Energy Park, Land at Mynydd Caerau",
+    "detail": "granted 2013-08-27 expired 2010-08-27",
+    "known": false
+   },
+   {
+    "ref": "4662",
+    "site": "Middlewick wind farm",
+    "detail": "granted 2011-05-01 expired 2010-05-01",
+    "known": false
+   },
+   {
+    "ref": "4695",
+    "site": "Esholt WWTW",
+    "detail": "granted 2012-03-30 expired 2010-03-30",
+    "known": false
+   },
+   {
+    "ref": "4701",
+    "site": "Land at High Point Farm",
+    "detail": "granted 2016-03-16 expired 2012-03-16",
+    "known": false
+   },
+   {
+    "ref": "2780",
+    "site": "Mossmorran Wind Farm",
+    "detail": "granted 2012-01-13 expired 2011-01-13",
+    "known": false
+   },
+   {
+    "ref": "17132",
+    "site": "Tacher A",
+    "detail": "granted 2022-04-04 expired 2015-04-04",
+    "known": false
+   },
+   {
+    "ref": "17133",
+    "site": "Tacher C",
+    "detail": "granted 2022-09-20 expired 2019-09-20",
+    "known": false
+   },
+   {
+    "ref": "5063",
+    "site": "Land at Dayfields Farm",
+    "detail": "granted 2016-03-09 expired 2013-03-09",
+    "known": false
+   },
+   {
+    "ref": "5089",
+    "site": "Green Farm",
+    "detail": "granted 2015-05-06 expired 2014-05-06",
+    "known": false
+   },
+   {
+    "ref": "5091",
+    "site": "Fosseway Environment Park",
+    "detail": "granted 2014-08-04 expired 2011-08-04",
+    "known": false
+   },
+   {
+    "ref": "4776",
+    "site": "Achlachan Wind Farm - Phase 2",
+    "detail": "granted 2016-03-29 expired 2011-03-29",
+    "known": false
+   },
+   {
+    "ref": "5293",
+    "site": "Land South Off Ollerton Road",
+    "detail": "granted 2016-06-07 expired 2012-06-07",
+    "known": false
+   },
+   {
+    "ref": "5328",
+    "site": "Staining Wood Farm",
+    "detail": "granted 2015-09-30 expired 2015-09-29",
+    "known": false
+   },
+   {
+    "ref": "5342",
+    "site": "Henley Solar Farm",
+    "detail": "granted 2016-01-04 expired 2013-01-04",
+    "known": false
+   },
+   {
+    "ref": "5380",
+    "site": "Green Croft Solar Farm",
+    "detail": "granted 2015-11-04 expired 2013-11-04",
+    "known": false
+   },
+   {
+    "ref": "5382",
+    "site": "Land at Lltty Morphil Farm",
+    "detail": "granted 2016-05-10 expired 2012-05-10",
+    "known": false
+   },
+   {
+    "ref": "2400",
+    "site": "Voith (FoW - EMEC)",
+    "detail": "granted 2012-07-01 expired 2011-07-01",
+    "known": false
+   },
+   {
+    "ref": "5476",
+    "site": "Land North West of Magor Service Station",
+    "detail": "granted 2015-12-14 expired 2011-12-14",
+    "known": false
+   },
+   {
+    "ref": "5477",
+    "site": "Cwm Derwyn Farm",
+    "detail": "granted 2015-09-04 expired 2011-09-04",
+    "known": false
+   },
+   {
+    "ref": "5525",
+    "site": "Land at Wreay",
+    "detail": "granted 2016-08-04 expired 2011-08-04",
+    "known": false
+   },
+   {
+    "ref": "5633",
+    "site": "Worsted Farm",
+    "detail": "granted 2016-11-21 expired 2015-11-21",
+    "known": false
+   },
+   {
+    "ref": "5639",
+    "site": "Daventry",
+    "detail": "granted 2015-09-28 expired 2010-09-28",
+    "known": false
+   },
+   {
+    "ref": "196",
+    "site": "Stevens Croft",
+    "detail": "granted 2005-04-01 expired 2003-04-01",
+    "known": false
+   },
+   {
+    "ref": "5683",
+    "site": "Mamhilad Solar Farm",
+    "detail": "granted 2015-12-22 expired 2014-12-22",
+    "known": false
+   },
+   {
+    "ref": "5694",
+    "site": "Peterlee Solar Farm",
+    "detail": "granted 2016-01-14 expired 2013-01-14",
+    "known": false
+   },
+   {
+    "ref": "6013",
+    "site": "Parc Stormy, Stormy Down",
+    "detail": "granted 2016-08-18 expired 2014-08-18",
+    "known": false
+   },
+   {
+    "ref": "6087",
+    "site": "Hull Biomass Plant (Tansterne power station)",
+    "detail": "granted 2016-02-05 expired 2013-02-05",
+    "known": false
+   },
+   {
+    "ref": "6129",
+    "site": "Knottingley B",
+    "detail": "granted 2016-01-29 expired 2010-01-29",
+    "known": false
+   },
+   {
+    "ref": "6184",
+    "site": "Liberty Steel Power Station",
+    "detail": "granted 2016-03-03 expired 2013-03-03",
+    "known": false
+   },
+   {
+    "ref": "6185",
+    "site": "Uskmouth Power Station (ACT Plant)",
+    "detail": "granted 2016-04-20 expired 2011-04-20",
+    "known": false
+   },
+   {
+    "ref": "6227",
+    "site": "JG Pears' animal rendering facility",
+    "detail": "granted 2014-10-22 expired 2013-10-22",
+    "known": false
+   },
+   {
+    "ref": "6228",
+    "site": "Blazer Fuels ",
+    "detail": "granted 2015-12-22 expired 2013-12-22",
+    "known": false
+   },
+   {
+    "ref": "6246",
+    "site": "Bentley Motors",
+    "detail": "granted 2016-11-24 expired 2011-11-24",
+    "known": false
+   },
+   {
+    "ref": "6258",
+    "site": "Hangmans Lane",
+    "detail": "granted 2016-10-11 expired 2013-10-11",
+    "known": false
+   },
+   {
+    "ref": "6321",
+    "site": "High Meadow Farm",
+    "detail": "granted 2015-12-04 expired 2012-12-04",
+    "known": false
+   },
+   {
+    "ref": "6357",
+    "site": "Cleeve Road",
+    "detail": "granted 2021-03-01 expired 2020-12-15",
+    "known": false
+   },
+   {
+    "ref": "6358",
+    "site": "Moody Lane (Former Acordis site)",
+    "detail": "granted 2021-11-03 expired 2020-08-01",
+    "known": false
+   },
+   {
+    "ref": "6360",
+    "site": "White Horse Lane (Trowse) - Phase 2",
+    "detail": "granted 2021-09-17 expired 2018-08-11",
+    "known": false
+   },
+   {
+    "ref": "6366",
+    "site": "Ystradffin Hydropower Project",
+    "detail": "granted 2022-11-29 expired 2022-10-09",
+    "known": false
+   },
+   {
+    "ref": "6368",
+    "site": "Former Croda site",
+    "detail": "granted 2022-11-04 expired 2019-10-13",
+    "known": false
+   },
+   {
+    "ref": "6369",
+    "site": "Rosedew Farm",
+    "detail": "granted 2022-11-04 expired 2012-11-04",
+    "known": false
+   },
+   {
+    "ref": "6375",
+    "site": "Pengarnddu Industrial Estate - Biomass Recycling Plant ",
+    "detail": "granted 2022-03-22 expired 2014-01-01",
+    "known": false
+   },
+   {
+    "ref": "5949",
+    "site": "Ourack",
+    "detail": "granted 2025-03-25 expired 2011-03-25",
+    "known": false
+   },
+   {
+    "ref": "6411",
+    "site": "Llanwern Solar Farm & Battery Storage",
+    "detail": "granted 2018-11-13 expired 2017-11-13",
+    "known": false
+   },
+   {
+    "ref": "4225",
+    "site": "Harburnhead Wind Farm",
+    "detail": "granted 2014-07-09 expired 2010-07-09",
+    "known": false
+   },
+   {
+    "ref": "6456",
+    "site": "Branston Solar Park (extension)",
+    "detail": "granted 2017-12-19 expired 2013-12-19",
+    "known": false
+   },
+   {
+    "ref": "6517",
+    "site": "ICI No2 (Teesport) Landfill",
+    "detail": "granted 2021-09-24 expired 2020-12-07",
+    "known": false
+   },
+   {
+    "ref": "4178",
+    "site": "Clyde Wind Farm Extension (Clyde 2)",
+    "detail": "granted 2014-07-23 expired 2011-07-23",
+    "known": false
+   },
+   {
+    "ref": "6603",
+    "site": "Cranfield Airfield",
+    "detail": "granted 2020-05-28 expired 2012-05-28",
+    "known": false
+   },
+   {
+    "ref": "993",
+    "site": "Dargavel",
+    "detail": "granted 2001-05-23 expired 2000-05-23",
+    "known": false
+   },
+   {
+    "ref": "3873",
+    "site": "Muirhall Extension",
+    "detail": "granted 2012-09-10 expired 2011-09-10",
+    "known": false
+   },
+   {
+    "ref": "6869",
+    "site": "Willersey solar farm ",
+    "detail": "granted 2016-12-23 expired 2012-12-23",
+    "known": false
+   },
+   {
+    "ref": "6941",
+    "site": "Chelveston Renewable Energy Park",
+    "detail": "granted 2018-05-10 expired 2010-05-10",
+    "known": false
+   },
+   {
+    "ref": "6995",
+    "site": "Land at and adjacent to Leicester Forest Services",
+    "detail": "granted 2022-02-07 expired 2020-09-15",
+    "known": false
+   },
+   {
+    "ref": "7001",
+    "site": "Stony Energy Storage Facility",
+    "detail": "granted 2021-09-03 expired 2020-10-12",
+    "known": false
+   },
+   {
+    "ref": "7081",
+    "site": "Sundridge Hill",
+    "detail": "granted 2018-08-17 expired 2014-08-17",
+    "known": false
+   },
+   {
+    "ref": "7086",
+    "site": "Hill Hall",
+    "detail": "granted 2023-06-29 expired 2020-12-22",
+    "known": false
+   },
+   {
+    "ref": "7119",
+    "site": "Penwortham Sub Station",
+    "detail": "granted 2021-05-14 expired 2020-11-16",
+    "known": false
+   },
+   {
+    "ref": "7122",
+    "site": "Creyke Beck",
+    "detail": "granted 2017-06-30 expired 2014-06-30",
+    "known": false
+   },
+   {
+    "ref": "7225",
+    "site": "Tesco Wombwell Lane",
+    "detail": "granted 2019-07-09 expired 2012-07-09",
+    "known": false
+   },
+   {
+    "ref": "7229",
+    "site": "Tesco Superstore Shripney Road",
+    "detail": "granted 2021-03-11 expired 2011-03-11",
+    "known": false
+   },
+   {
+    "ref": "7235",
+    "site": "Tesco Lottbridge Drove",
+    "detail": "granted 2019-04-29 expired 2018-04-29",
+    "known": false
+   },
+   {
+    "ref": "7238",
+    "site": "Tesco Super-Store (Bridge Road)",
+    "detail": "granted 2019-03-31 expired 2012-03-31",
+    "known": false
+   },
+   {
+    "ref": "7251",
+    "site": "Tesco Crab Tree Lane",
+    "detail": "granted 2019-02-01 expired 2010-02-01",
+    "known": false
+   },
+   {
+    "ref": "7256",
+    "site": "The Grange",
+    "detail": "granted 2023-06-28 expired 2022-11-28",
+    "known": false
+   },
+   {
+    "ref": "7312",
+    "site": "The Low Carbon Energy Generation Project at Keele University",
+    "detail": "granted 2019-05-02 expired 2010-05-02",
+    "known": false
+   },
+   {
+    "ref": "7334",
+    "site": "Clayhill",
+    "detail": "granted 2015-01-28 expired 2011-01-28",
+    "known": false
+   },
+   {
+    "ref": "7360",
+    "site": "Pillswood Phase 2",
+    "detail": "granted 2023-07-25 expired 2022-11-14",
+    "known": false
+   },
+   {
+    "ref": "7410",
+    "site": "Tesco Superstore Bicester",
+    "detail": "granted 2019-05-16 expired 2012-05-16",
+    "known": false
+   },
+   {
+    "ref": "7448",
+    "site": "Hewitts Avenue Tesco",
+    "detail": "granted 2019-03-13 expired 2010-03-13",
+    "known": false
+   },
+   {
+    "ref": "7464",
+    "site": "Lascar Works ",
+    "detail": "granted 2018-05-23 expired 2010-05-23",
+    "known": false
+   },
+   {
+    "ref": "7508",
+    "site": "A J Lowther and Son Premise",
+    "detail": "granted 2020-10-16 expired 2014-10-16",
+    "known": false
+   },
+   {
+    "ref": "7539",
+    "site": "Bowerhouse Farm (extension)",
+    "detail": "granted 2022-03-25 expired 2011-03-25",
+    "known": false
+   },
+   {
+    "ref": "7571",
+    "site": "Cowley electricity sub-station",
+    "detail": "granted 2019-06-04 expired 2015-06-04",
+    "known": false
+   },
+   {
+    "ref": "7646",
+    "site": "Tesco Superstore Thetford Road",
+    "detail": "granted 2020-04-17 expired 2015-04-17",
+    "known": false
+   },
+   {
+    "ref": "15873",
+    "site": "Wonder World, Castlelaurie Industrial Estate - Solar Panels",
+    "detail": "granted 2024-03-22 expired 2015-03-22",
+    "known": false
+   },
+   {
+    "ref": "14202",
+    "site": "Blair Castle Caravan Park, Blair Atholl - Solar Farm",
+    "detail": "granted 2023-07-25 expired 2023-07-24",
+    "known": false
+   },
+   {
+    "ref": "7971",
+    "site": "Lower Fields Mushroom Farm",
+    "detail": "granted 2021-02-05 expired 2010-02-05",
+    "known": false
+   },
+   {
+    "ref": "7972",
+    "site": "Fairview Farm",
+    "detail": "granted 2020-12-24 expired 2014-12-24",
+    "known": false
+   },
+   {
+    "ref": "7992",
+    "site": "Trafford Park",
+    "detail": "granted 2021-02-05 expired 2018-02-05",
+    "known": false
+   },
+   {
+    "ref": "4267",
+    "site": "Tom Nan Clach Wind Farm",
+    "detail": "granted 2013-06-14 expired 2011-06-14",
+    "known": false
+   },
+   {
+    "ref": "4420",
+    "site": "Tom Nan Clach",
+    "detail": "granted 2018-04-24 expired 2017-04-24",
+    "known": false
+   },
+   {
+    "ref": "8141",
+    "site": "South Stilling Tanks Solar Farm",
+    "detail": "granted 2021-04-14 expired 2016-04-14",
+    "known": false
+   },
+   {
+    "ref": "8183",
+    "site": "Framptons Limited Energy Centre",
+    "detail": "granted 2021-10-07 expired 2010-10-07",
+    "known": false
+   },
+   {
+    "ref": "8259",
+    "site": "Manor Farm Solar Panels",
+    "detail": "granted 2021-02-18 expired 2012-02-18",
+    "known": false
+   },
+   {
+    "ref": "8348",
+    "site": "Windmill Farm Solar Farm (Old Malton)",
+    "detail": "granted 2025-02-25 expired 2015-02-25",
+    "known": false
+   },
+   {
+    "ref": "8448",
+    "site": "Nickle Farm",
+    "detail": "granted 2021-12-24 expired 2019-12-24",
+    "known": false
+   },
+   {
+    "ref": "8455",
+    "site": "Trondheim Way Battery energy storage",
+    "detail": "granted 2023-01-23 expired 2018-01-23",
+    "known": false
+   },
+   {
+    "ref": "41",
+    "site": "Cowie Biomass Facility",
+    "detail": "granted 2006-07-27 expired 2003-07-27",
+    "known": false
+   },
+   {
+    "ref": "8811",
+    "site": "Cranfield University - Solar Farm",
+    "detail": "granted 2021-08-23 expired 2011-08-23",
+    "known": false
+   },
+   {
+    "ref": "15650",
+    "site": "Unit 4, Industrial Site - Solar Panels",
+    "detail": "granted 2024-02-28 expired 2019-02-28",
+    "known": false
+   },
+   {
+    "ref": "8855",
+    "site": "Plant Produce - Solar PV panels",
+    "detail": "granted 2022-02-14 expired 2015-02-14",
+    "known": false
+   },
+   {
+    "ref": "8858",
+    "site": "Dorset Green Solar Farm",
+    "detail": "granted 2021-07-23 expired 2015-07-23",
+    "known": false
+   },
+   {
+    "ref": "9142",
+    "site": "Carland Cross - Solar Farm",
+    "detail": "granted 2020-05-26 expired 2013-05-26",
+    "known": false
+   },
+   {
+    "ref": "9150",
+    "site": "Outer Space Studios Solar Panels",
+    "detail": "granted 2021-11-04 expired 2013-11-04",
+    "known": false
+   },
+   {
+    "ref": "9179",
+    "site": "Cottingham - Solar Farm",
+    "detail": "granted 2022-03-14 expired 2021-03-14",
+    "known": false
+   },
+   {
+    "ref": "4625",
+    "site": "Strathy North",
+    "detail": "granted 2011-11-22 expired 2000-11-22",
+    "known": false
+   },
+   {
+    "ref": "15343",
+    "site": "Cumberhead West Wind Farm",
+    "detail": "granted 2021-11-18 expired 2014-11-18",
+    "known": false
+   },
+   {
+    "ref": "9360",
+    "site": "South Farm Solar Park",
+    "detail": "granted 2020-06-25 expired 2011-06-25",
+    "known": false
+   },
+   {
+    "ref": "9361",
+    "site": "South Farm Solar Park",
+    "detail": "granted 2020-03-05 expired 2011-03-05",
+    "known": false
+   },
+   {
+    "ref": "9367",
+    "site": "Jacksons Bakery - Solar Panels",
+    "detail": "granted 2022-07-11 expired 2013-07-11",
+    "known": false
+   },
+   {
+    "ref": "9546",
+    "site": "Oaklands Solar Farm Project - Solar Farm & Battery Storage",
+    "detail": "granted 2025-06-19 expired 2023-06-19",
+    "known": false
+   },
+   {
+    "ref": "9547",
+    "site": "Oaklands Solar Farm Project - Solar Farm & Battery Storage",
+    "detail": "granted 2025-06-19 expired 2020-06-19",
+    "known": false
+   },
+   {
+    "ref": "9664",
+    "site": "Perrigo,Wrafton - Solar Photovoltaic System",
+    "detail": "granted 2021-11-01 expired 2012-11-01",
+    "known": false
+   },
+   {
+    "ref": "6173",
+    "site": "Woodlands Wind Farm",
+    "detail": "granted 2013-07-22 expired 2012-07-22",
+    "known": false
+   },
+   {
+    "ref": "9803",
+    "site": "Five Estuaries - Wind Farm",
+    "detail": "granted 2025-12-17 expired 2015-12-17",
+    "known": false
+   },
+   {
+    "ref": "6590",
+    "site": "Twentyshilling Hill Wind Farm ",
+    "detail": "granted 2019-12-23 expired 2012-12-23",
+    "known": false
+   },
+   {
+    "ref": "10303",
+    "site": "N H Case Limited - Solar Panels",
+    "detail": "granted 2022-08-17 expired 2010-08-17",
+    "known": false
+   },
+   {
+    "ref": "9522",
+    "site": "Wishaw Battery Storage Facility",
+    "detail": "granted 2020-11-25 expired 2014-11-25",
+    "known": false
+   },
+   {
+    "ref": "10443",
+    "site": "Morrisons, Bradford Road, Idle - Solar PV Panels",
+    "detail": "granted 2022-05-13 expired 2022-02-01",
+    "known": false
+   },
+   {
+    "ref": "10654",
+    "site": "Torbay Leisure Centre - Energy Project",
+    "detail": "granted 2022-03-11 expired 2013-03-11",
+    "known": false
+   },
+   {
+    "ref": "10776",
+    "site": "Arthur Street - Solar Panels",
+    "detail": "granted 2022-03-28 expired 2011-03-28",
+    "known": false
+   },
+   {
+    "ref": "10809",
+    "site": "Barclays Bank Plc, Radbroke Solar Carport - Solar Panels",
+    "detail": "granted 2022-10-04 expired 2015-10-04",
+    "known": false
+   },
+   {
+    "ref": "11160",
+    "site": "Chadderton - Battery energy storage facility",
+    "detail": "granted 2022-12-09 expired 2018-12-09",
+    "known": false
+   },
+   {
+    "ref": "11252",
+    "site": "Keele University",
+    "detail": "granted 2019-09-23 expired 2010-09-23",
+    "known": false
+   },
+   {
+    "ref": "11335",
+    "site": "Atherton Way - Solar Panels",
+    "detail": "granted 2023-03-22 expired 2018-03-22",
+    "known": false
+   },
+   {
+    "ref": "11359",
+    "site": "Elmsall Way, South Elmsall - Solar Panels",
+    "detail": "granted 2022-09-15 expired 2016-09-15",
+    "known": false
+   },
+   {
+    "ref": "4079",
+    "site": "Penbreck & Carmacoup Forest",
+    "detail": "granted 2014-06-26 expired 2010-06-26",
+    "known": false
+   },
+   {
+    "ref": "11499",
+    "site": "Blanche Lane, South Mimms - Solar Panels",
+    "detail": "granted 2023-08-23 expired 2010-08-23",
+    "known": false
+   },
+   {
+    "ref": "11567",
+    "site": "Longlooms Road East - Solar panels",
+    "detail": "granted 2022-10-13 expired 2010-10-13",
+    "known": false
+   },
+   {
+    "ref": "15906",
+    "site": "Stanley Boulevard, Hamilton Tech Park - Roof Mounted Photovo",
+    "detail": "granted 2024-03-28 expired 2010-03-28",
+    "known": false
+   },
+   {
+    "ref": "4362",
+    "site": "Dungavel Hill",
+    "detail": "granted 2009-12-01 expired 2004-12-01",
+    "known": false
+   },
+   {
+    "ref": "11678",
+    "site": "East Yorkshire Solar Farm",
+    "detail": "granted 2025-05-09 expired 2011-05-09",
+    "known": false
+   },
+   {
+    "ref": "15471",
+    "site": "Killen Farm, Killen - Biomass Boiler",
+    "detail": "granted 2024-02-27 expired 2023-02-27",
+    "known": false
+   },
+   {
+    "ref": "14217",
+    "site": "Buchanan Gate, Stepps - Solar Panels",
+    "detail": "granted 2024-05-17 expired 2012-05-17",
+    "known": false
+   },
+   {
+    "ref": "11895",
+    "site": "Fleetwood Energy Centre",
+    "detail": "granted 2016-12-13 expired 2012-12-13",
+    "known": false
+   },
+   {
+    "ref": "4055",
+    "site": "Bankend Rig",
+    "detail": "granted 2011-06-16 expired 2003-06-16",
+    "known": false
+   },
+   {
+    "ref": "12050",
+    "site": "Midland Lead, Kiln Way - Solar Photovoltaic Panels",
+    "detail": "granted 2023-01-23 expired 2010-01-23",
+    "known": false
+   },
+   {
+    "ref": "12054",
+    "site": "Regent Street, Sheepscar - Solar Panels",
+    "detail": "granted 2023-05-18 expired 2019-05-18",
+    "known": false
+   },
+   {
+    "ref": "4118",
+    "site": "Dunmaglass Wind Farm",
+    "detail": "granted 2010-12-29 expired 2000-12-29",
+    "known": false
+   },
+   {
+    "ref": "6355",
+    "site": "Neilson Biogas Park Farm AD ",
+    "detail": "granted 2022-11-28 expired 2013-11-28",
+    "known": false
+   },
+   {
+    "ref": "12393",
+    "site": "Brickfields Business Park, Unit 35 - Solar Panels",
+    "detail": "granted 2023-05-17 expired 2023-02-01",
+    "known": false
+   },
+   {
+    "ref": "12397",
+    "site": "Brickfields Business Park, Unit 16 - Solar Panels",
+    "detail": "granted 2023-05-25 expired 2023-01-30",
+    "known": false
+   },
+   {
+    "ref": "12398",
+    "site": "Brickfields Business Park, Unit 24 - Solar panels",
+    "detail": "granted 2023-05-12 expired 2023-01-30",
+    "known": false
+   },
+   {
+    "ref": "12399",
+    "site": "Brickfields Business Park, Unit 17 - Solar panels",
+    "detail": "granted 2023-07-27 expired 2023-02-01",
+    "known": false
+   },
+   {
+    "ref": "12450",
+    "site": "West Suffolk College, Out Risbygate Street -  Solar Panels",
+    "detail": "granted 2022-12-05 expired 2022-08-01",
+    "known": false
+   },
+   {
+    "ref": "12601",
+    "site": "Manor Farm, Denchworth - Solar Photovoltaic Panels",
+    "detail": "granted 2025-04-03 expired 2013-04-03",
+    "known": false
+   },
+   {
+    "ref": "4262",
+    "site": "Afton Wind Farm",
+    "detail": "granted 2014-10-16 expired 2000-10-16",
+    "known": false
+   },
+   {
+    "ref": "4060",
+    "site": "Cathkin Braes Wind Farm (Castlemilk)",
+    "detail": "granted 2013-01-15 expired 2010-01-15",
+    "known": false
+   },
+   {
+    "ref": "8999",
+    "site": "Invershin Community Hall - Wind Farm & Battery Storage",
+    "detail": "granted 2025-02-13 expired 2012-02-13",
+    "known": false
+   },
+   {
+    "ref": "16120",
+    "site": "Mugdock Water Treatment Works - Solar panels",
+    "detail": "granted 2024-05-16 expired 2021-05-16",
+    "known": false
+   },
+   {
+    "ref": "5965",
+    "site": "River Pattack ",
+    "detail": "granted 2015-11-19 expired 2013-11-19",
+    "known": false
+   },
+   {
+    "ref": "13549",
+    "site": "Lower Farm, Drointon Lane - Solar farm & Battery Energy Stor",
+    "detail": "granted 2025-01-14 expired 2017-01-14",
+    "known": false
+   },
+   {
+    "ref": "13550",
+    "site": "Lower Farm, Drointon Lane - Solar farm & Battery Energy Stor",
+    "detail": "granted 2025-01-14 expired 2017-01-14",
+    "known": false
+   },
+   {
+    "ref": "13643",
+    "site": "Earthcott Green Farm, Earthcott Green - Battery Energy Stora",
+    "detail": "granted 2025-07-30 expired 2011-07-30",
+    "known": false
+   },
+   {
+    "ref": "15509",
+    "site": "Decathlon, Old Govan Road - Solar Panels",
+    "detail": "granted 2024-03-29 expired 2014-03-29",
+    "known": false
+   },
+   {
+    "ref": "4128",
+    "site": "Sneddon Law Community Wind Farm",
+    "detail": "granted 2013-02-28 expired 2011-02-28",
+    "known": false
+   },
+   {
+    "ref": "4675",
+    "site": "Fairburn",
+    "detail": "granted 2008-01-01 expired 2000-01-01",
+    "known": false
+   },
+   {
+    "ref": "388",
+    "site": "Glendoe Hydro Scheme",
+    "detail": "granted 2005-07-28 expired 2000-07-28",
+    "known": false
+   },
+   {
+    "ref": "15166",
+    "site": "Kirkgate Lane, Felkirk - Solar Array",
+    "detail": "granted 2025-04-10 expired 2022-04-10",
+    "known": false
+   },
+   {
+    "ref": "15530",
+    "site": "Braston New Energy / The Wallace Project",
+    "detail": "granted 2025-04-23 expired 2015-04-23",
+    "known": false
+   },
+   {
+    "ref": "15349",
+    "site": "Gibraltar Road - Solar photovoltaic system",
+    "detail": "granted 2024-01-19 expired 2010-01-19",
+    "known": false
+   },
+   {
+    "ref": "15353",
+    "site": "Edmonton County School, Great Cambridge Road - Solar Panels",
+    "detail": "granted 2024-01-18 expired 2022-01-18",
+    "known": false
+   },
+   {
+    "ref": "15357",
+    "site": "Streatham Ice & Leisure, Streatham High Road - Solar Panels ",
+    "detail": "granted 2024-03-12 expired 2018-03-12",
+    "known": false
+   },
+   {
+    "ref": "15358",
+    "site": "Wembdon Business Centre, Bower Road - Solar Arrays",
+    "detail": "granted 2024-01-04 expired 2013-01-04",
+    "known": false
+   },
+   {
+    "ref": "15367",
+    "site": "Butterfied Business Park, Great Marlings - Solar Panels",
+    "detail": "granted 2024-01-17 expired 2012-01-17",
+    "known": false
+   },
+   {
+    "ref": "15371",
+    "site": "Marley Lane - Solar Panels",
+    "detail": "granted 2024-01-16 expired 2023-01-16",
+    "known": false
+   },
+   {
+    "ref": "15372",
+    "site": "Tiger Trailers, Winsford Industrial Estate - Solar Panels",
+    "detail": "granted 2024-01-08 expired 2010-01-08",
+    "known": false
+   },
+   {
+    "ref": "15393",
+    "site": "Pilgrim Factory Car Park And Fields, Cooksland Road - Solar ",
+    "detail": "granted 2024-07-19 expired 2014-07-19",
+    "known": false
+   },
+   {
+    "ref": "15398",
+    "site": "Rushett Lane - Battery Storage System",
+    "detail": "granted 2025-04-03 expired 2016-04-03",
+    "known": false
+   },
+   {
+    "ref": "343",
+    "site": "GlaxoSmithKline (Waste AD)",
+    "detail": "granted 2014-02-21 expired 2011-02-21",
+    "known": false
+   },
+   {
+    "ref": "15431",
+    "site": "Evenley Poultry Farm, Buckingham Road - Biomass Boilers",
+    "detail": "granted 2024-03-06 expired 2023-03-06",
+    "known": false
+   },
+   {
+    "ref": "15439",
+    "site": "Celtic Way, Celtic Lakes - Solar Array",
+    "detail": "granted 2024-02-15 expired 2022-02-15",
+    "known": false
+   },
+   {
+    "ref": "15447",
+    "site": "Manchester Marriott Victoria And Albert Hotel - Solar Panels",
+    "detail": "granted 2024-06-25 expired 2011-06-25",
+    "known": false
+   },
+   {
+    "ref": "15452",
+    "site": "Pilmoor Solar Farm",
+    "detail": "granted 2024-09-11 expired 2019-09-11",
+    "known": false
+   },
+   {
+    "ref": "15454",
+    "site": "Chester Gates - Solar Panels",
+    "detail": "granted 2024-01-08 expired 2010-01-08",
+    "known": false
+   },
+   {
+    "ref": "15468",
+    "site": "Penguin Random House Distribution, Colchester Road - Solar P",
+    "detail": "granted 2024-01-18 expired 2018-01-18",
+    "known": false
+   },
+   {
+    "ref": "15479",
+    "site": "Golden Hillock Road, Sparkbrook - Solar Panels",
+    "detail": "granted 2024-02-01 expired 2012-02-01",
+    "known": false
+   },
+   {
+    "ref": "15484",
+    "site": "Andrew Johnson Knudtzon Limited, Boulevard - Solar panels",
+    "detail": "granted 2024-02-01 expired 2010-02-01",
+    "known": false
+   },
+   {
+    "ref": "15502",
+    "site": "Higher Ayshford Farm, Westleigh - Biomass Boiler",
+    "detail": "granted 2024-02-14 expired 2023-02-14",
+    "known": false
+   },
+   {
+    "ref": "15503",
+    "site": "Fullbrook School, Selsdon Road -  Solar panels",
+    "detail": "granted 2024-01-31 expired 2018-01-31",
+    "known": false
+   },
+   {
+    "ref": "15507",
+    "site": "David Lloyd Leisure, Festival Way - Soalr Panels",
+    "detail": "granted 2024-02-12 expired 2020-02-12",
+    "known": false
+   },
+   {
+    "ref": "15508",
+    "site": "First Steps Nursery, Waterloo Road - Solar Panels",
+    "detail": "granted 2024-02-07 expired 2020-02-07",
+    "known": false
+   },
+   {
+    "ref": "15510",
+    "site": "Mushroom Farm, Lower Fields - Agricultural Building & Solar ",
+    "detail": "granted 2024-07-04 expired 2010-07-04",
+    "known": false
+   },
+   {
+    "ref": "15513",
+    "site": "London Road, Hadleigh - Solar panels",
+    "detail": "granted 2024-02-06 expired 2015-02-06",
+    "known": false
+   },
+   {
+    "ref": "15516",
+    "site": "Battery Energy Storage System in Ballycastle",
+    "detail": "granted 2024-03-20 expired 2011-03-20",
+    "known": false
+   },
+   {
+    "ref": "15518",
+    "site": "Brockworth Road - Battery Storage System",
+    "detail": "granted 2024-04-25 expired 2014-04-25",
+    "known": false
+   },
+   {
+    "ref": "15526",
+    "site": "The Tonbridge School Centre, London Road - Solar Panels",
+    "detail": "granted 2024-02-14 expired 2012-02-14",
+    "known": false
+   },
+   {
+    "ref": "15566",
+    "site": "East Yorkshire Solar Farm",
+    "detail": "granted 2025-05-09 expired 2011-05-09",
+    "known": false
+   },
+   {
+    "ref": "15567",
+    "site": "Bradford Low Carbon Hydrogen ",
+    "detail": "granted 2024-04-02 expired 2023-04-02",
+    "known": false
+   },
+   {
+    "ref": "15572",
+    "site": "Asquith Nursery, David Lloyd Leisure - Solar Panels",
+    "detail": "granted 2024-01-30 expired 2020-01-30",
+    "known": false
+   },
+   {
+    "ref": "15576",
+    "site": "Bickham Park Farm, Bickham Lane - Biomass Boiler",
+    "detail": "granted 2024-01-19 expired 2023-01-19",
+    "known": false
+   },
+   {
+    "ref": "15578",
+    "site": "Coleshill Food Waste, Ad Plantmarconi Way - Solar Panels",
+    "detail": "granted 2024-01-29 expired 2020-01-29",
+    "known": false
+   },
+   {
+    "ref": "15586",
+    "site": "Blythe House Farm Extension - Solar Array",
+    "detail": "granted 2024-07-22 expired 2019-07-22",
+    "known": false
+   },
+   {
+    "ref": "15587",
+    "site": "Cobham Hall Fleet Air Arm Museum, Rnas Yeovilton Road - Sola",
+    "detail": "granted 2024-06-04 expired 2014-06-04",
+    "known": false
+   },
+   {
+    "ref": "15592",
+    "site": "Westexe, Greendale Business Park - Solar Panels",
+    "detail": "granted 2024-02-14 expired 2015-02-14",
+    "known": false
+   },
+   {
+    "ref": "15593",
+    "site": "Yorkshire Grown Produce, Main Road - Solar Panels",
+    "detail": "granted 2024-02-22 expired 2011-02-22",
+    "known": false
+   },
+   {
+    "ref": "15598",
+    "site": "Charlie Bighams, Mcnicol Drive - Solar Panels",
+    "detail": "granted 2024-02-01 expired 2019-02-01",
+    "known": false
+   },
+   {
+    "ref": "15599",
+    "site": "Todhills and Westlinton - Harker Battery Energy Storage Faci",
+    "detail": "granted 2024-03-14 expired 2015-03-14",
+    "known": false
+   },
+   {
+    "ref": "15600",
+    "site": "The Kenton Centre - Solar Panels",
+    "detail": "granted 2024-05-03 expired 2018-05-03",
+    "known": false
+   },
+   {
+    "ref": "15601",
+    "site": "Atic Building, Loughborough Science Park - Solar Panels",
+    "detail": "granted 2025-03-20 expired 2018-03-20",
+    "known": false
+   },
+   {
+    "ref": "15602",
+    "site": "St Giles House, Creech Hill - Solar Panels",
+    "detail": "granted 2024-01-29 expired 2014-01-29",
+    "known": false
+   },
+   {
+    "ref": "15608",
+    "site": "W M Morrisons Supermarkets Plc, Albion Way - Solar Generatin",
+    "detail": "granted 2024-02-21 expired 2015-02-21",
+    "known": false
+   },
+   {
+    "ref": "15610",
+    "site": "Ipswich Road, Cardiff - Battery Storage ",
+    "detail": "granted 2024-04-08 expired 2021-04-08",
+    "known": false
+   },
+   {
+    "ref": "15620",
+    "site": "Morrisons, Broadway - Solar PV Panels",
+    "detail": "granted 2024-02-27 expired 2018-02-27",
+    "known": false
+   },
+   {
+    "ref": "15621",
+    "site": "Strubby Airfield, Alford Road - Solar Panels",
+    "detail": "granted 2024-02-14 expired 2015-02-14",
+    "known": false
+   },
+   {
+    "ref": "15623",
+    "site": "Walworth Academy, Shorncliffe Road - Solar Panels",
+    "detail": "granted 2024-01-31 expired 2020-01-31",
+    "known": false
+   },
+   {
+    "ref": "15624",
+    "site": "Tunstall Trade Park, Brownhills Road - Solar Panels",
+    "detail": "granted 2024-02-26 expired 2014-02-26",
+    "known": false
+   },
+   {
+    "ref": "15625",
+    "site": "Stratford Healthcare, Arden Street - Solar Panels",
+    "detail": "granted 2024-03-14 expired 2018-03-14",
+    "known": false
+   },
+   {
+    "ref": "15630",
+    "site": "MOD Pendine, Llanmiloe - Solar Panels",
+    "detail": "granted 2024-10-09 expired 2018-10-09",
+    "known": false
+   },
+   {
+    "ref": "15654",
+    "site": "Braffords Farm, Riplingham Road - Wind Turbine",
+    "detail": "granted 2024-07-11 expired 2010-07-11",
+    "known": false
+   },
+   {
+    "ref": "15656",
+    "site": "Floplast, Castle Road - Solar Panels",
+    "detail": "granted 2024-03-05 expired 2010-03-05",
+    "known": false
+   },
+   {
+    "ref": "15663",
+    "site": "Caludon castle school, Axholme Road - Solar Photovoltaic Pan",
+    "detail": "granted 2024-02-09 expired 2019-02-09",
+    "known": false
+   },
+   {
+    "ref": "15666",
+    "site": "Surfleet Bank & Woad Farm - Anaerobic Digestor Plant",
+    "detail": "granted 2026-01-05 expired 2018-01-05",
+    "known": false
+   },
+   {
+    "ref": "15675",
+    "site": "Bridges Electrical Engineers, Second Avenue - Solar Panels",
+    "detail": "granted 2024-02-26 expired 2015-02-26",
+    "known": false
+   },
+   {
+    "ref": "15704",
+    "site": "Sandholme Iron Works, Halifax Road - Solar Panels",
+    "detail": "granted 2024-02-20 expired 2012-02-20",
+    "known": false
+   },
+   {
+    "ref": "15705",
+    "site": "Unit 1, Woodside Industrial Estate - Solar Panels",
+    "detail": "granted 2024-02-19 expired 2019-02-19",
+    "known": false
+   },
+   {
+    "ref": "15425",
+    "site": "Auchentiber Road - Battery Energy Storage System",
+    "detail": "granted 2024-09-11 expired 2017-09-11",
+    "known": false
+   },
+   {
+    "ref": "15722",
+    "site": "The University Of Bradford Stadium - Solar Panels",
+    "detail": "granted 2024-02-14 expired 2012-02-14",
+    "known": false
+   },
+   {
+    "ref": "15726",
+    "site": "Liberty Shopping Centre, Western Road - Solar Panels",
+    "detail": "granted 2024-03-19 expired 2013-03-19",
+    "known": false
+   },
+   {
+    "ref": "15733",
+    "site": "Misterton PSD, Stockwith Road - Solar Panels",
+    "detail": "granted 2024-02-23 expired 2012-02-23",
+    "known": false
+   },
+   {
+    "ref": "15740",
+    "site": "Morrison Supermarket, Grange Farm Avenue - Solar Panels",
+    "detail": "granted 2024-03-15 expired 2018-03-15",
+    "known": false
+   },
+   {
+    "ref": "15745",
+    "site": "Morrisons, West Cepen Way - Solar Panels",
+    "detail": "granted 2024-03-22 expired 2016-03-22",
+    "known": false
+   },
+   {
+    "ref": "15748",
+    "site": "Pentir Substation, Pentir - Battery Energy Storage",
+    "detail": "granted 2024-09-09 expired 2013-09-09",
+    "known": false
+   },
+   {
+    "ref": "15762",
+    "site": "Fulham Pools, Lillie Road - Solar panels",
+    "detail": "granted 2024-04-09 expired 2015-04-09",
+    "known": false
+   },
+   {
+    "ref": "15763",
+    "site": "Phoenix Fitness Centre, Phoenix Close - Solar Panels",
+    "detail": "granted 2024-03-21 expired 2015-03-21",
+    "known": false
+   },
+   {
+    "ref": "15764",
+    "site": "Earlsway Farm, Bramfield - Solar Pv System",
+    "detail": "granted 2024-02-14 expired 2018-02-14",
+    "known": false
+   },
+   {
+    "ref": "15770",
+    "site": "Farmfoods Limited, Highlands Road - Solar panels",
+    "detail": "granted 2024-03-11 expired 2016-03-11",
+    "known": false
+   },
+   {
+    "ref": "15775",
+    "site": "Avro Way, Brooklands Industrial Park -  Solar Panel",
+    "detail": "granted 2024-03-21 expired 2015-03-21",
+    "known": false
+   },
+   {
+    "ref": "15778",
+    "site": "Fairbrook House, Clover Nook Road  - Solar Panels",
+    "detail": "granted 2024-05-14 expired 2011-05-14",
+    "known": false
+   },
+   {
+    "ref": "15780",
+    "site": "Kestrel Way - Solar Panels",
+    "detail": "granted 2024-03-06 expired 2016-03-06",
+    "known": false
+   },
+   {
+    "ref": "15781",
+    "site": "Ash Lane, Little London - Battery Storage Facility",
+    "detail": "granted 2025-04-18 expired 2011-04-18",
+    "known": false
+   },
+   {
+    "ref": "15782",
+    "site": "Orbital Shopping Park, North Swindon District Centre - Solar",
+    "detail": "granted 2024-03-18 expired 2021-03-18",
+    "known": false
+   },
+   {
+    "ref": "15783",
+    "site": "Kilwinning Battery Storage",
+    "detail": "granted 2025-05-21 expired 2011-05-21",
+    "known": false
+   },
+   {
+    "ref": "7575",
+    "site": "Ardoch Farm",
+    "detail": "granted 2021-07-30 expired 2021-06-25",
+    "known": false
+   },
+   {
+    "ref": "15805",
+    "site": "David Lloyd Leisure Health and Fitness Club, Rugby Road - So",
+    "detail": "granted 2024-03-26 expired 2023-03-26",
+    "known": false
+   },
+   {
+    "ref": "15808",
+    "site": "Cold Harbour Farm, Cold Harbour Road - Solar PV Array",
+    "detail": "granted 2024-04-16 expired 2010-04-16",
+    "known": false
+   },
+   {
+    "ref": "15809",
+    "site": "Morrisons, Worle Moor Gate - Solar Photovoltaic Panels",
+    "detail": "granted 2024-03-20 expired 2013-03-20",
+    "known": false
+   },
+   {
+    "ref": "15817",
+    "site": "Howdens Joinery, Thorpe Road - Solar Panels",
+    "detail": "granted 2024-03-06 expired 2012-03-06",
+    "known": false
+   },
+   {
+    "ref": "15819",
+    "site": "Aspect Business Park - Solar Panels",
+    "detail": "granted 2024-03-12 expired 2010-03-12",
+    "known": false
+   },
+   {
+    "ref": "4395",
+    "site": "Lochluichart (Extension)",
+    "detail": "granted 2012-10-02 expired 2011-10-02",
+    "known": false
+   },
+   {
+    "ref": "15838",
+    "site": "S P & G Blything, Cross Lanes - Biomass Boiler",
+    "detail": "granted 2024-01-31 expired 2023-01-31",
+    "known": false
+   },
+   {
+    "ref": "15840",
+    "site": "Beechlea Industrial Estate - Biomass Boiler",
+    "detail": "granted 2024-03-05 expired 2023-03-05",
+    "known": false
+   },
+   {
+    "ref": "15849",
+    "site": "Ellen Wilkinson School, Tollgate Road - Solar PhotovoltaicPa",
+    "detail": "granted 2024-04-09 expired 2015-04-09",
+    "known": false
+   },
+   {
+    "ref": "15852",
+    "site": "Hannah Food Services, Garnett Place - Solar Photovoltaic Pan",
+    "detail": "granted 2024-03-21 expired 2017-03-21",
+    "known": false
+   },
+   {
+    "ref": "15865",
+    "site": "Staycold Export, Manor Lane -  Solar Panels",
+    "detail": "granted 2024-04-02 expired 2013-04-02",
+    "known": false
+   },
+   {
+    "ref": "15884",
+    "site": "Petroc, Bolham Road - Battery Storage & Air Source Heat Pump",
+    "detail": "granted 2024-01-29 expired 2017-01-29",
+    "known": false
+   },
+   {
+    "ref": "15888",
+    "site": "Jessops Riverside, Brightside Lane - Solar Panels",
+    "detail": "granted 2024-03-19 expired 2018-03-19",
+    "known": false
+   },
+   {
+    "ref": "15889",
+    "site": "Voco Reading Hotel, Shooters Way - Solar Panels",
+    "detail": "granted 2024-03-13 expired 2011-03-13",
+    "known": false
+   },
+   {
+    "ref": "15890",
+    "site": "Linford Wood Business Park, Linford Wood - Solar Panels",
+    "detail": "granted 2024-03-20 expired 2015-03-20",
+    "known": false
+   },
+   {
+    "ref": "15891",
+    "site": "Premier Park, Park Royal - Solar Panels",
+    "detail": "granted 2024-03-28 expired 2014-03-28",
+    "known": false
+   },
+   {
+    "ref": "15897",
+    "site": "MOTO Reading Services - Tesla Megapack & EV Charging",
+    "detail": "granted 2024-03-15 expired 2023-03-15",
+    "known": false
+   },
+   {
+    "ref": "15898",
+    "site": "Headon Works, Cornwood - Hydro Energy Storage Facility",
+    "detail": "granted 2024-03-19 expired 2015-03-19",
+    "known": false
+   },
+   {
+    "ref": "15900",
+    "site": "Stud Farm, Elliotts Butchers Farm Shop - Solar Array",
+    "detail": "granted 2024-04-12 expired 2020-04-12",
+    "known": false
+   },
+   {
+    "ref": "15901",
+    "site": "Colne Fen Farm, Chatteris Road -  Solar Panels",
+    "detail": "granted 2024-04-05 expired 2013-04-05",
+    "known": false
+   },
+   {
+    "ref": "15902",
+    "site": "Woodford Road - Battery Energy Storage System",
+    "detail": "granted 2025-05-30 expired 2016-05-30",
+    "known": false
+   },
+   {
+    "ref": "15903",
+    "site": "Sainsburys, Caldy Valley Road -  Solar Panels",
+    "detail": "granted 2024-03-25 expired 2010-03-25",
+    "known": false
+   },
+   {
+    "ref": "15904",
+    "site": "Moto Hospitality, Stoke Lyne  - Solar panels",
+    "detail": "granted 2024-04-12 expired 2020-04-12",
+    "known": false
+   },
+   {
+    "ref": "15905",
+    "site": "Quay Pharmaceuticals Limited, Quay House - Solar Panels",
+    "detail": "granted 2024-04-12 expired 2019-04-12",
+    "known": false
+   },
+   {
+    "ref": "15910",
+    "site": "New Summer Street, Hockley - Battery Storage Facility",
+    "detail": "granted 2024-02-22 expired 2017-02-22",
+    "known": false
+   },
+   {
+    "ref": "15911",
+    "site": "Midland Road - Battery Energy Storage",
+    "detail": "granted 2024-12-20 expired 2013-12-20",
+    "known": false
+   },
+   {
+    "ref": "15914",
+    "site": "Cedar Retreats, West Tanfield - Solar Panels",
+    "detail": "granted 2024-01-24 expired 2015-01-24",
+    "known": false
+   },
+   {
+    "ref": "15930",
+    "site": "Sandyforth Farm, Ashton Road - Battery Energy Storage",
+    "detail": "granted 2025-02-25 expired 2017-02-25",
+    "known": false
+   },
+   {
+    "ref": "15936",
+    "site": "Boreham Hill, Boreham Street - Battery Energy Storage System",
+    "detail": "granted 2024-10-11 expired 2015-10-11",
+    "known": false
+   },
+   {
+    "ref": "15945",
+    "site": "George Hil, Avranches Avenue - Micro Energy Storage Facility",
+    "detail": "granted 2024-02-15 expired 2020-02-15",
+    "known": false
+   },
+   {
+    "ref": "15947",
+    "site": "Wesco Aircraft Emea, Leeds Road - Solar Photovoltaic",
+    "detail": "granted 2024-04-18 expired 2021-04-18",
+    "known": false
+   },
+   {
+    "ref": "15958",
+    "site": "Farr & Harris - Energy Storage Facility",
+    "detail": "granted 2024-03-22 expired 2020-03-22",
+    "known": false
+   },
+   {
+    "ref": "15979",
+    "site": "The Range Distribution Centre, Central Avenue - Solar Panels",
+    "detail": "granted 2024-04-23 expired 2018-04-23",
+    "known": false
+   },
+   {
+    "ref": "15987",
+    "site": "Motability Operations Limited, Stephenson Court - Solar Pane",
+    "detail": "granted 2024-04-22 expired 2010-04-22",
+    "known": false
+   },
+   {
+    "ref": "15990",
+    "site": "Dextra Group, Brickfields Business Park - Solar PV Systems",
+    "detail": "granted 2024-04-08 expired 2011-04-08",
+    "known": false
+   },
+   {
+    "ref": "15991",
+    "site": "Yate Leisure Centre, Kennedy Way - Solar Panels",
+    "detail": "granted 2024-04-29 expired 2014-04-29",
+    "known": false
+   },
+   {
+    "ref": "16011",
+    "site": "Decathlon, Georges Road - Solar Pv System",
+    "detail": "granted 2024-04-18 expired 2016-04-18",
+    "known": false
+   },
+   {
+    "ref": "16022",
+    "site": "Pirelli Limited, Derby Road - Solar Panels",
+    "detail": "granted 2024-04-05 expired 2016-04-05",
+    "known": false
+   },
+   {
+    "ref": "16024",
+    "site": "Paragon Works, Rising Bridge Road - Solar Farm",
+    "detail": "granted 2025-04-02 expired 2019-04-02",
+    "known": false
+   },
+   {
+    "ref": "16032",
+    "site": "Time Technology Park, Blackburn Road - Solar Panels",
+    "detail": "granted 2024-04-23 expired 2016-04-23",
+    "known": false
+   },
+   {
+    "ref": "16039",
+    "site": "Victory Swim and Fitness Centre, Station Road - Solar Panels",
+    "detail": "granted 2024-04-29 expired 2022-04-29",
+    "known": false
+   },
+   {
+    "ref": "16040",
+    "site": "East Midlands Distribution Centre, Arundel Avenue - Solar Pa",
+    "detail": "granted 2024-05-21 expired 2010-05-21",
+    "known": false
+   },
+   {
+    "ref": "16042",
+    "site": "Spire Hospital, Lowfield Road - Solar panels",
+    "detail": "granted 2024-04-11 expired 2010-04-11",
+    "known": false
+   },
+   {
+    "ref": "16054",
+    "site": "Spire Hospital, Chalybeate Close - Solar Panels",
+    "detail": "granted 2024-05-23 expired 2017-05-23",
+    "known": false
+   },
+   {
+    "ref": "16068",
+    "site": "Pinkworthy Farm, Pyworthy - Battery Storage",
+    "detail": "granted 2024-09-05 expired 2017-09-05",
+    "known": false
+   },
+   {
+    "ref": "16074",
+    "site": "Bath Mews, Minsterley - Battery Storage Facility",
+    "detail": "granted 2024-07-26 expired 2019-07-26",
+    "known": false
+   },
+   {
+    "ref": "16076",
+    "site": "Xaverian College, Lower Park Road - Solar Panels",
+    "detail": "granted 2024-04-16 expired 2017-04-16",
+    "known": false
+   },
+   {
+    "ref": "16084",
+    "site": "Consort Equipment Products - Micro Energy Storage",
+    "detail": "granted 2024-05-24 expired 2021-05-24",
+    "known": false
+   },
+   {
+    "ref": "16088",
+    "site": "CHEP Severnside, Goldcrest Way - Solar Panels",
+    "detail": "granted 2024-05-01 expired 2021-05-01",
+    "known": false
+   },
+   {
+    "ref": "16090",
+    "site": "Victoria Gate Leeds, George Street - Solar Panels",
+    "detail": "granted 2024-04-30 expired 2013-04-30",
+    "known": false
+   },
+   {
+    "ref": "16091",
+    "site": "Immingham Solar Farm - Solar Farm ",
+    "detail": "granted 2025-05-06 expired 2014-05-06",
+    "known": false
+   },
+   {
+    "ref": "16092",
+    "site": "Immingham Solar Farm - Battery Storage Facility",
+    "detail": "granted 2025-05-06 expired 2013-05-06",
+    "known": false
+   },
+   {
+    "ref": "16095",
+    "site": "Velis Kebab, Hawkins Lane - Photovoltaic Panels",
+    "detail": "granted 2024-04-15 expired 2018-04-15",
+    "known": false
+   },
+   {
+    "ref": "16097",
+    "site": "Poplar Way East, Avonmouth - Solar Panels",
+    "detail": "granted 2024-04-18 expired 2017-04-18",
+    "known": false
+   },
+   {
+    "ref": "16099",
+    "site": "Whitewool Farm, East Meon - Solar Panels",
+    "detail": "granted 2024-05-01 expired 2013-05-01",
+    "known": false
+   },
+   {
+    "ref": "16103",
+    "site": "Rhyddings Business And Enterprise School, Oswaldtwistle  - S",
+    "detail": "granted 2024-05-20 expired 2020-05-20",
+    "known": false
+   },
+   {
+    "ref": "16104",
+    "site": "Utilita Bowl, Marshall Drive - Solar Panels",
+    "detail": "granted 2024-05-30 expired 2019-05-30",
+    "known": false
+   },
+   {
+    "ref": "16105",
+    "site": "Tick Fen Farm, Puddock Road - Wind Turbine",
+    "detail": "granted 2024-05-17 expired 2011-05-17",
+    "known": false
+   },
+   {
+    "ref": "16106",
+    "site": "Chancerygate Way - Solar Panels",
+    "detail": "granted 2024-05-03 expired 2011-05-03",
+    "known": false
+   },
+   {
+    "ref": "16110",
+    "site": "Globe Mill, Midge Hall Lane - Solar Panels",
+    "detail": "granted 2024-04-18 expired 2014-04-18",
+    "known": false
+   },
+   {
+    "ref": "16116",
+    "site": "Cego Limited, Crittall Road - Solar Panels",
+    "detail": "granted 2024-04-25 expired 2015-04-25",
+    "known": false
+   },
+   {
+    "ref": "16117",
+    "site": "Harlow Leisurezone, Second Avenue - Solar panels",
+    "detail": "granted 2024-04-30 expired 2019-04-30",
+    "known": false
+   },
+   {
+    "ref": "16118",
+    "site": "Canford School, Sports Centre - Solar Panels",
+    "detail": "granted 2024-05-23 expired 2010-05-23",
+    "known": false
+   },
+   {
+    "ref": "16127",
+    "site": "Horder Centre, St Johns Road - Solar panels",
+    "detail": "granted 2024-05-09 expired 2018-05-09",
+    "known": false
+   },
+   {
+    "ref": "16129",
+    "site": "Lister House, Blackburn Road - Solar Panels",
+    "detail": "granted 2024-04-25 expired 2014-04-25",
+    "known": false
+   },
+   {
+    "ref": "16134",
+    "site": "Stratton Business Park, Pegasus Drive - Solar Panels",
+    "detail": "granted 2024-05-09 expired 2011-05-09",
+    "known": false
+   },
+   {
+    "ref": "16136",
+    "site": "Springfield Community Campus, Beechfield Road  - Solar Photo",
+    "detail": "granted 2024-04-19 expired 2012-04-19",
+    "known": false
+   },
+   {
+    "ref": "16143",
+    "site": "Premier Farnell, Unit 3 - Solar Panels",
+    "detail": "granted 2024-05-13 expired 2021-05-13",
+    "known": false
+   },
+   {
+    "ref": "16145",
+    "site": "Wm Morrison Supermarkets, The Strand - PV equipment",
+    "detail": "granted 2024-05-14 expired 2016-05-14",
+    "known": false
+   },
+   {
+    "ref": "16154",
+    "site": "Freshney Green Primary Care Centre, Sorrel Road - Solar pane",
+    "detail": "granted 2024-05-15 expired 2010-05-15",
+    "known": false
+   },
+   {
+    "ref": "16172",
+    "site": "Savins Mill Way, Kirkstall - Solar Panels",
+    "detail": "granted 2024-05-13 expired 2018-05-13",
+    "known": false
+   },
+   {
+    "ref": "4235",
+    "site": "Millour Hill Community Windfarm (Extension) ",
+    "detail": "granted 2014-06-18 expired 2011-06-18",
+    "known": false
+   },
+   {
+    "ref": "4501",
+    "site": "Carscreugh Renewable Energy Park",
+    "detail": "granted 2011-05-03 expired 2000-05-03",
+    "known": false
+   },
+   {
+    "ref": "4315",
+    "site": "Sorbie Farm",
+    "detail": "granted 2014-06-27 expired 2010-06-27",
+    "known": false
+   },
+   {
+    "ref": "4645",
+    "site": "Assel Valley Wind Farm",
+    "detail": "granted 2013-09-03 expired 2011-09-03",
+    "known": false
+   },
+   {
+    "ref": "4518",
+    "site": "Artfield Fell",
+    "detail": "granted 2004-02-01 expired 2000-02-01",
+    "known": false
+   },
+   {
+    "ref": "15959",
+    "site": "Rothesay Waste Water Treatment - Solar Panels",
+    "detail": "granted 2024-08-29 expired 2020-08-29",
+    "known": false
+   },
+   {
+    "ref": "15784",
+    "site": "Ladyfield Renewable Energy Park",
+    "detail": "granted 2025-05-02 expired 2015-05-02",
+    "known": false
+   },
+   {
+    "ref": "15785",
+    "site": "Ladyfield Renewable Energy Park",
+    "detail": "granted 2025-05-02 expired 2014-05-02",
+    "known": false
+   },
+   {
+    "ref": "15543",
+    "site": "Cruachan Upgrade Project (Unis 3 & 4)",
+    "detail": "granted 2023-12-14 expired 2014-12-14",
+    "known": false
+   },
+   {
+    "ref": "17853",
+    "site": "Tiddiecross Lane, Charlton - Tiddiecross Solar Farm & Batter",
+    "detail": "granted 2025-06-06 expired 2024-06-06",
+    "known": false
+   },
+   {
+    "ref": "17854",
+    "site": "Tiddiecross Lane, Charlton - Tiddiecross Solar Farm & Batter",
+    "detail": "granted 2025-06-06 expired 2024-06-06",
+    "known": false
+   },
+   {
+    "ref": "18060",
+    "site": "Solar Farm Development in Ballymena",
+    "detail": "granted 2025-04-14 expired 2013-04-14",
+    "known": false
+   },
+   {
+    "ref": "18110",
+    "site": "Byde Mill Solar Farm, Poulshot - Solar Farm",
+    "detail": "granted 2025-12-22 expired 2017-12-22",
+    "known": false
+   },
+   {
+    "ref": "6746",
+    "site": "Killail Farm",
+    "detail": "granted 2022-06-08 expired 2022-03-04",
+    "known": false
+   },
+   {
+    "ref": "18656",
+    "site": "The Sutton Courtenay Waste Management Site, Appleford Siding",
+    "detail": "granted 2025-07-18 expired 2022-07-18",
+    "known": false
+   },
+   {
+    "ref": "6838",
+    "site": "Gaineamhach Hydro Scheme Powerhouse",
+    "detail": "granted 2023-10-23 expired 2022-03-29",
+    "known": false
+   },
+   {
+    "ref": "4024",
+    "site": "Tangy Wind Farm Extension/Tangy 2",
+    "detail": "granted 2005-09-01 expired 2000-09-01",
+    "known": false
+   },
+   {
+    "ref": "3467",
+    "site": "Tangy Wind Farm/Tangy 1",
+    "detail": "granted 2002-02-15 expired 2000-02-15",
+    "known": false
+   },
+   {
+    "ref": "20097",
+    "site": "Tesco Superstore, Tidal Reach - Solar PV Array",
+    "detail": "granted 2026-01-06 expired 2015-01-06",
+    "known": false
+   },
+   {
+    "ref": "20229",
+    "site": "Heatherwood Hospital, Brook Avenue - Battery Energy Storage",
+    "detail": "granted 2026-01-23 expired 2020-01-23",
+    "known": false
+   },
+   {
+    "ref": "20328",
+    "site": "Broadditch Battery Energy",
+    "detail": "granted 2018-08-16 expired 2014-08-16",
+    "known": false
+   },
+   {
+    "ref": "2456",
+    "site": "Siadar Wave Energy Generating Scheme",
+    "detail": "granted 2009-01-22 expired 2000-01-22",
+    "known": false
+   },
+   {
+    "ref": "4063",
+    "site": "Pentland Road Wind Farm",
+    "detail": "granted 2004-09-06 expired 2000-09-06",
+    "known": false
+   },
+   {
+    "ref": "20913",
+    "site": "Tesco Extra, Nantyffin Road - Solar Panels",
+    "detail": "granted 2026-05-22 expired 2013-05-22",
+    "known": false
+   },
+   {
+    "ref": "15368",
+    "site": "Seastar Project - Tidal Energy Farm",
+    "detail": "granted 2024-04-18 expired 2013-04-18",
+    "known": false
+   },
+   {
+    "ref": "17134",
+    "site": "Oceanstar Project - Tidal Energy Farm",
+    "detail": "granted 2024-04-18 expired 2016-04-18",
+    "known": false
+   }
+  ],
+  "SELF_REFERENCE": [
+   {
+    "ref": "11035",
+    "site": "Peterhead - The Salamander Project",
+    "detail": "Storage Co-location REPD Ref ID=11035",
+    "known": false
+   },
+   {
+    "ref": "11177",
+    "site": "Kincraig - Solar Farm and battery storage system",
+    "detail": "Storage Co-location REPD Ref ID=11177",
+    "known": false
+   },
+   {
+    "ref": "11178",
+    "site": "Kincraig - Solar Farm and battery storage system",
+    "detail": "Storage Co-location REPD Ref ID=11178",
+    "known": false
+   },
+   {
+    "ref": "1211",
+    "site": "Bowhay Farm ",
+    "detail": "Are they re-applying (New REPD Ref)=1211",
+    "known": false
+   },
+   {
+    "ref": "1419",
+    "site": "Bowhay Farm",
+    "detail": "Are they re-applying (Old REPD Ref)=1419",
+    "known": false
+   },
+   {
+    "ref": "3703",
+    "site": "Orchard End ",
+    "detail": "Are they re-applying (Old REPD Ref)=3703",
+    "known": false
+   },
+   {
+    "ref": "14543",
+    "site": "Tealing Solar Energy Park - Phase 2",
+    "detail": "Are they re-applying (New REPD Ref)=14543",
+    "known": false
+   },
+   {
+    "ref": "3979",
+    "site": "Orchard End",
+    "detail": "Are they re-applying (New REPD Ref)=3979",
+    "known": false
+   },
+   {
+    "ref": "5753",
+    "site": "The Sawmill",
+    "detail": "Are they re-applying (Old REPD Ref)=5753",
+    "known": false
+   },
+   {
+    "ref": "5754",
+    "site": "The Sawmill",
+    "detail": "Are they re-applying (New REPD Ref)=5754",
+    "known": false
+   },
+   {
+    "ref": "12855",
+    "site": "Tweed Valley, Southern Uplands - Oliver Forest Wind Farm",
+    "detail": "Storage Co-location REPD Ref ID=12855",
+    "known": false
+   },
+   {
+    "ref": "8508",
+    "site": "Elms Farm - Hinckley Solar Farm & Battery Storage",
+    "detail": "Storage Co-location REPD Ref ID=8508",
+    "known": false
+   },
+   {
+    "ref": "9371",
+    "site": "Brains Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID=9371",
+    "known": false
+   },
+   {
+    "ref": "10021",
+    "site": "Corley Smorral Lane - Battery Storage",
+    "detail": "Storage Co-location REPD Ref ID=10021",
+    "known": false
+   },
+   {
+    "ref": "10146",
+    "site": "Cholderton Road, Quarley - Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID=10146",
+    "known": false
+   },
+   {
+    "ref": "10147",
+    "site": "Cholderton Road, Quarley - Battery Storage",
+    "detail": "Storage Co-location REPD Ref ID=10147",
+    "known": false
+   },
+   {
+    "ref": "10635",
+    "site": "Rock Farm - Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID=10635",
+    "known": false
+   },
+   {
+    "ref": "10944",
+    "site": "Colton - Solar photovoltaic farm, Battery storage",
+    "detail": "Storage Co-location REPD Ref ID=10944",
+    "known": false
+   },
+   {
+    "ref": "10945",
+    "site": "Colton - Solar photovoltaic farm, Battery storage",
+    "detail": "Storage Co-location REPD Ref ID=10945",
+    "known": false
+   },
+   {
+    "ref": "10977",
+    "site": "Upper Newton Farm (Blythe House) - Solar Farm & Battery Stor",
+    "detail": "Storage Co-location REPD Ref ID=10977",
+    "known": false
+   },
+   {
+    "ref": "10978",
+    "site": "Upper Newton Farm (Blythe House) - Solar Farm & Battery Stor",
+    "detail": "Storage Co-location REPD Ref ID=10978",
+    "known": false
+   },
+   {
+    "ref": "12521",
+    "site": "Camp Road, West Coker - Solar PV Panels ",
+    "detail": "Storage Co-location REPD Ref ID=12521",
+    "known": false
+   },
+   {
+    "ref": "12522",
+    "site": "Camp Road, West Coker - Battery Energy Storage",
+    "detail": "Storage Co-location REPD Ref ID=12522",
+    "known": false
+   },
+   {
+    "ref": "13297",
+    "site": "Beechwood Farm, Hodgetts Lane - Battery Storage",
+    "detail": "Are they re-applying (Old REPD Ref)=13297",
+    "known": false
+   },
+   {
+    "ref": "13655",
+    "site": "Froghall Farm, Wyton Road - Solar Farm & Battery Energy Stor",
+    "detail": "Storage Co-location REPD Ref ID=13655",
+    "known": false
+   },
+   {
+    "ref": "14305",
+    "site": "Home Farm",
+    "detail": "Storage Co-location REPD Ref ID=14305",
+    "known": false
+   },
+   {
+    "ref": "14448",
+    "site": "Mid Kent College, Medway Campus - Solar Panels",
+    "detail": "Are they re-applying (New REPD Ref)=14448",
+    "known": false
+   },
+   {
+    "ref": "14649",
+    "site": "Mid Kent College, Medway Road - Solar PV Array",
+    "detail": "Are they re-applying (Old REPD Ref)=14649",
+    "known": false
+   },
+   {
+    "ref": "15072",
+    "site": "Rookery Farm, Kimbolton Road - Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID=15072",
+    "known": false
+   },
+   {
+    "ref": "15073",
+    "site": "Rookery Farm, Kimbolton Road - Battery Storage Facility",
+    "detail": "Storage Co-location REPD Ref ID=15073",
+    "known": false
+   },
+   {
+    "ref": "15248",
+    "site": "Rock Farm - Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID=15248",
+    "known": false
+   },
+   {
+    "ref": "16855",
+    "site": "Beechwood Farm, Hodgetts Lane - Battery Storage",
+    "detail": "Are they re-applying (New REPD Ref)=16855",
+    "known": false
+   },
+   {
+    "ref": "18139",
+    "site": "The Shirt Factory - Solar Panels",
+    "detail": "Are they re-applying (New REPD Ref)=18139",
+    "known": false
+   },
+   {
+    "ref": "18584",
+    "site": "The Shirt Factory - Solar Panels",
+    "detail": "Are they re-applying (Old REPD Ref)=18584",
+    "known": false
+   }
+  ],
+  "CAPACITY_VERY_LARGE": [
+   {
+    "ref": "9873",
+    "site": "Berwick Bank Offshore Wind Farm ",
+    "detail": "4100",
+    "known": false
+   }
+  ],
+  "OPERATIONAL_LONG_BEFORE_SUBMISSION": [
+   {
+    "ref": "6848",
+    "site": "Foula Community Electricity Scheme ",
+    "detail": "sub 2009-12-24 op 2008-09-01",
+    "known": false
+   },
+   {
+    "ref": "2713",
+    "site": "Kirkby Moor",
+    "detail": "sub 2014-12-19 op 1993-01-01",
+    "known": false
+   },
+   {
+    "ref": "3532",
+    "site": "Hill of Easterton",
+    "detail": "sub 2011-06-15 op 2005-01-01",
+    "known": false
+   },
+   {
+    "ref": "2948",
+    "site": "Delabole Wind Farm",
+    "detail": "sub 2008-04-02 op 1991-11-01",
+    "known": false
+   },
+   {
+    "ref": "4881",
+    "site": "Dolgarrog",
+    "detail": "sub 2011-07-26 op 1938-01-01",
+    "known": false
+   },
+   {
+    "ref": "6969",
+    "site": "Thrybergh Hydroelectric Scheme",
+    "detail": "sub 2016-11-03 op 2015-10-01",
+    "known": false
+   },
+   {
+    "ref": "8241",
+    "site": "Priddy Road Farm Biomass Boiler (Retrospective)",
+    "detail": "sub 2020-10-09 op 2014-01-29",
+    "known": false
+   },
+   {
+    "ref": "8244",
+    "site": "Plusterwine House - Anaerobic Digestion Plant (Retrospective",
+    "detail": "sub 2020-10-26 op 2016-12-31",
+    "known": false
+   },
+   {
+    "ref": "13710",
+    "site": "R G Walter & Sons, Golden Acre Site - Biomass Boilers",
+    "detail": "sub 2023-04-11 op 2020-12-02",
+    "known": false
+   },
+   {
+    "ref": "17875",
+    "site": "Court Farm Business Park, Road To Court Farm - Hydroelectric",
+    "detail": "sub 2024-12-13 op 2013-04-01",
+    "known": false
+   }
+  ],
+  "STATUS_REGRESSION_VS_JULY": [
+   {
+    "ref": "9388",
+    "site": "Dyce Energy Storage, Raiths Industrial Estate - Battery Faci",
+    "detail": "Operational -> Awaiting Construction",
+    "known": false
+   },
+   {
+    "ref": "13429",
+    "site": "Ossian",
+    "detail": "Awaiting Construction -> Application Submitted",
+    "known": false
+   }
+  ],
+  "OPERATIONAL_BEFORE_CONSTRUCTION": [
+   {
+    "ref": "1128",
+    "site": "Oulton Airfield Solar Farm (Phase 1)",
+    "detail": "uc 2016-05-01 op 2016-02-18",
+    "known": false
+   },
+   {
+    "ref": "1464",
+    "site": "Kentishes Solar Farm ",
+    "detail": "uc 2017-01-04 op 2016-12-13",
+    "known": false
+   },
+   {
+    "ref": "1787",
+    "site": "Seaview Farm",
+    "detail": "uc 2016-05-01 op 2016-03-30",
+    "known": false
+   },
+   {
+    "ref": "1826",
+    "site": "Lincoln Farm",
+    "detail": "uc 2016-05-01 op 2016-03-25",
+    "known": false
+   },
+   {
+    "ref": "1840",
+    "site": "Lains Farm",
+    "detail": "uc 2016-05-01 op 2016-03-24",
+    "known": false
+   },
+   {
+    "ref": "1915",
+    "site": "Land at East Farm - extension",
+    "detail": "uc 2016-05-01 op 2016-03-01",
+    "known": false
+   },
+   {
+    "ref": "1978",
+    "site": "Burrowton Farm",
+    "detail": "uc 2016-11-18 op 2016-09-18",
+    "known": false
+   },
+   {
+    "ref": "2101",
+    "site": "Bommertown Solar Farm",
+    "detail": "uc 2016-02-06 op 2015-12-16",
+    "known": false
+   },
+   {
+    "ref": "2231",
+    "site": "Handley Park ",
+    "detail": "uc 2016-05-01 op 2016-03-24",
+    "known": false
+   },
+   {
+    "ref": "3678",
+    "site": "Magherafelt",
+    "detail": "uc 2015-11-01 op 2015-06-12",
+    "known": false
+   },
+   {
+    "ref": "3905",
+    "site": "North Steads Wind Farm ",
+    "detail": "uc 2016-07-20 op 2016-07-04",
+    "known": false
+   },
+   {
+    "ref": "5001",
+    "site": "Fleetwood Water Treatment Works",
+    "detail": "uc 2015-11-30 op 2015-03-15",
+    "known": false
+   },
+   {
+    "ref": "5202",
+    "site": "West Carclaze Solar Farm",
+    "detail": "uc 2017-12-29 op 2017-03-29",
+    "known": false
+   },
+   {
+    "ref": "5218",
+    "site": "Land at Christ’s Hospital School",
+    "detail": "uc 2016-02-26 op 2015-12-15",
+    "known": false
+   },
+   {
+    "ref": "5253",
+    "site": "Land at Beech Farm",
+    "detail": "uc 2016-05-01 op 2016-02-17",
+    "known": false
+   },
+   {
+    "ref": "5259",
+    "site": "Grove Solar Park (Phase 1)",
+    "detail": "uc 2016-05-01 op 2016-03-30",
+    "known": false
+   },
+   {
+    "ref": "5396",
+    "site": "SPF Thirty Acres Farm",
+    "detail": "uc 2016-06-01 op 2016-03-31",
+    "known": false
+   },
+   {
+    "ref": "5497",
+    "site": "Cressing Solar Farm (Phase 1)",
+    "detail": "uc 2016-05-01 op 2016-03-16",
+    "known": false
+   },
+   {
+    "ref": "5582",
+    "site": "Land West of Parsonage Wood",
+    "detail": "uc 2016-12-06 op 2016-01-31",
+    "known": false
+   },
+   {
+    "ref": "5748",
+    "site": "Willand AD",
+    "detail": "uc 2017-06-15 op 2015-08-15",
+    "known": false
+   },
+   {
+    "ref": "5887",
+    "site": "Mill Farm ",
+    "detail": "uc 2017-01-04 op 2016-12-15",
+    "known": false
+   },
+   {
+    "ref": "6164",
+    "site": "Barnsley 1.5 ",
+    "detail": "uc 2015-09-01 op 2015-03-06",
+    "known": false
+   },
+   {
+    "ref": "6367",
+    "site": "Safran Landing Systems Service",
+    "detail": "uc 2019-02-07 op 2017-03-29",
+    "known": false
+   },
+   {
+    "ref": "6485",
+    "site": "Sherburn",
+    "detail": "uc 2016-11-30 op 2016-01-20",
+    "known": false
+   },
+   {
+    "ref": "6925",
+    "site": "Tynemouth Energy Storage System (TESS)",
+    "detail": "uc 2018-12-20 op 2018-05-25",
+    "known": false
+   },
+   {
+    "ref": "6926",
+    "site": "Nevendon",
+    "detail": "uc 2018-10-15 op 2018-03-15",
+    "known": false
+   }
+  ],
+  "DANGLING_CROSS_REFERENCE": [
+   {
+    "ref": "1287",
+    "site": "Eashing Farm",
+    "detail": "Are they re-applying (New REPD Ref)='5466' -> 5466 not in release",
+    "known": false
+   },
+   {
+    "ref": "2347",
+    "site": "Shotwick Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID='14083' -> 14083 not in release",
+    "known": false
+   },
+   {
+    "ref": "18368",
+    "site": "North Mains Of Cononsyth Farm, Cononsyth - Wind Turbine",
+    "detail": "Are they re-applying (New REPD Ref)='21328' -> 21328 not in release",
+    "known": false
+   },
+   {
+    "ref": "3663",
+    "site": "Llanbrynmair Wind Farm",
+    "detail": "Are they re-applying (New REPD Ref)='17848' -> 17848 not in release",
+    "known": false
+   },
+   {
+    "ref": "3894",
+    "site": "Maumhill Wind Farm",
+    "detail": "Are they re-applying (New REPD Ref)='4868' -> 4868 not in release",
+    "known": false
+   },
+   {
+    "ref": "6970",
+    "site": "Westfield Restoration and Regeneration Project",
+    "detail": "Storage Co-location REPD Ref ID='6263' -> 6263 not in release",
+    "known": false
+   },
+   {
+    "ref": "4726",
+    "site": "Gwenlais Uchaf Farm",
+    "detail": "Are they re-applying (New REPD Ref)='12809' -> 12809 not in release",
+    "known": false
+   },
+   {
+    "ref": "3204",
+    "site": "Ackron Wind Farm ",
+    "detail": "Are they re-applying (New REPD Ref)='15540' -> 15540 not in release",
+    "known": false
+   },
+   {
+    "ref": "7497",
+    "site": "Ray Valley Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID='7791' -> 7791 not in release",
+    "known": false
+   },
+   {
+    "ref": "7950",
+    "site": "Saputo Dairy UK",
+    "detail": "Storage Co-location REPD Ref ID='7949' -> 7949 not in release",
+    "known": false
+   },
+   {
+    "ref": "8503",
+    "site": "Tuxford Road Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID='8515' -> 8515 not in release",
+    "known": false
+   },
+   {
+    "ref": "8504",
+    "site": "Tuxford Road Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID='8514' -> 8514 not in release",
+    "known": false
+   },
+   {
+    "ref": "8528",
+    "site": "Doverdale - Solar Farm & Battery Storage",
+    "detail": "Storage Co-location REPD Ref ID='9234' -> 9234 not in release",
+    "known": false
+   },
+   {
+    "ref": "8834",
+    "site": "Canon Barns Road - Solar Photovoltaic Arrays & Battery Stora",
+    "detail": "Storage Co-location REPD Ref ID='8836' -> 8836 not in release",
+    "known": false
+   },
+   {
+    "ref": "12284",
+    "site": "Hagshaw Energy Cluster – Western Expansion",
+    "detail": "Storage Co-location REPD Ref ID='12285, 12286, 12379 & 12380' -> 12379 not in release",
+    "known": false
+   },
+   {
+    "ref": "12284",
+    "site": "Hagshaw Energy Cluster – Western Expansion",
+    "detail": "Storage Co-location REPD Ref ID='12285, 12286, 12379 & 12380' -> 12380 not in release",
+    "known": false
+   },
+   {
+    "ref": "12285",
+    "site": "Hagshaw Energy Cluster – Western Expansion",
+    "detail": "Storage Co-location REPD Ref ID='12284, 12286, 12379 & 12380' -> 12379 not in release",
+    "known": false
+   },
+   {
+    "ref": "12285",
+    "site": "Hagshaw Energy Cluster – Western Expansion",
+    "detail": "Storage Co-location REPD Ref ID='12284, 12286, 12379 & 12380' -> 12380 not in release",
+    "known": false
+   },
+   {
+    "ref": "12286",
+    "site": "Hagshaw Energy Cluster – Western Expansion",
+    "detail": "Storage Co-location REPD Ref ID='12284, 12285, 12379 & 12380' -> 12379 not in release",
+    "known": false
+   },
+   {
+    "ref": "12286",
+    "site": "Hagshaw Energy Cluster – Western Expansion",
+    "detail": "Storage Co-location REPD Ref ID='12284, 12285, 12379 & 12380' -> 12380 not in release",
+    "known": false
+   },
+   {
+    "ref": "9216",
+    "site": "Elms Farm - Solar Farm & Battery Storage",
+    "detail": "Storage Co-location REPD Ref ID='9215' -> 9215 not in release",
+    "known": false
+   },
+   {
+    "ref": "9493",
+    "site": "Ashorne Hill - Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID='9491' -> 9491 not in release",
+    "known": false
+   },
+   {
+    "ref": "9877",
+    "site": "Common Farm - Solar Farm & Battery Storage",
+    "detail": "Storage Co-location REPD Ref ID='9787' -> 9787 not in release",
+    "known": false
+   },
+   {
+    "ref": "10020",
+    "site": "Corley Smorral Lane - Photovoltaic Solar Arrays ",
+    "detail": "Storage Co-location REPD Ref ID='10067' -> 10067 not in release",
+    "known": false
+   },
+   {
+    "ref": "10177",
+    "site": "Nottingham Road - Solar Farm ",
+    "detail": "Storage Co-location REPD Ref ID='10097' -> 10097 not in release",
+    "known": false
+   },
+   {
+    "ref": "10178",
+    "site": "Nottingham Road - Battery Storage",
+    "detail": "Storage Co-location REPD Ref ID='10096' -> 10096 not in release",
+    "known": false
+   },
+   {
+    "ref": "10181",
+    "site": "Raspberry - Solar PV ",
+    "detail": "Storage Co-location REPD Ref ID='10102' -> 10102 not in release",
+    "known": false
+   },
+   {
+    "ref": "10182",
+    "site": "Raspberry - Battery Storage",
+    "detail": "Storage Co-location REPD Ref ID='10101' -> 10101 not in release",
+    "known": false
+   },
+   {
+    "ref": "10183",
+    "site": "Park Lane, Astley - Solar PV Farm ",
+    "detail": "Storage Co-location REPD Ref ID='10104' -> 10104 not in release",
+    "known": false
+   },
+   {
+    "ref": "10184",
+    "site": "Park Lane, Astley - Battery Energy Storage",
+    "detail": "Storage Co-location REPD Ref ID='10103' -> 10103 not in release",
+    "known": false
+   },
+   {
+    "ref": "10185",
+    "site": "The Transmitting Station, Williton - Solar Farm  (Wyndham Es",
+    "detail": "Storage Co-location REPD Ref ID='10106' -> 10106 not in release",
+    "known": false
+   },
+   {
+    "ref": "10186",
+    "site": "The Transmitting Station, Williton - Battery Storage (Wyndha",
+    "detail": "Storage Co-location REPD Ref ID='10105' -> 10105 not in release",
+    "known": false
+   },
+   {
+    "ref": "10273",
+    "site": "Doverdale - Solar Farm & Battery Storage",
+    "detail": "Storage Co-location REPD Ref ID='9233' -> 9233 not in release",
+    "known": false
+   },
+   {
+    "ref": "10285",
+    "site": "Jafa, Great Dunham - Solar Photovoltaic Farm & Battery Stora",
+    "detail": "Storage Co-location REPD Ref ID='9798' -> 9798 not in release",
+    "known": false
+   },
+   {
+    "ref": "7757",
+    "site": "Fell Wind Farm Battery",
+    "detail": "Storage Co-location REPD Ref ID='7756' -> 7756 not in release",
+    "known": false
+   },
+   {
+    "ref": "11321",
+    "site": "Staythorpe Road - Battery energy storage",
+    "detail": "Are they re-applying (New REPD Ref)='11553' -> 11553 not in release",
+    "known": false
+   },
+   {
+    "ref": "11444",
+    "site": "Dorchesters Corn Exchange - Solar Panels & Biomass Boiler",
+    "detail": "Storage Co-location REPD Ref ID='10571' -> 10571 not in release",
+    "known": false
+   },
+   {
+    "ref": "7849",
+    "site": "Cornharrow Wind Farm Battery",
+    "detail": "Storage Co-location REPD Ref ID='7761' -> 7761 not in release",
+    "known": false
+   },
+   {
+    "ref": "6796",
+    "site": "Greenburn Wind Park",
+    "detail": "Storage Co-location REPD Ref ID='7866' -> 7866 not in release",
+    "known": false
+   },
+   {
+    "ref": "7159",
+    "site": "Greenburn Wind Park",
+    "detail": "Storage Co-location REPD Ref ID='7865' -> 7865 not in release",
+    "known": false
+   },
+   {
+    "ref": "14288",
+    "site": "Carn Fearna Wind Farm",
+    "detail": "Storage Co-location REPD Ref ID='14289' -> 14289 not in release",
+    "known": false
+   },
+   {
+    "ref": "7882",
+    "site": "Arecleoch Wind Farm (extension)",
+    "detail": "Storage Co-location REPD Ref ID='7881' -> 7881 not in release",
+    "known": false
+   },
+   {
+    "ref": "17804",
+    "site": "Epney, Framilode - Solar Farm & Battery Storage",
+    "detail": "Storage Co-location REPD Ref ID='17805' -> 17805 not in release",
+    "known": false
+   },
+   {
+    "ref": "15045",
+    "site": "Larbrax Wind Farm",
+    "detail": "Storage Co-location REPD Ref ID='15046' -> 15046 not in release",
+    "known": false
+   },
+   {
+    "ref": "18464",
+    "site": "Redisham Hall Farm, School Road - Solar Panels ",
+    "detail": "Storage Co-location REPD Ref ID='18465' -> 18465 not in release",
+    "known": false
+   },
+   {
+    "ref": "19255",
+    "site": "Bardwell Fields, Knox Lane - Solar Farm",
+    "detail": "Storage Co-location REPD Ref ID='19254' -> 19254 not in release",
+    "known": false
+   },
+   {
+    "ref": "14997",
+    "site": "Killean Wind Farm",
+    "detail": "Storage Co-location REPD Ref ID='14998' -> 14998 not in release",
+    "known": false
+   }
+  ],
+  "GRANTED_BEFORE_SUBMITTED": [
+   {
+    "ref": "3532",
+    "site": "Hill of Easterton",
+    "detail": "submitted 2011-06-15 granted 2003-10-16",
+    "known": false
+   },
+   {
+    "ref": "18449",
+    "site": "Arnold Clark Automobiles, Europa Boulevard - Solar Panels",
+    "detail": "submitted 2025-03-05 granted 2024-04-29",
+    "known": false
+   },
+   {
+    "ref": "18745",
+    "site": "Sainsburys Supermarkets, Wynyard Retail Park - Solar Panels",
+    "detail": "submitted 2025-07-17 granted 2025-07-01",
+    "known": false
+   },
+   {
+    "ref": "19449",
+    "site": "The Hub, Mareham Road - Ground Mounted Solar Panels",
+    "detail": "submitted 2025-10-30 granted 2025-10-03",
+    "known": false
+   },
+   {
+    "ref": "19985",
+    "site": "Plot 3a, Emdc Arundel Avenue - Solar Panels",
+    "detail": "submitted 2025-10-31 granted 2015-12-15",
+    "known": false
+   },
+   {
+    "ref": "20820",
+    "site": "Peacock Road, Sion Mills - Wind Turbine",
+    "detail": "submitted 2026-11-27 granted 2026-08-14",
+    "known": false
+   },
+   {
+    "ref": "20828",
+    "site": "Bunkers Hill, Wells Road - Solar Panels",
+    "detail": "submitted 2026-04-27 granted 2026-04-26",
+    "known": false
+   },
+   {
+    "ref": "20834",
+    "site": "Bestway Cash and Carry, Abbey Road - Solar Panels",
+    "detail": "submitted 2026-05-06 granted 2026-05-01",
+    "known": false
+   }
+  ],
+  "MOJIBAKE_IN_SOURCE": [
+   {
+    "ref": "3052",
+    "site": "Gorsedd BrÃ¢n Wind Fram",
+    "detail": "Site Name: 'Gorsedd BrÃ¢n Wind Fram'",
+    "known": false
+   },
+   {
+    "ref": "4049",
+    "site": "Stacain",
+    "detail": "Address: 'Near Inverary, to the north-east of SrÃ²n MÃ³r hydroelectric station, '",
+    "known": false
+   }
+  ],
+  "STATUS_OPERATIONAL_NO_DATE": [
+   {
+    "ref": "4297",
+    "site": "Craiggore windfarm",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "5347",
+    "site": "Melton Ross ",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "6013",
+    "site": "Parc Stormy, Stormy Down",
+    "detail": "",
+    "known": false
+   },
+   {
+    "ref": "7542",
+    "site": "William Harvey Hospital",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "7544",
+    "site": "Dundrinne Road",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "7696",
+    "site": "Thurrock Flexible Generation Plant",
+    "detail": "",
+    "known": false
+   },
+   {
+    "ref": "7740",
+    "site": "Lister Drive",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "8101",
+    "site": "Litchardon Cross Solar Farm",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "9272",
+    "site": "Central Park - Solar photovaltics",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "10005",
+    "site": "Morrisons Store 148 Cheriton Road - Solar Array",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "10088",
+    "site": "Horsey Levels - Solar Farm",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "10296",
+    "site": "Station Road - Solar Array",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "10422",
+    "site": "Denton Hall Farm Road, Denton - Solar Photovoltaic System",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "10497",
+    "site": "North Norfolk Business Centre Solar Park - Battery Energy St",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "11234",
+    "site": "Anaerobic Digestion Plant",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "11423",
+    "site": "London Road, Irchester - Solar Farm",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "11509",
+    "site": "Bryngolwg Farm, Hirwaun - Solar farm",
+    "detail": "",
+    "known": true
+   },
+   {
+    "ref": "11799",
+    "site": "Pepperhill Solar Farm - Solar Farm & Battery Storage",
+    "detail": "",
+    "known": false
+   },
+   {
+    "ref": "11800",
+    "site": "Pepperhill Solar Farm - Solar Farm & Battery Storage",
+    "detail": "",
+    "known": false
+   },
+   {
+    "ref": "12101",
+    "site": "Birch Solar Farm & Battery Storage",
+    "detail": "",
+    "known": false
+   },
+   {
+    "ref": "12102",
+    "site": "Birch Solar Farm & Battery Storage",
+    "detail": "",
+    "known": false
+   },
+   {
+    "ref": "12137",
+    "site": "Feldon Vale Solar Farm",
+    "detail": "",
+    "known": false
+   },
+   {
+    "ref": "12300",
+    "site": "Inkersall Road, Staveley - Solar Photovoltaic Farm And Batte",
+    "detail": "",
+    "known": false
+   },
+   {
+    "ref": "12301",
+    "site": "Inkersall Road, Staveley - Solar Photovoltaic Farm And Batte",
+    "detail": "",
+    "known": false
+   }
+  ],
+  "VERY_OLD_DATE": [
+   {
+    "ref": "4881",
+    "site": "Dolgarrog",
+    "detail": "Operational 01/01/1938",
+    "known": false
+   },
+   {
+    "ref": "4882",
+    "site": "Cwm Dyli",
+    "detail": "Operational 01/01/1906",
+    "known": false
+   },
+   {
+    "ref": "4924",
+    "site": "Edmonton EcoPark EfW",
+    "detail": "Operational 01/01/1974",
+    "known": false
+   },
+   {
+    "ref": "5780",
+    "site": "Eastcroft EfW (Lines 1 & 2)",
+    "detail": "Operational 01/01/1975",
+    "known": false
+   },
+   {
+    "ref": "6839",
+    "site": "Dinorwig",
+    "detail": "Under Construction 01/01/1978",
+    "known": false
+   },
+   {
+    "ref": "6840",
+    "site": "Ffestiniog",
+    "detail": "Under Construction 01/01/1956",
+    "known": false
+   },
+   {
+    "ref": "6840",
+    "site": "Ffestiniog",
+    "detail": "Operational 01/01/1961",
+    "known": false
+   },
+   {
+    "ref": "394",
+    "site": "Pitlochry",
+    "detail": "Operational 01/01/1950",
+    "known": false
+   },
+   {
+    "ref": "419",
+    "site": "Turret water treatment works",
+    "detail": "Operational 01/01/1952",
+    "known": false
+   },
+   {
+    "ref": "463",
+    "site": "Lednock",
+    "detail": "Operational 01/01/1961",
+    "known": false
+   },
+   {
+    "ref": "462",
+    "site": "Dalchonzie",
+    "detail": "Operational 01/01/1958",
+    "known": false
+   },
+   {
+    "ref": "471",
+    "site": "Cuaich",
+    "detail": "Operational 01/01/1959",
+    "known": false
+   },
+   {
+    "ref": "396",
+    "site": "Sron Mor",
+    "detail": "Operational 01/01/1957",
+    "known": false
+   },
+   {
+    "ref": "470",
+    "site": "Lairg",
+    "detail": "Operational 01/01/1959",
+    "known": false
+   },
+   {
+    "ref": "465",
+    "site": "Loch Ericht",
+    "detail": "Operational 01/01/1962",
+    "known": false
+   },
+   {
+    "ref": "403",
+    "site": "Foyers Falls",
+    "detail": "Operational 01/01/1968",
+    "known": false
+   },
+   {
+    "ref": "6842",
+    "site": "Foyers",
+    "detail": "Under Construction 01/01/1969",
+    "known": false
+   },
+   {
+    "ref": "6842",
+    "site": "Foyers",
+    "detail": "Operational 01/01/1974",
+    "known": false
+   },
+   {
+    "ref": "399",
+    "site": "Kilmorack",
+    "detail": "Operational 01/01/1962",
+    "known": false
+   },
+   {
+    "ref": "398",
+    "site": "Aigas",
+    "detail": "Operational 01/01/1962",
+    "known": false
+   },
+   {
+    "ref": "406",
+    "site": "Cassley",
+    "detail": "Operational 01/01/1959",
+    "known": false
+   },
+   {
+    "ref": "400",
+    "site": "Orrin",
+    "detail": "Operational 01/01/1959",
+    "known": false
+   },
+   {
+    "ref": "393",
+    "site": "Gaur",
+    "detail": "Operational 01/01/1953",
+    "known": false
+   },
+   {
+    "ref": "464",
+    "site": "Lubreoch",
+    "detail": "Operational 01/01/1958",
+    "known": false
+   },
+   {
+    "ref": "401",
+    "site": "Tor Achilty",
+    "detail": "Operational 01/04/1954",
+    "known": false
+   },
+   {
+    "ref": "405",
+    "site": "Livishie",
+    "detail": "Operational 01/01/1962",
+    "known": false
+   },
+   {
+    "ref": "387",
+    "site": "Great Glen Scheme",
+    "detail": "Under Construction 01/01/1956",
+    "known": false
+   },
+   {
+    "ref": "387",
+    "site": "Great Glen Scheme",
+    "detail": "Operational 01/01/1957",
+    "known": false
+   },
+   {
+    "ref": "404",
+    "site": "Invergarry",
+    "detail": "Operational 01/01/1956",
+    "known": false
+   },
+   {
+    "ref": "468",
+    "site": "Achanalt",
+    "detail": "Operational 01/01/1956",
+    "known": false
+   },
+   {
+    "ref": "467",
+    "site": "Mullardoch Tunnel",
+    "detail": "Operational 01/01/1955",
+    "known": false
+   },
+   {
+    "ref": "402",
+    "site": "Ceannacroc",
+    "detail": "Operational 01/01/1956",
+    "known": false
+   },
+   {
+    "ref": "391",
+    "site": "Kinlochleven Hydro Power Station",
+    "detail": "Operational 01/01/1909",
+    "known": false
+   },
+   {
+    "ref": "469",
+    "site": "Mucomir",
+    "detail": "Operational 01/01/1962",
+    "known": false
+   },
+   {
+    "ref": "6601",
+    "site": "Lochaber",
+    "detail": "Under Construction 01/01/1924",
+    "known": false
+   },
+   {
+    "ref": "6601",
+    "site": "Lochaber",
+    "detail": "Operational 01/01/1929",
+    "known": false
+   },
+   {
+    "ref": "6841",
+    "site": "Cruachan",
+    "detail": "Under Construction 01/01/1961",
+    "known": false
+   },
+   {
+    "ref": "6841",
+    "site": "Cruachan",
+    "detail": "Operational 01/01/1966",
+    "known": false
+   },
+   {
+    "ref": "397",
+    "site": "Striven",
+    "detail": "Operational 01/01/1951",
+    "known": false
+   },
+   {
+    "ref": "395",
+    "site": "Loch Gair",
+    "detail": "Operational 01/01/1961",
+    "known": false
+   },
+   {
+    "ref": "461",
+    "site": "Kilmelfort",
+    "detail": "Operational 01/01/1956",
+    "known": false
+   },
+   {
+    "ref": "466",
+    "site": "Lussa",
+    "detail": "Operational 01/01/1952",
+    "known": false
+   }
+  ],
+  "PRE_OPERATIONAL_STATUS_WITH_OPERATIONAL_DATE": [
+   {
+    "ref": "8100",
+    "site": "Camblesforth Solar Farm",
+    "detail": "Awaiting Construction op 2026-07-01",
+    "known": false
+   },
+   {
+    "ref": "21493",
+    "site": "Camblesforth Solar Farm",
+    "detail": "Awaiting Construction op 2026-07-01",
+    "known": false
+   }
+  ],
+  "SITE_NAME_CHANGED_VS_JULY": [
+   {
+    "ref": "11656",
+    "site": "Little Beanit Farm, Balsall Common - Berkswell Battery Stora",
+    "detail": "'Little Beanit Farm, Balsall Common - Bat' -> 'Little Beanit Farm, Balsall Common - Ber'",
+    "known": false
+   },
+   {
+    "ref": "12820",
+    "site": "Camsiscan Farm, Craigie - Kilmarnock South Battery Energy St",
+    "detail": "'Camsiscan Farm, Craigie - Battery Energy' -> 'Camsiscan Farm, Craigie - Kilmarnock Sou'",
+    "known": false
+   },
+   {
+    "ref": "15530",
+    "site": "Braston New Energy / The Wallace Project",
+    "detail": "'Braston New Energy' -> 'Braston New Energy / The Wallace Project'",
+    "known": false
+   },
+   {
+    "ref": "19230",
+    "site": "Chediston Hall - Solar Panels",
+    "detail": "'Chediston Hall - 40MW Solar Panels' -> 'Chediston Hall - Solar Panels'",
+    "known": false
+   },
+   {
+    "ref": "20796",
+    "site": "Well Lane, Sutton-On-The-Forest - Solar Array & Battery Stor",
+    "detail": "'Well Lane, Sutton-On-The-Forest - Solar ' -> 'Well Lane, Sutton-On-The-Forest - Solar '",
+    "known": false
+   }
+  ],
+  "QUESTION_MARK_REPLACEMENT_CHAR": [
+   {
+    "ref": "15915",
+    "site": "Jones Food Company - Solar Farm",
+    "detail": "Address: '\"A48\" ?Lydney'",
+    "known": false
+   }
+  ],
+  "SOLAR_WITH_TURBINES": [
+   {
+    "ref": "18037",
+    "site": "Smeaton Wood Farm, Pinsley Green Road - Solar Panels",
+    "detail": "13",
+    "known": false
+   }
+  ],
+  "PLANNING_AUTHORITY_TEXT_CHANGED_VS_JULY": [
+   {
+    "ref": "18480",
+    "site": "Shuttleworth House, Higher Shuttleworth - Battery Energy Sto",
+    "detail": "'Burnley' -> 'Burnely'",
+    "known": false
+   }
+  ],
+  "FUTURE_EVENT_DATE": [
+   {
+    "ref": "20029",
+    "site": "Mediq House, Arundel Avenue - Solar Panels",
+    "detail": "Planning Permission Granted 15/12/2026",
+    "known": false
+   },
+   {
+    "ref": "20820",
+    "site": "Peacock Road, Sion Mills - Wind Turbine",
+    "detail": "Planning Application Submitted 27/11/2026",
+    "known": false
+   }
+  ]
+ }
+}

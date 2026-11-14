@@ -1,0 +1,28 @@
+# python3 scripts/test_news_binder_refaware.py  (clean git-archive export of gg-wt af0e9ec1 + patches 0001/0002)
+PASS test_c1_capacity_contradiction_blocks_camblesforth
+PASS test_c2_qualifier_coalburn_ii
+PASS test_c3_full_exact_name_not_downgraded_by_shared_stem
+PASS test_c4_multi_token_stem_adjacent_descriptor
+PASS test_c6_operator_route_and_vetoes
+PASS test_c7_stale_records
+PASS test_c8_ref_aware
+PASS test_capacity_extraction
+legacy1.json: 133 ALL, 45 RELEVANT (21 within 183 d of 2026-11-13T23:45:00+00:00)
+legacy2.json: 133 ALL, 45 RELEVANT (21 within 183 d of 2026-11-13T23:45:00+00:00)
+refaware1.json: 137 ALL, 65 RELEVANT (35 within 183 d of 2026-11-13T23:45:00+00:00), 109 REPD status changes
+refaware2.json: 137 ALL, 65 RELEVANT (35 within 183 d of 2026-11-13T23:45:00+00:00), 109 REPD status changes
+PASS test_feed_builder_is_additive_and_deterministic
+legacy   {'tp': 40, 'fp': 4, 'fn': 26, 'tn': 57, 'precision': 0.909, 'recall': 0.58}
+refaware {'tp': 63, 'fp': 0, 'fn': 6, 'tn': 58, 'precision': 1.0, 'recall': 0.913}
+PASS test_labelled_precision_recall
+PASS test_operator_parties
+PASS test_status_change_candidates_synthetic
+PASS test_v9_5_fixtures_on_both_universes
+PASS test_west_burton_c_is_fidra_11928
+news_binder_refaware: 14 tests PASS
+
+# existing gates, unchanged
+V9.5 news binder: PASS (12/13 focused positives, 9/9 hostile negatives rejected, telemetry present)
+V9.5.1 feed built: 133 ALL, 45 RELEVANT, Beacon Fen -> REPD 13599 (400 MW)
+cea104c3e9cfc07971680afdf5f64073e1d4825b63bfaf4e969266df8386ebbd  dist/major_project_news_v9_5_1.json
+V9.5.1 feed: PASS (133 ALL, 45 RELEVANT, Beacon Fen -> REPD 13599, discovery-only blocked from signals)

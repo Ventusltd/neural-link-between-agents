@@ -1,0 +1,20 @@
+        (repo / "a.txt").write_text("tampered\n")
+        rep = HG.compare(before, HG.snapshot_worktree(str(repo)))
+>       assert rep["result"] == "FAIL" and rep["violations"][0]["path"] == "a.txt"
+E       AssertionError: assert ('PASS' == 'FAIL'
+E         
+E         - FAIL
+E         + PASS)
+
+automation/repd/tests/test_hardening_nl013.py:176: AssertionError
+=========================== short test summary info ============================
+FAILED automation/repd/tests/test_hardening_nl013.py::test_stage_raising_system_exit_is_reported_and_hash_guard_still_runs
+FAILED automation/repd/tests/test_hardening_nl013.py::test_acceptance_waivers_come_only_from_the_known_anomalies_file
+FAILED automation/repd/tests/test_hardening_nl013.py::test_build_master_writes_nothing_into_the_repo_and_needs_no_config
+FAILED automation/repd/tests/test_hardening_nl013.py::test_build_root_reads_hashes_from_the_committed_v1_descriptor
+FAILED automation/repd/tests/test_hardening_nl013.py::test_valid_csv_date_that_is_a_different_date_from_the_typed_xlsx_fails
+FAILED automation/repd/tests/test_hardening_nl013.py::test_unparseable_csv_date_is_not_rescued_by_a_typed_xlsx_date
+FAILED automation/repd/tests/test_hardening_nl013.py::test_a_ref_known_for_a_date_reason_does_not_waive_a_coordinate_failure
+FAILED automation/repd/tests/test_hardening_nl013.py::test_hashguard_sees_files_that_git_status_hides[--skip-worktree]
+FAILED automation/repd/tests/test_hardening_nl013.py::test_hashguard_sees_files_that_git_status_hides[--assume-unchanged]
+9 failed, 3 passed in 12.47s

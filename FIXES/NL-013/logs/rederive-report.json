@@ -1,0 +1,40 @@
+{
+ "official_csv_sha256": "48e76c49f33a1090e78108d1ea9bfe689b35963ea3be1bb4f6516d038a5ff862",
+ "official_xlsx_sha256": "87811e249395a05b223db6855952334f425e66cc9a2106caea0e38fd9e5037ea",
+ "official_records": 14968,
+ "xlsx_records": 14968,
+ "xlsx_duplicates": {
+  "7679": 2
+ },
+ "removed_duplicates": [
+  [
+   "7679",
+   7112
+  ]
+ ],
+ "rows_out": 14967,
+ "distinct_cells_changed": 832,
+ "kinds": {
+  "edge_control": 571,
+  "num_as_date": 55,
+  "date_ws": 158,
+  "linebreak_or_mixed": 8,
+  "date_na": 16,
+  "date_month_first": 24
+ },
+ "date_cells_by_class": {
+  "date_same": 57212,
+  "blank_same": 182062,
+  "date_ws": 158,
+  "date_na": 16,
+  "date_month_first": 24
+ },
+ "mine_sha256": "d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9",
+ "mine_bytes": 5201029,
+ "pr_sha256": "d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9",
+ "pr_bytes": 5201029,
+ "byte_identical": true,
+ "pr_rows": 14967,
+ "cell_diffs_vs_pr": [],
+ "cell_diff_count_vs_pr": 0
+}

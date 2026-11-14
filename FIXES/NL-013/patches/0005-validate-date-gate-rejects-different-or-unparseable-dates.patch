@@ -1,0 +1,65 @@
+--- a/automation/repd/validate.py
++++ b/automation/repd/validate.py
+@@ -299,6 +299,23 @@
+     return out
+ 
+ 
++_MDY_ANY = re.compile(r'^(\d{1,2})/(\d{1,2})/(\d{4})$')
++
++
++def _csv_text_is_date(raw, dt, xd):
++    """True when CSV text ``raw`` (parsed day-first as ``dt``, or None) denotes the typed XLSX date ``xd``
++    as written day-first, ISO, or month-first."""
++    if dt is not None and (dt == xd or vr.swap_dm(dt) == xd):
++        return True
++    m = _MDY_ANY.match(raw.strip())
++    if m:
++        try:
++            return datetime.date(int(m.group(3)), int(m.group(1)), int(m.group(2))) == xd
++        except ValueError:
++            return False
++    return False
++
++
+ def date_gates(G, c, x, asof):
+     xi = _xlsx_date_index(x)
+     invalid, resolved, na_cells, future, future_allowed = [], [], [], [], collections.Counter()
+@@ -318,16 +335,32 @@
+             forms[col][form] += 1
+             xk, xd = xi.get(ref, {}).get(col, (None, None))
+             if dt is not None and form == 'dd/mm/yyyy' and xk == 'true date' and xd is not None and xd != dt:
+-                # valid dd/mm/yyyy text that disagrees with the typed Excel cell (e.g. month-first 09/11/2026)
+-                resolved.append({'ref': ref, 'record_no': rn, 'field': col, 'csv_value': raw,
+-                                 'csv_form': 'disagrees with typed XLSX date' + (' (day/month swap)' if vr.swap_dm(dt) == xd else ''),
+-                                 'xlsx_kind': xk, 'xlsx_date': str(xd)})
+-                dt = xd
++                # valid dd/mm/yyyy text that disagrees with the typed Excel cell. Resolvable only when the
++                # CSV is the same date written month-first (e.g. 09/11/2026 for 11 Sep); any other
++                # disagreement is two different dates in the two official files and fails.
++                item = {'ref': ref, 'record_no': rn, 'field': col, 'csv_value': raw,
++                        'csv_form': 'disagrees with typed XLSX date' + (' (day/month swap)' if vr.swap_dm(dt) == xd else ''),
++                        'xlsx_kind': xk, 'xlsx_date': str(xd)}
++                if vr.swap_dm(dt) == xd:
++                    resolved.append(item)
++                    dt = xd
++                else:
++                    item['csv_form'] = 'different date from typed XLSX date (not a day/month swap)'
++                    invalid.append(item)
++                    continue
+             elif dt is None or form != 'dd/mm/yyyy':
+                 item = {'ref': ref, 'record_no': rn, 'field': col, 'csv_value': raw, 'csv_form': form,
+                         'xlsx_kind': xk, 'xlsx_date': str(xd) if xd else None}
+                 if xk == 'true date' and xd is not None:
+-                    resolved.append(item)          # typed Excel date wins (general date rule)
++                    # typed Excel date wins (general date rule) only where the CSV text is that same date in
++                    # some reading (non-padded, ISO, month-first); unparseable text or another date fails
++                    if _csv_text_is_date(raw, dt, xd):
++                        resolved.append(item)
++                        dt = xd
++                    else:
++                        item['csv_form'] = f'{form}; not the typed XLSX date in any reading'
++                        invalid.append(item)
++                        continue
+                 elif dt is not None and form in ('d/m/yyyy (not zero-padded)', 'iso'):
+                     resolved.append(item)          # unambiguous, just not in canonical layout
+                 else:

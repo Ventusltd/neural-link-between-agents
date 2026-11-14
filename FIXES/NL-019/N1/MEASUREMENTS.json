@@ -1,0 +1,79 @@
+{
+ "labelled_set": {
+  "path": "scripts/fixtures/news_binding_labels_2026q3.json",
+  "counts": {
+   "TRUE": 69,
+   "NONE": 58,
+   "UNCERTAIN": 13
+  },
+  "headlines": 140,
+  "sources": "dist/major_project_news_v4/v5/v6/v9_5_1.json + pipelinenews_intelligence/202608311343/data/202608271524-fd2212a8c76d-v8-fast-news.json (140 unique headlines)"
+ },
+ "universe": "dist/major_projects_2026q3.json sha256 ade3f7779535f770f759b10a79b0f822756dc3e9b5f8b984698c203c31a3a63f",
+ "scoring_reference": "2026-08-22T20:45:25.507638+00:00 (V6 crawl instant)",
+ "legacy_major_project_news_v6_headline_only": {
+  "tp": 40,
+  "fp": 4,
+  "fn": 26,
+  "tn": 57,
+  "precision": 0.909,
+  "recall": 0.58,
+  "false_matches": {
+   "N1-059 Coalburn II headline": "11034 (truth 12206)",
+   "N1-130 Coalburn II headline": "11034 (truth 12206)",
+   "N1-114 1,900MW Camblesforth": "8100 (truth 11476 Helios, 190 MW)",
+   "N1-129 North Tawton plan": "1044 (refused 2011)"
+  }
+ },
+ "live_v9_5_1_feed_q2": {
+  "tp": 39,
+  "fp": 4,
+  "fn": 28,
+  "precision": 0.907,
+  "recall": 0.565,
+  "false_matches": [
+   "N1-059 -> 11034",
+   "N1-114 -> 8100",
+   "N1-129 -> 1044",
+   "N1-133 Burton Joyce -> 2377 Gedling (5.7 MW, operational 2018)"
+  ]
+ },
+ "refaware_1": {
+  "tp": 63,
+  "fp": 0,
+  "fn": 6,
+  "tn": 58,
+  "precision": 1.0,
+  "recall": 0.913,
+  "missed": [
+   "N1-035",
+   "N1-069",
+   "N1-108",
+   "N1-114",
+   "N1-120",
+   "N1-138"
+  ]
+ },
+ "v9_5_fixture_positives": {
+  "legacy_q2": "12/13",
+  "refaware_q2": "13/13",
+  "refaware_q3": "13/13"
+ },
+ "v9_5_fixture_negatives_leaked": {
+  "refaware_q2": 0,
+  "refaware_q3": 0
+ },
+ "v6_rejected_article_samples_bound_by_refaware": "0/50",
+ "v5_project_labels": {
+  "correct": 44,
+  "wrong": 70,
+  "uncertain": 11,
+  "of": 125
+ },
+ "operator_field_changes_q2_to_q3": {
+  "changed": 530,
+  "party_equivalent_cosmetic": 495,
+  "real": 35
+ },
+ "caveat": "Labels were written by the same agent that tuned refaware-1 on them (no held-out set). Independent check: the V9.5 fixtures written before this work (13 positives, 9 negatives) and the 50 V6 rejected samples."
+}

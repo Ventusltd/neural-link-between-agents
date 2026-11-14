@@ -1,0 +1,81 @@
+{
+ "n_labels": 133,
+ "n_scored": 121,
+ "n_unsure": 7,
+ "n_implicit": 5,
+ "n_positive": 47,
+ "n_negative": 74,
+ "signal_metrics": {
+  "tp": 46,
+  "fp": 0,
+  "fn": 1,
+  "tn": 74,
+  "precision": 1.0,
+  "recall": 0.9787
+ },
+ "any_class_metrics": {
+  "tp": 46,
+  "fp": 4,
+  "fn": 1,
+  "tn": 70,
+  "precision": 0.92,
+  "recall": 0.9787
+ },
+ "baseline_v9_5_1_primary_match_metrics": {
+  "tp": 38,
+  "fp": 4,
+  "fn": 9,
+  "tn": 71,
+  "precision": 0.9048,
+  "recall": 0.8085
+ },
+ "per_class": {
+  "EXACT": {
+   "n": 5,
+   "correct": 5,
+   "wrong_ref": 0,
+   "false_positive": 0
+  },
+  "STRONG": {
+   "n": 41,
+   "correct": 41,
+   "wrong_ref": 0,
+   "false_positive": 0
+  },
+  "PROBABLE": {
+   "n": 0,
+   "correct": 0,
+   "wrong_ref": 0,
+   "false_positive": 0
+  },
+  "CANDIDATE": {
+   "n": 6,
+   "correct": 0,
+   "wrong_ref": 0,
+   "false_positive": 4
+  },
+  "UNBOUND": {
+   "n": 69,
+   "correct": 0,
+   "wrong_ref": 0,
+   "false_positive": 0
+  }
+ },
+ "errors": [
+  {
+   "id": "v951-073",
+   "headline": "Greencells signs 71 MW Carlton solar farm EPC deal",
+   "gold_ref": "12017",
+   "label": "bind",
+   "class": "CANDIDATE",
+   "ref": null,
+   "baseline_ref": null,
+   "trace": [
+    "name hits: [('carlton', 'place'), ('carlton', 'primary')] -> 6 records",
+    "name_kind: 6 -> 3 records",
+    "technology: 3 -> 2 records",
+    "ambiguous: 2 developments remain"
+   ]
+  }
+ ]
+}

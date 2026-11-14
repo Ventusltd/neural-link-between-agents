@@ -1,0 +1,254 @@
+{
+ "corpus": {
+  "items": 167,
+  "by_source": {
+   "v8-fast-news": 136,
+   "sector-intelligence": 32,
+   "bbc-rss": 5
+  },
+  "curated_primary": 47
+ },
+ "registers": {
+  "q2": {
+   "path": "releases/202609060232-pipelinenews/data/202608270055-8ab1807551bc-v8-fast-projects.json",
+   "sha256": "c06aedef176d2d38fd135806306a8ef81b4af9994c7be31e8bd760304149f862",
+   "projects": 7680
+  },
+  "q3": {
+   "path": "releases/202611132345-pipelinenews/data/202611132345-b86eecde9f43-repd-2026q3-fast-projects.json",
+   "sha256": "0b89be3554a99111f919a50b1bfe3e7cb7b3a5dc6f40c20df663bcfb1b151ddc",
+   "projects": 7775
+  }
+ },
+ "gazetteer": {
+  "q2_aliases": 12932,
+  "q3_aliases": 13153
+ },
+ "q2_counts": {
+  "CONTEXT_ONLY": 2,
+  "NO_MATCH": 111,
+  "PRIMARY_MATCH": 48,
+  "REJECT": 1,
+  "AMBIGUOUS": 5
+ },
+ "q3_counts": {
+  "CONTEXT_ONLY": 2,
+  "NO_MATCH": 111,
+  "PRIMARY_MATCH": 48,
+  "REJECT": 1,
+  "AMBIGUOUS": 5
+ },
+ "delta_counts": {
+  "added": 101,
+  "removed": 6,
+  "retained": 7674,
+  "operator_renamed": 33,
+  "operator_respelled": 371,
+  "site_renamed": 4,
+  "status_changed": 155,
+  "status_signal": 153,
+  "capacity_changed": 17,
+  "technology_changed": 1
+ },
+ "delta_gate": {
+  "status": "PASS",
+  "reasons": [],
+  "limits": {
+   "max_removed_fraction": 0.02,
+   "max_added_fraction": 0.05,
+   "max_operator_change_fraction": 0.15,
+   "min_projects": 1000
+  }
+ },
+ "agreement_with_curated_primary": {
+  "curated_primary": 47,
+  "same_ref": 40,
+  "same_development": 0,
+  "different_ref": 1,
+  "abstained": 6
+ },
+ "items_touching_refs_added_since_july": 1,
+ "changed_outcome_q2_to_q3": 0,
+ "bound_items_with_status_change": [
+  {
+   "repd_ref": "13599",
+   "from": "Application Submitted",
+   "to": "Awaiting Construction",
+   "signal": true
+  },
+  {
+   "repd_ref": "11034",
+   "from": "Under Construction",
+   "to": "Operational",
+   "signal": true
+  },
+  {
+   "repd_ref": "11034",
+   "from": "Under Construction",
+   "to": "Operational",
+   "signal": true
+  },
+  {
+   "repd_ref": "10087",
+   "from": "Awaiting Construction",
+   "to": "Under Construction",
+   "signal": true
+  },
+  {
+   "repd_ref": "10087",
+   "from": "Awaiting Construction",
+   "to": "Under Construction",
+   "signal": true
+  },
+  {
+   "repd_ref": "10087",
+   "from": "Awaiting Construction",
+   "to": "Under Construction",
+   "signal": true
+  },
+  {
+   "repd_ref": "13763",
+   "from": "Application Submitted",
+   "to": "Awaiting Construction",
+   "signal": true
+  }
+ ],
+ "disagreements": [
+  {
+   "headline": "Huge Norfolk solar farm near Long Stratton set to cost £1bn",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "17494",
+    "project": "East Pye Solar Farm"
+   },
+   "got": "CONTEXT_ONLY",
+   "reason": "NAMED_IN_SNIPPET_ONLY",
+   "cand": [
+    "17494 East Pye Solar Farm"
+   ]
+  },
+  {
+   "headline": "Heckington solar farm approval may face legal challenge",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "13599",
+    "project": "Beacon Fen Energy Park"
+   },
+   "got": "NO_MATCH",
+   "reason": "NO_REGISTER_NAME_IN_TEXT",
+   "cand": []
+  },
+  {
+   "headline": "Solar farm plan for North Tawton field",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "1044",
+    "project": "North Tawton Solar Farm"
+   },
+   "got": "NO_MATCH",
+   "reason": "WEAK_ALIAS_WITHOUT_CORROBORATION",
+   "cand": [
+    "1044 North Tawton Solar Farm"
+   ]
+  },
+  {
+   "headline": "Meadow Partners Acquires 113-Acre Ground Lease for 1,000 MWh Coalburn II Battery Energy Storage System",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "11034",
+    "project": "Coalburn Energy - Battery Storage"
+   },
+   "got": "12206",
+   "cand": [
+    {
+     "repd_ref": "12206",
+     "name": "Coalburn II Energy Storage Facility - Battery Storage Facility",
+     "technology": "bess",
+     "county": "Lanarkshire",
+     "status": "Under Construction",
+     "aliases": [
+      "coalburn ii"
+     ],
+     "in_headline": true,
+     "corroborated": false
+    }
+   ]
+  },
+  {
+   "headline": "More reaction after plans revealed for major new solar farm near Burton Joyce bypass",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "2377",
+    "project": "Gedling Solar Farm"
+   },
+   "got": "NO_MATCH",
+   "reason": "WEAK_ALIAS_WITHOUT_CORROBORATION",
+   "cand": [
+    "9050 Bypass Solar Farm"
+   ]
+  },
+  {
+   "headline": "Kells solar farm refusal of planning appealed",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "5967",
+    "project": "Kells Solar Farm"
+   },
+   "got": "AMBIGUOUS",
+   "reason": "SEVERAL_DEVELOPMENTS_NAMED",
+   "cand": [
+    "5967 Kells Solar Farm",
+    "6012 Kells Solar Farm"
+   ]
+  },
+  {
+   "headline": "Kells solar farm plan setback after archaeological find",
+   "curated": {
+    "role": "PRIMARY_MATCH",
+    "repd_ref": "5967",
+    "project": "Kells Solar Farm"
+   },
+   "got": "AMBIGUOUS",
+   "reason": "SEVERAL_DEVELOPMENTS_NAMED",
+   "cand": [
+    "5967 Kells Solar Farm",
+    "6012 Kells Solar Farm"
+   ]
+  }
+ ],
+ "newly_bound": [
+  {
+   "headline": "Plans to build Solent Gateway 2 on Dibden Bay near Southampton",
+   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1PbjdYRms1VkNwQlZSZWVfMlRWS2ZKU3U0RVBiWUE4SzM3a2lLbl9kcFp6WnFjUXR5V1I4aFVselNQNWk2dTdDUHBCMjhqckxHZ3ZuNndSeEhvaHpo?oc=5",
+   "q2": "NO_MATCH",
+   "q3": "NO_MATCH",
+   "q3_ref": null,
+   "candidates": [
+    {
+     "repd_ref": "10309",
+     "name": "Gateway Energy Centre - Battery Energy Storage",
+     "technology": "bess",
+     "county": "Essex",
+     "status": "Awaiting Construction",
+     "aliases": [
+      "gateway"
+     ],
+     "in_headline": true,
+     "corroborated": false
+    },
+    {
+     "repd_ref": "21073",
+     "name": "Southampton Battery Energy Storage",
+     "technology": "bess",
+     "county": "Hampshire",
+     "status": "Application Submitted",
+     "aliases": [
+      "southampton"
+     ],
+     "in_headline": true,
+     "corroborated": false
+    }
+   ]
+  }
+ ]
+}

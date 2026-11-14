@@ -1,0 +1,17 @@
+--- a/automation/repd/run.py
++++ b/automation/repd/run.py
+@@ -1186,9 +1186,12 @@
+             rec["status"] = res.pop("status_override", None) or ("fallback" if str(res.get("impl", "")).startswith(("run.py", "fallback", "offline")) else "ran")
+             rec["impl"] = res.get("impl")
+             rec["result"] = res
+-        except Exception as exc:  # noqa: BLE001 - every failure is reported and fails closed
++        except (Exception, SystemExit) as exc:  # noqa: BLE001 - every failure is reported and fails closed
++            # SystemExit too: reused repository scripts (e.g. scripts/repd_updater.py) call sys.exit /
++            # raise SystemExit on a missing input. Without this the run aborted with no run report and
++            # without the post-run hash guard.
+             rec["status"] = "failed"
+-            rec["error"] = str(exc)
++            rec["error"] = str(exc) if not isinstance(exc, SystemExit) else f"SystemExit({exc.code!r})"
+             if not isinstance(exc, StageError):
+                 rec["traceback"] = traceback.format_exc(limit=8)
+         rec["seconds"] = round(time.monotonic() - t0, 2)

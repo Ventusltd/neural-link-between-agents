@@ -1,0 +1,12 @@
+da9112291e2c18f637bd8118d456c136eb40f4e48cbe06edf9612ae21f000ab3  0001-run-stage-catches-systemexit.patch
+f2b6545dc800b3b8a459b76018c2986bd967ddad42c32adca8db20b4921cd23b  0002-build-root-master-in-scratch-dir-no-config-needed.patch
+836a64f8ded2ee26d13c79584aeb54a71c23a8381262df75103eb7e4c92c0666  0003-workflow-sparse-config-and-hidden-path-check.patch
+34ae319e503de4a9d3c055ba6b7d78a5f025ae9ca821bccdb25f70156994c8fd  0004-run-acceptance-waivers-from-known-anomalies.patch
+a94330639027770a5c2fcfc5ea5837a100eeee4410c8c45f165aee77110bd95d  0005-validate-date-gate-rejects-different-or-unparseable-dates.patch
+d097b700c1f6af1ff29f3bc01daf84f8620a217282dd4bac4830ef977c21348b  0006-validate-coordinate-waivers-scoped-to-known-coordinates.patch
+467f0fa6a3c61dd27c10ad61beb3bf5dbabab1bf8a61c780cd92f0f0222077b7  0007-hashguard-rehash-skip-worktree-and-assume-unchanged.patch
+1ba801e2a5cd4014d71d776e6ae3d52649969749ac0d03933495b79ffa874293  0008-baseline-known-anomalies-2026q3-coordinates-waiver-observations.patch
+8d7042fcffba030c074df146c2a645ec00d291f1c8346b5eeabc1f160ae3eb0c  0009-build-root-accepts-v1-descriptor-shape.patch
+d813f34ae604c68b1b3d0f567fd441abc4476c9ed4def64ddc160d3e8d728cd3  0010-data-manifest-v4-2026q3-source-hashes.patch
+d70d3ee3691f18cdce70a5244fae697cdf5c22763d655929a461d0be4072f1c1  0011-data-jan-to-oct-change-report-regenerated-from-shipped-csv.patch
+66c947a449fc2b8ea4c8192219b3f7ad3c4431098b0f2dc9a7bbdb47374f1075  0012-tests-hardening-nl013.patch

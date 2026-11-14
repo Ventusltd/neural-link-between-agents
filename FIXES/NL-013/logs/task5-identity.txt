@@ -1,0 +1,9 @@
+identity records 14967 cleaned rows 14967 refs equal True
+identity field mismatches: {'planning_application_reference': 3}
+  e.g. planning_application_reference ('9873', '', 'NA')
+capacity vs cleaned CSV text: {'exact': 12016, '<=0.005': 1584}
+major projects 3765 first-principles 3765 missing [] extra []
+major vs identity shared-field mismatches: {'technology': 3765, 'planning_application_reference': 31, 'region': 1, 'county': 1, 'country': 1, 'planning_authority': 2}
+stability: July 14657 Oct 14967 shared 14648 removed 9 added 319; gg_project_id changed 0; gg_development_id changed 5
+  development id changes e.g. ['14193', '14194', '18480', '18736', '20983']
+major July 3714 Oct 3765 dropped refs 7 added 58

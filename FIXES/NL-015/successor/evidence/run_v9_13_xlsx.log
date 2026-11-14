@@ -1,0 +1,5 @@
+V9.1 spine built: 7775 records, 365,474.49 MW, 7749 geometries
+coordinate fixture rebuilt byte-for-byte from REPD_Publication_Q3_2026.xlsx
+check_v9_13: 202611140058 loader PASS - 7,775 records, 365,474.49 MW, 7749 with geometry / 26 without; news feed unchanged, 29/29 bound refs resolve
+MAP contract: PASS - 7775 of 7775 rows build a firing href to https://ventusltd.github.io/gridatlas/atlas/; 7749 arrive on the register's own point, 26 resolve by REPD ref alone
+V9.13 (202611140058) validation suite: PASS (<workspace>/teams/3/successor/root)
