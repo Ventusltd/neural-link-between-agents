@@ -60,6 +60,7 @@ line here should have an owner, a state and evidence.
 | between 00:56 and 01:18 | Make sure the Compare the Cloud article is there (in the data-centre news feed) and also link it to the cyber-resilience site, using hashes so nothing is truncated; get ChatGPT to check it and publish. (As quoted by the harness in issue 12 comment 6869302028.) |
 | between 00:56 and 01:18 | Get versions of Pipeline News published every 30 minutes even if broken, then use CI/CD against earlier versions to deliver a final release. The map and the Ventus Grid Engine deep link are the star feature. Prepare a Fable engineer guardian for that CI integration and keep old versions. (Same source.) |
 | 01:26 | The map link already has a very advanced grid engine, as does the offtakers layer. I just don't want this broken, but adapted and flexible to the new REPD additions. (As quoted by the harness in issue 16 comment 6869603567.) |
+| 01:52 and 01:53 | Just build a new GridAtlas, bypass the rule, preserving the older one as it is as a version on the website; publish the new one and have CI/CD runs verify it, using the star quantum twin and Kuiper inspired procedures to replicate the new GridAtlas. Don't worry about the rule. (As quoted by the harness in issue 16 comment 6869802620.) |
 | 00:47 | First consolidate everything I have said tonight to ChatGPT and to you in a coherent order, and compare it with progress. That is the DNA of the reasoner and quality Fable. |
 
 ## Part 2. The same instructions as one coherent brief
@@ -96,10 +97,13 @@ line here should have an owner, a state and evidence.
     Ventus Grid Engine deep link. A Fable engineer guardian runs the train.
 16. The map link, its grid engine and the offtakers layer are not to be broken: they are adapted so that the October
     REPD additions work in them.
+17. A new GridAtlas on the October register is published; the older one stays on the website as a version; the
+    acceptance rule is set aside for this release by the owner's word; CI verifies the new GridAtlas by replication, in
+    the manner of the star quantum twin and Kuiper procedures.
 
 ## Part 3. Progress against each point
 
-Kept current by the coordinator (Claude Fable). Last pass: 2026-11-14T01:50Z. Each line names its one owning lane; scopes are in
+Kept current by the coordinator (Claude Fable). Last pass: 2026-11-14T02:10Z. Each line names its one owning lane; scopes are in
 `SCOPES.md` in this folder. globalgrid2050 main at this pass: `3f136bfa` (PRs #57, #60, #61, #63, #64, #66 to #71
 merged; #72 open; #65 draft). Rows 2c, 2d, 8b, 11, 15 and 16 were brought up to 01:50Z (main `3d679cdb`, PRs #72 and #74 merged, #75 open; gridatlas main `41f3f2aa`).
 
@@ -109,7 +113,7 @@ merged; #72 open; #65 draft). Rows 2c, 2d, 8b, 11, 15 and 16 were brought up to 
 | 2a | October datasets | Team 1 (handed off) | DONE, reproduced byte for byte; fixes merged (PR #64) | 6868919369 | D9, D10 for the owner |
 | 2b | July baseline and comparison | Team 2 (handed off) | DONE (PR #60) | 6868663705 | Workbook 99ec4d05; July originals into main |
 | 2c | Pipeline News on October data | Team 3 (handed off); from 01:24Z the guardian (line 15) | LIVE: 202611132345 operative. On main, not promoted: 202611140058 (V9.13) and 202611140128 (V9.14, with the data-centre news panel); V9.15 in PR #75 | 6869028602; 6869067985 | Second pointer promotion (ChatGPT). Three files of 202611132345 differ from the bytes ChatGPT verified until patch S2 restores them. ChatGPT's live checks unanswered |
-| 2d | GridAtlas and legacy maps | Team 4 (handed off 01:20Z) | Legacy: seven current pages now read the October files (PR #71), historical pages left. GridAtlas: patch-0 (two clock-dependent tests) and P1 (22 files, pr-gate 19 of 19) ready; since 01:44Z the preview generation 202611132345 (11,329 rows, October register) is merged in gridatlas beside the live one (PR #84, main 41f3f2aa); the live generation is not moved | 6869215161, 6869257356; harness 6869603567; FIXES/NL-016 | Moving the live generation needs the owner's own "ACCEPT 202611132345" on gridatlas PR #84 (docs/RELEASE.md). Preview in a real browser UNVERIFIED (ChatGPT asked). Until then the live map is on the July register: of 7,775 MAP links, 5,246 resolve, 97 active rows get no identity card, 12 resolve to a point that moved. Legacy pages on the live site UNVERIFIED (ChatGPT asked) |
+| 2d | GridAtlas and legacy maps | Team 4 (handed off 01:20Z) | Legacy: seven current pages now read the October files (PR #71), historical pages left. GridAtlas: patch-0 (two clock-dependent tests) and P1 (22 files, pr-gate 19 of 19) ready; since 01:44Z the preview generation 202611132345 (11,329 rows, October register) is merged in gridatlas beside the live one (PR #84, main 41f3f2aa); and since 01:58Z it is the live generation (gridatlas main b0a3a938; previous 202610312138 kept as a version) | 6869215161, 6869257356; harness 6869603567, 6869802620; FIXES/NL-016 | Live map in a real browser UNVERIFIED (ChatGPT asked). docs/RELEASE.md steps 6 and 7 (homepage label and pin for GridAtlas V9.189, served check) not done. Until then the live map is on the July register: of 7,775 MAP links, 5,246 resolve, 97 active rows get no identity card, 12 resolve to a point that moved. Legacy pages on the live site UNVERIFIED (ChatGPT asked) |
 | 3 | Two agents through the repository, audit trail, sign-off | The harness with ChatGPT | WORKING | Issue 12 | ChatGPT's draft pull requests #58, #59, #62 open |
 | 4 | Private report | The harness (private) | DONE | Private | |
 | 5 | Scale, autonomy, live | The harness | WORKING | 14 lanes started, all but the guardian handed off | |
@@ -125,14 +129,15 @@ merged; #72 open; #65 draft). Rows 2c, 2d, 8b, 11, 15 and 16 were brought up to 
 | 12 | Use what GridAtlas already holds | G1 (handed off 01:26Z) | DONE: GridAtlas already shows, per data centre, the nearest 30 substations, 30 REPD sites and 30 plants with MW within 5, 10, 20 km; Offtakers is off by default and no URL parameter turns it on | 6869332568; FIXES/NL-016/G1 | GridAtlas counts all technologies from the July register; the new page counts solar, battery and wind from October: the two numbers differ for the same site (Bedford 403.3 against 303.8 MW) |
 | 13 | Simple | Every lane | See SCOPES.md section 2c | | Two fetchers; two binders on main |
 | 14 | Compare the Cloud article in the feed and on the cyber-resilience site | The harness (feed, PR #70; cyber-resilience PR #1); ChatGPT checks and publishes | Feed: ON MAIN. Cyber-resilience: pull request open | 6869302028 | ChatGPT's check and merge |
-| 15 | Pipeline News version train, every 30 minutes, final release with the map and Grid Engine deep link as the star | Guardian (Fable engineer; reports on issue 15) | RUNNING: V9.14 merged 01:35Z; V9.15 (marks the 97 rows the live map's register lacks) in PR #75 | Guardian ACK 6869481646; FIXES/NL-015/VERSIONS.md; run 43541314987 | No stated end of the train. V9.14 is a full 46.7 MB copy; from V9.15 a 17 MB budget is promised. The star feature is fully right only after the owner's ACCEPT on gridatlas PR #84; against the preview register 3 refs still lack a card (2484, 6483, 20218), unexplained |
-| 16 | Do not break the map link, grid engine or offtakers; adapt them to the October additions | The harness (gridatlas PR #84, from Team 4's P1); the guardian holds the MAP contract on the page side | PREVIEW MERGED, live route unchanged | 6869603567; guardian rule: every MAP href identical to its parent's, 7,775 of 7,775 | Preview browser checks (ChatGPT); owner's ACCEPT; then release |
+| 15 | Pipeline News version train, every 30 minutes, final release with the map and Grid Engine deep link as the star | Guardian (Fable engineer; reports on issue 15) | RUNNING: V9.14 and V9.15 merged (V9.15 at 01:56Z, 16 MB, marks the 97 rows); V9.16 in PR #76, its CI run 43543937369 failed at 02:01Z | Guardian ACK 6869481646; FIXES/NL-015/VERSIONS.md; run 43541314987 | No stated end of the train. The 97 marks were measured against the July register; GridAtlas now serves October, so the marks should fall to 3 on the next register check. The 3 (refs 2484, 6483, 20218) share a point at 2.55 E and the GridAtlas compiler keeps longitudes below 2.5 E (guardian, VERSIONS.md): no lane owns that fix |
+| 16 | Do not break the map link, grid engine or offtakers; adapt them to the October additions | The harness (gridatlas PR #84, from Team 4's P1); the guardian holds the MAP contract on the page side | RELEASED 01:58Z on the owner's direct instruction to the harness (line 17) | 6869802620; guardian rule: every MAP href identical to its parent's, 7,775 of 7,775 | Browser checks of the live route and of the preserved version (ChatGPT) |
+| 17 | New GridAtlas published, old one kept as a version, CI verifies by replication (star quantum twin, Kuiper procedures) | Harness (release, done); Twin Engineer (issue 16) for the replication CI | RELEASED; replication CI STARTED 01:58Z | 6869802620: release gates PASS, live-bytes run 43543524737 success, rollback command recorded; Twin ACK 6869802670 | Twin has delivered nothing yet. Homepage steps 6 and 7 |
 
 ## Part 4. Open points that need the owner or ChatGPT
 
 Only the owner:
 - Acceptance of the release; Team 5's seven decisions (6868817609); Team 6's six questions (6868809262); N2's decisions (6869000917 section 6).
-- One comment on gridatlas PR #84 with first line "ACCEPT 202611132345", once the preview checks pass: lines 15 and 16 depend on it.
+- (Done by his instruction at 01:52Z: the GridAtlas release; the acceptance line on PR #84 was posted by the harness and says so.)
 - The language-gate runner or a waiver. Which scheduled workflows stand: monthly REPD (his word), daily data-centre news (on main), hourly Energy24 (ChatGPT's draft).
 - Whether a data-centres page beside Pipeline News (PR #72) is what he meant by convergence in Pipeline News.
 
@@ -161,3 +166,4 @@ Resolved since revision 2: S-A (successor on main); M1 on main; legacy pages swi
 - 01:06Z Part 1: added ChatGPT's relay of a news specification (issue 19 comment 6868955209). It is wider than the owner's 00:56 words to Claude; both are recorded, neither is edited.
 - 01:28Z Part 1 and Part 2: the owner's two instructions given between 00:56 and 01:18 added as lines 14 and 15, from the harness's quotation in issue 12 comment 6869302028 (they were not yet in this file). Part 3 rewritten: every Claude lane started before 01:20Z has handed off.
 - 01:50Z Part 1 and Part 2: the owner's 01:26 instruction on the map link, grid engine and offtakers added as line 16, from the harness's quotation in issue 16 comment 6869603567. Part 3 rows 2c, 2d, 8b, 11, 15 updated; row 16 added.
+- 02:10Z Part 1 and Part 2: the owner's 01:52 and 01:53 instruction added as line 17, from the harness's quotation in issue 16 comment 6869802620. Part 3 rows 2d, 15, 16 updated; row 17 added. Part 4: the ACCEPT item is closed by that instruction.

@@ -138,3 +138,18 @@ STATUS: MERGED; deploy in progress; served bytes UNVERIFIED.
 - Not yet applied: N2's patches for the separate pipelinenews repository (new-quarter detection, reconcile fix,
   data-centre binder) and the offline pipelinenews release; GridAtlas preview (no push route).
 - Waiting on ChatGPT: second pointer promotion to 202611140058; live CSV check; owner's brief on issues 19 and 20.
+
+## 2026-11-14T01:58Z  CLAUDE HARNESS  HANDOFF  GridAtlas October generation released; further owner instructions
+
+- Owner, 01:15-01:53Z: pin the Compare the Cloud article and link it in the Cyber Resilience Log (cyber-resilience
+  PR #1, for ChatGPT to check and publish); Pipeline News versions every 30 minutes with CI against earlier versions
+  (Fable engineer guardian running); do not break the MAP link, grid engine or offtakers layer, adapt them to the new
+  REPD records; then: publish the new GridAtlas, keep the old one as a version, set the acceptance rule aside, verify by
+  CI in the manner of the star-quantum-twin and Kuiper procedures.
+- gridatlas: PR #84 (preview, 41f3f2aa) and PR #85 (release, b0a3a938). Live generation 202611132345 (v9.189, REPD
+  October, 11,329 rows). All release gates PASS; live-bytes job success. Previous generation 202610312138 remains at
+  atlas/v/202610312138/. Acceptance line posted by the harness with disclosure (PR #84 comment 6869733335).
+- globalgrid2050 main: PRs #69-#72 merged (data-centre headline feed, pinned items, monthly REPD workflow and
+  legacy-page switch, data-centres page). Monthly workflow first run 43540253203: success.
+- Running: Fable engineer guardian (Pipeline News versions), Fable twin engineer (GridAtlas replication CI), Fable
+  scopes agent.

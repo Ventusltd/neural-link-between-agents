@@ -366,6 +366,37 @@ runs on change only); the 17 MB budget enforced in CI from V9.15 as promised; an
 For the offtakers side of line 16, G1's finding stands as the test: on the preview, a data-centre card should list
 October additions among its nearest REPD sites (check 4 of step 1).
 
+## 2e. Revision 5 (2026-11-14T02:10Z): GridAtlas released; the replication lane
+
+The owner told the harness at 01:52Z to publish a new GridAtlas, keep the old one as a version, set the acceptance rule
+aside, and have CI verify by replication (brief line 17; issue 16, 6869802620). Generation 202611132345 has been the
+live GridAtlas since 01:58Z. This overtakes steps 2 and 3 of the sequence in section 2d. What remains of that sequence:
+
+| Step | Owner | Done when |
+|---|---|---|
+| 1. Live route and preserved version 202610312138 checked in a real browser (the five checks of 6869603567) | ChatGPT | Results on issue 16; a regression means the rollback command in 6869802620 |
+| 4. Guardian re-runs its register check against the live register | Guardian | Marks fall from 97 to the residue, by data |
+| 5. Residue of 3 (refs 2484, 6483, 20218): one point at 2.55 E; the GridAtlas compiler keeps longitudes below 2.5 E (`compile-atlas-v9.py` line 115, per the guardian) | Unowned. This is exactly "adapted to the new REPD additions" (line 16). Proposed: the Twin Engineer records it as a keyed claim with a failing-then-passing check; the bound change itself is a new generation, for the harness | The three refs open a card, or the bound is stated as intended |
+| 6. Release candidate named and promoted; train ends or runs on change | Guardian names; ChatGPT or harness promotes | as before |
+| 7. docs/RELEASE.md steps 6 and 7: homepage label and pin for GridAtlas V9.189, served check | Unowned (harness asked ChatGPT in 6869802620) | Homepage pin names the new generation; served bytes checked |
+
+**Twin Engineer (brief line 17), issue 16.**
+- Outcome: CI in gridatlas that proves the new generation by replication and proves the old ones are untouched.
+- Done when: (1) one page stating, from the star-quantum-twin and kuiper-belt repositories themselves, which of their
+  procedures are being applied and which are not (so "inspired by" is checkable); (2) a twin rebuild of generation
+  202611132345 from the pinned October register (`repd-2026q3.csv` `d937ae16…`, CSV-precision capacity) that must equal
+  the committed files byte for byte, run in CI; (3) a preservation check: every earlier generation and released
+  cartridge, 202610312138 included, has its recorded hashes; (4) a small keyed register of the claims made about the new
+  generation (11,329 rows; search and offtakers re-pinned; lightning unchanged; the 3 refs beyond 2.5 E), each tied to
+  the check that proves it; (5) wired into the existing pr-gate and verify-live where possible; a new workflow only if
+  it cannot be; (6) a negative test: a one-byte change in a generation file fails the twin; (7) patches pass
+  `git apply --check` on gridatlas main `b0a3a938`; HANDOFF on issue 16; files in `FIXES/NL-016/TWIN`.
+- Must not touch: `atlas/current.json`, the MAP link, the grid engine, the offtakers code path (line 16).
+- Simplicity: the twin is one rebuild and one comparison. It does not need the full apparatus of the two source
+  repositories; item (1) is where the lane says what it left out.
+- Overlap: Team 4's P1 gate work (already in the release); the guardian's register check on the Pipeline News side
+  (it reads the registry the twin proves).
+
 ## 3. Scope per lane
 
 ### NL-013, Team 1: source and dataset QA
@@ -576,6 +607,7 @@ Traces to brief lines 3, 4, 5 and 9.
 ## Revisions
 
 - 2026-11-14T00:48Z first issue.
+- 2026-11-14T02:10Z revision 5: brief line 17; GridAtlas released; Twin Engineer scope; sequence of section 2d updated (2e).
 - 2026-11-14T01:50Z revision 4: brief line 16; the star feature as one sequence with owners (section 2d).
 - 2026-11-14T01:29Z revision 3: brief lines 14 and 15; guardian scope with its backlog and a size constraint; line 8b after G1;
   the 'no third folder' cut withdrawn; all earlier lanes handed off.
