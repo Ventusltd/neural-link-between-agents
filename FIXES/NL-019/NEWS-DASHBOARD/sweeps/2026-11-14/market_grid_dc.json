@@ -1,0 +1,137 @@
+[
+  {
+    "date": "2026-09-08",
+    "headline": "UK grid connections reform mishandled, regulator finds",
+    "url": "https://www.pv-magazine.com/2026/09/08/uk-grid-connections-reform-mishandled-regulator-finds/",
+    "source": "pv magazine",
+    "topic": "grid",
+    "status": "searched",
+    "note": "Outside 13-14 Nov window (dated from URL). No top-200 list in repo; no proximity assessed."
+  },
+  {
+    "date": null,
+    "headline": "Ofgem approves NESO's grid connection reforms",
+    "url": "https://www.solarpowerportal.co.uk/solar-projects/ofgem-approves-neso-s-grid-connection-reforms",
+    "source": "Solar Power Portal",
+    "topic": "grid",
+    "status": "searched",
+    "note": "Date not shown in search snippet; not confirmed in window. No top-200 list in repo; no proximity assessed."
+  },
+  {
+    "date": null,
+    "headline": "Ofgem sets out major reform package as next step to accelerate grid connections",
+    "url": "https://www.ofgem.gov.uk/press-release/ofgem-sets-out-major-reform-package-next-step-accelerate-grid-connections",
+    "source": "Ofgem",
+    "topic": "grid",
+    "status": "searched",
+    "note": "Date not shown in search snippet; not confirmed in window. No top-200 list in repo; no proximity assessed."
+  },
+  {
+    "date": null,
+    "headline": "Ofgem proposes new commitment fee to tackle battery storage queue oversubscription",
+    "url": "https://www.bclplaw.com/en-US/events-insights-news/ofgem-proposes-new-commitment-fee-to-tackle-battery-storage-queue-oversubscription.html",
+    "source": "BCLP (law firm briefing)",
+    "topic": "policy",
+    "status": "searched",
+    "note": "Storage queue item; date not confirmed in window. Related Energy-Storage.News piece could not be fetched. No top-200 list in repo; no proximity assessed."
+  },
+  {
+    "date": null,
+    "headline": "Government kicks off latest Contracts for Difference Allocation Round",
+    "url": "https://www.businessgreen.com/news/4533116/government-kicks-contracts-difference-allocation-round",
+    "source": "BusinessGreen",
+    "topic": "policy",
+    "status": "searched",
+    "note": "CfD AR8 timing; date not confirmed in window. No top-200 project or region named. Proximity not assessed."
+  },
+  {
+    "date": null,
+    "headline": "CfD AR8: DESNZ publishes final Allocation Framework and confirms key auction details",
+    "url": "https://cms.law/en/gbr/legal-updates/cfd-ar8-desnz-publishes-final-allocation-framework-and-confirms-key-auction-details",
+    "source": "CMS (law firm briefing)",
+    "topic": "policy",
+    "status": "searched",
+    "note": "CfD AR8 framework; date not confirmed in window. No top-200 project or region named. Proximity not assessed."
+  },
+  {
+    "date": "2026-07-13",
+    "headline": "Nscale's £2 Billion UK AI Data Center Reportedly Faces Grid Delay",
+    "url": "https://www.theenergymag.com/news/market-news/nscale-uk-ai-data-center-delay",
+    "source": "The Energy Mag",
+    "topic": "dc",
+    "status": "searched",
+    "note": "Outside window (dated by page). UK AI data-centre grid delay; no top-200 list in repo, proximity not assessed."
+  },
+  {
+    "date": null,
+    "headline": "Ofgem warns on grid squeeze after Heathrow data centre approved",
+    "url": "https://cityam.com/ofgem-warns-on-grid-squeeze-after-heathrow-data-centre-approved",
+    "source": "City AM",
+    "topic": "dc",
+    "status": "searched",
+    "note": "Greater London / Heathrow area; date not confirmed in window. Straight-line proximity to top-200 projects not assessed."
+  },
+  {
+    "date": null,
+    "headline": "Equinix to invest £3.9 billion in Hertfordshire data campus",
+    "url": "https://itbrief.co.uk/story/equinix-to-invest-gbp-3-9-billion-in-hertfordshire-data-campus",
+    "source": "IT Brief UK",
+    "topic": "dc",
+    "status": "searched",
+    "note": "Hertfordshire region; date not confirmed in window. Straight-line proximity not assessed."
+  },
+  {
+    "date": null,
+    "headline": "UK's Kao Data acquires brownfield site in West London for data center development",
+    "url": "https://www.datacenterdynamics.com/en/news/uks-kao-data-acquires-brownfield-site-in-west-london-for-data-center-development/",
+    "source": "DCD",
+    "topic": "dc",
+    "status": "searched",
+    "note": "West London; date not confirmed in window. No top-200 list in repo; proximity not assessed."
+  },
+  {
+    "date": null,
+    "headline": "UK Budget 2026 data centre covenant",
+    "url": "https://www.pinsentmasons.com/en-gb/out-law/news/uk-budget-2026-data-centre-covenant",
+    "source": "Pinsent Masons Out-Law",
+    "topic": "policy",
+    "status": "searched",
+    "note": "Data-centre grid connection policy; date not confirmed in window. No top-200 project or region named."
+  },
+  {
+    "date": "2026-11-06",
+    "headline": "Chinese PV Industry Brief: JA, Longi, Tongwei report widening losses",
+    "url": "https://www.pv-magazine.com/2026/11/06/chinese-pv-industry-brief-ja-longi-tongwei-report-widening-losses/",
+    "source": "pv magazine",
+    "topic": "china_solar",
+    "status": "searched",
+    "note": "Outside window (dated from URL, before 13 Nov). No UK project named; no top-200 match."
+  },
+  {
+    "date": null,
+    "headline": "Downing to build 40MW private wire solar farm for Kao Data",
+    "url": "https://ground.news/article/downing-to-build-40mw-private-wire-solar-farm-for-kao-data",
+    "source": "Ground News (aggregator)",
+    "topic": "china_solar",
+    "status": "searched",
+    "note": "UK solar-to-data-centre private wire; date not confirmed in window. Proximity not assessed."
+  },
+  {
+    "date": null,
+    "headline": "Metlen sells 119MW UK solar portfolio to Nala Renewables",
+    "url": "https://www.solarpowerportal.co.uk/solar-finance/metlen-sells-119mw-uk-solar-portfolio-to-nala-renewables",
+    "source": "Solar Power Portal",
+    "topic": "grid",
+    "status": "searched",
+    "note": "UK solar portfolio transaction; date not confirmed in window. No top-200 project named."
+  },
+  {
+    "date": null,
+    "headline": "BBC News UK solar, battery and grid connection coverage",
+    "url": null,
+    "source": "BBC News",
+    "topic": "grid",
+    "status": "not_searched",
+    "note": "WebSearch call returned HTTP 400 from the search proxy; not retried, as the 10-call batch was already used."
+  }
+]

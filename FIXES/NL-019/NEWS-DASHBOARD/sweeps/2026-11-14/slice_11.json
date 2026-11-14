@@ -1,0 +1,46 @@
+[
+  {
+    "ref_id": "8162",
+    "project": "Longfield",
+    "date": null,
+    "headline": "UK government grants development consent order for EDF Renewables' solar farm in Essex",
+    "url": "https://www.solarpowerportal.co.uk/energy-policy/uk-government-grants-development-consent-order-for-edf-renewables-solar-farm-in-essex",
+    "source": "Solar Power Portal",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Older consent story, not in the 24h window; no in-window item found. Date not shown in results."
+  },
+  {
+    "ref_id": "14098",
+    "project": "Fenwick Solar Farm & Battery Storage",
+    "date": "2026-02-19",
+    "headline": "Fenwick solar farm secures planning for approval",
+    "url": "https://www.energyglobal.com/solar/19022026/fenwick-solar-farm-secures-planning-for-approval/",
+    "source": "Energy Global",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Older consent story, not in window. Date taken from the URL path, not the page. No in-window item found."
+  },
+  {
+    "ref_id": "10541",
+    "project": "Benthead Farm - Solar Farm & Battery Storage",
+    "date": "2024-10-28",
+    "headline": "Aukera Energy receives planning consent for solar and BESS projects",
+    "url": "https://www.energyglobal.com/solar/28102024/aukera-energy-receives-planning-consent-for-solar-and-bess-projects",
+    "source": "Energy Global",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Headline does not name Benthead or the REPD operator (Locogen); name-level match only. Date taken from the URL path. Not in window."
+  },
+  {
+    "ref_id": "8007",
+    "project": "Bramford Solar Farm",
+    "date": null,
+    "headline": "Bramford residents react as solar farm approved",
+    "url": "https://eadt.co.uk/news/23820930.bramford-residents-react-solar-farm-approved",
+    "source": "East Anglian Daily Times",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Site named but operator (Bramford Green) not named; date not shown. Not in window."
+  }
+]

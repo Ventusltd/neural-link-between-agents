@@ -1,0 +1,156 @@
+[
+  {
+    "ref_id": "10914",
+    "project": "Cottam Solar Project",
+    "date": null,
+    "headline": "British government approves record-breaking Cottam Solar Project",
+    "url": "https://oenergetice.cz/en/renewable-energy/british-government-approves-record-breaking-cottam-solar-project",
+    "source": "oenergetice.cz",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "2024 consent story, undated in result, outside the 24h window. No new item found."
+  },
+  {
+    "ref_id": "9904",
+    "project": "Mallard Pass Solar Farm",
+    "date": null,
+    "headline": "Windel Energy and Recurrent Energy JV granted permit for 350 MW Mallard Pass solar farm in England",
+    "url": "https://energymagz.com/23111/windel-energy-and-recurrent-energy-jv-granted-permit-for-350-mw-mallard-pass-solar-farm-in-england/?amp=1",
+    "source": "energymagz.com",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "2024-era consent story, outside the 24h window."
+  },
+  {
+    "ref_id": "9904",
+    "project": "Mallard Pass Solar Farm",
+    "date": null,
+    "headline": "Quinbrook to take on 350MW Mallard Pass solar NSIP",
+    "url": "https://www.solarpowerportal.co.uk/solar-projects/quinbrook-to-take-on-350mw-mallard-pass-solar-nsip",
+    "source": "solarpowerportal.co.uk",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Ownership-change story, undated in result. Could bear on the operator field in the slice; not dated within the window."
+  },
+  {
+    "ref_id": "12997",
+    "project": "Craig y Perthi Solar Farm",
+    "date": null,
+    "headline": "Solar farm plan refused on ecological grounds",
+    "url": "https://www.magzter.com/de/stories/newspaper/Western-Mail/SOLAR-FARM-PLAN-REFUSED-ON-ECOLOGICAL-GROUNDS",
+    "source": "Western Mail (via Magzter)",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Refusal headline does not name the site and is undated. Slice lists JBM as operator; RWE-hosted project documents in the results name RWE. Operator needs checking."
+  },
+  {
+    "ref_id": "10800",
+    "project": "Tregonning Farm - Solar Farm & Battery Storage",
+    "date": "2026-05-29",
+    "headline": "European Energy launches Cornwall's 67.96 MW solar farm with 95 MWh battery storage, aiming for 2027 grid connection",
+    "url": "https://solarquarter.com/2026/05/29/european-energy-launches-cornwalls-67-96-mw-solar-farm-with-95-mwh-battery-storage-aiming-for-2027-grid-connection/",
+    "source": "solarquarter.com",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Operator, county, capacity and BESS all match the slice. Dated May 2026, outside the 24h window."
+  },
+  {
+    "ref_id": "10800",
+    "project": "Tregonning Farm - Solar Farm & Battery Storage",
+    "date": "2026-08-12",
+    "headline": "European Energy secures GBP 58.1 million financing for UK solar-battery project",
+    "url": "https://solarquarter.com/2026/08/12/european-energy-secures-gbp-58-1-million-financing-for-uk-solar-battery-project/",
+    "source": "solarquarter.com",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Financing news dated 12 Aug 2026. Site not named in headline, so the link to Tregonning is inferred. Outside the window."
+  },
+  {
+    "ref_id": "20991",
+    "project": "Conesby Solar Farm",
+    "date": null,
+    "headline": "Renewables firm Rivington Energy plans Lincolnshire solar-powered data centre",
+    "url": "https://www.pulse.bot/climatetech/news/renewables-firm-rivington-energy-plans-lincolnshire-solar-powered-data-centre-fc847b94-af19-4705-b355-d356907180b1/",
+    "source": "pulse.bot",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Undated aggregator item linking the operator to a Lincolnshire solar-powered data centre plan. Site name not in headline. Straight-line proximity screening not done. No data-centre register content used."
+  },
+  {
+    "ref_id": "9441",
+    "project": "Ashorne Hill - Solar Farm",
+    "date": null,
+    "headline": "JBM Solar receives planning permission for 49.9MW project in Ashorne",
+    "url": "https://www.solarpowerportal.co.uk/solar-projects/jbm-solar-receives-planning-permission-for-49-9mw-project-in-ashorne",
+    "source": "solarpowerportal.co.uk",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Consent story, undated in result. A separate undated headline reports Vantage RE acquiring 102MWp of sites from JBM Solar; check whether Ashorne is included."
+  },
+  {
+    "ref_id": "15452",
+    "project": "Pilmoor Solar Farm",
+    "date": null,
+    "headline": "ZB23 02461 FUL Pilmoor AR Final (planning committee report)",
+    "url": "https://edemocracy.northyorks.gov.uk/documents/s37688/ZB23-02461-FUL%20Pilmoor%20AR%20Final%20VM%20format.pdf",
+    "source": "North Yorkshire Council (committee papers)",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Committee report for ZB23/02461/FUL, the planning reference in the REPD row. No 24h news found. Register date not shown in the result."
+  },
+  {
+    "ref_id": "7256",
+    "project": "The Grange",
+    "date": null,
+    "headline": "The Grange Solar (Lightsource BP project page)",
+    "url": "https://lightsourcebp.com/au/project/the-grange-solar/",
+    "source": "lightsourcebp.com",
+    "tier": "official",
+    "confidence": "confirmed",
+    "note": "Official project page for an operational site. No 24h news found. Planning ref 19/01408/FULM not checked on the Newark and Sherwood register."
+  },
+  {
+    "ref_id": "7954",
+    "project": "Crick Road",
+    "date": null,
+    "headline": "Massive solar farm granted planning permission by councillors",
+    "url": "https://www.daventryexpress.co.uk/news/politics/massive-solar-farm-granted-planning-permission-councillors-3041072",
+    "source": "Daventry Express",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Headline does not name Crick Road, so the link is inferred. Undated. Planning ref DA/2020/0200 not checked on the register."
+  },
+  {
+    "ref_id": "7954",
+    "project": "Crick Road",
+    "date": null,
+    "headline": "Crick Road solar farm",
+    "url": "https://gem.wiki/Crick_Road_solar_farm",
+    "source": "Global Energy Monitor wiki",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Reference wiki entry, not news. Confirms the site name. No 24h news found."
+  },
+  {
+    "ref_id": "8185",
+    "project": "Feldon Vale Solar Farm",
+    "date": null,
+    "headline": "Feldon Vale Solar Farm (Low Carbon portfolio page)",
+    "url": "https://www.lowcarbon.com/portfolio/projects/solar/feldon-vale-solar-farm",
+    "source": "lowcarbon.com",
+    "tier": "official",
+    "confidence": "confirmed",
+    "note": "Official portfolio page. A separate undated headline reports Low Carbon connecting 129 MW of solar; it may include this site, which is not confirmed. No 24h news found."
+  },
+  {
+    "ref_id": "8526",
+    "project": "Leaps Rigg - Solar Farm",
+    "date": null,
+    "headline": "Leaps Rigg solar PV park, UK: power plant profile",
+    "url": "https://www.power-technology.com/marketdata/power-plant-profile-leaps-rigg-solar-pv-park-uk/",
+    "source": "power-technology.com",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Data profile, not news. No 24h news found. Planning ref 23/0415 not checked on the Cumberland register."
+  }
+]

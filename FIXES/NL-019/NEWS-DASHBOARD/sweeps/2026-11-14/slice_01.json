@@ -1,0 +1,222 @@
+[
+  {
+    "ref_id": "12588",
+    "project": "Botley West Solar Project",
+    "date": null,
+    "headline": "Botley West Solar Project: national infrastructure consenting page (EN010147)",
+    "url": "https://national-infrastructure-consenting.planninginspectorate.gov.uk/projects/EN010147",
+    "source": "planninginspectorate.gov.uk",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "No 24h news found. Planning Inspectorate NSIP page matches REPD ref EN010147; seen in search listing only, not opened."
+  },
+  {
+    "ref_id": "12588",
+    "project": "Botley West Solar Project",
+    "date": null,
+    "headline": "Botley West's planning consent deadline extended",
+    "url": "https://www.solarpowerportal.co.uk/solar-projects/botley-west-s-planning-consent-deadline-extended",
+    "source": "solarpowerportal.co.uk",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Undated in search results, so outside the 24h window. Headline names the same site."
+  },
+  {
+    "ref_id": "17701",
+    "project": "Light Valley Solar, Selby Road",
+    "date": null,
+    "headline": "Application submitted for 500MW Light Valley Solar scheme",
+    "url": "https://thenortherneco.substack.com/p/application-submitted-for-500mw-light",
+    "source": "thenortherneco.substack.com",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Undated; no 24h item found. Headline names the same scheme and capacity."
+  },
+  {
+    "ref_id": "17701",
+    "project": "Light Valley Solar, Selby Road",
+    "date": null,
+    "headline": "EN0110012 Light Valley Solar: national infrastructure consenting page",
+    "url": "https://national-infrastructure-consenting.planninginspectorate.gov.uk/projects/EN0110012?lang=en",
+    "source": "planninginspectorate.gov.uk",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Planning Inspectorate page matches REPD ref EN0110012; seen in search listing only, not opened."
+  },
+  {
+    "ref_id": "14550",
+    "project": "Dean Moor Solar Farm & Battery Storage",
+    "date": "2026-07-06",
+    "headline": "FVS Dean Moor Ltd receives development consent for Dean Moor solar farm",
+    "url": "https://www.energyglobal.com/solar/06072026/fvs-dean-moor-ltd-receives-development-consent-for-dean-moor-solar-farm/",
+    "source": "energyglobal.com",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Development consent granted, July 2026, outside the 24h window. Date taken from the URL path, not the article. Not new news."
+  },
+  {
+    "ref_id": "12117",
+    "project": "Cowbridge Road, Bicker Fen - Solar Array",
+    "date": null,
+    "headline": "Trinasolar ISBU acquires 50% stake in UK's Bicker Fen solar project",
+    "url": "https://www.pv-tech.org/industry-updates/trinasolar-isbu-acquires-50-stake-in-uks-bicker-fen-solar-project",
+    "source": "pv-tech.org",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Name-only match. Not confirmed as this 75MW South Holland site; a separate Bicker Fen NSIP (EN010151) also name-matches. Undated."
+  },
+  {
+    "ref_id": "12117",
+    "project": "Cowbridge Road, Bicker Fen - Solar Array",
+    "date": null,
+    "headline": "South Holland planning application H04-0849-22: not located",
+    "url": null,
+    "source": "South Holland planning register",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Search did not return H04-0849-22. Hits were other references (e.g. H04/0769/24), so no planning record is cited."
+  },
+  {
+    "ref_id": "14994",
+    "project": "Stirling Battery and Solar Energy Park",
+    "date": null,
+    "headline": "Stirling Battery and Solar Energy Park: no news or ECU record found",
+    "url": null,
+    "source": "Energy Consents Unit (not reached)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "No EcoDev Stirling item in search results; ECU00005014 not located. Needs a direct Energy Consents Unit register check."
+  },
+  {
+    "ref_id": "8350",
+    "project": "Broadway House Farm Solar Farm",
+    "date": null,
+    "headline": "Committee report 23/02205/RENE (Northumberland)",
+    "url": "https://northumberland.moderngov.co.uk/documents/s17367/2302205RENE.pdf",
+    "source": "northumberland.moderngov.co.uk",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Council committee report matches REPD ref 23/02205/RENE; not opened, seen in search listing."
+  },
+  {
+    "ref_id": "8350",
+    "project": "Broadway House Farm Solar Farm",
+    "date": null,
+    "headline": "Bluefield Renewable Developments gains approval for 49.9 MW solar farm and 60 MW battery storage in Northumberland",
+    "url": "https://energymagz.com/12498/bluefield-renewable-developments-gains-approval-for-49-9-mw-solar-farm-and-60-mw-battery-storage-in-northumberland",
+    "source": "energymagz.com",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Undated, so not in the 24h window. Operator, county and MW match; the article adds a 60 MW BESS that the REPD row does not show."
+  },
+  {
+    "ref_id": "12162",
+    "project": "Winterton Road, Roxby - Solar Farm",
+    "date": null,
+    "headline": "PA/2024/129 planning record (North Lincolnshire)",
+    "url": "https://planning-records.uk/northlincs/2024/pa2024129",
+    "source": "planning-records.uk",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Mirror register page matches the ref in the URL; not opened. No 24h news found."
+  },
+  {
+    "ref_id": "2088",
+    "project": "West Raynham",
+    "date": null,
+    "headline": "Bluefield Solar seals £56.5 million Norfolk solar farm purchase",
+    "url": "https://www.solarpowerportal.co.uk/utility-scale-solar/bluefield-solar-seals-56-5-million-norfolk-solar-farm-purchase",
+    "source": "solarpowerportal.co.uk",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Undated. Consistent with the operational 49.9MW West Raynham site, but the headline does not name West Raynham."
+  },
+  {
+    "ref_id": "2088",
+    "project": "West Raynham",
+    "date": null,
+    "headline": "North Norfolk planning PF/13/1166: not located",
+    "url": null,
+    "source": "North Norfolk planning register",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "PF/13/1166 not returned. The nearest hit, PF190893, is a different application and is not cited."
+  },
+  {
+    "ref_id": "7802",
+    "project": "Chosley Farm, North Warnborough Solar Farm and Battery storage",
+    "date": null,
+    "headline": "Hart planning 20/03185/FUL: not located",
+    "url": null,
+    "source": "Hart District planning register",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "No news found. Hart hits were other references (2402473AMCON, 2500324AMCON), not cited as this application."
+  },
+  {
+    "ref_id": "8091",
+    "project": "Cowley House Solar Farm",
+    "date": "2024-04-26",
+    "headline": "Sonnedix begins construction of its largest UK solar PV plant",
+    "url": "https://www.energyglobal.com/solar/26042024/sonnedix-begins-construction-of-its-largest-uk-solar-pv-plant/amp/",
+    "source": "energyglobal.com",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Construction news from April 2024, outside the window. Name-level match to the Cowley complex; REPD operator is Unknown. Date taken from the URL path."
+  },
+  {
+    "ref_id": "8091",
+    "project": "Cowley House Solar Farm",
+    "date": null,
+    "headline": "DM/20/01991/FPA (Durham): register not checked",
+    "url": null,
+    "source": "County Durham planning register",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Register not checked because the WebSearch budget ran out in this turn. Needs a follow-up run."
+  },
+  {
+    "ref_id": "8494",
+    "project": "Warren Farm Solar Farm & Battery Storage",
+    "date": null,
+    "headline": "Warren Solar Farm project timeline",
+    "url": "https://ensoenergy.co.uk/projects/warren-solar-farm/",
+    "source": "ensoenergy.co.uk",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Operator's own project page, undated; no 24h news. Not a news item."
+  },
+  {
+    "ref_id": "8494",
+    "project": "Warren Farm Solar Farm & Battery Storage",
+    "date": null,
+    "headline": "Doncaster planning 21/02567/FULM: not located",
+    "url": null,
+    "source": "Doncaster planning register",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Reference not returned by search. Doncaster 2023 committee papers in the results did not clearly match, so none is cited."
+  },
+  {
+    "ref_id": "9053",
+    "project": "Worlds End Solar Farm",
+    "date": null,
+    "headline": "Item 2 S.211210FUL DCC Report (Stroud)",
+    "url": "https://stroud.moderngov.co.uk/documents/s9532/Item%202%20S.211210FUL%20DCC%20Report.pdf",
+    "source": "stroud.moderngov.co.uk",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Committee report matches REPD ref S.21/1210/FUL; not opened, seen in search listing."
+  },
+  {
+    "ref_id": "9053",
+    "project": "Worlds End Solar Farm",
+    "date": null,
+    "headline": "New solar energy park near Stroud gets the go ahead",
+    "url": "https://www.soglos.com/news/business/new-solar-energy-park-near-stroud-gets-the-go-ahead/21815",
+    "source": "soglos.com",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Undated. Location matches Stroud, but the headline does not name World's End."
+  }
+]

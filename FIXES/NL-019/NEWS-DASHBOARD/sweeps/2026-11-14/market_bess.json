@@ -1,0 +1,112 @@
+[
+  {
+    "date": null,
+    "headline": "Ofgem moves to free up grid capacity by tackling excess battery projects",
+    "url": "https://www.ofgem.gov.uk/press-release/ofgem-moves-free-grid-capacity-tackling-excess-battery-projects",
+    "source": "Ofgem",
+    "topic": "policy",
+    "region": "GB",
+    "confidence": "confirmed",
+    "status": "searched",
+    "note": "Regulator press release; search result undated, not shown to fall in 13-14 Nov window."
+  },
+  {
+    "date": null,
+    "headline": "Pulse Clean Energy secures $292m for six UK battery storage systems",
+    "url": "https://finance.yahoo.com/news/pulse-clean-energy-secures-292m-105808601.html",
+    "source": "Yahoo Finance",
+    "topic": "bess_finance",
+    "region": "GB",
+    "confidence": "possible",
+    "status": "searched",
+    "note": "Headline only; date not shown in search result."
+  },
+  {
+    "date": null,
+    "headline": "Batteries awarded 1.22 GW in UK capacity market auction for 2029 delivery",
+    "url": "https://www.ess-news.com/?p=8383",
+    "source": "ESS News",
+    "topic": "market",
+    "region": "GB",
+    "confidence": "possible",
+    "status": "searched",
+    "note": "Capacity Market result; date not shown in search result."
+  },
+  {
+    "date": null,
+    "headline": "UK BESS project approvals for ILI, Aukera, Apatura, Lightsource bp and data centre",
+    "url": "https://www.energy-storage.news/uk-bess-project-approvals-for-ili-aukera-apatura-lightsource-bp-and-data-centre",
+    "source": "Energy-Storage.news",
+    "topic": "bess_planning",
+    "region": "GB",
+    "confidence": "possible",
+    "status": "searched",
+    "note": "Headline names no site or reference; not confirmed. Data-centre proximity not screened (no coordinates available)."
+  },
+  {
+    "date": null,
+    "headline": "Field's 200MW/3.6GWh BESS project secures planning approval",
+    "url": "https://www.solarpowerportal.co.uk/battery-storage/field-s-200mw-3-6gwh-bess-project-secures-planning-approval",
+    "source": "Solar Power Portal",
+    "topic": "bess_planning",
+    "region": "GB (region not stated in headline)",
+    "confidence": "possible",
+    "status": "searched",
+    "note": "Headline names no site or reference; date not shown in search result."
+  },
+  {
+    "date": "2026-08-24",
+    "headline": "A 3.6 GWh, 18-hour lithium-ion BESS project has secured planning consent in Scotland",
+    "url": "https://www.ess-news.com/2026/08/24/a-3-6-gwh-18-hour-lithium-ion-bess-project-has-secured-planning-consent-in-scotland/",
+    "source": "ESS News",
+    "topic": "bess_planning",
+    "region": "Scotland",
+    "confidence": "possible",
+    "status": "searched",
+    "note": "Dated 24 Aug 2026, outside the sweep window; headline names no site or reference."
+  },
+  {
+    "date": "2026-08-19",
+    "headline": "Blocked BESS in Britain: Clearstone's appeal fails for 150 MW site at Axminster",
+    "url": "https://www.ess-news.com/2026/08/19/blocked-bess-in-britain-clearstones-appeal-fails-for-150-mw-site-at-axminster/",
+    "source": "ESS News",
+    "topic": "bess_planning",
+    "region": "England",
+    "confidence": "possible",
+    "status": "searched",
+    "note": "Dated 19 Aug 2026, outside the sweep window; names site (Axminster) but no planning reference."
+  },
+  {
+    "date": "2026-09-10",
+    "headline": "Scottish government approves two BESS projects totaling 10 GWh in one day",
+    "url": "https://www.ess-news.com/2026/09/10/scottish-government-approves-two-bess-projects-totaling-10-gwh-in-one-day/",
+    "source": "ESS News",
+    "topic": "bess_planning",
+    "region": "Scotland",
+    "confidence": "possible",
+    "status": "searched",
+    "note": "Dated 10 Sep 2026, outside the sweep window; no site or reference in headline."
+  },
+  {
+    "date": "2026-05-07",
+    "headline": "Short circuit in nickel manganese cobalt batteries causes fire at UK BESS project",
+    "url": "https://www.pv-magazine.com/2026/05/07/short-circuit-in-nickel-manganese-cobalt-batteries-causes-fire-at-uk-bess-project/",
+    "source": "pv magazine",
+    "topic": "bess_safety",
+    "region": "GB (site not named in headline)",
+    "confidence": "possible",
+    "status": "searched",
+    "note": "Dated 7 May 2026, outside the sweep window; no fire in 13-14 Nov found in results."
+  },
+  {
+    "date": "2026-07-06",
+    "headline": "Ofgem approves rule changes for UK frequency response markets",
+    "url": "https://www.ess-news.com/2026/07/06/ofgem-approves-rule-changes-for-uk-frequency-response-markets/",
+    "source": "ESS News",
+    "topic": "policy",
+    "region": "GB",
+    "confidence": "possible",
+    "status": "searched",
+    "note": "Ancillary-service policy; dated 6 Jul 2026, outside the sweep window."
+  }
+]

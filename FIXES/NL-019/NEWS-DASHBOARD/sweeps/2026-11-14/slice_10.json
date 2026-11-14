@@ -1,0 +1,101 @@
+[
+  {
+    "ref_id": "7188",
+    "project": "Sunnica Energy Farm (East and West)",
+    "date": null,
+    "headline": "Sunnica 500MW solar farm decision deadline further delayed",
+    "url": "https://www.solarpowerportal.co.uk/utility-scale-solar/sunnica-500mw-solar-farm-decision-deadline-further-delayed",
+    "source": "Solar Power Portal",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Names the same 500MW site and operator. Date not shown in the search result, so not verified as inside the 13-14 Nov window."
+  },
+  {
+    "ref_id": "7188",
+    "project": "Sunnica Energy Farm (East and West)",
+    "date": null,
+    "headline": "Sunnica Energy Farm project page (EN010106)",
+    "url": "https://national-infrastructure-consenting.planninginspectorate.gov.uk/projects/EN010106",
+    "source": "Planning Inspectorate (National Infrastructure)",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Official register page for the same DCO reference from the REPD row."
+  },
+  {
+    "ref_id": "15000",
+    "project": "Peartree Hill Solar Farm",
+    "date": "2026-07-02",
+    "headline": "Development consent order granted for RWE's Peartree Hill solar farm project",
+    "url": "https://uk.rwe.com/press-and-news/2026-07-02-development-consent-order-granted-for-rwes-peartree-hill-solar-farm-project/",
+    "source": "RWE",
+    "tier": "official",
+    "confidence": "confirmed",
+    "note": "Operator press release on DCO grant; dated 2 July 2026, so outside the window."
+  },
+  {
+    "ref_id": "14193",
+    "project": "Rogerhill Solar and Battery Energy Storage System",
+    "date": null,
+    "headline": "Qair secures consent for Scotland's largest approved solar farm at Rogerhill",
+    "url": "https://www.energy-pedia.com/news/united-kingdom/qair-secures-consent-for-scotland%E2%80%99s-largest-approved-solar-farm-at-rogerhill-205435",
+    "source": "Energy-Pedia",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Site name matches, but the headline names Qair while REPD lists Green Switch Capital as operator. Undated."
+  },
+  {
+    "ref_id": "6341",
+    "project": "Milltown Airfield (Speyslaw)",
+    "date": null,
+    "headline": "Scotland's largest solar farm approved with more to follow from Elgin",
+    "url": "https://www.solarpowerportal.co.uk/solar-projects/scotland-s-largest-solar-farm-approved-with-more-to-follow-from-elgin",
+    "source": "Solar Power Portal",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Names Elgin, but the headline does not name Milltown or Speyslaw. Undated."
+  },
+  {
+    "ref_id": "9509",
+    "project": "Hall Farm Solar Farm",
+    "date": null,
+    "headline": "Colossal solar farm covering hundreds of acres planned for Derbyshire farmland",
+    "url": "https://www.derbyshiretimes.co.uk/news/people/colossal-solar-farm-covering-hundreds-acres-planned-derbyshire-farmland-3119698",
+    "source": "Derbyshire Times",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Derbyshire location only; the headline names neither Hall Farm nor Kronos. REPD status is Application Refused, which conflicts with the 'planned' framing. Undated."
+  },
+  {
+    "ref_id": "7425",
+    "project": "Hatherden Farm",
+    "date": "2025-10-22",
+    "headline": "NextEnergy Capital energises 60 MW Hatherden solar farm",
+    "url": "https://solarquarter.com/2025/10/22/nextenergy-capital-energizes-60-mw-hatherden-solar-farm-neuk-i-portfolio-nears-1-gw-in-the-uk/",
+    "source": "SolarQuarter",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Site name matches. Operator is NextEnergy in the headline and Nextpower SPV 10 Limited in REPD. Energised in Oct 2025, so outside the window."
+  },
+  {
+    "ref_id": "8529",
+    "project": "Burtree Lane - Solar farm",
+    "date": null,
+    "headline": "Darlington Borough approves development of 50 MW solar project in Burtree Lane",
+    "url": "https://ippjournal.com/update/darlington-borough-approves-development-of-50-mw-solar-project-in-burtree-lane",
+    "source": "IPP Journal",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Names the same site and council. Date not shown in the search result, so not verified as inside the window."
+  },
+  {
+    "ref_id": "8529",
+    "project": "Burtree Lane - Solar farm",
+    "date": null,
+    "headline": "2200213FUL Burtree Lane Solar Farm (committee report)",
+    "url": "https://democracy.darlington.gov.uk/documents/s17471/2200213FUL%20Burtree%20Lane%20Solar%20Farm.pdf",
+    "source": "Darlington Borough Council",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Council committee report for the REPD planning reference 22/00213/FUL. Date not shown in the search result."
+  }
+]

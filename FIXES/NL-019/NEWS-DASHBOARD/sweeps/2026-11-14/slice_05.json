@@ -1,0 +1,189 @@
+[
+  {
+    "ref_id": "15866",
+    "project": "Meridian Solar Farm - Solar Farm",
+    "date": "2026-07-23",
+    "headline": "EN010169 Procedural Decision, 23 July 2026 (PINS document library)",
+    "url": "https://nsip-documents.planninginspectorate.gov.uk/published-documents/EN010169-000443-Procedural%20Decision%2023%20July%202026.pdf",
+    "source": "Planning Inspectorate (NSIP register)",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Planning file check. No news item in the 24h window found; the PINS register lists the EN010169 examination documents."
+  },
+  {
+    "ref_id": "13599",
+    "project": "Beacon Fen Energy Park",
+    "date": "2026-08-24",
+    "headline": "Low Carbon secures consent for Beacon Fen energy park in UK",
+    "url": "https://renewablewatch.in/2026/08/24/low-carbon-secures-consent-for-beacon-fen-energy-park-in-uk/",
+    "source": "Renewable Watch",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Development consent granted, dated August 2026. Outside the 24h window; background only."
+  },
+  {
+    "ref_id": "13599",
+    "project": "Beacon Fen Energy Park",
+    "date": null,
+    "headline": "Beacon Fen Energy Park: project decision on application for development consent",
+    "url": "https://www.gov.uk/government/publications/beacon-fen-energy-park-project-decision-on-application-for-development-consent-under-the-planning-act-2008",
+    "source": "GOV.UK",
+    "tier": "official",
+    "confidence": "confirmed",
+    "note": "Official decision page. Date not shown in the search result; no in-window item found."
+  },
+  {
+    "ref_id": "14543",
+    "project": "Tealing Solar Energy Park - Phase 2",
+    "date": null,
+    "headline": "Tealing Solar Energy Park Phase 2: Scottish ECU register entry not surfaced",
+    "url": null,
+    "source": "Scottish Government Energy Consents Unit (ECU00004882)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Planning file check. Search did not reach the ECU record; no news item in the 24h window found."
+  },
+  {
+    "ref_id": "14301",
+    "project": "Lower Bodachra - Solar Panels",
+    "date": null,
+    "headline": "Lower Bodachra solar panels: Scottish ECU register entry not surfaced",
+    "url": null,
+    "source": "Scottish Government Energy Consents Unit (ECU00004848)",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Planning file check. Search did not reach the ECU record; no news item in the 24h window found."
+  },
+  {
+    "ref_id": "20388",
+    "project": "Berden Hall Solar Farm",
+    "date": "2026-05-13",
+    "headline": "British Solar Renewables acquires 56 MWp Berden solar farm in Essex",
+    "url": "https://solarquarter.com/2026/05/13/british-solar-renewables-acquires-56-mwp-berden-solar-farm-in-essex-to-expand-uk-clean-energy-portfolio/",
+    "source": "SolarQuarter",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Names Berden and British Solar Renewables. Article places the site in Essex; REPD says Hertfordshire. Outside the 24h window."
+  },
+  {
+    "ref_id": "20388",
+    "project": "Berden Hall Solar Farm",
+    "date": null,
+    "headline": "S62A Berden Hall Farm committee report (Uttlesford)",
+    "url": "https://uttlesford.moderngov.co.uk/documents/s29149/6.%20S62A%20Berden%20Hall%20Farm.pdf",
+    "source": "Uttlesford District Council",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Planning file check. Reference UTT/22/2046/PINS not matched; the related file is S62A/22/0006. No in-window item found."
+  },
+  {
+    "ref_id": "9273",
+    "project": "South Fambridge Hall - Solar farm & Battery storage",
+    "date": null,
+    "headline": "British Solar Renewables gets green light for 50MW Essex solar farm",
+    "url": "https://www.solarpowerportal.co.uk/news/british_solar_renewables_gets_green_light_for_50mw_essex_solar_farm",
+    "source": "Solar Power Portal",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Undated. Headline does not name South Fambridge; operator and capacity fit. Not in window."
+  },
+  {
+    "ref_id": "9273",
+    "project": "South Fambridge Hall - Solar farm & Battery storage",
+    "date": null,
+    "headline": "21/00605/FUL South Fambridge Hall: Rochford register entry not surfaced",
+    "url": null,
+    "source": "Rochford District Council",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Planning file check. Search returned only weekly lists; no in-window item found."
+  },
+  {
+    "ref_id": "15072",
+    "project": "Rookery Farm, Kimbolton Road - Solar Farm",
+    "date": null,
+    "headline": "24/00883FUL final report (Development Management Committee)",
+    "url": "https://democracy.huntingdonshire.gov.uk/Moderngov/documents/s140524/24%2000883FUL%20FINAL%20REPORT.pdf",
+    "source": "Huntingdonshire District Council",
+    "tier": "planning_file",
+    "confidence": "confirmed",
+    "note": "Planning file check. Reference matches the committee report title; no in-window news found."
+  },
+  {
+    "ref_id": "6071",
+    "project": "Porth Wen",
+    "date": null,
+    "headline": "EDF starts the construction of Burwell and Porth Wen solar projects",
+    "url": "https://ippjournal.com/update/edf-starts-the-construction-of-burwell-and-porth-wen-solar-projects",
+    "source": "IPP Journal",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Undated in search result. Names Porth Wen and EDF. Not in window."
+  },
+  {
+    "ref_id": "6071",
+    "project": "Porth Wen",
+    "date": null,
+    "headline": "20C310B/EIA/RE Porth Wen: Anglesey register entry not surfaced",
+    "url": null,
+    "source": "Isle of Anglesey County Council",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Planning file check. Search did not reach the reference; no in-window item found."
+  },
+  {
+    "ref_id": "7936",
+    "project": "Nuneham Courtenay Solar Farm & Battery Storage Facility",
+    "date": null,
+    "headline": "P20/S4360/FUL Nuneham Courtenay: South Oxfordshire register entry not surfaced",
+    "url": null,
+    "source": "South Oxfordshire District Council",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Planning file check. Search returned committee papers for other files only; no in-window item found."
+  },
+  {
+    "ref_id": "8136",
+    "project": "Kemble Wick",
+    "date": null,
+    "headline": "Aura Power Secures $39 Million Project Financing for Kemble Solar Project",
+    "url": "https://mercomindia.com/aura-power-secures-39-million-project-financing-for-kemble-solar-project",
+    "source": "Mercom India",
+    "tier": "archive",
+    "confidence": "confirmed",
+    "note": "Undated in search result. Names Kemble and Aura Power. Not in window."
+  },
+  {
+    "ref_id": "8136",
+    "project": "Kemble Wick",
+    "date": null,
+    "headline": "Item 02: Land at Grid Ref 39811 195688 Kemble Wick (Cotswold committee)",
+    "url": "https://meetings.cotswold.gov.uk/documents/s3316/Item%2002%20-%20Land%20at%20Grid%20Ref%2039811%20195688%20Kemble%20Wick.pdf",
+    "source": "Cotswold District Council",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Planning file check. Committee item for Kemble Wick; PL/2021/06919 not verified on the document. No in-window item found."
+  },
+  {
+    "ref_id": "8508",
+    "project": "Elms Farm - Hinckley Solar Farm & Battery Storage",
+    "date": "2024-11-27",
+    "headline": "Innova energises 27.8MWp Elms Farm solar park",
+    "url": "https://www.solarpowerportal.co.uk/solar-projects/innova-energises-27-8mwp-elms-farm-solar-park",
+    "source": "Solar Power Portal",
+    "tier": "archive",
+    "confidence": "possible",
+    "note": "Names Elms Farm, but the operator is Innova, not Low Carbon UK Solar Investment. Not in window."
+  },
+  {
+    "ref_id": "8508",
+    "project": "Elms Farm - Hinckley Solar Farm & Battery Storage",
+    "date": null,
+    "headline": "R21/0622 Elms Farm: Rugby register entry not surfaced",
+    "url": null,
+    "source": "Rugby Borough Council",
+    "tier": "planning_file",
+    "confidence": "possible",
+    "note": "Planning file check. Search did not reach the reference; no in-window item found."
+  }
+]

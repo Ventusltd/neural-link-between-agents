@@ -213,3 +213,13 @@ STATUS: both pull requests merged; data file live on its branch; the homepage ha
   confirmation of a scheduled run.
 - No further entries are expected from this audit pass. A later pass should add: the browser check, the ruling on
   the matching rule, the first scheduled run, and the homepage move.
+
+## 2026-11-14 news sweep (window 13 Nov 15:00 UTC to 14 Nov)
+
+- First pass: 18 slice agents. Slices 01 to 08 searched. Slices 09 to 18 blocked by the 200-call per-turn WebSearch budget.
+- Rerun: 10 agents for slices 09 to 18, 110 projects, all searched. Recent news confirmed in window: 0.
+- Market sweeps: grid and data centres (10 searches); BESS (10 searches). No dated in-window items confirmed.
+- Models: Opus and Fable requests fell back to Haiku 5.5 for every agent. Recorded here so the next reader does not assume Opus output.
+- Planning-register checks: not run. Open.
+- Outputs: FIXES/NL-019/NEWS-DASHBOARD/sweeps/2026-11-14/ (README.md and all JSON files).
+- Repos not yet used this turn: Ventusltd/spiders and kuiper-belt (added read-only), cosmic and cvaa (found, not read). No periodic-table repo matched the name search.
