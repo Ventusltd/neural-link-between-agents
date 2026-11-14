@@ -86,3 +86,37 @@ STATUS: PASS with limits stated below.
   rows.
 - Fable A reported pull request #95 in Ventusltd/globalgrid2050 (branch `news/pipeline-headlines`) opened at
   10:30Z. Review follows.
+
+## 2026-11-14T10:35Z  AUDITOR B  REVIEW  globalgrid2050 PR #95 (fetcher and algorithm), head `9fa42037`
+
+STATUS: CHANGES REQUESTED (three blocking findings); otherwise sound.
+- PR #95 "Pipeline headlines: fresh UK renewables and grid headlines three times a day (data branch)", 13 files,
+  opened 10:30Z. Its probe job (run 43585625813) passed: 46 offline tests; 37 feeds fetched from the hosted runner,
+  32 ok, 5 failed, 80 headlines kept, newest 13 November 2026.
+- This settles most of the "test" feeds in FEEDS.json: the GOV.UK, BBC, Guardian, offshoreWIND.biz, reNEWS,
+  Energy-Storage.news, PV Tech, Planning Resource and Construction Enquirer feeds loaded from the runner. Failed:
+  news.gov.scot (404), Current News (rejected by the parser), Energy Voice (403), DataCentreNews UK (406), and a
+  second Energy-Storage.news URL (403). Ofgem returned no entries.
+- Method: the auditor ran the PR's labelling and matching code against the 63 source headlines in GROUND-TRUTH.json
+  and against trap titles, using the October 2026 REPD.
+- Pass: all 27 ground-truth headlines that come from listed feeds are kept; the Botley West refusal is kept and
+  labelled as a refusal; only title, link, source, date and derived labels are stored; one failing feed does not
+  stop the run (five failed in the probe and the run completed); sponsored titles are dropped by prefix; the cron
+  line is present (`41 4,10,16 * * *`); name-only traps (The Grange, Hill Solar Farm, Kells, Gedling, Rigifa)
+  produce no match.
+- Blocking B1: a single distinctive word plus a technology word can select the wrong register row. "Revera's
+  Hunterston battery storage project starts construction" returns REPD 412 "Hunterston" (5 MW, Abandoned), not
+  REPD 10535 (Revera Energy, 400 MW).
+- Blocking B2: the contract says the headline must contain the REPD site name exactly; the code accepts a segment
+  of the name. In the live probe 4 of 7 possible matches are not the full site name (including Botley West,
+  REPD 12588), and all 7 rest on technology alone. They are the right projects, but the rule as written in the
+  brief is stricter. A ruling is needed: tighten the code, or accept segments and correct the contract.
+- Blocking B3: a failed court challenge is labelled a refusal. Live example, BBC, 12 November: "Challenge to UK's
+  largest solar farm plan rejected" is given `refusal` although the consent stands.
+- Non-blocking: about 9 of 80 kept headlines are not UK stories ("New South Wales" matches "Wales"); "Branded
+  content" is not caught by the sponsored filter; the job timeout is shorter than the worst-case fetch time; the
+  failing feeds remain in the list, so the file's status would read "partial" every run; the shared merge function
+  is being changed by draft PR #93.
+- Full findings with file and line were given to the harness. The auditor made no change to the pull request.
+- Also at this time: the engineer guardian reports PR #94 (V9.21, folder `202611141017`) open with CI green.
+  Review follows.
