@@ -1,0 +1,183 @@
+### node tools/twin/replicate-generation.mjs --network
+twin of generation 202611132345; mode network; work /tmp/gridatlas-twin-202611132345-Djrs6Z
+PASS  pins  source d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9 (5201029 B) and oracle ca5da437ddb8… agree in sources.json, compiler/202611132345-compile-atlas-v9.py and data/repd_v9_manifest_202611132345.json
+PASS  coupling  committed parquet and registry are the files the manifest describes; uk-gazetteer-flyto, uk-offtakers-overlay pin manifest b90bda5acaa2… and parquet cc9b7f046fe2…
+PASS  cartridge uk-gazetteer-flyto  atlas/cartridges/202611132345-place-global-search-v9-5.js 41115 B sha256 a27a11c45d4d02c4dbecf09e8ba2acc38215a77fc87bd23b1024f349f8dea619 rebuilt byte for byte
+PASS  cartridge uk-gazetteer-flyto parts manifest  atlas/manifests/202611132345-place-global-search-v9-5-parts.json 561 B sha256 b8d2265641f1dfc4c5d55488be74a8bcedd8e47a129d5568cb115b94a4b09e61 rebuilt byte for byte
+PASS  cartridge uk-offtakers-overlay  atlas/modules/202611132345-uk-offtakers-overlay.js 71191 B sha256 eee30014b3c2549455753651ddc9719f179c9cd59db4ae616c08c3a9708bfdb6 rebuilt byte for byte
+PASS  source  https://raw.githubusercontent.com/Ventusltd/globalgrid2050/07b6d51702a12aa3d69833d91e43f84d8901ba78/repd-2026q3.csv is the pinned 5201029 B sha256 d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9
+PASS  oracle  https://raw.githubusercontent.com/Ventusltd/globalgrid2050/f2f343a92ee972cc74ed23b4b99d8a22896791ad/dist/repd_master.json is the pinned 4256963 B sha256 ca5da437ddb832f7e4e8d84bba1f2f6d40df6285089a43156452fdda7eebe0fe
+runtime: duckdb 1.3.2, pyproj 3.7.2 (requirements.lock: 1.3.2, 3.7.2; the committed manifest was built with duckdb 1.3.2)
+build a: {"addresses": 11319, "postcodes": 9765, "rows": 11329, "status_counts": {"application submitted": 1456, "awaiting construction": 6241, "operational": 3162, "under construction": 470}, "unique_repd_refs": 11329, "valid_postcodes": 9315}
+build b: {"addresses": 11319, "postcodes": 9765, "rows": 11329, "status_counts": {"application submitted": 1456, "awaiting construction": 6241, "operational": 3162, "under construction": 470}, "unique_repd_refs": 11329, "valid_postcodes": 9315}
+PASS  deterministic  two builds agree on 3 files
+PASS  data repd_projects_202611132345.parquet  data/repd_projects_202611132345.parquet 1488420 B sha256 cc9b7f046fe24497114c9cc356d7d0e54830890722af90a83c397eab1056d789 rebuilt byte for byte
+PASS  data repd_browser_registry_202611132345.json  data/repd_browser_registry_202611132345.json 9551352 B sha256 fdda9b6e4fd14cb234cdc7baaac9a6c0f45c5594179c2eaa4b58e874ac6d8f58 rebuilt byte for byte
+PASS  data repd_v9_manifest_202611132345.json  data/repd_v9_manifest_202611132345.json 4572 B sha256 b90bda5acaa2ff2a3bddd0267a6814ea599c915f0284920f4d354c8c5447f3fb rebuilt byte for byte
+
+twin 202611132345: 11 passed, 0 failed
+exit 0
+### node tools/twin/keys.mjs --check --pipeline-refs-network
+pipeline refs: 7775 rows rebuilt from the pinned URLs, every file hash-verified
+PASS  K01  The records of 202611132345 are compiled from repd-2026q3.csv, sha256 d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9, 5,201,029 bytes, and from no other register.
+PASS  K02  The record snapshot holds 11,329 rows, one per REPD ref.
+PASS  K03  The three data files hash to the values the manifest records, and 2 cartridge(s) cut at 202611132345 refuse any other manifest or parquet.
+PASS  K04  The 6 cartridges of 202611132345 are in the repository with the sha256 its pointer records.
+PASS  K05  202611132345 composes through its own committed loader: every cartridge is fetched, hash-verified and handed to the shell.
+PASS  K06  The previous live generation 202610312138 is still published under atlas/v/202610312138/ with the bytes recorded here, and still composes through its own loader.
+PASS  K07  The grid engine did not change: 4 cartridges (streaming-parquet-bridge, substation-intelligence, sld-sandbox, uk-lightning-overlay) are the same files with the same sha256 in 202610312138 and 202611132345, and the substation payload is the released file. Only uk-gazetteer-flyto and uk-offtakers-overlay were re-cut.
+PASS  K08  Nearest substation for retained REPD refs: of 11,001 refs in both 202608290716 and 202611132345, 10,982 have the identical coordinate, so the unchanged engine (K07) returns the identical answer; 19 were moved by the source register, and 19 of those now measure to a different nearest substation (listed).
+PASS  K09  Pipeline News 202611140058 lists 7,775 REPD refs. 5,331 resolve to a record of 202611132345 by exact ref. 2,444 do not, because the snapshot keeps the four active statuses only; 3 of those have an active status in Pipeline News and still have no record (2484, 6483, 20218).
+PASS  K10  202611132345 is reproducible: its three data files and the cartridges it cut rebuild byte for byte from the pinned source with the repository's own compiler and cut tools.
+
+keys 202611132345: 10/10 claims hold; register equals the committed one
+exit 0
+### node tools/twin/replicate-generation.mjs --generation 202611132345 --source /tmp/t14-bad.csv --oracle <workspace>/globalgrid2050/dist/repd_master.json
+twin of generation 202611132345; mode local source; work /tmp/gridatlas-twin-202611132345-5ECnra
+PASS  pins  source d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9 (5201029 B) and oracle ca5da437ddb8… agree in sources.json, compiler/202611132345-compile-atlas-v9.py and data/repd_v9_manifest_202611132345.json
+PASS  coupling  committed parquet and registry are the files the manifest describes; uk-gazetteer-flyto, uk-offtakers-overlay pin manifest b90bda5acaa2… and parquet cc9b7f046fe2…
+PASS  cartridge uk-gazetteer-flyto  atlas/cartridges/202611132345-place-global-search-v9-5.js 41115 B sha256 a27a11c45d4d02c4dbecf09e8ba2acc38215a77fc87bd23b1024f349f8dea619 rebuilt byte for byte
+PASS  cartridge uk-gazetteer-flyto parts manifest  atlas/manifests/202611132345-place-global-search-v9-5-parts.json 561 B sha256 b8d2265641f1dfc4c5d55488be74a8bcedd8e47a129d5568cb115b94a4b09e61 rebuilt byte for byte
+PASS  cartridge uk-offtakers-overlay  atlas/modules/202611132345-uk-offtakers-overlay.js 71191 B sha256 eee30014b3c2549455753651ddc9719f179c9cd59db4ae616c08c3a9708bfdb6 rebuilt byte for byte
+FAIL  source  /tmp/t14-bad.csv is 5201029 B sha256 4925fcad3430468e6bc569282189d2f9c7f5e5e7b056767b5908f64c327c07ac; the pin is 5201029 B d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9. Not used.
+PASS  oracle  local repd_master.json is the pinned 4256963 B sha256 ca5da437ddb832f7e4e8d84bba1f2f6d40df6285089a43156452fdda7eebe0fe
+
+twin 202611132345: 6 passed, 1 failed; stopped before the build
+  FAIL source  /tmp/t14-bad.csv is 5201029 B sha256 4925fcad3430468e6bc569282189d2f9c7f5e5e7b056767b5908f64c327c07ac; the pin is 5201029 B d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9. Not used.
+exit 1
+### node tools/twin/replicate-generation.mjs --offline
+twin of generation 202611132345; mode offline (no data rebuild); work /tmp/gridatlas-twin-202611132345-AySlDE
+PASS  pins  source d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9 (5201029 B) and oracle ca5da437ddb8… agree in sources.json, compiler/202611132345-compile-atlas-v9.py and data/repd_v9_manifest_202611132345.json
+FAIL  coupling  data/repd_projects_202611132345.parquet is not the file data/repd_v9_manifest_202611132345.json describes
+PASS  cartridge uk-gazetteer-flyto  atlas/cartridges/202611132345-place-global-search-v9-5.js 41115 B sha256 a27a11c45d4d02c4dbecf09e8ba2acc38215a77fc87bd23b1024f349f8dea619 rebuilt byte for byte
+PASS  cartridge uk-gazetteer-flyto parts manifest  atlas/manifests/202611132345-place-global-search-v9-5-parts.json 561 B sha256 b8d2265641f1dfc4c5d55488be74a8bcedd8e47a129d5568cb115b94a4b09e61 rebuilt byte for byte
+PASS  cartridge uk-offtakers-overlay  atlas/modules/202611132345-uk-offtakers-overlay.js 71191 B sha256 eee30014b3c2549455753651ddc9719f179c9cd59db4ae616c08c3a9708bfdb6 rebuilt byte for byte
+note  data  NOT RUN in the offline phase: data/repd_projects_202611132345.parquet, data/repd_browser_registry_202611132345.json, data/repd_v9_manifest_202611132345.json are rebuilt only with --source or --network
+
+twin 202611132345: 4 passed, 1 failed; data rebuild not run
+  FAIL coupling  data/repd_projects_202611132345.parquet is not the file data/repd_v9_manifest_202611132345.json describes
+exit 1
+### node tools/twin/preserve.mjs --base origin/main
+PASS  pinned cartridges  224 cartridge pins of 53 generations (202609012141 to 202611132345) hold
+PASS  loaders  53 generations each have a registered loader that supports their slots
+PASS  release shells  63 files of 3 release sha256sums.txt verify
+FAIL  data manifests  data/repd_projects_202611132345.parquet is not the sha256 in data/repd_v9_manifest_202611132345.json
+PASS  assembled  116 parts manifests each name a cartridge with the sha256 they record
+note  part drift  175 part or module files no longer hash to what an older parts manifest recorded (the assembled cartridges themselves hold); first: 202609012045-sld-sandbox-v9-8-parts.json:atlas/modules/202609011950-geodesy.js
+note  composition drift  3 cartridge entries of composition manifests never published under atlas/v/ no longer match: 202608301624-composition.json:uk-gazetteer-flyto, 202608301825-composition.json:uk-gazetteer-flyto, 202608311910-composition.json:uk-gazetteer-flyto
+PASS  previous live  202610312138 is published at atlas/v/202610312138/ and composes through its own loader: 6 cartridges fetched and hash-verified, 22802 B of HTML
+FAIL  immutable  published at origin/main and changed or removed: M data/repd_projects_202611132345.parquet. Published files are never edited; cut a new generation.
+
+preservation: 5 passed, 2 failed
+  FAIL data manifests  data/repd_projects_202611132345.parquet is not the sha256 in data/repd_v9_manifest_202611132345.json
+  FAIL immutable  published at origin/main and changed or removed: M data/repd_projects_202611132345.parquet. Published files are never edited; cut a new generation.
+exit 1
+### node tools/twin/replicate-generation.mjs --generation 202611132345 --source <workspace>/gg-wt/repd-2026q3.csv --oracle <workspace>/globalgrid2050/dist/repd_master.json
+twin of generation 202611132345; mode local source; work /tmp/gridatlas-twin-202611132345-0KUEbu
+PASS  pins  source d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9 (5201029 B) and oracle ca5da437ddb8… agree in sources.json, compiler/202611132345-compile-atlas-v9.py and data/repd_v9_manifest_202611132345.json
+FAIL  coupling  no cartridge cut at 202611132345 carries the manifest and parquet hashes, so nothing ties the composition to these data files
+PASS  cartridge uk-gazetteer-flyto  atlas/cartridges/202611132345-place-global-search-v9-5.js 41115 B sha256 a27a11c45d4d02c4dbecf09e8ba2acc38215a77fc87bd23b1024f349f8dea619 rebuilt byte for byte
+PASS  cartridge uk-gazetteer-flyto parts manifest  atlas/manifests/202611132345-place-global-search-v9-5-parts.json 561 B sha256 b8d2265641f1dfc4c5d55488be74a8bcedd8e47a129d5568cb115b94a4b09e61 rebuilt byte for byte
+PASS  cartridge uk-offtakers-overlay  atlas/modules/202611132345-uk-offtakers-overlay.js 71191 B sha256 eee30014b3c2549455753651ddc9719f179c9cd59db4ae616c08c3a9708bfdb6 rebuilt byte for byte
+note  data  NOT RUN: an offline step is red, so neither the source nor the network is touched
+
+twin 202611132345: 4 passed, 1 failed; stopped before the source
+  FAIL coupling  no cartridge cut at 202611132345 carries the manifest and parquet hashes, so nothing ties the composition to these data files
+exit 1
+### node tools/twin/preserve.mjs --base origin/main
+FAIL  pinned cartridges  202610290400 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202610290400/current.json records; 202610290949 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202610290949/current.json records; 202610291044 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202610291044/current.json records; 202610292044 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202610292044/current.json records; 202610312138 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202610312138/current.json records; 202611132345 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202611132345/current.json records
+PASS  loaders  53 generations each have a registered loader that supports their slots
+PASS  release shells  63 files of 3 release sha256sums.txt verify
+PASS  data manifests  record snapshots 202608290716, 202611132345: parquet and registry are the files their manifests describe
+PASS  assembled  116 parts manifests each name a cartridge with the sha256 they record
+note  part drift  175 part or module files no longer hash to what an older parts manifest recorded (the assembled cartridges themselves hold); first: 202609012045-sld-sandbox-v9-8-parts.json:atlas/modules/202609011950-geodesy.js
+note  composition drift  10 cartridge entries of composition manifests never published under atlas/v/ no longer match: 202608301624-composition.json:uk-gazetteer-flyto, 202608301825-composition.json:uk-gazetteer-flyto, 202608311910-composition.json:uk-gazetteer-flyto
+FAIL  previous live  atlas/v/202610312138/ does not compose through its own loader: GRIDATLAS COMPOSITION FAILED  sld-sandbox: SHA-256 mismatch  The immutable shell was not changed.
+FAIL  immutable  published at origin/main and changed or removed: M atlas/cartridges/202609241334-sld-sandbox-v9-8.js. Published files are never edited; cut a new generation.
+
+preservation: 4 passed, 3 failed
+  FAIL pinned cartridges  202610290400 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202610290400/current.json records; 202610290949 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202610290949/current.json records; 202610291044 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202610291044/current.json records; 202610292044 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202610292044/current.json records; 202610312138 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202610312138/current.json records; 202611132345 sld-sandbox: atlas/cartridges/202609241334-sld-sandbox-v9-8.js is not the sha256 atlas/v/202611132345/current.json records
+  FAIL previous live  atlas/v/202610312138/ does not compose through its own loader: GRIDATLAS COMPOSITION FAILED  sld-sandbox: SHA-256 mismatch  The immutable shell was not changed.
+  FAIL immutable  published at origin/main and changed or removed: M atlas/cartridges/202609241334-sld-sandbox-v9-8.js. Published files are never edited; cut a new generation.
+exit 1
+### node tools/twin/keys.mjs --check
+PASS  K01  The records of 202611132345 are compiled from repd-2026q3.csv, sha256 d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9, 5,201,029 bytes, and from no other register.
+PASS  K02  The record snapshot holds 11,329 rows, one per REPD ref.
+PASS  K03  The three data files hash to the values the manifest records, and 2 cartridge(s) cut at 202611132345 refuse any other manifest or parquet.
+FAIL  K04  The 6 cartridges of 202611132345 are in the repository with the sha256 its pointer records.
+FAIL  K05  202611132345 composes through its own committed loader: every cartridge is fetched, hash-verified and handed to the shell.
+FAIL  K06  The previous live generation 202610312138 is still published under atlas/v/202610312138/ with the bytes recorded here, and still composes through its own loader.
+PASS  K07  The grid engine did not change: 4 cartridges (streaming-parquet-bridge, substation-intelligence, sld-sandbox, uk-lightning-overlay) are the same files with the same sha256 in 202610312138 and 202611132345, and the substation payload is the released file. Only uk-gazetteer-flyto and uk-offtakers-overlay were re-cut.
+PASS  K08  Nearest substation for retained REPD refs: of 11,001 refs in both 202608290716 and 202611132345, 10,982 have the identical coordinate, so the unchanged engine (K07) returns the identical answer; 19 were moved by the source register, and 19 of those now measure to a different nearest substation (listed).
+PASS  K09  Pipeline News 202611140058 lists 7,775 REPD refs. 5,331 resolve to a record of 202611132345 by exact ref. 2,444 do not, because the snapshot keeps the four active statuses only; 3 of those have an active status in Pipeline News and still have no record (2484, 6483, 20218).
+PASS  K10  202611132345 is reproducible: its three data files and the cartridges it cut rebuild byte for byte from the pinned source with the repository's own compiler and cut tools.
+FAIL  tools/twin/keys/202611132345.json is not what the repository now measures; a fact behind a claim moved. Read the claims above, then: node tools/twin/keys.mjs --write
+FAIL  tools/twin/keys/202611132345.txt is not what the repository now measures; a fact behind a claim moved. Read the claims above, then: node tools/twin/keys.mjs --write
+
+keys 202611132345: 7/10 claims hold; register DIFFERS from the committed one
+exit 1
+### node tools/twin/preserve.mjs --base origin/main
+PASS  pinned cartridges  218 cartridge pins of 52 generations (202609012141 to 202611132345) hold
+PASS  loaders  52 generations each have a registered loader that supports their slots
+PASS  release shells  63 files of 3 release sha256sums.txt verify
+PASS  data manifests  record snapshots 202608290716, 202611132345: parquet and registry are the files their manifests describe
+PASS  assembled  116 parts manifests each name a cartridge with the sha256 they record
+note  part drift  175 part or module files no longer hash to what an older parts manifest recorded (the assembled cartridges themselves hold); first: 202609012045-sld-sandbox-v9-8-parts.json:atlas/modules/202609011950-geodesy.js
+note  composition drift  3 cartridge entries of composition manifests never published under atlas/v/ no longer match: 202608301624-composition.json:uk-gazetteer-flyto, 202608301825-composition.json:uk-gazetteer-flyto, 202608311910-composition.json:uk-gazetteer-flyto
+FAIL  previous live  atlas/v/202610312138/ is not published (current.json and index.html)
+FAIL  immutable  published at origin/main and changed or removed: D atlas/v/202610312138/current.json; D atlas/v/202610312138/index.html. Published files are never edited; cut a new generation.
+
+preservation: 5 passed, 2 failed
+  FAIL previous live  atlas/v/202610312138/ is not published (current.json and index.html)
+  FAIL immutable  published at origin/main and changed or removed: D atlas/v/202610312138/current.json; D atlas/v/202610312138/index.html. Published files are never edited; cut a new generation.
+exit 1
+### node tools/twin/replicate-generation.mjs --offline
+twin of generation 202611132345; mode offline (no data rebuild); work /tmp/gridatlas-twin-202611132345-QkpHNZ
+PASS  pins  source d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9 (5201029 B) and oracle ca5da437ddb8… agree in sources.json, compiler/202611132345-compile-atlas-v9.py and data/repd_v9_manifest_202611132345.json
+PASS  coupling  committed parquet and registry are the files the manifest describes; uk-gazetteer-flyto, uk-offtakers-overlay pin manifest b90bda5acaa2… and parquet cc9b7f046fe2…
+PASS  cartridge uk-gazetteer-flyto  atlas/cartridges/202611132345-place-global-search-v9-5.js 41115 B sha256 a27a11c45d4d02c4dbecf09e8ba2acc38215a77fc87bd23b1024f349f8dea619 rebuilt byte for byte
+PASS  cartridge uk-gazetteer-flyto parts manifest  atlas/manifests/202611132345-place-global-search-v9-5-parts.json 561 B sha256 b8d2265641f1dfc4c5d55488be74a8bcedd8e47a129d5568cb115b94a4b09e61 rebuilt byte for byte
+FAIL  cartridge uk-offtakers-overlay  atlas/modules/202611132345-uk-offtakers-overlay.js differs from its rebuild at byte 33450 (committed 71191 B eee30014b3c2549455753651ddc9719f179c9cd59db4ae616c08c3a9708bfdb6, rebuilt 71191 B e959c35e17af5b6c92a9887587406c93256b92b92ec62148dcc11f0edb0a518d)
+FAIL  cartridge uk-offtakers-overlay pin  rebuilt atlas/modules/202611132345-uk-offtakers-overlay.js is not the sha256 atlas/v/202611132345/current.json pins
+note  data  NOT RUN in the offline phase: data/repd_projects_202611132345.parquet, data/repd_browser_registry_202611132345.json, data/repd_v9_manifest_202611132345.json are rebuilt only with --source or --network
+
+twin 202611132345: 4 passed, 2 failed; data rebuild not run
+  FAIL cartridge uk-offtakers-overlay  atlas/modules/202611132345-uk-offtakers-overlay.js differs from its rebuild at byte 33450 (committed 71191 B eee30014b3c2549455753651ddc9719f179c9cd59db4ae616c08c3a9708bfdb6, rebuilt 71191 B e959c35e17af5b6c92a9887587406c93256b92b92ec62148dcc11f0edb0a518d)
+  FAIL cartridge uk-offtakers-overlay pin  rebuilt atlas/modules/202611132345-uk-offtakers-overlay.js is not the sha256 atlas/v/202611132345/current.json pins
+exit 1
+### node tools/twin/keys.mjs --check
+PASS  K01  The records of 202611132345 are compiled from repd-2026q3.csv, sha256 d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9, 5,201,029 bytes, and from no other register.
+PASS  K02  The record snapshot holds 11,329 rows, one per REPD ref.
+PASS  K03  The three data files hash to the values the manifest records, and 2 cartridge(s) cut at 202611132345 refuse any other manifest or parquet.
+PASS  K04  The 6 cartridges of 202611132345 are in the repository with the sha256 its pointer records.
+PASS  K05  202611132345 composes through its own committed loader: every cartridge is fetched, hash-verified and handed to the shell.
+PASS  K06  The previous live generation 202610312138 is still published under atlas/v/202610312138/ with the bytes recorded here, and still composes through its own loader.
+PASS  K07  The grid engine did not change: 4 cartridges (streaming-parquet-bridge, substation-intelligence, sld-sandbox, uk-lightning-overlay) are the same files with the same sha256 in 202610312138 and 202611132345, and the substation payload is the released file. Only uk-gazetteer-flyto and uk-offtakers-overlay were re-cut.
+PASS  K08  Nearest substation for retained REPD refs: of 11,001 refs in both 202608290716 and 202611132345, 10,982 have the identical coordinate, so the unchanged engine (K07) returns the identical answer; 19 were moved by the source register, and 19 of those now measure to a different nearest substation (listed).
+PASS  K09  Pipeline News 202611140058 lists 7,774 REPD refs. 5,330 resolve to a record of 202611132345 by exact ref. 2,444 do not, because the snapshot keeps the four active statuses only; 3 of those have an active status in Pipeline News and still have no record (2484, 6483, 20218).
+PASS  K10  202611132345 is reproducible: its three data files and the cartridges it cut rebuild byte for byte from the pinned source with the repository's own compiler and cut tools.
+FAIL  tools/twin/keys/202611132345.json is not what the repository now measures; a fact behind a claim moved. Read the claims above, then: node tools/twin/keys.mjs --write
+FAIL  tools/twin/keys/202611132345.txt is not what the repository now measures; a fact behind a claim moved. Read the claims above, then: node tools/twin/keys.mjs --write
+
+keys 202611132345: 10/10 claims hold; register DIFFERS from the committed one
+exit 1
+### M8 compiler edited (SOURCE_PUBLISHED), full twin
+twin of generation 202611132345; mode local source; work /tmp/gridatlas-twin-202611132345-GwfNR1
+PASS  pins  source d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9 (5201029 B) and oracle ca5da437ddb8… agree in sources.json, compiler/202611132345-compile-atlas-v9.py and data/repd_v9_manifest_202611132345.json
+PASS  coupling  committed parquet and registry are the files the manifest describes; uk-gazetteer-flyto, uk-offtakers-overlay pin manifest b90bda5acaa2… and parquet cc9b7f046fe2…
+PASS  cartridge uk-gazetteer-flyto  atlas/cartridges/202611132345-place-global-search-v9-5.js 41115 B sha256 a27a11c45d4d02c4dbecf09e8ba2acc38215a77fc87bd23b1024f349f8dea619 rebuilt byte for byte
+PASS  cartridge uk-gazetteer-flyto parts manifest  atlas/manifests/202611132345-place-global-search-v9-5-parts.json 561 B sha256 b8d2265641f1dfc4c5d55488be74a8bcedd8e47a129d5568cb115b94a4b09e61 rebuilt byte for byte
+PASS  cartridge uk-offtakers-overlay  atlas/modules/202611132345-uk-offtakers-overlay.js 71191 B sha256 eee30014b3c2549455753651ddc9719f179c9cd59db4ae616c08c3a9708bfdb6 rebuilt byte for byte
+PASS  source  local repd-2026q3.csv is the pinned 5201029 B sha256 d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9
+PASS  oracle  local repd_master.json is the pinned 4256963 B sha256 ca5da437ddb832f7e4e8d84bba1f2f6d40df6285089a43156452fdda7eebe0fe
+runtime: duckdb 1.3.2, pyproj 3.7.2 (requirements.lock: 1.3.2, 3.7.2; the committed manifest was built with duckdb 1.3.2)
+build a: {"addresses": 11319, "postcodes": 9765, "rows": 11329, "status_counts": {"application submitted": 1456, "awaiting construction": 6241, "operational": 3162, "under construction": 470}, "unique_repd_refs": 11329, "valid_postcodes": 9315}
+build b: {"addresses": 11319, "postcodes": 9765, "rows": 11329, "status_counts": {"application submitted": 1456, "awaiting construction": 6241, "operational": 3162, "under construction": 470}, "unique_repd_refs": 11329, "valid_postcodes": 9315}
+PASS  deterministic  two builds agree on 3 files
+PASS  data repd_projects_202611132345.parquet  data/repd_projects_202611132345.parquet 1488420 B sha256 cc9b7f046fe24497114c9cc356d7d0e54830890722af90a83c397eab1056d789 rebuilt byte for byte
+FAIL  data repd_browser_registry_202611132345.json  data/repd_browser_registry_202611132345.json differs from its rebuild at byte 9551242 (committed 9551352 B fdda9b6e4fd14cb234cdc7baaac9a6c0f45c5594179c2eaa4b58e874ac6d8f58, rebuilt 9551352 B 3c61facf957a1cb3d0892e106a92b6e232f5eaacd4d70cdf0f417d0352db6bb8)
+FAIL  data repd_v9_manifest_202611132345.json  data/repd_v9_manifest_202611132345.json differs from its rebuild at byte 118 (committed 4572 B b90bda5acaa2ff2a3bddd0267a6814ea599c915f0284920f4d354c8c5447f3fb, rebuilt 4572 B bc5f5a4052d9aaea20399146a86e6c2abffdf25161c7caa022d93f3bf72049c1)
+
+twin 202611132345: 9 passed, 2 failed
+  FAIL data repd_browser_registry_202611132345.json  data/repd_browser_registry_202611132345.json differs from its rebuild at byte 9551242 (committed 9551352 B fdda9b6e4fd14cb234cdc7baaac9a6c0f45c5594179c2eaa4b58e874ac6d8f58, rebuilt 9551352 B 3c61facf957a1cb3d0892e106a92b6e232f5eaacd4d70cdf0f417d0352db6bb8)
+  FAIL data repd_v9_manifest_202611132345.json  data/repd_v9_manifest_202611132345.json differs from its rebuild at byte 118 (committed 4572 B b90bda5acaa2ff2a3bddd0267a6814ea599c915f0284920f4d354c8c5447f3fb, rebuilt 4572 B bc5f5a4052d9aaea20399146a86e6c2abffdf25161c7caa022d93f3bf72049c1)

@@ -18,3 +18,19 @@ Appended once per cycle. Times are UTC, 14 November 2026.
 - CI: PR #75. Verify Pipeline News versions run 43541887007 SUCCESS. PR file size guard run 43541887050 SUCCESS.
 - Merge commit: 9f2d94cfbc4a9c2e4806ac93dc973ce07e578a7d at 01:56.
 - Known faults: the 97 are measured from files, not on the live map; the row note could not be seen against the live GridAtlas composition from this workspace (tested with a local copy of current.json).
+
+## V9.16 = 202611140156 (parent 202611140136, tree 9eae7120)
+- Added: nearest data-centre register site in each PROJECT RECORD (convergence sidecar byte copy keyed by REPD ref; straight-line, labelled screening; link opens GridAtlas on the site with latitude/longitude/zoom=13/project). GridAtlas state re-measured against the released October registry (gridatlas b0a3a93; registry sha256 fdda9b6e): 5,331 of 5,334 active rows resolve; 3 (2484, 6483, 20218) lie east of the compiler's 2.5 E bound and are marked with that reason; 2,441 non-active; 26 without map point; 0 unexplained. Tooling: CSV export check, reasons in gridatlas_resolve.py, size budget 18 MB.
+- Tree: b0d94bc0d814285b675467ed59b6c0804aaa2400. MAP hrefs identical to parent: 7,775 of 7,775.
+- Runner: tests/run_v9_16.sh PASS (local and CI).
+- CI: PR #76. Verify run 43543937369 FAILURE (Chrome did not start on the runner; affected every version; tool fault), run 43544934300 SUCCESS on 4868a040. Size guard 43544934884 SUCCESS.
+- Merge commit: 1dc14b6f6f1e73b53bd2df8fb06e39f0573f40b0 at 02:16.
+- Known faults: one nearest site per project only; GridAtlas state measured from files, not the live map; issue post 02:17 covers V9.15 and V9.16.
+
+## V9.17 = 202611140216 (parent 202611140156, tree b0d94bc0)
+- Added: register changes July to October 2026 REPD: labelled list of the twelve highest-scored changes, and the change in the PROJECT RECORD of each of 274 projects (308 events from dist/news/repd_events_2026q3.json, keyed by REPD ref, not rescored or reworded).
+- Tree: 2a6faf461c0771bb8cfe5c47a4e138af710b868f. MAP hrefs identical to parent: 7,775 of 7,775. CSV 7,775 rows, same columns.
+- Runner: tests/run_v9_17.sh PASS (local and CI).
+- CI: PR #77. Verify run 43545673886 SUCCESS. Size guard 43545673869 SUCCESS.
+- Merge commit: 896e7f4b778e25bfc9db2fd54e58598a23237bc1 at 02:26.
+- Known faults: PROCESS FAULT BY THE GUARDIAN: merged 10 minutes after V9.16 (02:16), inside the 20-minute minimum spacing; the merge call was chained after a time check by mistake. Nothing was reverted. The next publication is held to 02:46 or later. List shows twelve changes only.

@@ -1,0 +1,175 @@
+diff --git a/.github/workflows/202608301321-verify-live.yml b/.github/workflows/202608301321-verify-live.yml
+index fca42c5..a92c919 100644
+--- a/.github/workflows/202608301321-verify-live.yml
++++ b/.github/workflows/202608301321-verify-live.yml
+@@ -14,16 +14,22 @@ name: 202608301321 Build, deploy and verify modular GridAtlas v9.5
+ #                        current.json references (each cartridge path first)
+ #                        and every atlas/v/<gen>/ preview file. It retries for
+ #                        Pages/CDN lag and fails with a per-path report.
++#   twin                 dispatch only (mode=twin), read-only: preservation,
++#                        the register of keys, then the live generation rebuilt
++#                        from its commit-pinned source and compared byte for
++#                        byte (tools/twin/, docs/CI.md). The same checks run on
++#                        pull requests in pr-file-size-guard.yml.
+ 
+ on:
+   workflow_dispatch:
+     inputs:
+       mode:
+-        description: 'live-bytes = read-only public byte check; served-homepage = read-only www.globalgrid2050.com check; build-deploy-verify = compile, push to main and publish a streaming-road cartridge'
++        description: 'live-bytes = read-only public byte check; served-homepage = read-only www.globalgrid2050.com check; twin = read-only rebuild of the live generation from its pinned source, with preservation and keys; build-deploy-verify = compile, push to main and publish a streaming-road cartridge'
+         type: choice
+         options:
+           - live-bytes
+           - served-homepage
++          - twin
+           - build-deploy-verify
+         default: live-bytes
+       compare_ref:
+@@ -303,6 +309,7 @@ jobs:
+       && needs.build-deploy-verify.result != 'cancelled'
+       && !(github.event_name == 'workflow_dispatch' && inputs.mode == 'build-deploy-verify')
+       && !(github.event_name == 'workflow_dispatch' && inputs.mode == 'served-homepage')
++      && !(github.event_name == 'workflow_dispatch' && inputs.mode == 'twin')
+     runs-on: ubuntu-24.04
+     timeout-minutes: 30
+     permissions:
+@@ -404,6 +411,44 @@ jobs:
+           if-no-files-found: warn
+           retention-days: 90
+ 
++  # Offline first, then network (Ventusltd/testcode README): preservation and the
++  # keys need no socket and run first; a red offline step stops the job before
++  # anything is fetched. Read-only: contents: read, no push, no Pages, no pointer.
++  twin:
++    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'twin'
++    runs-on: ubuntu-24.04
++    timeout-minutes: 15
++    permissions:
++      contents: read
++    steps:
++      - name: Checkout the ref the workflow was dispatched on
++        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
++        with:
++          fetch-depth: 2
++          persist-credentials: false
++      - name: Configure exact Node
++        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v4.4.0
++        with:
++          node-version: '22.23.4'
++      - name: Offline - every earlier generation is preserved, and the previous live one still composes
++        run: node tools/twin/preserve.mjs --base HEAD~1 | tee -a "$GITHUB_STEP_SUMMARY"
++        shell: bash -eo pipefail {0}
++      - name: Offline - the cartridges the live generation cut rebuild byte for byte
++        run: node tools/twin/replicate-generation.mjs --offline | tee -a "$GITHUB_STEP_SUMMARY"
++        shell: bash -eo pipefail {0}
++      - name: Offline - every claim in the register of keys still holds
++        run: node tools/twin/keys.mjs --check | tee -a "$GITHUB_STEP_SUMMARY"
++        shell: bash -eo pipefail {0}
++      - name: Network - the Pipeline News ref list equals the pinned release
++        run: node tools/twin/keys.mjs --check --pipeline-refs-network | tail -3 | tee -a "$GITHUB_STEP_SUMMARY"
++        shell: bash -eo pipefail {0}
++      - name: Network - rebuild the data files from the pinned source register and compare every byte
++        shell: bash -eo pipefail {0}
++        run: |
++          python3 -m venv "$RUNNER_TEMP/twin-venv"
++          "$RUNNER_TEMP/twin-venv/bin/pip" install --quiet --require-virtualenv -r requirements.lock
++          node tools/twin/replicate-generation.mjs --network --python "$RUNNER_TEMP/twin-venv/bin/python" | tee -a "$GITHUB_STEP_SUMMARY"
++
+   served-homepage:
+     if: github.event_name == 'workflow_dispatch' && inputs.mode == 'served-homepage'
+     runs-on: ubuntu-24.04
+diff --git a/.github/workflows/pr-file-size-guard.yml b/.github/workflows/pr-file-size-guard.yml
+index ca7321e..e01cdca 100644
+--- a/.github/workflows/pr-file-size-guard.yml
++++ b/.github/workflows/pr-file-size-guard.yml
+@@ -151,6 +151,48 @@ jobs:
+           BASE_SHA: ${{ github.event.pull_request.base.sha }}
+         run: node tools/ci/pr-gate.mjs --base "$BASE_SHA"
+ 
++  # The twin (docs/CI.md, "Twin, preservation and keys"): the live generation's
++  # data files rebuilt from the commit-pinned source register with the pinned
++  # Python libraries, and compared byte for byte with the committed files.
++  # `needs: cartridge-gate` is the ordering rule: the offline gate (which
++  # already ran preservation, the offline twin and the keys) is green before
++  # this job opens a socket. Read-only: it fetches two pinned files and pip
++  # packages, writes nothing to the repository and uses no secret.
++  twin:
++    needs: cartridge-gate
++    runs-on: ubuntu-24.04
++    timeout-minutes: 10
++    steps:
++      - name: Checkout the PR merge commit
++        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
++        with:
++          fetch-depth: 1
++          persist-credentials: false
++      - name: Fetch the base commit the PR is diffed against
++        env:
++          BASE_SHA: ${{ github.event.pull_request.base.sha }}
++        run: git fetch --no-tags --depth=1 origin "$BASE_SHA"
++      - name: Node (exact pin)
++        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v4
++        with:
++          node-version: '22.23.4'
++      - name: Rebuild the live generation from its pinned source and compare every byte
++        env:
++          BASE_SHA: ${{ github.event.pull_request.base.sha }}
++        shell: bash
++        run: |
++          set -euo pipefail
++          if ! git diff --name-only --no-renames "$BASE_SHA" HEAD | grep -Eq '^(atlas|data|compiler|tools)/'; then
++            echo "The PR touches none of atlas/, data/, compiler/, tools/: twin not run." | tee -a "$GITHUB_STEP_SUMMARY"
++            exit 0
++          fi
++          python3 -m venv "$RUNNER_TEMP/twin-venv"
++          "$RUNNER_TEMP/twin-venv/bin/pip" install --quiet --require-virtualenv -r requirements.lock
++          status=0
++          node tools/twin/replicate-generation.mjs --network --python "$RUNNER_TEMP/twin-venv/bin/python" 2>&1 | tee "$RUNNER_TEMP/twin.log" || status=$?
++          { echo '## Twin'; echo; echo '```'; cat "$RUNNER_TEMP/twin.log"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
++          exit "$status"
++
+   # Real Chromium check on every preview/ PR (NL-007), for the generation
+   # named in DC_SMOKE_GENERATION at line 177. This does not deploy, change
+   # the live pointer or use secrets; keep the reusable script.
+diff --git a/tools/ci/pr-gate.mjs b/tools/ci/pr-gate.mjs
+index 5c7920a..61c9631 100644
+--- a/tools/ci/pr-gate.mjs
++++ b/tools/ci/pr-gate.mjs
+@@ -51,6 +51,20 @@
+  *                     the suite's default lightning module
+  *   release-tools     node --check of every tools/release/*.mjs and
+  *                     node --test tools/release/*.test.mjs (offline)
++ *   twin              when the PR touches atlas/, data/, compiler/ or tools/
++ *                     (docs/CI.md, "Twin, preservation and keys"), offline:
++ *                     preservation  tools/twin/preserve.mjs --base: every
++ *                                   published generation, shell and data file
++ *                                   keeps its recorded sha256, the previous
++ *                                   live generation still composes, nothing
++ *                                   published at the base is edited or removed
++ *                     twin-offline  tools/twin/replicate-generation.mjs
++ *                                   --offline: the live generation's pins agree
++ *                                   and the cartridges it cut rebuild byte for
++ *                                   byte (the data rebuild needs the source and
++ *                                   Python: the workflow's twin job, after this)
++ *                     keys          tools/twin/keys.mjs --check: every claim in
++ *                                   the newest register of keys still holds
+  *
+  * A generation is "touched" when a changed path under atlas/ or tools/proofs/
+  * carries its twelve-digit stamp as a path segment or a filename prefix.
+@@ -431,6 +445,15 @@ group('release-tools', () => {
+     `${scripts.length} script(s) parse${bad.length ? `; SYNTAX ERROR in ${bad.join(', ')}` : ''}; ${tests.length} test file(s): ${counts || 'none'}`);
+ });
+ 
++// ---------------------------------------------------------------- 9
++// The twin, preservation and the register of keys (tools/twin/, docs/CI.md). Offline here; the data rebuild from the
++// pinned source runs in the workflow's twin job, which needs this gate first (offline first, then network).
++if (changed.some(f => /^(atlas|data|compiler|tools)\//.test(f))) {
++  step('preservation', ['node', 'tools/twin/preserve.mjs', '--base', BASE]);
++  step('twin-offline', ['node', 'tools/twin/replicate-generation.mjs', '--offline']);
++  step('keys', ['node', 'tools/twin/keys.mjs', '--check']);
++} else console.log('note  twin, preservation, keys: the PR touches none of atlas/, data/, compiler/, tools/; not run');
++
+ // ---------------------------------------------------------------- summary
+ const failed = results.filter(r => !r.ok);
+ const lines = [

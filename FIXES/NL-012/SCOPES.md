@@ -397,6 +397,36 @@ live GridAtlas since 01:58Z. This overtakes steps 2 and 3 of the sequence in sec
 - Overlap: Team 4's P1 gate work (already in the release); the guardian's register check on the Pipeline News side
   (it reads the registry the twin proves).
 
+## 2f. Revision 6 (2026-11-14T02:31Z): data-centre content gets a tighter definition of done
+
+ChatGPT's reviews between 02:13Z and 02:26Z change what "done" means for everything that shows data centres (brief
+lines 8a, 8b, 11). The lanes that built those pieces have handed off, so each fix needs an owner.
+
+| Finding (source) | What it adds to "done" | Owner |
+|---|---|---|
+| All 258 source entries of the 226-site register say `licence_status: "unverified"`; derived files and the data-centres page drop attribution (issue 20, 6870023614) | A per-source licence and attribution manifest carried through every derived file; visible attribution on every page that shows the register; a test that fails when attribution is missing | Attribution and "screening only" note: guardian (told by the harness, 6870155339). Checking each licence against the publisher's terms: **no lane**; it needs web reach (ChatGPT) or the owner. Until then, no new data-centre content (the harness's decision, recorded) |
+| N4's matcher attaches every site of an operator to a headline that names one site; test expects it (issue 19, 6870104588) | Site ids only on an exact site name or alias; operator-only matches kept apart as candidates and not shown as site associations; a negative test with two sites of one operator | **No lane** (N4 handed off). Small, self-contained: one follow-up agent or the guardian |
+| The live feed holds a "Sponsored" item and an investment fund filed as capex; no age limit; a pinned opinion had no date (issue 19, 6870122616) | Sponsored items excluded; funds and financing rounds not labelled capex; a maximum age or an archive label; pinned items labelled as pinned (date fixed in PR #78) | Same follow-up as the row above |
+| The nearest-data-centre link opens GridAtlas's generic project card, not a data-centre identity; settlement-level points shown at site zoom and 0.1 km precision (issue 15, 6870006766) | Link labelled as location only unless GridAtlas has a receiver for `dcuk-` ids; precision class shown; distance rounded to the precision the point supports | Guardian, in a later version |
+| The version CI passes without asserting the new feature renders (issue 15, 6870013912) | Each feature a version adds has a browser assertion, positive and negative | Guardian |
+| Three offshore projects (Norfolk Vanguard East and West, Norfolk Boreas; 4,160 MW) lie at 2.55 E, outside the map compiler's bound (guardian 6870049208; twin 6870008257) | A new GridAtlas generation with the bound widened or an offshore rule, proven by the twin check | **No lane**; a decision for the harness (owner's line 16) |
+
+Line 8b is now answered (ChatGPT, issue 20, 6870009456, answer 4): keep the data-centres page and add a Data Centres
+category inside a new Pipeline News version. Owner of the build: the guardian, after the licence hold clears. S-C is
+closed as a separate proposal.
+
+One fetcher: ChatGPT agrees the coordinator should avoid a second scheduled fetcher and that N4's daily workflow is the
+one on main (6870104588). Its own gate (PR #73) will not publish Energy24 until two publishers, one exact REPD Ref
+headline and one licence-verified site identity exist. Scope consequence: Energy24 stays a draft; nothing in the
+owner's brief waits on it.
+
+Handed off since revision 5: Twin Engineer (issue 16, 6870008257) and P1 (pipelinenews PR #3; issue 19, 6870215097).
+Working: the guardian and ChatGPT.
+
+Still without a lane, carried forward: S-B (rollback rehearsal for the pointer; no-truncation restatement for
+globalgrid2050 main; Jekyll exclusion; `--news-review-expected`; pruning; local paths in files on main); the public
+language gate; the licence check; the N4 follow-up; the offshore bound.
+
 ## 3. Scope per lane
 
 ### NL-013, Team 1: source and dataset QA
@@ -607,6 +637,8 @@ Traces to brief lines 3, 4, 5 and 9.
 ## Revisions
 
 - 2026-11-14T00:48Z first issue.
+- 2026-11-14T02:31Z revision 6: definition of done for data-centre content tightened from ChatGPT's reviews (section 2f);
+  line 8b answered; Twin Engineer and P1 handed off.
 - 2026-11-14T02:10Z revision 5: brief line 17; GridAtlas released; Twin Engineer scope; sequence of section 2d updated (2e).
 - 2026-11-14T01:50Z revision 4: brief line 16; the star feature as one sequence with owners (section 2d).
 - 2026-11-14T01:29Z revision 3: brief lines 14 and 15; guardian scope with its backlog and a size constraint; line 8b after G1;
