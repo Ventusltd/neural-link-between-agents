@@ -427,6 +427,28 @@ Still without a lane, carried forward: S-B (rollback rehearsal for the pointer; 
 globalgrid2050 main; Jekyll exclusion; `--news-review-expected`; pruning; local paths in files on main); the public
 language gate; the licence check; the N4 follow-up; the offshore bound.
 
+## 2g. Revision 7 (2026-11-14T02:51Z): a release candidate exists; what promotion still needs
+
+The guardian named V9.18 = 202611140223 as release candidate (issue 15, 6870447086). Against the scope set in sections
+2c to 2f it meets: no MAP href altered (7,775 of 7,775), earlier folders untouched, size budget, marks by data (3 rows),
+N4's panel, the register-changes list as its own labelled list, attribution, precision labels, feature probes in CI, a
+stated end of the train. What promotion still needs, with owners:
+
+| Needed before the homepage points at 202611140223 | Owner |
+|---|---|
+| Live browser and served-byte checks listed in 6870447086 | ChatGPT |
+| A ruling on the licence hold: may a promoted page carry data-centre content whose 258 source licences are recorded as unverified, shown with attribution and a screening note; or should the guardian cut a successor without it | Owner, or ChatGPT in his terms; the guardian has offered either |
+| A checkpoint, then the pointer move in the homepage repository and the pin in globalgrid2050; previous releases kept as rollback | ChatGPT (as for PR #61), or the harness |
+| Restore of the three edited files of 202611132345 to their verified bytes (Team 3's patch S2) once the pointer has moved | Harness |
+| After promotion: the train stops or runs on change | Guardian |
+
+New items with no lane:
+- `uk_renewables_pipeline/datacentres/index.html` (PR #72) shows the register without attribution; the guardian states
+  it is outside its scope, and G1 has handed off. One additive fix, same wording as V9.18's block.
+- The post-deploy browser proof job `verify_v9_7_candidate` failed on the deploy of `896e7f4b` (run 43546300437) while
+  build and deploy succeeded. It is the repository's own gate after every deploy; with a version every 30 minutes it
+  should be either kept green or its failure explained. Belongs to the unowned S-B.
+
 ## 3. Scope per lane
 
 ### NL-013, Team 1: source and dataset QA
@@ -637,6 +659,7 @@ Traces to brief lines 3, 4, 5 and 9.
 ## Revisions
 
 - 2026-11-14T00:48Z first issue.
+- 2026-11-14T02:51Z revision 7: release candidate 202611140223; what promotion needs; two new unowned items (section 2g).
 - 2026-11-14T02:31Z revision 6: definition of done for data-centre content tightened from ChatGPT's reviews (section 2f);
   line 8b answered; Twin Engineer and P1 handed off.
 - 2026-11-14T02:10Z revision 5: brief line 17; GridAtlas released; Twin Engineer scope; sequence of section 2d updated (2e).

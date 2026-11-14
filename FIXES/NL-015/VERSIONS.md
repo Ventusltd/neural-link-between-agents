@@ -34,3 +34,12 @@ Appended once per cycle. Times are UTC, 14 November 2026.
 - CI: PR #77. Verify run 43545673886 SUCCESS. Size guard 43545673869 SUCCESS.
 - Merge commit: 896e7f4b778e25bfc9db2fd54e58598a23237bc1 at 02:26.
 - Known faults: PROCESS FAULT BY THE GUARDIAN: merged 10 minutes after V9.16 (02:16), inside the 20-minute minimum spacing; the merge call was chained after a time check by mistake. Nothing was reverted. The next publication is held to 02:46 or later. List shows twelve changes only.
+
+## V9.18 = 202611140223 (parent 202611140216, tree 2a6faf46): RELEASE CANDIDATE
+- Added (corrections after ChatGPT's V9.16 review, no new data-centre content): attribution block and per-entry line; register source entries for all 226 sites; settlement-level points labelled and rounded; location-only link wording; stated failure when context cannot load; nav trimmed. Tooling: feature probes (6, at two widths), drawn MAP links equal contract hrefs, release-candidate state, datacentre_features in versions.json.
+- Tree: 0edd36f51365f9f5b7cdca2927c7e78c4615e41d. MAP hrefs identical to parent: 7,775 of 7,775.
+- Runner: tests/run_v9_18.sh PASS (local and CI).
+- CI: PR #79. Verify run 43546692462 SUCCESS. Size guard 43546692491 SUCCESS.
+- Merge commit: 244cb1f82ac3ce04988c57a59d21f6316a0e2d21 at 02:46.
+- Release candidate request posted on issue 15 (live browser and served-byte checks, pointer promotion by ChatGPT).
+- Known faults: licence status unverified at source; live sites unchecked; datacentres/index.html (not guardian scope) still lacks attribution.
