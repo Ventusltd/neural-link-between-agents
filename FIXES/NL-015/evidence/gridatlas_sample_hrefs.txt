@@ -1,0 +1,6 @@
+11058 | net new, active, absent from July GridAtlas | Mynydd y Gaer Wind Farm | https://ventusltd.github.io/gridatlas/atlas/?repd_ref=11058&technology=wind_onshore&latitude=51.5625467&longitude=-3.5086672&zoom=12
+21182 | net new? Tamnamore BESS | Ballynakilly Road, Tamnamore Substation - Battery Energy Storage | https://ventusltd.github.io/gridatlas/atlas/?repd_ref=21182&technology=bess&latitude=54.5349233&longitude=-6.7013111&zoom=12
+10881 | net new but present in July registry | Lodge Farm - Solar Farm & Battery Storage | https://ventusltd.github.io/gridatlas/atlas/?repd_ref=10881&technology=solar&latitude=52.5488155&longitude=-1.0552746&zoom=12
+13429 | no published coordinate, ref-only link | Ossian | https://ventusltd.github.io/gridatlas/atlas/?repd_ref=13429&technology=wind_offshore
+9873 | unchanged control | Berwick Bank Offshore Wind Farm | https://ventusltd.github.io/gridatlas/atlas/?repd_ref=9873&technology=wind_offshore&latitude=56.4431397&longitude=-1.4664021&zoom=12
+18561 | Salters Lane misplaced coordinate | Salters Lane - Solar Panels | https://ventusltd.github.io/gridatlas/atlas/?repd_ref=18561&technology=solar&latitude=51.5907216&longitude=-0.6591737&zoom=12

@@ -1,0 +1,68 @@
+diff -ruN a/uk_renewables_pipeline/202611132345/CHANGES.md b/uk_renewables_pipeline/202611132345/CHANGES.md
+--- a/uk_renewables_pipeline/202611132345/CHANGES.md	2026-11-14 00:43:35.160131263 +0000
++++ b/uk_renewables_pipeline/202611132345/CHANGES.md	2026-11-14 00:43:35.161523198 +0000
+@@ -59,3 +59,11 @@
+ - `data/v9.1/*` - rebuilt (16 project parts, 18 atlas parts, manifest).
+ - `tests/run_v9_12.sh`, `tests/check_v9_12.mjs` - new runner and check; `tests/run_v9_10.sh` and
+   `tests/check_v9_10.mjs` are removed (they assert the Q2 spine and the parent's identity).
++
++## Review fix (Team 3, NL-015, 14 Nov 2026)
++
++- `scripts/plugins/projects-v9-8.js`: the filtered CSV's "Source Reconciliation" column was a literal
++  `14657/14657 canonical REPD Ref IDs` (the Q2 2026 count) and so was wrong on every exported row of this
++  release. It is now read from `data/v9.1/build_manifest.json` `source_record_count` (14,967 here). No other
++  column, row or count changes. The file is added to `CHANGED_FROM_PARENT` in `tests/run_v9_12.sh`, which
++  also now fails if the literal comes back.
+diff -ruN a/uk_renewables_pipeline/202611132345/scripts/plugins/projects-v9-8.js b/uk_renewables_pipeline/202611132345/scripts/plugins/projects-v9-8.js
+--- a/uk_renewables_pipeline/202611132345/scripts/plugins/projects-v9-8.js	2026-11-14 00:43:35.147136897 +0000
++++ b/uk_renewables_pipeline/202611132345/scripts/plugins/projects-v9-8.js	2026-11-14 00:43:35.148646366 +0000
+@@ -394,12 +394,23 @@
+   return `"${text.replaceAll('"', '""')}"`;
+ }
+ 
++/* The CSV's "Source Reconciliation" cell was a hard-coded string carrying the
++   Q2 2026 count (14,657 of 14,657 Ref IDs), so a Q3 export stamped every row
++   with the wrong source. It now reads the count from the spine's own build manifest
++   (data/v9.1/build_manifest.json source_record_count), the same object that
++   already supplies the source dataset and hashes in the neighbouring cells. */
++function reconciliationNote() {
++  const count = Number(metadata && metadata.source_record_count);
++  if (!Number.isInteger(count) || count <= 0) return "source record count not stated by the build manifest";
++  return `${count}/${count} canonical REPD Ref IDs`;
++}
++
+ function downloadCsv(event) {
+   event.preventDefault();
+   const headers = ["Site Name", "REPD Ref", "GlobalGrid Project ID", "GlobalGrid Development ID", "Identity Status", "Identity Confidence", "Technology", "Official REPD Technology", "Official REPD Capacity", "Capacity Unit", "Official REPD Status", "Derived Lifecycle", "Operator or Applicant", "County", "Region", "Country", "Planning Authority", "Planning Application Reference", "REPD Record Updated", "Planning Application Submitted", "Planning Application Withdrawn", "Planning Permission Granted", "Planning Permission Refused", "Planning Permission Expired", "Under Construction", "Operational", "Old REPD Ref", "Direct Related REPD Refs", "Planning Sibling REPD Refs", "Development REPD Refs", "Typed Relationships JSON", "Geometry Status", "Easting", "Northing", "Source CRS", "Longitude", "Latitude", "Atlas V8 URL", "Output CRS", "Coordinate Transform", "Coordinate Use", "Source Dataset", "Source Row", "Projects Array SHA-256", "Source Identity SHA-256", "Source Coordinate Fixture SHA-256", "Source Workbook SHA-256", "Source Reconciliation", "Canonical News Signal — Event Unverified", "Canonical News Match Note"];
+   const rows = filtered.map((project) => {
+     const signal = signalForProjectV9_5_1(project);
+-    return [project.name, project.repd_ref, project.gg_project_id, project.gg_development_id, project.identity_status, project.identity_confidence, LABELS[project.technology], project.repd_technology, project.capacity_mw, UNITS[project.technology], project.status, project.lifecycle, project.operator, project.county, project.region, project.country, project.planning_authority, project.planning_application_reference, project.repd_record_updated, project.planning_application_submitted, project.planning_application_withdrawn, project.planning_permission_granted, project.planning_permission_refused, project.planning_permission_expired, project.under_construction, project.operational, project.repd_old_ref, project.direct_related_repd_refs.join("|"), project.planning_sibling_repd_refs.join("|"), project.development_repd_refs.join("|"), JSON.stringify(project.relationships), project.geometry_status, project.easting, project.northing, "EPSG:27700", project.longitude, project.latitude, atlasUrlV9_5_1(project), "RFC 7946 WGS84", project.coordinate_source, "market map context only; never evidence of a grid connection or cadastral boundary", metadata.source_dataset, project.source_row, metadata.projects_sha256, metadata.source_identity_sha256, metadata.source_coordinate_fixture_sha256, metadata.source_workbook_sha256, "14657/14657 canonical REPD Ref IDs", signal.label, signal.note];
++    return [project.name, project.repd_ref, project.gg_project_id, project.gg_development_id, project.identity_status, project.identity_confidence, LABELS[project.technology], project.repd_technology, project.capacity_mw, UNITS[project.technology], project.status, project.lifecycle, project.operator, project.county, project.region, project.country, project.planning_authority, project.planning_application_reference, project.repd_record_updated, project.planning_application_submitted, project.planning_application_withdrawn, project.planning_permission_granted, project.planning_permission_refused, project.planning_permission_expired, project.under_construction, project.operational, project.repd_old_ref, project.direct_related_repd_refs.join("|"), project.planning_sibling_repd_refs.join("|"), project.development_repd_refs.join("|"), JSON.stringify(project.relationships), project.geometry_status, project.easting, project.northing, "EPSG:27700", project.longitude, project.latitude, atlasUrlV9_5_1(project), "RFC 7946 WGS84", project.coordinate_source, "market map context only; never evidence of a grid connection or cadastral boundary", metadata.source_dataset, project.source_row, metadata.projects_sha256, metadata.source_identity_sha256, metadata.source_coordinate_fixture_sha256, metadata.source_workbook_sha256, reconciliationNote(), signal.label, signal.note];
+   });
+   const content = `\ufeff${[headers, ...rows].map((row) => row.map(csvCell).join(",")).join("\r\n")}`;
+   const url = URL.createObjectURL(new Blob([content], { type: "text/csv;charset=utf-8" }));
+diff -ruN a/uk_renewables_pipeline/202611132345/tests/run_v9_12.sh b/uk_renewables_pipeline/202611132345/tests/run_v9_12.sh
+--- a/uk_renewables_pipeline/202611132345/tests/run_v9_12.sh	2026-11-14 00:43:35.153712416 +0000
++++ b/uk_renewables_pipeline/202611132345/tests/run_v9_12.sh	2026-11-14 00:43:35.155018350 +0000
+@@ -31,6 +31,7 @@
+   contracts/release.v9.1.json
+   contracts/release.v9.5.1.json
+   scripts/data/build_v9_1_spine.py
++  scripts/plugins/projects-v9-8.js
+   tests/run_v9_12.sh
+   tests/check_v9_12.mjs
+   fixtures/2026q3/project_identity_2026q3.json
+@@ -110,6 +111,13 @@
+ PY
+ fi
+ 
++# The CSV export must not carry the Q2 reconciliation count (it is read from
++# the build manifest now), and nothing else in the served plugins may either.
++if grep -n '14657/14657' "$RELEASE/scripts/plugins/projects-v9-8.js"; then
++  echo "projects-v9-8.js still carries the Q2 reconciliation count" >&2; exit 1
++fi
++python3 -c 'import json,sys; m=json.load(open(sys.argv[1])); assert m["source_record_count"]==14967, m["source_record_count"]' "$RELEASE/data/v9.1/build_manifest.json"
++
+ node "$HERE/check_v9_12.mjs"
+ # Every REPD MAP button, not a sample: every href with the page's own function.
+ node "$HERE/check_map_contract_all_rows.mjs"

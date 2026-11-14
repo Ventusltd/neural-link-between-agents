@@ -1,0 +1,2826 @@
+{
+ "schema": "team6.nl020.findings.v1",
+ "stats": {
+  "repd_records": 14967,
+  "repd_live_target_projects_located": 10158,
+  "repd_target_projects_located_all_statuses": 13264,
+  "datacentres": 226,
+  "datacentres_placed": 225,
+  "datacentres_proximity_reliable": 220,
+  "transmission_nodes_located": 489,
+  "osm_substations_132kv_plus": 1668,
+  "clusters": 20,
+  "repd_duplicates_collapsed": 27,
+  "datacentres_geometry_rejected": 0,
+  "colocation_candidates_by_class": {
+   "A_same_site_and_operator": 4,
+   "B_operator_match": 53,
+   "C_same_site_name_and_proximity": 3,
+   "D_same_site_proximity": 202,
+   "E_repd_text_mentions_datacentre": 7
+  }
+ },
+ "inputs": [
+  {
+   "role": "repd_register",
+   "file": "repd-2026q3.csv",
+   "sha256": "d937ae16ad07f43caaaa25b4cee56399e1e9b9bb2ae5ecb7bc88cf9bc092e4b9"
+  },
+  {
+   "role": "repd_identity",
+   "file": "project_identity_2026q3.json",
+   "sha256": "b4fcf35c80eb0f87487bc8c4ed0d276afea66948e6b0708f80e5cf993a5973a4"
+  },
+  {
+   "role": "datacentre_baseline",
+   "file": "uk_datacentre_pipeline_202610312133.geojson",
+   "sha256": "87337db5d3bf7959f7f605d3abd029dd4196ab24a79107ceb95210c5b7751654"
+  },
+  {
+   "role": "transmission_nodes",
+   "file": "connection-points.v3.json",
+   "sha256": "8db7171d94763399d85c819e522dcb83ef1ecedc93fbeff032fb45ca02f81f35"
+  },
+  {
+   "role": "osm_substations",
+   "file": "grid_substations.geojson",
+   "sha256": "ec5450aa10b1592e53e73813fe169194de3fd923f7bffba1bbabd057c8c45b8f"
+  }
+ ],
+ "excluded_geography": {
+  "no_coordinates": 32,
+  "coordinates_outside_bng_range": 3,
+  "known_wrong_coordinates": 2
+ },
+ "datacentre_status": {
+  "operational": 202,
+  "in_planning": 7,
+  "announced": 12,
+  "consented": 4,
+  "unknown": 1
+ },
+ "datacentre_precision": {
+  "settlement": 20,
+  "exact_site": 200,
+  "region": 5,
+  "unknown": 1
+ },
+ "datacentre_mw_coverage": {
+  "it_load_known": 4,
+  "grid_connection_known": 2,
+  "unclassified_known_not_summed": 8,
+  "operator_missing": 70
+ },
+ "clusters": [
+  {
+   "cluster_id": "DCC01",
+   "sites": 48,
+   "region_inferred": "South East",
+   "label_node": "IVER",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 131,
+      "mw_stated": 64.67,
+      "count_mw_unknown": 17
+     },
+     "battery": {
+      "count": 9,
+      "mw_stated": 300.4,
+      "count_mw_unknown": 3
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 325,
+      "mw_stated": 309.63,
+      "count_mw_unknown": 40
+     },
+     "battery": {
+      "count": 31,
+      "mw_stated": 616.9,
+      "count_mw_unknown": 9
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "15940",
+      "gg_project_id": "GG2050-REPD-15940",
+      "site_name": "Cobham Road, Bookham - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.5,
+      "distance_km": 16.287
+     },
+     {
+      "ref": "8491",
+      "gg_project_id": "GG2050-REPD-8491",
+      "site_name": "Barkham Farms - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 33.0,
+      "distance_km": 16.871
+     },
+     {
+      "ref": "12325",
+      "gg_project_id": "GG2050-REPD-12325",
+      "site_name": "Spencers Wood Solar Farm, Basingstoke Road - Solar Array",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 28.0,
+      "distance_km": 22.1
+     },
+     {
+      "ref": "10813",
+      "gg_project_id": "GG2050-REPD-10813",
+      "site_name": "Bloomfield Hatch Farm - Solar Farm & Battery",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 25.77,
+      "distance_km": 24.833
+     },
+     {
+      "ref": "17107",
+      "gg_project_id": "GG2050-REPD-17107",
+      "site_name": "Pudds Cross Farm, Pudds Cross - Solar Panels & Battery Energy Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 22.0,
+      "distance_km": 14.181
+     }
+    ],
+    "battery": [
+     {
+      "ref": "17161",
+      "gg_project_id": "GG2050-REPD-17161",
+      "site_name": "Sunbury Battery Energy Storage System - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 4.336
+     },
+     {
+      "ref": "17387",
+      "gg_project_id": "GG2050-REPD-17387",
+      "site_name": "Hilfield Lane, Aldenham - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 170.0,
+      "distance_km": 12.287
+     },
+     {
+      "ref": "12919",
+      "gg_project_id": "GG2050-REPD-12919",
+      "site_name": "Barnett Wood Lane - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 98.0,
+      "distance_km": 17.822
+     },
+     {
+      "ref": "8009",
+      "gg_project_id": "GG2050-REPD-8009",
+      "site_name": "Mill Hill National Grid Substation",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 5.659
+     },
+     {
+      "ref": "17929",
+      "gg_project_id": "GG2050-REPD-17929",
+      "site_name": "Long Lane, Stanwell - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 0.925
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC02",
+   "sites": 28,
+   "region_inferred": "London",
+   "label_node": "PUDDING MILL LANE",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 147,
+      "mw_stated": 136.22,
+      "count_mw_unknown": 10
+     },
+     "battery": {
+      "count": 10,
+      "mw_stated": 285.7,
+      "count_mw_unknown": 1
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 320,
+      "mw_stated": 455.53,
+      "count_mw_unknown": 25
+     },
+     "battery": {
+      "count": 43,
+      "mw_stated": 1367.75,
+      "count_mw_unknown": 8
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "8501",
+      "gg_project_id": "GG2050-REPD-8501",
+      "site_name": "Horton Wood - Solar park",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 10.348
+     },
+     {
+      "ref": "12925",
+      "gg_project_id": "GG2050-REPD-12925",
+      "site_name": "East End Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 10.355
+     },
+     {
+      "ref": "8485",
+      "gg_project_id": "GG2050-REPD-8485",
+      "site_name": "Wickham Hall Estate Solar Photovoltaic Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 35.0,
+      "distance_km": 24.599
+     },
+     {
+      "ref": "18681",
+      "gg_project_id": "GG2050-REPD-18681",
+      "site_name": "Thrift Solar Farm and BESS",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 30.0,
+      "distance_km": 8.018
+     },
+     {
+      "ref": "16550",
+      "gg_project_id": "GG2050-REPD-16550",
+      "site_name": "Nickerlands Solar Farm -  Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 25.0,
+      "distance_km": 9.494
+     }
+    ],
+    "battery": [
+     {
+      "ref": "10309",
+      "gg_project_id": "GG2050-REPD-10309",
+      "site_name": "Gateway Energy Centre - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 450.0,
+      "distance_km": 15.903
+     },
+     {
+      "ref": "15195",
+      "gg_project_id": "GG2050-REPD-15195",
+      "site_name": "Layhams Road - Battery Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 250.0,
+      "distance_km": 17.366
+     },
+     {
+      "ref": "17387",
+      "gg_project_id": "GG2050-REPD-17387",
+      "site_name": "Hilfield Lane, Aldenham - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 170.0,
+      "distance_km": 19.574
+     },
+     {
+      "ref": "18128",
+      "gg_project_id": "GG2050-REPD-18128",
+      "site_name": "Thames Way, Northfleet - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 100.0,
+      "distance_km": 6.605
+     },
+     {
+      "ref": "18483",
+      "gg_project_id": "GG2050-REPD-18483",
+      "site_name": "Darenth Road - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 99.9,
+      "distance_km": 6.006
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC03",
+   "sites": 9,
+   "region_inferred": "North West",
+   "label_node": "SOUTH MANCHESTER",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 101,
+      "mw_stated": 40.99,
+      "count_mw_unknown": 6
+     },
+     "battery": {
+      "count": 24,
+      "mw_stated": 1225.5,
+      "count_mw_unknown": 3
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 169,
+      "mw_stated": 110.51,
+      "count_mw_unknown": 8
+     },
+     "battery": {
+      "count": 42,
+      "mw_stated": 1565.9,
+      "count_mw_unknown": 8
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "14887",
+      "gg_project_id": "GG2050-REPD-14887",
+      "site_name": "Wallerscote Limebeds - Solar Pv Park",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 22.0,
+      "distance_km": 22.988
+     },
+     {
+      "ref": "16992",
+      "gg_project_id": "GG2050-REPD-16992",
+      "site_name": "Duckinfield Farm, Hurst Lane - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 10.0,
+      "distance_km": 13.649
+     },
+     {
+      "ref": "12643",
+      "gg_project_id": "GG2050-REPD-12643",
+      "site_name": "Silver Lane, Risley - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 5.0,
+      "distance_km": 14.246
+     },
+     {
+      "ref": "20533",
+      "gg_project_id": "GG2050-REPD-20533",
+      "site_name": "Sunbank Lane - Solar Panels",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 4.3,
+      "distance_km": 3.388
+     },
+     {
+      "ref": "19482",
+      "gg_project_id": "GG2050-REPD-19482",
+      "site_name": "IGC, Lydia Becker Way - Solar Panels",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 3.06,
+      "distance_km": 8.359
+     }
+    ],
+    "battery": [
+     {
+      "ref": "17495",
+      "gg_project_id": "GG2050-REPD-17495",
+      "site_name": "Daines Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 600.0,
+      "distance_km": 7.633
+     },
+     {
+      "ref": "10808",
+      "gg_project_id": "GG2050-REPD-10808",
+      "site_name": "Printworks Road - Stalybridge Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 150.0,
+      "distance_km": 9.295
+     },
+     {
+      "ref": "15902",
+      "gg_project_id": "GG2050-REPD-15902",
+      "site_name": "Woodford Road - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 100.0,
+      "distance_km": 7.166
+     },
+     {
+      "ref": "13459",
+      "gg_project_id": "GG2050-REPD-13459",
+      "site_name": "Golf Road - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 90.0,
+      "distance_km": 4.927
+     },
+     {
+      "ref": "16667",
+      "gg_project_id": "GG2050-REPD-16667",
+      "site_name": "Ashton Road, Bredbury - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 75.0,
+      "distance_km": 4.319
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC04",
+   "sites": 9,
+   "region_inferred": "Scotland",
+   "label_node": "GORGIE",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 27,
+      "mw_stated": 101.06,
+      "count_mw_unknown": 1
+     },
+     "battery": {
+      "count": 8,
+      "mw_stated": 641.0,
+      "count_mw_unknown": 2
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 49,
+      "mw_stated": 387.32,
+      "count_mw_unknown": 3
+     },
+     "battery": {
+      "count": 33,
+      "mw_stated": 1851.2,
+      "count_mw_unknown": 4
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "15538",
+      "gg_project_id": "GG2050-REPD-15538",
+      "site_name": "Nettly Burn Renewable Energy Park",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 80.0,
+      "distance_km": 23.293
+     },
+     {
+      "ref": "6383",
+      "gg_project_id": "GG2050-REPD-6383",
+      "site_name": "Wemyss Estate - Randolph Solar Farm & Battery Energy Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 50.0,
+      "distance_km": 24.107
+     },
+     {
+      "ref": "13321",
+      "gg_project_id": "GG2050-REPD-13321",
+      "site_name": "Craigluscar, Craigluscar Road - Solar Array & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 40.0,
+      "distance_km": 19.524
+     },
+     {
+      "ref": "10433",
+      "gg_project_id": "GG2050-REPD-10433",
+      "site_name": "Glenniston Farm, Auchtertool - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 39.0,
+      "distance_km": 18.801
+     },
+     {
+      "ref": "11861",
+      "gg_project_id": "GG2050-REPD-11861",
+      "site_name": "Parkend Crossgates - Solar Panels & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 30.0,
+      "distance_km": 15.945
+     }
+    ],
+    "battery": [
+     {
+      "ref": "15426",
+      "gg_project_id": "GG2050-REPD-15426",
+      "site_name": "Mossmorran Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 300.0,
+      "distance_km": 17.741
+     },
+     {
+      "ref": "14539",
+      "gg_project_id": "GG2050-REPD-14539",
+      "site_name": "Cockenzie Battery Storage System - Site A",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 240.0,
+      "distance_km": 11.249
+     },
+     {
+      "ref": "13627",
+      "gg_project_id": "GG2050-REPD-13627",
+      "site_name": "Smeaton Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 228.0,
+      "distance_km": 3.786
+     },
+     {
+      "ref": "13404",
+      "gg_project_id": "GG2050-REPD-13404",
+      "site_name": "Pond Industrial Park, Whitburn Road - Pond Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 16.158
+     },
+     {
+      "ref": "15173",
+      "gg_project_id": "GG2050-REPD-15173",
+      "site_name": "Salters Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 2.106
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC05",
+   "sites": 7,
+   "region_inferred": "Eastern",
+   "label_node": "ELSTREE",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 47,
+      "mw_stated": 70.19,
+      "count_mw_unknown": 4
+     },
+     "battery": {
+      "count": 10,
+      "mw_stated": 197.3,
+      "count_mw_unknown": 0
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 241,
+      "mw_stated": 669.35,
+      "count_mw_unknown": 19
+     },
+     "battery": {
+      "count": 37,
+      "mw_stated": 1604.2,
+      "count_mw_unknown": 7
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "9365",
+      "gg_project_id": "GG2050-REPD-9365",
+      "site_name": "Wymondley Solar Farm, Great Wymondley",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.99,
+      "distance_km": 15.294
+     },
+     {
+      "ref": "10457",
+      "gg_project_id": "GG2050-REPD-10457",
+      "site_name": "Bury Farm - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 19.251
+     },
+     {
+      "ref": "11814",
+      "gg_project_id": "GG2050-REPD-11814",
+      "site_name": "Ledburn, Mentmore - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 21.141
+     },
+     {
+      "ref": "12770",
+      "gg_project_id": "GG2050-REPD-12770",
+      "site_name": "Straws Hadley Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 23.099
+     },
+     {
+      "ref": "12925",
+      "gg_project_id": "GG2050-REPD-12925",
+      "site_name": "East End Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 15.882
+     }
+    ],
+    "battery": [
+     {
+      "ref": "18777",
+      "gg_project_id": "GG2050-REPD-18777",
+      "site_name": "Sundon, Chalton - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 500.0,
+      "distance_km": 19.19
+     },
+     {
+      "ref": "16769",
+      "gg_project_id": "GG2050-REPD-16769",
+      "site_name": "Ginns Road, Stocking Pelham - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 400.0,
+      "distance_km": 24.751
+     },
+     {
+      "ref": "15883",
+      "gg_project_id": "GG2050-REPD-15883",
+      "site_name": "Toddington Services, Hipsey Spinney - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 250.0,
+      "distance_km": 20.499
+     },
+     {
+      "ref": "17387",
+      "gg_project_id": "GG2050-REPD-17387",
+      "site_name": "Hilfield Lane, Aldenham - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 170.0,
+      "distance_km": 6.284
+     },
+     {
+      "ref": "9012",
+      "gg_project_id": "GG2050-REPD-9012",
+      "site_name": "Greens Farm - Battery energy storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 50.0,
+      "distance_km": 24.942
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC06",
+   "sites": 5,
+   "region_inferred": "South East",
+   "label_node": "BOLNEY",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 18,
+      "mw_stated": 32.61,
+      "count_mw_unknown": 3
+     },
+     "battery": {
+      "count": 6,
+      "mw_stated": 42.6,
+      "count_mw_unknown": 1
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 93,
+      "mw_stated": 170.36,
+      "count_mw_unknown": 13
+     },
+     "battery": {
+      "count": 19,
+      "mw_stated": 1955.2,
+      "count_mw_unknown": 4
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "14832",
+      "gg_project_id": "GG2050-REPD-14832",
+      "site_name": "Cobwood Solar Farm, Burnthouse Lane - Solar Farm & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 16.849
+     },
+     {
+      "ref": "15940",
+      "gg_project_id": "GG2050-REPD-15940",
+      "site_name": "Cobham Road, Bookham - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.5,
+      "distance_km": 16.521
+     },
+     {
+      "ref": "12565",
+      "gg_project_id": "GG2050-REPD-12565",
+      "site_name": "Duxhurst Farm, Duxhurst Lane - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 26.0,
+      "distance_km": 2.88
+     },
+     {
+      "ref": "13645",
+      "gg_project_id": "GG2050-REPD-13645",
+      "site_name": "Gaywood Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 10.7,
+      "distance_km": 10.696
+     },
+     {
+      "ref": "7447",
+      "gg_project_id": "GG2050-REPD-7447",
+      "site_name": "Uckfield Solar Electric Forecourt",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 5.5,
+      "distance_km": 20.365
+     }
+    ],
+    "battery": [
+     {
+      "ref": "18138",
+      "gg_project_id": "GG2050-REPD-18138",
+      "site_name": "Stable Green, Sand Hill Lane - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 600.0,
+      "distance_km": 24.78
+     },
+     {
+      "ref": "17245",
+      "gg_project_id": "GG2050-REPD-17245",
+      "site_name": "Great Oak Energy Hub",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 400.0,
+      "distance_km": 18.294
+     },
+     {
+      "ref": "10843",
+      "gg_project_id": "GG2050-REPD-10843",
+      "site_name": "Bolney Substation - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 264.0,
+      "distance_km": 17.23
+     },
+     {
+      "ref": "15195",
+      "gg_project_id": "GG2050-REPD-15195",
+      "site_name": "Layhams Road - Battery Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 250.0,
+      "distance_km": 15.15
+     },
+     {
+      "ref": "13880",
+      "gg_project_id": "GG2050-REPD-13880",
+      "site_name": "Bolney - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 18.216
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC07",
+   "sites": 5,
+   "region_inferred": "South East",
+   "label_node": "BOTLEY WOOD",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 50,
+      "mw_stated": 130.46,
+      "count_mw_unknown": 2
+     },
+     "battery": {
+      "count": 8,
+      "mw_stated": 176.0,
+      "count_mw_unknown": 3
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 84,
+      "mw_stated": 186.62,
+      "count_mw_unknown": 7
+     },
+     "battery": {
+      "count": 20,
+      "mw_stated": 788.96,
+      "count_mw_unknown": 4
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "18186",
+      "gg_project_id": "GG2050-REPD-18186",
+      "site_name": "Titchfield Lane, Wickham - Solar Panels",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 3.34
+     },
+     {
+      "ref": "14584",
+      "gg_project_id": "GG2050-REPD-14584",
+      "site_name": "Allington Lane - Solar & Battery Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 27.0,
+      "distance_km": 7.331
+     },
+     {
+      "ref": "12414",
+      "gg_project_id": "GG2050-REPD-12414",
+      "site_name": "Sunny Oaks Renewable Energy Park",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 20.0,
+      "distance_km": 15.675
+     },
+     {
+      "ref": "13790",
+      "gg_project_id": "GG2050-REPD-13790",
+      "site_name": "South Lynch Farm - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 20.0,
+      "distance_km": 19.794
+     },
+     {
+      "ref": "7924",
+      "gg_project_id": "GG2050-REPD-7924",
+      "site_name": "New Farm House Locks Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 18.0,
+      "distance_km": 4.452
+     }
+    ],
+    "battery": [
+     {
+      "ref": "19403",
+      "gg_project_id": "GG2050-REPD-19403",
+      "site_name": "East Road, Marchwood - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 13.314
+     },
+     {
+      "ref": "16191",
+      "gg_project_id": "GG2050-REPD-16191",
+      "site_name": "Upton Lane, Nursling - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 99.9,
+      "distance_km": 16.244
+     },
+     {
+      "ref": "13573",
+      "gg_project_id": "GG2050-REPD-13573",
+      "site_name": "Butts Field, Mill Lane - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 99.0,
+      "distance_km": 6.639
+     },
+     {
+      "ref": "19012",
+      "gg_project_id": "GG2050-REPD-19012",
+      "site_name": "Station Road, Crescent Industrial Estate - Battery Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 62.0,
+      "distance_km": 16.898
+     },
+     {
+      "ref": "12691",
+      "gg_project_id": "GG2050-REPD-12691",
+      "site_name": "Misslebrook Farm, Botley Road - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 60.0,
+      "distance_km": 15.073
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC08",
+   "sites": 5,
+   "region_inferred": "South East",
+   "label_node": "FLEET",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 23,
+      "mw_stated": 60.35,
+      "count_mw_unknown": 4
+     },
+     "battery": {
+      "count": 8,
+      "mw_stated": 356.1,
+      "count_mw_unknown": 2
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 114,
+      "mw_stated": 317.91,
+      "count_mw_unknown": 19
+     },
+     "battery": {
+      "count": 30,
+      "mw_stated": 714.2,
+      "count_mw_unknown": 14
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "7802",
+      "gg_project_id": "GG2050-REPD-7802",
+      "site_name": "Chosley Farm, North Warnborough Solar Farm and Battery storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 11.853
+     },
+     {
+      "ref": "8068",
+      "gg_project_id": "GG2050-REPD-8068",
+      "site_name": "Copse Close Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 20.456
+     },
+     {
+      "ref": "8089",
+      "gg_project_id": "GG2050-REPD-8089",
+      "site_name": "Bramley Frith Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 19.937
+     },
+     {
+      "ref": "8491",
+      "gg_project_id": "GG2050-REPD-8491",
+      "site_name": "Barkham Farms - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 33.0,
+      "distance_km": 6.865
+     },
+     {
+      "ref": "12325",
+      "gg_project_id": "GG2050-REPD-12325",
+      "site_name": "Spencers Wood Solar Farm, Basingstoke Road - Solar Array",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 28.0,
+      "distance_km": 13.207
+     }
+    ],
+    "battery": [
+     {
+      "ref": "17161",
+      "gg_project_id": "GG2050-REPD-17161",
+      "site_name": "Sunbury Battery Energy Storage System - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 23.806
+     },
+     {
+      "ref": "10163",
+      "gg_project_id": "GG2050-REPD-10163",
+      "site_name": "Penn Croft Farm, Crondall - Battery Energy Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 100.0,
+      "distance_km": 8.073
+     },
+     {
+      "ref": "16472",
+      "gg_project_id": "GG2050-REPD-16472",
+      "site_name": "Crondall Road, Crondall - Fleet Bramley Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 99.9,
+      "distance_km": 5.719
+     },
+     {
+      "ref": "11090",
+      "gg_project_id": "GG2050-REPD-11090",
+      "site_name": "Ash Lane, Little London - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 57.0,
+      "distance_km": 21.109
+     },
+     {
+      "ref": "13728",
+      "gg_project_id": "GG2050-REPD-13728",
+      "site_name": "Coxmoor Wood, Crondall Road - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 57.0,
+      "distance_km": 5.202
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC09",
+   "sites": 5,
+   "region_inferred": "Wales",
+   "label_node": "IMPERIAL PARK",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 11,
+      "mw_stated": 30.7,
+      "count_mw_unknown": 0
+     },
+     "battery": {
+      "count": 7,
+      "mw_stated": 1114.8,
+      "count_mw_unknown": 2
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 44,
+      "mw_stated": 286.47,
+      "count_mw_unknown": 2
+     },
+     "battery": {
+      "count": 17,
+      "mw_stated": 1365.9,
+      "count_mw_unknown": 6
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "8459",
+      "gg_project_id": "GG2050-REPD-8459",
+      "site_name": "Vianshill Farm, Parc Dyffryn - Solar Farm & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 65.0,
+      "distance_km": 19.635
+     },
+     {
+      "ref": "19452",
+      "gg_project_id": "GG2050-REPD-19452",
+      "site_name": "Yew Tree Farm, Yew Tree Lane - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.99,
+      "distance_km": 21.234
+     },
+     {
+      "ref": "12020",
+      "gg_project_id": "GG2050-REPD-12020",
+      "site_name": "Parc Worlton Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 42.0,
+      "distance_km": 21.981
+     },
+     {
+      "ref": "13293",
+      "gg_project_id": "GG2050-REPD-13293",
+      "site_name": "Sandbay, Elmsley Lane, Kewstoke - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 24.5,
+      "distance_km": 20.727
+     },
+     {
+      "ref": "8088",
+      "gg_project_id": "GG2050-REPD-8088",
+      "site_name": "Brynwell Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 21.0,
+      "distance_km": 16.279
+     }
+    ],
+    "battery": [
+     {
+      "ref": "16190",
+      "gg_project_id": "GG2050-REPD-16190",
+      "site_name": "Rover Way, Splott - Energy Park & Data Centre",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 1000.0,
+      "distance_km": 9.502
+     },
+     {
+      "ref": "20012",
+      "gg_project_id": "GG2050-REPD-20012",
+      "site_name": "Pound Farm Lane - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 18.296
+     },
+     {
+      "ref": "15610",
+      "gg_project_id": "GG2050-REPD-15610",
+      "site_name": "Ipswich Road, Cardiff - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 93.0,
+      "distance_km": 9.3
+     },
+     {
+      "ref": "19656",
+      "gg_project_id": "GG2050-REPD-19656",
+      "site_name": "Sully Moors Road - Battery Energy Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 50.0,
+      "distance_km": 20.173
+     },
+     {
+      "ref": "18327",
+      "gg_project_id": "GG2050-REPD-18327",
+      "site_name": "Leeway House, Leeway Industrial Estate - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 20.6,
+      "distance_km": 6.138
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC10",
+   "sites": 4,
+   "region_inferred": "Yorkshire and Humber",
+   "label_node": "ELLAND",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 29,
+      "mw_stated": 11.95,
+      "count_mw_unknown": 3
+     },
+     "battery": {
+      "count": 6,
+      "mw_stated": 639.9,
+      "count_mw_unknown": 2
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 130,
+      "mw_stated": 222.98,
+      "count_mw_unknown": 12
+     },
+     "battery": {
+      "count": 28,
+      "mw_stated": 1493.7,
+      "count_mw_unknown": 6
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "9770",
+      "gg_project_id": "GG2050-REPD-9770",
+      "site_name": "Low Farm, Flockton - Solar Photovoltaic Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 14.002
+     },
+     {
+      "ref": "10199",
+      "gg_project_id": "GG2050-REPD-10199",
+      "site_name": "Lady Ings Farm, Middlestown - Solar Photovoltaic Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 15.85
+     },
+     {
+      "ref": "14647",
+      "gg_project_id": "GG2050-REPD-14647",
+      "site_name": "Haigh Lane, Woolley Edge Lane - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 29.7,
+      "distance_km": 20.705
+     },
+     {
+      "ref": "12776",
+      "gg_project_id": "GG2050-REPD-12776",
+      "site_name": "New Hall Farm, New Hall Lane - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 22.4,
+      "distance_km": 15.197
+     },
+     {
+      "ref": "19094",
+      "gg_project_id": "GG2050-REPD-19094",
+      "site_name": "Owlers Farm, Wakefield Road - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 20.0,
+      "distance_km": 16.629
+     }
+    ],
+    "battery": [
+     {
+      "ref": "17964",
+      "gg_project_id": "GG2050-REPD-17964",
+      "site_name": "Holmfield  Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 500.0,
+      "distance_km": 5.565
+     },
+     {
+      "ref": "12909",
+      "gg_project_id": "GG2050-REPD-12909",
+      "site_name": "Bradford West, Harrop Lane, Wilsden - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 100.0,
+      "distance_km": 11.405
+     },
+     {
+      "ref": "17416",
+      "gg_project_id": "GG2050-REPD-17416",
+      "site_name": "Lane Side - Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 100.0,
+      "distance_km": 12.12
+     },
+     {
+      "ref": "19412",
+      "gg_project_id": "GG2050-REPD-19412",
+      "site_name": "Peat Dykes Farm, Harrop Lane - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 100.0,
+      "distance_km": 11.06
+     },
+     {
+      "ref": "19469",
+      "gg_project_id": "GG2050-REPD-19469",
+      "site_name": "Neil Fox Way - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 99.9,
+      "distance_km": 23.373
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC11",
+   "sites": 4,
+   "region_inferred": "South East",
+   "label_node": "DIDCOT",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 23,
+      "mw_stated": 158.7,
+      "count_mw_unknown": 3
+     },
+     "battery": {
+      "count": 8,
+      "mw_stated": 1049.9,
+      "count_mw_unknown": 4
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 71,
+      "mw_stated": 517.29,
+      "count_mw_unknown": 7
+     },
+     "battery": {
+      "count": 19,
+      "mw_stated": 1178.1,
+      "count_mw_unknown": 10
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "7936",
+      "gg_project_id": "GG2050-REPD-7936",
+      "site_name": "Nuneham Courtenay Solar Farm & Battery Storage Facility",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 5.185
+     },
+     {
+      "ref": "7945",
+      "gg_project_id": "GG2050-REPD-7945",
+      "site_name": "Cornwell Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 14.228
+     },
+     {
+      "ref": "7956",
+      "gg_project_id": "GG2050-REPD-7956",
+      "site_name": "Harlesford Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 15.721
+     },
+     {
+      "ref": "7960",
+      "gg_project_id": "GG2050-REPD-7960",
+      "site_name": "Barnstaples Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 9.796
+     },
+     {
+      "ref": "8539",
+      "gg_project_id": "GG2050-REPD-8539",
+      "site_name": "Dodwells Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 16.409
+     }
+    ],
+    "battery": [
+     {
+      "ref": "12968",
+      "gg_project_id": "GG2050-REPD-12968",
+      "site_name": "Culham Science Centre, Clifton Hampden - Battery Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 500.0,
+      "distance_km": 0.559
+     },
+     {
+      "ref": "17837",
+      "gg_project_id": "GG2050-REPD-17837",
+      "site_name": "Appleford - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 300.0,
+      "distance_km": 2.096
+     },
+     {
+      "ref": "17503",
+      "gg_project_id": "GG2050-REPD-17503",
+      "site_name": "Cowley Substation, Blackberry Lane - Battery Storage Energy System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 5.92
+     },
+     {
+      "ref": "17593",
+      "gg_project_id": "GG2050-REPD-17593",
+      "site_name": "Woodstock Road, Yarnton - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 52.0,
+      "distance_km": 17.101
+     },
+     {
+      "ref": "15444",
+      "gg_project_id": "GG2050-REPD-15444",
+      "site_name": "Burcot Solar Farm",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 2.719
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC12",
+   "sites": 3,
+   "region_inferred": "South East",
+   "label_node": "BRAMLEY",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 28,
+      "mw_stated": 125.87,
+      "count_mw_unknown": 5
+     },
+     "battery": {
+      "count": 5,
+      "mw_stated": 0.0,
+      "count_mw_unknown": 5
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 86,
+      "mw_stated": 308.95,
+      "count_mw_unknown": 12
+     },
+     "battery": {
+      "count": 20,
+      "mw_stated": 463.1,
+      "count_mw_unknown": 12
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "7802",
+      "gg_project_id": "GG2050-REPD-7802",
+      "site_name": "Chosley Farm, North Warnborough Solar Farm and Battery storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 19.325
+     },
+     {
+      "ref": "8089",
+      "gg_project_id": "GG2050-REPD-8089",
+      "site_name": "Bramley Frith Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 11.206
+     },
+     {
+      "ref": "8491",
+      "gg_project_id": "GG2050-REPD-8491",
+      "site_name": "Barkham Farms - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 33.0,
+      "distance_km": 8.102
+     },
+     {
+      "ref": "7962",
+      "gg_project_id": "GG2050-REPD-7962",
+      "site_name": "Hook Lane, Malshanger",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 30.0,
+      "distance_km": 21.138
+     },
+     {
+      "ref": "12325",
+      "gg_project_id": "GG2050-REPD-12325",
+      "site_name": "Spencers Wood Solar Farm, Basingstoke Road - Solar Array",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 28.0,
+      "distance_km": 4.277
+     }
+    ],
+    "battery": [
+     {
+      "ref": "10163",
+      "gg_project_id": "GG2050-REPD-10163",
+      "site_name": "Penn Croft Farm, Crondall - Battery Energy Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 100.0,
+      "distance_km": 21.228
+     },
+     {
+      "ref": "16472",
+      "gg_project_id": "GG2050-REPD-16472",
+      "site_name": "Crondall Road, Crondall - Fleet Bramley Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 99.9,
+      "distance_km": 20.72
+     },
+     {
+      "ref": "11090",
+      "gg_project_id": "GG2050-REPD-11090",
+      "site_name": "Ash Lane, Little London - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 57.0,
+      "distance_km": 11.931
+     },
+     {
+      "ref": "13728",
+      "gg_project_id": "GG2050-REPD-13728",
+      "site_name": "Coxmoor Wood, Crondall Road - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 57.0,
+      "distance_km": 19.285
+     },
+     {
+      "ref": "17240",
+      "gg_project_id": "GG2050-REPD-17240",
+      "site_name": "Withy Place, Bramley Road - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 50.0,
+      "distance_km": 10.751
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC13",
+   "sites": 3,
+   "region_inferred": "London",
+   "label_node": "BEDDINGTON",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 26,
+      "mw_stated": 8.49,
+      "count_mw_unknown": 6
+     },
+     "battery": {
+      "count": 4,
+      "mw_stated": 292.2,
+      "count_mw_unknown": 0
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 194,
+      "mw_stated": 201.09,
+      "count_mw_unknown": 20
+     },
+     "battery": {
+      "count": 19,
+      "mw_stated": 661.3,
+      "count_mw_unknown": 5
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "8501",
+      "gg_project_id": "GG2050-REPD-8501",
+      "site_name": "Horton Wood - Solar park",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 24.823
+     },
+     {
+      "ref": "15940",
+      "gg_project_id": "GG2050-REPD-15940",
+      "site_name": "Cobham Road, Bookham - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.5,
+      "distance_km": 18.442
+     },
+     {
+      "ref": "12565",
+      "gg_project_id": "GG2050-REPD-12565",
+      "site_name": "Duxhurst Farm, Duxhurst Lane - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 26.0,
+      "distance_km": 19.097
+     },
+     {
+      "ref": "13645",
+      "gg_project_id": "GG2050-REPD-13645",
+      "site_name": "Gaywood Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 10.7,
+      "distance_km": 18.156
+     },
+     {
+      "ref": "9924",
+      "gg_project_id": "GG2050-REPD-9924",
+      "site_name": "Pegasus House, Sackville Street - Roof Mounted Solar Panels",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 2.3,
+      "distance_km": 13.861
+     }
+    ],
+    "battery": [
+     {
+      "ref": "15195",
+      "gg_project_id": "GG2050-REPD-15195",
+      "site_name": "Layhams Road - Battery Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 250.0,
+      "distance_km": 8.768
+     },
+     {
+      "ref": "17161",
+      "gg_project_id": "GG2050-REPD-17161",
+      "site_name": "Sunbury Battery Energy Storage System - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 21.087
+     },
+     {
+      "ref": "12919",
+      "gg_project_id": "GG2050-REPD-12919",
+      "site_name": "Barnett Wood Lane - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 98.0,
+      "distance_km": 14.844
+     },
+     {
+      "ref": "17929",
+      "gg_project_id": "GG2050-REPD-17929",
+      "site_name": "Long Lane, Stanwell - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 23.944
+     },
+     {
+      "ref": "15398",
+      "gg_project_id": "GG2050-REPD-15398",
+      "site_name": "Rushett Lane - Battery Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 30.0,
+      "distance_km": 9.748
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC14",
+   "sites": 3,
+   "region_inferred": "South West",
+   "label_node": "ALVERDISCOTT",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 2,
+      "mw_stated": 2.43,
+      "count_mw_unknown": 0
+     },
+     "battery": {
+      "count": 2,
+      "mw_stated": 74.9,
+      "count_mw_unknown": 0
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 6,
+      "mw_stated": 62.53,
+      "count_mw_unknown": 0
+     },
+     "battery": {
+      "count": 4,
+      "mw_stated": 77.9,
+      "count_mw_unknown": 1
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "10483",
+      "gg_project_id": "GG2050-REPD-10483",
+      "site_name": "Higher Witheven Solar",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 42.5,
+      "distance_km": 13.093
+     },
+     {
+      "ref": "13219",
+      "gg_project_id": "GG2050-REPD-13219",
+      "site_name": "East Rightadown Farm, Brandis Corner - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 7.6,
+      "distance_km": 20.239
+     },
+     {
+      "ref": "5757",
+      "gg_project_id": "GG2050-REPD-5757",
+      "site_name": "Bulkworthy Solar Park",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 5.0,
+      "distance_km": 20.105
+     },
+     {
+      "ref": "5954",
+      "gg_project_id": "GG2050-REPD-5954",
+      "site_name": "Lower Tregeen Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 5.0,
+      "distance_km": 17.57
+     },
+     {
+      "ref": "14570",
+      "gg_project_id": "GG2050-REPD-14570",
+      "site_name": "Whalesborough Farm, Marhamchurch - Solar Array",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 2.1,
+      "distance_km": 1.582
+     }
+    ],
+    "battery": [
+     {
+      "ref": "16561",
+      "gg_project_id": "GG2050-REPD-16561",
+      "site_name": "Stoneworthy - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 9.601
+     },
+     {
+      "ref": "16068",
+      "gg_project_id": "GG2050-REPD-16068",
+      "site_name": "Pinkworthy Farm, Pyworthy - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 25.0,
+      "distance_km": 8.075
+     },
+     {
+      "ref": "12112",
+      "gg_project_id": "GG2050-REPD-12112",
+      "site_name": "Link Road - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 3.0,
+      "distance_km": 24.643
+     },
+     {
+      "ref": "13220",
+      "gg_project_id": "GG2050-REPD-13220",
+      "site_name": "East Rightadown Farm, Brandis Corner - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": null,
+      "distance_km": 20.239
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC15",
+   "sites": 3,
+   "region_inferred": "Eastern",
+   "label_node": "NEW RYHALL",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 18,
+      "mw_stated": 23.77,
+      "count_mw_unknown": 2
+     },
+     "battery": {
+      "count": 8,
+      "mw_stated": 61.0,
+      "count_mw_unknown": 1
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 43,
+      "mw_stated": 627.63,
+      "count_mw_unknown": 2
+     },
+     "battery": {
+      "count": 14,
+      "mw_stated": 164.3,
+      "count_mw_unknown": 2
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "9904",
+      "gg_project_id": "GG2050-REPD-9904",
+      "site_name": "Mallard Pass Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 350.0,
+      "distance_km": 19.551
+     },
+     {
+      "ref": "8991",
+      "gg_project_id": "GG2050-REPD-8991",
+      "site_name": "Little Staughton Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 50.0,
+      "distance_km": 15.955
+     },
+     {
+      "ref": "9975",
+      "gg_project_id": "GG2050-REPD-9975",
+      "site_name": "Nutsgrove Farm, Thorney - Solar Array",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 17.903
+     },
+     {
+      "ref": "19562",
+      "gg_project_id": "GG2050-REPD-19562",
+      "site_name": "Malice Farm, French Drove - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 19.638
+     },
+     {
+      "ref": "16683",
+      "gg_project_id": "GG2050-REPD-16683",
+      "site_name": "Home Farm - Solar PV Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 28.0,
+      "distance_km": 23.262
+     }
+    ],
+    "battery": [
+     {
+      "ref": "9976",
+      "gg_project_id": "GG2050-REPD-9976",
+      "site_name": "Nutsgrove Farm, Thorney - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 50.0,
+      "distance_km": 17.903
+     },
+     {
+      "ref": "11558",
+      "gg_project_id": "GG2050-REPD-11558",
+      "site_name": "Third Drove, Fengate - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 50.0,
+      "distance_km": 4.177
+     },
+     {
+      "ref": "19563",
+      "gg_project_id": "GG2050-REPD-19563",
+      "site_name": "Malice Farm, French Drove - BESS",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 19.638
+     },
+     {
+      "ref": "17656",
+      "gg_project_id": "GG2050-REPD-17656",
+      "site_name": "Kings Dyke, Whittlesey - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 10.0,
+      "distance_km": 6.462
+     },
+     {
+      "ref": "7631",
+      "gg_project_id": "GG2050-REPD-7631",
+      "site_name": "Wittering Ford Road",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 3.0,
+      "distance_km": 12.533
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC16",
+   "sites": 3,
+   "region_inferred": "South East",
+   "label_node": "WEST WEYBRIDGE",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 23,
+      "mw_stated": 70.67,
+      "count_mw_unknown": 3
+     },
+     "battery": {
+      "count": 10,
+      "mw_stated": 201.4,
+      "count_mw_unknown": 2
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 133,
+      "mw_stated": 159.45,
+      "count_mw_unknown": 21
+     },
+     "battery": {
+      "count": 24,
+      "mw_stated": 735.6,
+      "count_mw_unknown": 6
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "15940",
+      "gg_project_id": "GG2050-REPD-15940",
+      "site_name": "Cobham Road, Bookham - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.5,
+      "distance_km": 8.465
+     },
+     {
+      "ref": "8491",
+      "gg_project_id": "GG2050-REPD-8491",
+      "site_name": "Barkham Farms - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 33.0,
+      "distance_km": 19.219
+     },
+     {
+      "ref": "12583",
+      "gg_project_id": "GG2050-REPD-12583",
+      "site_name": "Billingbear Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 21.51,
+      "distance_km": 17.268
+     },
+     {
+      "ref": "16170",
+      "gg_project_id": "GG2050-REPD-16170",
+      "site_name": "University of Surrey, Blackwell Farm - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 12.1,
+      "distance_km": 9.955
+     },
+     {
+      "ref": "19536",
+      "gg_project_id": "GG2050-REPD-19536",
+      "site_name": "Mclaren Technology Centre, Chertsey Road - Solar Panels",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 2.56,
+      "distance_km": 3.822
+     }
+    ],
+    "battery": [
+     {
+      "ref": "17161",
+      "gg_project_id": "GG2050-REPD-17161",
+      "site_name": "Sunbury Battery Energy Storage System - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 7.39
+     },
+     {
+      "ref": "10163",
+      "gg_project_id": "GG2050-REPD-10163",
+      "site_name": "Penn Croft Farm, Crondall - Battery Energy Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 100.0,
+      "distance_km": 23.169
+     },
+     {
+      "ref": "16472",
+      "gg_project_id": "GG2050-REPD-16472",
+      "site_name": "Crondall Road, Crondall - Fleet Bramley Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 99.9,
+      "distance_km": 20.819
+     },
+     {
+      "ref": "12919",
+      "gg_project_id": "GG2050-REPD-12919",
+      "site_name": "Barnett Wood Lane - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 98.0,
+      "distance_km": 11.838
+     },
+     {
+      "ref": "13728",
+      "gg_project_id": "GG2050-REPD-13728",
+      "site_name": "Coxmoor Wood, Crondall Road - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 57.0,
+      "distance_km": 20.55
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC17",
+   "sites": 3,
+   "region_inferred": "South West",
+   "label_node": "MELKSHAM",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 15,
+      "mw_stated": 41.92,
+      "count_mw_unknown": 0
+     },
+     "battery": {
+      "count": 2,
+      "mw_stated": 168.0,
+      "count_mw_unknown": 0
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 68,
+      "mw_stated": 499.34,
+      "count_mw_unknown": 3
+     },
+     "battery": {
+      "count": 20,
+      "mw_stated": 856.43,
+      "count_mw_unknown": 4
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "8393",
+      "gg_project_id": "GG2050-REPD-8393",
+      "site_name": "Rag Lane  Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 24.011
+     },
+     {
+      "ref": "8918",
+      "gg_project_id": "GG2050-REPD-8918",
+      "site_name": "Crudwell Road Solar Farm & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 22.965
+     },
+     {
+      "ref": "9229",
+      "gg_project_id": "GG2050-REPD-9229",
+      "site_name": "Forest Gate - Solar Farm & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 10.26
+     },
+     {
+      "ref": "13988",
+      "gg_project_id": "GG2050-REPD-13988",
+      "site_name": "Bluebell Wood Solar Farm & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 14.994
+     },
+     {
+      "ref": "15715",
+      "gg_project_id": "GG2050-REPD-15715",
+      "site_name": "Potterne Park Farm, Potterne - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 20.181
+     }
+    ],
+    "battery": [
+     {
+      "ref": "13607",
+      "gg_project_id": "GG2050-REPD-13607",
+      "site_name": "Westerleigh Hill, Westerleigh - Battery Energy Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 18.234
+     },
+     {
+      "ref": "11612",
+      "gg_project_id": "GG2050-REPD-11612",
+      "site_name": "Norrington Gate Farm, Broughton Gifford - Battery Energy Storage Facility",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 150.0,
+      "distance_km": 5.736
+     },
+     {
+      "ref": "14076",
+      "gg_project_id": "GG2050-REPD-14076",
+      "site_name": "Lower Larks Farm - Battery storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 99.9,
+      "distance_km": 24.643
+     },
+     {
+      "ref": "14722",
+      "gg_project_id": "GG2050-REPD-14722",
+      "site_name": "Iron Acton Substation, Latteridge Lane - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 99.0,
+      "distance_km": 24.836
+     },
+     {
+      "ref": "11793",
+      "gg_project_id": "GG2050-REPD-11793",
+      "site_name": "Says Court Farm, Coalpit Heath - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 50.0,
+      "distance_km": 20.429
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC18",
+   "sites": 3,
+   "region_inferred": "North East",
+   "label_node": "SALTHOLME",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 40,
+      "mw_stated": 276.02,
+      "count_mw_unknown": 6
+     },
+     "battery": {
+      "count": 15,
+      "mw_stated": 1625.6,
+      "count_mw_unknown": 3
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 87,
+      "mw_stated": 810.84,
+      "count_mw_unknown": 10
+     },
+     "battery": {
+      "count": 23,
+      "mw_stated": 2173.66,
+      "count_mw_unknown": 5
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "12409",
+      "gg_project_id": "GG2050-REPD-12409",
+      "site_name": "Byers Gill Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 180.0,
+      "distance_km": 11.391
+     },
+     {
+      "ref": "11691",
+      "gg_project_id": "GG2050-REPD-11691",
+      "site_name": "Gately Moor Reservoir, Redmarshall - Solar Farm & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.99,
+      "distance_km": 7.047
+     },
+     {
+      "ref": "15247",
+      "gg_project_id": "GG2050-REPD-15247",
+      "site_name": "Worset Lane - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.99,
+      "distance_km": 7.317
+     },
+     {
+      "ref": "8254",
+      "gg_project_id": "GG2050-REPD-8254",
+      "site_name": "Sheraton Hall Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 8.005
+     },
+     {
+      "ref": "9116",
+      "gg_project_id": "GG2050-REPD-9116",
+      "site_name": "California Farm - Solar Farm & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 5.903
+     }
+    ],
+    "battery": [
+     {
+      "ref": "19634",
+      "gg_project_id": "GG2050-REPD-19634",
+      "site_name": "Tesside GigaPark - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 1000.0,
+      "distance_km": 7.801
+     },
+     {
+      "ref": "11406",
+      "gg_project_id": "GG2050-REPD-11406",
+      "site_name": "Worset Lane - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 8.521
+     },
+     {
+      "ref": "13576",
+      "gg_project_id": "GG2050-REPD-13576",
+      "site_name": "Spennymoor Greener Grid Park",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 16.903
+     },
+     {
+      "ref": "13156",
+      "gg_project_id": "GG2050-REPD-13156",
+      "site_name": "Byers Gill Solar Farm",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 180.0,
+      "distance_km": 11.153
+     },
+     {
+      "ref": "14729",
+      "gg_project_id": "GG2050-REPD-14729",
+      "site_name": "Wilton International, Greystones Road - Phase 1",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 150.0,
+      "distance_km": 6.831
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC19",
+   "sites": 3,
+   "region_inferred": "Eastern",
+   "label_node": "LITTLE BARFORD",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 17,
+      "mw_stated": 134.66,
+      "count_mw_unknown": 4
+     },
+     "battery": {
+      "count": 4,
+      "mw_stated": 382.2,
+      "count_mw_unknown": 0
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 53,
+      "mw_stated": 881.75,
+      "count_mw_unknown": 8
+     },
+     "battery": {
+      "count": 14,
+      "mw_stated": 976.55,
+      "count_mw_unknown": 1
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "7188",
+      "gg_project_id": "GG2050-REPD-7188",
+      "site_name": "Sunnica Energy Farm (East and West)",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 500.0,
+      "distance_km": 24.917
+     },
+     {
+      "ref": "9240",
+      "gg_project_id": "GG2050-REPD-9240",
+      "site_name": "Stargoose Farm - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.99,
+      "distance_km": 6.904
+     },
+     {
+      "ref": "17757",
+      "gg_project_id": "GG2050-REPD-17757",
+      "site_name": "Burwell Anchor Lane Farm, Newnham Drove - Solar Panels",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.95,
+      "distance_km": 12.975
+     },
+     {
+      "ref": "10485",
+      "gg_project_id": "GG2050-REPD-10485",
+      "site_name": "Newmarket Road, Bottisham - Solar Array",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 9.13
+     },
+     {
+      "ref": "13629",
+      "gg_project_id": "GG2050-REPD-13629",
+      "site_name": "Abbotsley Country Homes, Drewels Lane - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 21.88
+     }
+    ],
+    "battery": [
+     {
+      "ref": "16410",
+      "gg_project_id": "GG2050-REPD-16410",
+      "site_name": "Wicken Bridleway, Church Road - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 400.0,
+      "distance_km": 20.297
+     },
+     {
+      "ref": "11719",
+      "gg_project_id": "GG2050-REPD-11719",
+      "site_name": "Stargoose Farm - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 312.0,
+      "distance_km": 6.904
+     },
+     {
+      "ref": "10486",
+      "gg_project_id": "GG2050-REPD-10486",
+      "site_name": "Newmarket Road, Bottisham -  Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 50.0,
+      "distance_km": 9.13
+     },
+     {
+      "ref": "14874",
+      "gg_project_id": "GG2050-REPD-14874",
+      "site_name": "Weald Farm, Cambridge Road - Solar Farm & Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 50.0,
+      "distance_km": 19.006
+     },
+     {
+      "ref": "16094",
+      "gg_project_id": "GG2050-REPD-16094",
+      "site_name": "Anchor Lane, Burwell - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.95,
+      "distance_km": 12.048
+     }
+    ]
+   }
+  },
+  {
+   "cluster_id": "DCC20",
+   "sites": 3,
+   "region_inferred": "East Midlands",
+   "label_node": "ENDERBY",
+   "consented_within_km": {
+    "10": {
+     "solar": {
+      "count": 25,
+      "mw_stated": 163.1,
+      "count_mw_unknown": 3
+     },
+     "battery": {
+      "count": 5,
+      "mw_stated": 500.8,
+      "count_mw_unknown": 0
+     }
+    },
+    "25": {
+     "solar": {
+      "count": 105,
+      "mw_stated": 556.81,
+      "count_mw_unknown": 7
+     },
+     "battery": {
+      "count": 19,
+      "mw_stated": 1848.1,
+      "count_mw_unknown": 7
+     }
+    }
+   },
+   "largest_consented_within_25km": {
+    "solar": [
+     {
+      "ref": "8508",
+      "gg_project_id": "GG2050-REPD-8508",
+      "site_name": "Elms Farm - Hinckley Solar Farm & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 14.031
+     },
+     {
+      "ref": "9567",
+      "gg_project_id": "GG2050-REPD-9567",
+      "site_name": "Stoneshollow Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 13.052
+     },
+     {
+      "ref": "10881",
+      "gg_project_id": "GG2050-REPD-10881",
+      "site_name": "Lodge Farm -  Solar Farm & Battery Storage",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 10.764
+     },
+     {
+      "ref": "11364",
+      "gg_project_id": "GG2050-REPD-11364",
+      "site_name": "Long Whatton - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 23.735
+     },
+     {
+      "ref": "12395",
+      "gg_project_id": "GG2050-REPD-12395",
+      "site_name": "Soars Lodge Farm, Foston Lane - Solar Farm",
+      "technology": "Solar Photovoltaics",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 7.306
+     }
+    ],
+    "battery": [
+     {
+      "ref": "18467",
+      "gg_project_id": "GG2050-REPD-18467",
+      "site_name": "Swinford Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 1000.0,
+      "distance_km": 16.37
+     },
+     {
+      "ref": "11988",
+      "gg_project_id": "GG2050-REPD-11988",
+      "site_name": "Normanton Energy Reserve - Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 500.0,
+      "distance_km": 4.126
+     },
+     {
+      "ref": "16212",
+      "gg_project_id": "GG2050-REPD-16212",
+      "site_name": "T Main Road, Ansty - Battery Energy Storage System",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 200.0,
+      "distance_km": 20.141
+     },
+     {
+      "ref": "19219",
+      "gg_project_id": "GG2050-REPD-19219",
+      "site_name": "Welford Solar Farm - Solar Farm & Battery Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 67.0,
+      "distance_km": 19.063
+     },
+     {
+      "ref": "17365",
+      "gg_project_id": "GG2050-REPD-17365",
+      "site_name": "Weddington Road - Battery Energy Storage",
+      "technology": "Battery",
+      "status": "Awaiting Construction",
+      "status_group": "consented",
+      "capacity_mw": 49.9,
+      "distance_km": 17.967
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,319 @@
+# REPD October 2026 job: improved scopes for every lane
+
+Written by the coordinator (Claude Fable), first pass 2026-11-14T00:48Z (clock read with `date -u`).
+Reference: `OWNER-INSTRUCTIONS.md` in this folder (the owner's instructions of the night in order, as one brief, and
+progress against each line). Every lane below traces to a line of its Part 2; every line of Part 2 has one owning lane.
+Basis: opening posts and ACKs on issues 12 to 20, the team brief, each lane's working folder and public folder
+`FIXES/NL-0xx/`, and globalgrid2050 main at `1a416f4b`. This file states scope only. It approves nothing, and it does
+not widen any lane's permissions: the harness and the owner decide what is applied, merged or promoted.
+Revised only when a lane's findings or ChatGPT's posts change what a lane should be doing; revisions are listed at the end.
+
+## 0. Trace: the owner's brief (Part 2) to lanes
+
+| Line | Owner's brief | One owning lane | Done when | Evidence expected |
+|---|---|---|---|---|
+| 1 | Protect what exists: backup, text log, no truncation, hashes, checkpoints, testcode, easy restore | Team 5 (NL-017); checkpoints are made by the harness | Every pre-existing file on main is shown byte-identical or listed with its reason; a rehearsed rollback exists for each live step taken, in the right order | Changed-files table against `73cbdec1`; rehearsal log; checkpoint ids |
+| 2a | Ingest October REPD, current formats, cleaned with Python: datasets | Team 1 (NL-013) | Independent re-derivation matches; gates fail on bad input | Re-derivation log, defect table, patches |
+| 2b | July baseline and true comparison | Team 2 (NL-014) | Finished | Comment 6868663705, PR #60 |
+| 2c | Pipeline News on October data | Team 3 (NL-015) | The operative page is tested beyond load and paging; defects ranked | Headless logs, recounts, patches P1 and P2 |
+| 2d | GridAtlas and legacy maps on October data | Team 4 (NL-016) | Preview package ready to push; per-page evidence for the legacy switch; new-ref MAP behaviour known | Gate log, per-page table, patches |
+| 3 | Two agents through the agents repository; audit trail; sign-off; use ChatGPT | Harness with ChatGPT (NL-012) | Each live step has a note on the link before or at the time, and a check by the other agent | Issue 12 comments, `LOG.md` |
+| 4 | Private understanding of the release | Harness, privately. No lane; never on the link | n/a here | n/a here |
+| 5 | Scale and speed, live, no waiting | Harness | n/a (working arrangement) | Issue 12 |
+| 6 | Finished, audited CI/CD; next quarter routine | Team 5 (NL-017); Team 1 contributes the gate attack | Gate table complete; the release workflow has run once on GitHub or the reason is stated; a written procedure for the January 2027 release that a new agent can follow | Gate table, workflow run id, RUNBOOK patch |
+| 7a | News: existing builders on October data | N1 (NL-019) | October-bound feed under a new name; hard-coded counts located | Feed file, counts, patch |
+| 7b | News: discovery | N2 (NL-019) | Chain mapped; new-quarter pickup patched and tested | Map, bind rates, patch |
+| 7c | News: relevance | N3 (NL-019) | Explainable score with evidence tiers; shared binder and labelled set | Module, tests, evaluation numbers |
+| 8a | Converge REPD with data centres: the join | Team 6 (NL-020) | Deterministic files with manifest, negative tests | Files, manifest, test log |
+| 8b | Data-centre projects inside Pipeline News as their own category | **No lane** (see G13) | A new release folder shows Data Centres as a separate category from Team 6's file, with no REPD id and no MAP without geometry | not started |
+| 9 | Fable reasoner: read scopes, improve them | Coordinator (NL-012) | This file, one comment per issue, Part 3 kept current | this folder |
+
+## 1. The whole job in one picture
+
+| Stage | What it is | State at 00:48Z | Lane that owns it |
+|---|---|---|---|
+| S1 Source | Official October CSV `48e76c49…` (5,219,160 bytes) and XLSX `87811e24…` (5,378,656 bytes): 14,968 rows, 14,967 refs, 53 columns | Pinned; 43-check acceptance run 43535583260 with one waived cell (ref 15915 Address) | Team 1 (QA); ChatGPT (gov.uk reach) |
+| S2 Baseline | July originals CSV `84c1b5f9…`, XLSX `624a0a97…` (14,657 rows); July to October +319 / −9 / 14,648 retained | On archive branch `d015479f`; baseline patch merged as PR #60 (`67635070`) | Team 2 (finished) |
+| S3 Datasets | `repd-2026q3.csv` `d937ae16…` (14,967), subsets 2,181 / 1,229 / 940, `dist/repd_master_2026q3.json` `3ffe6c5c…` (11,293 features), identity 14,967, major projects 3,765 | On main since `07b6d517`; served bytes reported equal to Git by run 43535706937 | Team 1 (QA) |
+| S4 Pipeline News | Release folder `uk_renewables_pipeline/202611132345/` (7,775 records) | Served. Homepage pointer moved to it: homepage PR #9 (`cdd5e1f2`), pin PR #61 (`1a416f4b`, merged 00:45:55Z); deploy run 43536366967 in progress at 00:47Z | Team 3 (QA); ChatGPT made the pointer change |
+| S5 Maps | GridAtlas (live generation 202610312138, built on older REPD) and globalgrid2050 legacy atlas pages (January files) | Unchanged. GridAtlas preview 202611132345 exists offline only | Team 4 |
+| S6 Convergence | REPD × data-centre register (226 records, `87337db5…`) | Building offline; 20 tests pass locally | Team 6 |
+| S7 News | Legacy signal builders, discovery tooling, relevance model | Three agents working offline | N1, N2, N3 |
+| S8 CI/CD and rollback | Gates, deploy impact, restore points, runbook | Rollback written for the PR #57 merge only | Team 5 |
+
+Order of dependence: S1 → S3 → S4 → (S5, S6) → S7. S2 feeds every change report and N3's events. S8 wraps all stages.
+
+Rules common to every lane (from AGENTS.md, PROTOCOL.md, the team brief): additive files only; existing files stay
+byte-identical; blank capacity is unknown, never zero; patches are delivered to the harness, not pushed; nothing private
+on the link; a claim carries evidence or the word UNVERIFIED; only the owner accepts a release.
+
+## 2. Gaps that no lane owns (proposed owner in brackets; the harness decides)
+
+G1. **Check of the homepage after the pointer move.** PR #61 changed `catalogue/homepage-owner.json` (owner commit
+`9914285b` → `cdd5e1f2`; `index.html` and `data/homepage.json` hashes changed). No Claude lane has the promoted homepage
+in scope: Team 3's scope was written when the pointer was unmoved, and Team 5's manifest treats the homepage as a PIN
+row that must not change. [Team 5 for the manifest and byte expectations; Team 3 for the page as the operative release;
+ChatGPT for the live fetch, which only it can do.]
+
+G2. **Rollback now has two layers and an order.** `FIXES/NL-017/ROLLBACK.md` section A reverts merge `07b6d517`, which
+deletes `uk_renewables_pipeline/202611132345/`. Since 00:45:55Z the homepage links to that folder. Reverting the data
+merge alone would leave the homepage pointing at a removed page. The pointer rollback (pin back to `9914285b`, which is
+a revert of `92d784f4`, plus the homepage repository's own revert of `cdd5e1f2`) is described only in PR #61's text and
+has not been rehearsed by anyone. Main has also moved past the rehearsed tree (PR #60, PR #61). [Team 5.]
+
+G3. **Public language gate never ran.** It was queued on PR #57 (43533485421), PR #60 (43535848245), PR #59 and PR #61
+(43536298310); it needs a self-hosted runner that is offline. Three merges went in without it. [Owner: start the runner
+or state that the gate is waived. Team 5: run the same check locally if the script is in the repository and report.]
+
+G4. **Record of owner acceptance.** PR #61's title says "accepted". The link carries relays of the owner's working
+instruction but no acceptance statement by the owner for release 202611132345. [Owner only. No lane writes it.]
+
+G5. **GridAtlas knows only the old register.** The promoted page's MAP links go to the live GridAtlas generation
+202610312138. Whether the 319 refs added in October resolve there, and what a reader sees when they do not, sits between
+Team 3 (links on the page) and Team 4 (GridAtlas side). The GridAtlas preview has no push route. [Team 4 owns the
+answer; Team 3 supplies the list of hrefs. Push to gridatlas: owner.]
+
+G6. **Draft QA pull requests.** PR #58 targets the merged branch of PR #57; PR #59 holds the served-byte and 43-check
+workflows as a draft. Neither has an owner for "merge, retarget or close". [ChatGPT, who opened them.]
+
+G7. **Jekyll publishes 32 rendered `.md` pages**, one of them a test fixture (Team 5 finding, issue 17 comment
+6868698647). Nobody has the exclusion patch. [Team 5.]
+
+G8. **Pipeline News repository release** (built offline for Ventusltd/pipelinenews) is reviewed by Team 3 but nobody
+owns pushing it or deciding whether it is needed now that the page is served from globalgrid2050. [Owner decision;
+Team 3 states the consequence of not pushing it.]
+
+G9. **Three binders and two event generators in the news lanes** (see section 3, NL-019). [N3 owns the shared ones.]
+
+G10. **The owner's own words on news and convergence.** ChatGPT's brief on issue 20 (comment 6868599730) and the body of
+issue 19 give requirements in ChatGPT's wording. The owner's direct explanation is still not on the link. Lanes work to
+the posted wording; anything further is [ChatGPT to post, or the owner].
+
+G11. **Stale status file.** `FIXES/NL-017/STATUS.md` (00:33Z) says nothing is merged. [Team 5, or retire it in favour
+of this file plus the lane handoffs.]
+
+G13. **Brief line 8b has no lane.** "Bring data-centre projects directly into Pipeline News" needs a page build: Team 6
+delivers data and a field proposal, N2 binds a news topic, nobody builds or tests the category on a release folder.
+[Proposed: Team 3, after its QA handoff, as a new release folder beside 202611132345; the harness decides and starts it.]
+
+G14. **Checkpoint for the later live steps.** The testcode checkpoint and restore branch were made before PR #57. No
+checkpoint covering main at `1a416f4b` and the previous homepage pin `9914285b` is recorded on the link. [Harness.]
+
+G15. **Next quarter.** Nothing detects a new REPD release; the release workflow is manual and has not run on GitHub.
+[Team 5 writes the procedure and names the trigger options; whether a scheduled detector is allowed under the
+repository's freeze rule is the owner's decision.]
+
+G12. **Issue 18** (activity index) has no agent and is outside this job. [Leave closed to this job.]
+
+## 3. Scope per lane
+
+### NL-013, Team 1: source and dataset QA
+
+Traces to brief line 2a (and contributes to 6).
+
+- Outcome: an independent statement that the October datasets on main are complete and correctly derived, plus patches
+  for any defect and for test gaps.
+- Done when: (1) `repd-2026q3.csv` re-derived from the two official files with fresh code and compared cell by cell,
+  with the 832 logged changes matched exactly and 0 unexplained; (2) each subset and `dist/*_2026q3.json` recounted
+  from first principles (2,181 / 1,229 / 940 / 11,293 / 14,967 / 3,765); (3) every gate in `automation/repd` shown to
+  fail on a crafted bad input; (4) full test suite and `run.py --offline` run from a clean archive of **main** (now
+  `1a416f4b`, not the PR head), counts stated; (5) a defect table with severity, each with one patch that passes
+  `git apply --check` against main; (6) `REPORT.md` and one HANDOFF on issue 13.
+- Inputs: official CSV `48e76c49…`, XLSX `87811e24…`; `repd-2026q3.csv` `d937ae16…`; main `1a416f4b`.
+- Must not touch: any repository (patches only); the July baseline files (Team 2 delivered them in PR #60).
+- Added to the original scope: state independently whether the ref 15915 Address difference (CSV `?`, XLSX U+200D) is
+  the only CSV/XLSX text difference, since ChatGPT's 43-check run waives that one cell; and say whether any Team 1
+  defect is serious enough to matter for a page that is now the homepage's operative release.
+- Overlap: Team 3 recounts the Pipeline News figures (7,775); Team 1 stops at the datasets. Team 2 owns anything about
+  July. Team 5 owns hash pins of pre-existing files.
+- Hands over to: harness (patches), Team 5 (defect list for the gate table), N1 and N3 (confirmed 3,765 and identity file).
+
+### NL-014, Team 2: July baseline (finished)
+
+Traces to brief line 2b.
+
+- Delivered: both July originals match their pins; July to October +319 / −9 / 14,648 retained, 373 status changes;
+  patch merged as PR #60 (`67635070`). HANDOFF: issue 14 comment 6868663705.
+- Left open by the lane, each needing a named decision, none blocking: (a) why workbook `99ec4d05…` differs in bytes
+  from `624a0a97…` (file not available; owner or ChatGPT to supply it, otherwise close as unexplained with identical
+  content on all 14,657 records); (b) whether the July originals are copied into main (owner).
+- No further work is in scope unless a later finding touches July figures.
+
+### NL-015, Team 3: Pipeline News release 202611132345
+
+The situation changed under this lane: the page it was testing as a candidate became the homepage's operative release
+at 00:45:55Z. The scope is therefore the same nine checks, re-aimed.
+
+Traces to brief line 2c.
+
+- Outcome: evidence that the release folder on main behaves correctly as the operative Pipeline News page, and a list of
+  defects ranked by what a reader would see.
+- Done when: (1) headless desktop and mobile runs of the folder from **main** show 7,775 records, filters, search,
+  pagination and CSV export working, with the status vocabulary and blank capacity handled; (2) visible differences from
+  202609082224 listed; (3) every pinned figure in `release.v9.1.json` and `release.v9.5.1.json` recounted; (4) every MAP
+  href checked for form, and the hrefs of the refs added since July passed to Team 4; (5) a statement of what the news
+  panel shows on the new page (the Q2 feed `major_project_news_v9_5_1.json` bound against October refs) and whether any
+  item now points at a removed or changed project; (6) patches P1 and P2 final, each passing `git apply --check` on main;
+  (7) `REPORT.md`, public copies in `FIXES/NL-015/`, one HANDOFF on issue 15.
+- Changed: patch P3 (homepage `data/homepage.json` pointer) is overtaken by homepage PR #9. Do not deliver it as a patch.
+  Instead compare P3 with what PR #9 contains, if ChatGPT posts the diff or the file (the homepage repository is not
+  readable from the Claude workspace), and report differences in label, URL, `source_ref` and the promotion record.
+- Inputs: main `1a416f4b`; folder `index.html` `97756fc3…`, build manifest `eb59fee0…` (as served, per run 43535706937).
+- Must not touch: the folder's files on main except through patches; the homepage repository; pipelinenews.
+- Overlap: ChatGPT's PR #58 and PR #59 browser runs cover load, pager, export and two MAP links at three widths. Team 3
+  should not repeat those; its added value is filters, status vocabulary, blank capacity, every-row MAP hrefs, figure
+  recounts and the news panel. Team 4 owns whether GridAtlas resolves a ref. N1 owns any new news feed.
+- Hands over to: harness (P1, P2), Team 4 (href list), N1 (news-panel finding), Team 5 (defects for the gate table).
+
+### NL-016, Team 4: GridAtlas and legacy maps
+
+Traces to brief line 2d.
+
+- Outcome: (A) a GridAtlas preview package the owner can push, with its failing checks explained; (B) a decision file for
+  each legacy atlas page in globalgrid2050: switch to the October files, or stay on January as a historical build.
+- Done when: (A1) each of the 3 failing pr-gate checks is shown to fail on the unmodified clone too, or is fixed in the
+  patch; (A2) the capacity-precision question is settled with the three join counts (10,503 / 10,423 / 8,973) and one
+  recommended rule; (A3) **new:** for the 319 refs added in October, a table of what the *live* GridAtlas generation
+  202610312138 returns today for a MAP link from the promoted page (resolves, resolves to a different project, no
+  result), and the same for the preview; (A4) preview PR text and exact file list. (B1) per-page table: what it reads
+  now, what changes on October data, headless render result on both, recommendation; (B2) the optional switch patch
+  split so each page can be applied alone; (B3) `REPORT.md`, public copies in `FIXES/NL-016/`, one HANDOFF on issue 16.
+- Inputs: gridatlas clone `41729af` (v9.188); main `1a416f4b`; `dist/repd_master_2026q3.json` `3ffe6c5c…`.
+- Must not touch: `atlas/current.json`, `STATE.md`, immutable atlas releases, any live page. The legacy switch is the
+  harness's step to take with a checkpoint (it has said it will switch pages when browser tests pass, unless the owner
+  says otherwise); the lane supplies per-page evidence and marks pages that are historical builds and should stay.
+- Overlap: Team 3 (MAP hrefs on the page; Team 4 owns the GridAtlas answer). Team 6 proposes a data-centre layer for
+  GridAtlas; Team 4 owns what GridAtlas can load, Team 6 owns the data. ChatGPT's run 43535706937 tested two refs
+  (9873, 2472) on live GridAtlas, both of which predate October.
+- Hands over to: owner (gridatlas push, per-page choice), harness (legacy patch), Team 6 (layer contract).
+
+### NL-017, Team 5: release gate, CI/CD, rollback
+
+Traces to brief lines 1 and 6.
+
+- Outcome: one table of gates with PASS / FAIL / UNVERIFIED and evidence, and a rollback procedure that matches what is
+  live now. The lane approves nothing.
+- Done when: (1) no-truncation proof restated for main `1a416f4b`: files added, modified, deleted against `73cbdec1`
+  across all three merges (#57, #60, #61); (2) **new:** rollback rewritten in two layers with an order: first the
+  homepage pointer (pin `catalogue/homepage-owner.json` back to owner commit `9914285b`, and the homepage repository's
+  operative release back to 202609082224), then, only if needed, the data merge; each rehearsed in a throw-away clone on
+  the real main tree, with the result of reverting the data merge *without* the pointer stated plainly; (3) **new:**
+  `served-manifest.tsv` updated so the homepage rows expect the new pinned hashes (`index.html` `e3b011cf…`,
+  `data/homepage.json` `d81d9a9c…`) and a row checks that the homepage links to `/uk_renewables_pipeline/202611132345/`;
+  (4) a mapping between the lane's 355-row manifest and what ChatGPT's run 43535706937 actually fetched (8 files), so
+  the uncovered rows are known; (5) list of workflows now on main that fire on push or pull request, including the two
+  added with PR #61 and any from PR #56, and what each can write; (6) the public language gate: run locally if possible,
+  otherwise listed as not run on three merges; (7) RUNBOOK and AUTOMATION checked against code, with the patch;
+  (8) patch excluding the 32 rendered `.md` pages from the Pages build; (9) `STATUS.md` brought up to date or retired;
+  (9a) a written procedure for the next quarterly release (January 2027) and one recorded run of the release workflow
+  on GitHub, or the reason it cannot run;
+  (10) `REPORT.md` and one HANDOFF on issue 17.
+- Inputs: main `1a416f4b`; baseline `73cbdec1`; restore branch `restore/pre-repd-2026q3-20261114`; testcode backup
+  folder `backups/202611140031-repd-2026q3-pre-release`; PR #61 diff.
+- Must not touch: any repository; no revert is executed, only rehearsed locally.
+- Overlap: Team 1 (gates inside `automation/repd`: Team 1 attacks them, Team 5 reports their CI results). ChatGPT's
+  PR #59 workflows duplicate part of the served-byte script; the lane's manifest is the wider one and should be the
+  reference list.
+- Hands over to: owner and harness (gate table, rollback), ChatGPT (manifest to run from a machine with site access).
+
+### NL-019, news agents N1, N2, N3
+
+Traces to brief lines 7a (N1), 7b (N2), 7c (N3).
+
+Shared rule from the posted requirements (issue 19 body; issue 20 comment 6868599730): three evidence tiers (official
+record, attributed reporting, unverified lead), source URL and time kept, entity resolution logged, data centres a
+separate category, proximity never stated as connection. New files under new names only; the pinned Q2 feeds and
+`major_project_news_v9_5_1.json` (`cea104c3…`) stay byte-identical. Nothing in this lane is published without a
+checkpoint to the harness.
+
+Ownership of the three overlaps:
+
+| Shared thing | Owner | The others |
+|---|---|---|
+| Name and operator normalisation, article-to-project binder, confidence classes | N3 (`automation/news/binder.py`) | N1 measures the legacy binder against N3's labelled set and patches the legacy builders to call the shared code or documents why not. N2 uses it for discovery output and does not write a third binder. |
+| Labelled evaluation set (article, project, correct or not, provenance) | N3 | N1 contributes pairs from the V5/V6 caches and existing feeds; N2 contributes failure samples from the 8,756-row corpus. One file, one schema. |
+| Events from the July to October diff (newly consented, refused, under construction, operational) | N3 (`automation/news/events.py`) | N1 does not build a second generator; it consumes N3's events as its "no-article" candidates. |
+| Data-centre ids and proximity | Team 6 | N2's DATA_CENTRES topic and N3's proximity component read Team 6's output and ids; neither re-derives distances. |
+
+**N1, legacy builders on October data.**
+- Outcome: the existing signal and headline builders documented and run against `dist/major_projects_2026q3.json`
+  (3,765 = 3,484 solar + 281 battery), with an October-bound feed under the new name `dist/major_project_news_2026q3.json`.
+- Done when: every hard-coded count (125 / 37 / 8 / 45 / 133; Q2 universe 3,714) is located by file and line and marked
+  "data-derived" or "must change per quarter"; the offline run states how many of the 133 items still bind to an October
+  ref, how many bind to a ref whose status changed, and how many lose their project; exactly which steps need
+  `news.google.com` is listed for ChatGPT or the owner; the patch passes `git apply --check` on main and its tests pass;
+  `REPORT.md` and public copy in `FIXES/NL-019/N1/`.
+- Must not touch: pinned feeds; the release folder's `newspaper-v9-5-1.js` behaviour (Team 3 reports what the panel shows).
+
+**N2, discovery tooling.**
+- Outcome: a map of the discovery chain (discover → dedup → topic → bind → release) marking each step live, disabled or
+  broken, and a patch that lets it pick up a new REPD quarter safely.
+- Done when: the ten reverted priority-source commits of 26 Sep 2026 are explained from the history; reconcile-provisional
+  run offline against the 7,775-project list with counts of provisional items resolving to refs added since July; bind
+  rates (0 / 1 / more than 1 project) measured on the corpus with samples; patch plus tests for new-quarter pickup and
+  for the DATA_CENTRES topic using Team 6's ids; list of network and key-dependent steps; `REPORT.md` and
+  `FIXES/NL-019/N2/`.
+- Must not touch: Ventusltd/pipelinenews (patches only); nothing from the private repository
+  pipelinenews-gridatlas-20260906 may be quoted in a public file or comment.
+- Note: the priority BBC RSS work in the lane's folder is inside this scope only as an offline tool with tests; turning
+  on a scheduled workflow is a live step for the harness and owner.
+
+**N3, relevance model.**
+- Outcome: `automation/news/` (events, relevance, binder) as a deterministic, explainable module with a feed under the
+  new name `dist/news/repd_events_2026q3.json`.
+- Done when: events built from the corrected July to October diff (the PR #60 version, where the 55 artificial Offshore
+  Wind Round changes are gone) and the event counts reconcile to +319 / −9 / 373 status changes; every score component
+  is present in the output; evidence tier is a field, not a weight hidden in the total; binder precision and recall
+  reported on the shared labelled set; the data-centre component reads Team 6's file and is absent, not zero, when the
+  file is missing; pytest passes; the patch passes `git apply --check` on main; design note; `REPORT.md` and
+  `FIXES/NL-019/N3/`.
+- Must not touch: N1's legacy builders, N2's tooling, pinned feeds. No commentary on named companies in public output.
+
+Hand-over for all three: one HANDOFF each on issue 19; patches to the harness. Where the feed should appear (the new
+page's news panel, a separate page) is undecided and belongs to the owner; the lanes deliver files, not placement.
+
+### NL-020, Team 6: REPD × data-centre convergence
+
+Traces to brief line 8a. Line 8b (the category inside Pipeline News) is not in this lane: see G13.
+
+- Outcome: one deterministic join, as source-only versioned JSON, CSV, schema and input-hash manifest under
+  `dist/convergence/2026q3/` with code in `automation/convergence/`, plus a product proposal that names the exact fields
+  Pipeline News and GridAtlas would read.
+- Done when (from ChatGPT's posted brief, comment 6868599730, turned into checks): (1) inputs pinned by sha256 in the
+  manifest (`repd-2026q3.csv` `d937ae16…`, identity `b4fcf35c…`, data-centre register `87337db5…`, connection points
+  `8db7171d…`, substations `ec5450aa…`); (2) 5 / 10 / 25 / 50 km results labelled straight-line; CRS conversion tested
+  with a negative case for a wrong CRS; (3) negative tests for duplicates and false name matches; (4) data-centre demand
+  MW never added to generation MW, IT load and grid-connection MW in separate fields, unknown kept unknown; (5) every
+  co-location row carries its evidence class and the word candidate; class D (same-site proximity, 202 rows at present)
+  is not presented as a relationship; (6) excluded records listed with reason (32 without coordinates, 3 outside range,
+  refs 18561 and 18562); (7) two runs give byte-identical output; (8) roll-ups are aggregates, with no commentary on
+  named companies; (9) patch passes `git apply --check` on main, tests pass; (10) `REPORT.md`, public copy in
+  `FIXES/NL-020/`, one HANDOFF on issue 20.
+- Source of truth for data centres: the register released with GridAtlas generation 202610312138 (226 records). Issue 19
+  also names Ventusltd/data-centres-gb (`12c24a6`); the lane should state in one paragraph how the two relate and which
+  ids it keeps, since N2 and N3 will key on them.
+- Must not touch: the REPD datasets, GridAtlas, any page. Data centres stay a separate category and never receive a
+  REPD Ref ID. Private market analysis stays out of every public file.
+- Overlap: N2 and N3 (they consume this lane's ids and distances); Team 4 (GridAtlas layer contract). The lane owns the
+  join and its schema; it does not build news scoring or a map layer.
+- Hands over to: harness (patch), N2 and N3 (file path and schema as soon as it is stable, before the final HANDOFF),
+  Team 4 (layer fields).
+
+### NL-012, ChatGPT (Agent A) and the harness
+
+Traces to brief lines 3, 4, 5 and 9.
+
+- ChatGPT, as seen on the link: owns gov.uk reach, real-browser and live-site checks, the QA pull requests #58 and #59,
+  the homepage repository change (PR #9) and the pin (PR #61). Open items in its lane: final served check of the
+  homepage after deploy run 43536366967; disposition of PR #58 and PR #59; the wider served-byte manifest from Team 5;
+  the homepage PR #9 diff posted where Claude lanes can read it; the owner's own wording for news and convergence.
+- Harness: applies lane patches through pull requests, keeps restore points, decides each further live step, and is the
+  only one who starts agents. Checkpoint before each live step, as the owner asked.
+- Owner only: acceptance of a release; GridAtlas push; the per-page choice for legacy maps; the offline runner for the
+  language gate; whether July originals enter main.
+
+## Revisions
+
+- 2026-11-14T00:48Z first issue.
+- 2026-11-14T00:51Z traced to OWNER-INSTRUCTIONS.md Part 2 (section 0); gaps G13 to G15 added; Team 4 legacy switch
+  aligned with the harness's stated intent; Team 5 gains the next-quarter procedure.

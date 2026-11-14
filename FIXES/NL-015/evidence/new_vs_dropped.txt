@@ -1,0 +1,114 @@
+Q2 7680 Q3 7775 new 101 gone 6 net 95
+new by tech Counter({'solar': 48, 'bess': 34, 'wind_onshore': 18, 'wind_offshore': 1})
+new geometry Counter({'valid': 101})
+new MW 9471.1 gone MW 217.7
+NEW:
+9159 wind_onshore 5.0 Application Submitted valid Reaps Moss - Wind turbine
+10881 solar 49.9 Awaiting Construction valid Lodge Farm - Solar Farm & Battery Storage
+11058 wind_onshore 70.0 Application Submitted valid Mynydd y Gaer Wind Farm
+11290 bess 80.0 Appeal Refused valid Cauldwell Road - Battery Energy
+11403 solar 30.0 Awaiting Construction valid Richborough Solar Farm - Solar Farm
+11844 wind_onshore 40.0 Application Submitted valid Llangurig - Banc Du Energy Park
+11869 wind_onshore 80.0 Application Submitted valid Llangurig - Rhiwlas Energy Park
+12446 solar 49.9 Application Submitted valid Greenlands, Wreay - Solar Farm
+12565 solar 26.0 Awaiting Construction valid Duxhurst Farm, Duxhurst Lane - Solar Farm
+12688 solar 49.9 Awaiting Construction valid Hayton House, North Aberford - Solar Farm & Batter
+12689 bess 50.0 Awaiting Construction valid Hayton House, North Aberford - Solar Farm & Batter
+12884 solar 21.14 Application Refused valid Whistle Mead Solar Farm, Little Chalfield - Solar 
+13156 bess 180.0 Awaiting Construction valid Byers Gill Solar Farm
+13422 wind_offshore 100.0 Awaiting Construction valid Llyr 1 Wind Farm
+13439 bess 47.0 Awaiting Construction valid Mybster Croft, Spittal - Battery Energy Storage Fa
+14665 bess 49.9 Application Refused valid Kinnon Park Farm, Methven - Solar Farm & Battery S
+14851 solar 500.0 Application Submitted valid Rosefield - Solar Farm & Battery Storage
+14991 wind_onshore 86.4 Application Submitted valid Forsinain Forest Wind Farm
+15172 bess 500.0 Awaiting Construction valid Muttonhole Road - Battery Storage
+15550 wind_onshore 43.0 Application Submitted valid Mynydd Ty Talwyn Energy Park
+15551 solar 50.0 Application Submitted valid Mynydd Ty Talwyn Energy Park
+15788 bess 20.0 Application Submitted valid Millennium East
+15866 solar 750.0 Application Submitted valid Meridian Solar Farm - Solar Farm
+16768 bess 200.0 Application Submitted valid Corriemoillie Quarry - Battery Energy Storage
+17137 wind_onshore 30.0 Application Submitted valid Charleston Energy Park
+17138 bess 25.0 Application Submitted valid Charleston Energy Park
+17141 bess 90.0 Awaiting Construction valid Port of Dundas - Battery Storage
+17146 bess 80.0 Application Submitted valid Creachan Wind Farm & BESS
+17150 bess 200.0 Awaiting Construction valid Fyrish Battery Energy Storage System
+17439 bess 130.0 Application Submitted valid Inveroykel Wind Farm - Battery
+17554 wind_onshore 93.6 Application Submitted valid North Logiealmond Wind Farm
+17931 solar 6.0 Application Submitted valid Shin Etsu Handotai Europe, Wilson Road - Solar Far
+18079 wind_onshore 144.0 Application Submitted valid Invercassley Wind Farm, Rosehall - Wind Farm & Bat
+18084 bess 400.0 Awaiting Construction valid Upper Greenfield, Cuminestown - New Deer 2 Battery
+18326 bess 55.0 Application Submitted valid Golticlay Wind Farm, Bulreanrob - Battery Energy S
+18411 solar 49.9 Application Submitted valid Bury Road, Wortham - Solar Farm
+18467 bess 1000.0 Awaiting Construction valid Swinford Battery Energy Storage System
+18477 solar 60.0 Application Submitted valid Craigo Glenskinno - Solar and Battery Farm
+18478 bess 60.0 Application Submitted valid Craigo Glenskinno - Solar and Battery Farm
+18499 bess 500.0 Awaiting Construction valid Hagshaw, Conexus West -Battery Energy Storage Syst
+18502 wind_onshore 58.0 Application Submitted valid Neshion Energy Park - Wind Farm
+18503 bess 25.0 Application Submitted valid Neshion Energy Park - BESS
+18561 solar 42.0 Application Submitted valid Salters Lane - Solar Panels
+18562 bess 18.0 Application Submitted valid Salters Lane - Solar Panels
+19041 wind_onshore 147.0 Application Submitted valid Ravengill Energy Park - Wind Farm & Battery Energy
+19042 bess 50.0 Application Submitted valid Ravengill Energy Park - Wind Farm & Battery Energy
+19093 wind_onshore 120.0 Application Refused valid Bridgewick Farm Cottage, Bridgewick Road - Wind Tu
+19100 wind_onshore 30.0 Application Submitted valid Burgar Hill Repower
+19139 bess 300.0 Application Submitted valid Hallfield Farm, Easington - Battery Storage
+19470 solar 30.0 Application Submitted valid Hagshaw Hill III Energy Project - Solar Farm
+19471 bess 50.0 Application Submitted valid Hagshaw Hill III Energy Project - LDES
+19472 wind_onshore 58.0 Application Submitted valid Hagshaw Hill III Energy Project - Wind Turbines
+19582 solar 40.0 Application Submitted valid Heolddu Solar Farm
+19635 solar 49.99 Application Submitted valid Tewes Farm, Thaxted Road - Solar Array
+19768 solar 26.0 Application Submitted valid Potters Farm, Potters Lane - Solar Farm
+20149 solar 8.95 Under Construction valid Lamby Way Landfill - Solar Farm
+20909 bess 277.9 Application Submitted valid Follens Road, Walpole St Andrew - Battery Energy S
+20991 solar 54.0 Under Construction valid Conesby Solar Farm
+21073 bess 1000.0 Application Submitted valid Southampton Battery Energy Storage
+21104 solar 1.1 Application Submitted valid University Campus, Heronbank North - Phase 2 - Sol
+21109 solar 1.02 Awaiting Construction valid Jaguar Land Rover, Lode Lane - Solar Panels
+21111 bess 100.0 Application Submitted valid Widley Farm, New Down Lane - Battery Storage Facil
+21123 solar 20.0 Application Submitted valid Dublin Road - Solar Farm
+21126 solar 1.6 Awaiting Construction valid Tottenham Hotspur Football Club, High Road - Solar
+21135 solar 2.17 Application Refused valid Evo Group, Express Way - Solar Panels
+21157 solar 1.71 Awaiting Construction valid Vow Europe, Harrier Parkway - Plot 4500 - Solar Pa
+21182 bess 250.0 Application Submitted valid Ballynakilly Road, Tamnamore Substation - Battery 
+21189 solar 37.5 Application Submitted valid Elmley Road, Minster-On-Sea - Solar Farm & BESS
+21193 wind_onshore 2.3 Application Submitted valid Ardglass Road - Wind Turbine
+21208 solar 1.0 Awaiting Construction valid Sterling Pharma Solutions, Dudley Lane - Solar Arr
+21216 solar 1.2 Application Submitted valid Dalderse Sewage Works - Solar Array & Battery Stor
+21222 bess 100.0 Application Submitted valid Bowenhurst Farm, Mill Lane - Battery Energy Storag
+21224 bess 17.0 Application Submitted valid Seagate Technology, Springtown Industrial Estate -
+21232 solar 1.39 Application Submitted valid Fen Lane Farm, Fen Lane - Solar Arrays
+21246 bess 72.0 Under Construction valid Conesby Solar Farm
+21256 solar 3.0 Application Submitted valid Dara Sealand, Marsh Farm Road - Solar Arrays
+21295 wind_onshore 25.2 Application Submitted valid Three Oaks Energy Park Extension - Wind Farm
+21299 solar 1.0 Application Submitted valid East Surrey Hospital, Canada Avenue - Solar Farm
+21300 bess 99.9 Awaiting Construction valid Ferrybridge, Stranglands Lane - Battery Energy Sto
+21306 solar 99.9 Application Submitted valid Desborough Airfield, Desborough Road - Solar Farm 
+21307 bess 100.0 Application Submitted valid Desborough Airfield, Desborough Road - Solar Farm 
+21310 solar 8.5 Revised valid Express Park, Bristol Road - Solar Panels
+21312 solar 8.5 Application Submitted valid Express Park, Bristol Road - Solar Panels
+21344 solar 1.22 Application Submitted valid Hopwood Hall College, Rochdale Road - Solar Panels
+21346 solar 2.87 Application Submitted valid Fradley Airfield, Hanger 5, Wood End Lane - Solar 
+21348 wind_onshore 8.4 Application Submitted valid ABP, Immingham - Wind Turbines
+21349 solar 10.8 Application Submitted valid Coaltown of Balgonie - Solar Array
+21376 solar 1.02 Application Submitted valid Klarius Products, New Haden Road - Solar Panels
+21380 solar 1.86 Application Submitted valid Evo Group, Express Way - Solar Panels
+21388 bess 36.0 Awaiting Construction valid Loganhead Wind Farm
+21396 solar 1.23 Application Submitted valid Vownog Terrace, Porth-Y-Waen - Solar Array
+21412 solar 1.3 Application Submitted valid Veetee Foods, Sir Thomas Longley Road - Solar Pane
+21413 solar 38.0 Application Submitted valid Low Maidendale Farm, Hurworth Moor - Solar Farm
+21420 solar 1.3 Application Submitted valid Royal Mail, Padge Road - Solar Panels
+21422 solar 3.0 Application Submitted valid Bayston Hill Quarry, Sharpstones Lane - Solar Arra
+21428 wind_onshore 2.5 Application Submitted valid Oaksmere Business Park, Cranswick House - Wind Tur
+21440 solar 5.4 Application Submitted valid Arla Taw Valley, Taw Bridge Cross - Solar Farm
+21456 solar 1.02 Application Submitted valid Leicester Mail Centre, Braunstone Town - Solar Pan
+21463 solar 1.31 Application Submitted valid Cardiff Metropolitan University, Cyncoed Road - So
+21466 solar 1.4 Application Submitted valid Penarth Road, Leckwith - Solar PV Panels
+21493 bess 10.0 Awaiting Construction valid Camblesforth Solar Farm
+GONE:
+9035 solar 49.9 Application Submitted Clay Tye Road - Solar Farm
+9681 solar 33.0 Under Construction Minster Abbey, Bedlam Court Lane - Solar PV panels
+11885 solar 20.0 Under Construction Lychgate Lane, Aston Flamville - Solar Farm
+14471 solar 49.9 Awaiting Construction Carr House Farm, Drove Lane - Solar Panels
+18949 solar 49.9 Application Submitted Hayton House Farm - Solar Farm
+19567 solar 15.0 Application Submitted Coed Bach Park, Gwynfryn Road - Solar Panels
+moved geometry among common 23 ['10638', '15523', '14535', '14664', '17760', '12780', '8842', '14536', '18563', '10701', '10222', '16884', '15088', '10467', '18504', '12711', '18572', '13290', '21026', '7871']

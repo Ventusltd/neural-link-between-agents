@@ -1,0 +1,37 @@
+5c5
+<       UK RENEWABLES PIPELINE · V9.10
+---
+>       UK RENEWABLES PIPELINE · V9.12
+8c8,9
+<       V9.10 CANDIDATE
+---
+>       V9.12 CANDIDATE · REPD Q3 2026
+>       V9.10 202609082224 · REPD Q2 2026
+36c37
+<       UK RENEWABLES PIPELINE 202609082224
+---
+>       UK RENEWABLES PIPELINE 202611132345
+40,42c41,43
+<       V9.10 · THE ACTIONS COLUMN FITS ITS BUTTONS · CANDIDATE · 8 September 2026
+<       Canonical DESNZ REPD Q2 2026: 7,680 solar, BESS and wind records at ≥1 MW. Sixteen GB interconnectors on their own tab, outside the REPD spine.
+<       V9.8 interface · V9.1 canonical data spine · 16 interconnectors on their own tab · all 7,680 qualifying records loaded
+---
+>       V9.12 · REPD OCTOBER 2026 (Q3) DATA REFRESH · CANDIDATE · 13 November 2026
+>       Canonical DESNZ REPD Q3 2026 (October 2026): 7,775 solar, BESS and wind records at ≥1 MW. Sixteen GB interconnectors on their own tab, outside the REPD spine.
+>       V9.8 interface · V9.1 canonical data spine · 16 interconnectors on their own tab · all 7,775 qualifying records loaded
+77c78
+<         356,474
+---
+>         365,474
+81c82
+<         7,680
+---
+>         7,775
+114c115
+<       7,680 of 7,680 records · 356,474 MW · largest 4,100 MW
+---
+>       7,775 of 7,775 records · 365,474 MW · largest 4,100 MW
+146c147
+<       ← PREV1–20 of 7,680 · page 1 of 384NEXT →
+---
+>       ← PREV1–20 of 7,775 · page 1 of 389NEXT →

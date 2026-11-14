@@ -1,0 +1,31 @@
+distinct bound refs 29
+published range 2025-08-24 2026-08-21 feed updated 2026-08-22T20:45:25.507638+00:00
+1044 North Tawton Solar Farm | OK
+2377 Gedling Solar Farm | OK
+5452 Highnam Solar Farm | OK
+5533 Williamthorpe Colliery | OK
+5967 Kells Solar Farm | OK
+6502 Cleve Hill Solar Project | OK
+8100 Camblesforth Solar Farm | operator: feed='Island Green Power UK' q3='Enray Power'
+8162 Longfield | OK
+8393 Rag Lane Solar Farm | OK
+9427 Hams Hall - Battery Energy Storage Syste | operator: feed='Welbar Energy Storage Limited / Penso Power (BW ESS)' q3='Welbar Energy Storage Limited & Penso Power (BW ESS)'
+9610 Tye Lane - Solar Farm | OK
+10085 Stonestreet Green - Solar Farm & Battery | OK
+10087 Brecks Solar Farm | status Q2=Awaiting Construction Q3=Under Construction
+11034 Coalburn Energy - Battery Storage | status Q2=Under Construction Q3=Operational
+11063 Longhedge Solar Farm | operator: feed='Renewable Energy Systems' q3='Innagreen Investments & RES'
+11460 Hatton Solar Farm | OK
+11476 Helios Renewable Energy Project | OK
+11678 East Yorkshire Solar Farm | OK
+11974 Hessay Solar Farm | OK
+12017 Carlton Solar Farm | OK
+12206 Coalburn II Energy Storage Facility - Ba | OK
+12926 The Tween Bridge Solar Farm | OK
+13599 Beacon Fen Energy Park | status Q2=Application Submitted Q3=Awaiting Construction
+13763 Clifton Marsh Farm, Preston New Road - S | status Q2=Application Submitted Q3=Awaiting Construction
+14098 Fenwick Solar Farm & Battery Storage | OK
+14550 Dean Moor Solar Farm & Battery Storage | operator: feed='Firma Energy / IB Vogt' q3='Firma Energy & IB Vogt'
+14763 Newarthill Energy Park | OK
+14806 One Earth Solar Farm | operator: feed='Orsted UK Limited / PS Renewables' q3='Orsted UK Limited & PS Renewables'
+15000 Peartree Hill Solar Farm | operator: feed='JBM Solar / RWE' q3='JBM Solar & RWE'

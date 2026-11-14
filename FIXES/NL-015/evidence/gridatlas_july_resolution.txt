@@ -1,0 +1,8 @@
+registry records 11069 sample keys ['applicant_publication_state', 'capacity_mw', 'country', 'county', 'latitude', 'longitude', 'name', 'planning_application_reference', 'planning_authority', 'postcode_valid', 'region', 'repd_address_display']
+registry unique refs 11069
+operative 202609082224 rows 7680 ref absent from July GridAtlas registry 2421 by (geometry, active-status): {('valid', False): 2416, ('valid', True): 3, ('invalid', True): 2}
+  absent AND no coordinate (MAP lands nowhere): ['12780', '15088']
+candidate 202611132345 rows 7775 ref absent from July GridAtlas registry 2509 by (geometry, active-status): {('valid', False): 2412, ('valid', True): 97}
+  absent AND no coordinate (MAP lands nowhere): []
+new 101: absent from July registry 88 ; all have coordinates: True
+new present in July registry (existed in Q2 below scope or other tech): ['10881', '11403', '12565', '12884', '13156', '13439', '15788', '17146', '17439', '18326', '18411', '18561', '18562']

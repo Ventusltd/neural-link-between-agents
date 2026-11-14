@@ -1,0 +1,25 @@
+V5 parity: PASS (interface, modules, 5,210 projects, 125 headlines)
+V7.1 module contract: PASS
+North Star post: PASS (225 checks, 0 failures)
+V7.2 spine safety: PASS (atomic replacement, missing/invalid/valid geometry)
+V7.2 canonical spine: PASS (39 checks, 0 failures)
+V7.2 projects-plugin spec: PASS (145 checks, 0 failures)
+V7.2 canonical project adapter/state: PASS (766 projects, isolated from live V7.1)
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: scripts/plugins/projects.js imports isolated controls
+
+true !== false
+
+    at <workspace>/teams/3/work/clone/uk_renewables_pipeline/202609082224/tests/check_v7_2_project_controls.mjs:157:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: true,
+  expected: false,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.4

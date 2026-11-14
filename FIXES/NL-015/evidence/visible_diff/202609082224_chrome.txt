@@ -1,0 +1,152 @@
+
+  
+    
+      GLOBALGRID2050
+      UK RENEWABLES PIPELINE · V9.10
+    
+    
+      V9.10 CANDIDATE
+      V9.7 202609061329
+      V9.6.2 LIVE VALIDATED
+      V9.6.1 FROZEN APP
+      V9.6 DISCONTINUED
+      V9.5.1 FROZEN APP
+      V9.5 FROZEN APP
+      V9.4 FROZEN APP
+      V9.3.1 FROZEN APP
+      V9.3 CHECKPOINT
+      V9.2 CHECKPOINT
+      V9.1 CHECKPOINT
+      V8.1 FALLBACK
+      V7 FALLBACK
+      V6
+      V5
+      V4
+      V3
+      V2
+      V1 LEGACY
+      DIRECTORY
+      
+      MAP ATLAS
+      EXPORT CSV
+    
+  
+  
+    
+      UK RENEWABLES PIPELINE 202609082224
+      ● 133 HEADLINES · 45 UK · 19 INTERNATIONAL · FULL ≥1 MW
+    
+    
+      V9.10 · THE ACTIONS COLUMN FITS ITS BUTTONS · CANDIDATE · 8 September 2026
+      Canonical DESNZ REPD Q2 2026: 7,680 solar, BESS and wind records at ≥1 MW. Sixteen GB interconnectors on their own tab, outside the REPD spine.
+      V9.8 interface · V9.1 canonical data spine · 16 interconnectors on their own tab · all 7,680 qualifying records loaded
+      Official REPD source
+    
+
+    
+      
+        GLOBALGRID2050 ENERGY DAILY
+        
+          UK requires canonical REPD binding · INTERNATIONAL is read from a committed build-time decision ledger · regional items never drive REPD project signals
+          45 UK · 19 international (4 US · 9 Europe · 6 other) · 133 headlines · audited snapshot
+        
+      
+      
+        ALL
+        UK
+        INTERNATIONAL
+        US
+        EUROPE
+        SOLAR
+        BESS
+        CONSENT
+        CONSTRUCTION
+        OPERATIONAL
+        FINANCE / M&A
+        
+      
+      
+        
+      
+    
+
+    REPD PIPELINE ANALYTICS
+    
+      
+        FILTERED CAPACITY (MW)
+        356,474
+      
+      
+        FILTERED PROJECTS (≥1MW)
+        7,680
+      
+      
+        LARGEST SINGLE SITE (MW)
+        4,100
+      
+    
+
+    
+      ALL TECH
+      SOLAR
+      BATTERY
+      ONSHORE
+      OFFSHORE
+      INTERCONNECTORS
+    
+    
+      ALL STATUS
+      OPERATIONAL
+      CONSTRUCTING
+      AWAITING
+      SUBMITTED
+    
+    
+      
+      
+        SORT: CAPACITY (DEFAULT)
+        SORT: REPD UPDATED — NEWEST
+        SORT: REPD UPDATED — OLDEST
+      
+      
+      CLEAR FILTERS
+      EXPORT FILTERED CSV
+      7,680 of 7,680 records · 356,474 MW · largest 4,100 MW
+      CSV contains the current filtered rows only
+    
+    
+      STATUS DISCIPLINE
+      DEFAULT: every qualifying ≥1 MW record is loaded. Filters are user controls; they never redefine or truncate the pipeline.
+      NEWS: relevance scores are algorithmic screening only and never change an official REPD fact.
+      ATLAS: valid geometry resolves the exact REPD Ref. Missing geometry remains in search and CSV and is labelled NO MAP.
+      INTERCONNECTORS: not REPD records and never counted in ALL TECH. Their MAP link carries the link's own identity; a midpoint is a label anchor, not a location.
+    
+    
+      
+        
+          
+            SITE NAME
+            COUNTY
+            OPERATOR
+            TECHNOLOGY
+            OFFICIAL REPD STATUS
+            OFFICIAL CAPACITY
+            REPD REF
+            GLOBALGRID REF
+            
+              
+                REPD UPDATED ↕
+              
+            
+            NEWS SIGNAL
+            ACTIONS
+          
+        
+        
+      ← PREV1–20 of 7,680 · page 1 of 384NEXT →
+    
+  
+  
+  
+
+

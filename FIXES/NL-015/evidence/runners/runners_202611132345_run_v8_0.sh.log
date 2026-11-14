@@ -1,0 +1,29 @@
+V5 parity: PASS (interface, modules, 5,210 projects, 125 headlines)
+V7.1 module contract: PASS
+North Star post: PASS (225 checks, 0 failures)
+V7.2 spine safety: PASS (atomic replacement, missing/invalid/valid geometry)
+V7.2 canonical spine: PASS (39 checks, 0 failures)
+V7.2 projects-plugin spec: PASS (145 checks, 0 failures)
+V7.2 canonical project adapter/state: PASS (766 projects, isolated from live V7.1)
+V7.2 canonical project controls: PASS (gauges, lifecycle filters and search remain isolated)
+V7.2 canonical table/evidence/export: PASS (766 rows, filtered-only CSV, isolated from live V7.1)
+V7.1 validation suite: PASS (<workspace>/teams/3/work/clone)
+fatal: path 'uk_renewables_pipeline/v7' exists on disk, but not in 'b6d0b39ec510f8b0bc670bef93184632df3b94a8'
+Traceback (most recent call last):
+  File "<workspace>/teams/3/work/clone/uk_renewables_pipeline/202611132345/tests/check_v8_baseline.py", line 79, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "<workspace>/teams/3/work/clone/uk_renewables_pipeline/202611132345/tests/check_v8_baseline.py", line 27, in main
+    source_tree = git("rev-parse", f"{source['commit']}:uk_renewables_pipeline/v7")
+  File "<workspace>/teams/3/work/clone/uk_renewables_pipeline/202611132345/tests/check_v8_baseline.py", line 20, in git
+    return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/usr/local/lib/python3.13/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['git', 'rev-parse', 'b6d0b39ec510f8b0bc670bef93184632df3b94a8:uk_renewables_pipeline/v7']' returned non-zero exit status 128.

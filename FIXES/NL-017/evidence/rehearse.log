@@ -1,0 +1,22 @@
+## 0. Simulated merge of PR #57 into main (merge commit, tree = PR head tree; valid while main is still 73cbdec10bbd3fe2f8313b60b1acc2d22d31b517)
+merge M=546001c0f452d5a10de64f9dc59eb8cb1a561884 ; diff vs PR head: 0 paths
+## A. Full rollback: revert the merge (equivalent of 'git revert -m 1 M')
+revert commit RA=7f577a5479b2d484eab8d70e5e24728e4f5b7c24 ; paths differing from main 73cbdec10bbd3fe2f8313b60b1acc2d22d31b517: 0 (must be 0)
+## B. Revert only Claude's four commits (f9ccd703, 0c78c8c1, aa83e48a, 01ec01e9), newest first, keeping PR #56's commits
+  reverted f9ccd703 -> 3699bec1ab60bd022dce3073e3b2f56dd5f1af3a
+  reverted 0c78c8c1 -> 0e19e6ba0b8a6b4690e757bdd35e241ae257cab2
+  reverted aa83e48a -> d850a29b19d2f05b503788a00d466a2f25ea4ae1
+  reverted 01ec01e9 -> 53184f23f4c21a7e8cbe371ee9a84885511eb477
+tree after B equals 6e58f280 tree: YES
+B vs main:      14 A 
+## C. Revert only the two data commits (0c78c8c1 release folder, aa83e48a datasets); keep automation and workflow fix
+  reverted 0c78c8c1 -> a6a0f97e9be4370313a9e59d12fd16e90a67b95e
+  reverted aa83e48a -> 2a1e4dd5ed6b2f66bced7737c1d8cdf4c9650a4d
+C: paths still present from 202611132345: 0; *2026q3* data files left: 0
+## D. Base-tree identity after A: every RUNBOOK pin re-checked by blob
+pins identical after A: YES
+## E. Restore single files by blob id (no history needed), verify sha256 against RUNBOOK pins
+repd_master.json: OK
+repd.csv: OK
+large-files-allowlist.txt: OK
+elapsed: .294514154 s

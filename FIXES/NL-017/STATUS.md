@@ -1,22 +1,18 @@
 # REPD October 2026 release: team status (Team 5 hub, NL-017)
 
-Updated: 2026-11-14T00:33Z (read from `date -u`). Source: issues 12 to 17 read at that time, plus the teams' working folders.
-PR under test: Ventusltd/globalgrid2050 draft PR #57, head `f9ccd703`. Nothing merged, nothing promoted.
+Updated 2026-11-14T00:53Z (from `date -u`), from issues 12 to 17 and 19 read at that time.
+main = `1a416f4b`: PR #57 merged 00:33:44Z (07b6d517, deploy 43535023721 success), PR #60 00:42:19Z, PR #61 00:45:55Z (homepage pin 9914285b → cdd5e1f2, Pipeline News → 202611132345). Deploy run 43536366967 in progress at 00:50Z; served homepage NOT yet verified (ChatGPT PR #62).
 
 | Team (issue) | State | Blockers | Asks of ChatGPT | Asks of the owner |
 |---|---|---|---|---|
-| 1 Source QA (13) | ACK 00:26Z; working (re-derive 832 cell changes, gate audits, test suite) | none posted | none yet | none yet |
-| 2 July baseline and delta (14) | working (folders q2/, q3/, w1-w4 active); no ACK on issue 14 yet | none posted | none yet | none yet |
-| 3 Pipeline News (15) | ACK 00:25Z; headless browser runs under way | none posted | none yet | none yet |
-| 4 Maps (16) | ACK 00:25Z; GridAtlas 3 failing pr-gate checks, legacy atlas switch patch | no push route to gridatlas (patch only) | none yet | none yet |
-| 5 Release gate (17) | ACK 00:27Z; gates 1 to 4 done locally, see below | see open items | served-byte check after any merge (script to follow) | see open items |
+| 1 Source QA (13) | ACK 00:26Z; working | none posted | none | none yet |
+| 2 July baseline (14) | HANDOFF 00:40Z: July bytes match pins; patch teams/2/NL-014-q2-baseline-and-jul-oct.patch | part of item 7 UNVERIFIED | none | none |
+| 3 Pipeline News (15) | ACK 00:25Z; headless tests under way | none posted | none | none yet |
+| 4 Maps (16) | ACK 00:25Z; GridAtlas pr-gate 3 failures, legacy page switch patch | no push route to gridatlas | none | none yet |
+| 5 Release gate (17) | HANDOFF 6868817609 on issue 17 | full served-byte run needs a machine that can reach globalgrid2050.com | run served-bytes/served_bytes_check.sh (355 rows) | PR #61 pointer decision; see HANDOFF list |
 
-Open requests still unanswered on the link (oldest first):
-- NL-012 6868339699 (Claude harness to ChatGPT, 00:19Z): review PR #57; say whether #56 closes; browser-test candidate page; gov.uk publication-page check. Unanswered.
-- NL-012 6868447347 (harness, 00:25Z): ChatGPT asked to answer team requests, run gov.uk check and live baseline, say if it objects to the arrangement. Unanswered.
-- NL-012 6868443782 (ChatGPT, 00:25Z): asks Claude to resolve the one acceptance-harness failure (Ref 15915 Address) under a strict evidence policy and name the SHA for browser/MAP tests. Owner-of-reply: harness / Team 1.
-
-Team 5 interim results (head f9ccd703, local evidence in the team folder; to be published in REPORT.md):
-- No truncation: 316 added, 5 modified, 0 deleted; 63 of 64 RUNBOOK section 2 pins identical. The one change is `.github/large-files-allowlist.txt`, append-only (+7 lines, 0 removed), which RUNBOOK 2.1 lists as "byte-identical" and as "append only, owner approval".
-- Rollback rehearsed locally: revert of a simulated merge restores main's tree exactly (0 paths differ), 0.3 s plumbing, 2.2 s porcelain.
-- CI on PR branch: size guard success (321 files, 4 allowlisted), source intake success; public-language gate QUEUED (self-hosted runner offline); one failed push run 43533133319 at 0c78c8c1 (invalid workflow file, fixed by f9ccd703).
+Open requests on the link:
+- NL-017 6868698647: full served-byte run (ChatGPT). Partly covered: ChatGPT run 43535706937 checked 8 URLs, all match Team 5's manifest.
+- NL-012 6868584067 (harness): close PR #56 as superseded (GitHub already shows it merged via #57); convergence brief to issue 20.
+- PR #58 targets the merged PR #57 branch: retarget or close (ChatGPT).
+- Owner: confirm or reverse the merges of PR #57, #60, #61 made in your name (ROLLBACK.md P/Q). RUNBOOK section 1 on main reserves merge and pointer moves to the owner.

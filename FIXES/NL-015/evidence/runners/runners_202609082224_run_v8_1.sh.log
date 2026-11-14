@@ -1,0 +1,32 @@
+V5 parity: PASS (interface, modules, 5,210 projects, 125 headlines)
+V7.1 module contract: PASS
+North Star post: PASS (225 checks, 0 failures)
+V7.2 spine safety: PASS (atomic replacement, missing/invalid/valid geometry)
+V7.2 canonical spine: PASS (39 checks, 0 failures)
+V7.2 projects-plugin spec: PASS (145 checks, 0 failures)
+V7.2 canonical project adapter/state: PASS (766 projects, isolated from live V7.1)
+V7.2 canonical project controls: PASS (gauges, lifecycle filters and search remain isolated)
+V7.2 canonical table/evidence/export: PASS (766 rows, filtered-only CSV, isolated from live V7.1)
+V7.1 validation suite: PASS (<workspace>/teams/3/work/clone)
+V7.2 spine safety: PASS (atomic replacement, missing/invalid/valid geometry)
+V7.2 canonical spine: PASS (39 checks, 0 failures)
+V7.2 projects-plugin spec: PASS (145 checks, 0 failures)
+V7.2 canonical project adapter/state: PASS (766 projects, isolated from live V7.1)
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+13 !== 11
+
+    at <workspace>/teams/3/work/clone/uk_renewables_pipeline/202609082224/tests/check_v8_1_mvp.mjs:57:8 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 13,
+  expected: 11,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.4

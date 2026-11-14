@@ -1,0 +1,143 @@
+All
+Aberdeenshire
+Angus
+Antrim
+Argyll and Bute
+Argyll And Bute
+Avon
+Ayrshire
+Baldock
+Ballymena
+Bedfordshire
+Berkshire
+Berwickshire
+Blaenau Gwent
+Borders
+Buckinghamshire
+Caerphilly
+Cambridgeshire
+Carmarthenshire
+Central
+Ceredigion
+Cheshire
+Clackmannanshire
+Cleveland
+Clwyd
+Co Antrim
+Co Armagh
+Co Down
+Co Londonderry
+Co Tyrone
+Co. Antrim
+Co. Armagh
+Co. Causeway Coast & Glens
+Co. Derry / Londonderry
+Co. Derry & Strabane
+Co. Down
+Co. Fermanagh
+Co. Fermanagh & Omagh
+Co. Lisburn & Castlereagh
+Co. Newry Mourne & Down
+Co. Tyrone
+Conwy
+Cornwall
+County Durham
+Coventry
+Cumbria
+Denbighshire
+Derbyshire
+Devon
+Dorset
+Dumfries and Galloway
+Dundee
+Dungannon
+Dyfed
+East Ayrshire
+East Dunbartonshire
+East Lothian
+East Riding of Yorkshire
+East Sussex
+Essex
+Falkirk
+Fife
+Flintshire
+Glamorgan
+Glasgow City
+Gloucestershire
+Grampian
+Greater Manchester
+Gwent
+Gwynedd
+Hampshire
+Hereford and Worcester
+Herefordshire
+Hertfordshire
+Highland
+Humberside
+Inverclyde
+Islands
+Isle of Anglesey
+Isle of Man
+Isle of Wight
+Jersey
+Kent
+Lanarkshire
+Lancashire
+Leicestershire
+Lincolnshire
+London
+Lothian
+Merseyside
+Mid Glamorgan
+Mid Ulster
+Middlesex
+Midlothian
+Monmouthshire
+Moray
+Nairn
+Neath Port Talbot
+Newport
+Newtownabbey
+Norfolk
+North Yorkshire
+Northamptonshire
+Northumberland
+Nottinghamshire
+Offshore
+Omagh
+Orkney Islands
+Oxfordshire
+Pembrokeshire
+Perth and Kinross
+Perthshire
+Powys
+Renfrewshire
+Rhondda Cynon Taff
+Scottish Borders
+Shetland
+Shropshire
+Somerset
+South Glamorgan
+South Yorkshire
+Staffordshire
+Stirling
+Strabane
+Strathclyde
+Suffolk
+Surrey
+Tayside
+Torfaen
+Tyne and Wear
+Tyne And Wear
+Vale of Glamorgan
+Warwickshire
+West Glamorgan
+West Lothian
+West Midlands
+West Sussex
+West Yorkshire
+Western Isles
+Wigtownshire
+Wiltshire
+Worcestershire
+Yorkshire

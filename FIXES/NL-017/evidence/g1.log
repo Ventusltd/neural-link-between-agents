@@ -1,0 +1,15 @@
+head=f9ccd703ca749ad8009274a18516625d9d1e5fa3 base=73cbdec10bbd3fe2f8313b60b1acc2d22d31b517
+baseline manifest entries=47288 base tree entries=47288 manifest-vs-base mismatches=0
+added=316 modified=5 deleted=0 mode-only-changes=0
+  M .github/large-files-allowlist.txt: 1646 -> 2165 bytes
+  M scripts/build_project_identity_v6.py: 25225 -> 25539 bytes
+  M scripts/repd_sources_v6.py: 19000 -> 28912 bytes
+  M scripts/validate_project_identity_v6.py: 11196 -> 11780 bytes
+  M scripts/validate_v6_manifest_provenance.py: 3087 -> 3160 bytes
+added/modified files over 5 MiB: 4
+   dist/project_identity_2026q3.json 21140897
+   dist/repd_master_2026q3.json 7062184
+   uk_renewables_pipeline/202611132345/fixtures/2026q3/project_identity_2026q3.json 21141000
+   uk_renewables_pipeline/202611132345/fixtures/v6/project_identity_v6.json 20701945
+RUNBOOK section 2 pins: {'PASS': 63, 'FAIL': 1} checked 64
+   ('FILE', '.github/large-files-allowlist.txt', '91526b11a4620f149dc674ddeb274a4f74b5123d720984b29348709481799e34', 'FAIL', 'blob=a5ddaceacc6e sha256=4bee3f434ad59c82 CHANGED from cea655d7d0a3 PIN-MISMATCH want 91526b11a4620f14')

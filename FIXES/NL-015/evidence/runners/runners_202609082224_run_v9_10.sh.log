@@ -1,0 +1,4 @@
+interconnectors v9.8: 16 records, 17950 MW, 10 operational, 6 future; geometry valid 2, GB end only 8, missing 6
+check_v9_10: 16 interconnectors (10 operational, 6 future), 10 MAP links built, 6 honest NO MAP; REPD spine 7,680 untouched
+MAP contract: PASS - 7680 of 7680 rows build a firing href to https://ventusltd.github.io/gridatlas/atlas/; 7652 arrive on the register's own point, 28 resolve by REPD ref alone
+V9.10 validation suite: PASS (<workspace>/teams/3/work/clone)

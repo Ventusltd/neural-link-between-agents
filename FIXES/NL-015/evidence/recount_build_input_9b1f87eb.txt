@@ -1,0 +1,168 @@
+rows 14967 unique refs 14967
+tech types [('Solar Photovoltaics', 7649), ('Wind Onshore', 2776), ('Battery', 2765), ('Anaerobic Digestion', 388), ('Landfill Gas', 293), ('Biomass (dedicated)', 286), ('EfW Incineration', 213), ('Small Hydro', 157), ('Advanced Conversion Technologies', 128), ('Wind Offshore', 111), ('Hydrogen', 71), ('Large Hydro', 33), ('Tidal Stream', 31), ('Pumped Storage Hydroelectricity', 19), ('Sewage Sludge Digestion', 12), ('Shoreline Wave', 8), ('Geothermal', 8), ('Biomass (co-firing)', 4), ('Liquid Air Energy Storage', 4), ('Fuel Cell (Hydrogen)', 3), ('Unknown', 3), ('Compressed Air Energy Storage', 2), ('Tidal Lagoon', 1), ('Hot Dry Rocks (HDR)', 1), ('Flywheels', 1)]
+{
+ "project_count": 7775,
+ "capacity_mw": 365474.49,
+ "displayed": 365474,
+ "largest_mw": 4100.0,
+ "by_tech": {
+  "wind_onshore": 2417,
+  "wind_offshore": 110,
+  "bess": 1644,
+  "solar": 3604
+ },
+ "blank_capacity_in_4_techs": {
+  "solar": 504,
+  "bess": 594,
+  "wind_onshore": 108,
+  "wind_offshore": 1
+ },
+ "blank_total": 1207,
+ "below_1mw": {
+  "solar": 3541,
+  "wind_onshore": 251,
+  "bess": 527
+ },
+ "no_xy_in_scope": 26,
+ "statuses": [
+  [
+   "Operational",
+   2247
+  ],
+  [
+   "Awaiting Construction",
+   2001
+  ],
+  [
+   "Application Submitted",
+   794
+  ],
+  [
+   "Application Refused",
+   686
+  ],
+  [
+   "Revised",
+   533
+  ],
+  [
+   "Application Withdrawn",
+   426
+  ],
+  [
+   "Appeal Refused",
+   296
+  ],
+  [
+   "Under Construction",
+   292
+  ],
+  [
+   "Planning Permission Expired",
+   225
+  ],
+  [
+   "Abandoned",
+   219
+  ],
+  [
+   "Appeal Withdrawn",
+   39
+  ],
+  [
+   "Decommissioned",
+   9
+  ],
+  [
+   "Appeal Lodged",
+   6
+  ],
+  [
+   "No Application Required",
+   2
+  ]
+ ],
+ "status_long": [
+  [
+   "Operational",
+   2247
+  ],
+  [
+   "Planning Permission Granted",
+   1827
+  ],
+  [
+   "Planning Application Submitted",
+   794
+  ],
+  [
+   "Planning Permission Refused",
+   668
+  ],
+  [
+   "Revised",
+   533
+  ],
+  [
+   "Planning Application Withdrawn",
+   426
+  ],
+  [
+   "Appeal Refused",
+   296
+  ],
+  [
+   "Under Construction",
+   292
+  ],
+  [
+   "Planning Permission Expired",
+   225
+  ],
+  [
+   "Abandoned",
+   219
+  ],
+  [
+   "Appeal Granted",
+   167
+  ],
+  [
+   "Appeal Withdrawn",
+   39
+  ],
+  [
+   "Secretary of State - Refusal",
+   18
+  ],
+  [
+   "Decommissioned",
+   9
+  ],
+  [
+   "Appeal Lodged",
+   6
+  ],
+  [
+   "Secretary of State - Granted",
+   4
+  ],
+  [
+   "No Application Required",
+   2
+  ],
+  [
+   "Planning permission granted",
+   2
+  ],
+  [
+   "Planning permission Granted",
+   1
+  ]
+ ],
+ "no_application_made_all": 1,
+ "no_application_made_by_tech": {
+  "Battery": 1
+ },
+ "no_application_made_inscope": []
+}

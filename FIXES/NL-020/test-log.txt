@@ -1,0 +1,13 @@
+....................                                                     [100%]
+20 passed in 14.49s
+DETERMINISTIC
+dcuk-54f4d97bd84dbaf8 41 24.04 41 24.04 OK
+dcuk-2b8b497a57da3247 15 287.77 15 287.77 OK
+dcuk-6ee118cb032ce049 14 27.43 14 27.43 OK
+dcuk-b932a1a35bdec78b 2 20.93 2 20.93 OK
+dcuk-14840225b24bd44c 20 8.45 20 8.45 OK
+spine refs 7775 compared 7744 max diff m 0.734
+[('Solar Photovoltaics', 3604), ('Wind Onshore', 2417), ('Battery', 1644), ('Wind Offshore', 110)]
+Counter({'Operational': 2247, 'Awaiting Construction': 2001, 'Application Submitted': 794, 'Application Refused': 686, 'Revised': 533, 'Application Withdrawn': 426, 'Appeal Refused': 296, 'Under Construction': 292, 'Planning Permission Expired': 225, 'Abandoned': 219, 'Appeal Withdrawn': 39, 'Decommissioned': 9, 'Appeal Lodged': 6, 'No Application Required': 2})
+.....................                                                    [100%]
+21 passed in 10.75s
