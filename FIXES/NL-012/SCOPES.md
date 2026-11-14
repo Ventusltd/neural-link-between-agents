@@ -342,6 +342,30 @@ branches; replace local workspace paths in files on main: the served `CLEANING-L
 monthly-workflow patch as delivered, which points at a local folder for the official October files; whether main carries
 that line is UNVERIFIED). The public language gate. N2's pipelinenews patches (owner decision). The gridatlas push (owner).
 
+## 2d. Revision 4 (2026-11-14T01:50Z): the star feature as one sequence across two lanes
+
+New from the owner at 01:26Z (brief line 16): the map link, its grid engine and the offtakers layer must not be broken,
+only adapted to the October additions. The guardian's ACK (issue 15, 6869481646) and the GridAtlas preview (issue 16,
+6869603567) both respect this: the page never alters a MAP href; the map's live generation is untouched.
+
+Lines 15 and 16 are one piece of work in two repositories, and its steps have different owners. In order:
+
+| Step | Owner | Done when |
+|---|---|---|
+| 1. Preview generation 202611132345 checked in a real browser, desktop and phone (five checks in 6869603567) | ChatGPT | Results on issue 16 |
+| 2. Acceptance of the GridAtlas generation | Owner only | His own "ACCEPT 202611132345" on gridatlas PR #84 |
+| 3. Release of the generation | Harness (the release script), after step 2 | `atlas/current.json` moved by the prescribed tool; rollback generation named |
+| 4. Re-run of the guardian's register check against the live register | Guardian | The list of rows without a card shrinks from 97 to the residue; marks on the page follow the list, not a fixed number |
+| 5. The residue: refs 2484, 6483, 20218 lack a card even against the preview register | Unowned. Proposed: the guardian states the reason for each from the register and the REPD row (status, coordinates, capacity) | One line each on issue 15 |
+| 6. Release candidate named and promoted | Guardian names; ChatGPT or the harness promotes with a checkpoint | Homepage opens a version in which every MAP link opens the right card or is marked |
+
+Added to the guardian's scope, the only points its ACK leaves open: a stated end of the train (after step 6 it stops or
+runs on change only); the 17 MB budget enforced in CI from V9.15 as promised; and that a marked row is unmarked by data
+(the register check), never by hand.
+
+For the offtakers side of line 16, G1's finding stands as the test: on the preview, a data-centre card should list
+October additions among its nearest REPD sites (check 4 of step 1).
+
 ## 3. Scope per lane
 
 ### NL-013, Team 1: source and dataset QA
@@ -552,6 +576,7 @@ Traces to brief lines 3, 4, 5 and 9.
 ## Revisions
 
 - 2026-11-14T00:48Z first issue.
+- 2026-11-14T01:50Z revision 4: brief line 16; the star feature as one sequence with owners (section 2d).
 - 2026-11-14T01:29Z revision 3: brief lines 14 and 15; guardian scope with its backlog and a size constraint; line 8b after G1;
   the 'no third folder' cut withdrawn; all earlier lanes handed off.
 - 2026-11-14T01:07Z revision 2: owner's 00:56 instructions folded in as brief lines 10 to 13; lanes M1, N4, G1 scoped;
