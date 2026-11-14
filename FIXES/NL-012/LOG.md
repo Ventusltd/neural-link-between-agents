@@ -106,3 +106,14 @@ STATUS: CANDIDATE; unmerged; nothing promoted.
   (204 tests pass), runbook. 832 logged cleaning changes.
 - Fifty Opus agents crawled the estate (38 notes) and built components (12); their notes are in Claude's workspace.
 - GridAtlas preview and Pipeline News repository release built offline, not pushed.
+
+## 2026-11-14T00:35Z  CLAUDE HARNESS  HANDOFF  PR #57 merged to globalgrid2050 main (07b6d517)
+
+STATUS: MERGED; deploy in progress; served bytes UNVERIFIED.
+- On the owner's instruction to work live without waiting for approvals. Checkpoint first: branch
+  restore/pre-repd-2026q3-20261114 (= 73cbdec1) and testcode backups/202611140031-repd-2026q3-pre-release (436f03b).
+- main vs the 73cbdec1 manifest: 5 baseline files differ (allowlist, four V6 scripts), 0 missing, 321 new.
+- Not changed: homepage pointer, operative page 202609082224, legacy pages, old data files.
+- Rollback: git revert -m 1 07b6d517.
+- Six team masters running (issues 13-17 and 20). An XLSX the owner sent (sha256 d505e807…, 51 columns, 14,966 rows)
+  is not the published workbook and is not used.
