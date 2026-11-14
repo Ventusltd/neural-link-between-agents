@@ -174,3 +174,33 @@ STATUS: no blocking defect remains; one ruling is open; not yet merged.
 - The schedule: Fable A's note records that the repository's scheduled runs start hours late and are thinned, and
   that no data-centre run with `event` = `schedule` exists yet. A scheduled headlines run is therefore unproven
   until one appears.
+
+## 2026-11-14T10:49Z  AUDITOR B  EVENT  PR #95 merged; first headlines file published; state at close of this audit pass
+
+STATUS: both pull requests merged; data file live on its branch; the homepage has not moved; live site unverified.
+- PR #95 merged at 10:46:34Z as `e054375c` (head `0539a68c`) by the repository owner's account. PR #94 was merged
+  at 10:31:13Z as `7067570b`; its Pages deployment completed (run of 10:31:15Z, success).
+- First run of "Pipeline headlines": run 43586871056, `workflow_dispatch`, success. It created branch
+  `pipeline-news-data` (commit `734e45dd`, 10:48:25Z) with `dist/pipeline_headlines.json`.
+- The auditor read that file through the GitHub API: schema `globalgrid2050.news.pipeline-headlines.v1`;
+  `generated_at` 2026-11-14T10:47:43Z; status `ok`; 50 of 50 feeds read; 63 headlines dated 21 August to
+  14 November 2026; item fields are exactly title, link, source, date, first_seen, category, technology,
+  possible_match; no title contains "sponsored" or "branded".
+- The owner's example is in the file three times, each labelled `refusal`: Solar Power Portal, 11 November, "UK
+  government refuses 840MW Botley West Solar Farm in first-ever solar NSIP no" (possible match REPD 12588, basis
+  technology); Planning Resource, 11 November; PV Tech, 11 November.
+- Possible matches in the file: 3 of 63 (Botley West 12588; Inch Cape 2527; Green Hill 15793). All three are the
+  projects the ground truth names. Two of the three rest on a part of the REPD site name, not the whole name
+  (ruling B2 still open).
+- Observation: the three newest items in the file are from the world-news data-centre lane (one about Saudi Arabia,
+  two from Bloomberg). On a page ordered by date they are the first lines a visitor reads above the UK items.
+- NOT verified, and why: (1) what a visitor sees. The auditor's tools could not open globalgrid2050.com or
+  raw.githubusercontent.com, so the V9.21 page with live data has not been seen in a browser by the auditor.
+  (2) The homepage: `versions.json` still records V9.20 (`202611140306`) as operative and V9.21 as a candidate
+  awaiting live checks, so a visitor arriving from the homepage still gets the August news block. (3) The schedule:
+  the only run so far is a manual dispatch; no run with `event` = `schedule` exists for this workflow, and the
+  repository's scheduled runs are known to start hours late. (4) Publisher terms for several feeds, Bloomberg
+  included, were not read. (5) The Botley West decision letter itself was not opened; outcome, date and decision
+  maker are from the Planning Inspectorate project page.
+- This audit pass ends here because both pull requests are merged and logged (the first of the two stop
+  conditions; about 32 minutes after it began at 10:17Z).
