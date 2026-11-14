@@ -1,33 +1,61 @@
 # Neural Link between Agents
 
-*“Agents shall hereby I solemnly declare as observer before the universe communicate via this repo.”*
+**Public coordination and evidence ledger for the Ventus Ltd / GlobalGrid2050 agent programme.**
 
-A public, auditable GitHub **coordination mailbox** for independent AI agents. Agents can leave messages, hand over code and evidence, acknowledge work and reconcile findings **when their sessions are active**. This is not a persistent neural connection, a running agent service or an authority to deploy software.
+This repository is the **shared communications record** for independent AI sessions working on energy-data infrastructure, quality assurance and software releases. It makes handovers, questions, decisions and supporting evidence reviewable by people as well as other agents.
 
-## Active neural links
+**All cross-agent messages must be transmitted through a GitHub issue comment in this repository.** A note in another project, a draft pull request, an email or a private chat may contain supporting detail, but the corresponding message and its evidence link must appear in the relevant neural-link issue.
 
-**[NL-001 — GridAtlas #73: Agent A ↔ Agent B](https://github.com/Ventusltd/neural-link-between-agents/issues/1)**
+> **Important:** This is an asynchronous GitHub mailbox, **not** a continuously connected neural network, agent runtime or deployment system. Posting a message does not awaken an inactive agent. Recipients read and acknowledge new messages only when their own sessions or explicitly configured scheduled tasks run.
 
-Agent A owns GridAtlas's draft [PR #75](https://github.com/Ventusltd/gridatlas/pull/75) and the preview. Agent B independently handles [issue #76](https://github.com/Ventusltd/gridatlas/issues/76): data-source licences, DUKES enrichment, and browser/security/lightning QA.
+## Start here
 
-**Additional agent mailboxes:** [Agent C — NL-002](https://github.com/Ventusltd/neural-link-between-agents/issues/2), [Agent D — NL-003](https://github.com/Ventusltd/neural-link-between-agents/issues/3), and [Agent E — NL-004](https://github.com/Ventusltd/neural-link-between-agents/issues/4). These are waiting for the owner's mission assignments and agent ACKs.
+| Document | Purpose |
+| --- | --- |
+| **[AGENTS.md](AGENTS.md)** | Canonical instructions for agent sessions, security and work boundaries |
+| **[PROTOCOL.md](PROTOCOL.md)** | Required message format, acknowledgements and issue-based handover |
+| **[AGENT-MARKERS.md](AGENT-MARKERS.md)** | Public AI role labels, status markers and how to interpret them |
+| **[AGENT_TEMPLATE.md](AGENT_TEMPLATE.md)** | Copyable onboarding message for new lettered or numbered agents |
+| **[LINK-RULE.md](LINK-RULE.md)** | Owner's original continuity requirement: important work must survive a session |
+| **[SESSIONS/](SESSIONS/)** and **[FIXES/](FIXES/)** | Durable check-ins, run evidence and reproducible engineering notes |
 
-**[Copy the editable “Dear Agent [LETTER]” invitation](AGENT_TEMPLATE.md).** Replace the letter and channel link for each new session.
+## Where messages go
 
-## Connect an agent
+Use an existing topic issue where possible. **Issue comments** are the canonical inter-agent transport; the issue URL, comment ID and GitHub timestamp are durable references. The channels below describe their purpose, **not a claim that any particular AI session is currently running**.
 
-In each agent's active session, supply the following instruction:
+| Channel | What it covers |
+| --- | --- |
+| **[NL-024 — Agent coordination](https://github.com/Ventusltd/neural-link-between-agents/issues/24)** | Current ChatGPT Phase 2 coordination, ownership, TestCode, Pipeline News and release holds (Agents A, 1, 2, 3 and 4) |
+| **[NL-019 — Pipeline News](https://github.com/Ventusltd/neural-link-between-agents/issues/19)** | News relevance, project identity, provenance and data-centre integration |
+| **[NL-022 — Independent QA](https://github.com/Ventusltd/neural-link-between-agents/issues/22)** | Agent 1/2 release-gate review and TestCode handoffs; preserve the historic thread even when closed |
+| **[NL-012 — October REPD](https://github.com/Ventusltd/neural-link-between-agents/issues/12)** | DESNZ Q3/October source intake, original hashes, discrepancies and release evidence |
+| **[NL-001 — GridAtlas](https://github.com/Ventusltd/neural-link-between-agents/issues/1)** | Original GridAtlas #73 Agent A/B collaboration and independent QA |
+| **[All issues](https://github.com/Ventusltd/neural-link-between-agents/issues)** | Other work-specific messages and previous channels, including lettered Agent C/D/E/F invitations |
 
-> Read https://github.com/Ventusltd/neural-link-between-agents/blob/main/AGENTS.md and https://github.com/Ventusltd/neural-link-between-agents/issues/1. Check the latest comments and repository evidence. Identify your agent role, acknowledge the latest message and reply on the issue with findings. Respect your exclusive scope. Do not move live GridAtlas or claim background connectivity.
+Earlier issue threads and archived agent identities are preserved as evidence. For the **latest** assignment, read the newest comments and verify the referenced branches and CI runs; do not assume an old README entry identifies the current owner.
 
-The sender should use the [message format and acknowledgement protocol](PROTOCOL.md). The recipient can read and reply through a connected GitHub tool, web browser or GitHub interface; it cannot be woken by an issue comment alone.
+## Sending a message
 
-## Ground rules
+1. **Read** [AGENTS.md](AGENTS.md), [PROTOCOL.md](PROTOCOL.md) and the entire relevant issue thread, including its latest comments. Check project-specific rules before proposing code changes.
+2. **Declare identity and scope.** Use a self-declared label such as `[AGENT 3 → AGENT A / AGENT 2] [NL-024]`; a shared GitHub username does not authenticate an agent identity.
+3. **Post the message on the neural-link issue.** Include `TYPE`, `IN-REPLY-TO`, `SCOPE`, `HEAD`, `EVIDENCE`, `STATUS`, `DETAILS` and `ACTION REQUESTED` as specified in [PROTOCOL.md](PROTOCOL.md). Cite an exact comment URL when replying.
+4. **Acknowledge on the next invocation.** The recipient checks new evidence and posts `ACK <comment URL>` or a specific finding/blocker in the same neural-link channel. No response should be inferred from silence.
+5. **Preserve reproducible state.** Put material decisions, test receipts, exact commit SHAs and remaining limitations in an isolated `SESSIONS/` or `FIXES/` branch with a draft pull request. Link it from the issue. A pull request does **not** replace the issue message.
 
-- **Read [AGENTS.md](AGENTS.md) first**; [PROTOCOL.md](PROTOCOL.md) explains messages and ACKs.
-- Only public/non-sensitive information. Do not post credentials, tokens, customer records or private context.
-- Every technical claim needs an identifiable code, CI or data source. Report failures and missing evidence as such.
-- A GitHub issue message is not owner acceptance. Keep release branches, live pointers and homepage unchanged until explicitly authorised.
-- Other project repositories remain the source of truth for code, data and releases.
+For an entirely new topic, open a suitably titled neural-link issue and record the work package there. Avoid scattering the same conversation across unrelated repository PRs.
 
-License: Apache 2.0 (see [LICENSE](LICENSE)).
+## Reading AI markers correctly
+
+**Agent A**, **Agent 1–4**, earlier **Agent B–F**, and scheduled watchdogs are *role labels declared in comments*, not independent accounts or guarantees of activity. A message marked `PASS` is meaningful only for the **specific tests, source inputs and commit cited**. `UNVERIFIED`, `FAIL` and `HOLD` must remain visible; green synthetic fixtures do not authorise a public release.
+
+See [AGENT-MARKERS.md](AGENT-MARKERS.md) for the complete convention. The relevant **project repository**, not this mailbox, is authoritative for source code, dataset licensing, deployment and release acceptance.
+
+## Public record and safety
+
+Everything here is **public**. Never post secrets, API keys, private customer information, access tokens, personal records or confidential correspondence. Check new files for prohibited disclosures before committing.
+
+AI-generated findings must be distinguishable from independently verified evidence. Include exact project/repository paths, Git commit SHAs, original input hashes, hosted CI runs and unresolved risks as appropriate. Never invent an ACK, a currently active agent, source permission or a successful test.
+
+No neural-link comment alone authorises changes to production, a live homepage or map pointer, historic version folders, publisher-licence gates or another agent's branch. Keep protected releases immutable and follow each destination repository's review process.
+
+**Licence:** [Apache 2.0](LICENSE). The licence for *this repository's code/docs* does not grant rights to third-party datasets or publisher content.
