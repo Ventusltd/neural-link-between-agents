@@ -50,3 +50,39 @@ STATUS: VERIFIED against the official record. The owner's statement is accurate 
 
 - Fable A wrote the data contract at 10:17Z: branch `pipeline-news-data`, file `dist/pipeline_headlines.json`, schema
   `globalgrid2050.news.pipeline-headlines.v1`. Review follows with the algorithm note and the pull request.
+
+## 2026-11-14T10:32Z  AUDITOR B  REVIEW  scouts done: feeds and ground-truth events reviewed; FEEDS.json and GROUND-TRUTH.json published
+
+STATUS: PASS with limits stated below.
+- Input: six feed lanes (58 distinct feed URLs after de-duplication) and four event lanes (37 events). All ten files
+  parse as JSON.
+- Feeds, what the auditor opened directly today (4): Solar Power Portal (RSS, 50 items, newest 13 Nov 2026; it
+  contains the Botley West refusal headline dated 11 Nov); Lincolnshire County Council news (RSS, 20 items, newest
+  13 Nov); DataCentreNews UK (RSS, 10 items, newest 13 Nov, no UK site in the newest titles); Energy Global wind
+  (RSS, newest 8 May 2026: stale, rejection confirmed).
+- Feeds, limit: the auditor's fetch tool refused 14 other feed URLs it tried (GOV.UK atom feeds, BBC, Guardian,
+  offshoreWIND.biz, reNEWS, Ofgem, Energy-Storage.news, Construction Enquirer, Data Centre Review). The scouts met
+  the same limit and often read a third-party mirror or the publisher's HTML page instead. FEEDS.json therefore
+  marks only 5 feeds "use" and 28 "test": the first workflow run's per-feed table is the real test. 25 rejected.
+- Events, what the auditor opened (17 source pages across the four lanes; at least three per lane): E1 Botley West
+  (four sources), Great North Road, Steeple, Beacon Fen (GOV.UK press releases); E2 Hams Hall, Hunterston, High
+  Marnham (Solar Power Portal); E3 Llŷr (Welsh Government), Morgan and Morecambe transmission assets (GOV.UK),
+  Vanguard West and East financial close (RWE); E4 Trerice appeal, Wheatenhurst appeal, Bonnyknox (Solar Power
+  Portal), Brecks construction start (Renewable Energy Magazine). In every case the headline, date and event were
+  as the scout recorded.
+- Corrections made: the GOV.UK "development consent decision announced" releases are published by the Planning
+  Inspectorate, not DESNZ (publisher label corrected); Bonnyknox: the source does not name the deciding authority
+  (changed to "not named in the source"); the TotalEnergies/Steeple item now links the original publisher, not a
+  republication.
+- Thrown out: 2 events (Carrick Forest: single source is a court opinion, not a headline; Beacon Fen in lane E2:
+  duplicate, merged) and 5 sources (two 2025 Gazette application notices, one campaign-site repost, one aggregator
+  copy, one republication). 35 events remain; 15 have at least one source opened by the auditor.
+- REPD: every Ref ID the scouts gave exists in the October 2026 register with the stated site name. Applying the
+  rule in force to the headlines alone: 2 events qualify for a "possible match" (Inch Cape, REPD 2527; Brecks Solar
+  Farm, REPD 10087); 1 is ambiguous (Beacon Fen Energy Park: exact name, two REPD rows, 13599 and 13600); 32,
+  including Botley West, qualify for none and must be shown as headlines with no project.
+- Consequence: under the rule a project link will be rare (2 of 35). That is the rule working, not a fault. The
+  test of the fix is that the headlines appear, are fresh and are correctly labelled, not that they are tied to
+  rows.
+- Fable A reported pull request #95 in Ventusltd/globalgrid2050 (branch `news/pipeline-headlines`) opened at
+  10:30Z. Review follows.

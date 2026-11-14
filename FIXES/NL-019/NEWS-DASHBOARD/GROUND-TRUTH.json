@@ -1,0 +1,1118 @@
+{
+ "schema": "neural-link.nl-019.news-dashboard.ground-truth.v1",
+ "compiled": "2026-11-14",
+ "compiled_by": "Auditor B (Claude Fable) from four scout lanes (E1 large solar, E2 battery storage, E3 wind, E4 smaller solar)",
+ "window": "2026-08-01 to 2026-11-14",
+ "how_to_read": [
+  "Each event is a real UK event with at least one source the scout opened; \"opened_by_auditor\" marks the sources the auditor opened again today.",
+  "Titles, links, dates and publishers only. No article text.",
+  "\"repd_reference\" is the register row the reviewers believe the event concerns (October 2026 REPD). It is context for testing, not a published match.",
+  "\"rule_outcome\" is what the rule in force allows from the headlines alone: \"possible_match\" (exact site name in a headline plus one agreeing field, one REPD row), \"ambiguous\" (exact name, more than one REPD row), or \"none\" (show the headline with no project).",
+  "Test for the algorithm: every headline listed here from a feed it reads must be kept; only \"possible_match\" events may carry a project, always labelled as a possible match."
+ ],
+ "counts": {
+  "events": 35,
+  "auditor_checked": 15,
+  "possible_match": 2,
+  "ambiguous": 1,
+  "none": 32
+ },
+ "events": [
+  {
+   "lane": "E1",
+   "project": "Steeple Renewables Project",
+   "event": "Ownership change: TotalEnergies acquired the consented project (450 MW solar, 150 MW battery storage) from RES. This is a transaction, not a planning event; it is included because it is a recent headline about the same REPD project.",
+   "date": "2026-11-13",
+   "decided_by": "n/a (commercial transaction: RES UK & Ireland sold to TotalEnergies)",
+   "sources": [
+    {
+     "title": "TotalEnergies acquires 450MW solar, 150MW BESS NSIP project",
+     "link": "https://www.solarpowerportal.co.uk/solar-finance/totalenergies-acquires-450mw-solar-plus-150mw-bess-nsip-project",
+     "publisher": "Solar Power Portal",
+     "date": "2026-11-13",
+     "opened_by_auditor": true
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "15252",
+     "site_name": "Steeple Renewables Project"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E3",
+   "project": "Vanguard West and Vanguard East offshore wind farms (Norfolk, ~1.4 GW each)",
+   "event": "Financial close reached by RWE and KKR (50:50 JV), about £12 billion investment, £11.1 billion non-recourse project financing plus £1.7 billion ancillary facilities",
+   "date": "2026-11-11",
+   "decided_by": "RWE and KKR (developers/investors); 35 lending banks",
+   "sources": [
+    {
+     "title": "RWE and KKR join forces to deliver 2.8 gigawatts of new offshore wind capacity in the UK",
+     "link": "https://www.rwe.com/en/press/rwe-ag/2026-11-11-rwe-and-kkr-join-forces-to-deliver-2-8-gw-of-new-offshore-wind-capacity-in-the-uk/",
+     "publisher": "RWE",
+     "date": "2026-11-11",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "RWE and KKR Reach Financial Close for 2.8 GW UK Offshore Wind Projects",
+     "link": "https://www.offshorewind.biz/2026/11/11/rwe-and-kkr-reach-financial-close-for-28-gw-uk-offshore-wind-projects",
+     "publisher": "offshoreWIND.biz",
+     "date": "2026-11-11",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "RWE, KKR Reach Financial Close on 2.8GW UK Offshore Wind Projects",
+     "link": "https://www.oedigital.com/news/544279-rwe-kkr-reach-financial-close-on-2-8gw-uk-offshore-wind-projects",
+     "publisher": "Offshore Engineer (OEDigital)",
+     "date": "2026-11-11",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "20218",
+     "site_name": "The East Anglia Array - Norfolk Vanguard West"
+    },
+    {
+     "ref": "2484",
+     "site_name": "The East Anglia Array - Norfolk Vanguard East"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E1",
+   "project": "Botley West Solar Farm",
+   "event": "Development consent refused (840 MW solar NSIP, Oxfordshire). Reasons reported include Green Belt harm, landscape and visual impact, heritage harm (setting of the Blenheim Palace World Heritage Site), aviation safety at London Oxford Airport, and loss of best and most versatile farmland.",
+   "date": "2026-11-10",
+   "decided_by": "Baroness Curran on behalf of the Secretary of State for Energy Security and Net Zero (DESNZ)",
+   "sources": [
+    {
+     "title": "Botley West Solar Farm: development consent order, Planning Act 2008",
+     "link": "https://www.gov.uk/government/publications/botley-west-solar-farm-development-consent-order-planning-act-2008",
+     "publisher": "GOV.UK (Department for Energy Security and Net Zero)",
+     "date": "2026-11-10",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "Botley West Solar Farm (project page, EN010147)",
+     "link": "https://national-infrastructure-consenting.planninginspectorate.gov.uk/projects/EN010147",
+     "publisher": "Planning Inspectorate",
+     "date": "2026-11-10",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "Planned solar farm in Oxfordshire scrapped as government rejects application",
+     "link": "https://www.itv.com/news/meridian/2026-11-10/planned-solar-farm-in-oxfordshire-scrapped",
+     "publisher": "ITV News Meridian",
+     "date": "2026-11-10",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "UK government refuses 840MW Botley West Solar Farm in first-ever solar NSIP no",
+     "link": "https://www.solarpowerportal.co.uk/solar-planning/uk-government-refuses-840mw-botley-west-solar-farm-in-first-ever-solar-nsip-no",
+     "publisher": "Solar Power Portal",
+     "date": "2026-11-11",
+     "opened_by_auditor": true
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "12588",
+     "site_name": "Botley West, Botley - Botley West Solar Project"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E2",
+   "project": "Hams Hall BESS",
+   "event": "Commercial operation announced (350MW/1,240MWh phase 1; reached commercial operation 20 days after energisation)",
+   "date": "2026-11-02",
+   "decided_by": "BW ESS (owner-operator)",
+   "sources": [
+    {
+     "title": "BW ESS puts 1.24GWh BESS, Europe's largest, into commercial operation",
+     "link": "https://www.solarpowerportal.co.uk/battery-storage/bw-ess-puts-1-24gwh-bess-europe-s-largest-into-commercial-operation",
+     "publisher": "Solar Power Portal",
+     "date": "2026-11-02",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "UK: BW ESS announces commercial operations of Hams Hall Battery Energy Storage System",
+     "link": "https://www.energy-pedia.com/news/united-kingdom/bw-ess-announces-commercial-operations-of-hams-hall-battery-energy-storage-system-205918",
+     "publisher": "energy-pedia",
+     "date": "2026-11-02",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "9427",
+     "site_name": "Hams Hall  - Battery Energy Storage System"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E3",
+   "project": "Inch Cape offshore wind farm (1.1 GW, off Angus)",
+   "event": "Construction milestone: wind turbine installation started (72 Vestas V236-15.0 MW); first power expected late 2026",
+   "date": "2026-11-02",
+   "decided_by": "Project company (developer not named in source)",
+   "sources": [
+    {
+     "title": "Wind Turbine Installation Starts at Inch Cape Site Offshore Scotland",
+     "link": "https://offshorewind.biz/2026/11/02/wind-turbine-installation-starts-at-inch-cape-site-offshore-scotland",
+     "publisher": "offshoreWIND.biz",
+     "date": "2026-11-02",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "2527",
+     "site_name": "Inch Cape"
+    }
+   ],
+   "rule_outcome": "possible_match",
+   "rule_note": "Exact site name \"Inch Cape\" (one REPD row) plus technology (wind, offshore) in the headline.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E1",
+   "project": "Great North Road Solar and Biodiversity Park",
+   "event": "Development consent granted (800 MW export, about 1.12 GW DC solar, plus 440 MW/880 MWh battery storage; north-west of Newark, Nottinghamshire). Applicant Elements Green Trent Limited.",
+   "date": "2026-10-27",
+   "decided_by": "Baroness Curran on behalf of the Secretary of State for Energy Security and Net Zero (DESNZ)",
+   "sources": [
+    {
+     "title": "Great North Road Solar and Biodiversity Park development consent decision announced",
+     "link": "https://www.gov.uk/government/news/great-north-road-solar-and-biodiversity-park-development-consent-decision-announced",
+     "publisher": "GOV.UK (Planning Inspectorate)",
+     "date": "2026-10-27",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "Major solar projects by Elements Green, Cubico granted DCOs",
+     "link": "https://www.solarpowerportal.co.uk/utility-scale-solar/major-solar-projects-by-elements-green-cubico-granted-dcos",
+     "publisher": "Solar Power Portal",
+     "date": "2026-10-28",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "15149",
+     "site_name": "Great North Road Solar Park"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E1",
+   "project": "Frodsham Solar",
+   "event": "Development consent granted (about 150 MW solar, up to 100 MW export, with battery storage; Frodsham Marsh, Cheshire West and Chester). Applicant Frodsham Solar Ltd (Cubico).",
+   "date": "2026-10-27",
+   "decided_by": "Baroness Curran (Parliamentary Under-Secretary of State) on behalf of the Secretary of State for Energy Security and Net Zero",
+   "sources": [
+    {
+     "title": "Frodsham Solar development consent decision announced",
+     "link": "https://www.gov.uk/government/news/frodsham-solar-development-consent-decision-announced",
+     "publisher": "GOV.UK (Planning Inspectorate)",
+     "date": "2026-10-27",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "Major solar projects by Elements Green, Cubico granted DCOs",
+     "link": "https://www.solarpowerportal.co.uk/utility-scale-solar/major-solar-projects-by-elements-green-cubico-granted-dcos",
+     "publisher": "Solar Power Portal",
+     "date": "2026-10-28",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "14096",
+     "site_name": "Frodsham Solar Project & Battery Storage"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E4",
+   "project": "Bonnyknox Solar Farm (Fallaws Farm, Arbirlot, Angus), 49.9 MW",
+   "event": "Planning approval granted by local authority",
+   "date": "2026-10-27",
+   "decided_by": "Local planning authority (not named in the source)",
+   "sources": [
+    {
+     "title": "RES secures planning consents for NI BESS, Scottish solar",
+     "link": "https://www.solarpowerportal.co.uk/solar-planning/res-secures-planning-consents-for-ni-bess-scottish-solar",
+     "publisher": "Solar Power Portal",
+     "date": "2026-10-27",
+     "opened_by_auditor": true
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "16666",
+     "site_name": "Bonnyknox Solar Farm"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E4",
+   "project": "Brecks Solar Farm (near Retford, Nottinghamshire), 46 MWp",
+   "event": "Construction started (Qair's first UK solar construction; EPC contractor INTEC; financial close in June 2026)",
+   "date": "2026-10-20",
+   "decided_by": "Developer (Qair)",
+   "sources": [
+    {
+     "title": "Qair begins construction of 46 MW Brecks Solar Farm in Nottinghamshire",
+     "link": "https://www.renewableenergymagazine.com/pv_solar/qair-begins-construction-of-46-mw-brecks-20261020",
+     "publisher": "Renewable Energy Magazine",
+     "date": "2026-10-20",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "Qair Awards EPC Contract to INTEC Energy Solutions for Brecks Solar Farm",
+     "link": "https://uk.qair.energy/qair-awards-epc-contract-to-intec-energy-solutions-for-brecks-solar-farm/",
+     "publisher": "Qair UK",
+     "date": "2026-05-18",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "10087",
+     "site_name": "Brecks Solar Farm"
+    }
+   ],
+   "rule_outcome": "possible_match",
+   "rule_note": "Exact site name \"Brecks Solar Farm\" (one REPD row) plus technology (solar) in the headline; county is also named.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E4",
+   "project": "Drove Lane solar farm (east of Kenley House Farm, Ferry Road, Wawne, East Riding), 49.99 MW",
+   "event": "Planning permission granted",
+   "date": "2026-10-16",
+   "decided_by": "East Riding of Yorkshire Council",
+   "sources": [
+    {
+     "title": "Drove Lane solar approved despite floodplain concerns",
+     "link": "https://www.planninggeek.co.uk/2026/drove-lane-solar-approval/",
+     "publisher": "Planning Geek",
+     "date": "2026-10-25",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "Boom Power secures planning permission for 49.99MW Drove Lane solar PV plant in East Yorkshire",
+     "link": "https://www.solarpowerportal.co.uk/solar-projects/boom-power-secures-planning-permission-for-49-99mw-drove-lane-solar-pv-plant-in-east-yorkshire",
+     "publisher": "Solar Power Portal",
+     "date": "2026-10-23",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "13832",
+     "site_name": "Kenley House Farm, Ferry Road - Solar Farm"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E2",
+   "project": "Raymond's Hill BESS, Axminster (Sky UK Development)",
+   "event": "Planning appeal dismissed over risks to drinking water; East Devon District Council had refused the application",
+   "date": "2026-10-10",
+   "decided_by": "Planning Inspectorate (Inspector R C Kirby)",
+   "sources": [
+    {
+     "title": "'The proposal is not suitable for its location' - East Devon battery storage appeal dismissed over risks to drinking water",
+     "link": "https://eastdevonnews.co.uk/2026/10/10/east-devon-battery-storage-appeal-dismissed-over-risk-to-drinking-water-axminster/",
+     "publisher": "East Devon News",
+     "date": "2026-10-10",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [],
+   "rule_outcome": "none",
+   "rule_note": "No REPD row identified.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E1",
+   "project": "Steeple Renewables Project",
+   "event": "Development consent granted (about 450 MW solar plus about 150 MW battery storage, Nottinghamshire, near the former West Burton power station). Applicant Steeple Solar Farm Limited (RES).",
+   "date": "2026-10-09",
+   "decided_by": "Baroness Curran (Parliamentary Under-Secretary of State) on behalf of the Secretary of State for Energy Security and Net Zero",
+   "sources": [
+    {
+     "title": "Steeple Renewables Project development consent decision announced",
+     "link": "https://www.gov.uk/government/news/steeple-renewables-project-development-consent-decision-announced",
+     "publisher": "GOV.UK (Planning Inspectorate)",
+     "date": "2026-10-09",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "Large-scale solar plant in Nottinghamshire approved by government, second one this week",
+     "link": "https://www.solarpowerportal.co.uk/solar-planning/large-scale-solar-plant-in-nottinghamshire-approved-by-government-second-one-this-week",
+     "publisher": "Solar Power Portal",
+     "date": "2026-10-09",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "15252",
+     "site_name": "Steeple Renewables Project"
+    },
+    {
+     "ref": "15253",
+     "site_name": "Steeple Renewables Project"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "Site name is in the GOV.UK headline exactly, but nothing else in that headline agrees, and two REPD rows carry this name (15252 solar, 15253 battery).",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E1",
+   "project": "Green Hill Solar Farm",
+   "event": "Development consent granted (up to 500 MW solar plus battery storage; Northamptonshire and Milton Keynes). Applicant Green Hill Solar Farm Limited (Island Green Power).",
+   "date": "2026-10-08",
+   "decided_by": "Baroness Curran on behalf of the Secretary of State for Energy Security and Net Zero (DESNZ)",
+   "sources": [
+    {
+     "title": "Green Hill Solar Farm development consent decision announced",
+     "link": "https://www.gov.uk/government/news/green-hill-solar-farm-development-consent-decision-announced",
+     "publisher": "GOV.UK (Planning Inspectorate)",
+     "date": "2026-10-08",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "Fahnbulleh consents major 500MW solar plant plans for Northamptonshire",
+     "link": "https://www.solarpowerportal.co.uk/utility-scale-solar/fahnbulleh-consents-major-500mw-solar-plant-plans-for-northamptonshire",
+     "publisher": "Solar Power Portal",
+     "date": "2026-10-08",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "15793",
+     "site_name": "Green Hill Solar Farm & Battery Storage"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E4",
+   "project": "Wheatenhurst Solar Farm (Epney, Framilode, Gloucestershire), 49.5 MW",
+   "event": "Planning appeal allowed; Stroud District Council's December 2025 refusal overturned",
+   "date": "2026-10-05",
+   "decided_by": "Planning Inspectorate, on appeal against Stroud District Council",
+   "sources": [
+    {
+     "title": "UK: Pathfinder Clean Energy wins appeal for Wheatenhurst Solar Farm in Gloucestershire",
+     "link": "https://www.energy-pedia.com/news/united-kingdom/pathfinder-clean-energy-wins-appeal-for-wheatenhurst-solar-farm-in-gloucestershire-205555",
+     "publisher": "energy-pedia",
+     "date": "2026-10-06",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "PACE wins appeal for 49.5MW solar plant in Gloucestershire",
+     "link": "https://www.solarpowerportal.co.uk/solar-planning/pace-wins-appeal-for-49-5mw-solar-plant",
+     "publisher": "Solar Power Portal",
+     "date": "2026-10-07",
+     "opened_by_auditor": true
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "17804",
+     "site_name": "Epney, Framilode - Solar Farm & Battery Storage"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E2",
+   "project": "Hunterston BESS",
+   "event": "Financial close and notice to proceed; construction starts immediately (400MW/800MWh, COD target Q3 2028)",
+   "date": "2026-09-23",
+   "decided_by": "Revera Energy (lenders Santander, Barclays, CBA, NatWest)",
+   "sources": [
+    {
+     "title": "Carlyle-backed Revera secures financing for 800 MWh Scottish battery",
+     "link": "https://www.ess-news.com/2026/09/23/carlyle-backed-revera-secures-financing-for-800-mwh-scottish-battery/",
+     "publisher": "ESS News",
+     "date": "2026-09-23",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "Revera closes financing, begins construction of 400MW Scottish BESS",
+     "link": "https://www.solarpowerportal.co.uk/battery-storage/revera-closes-financing-begins-construction-of-400mw-scottish-bess",
+     "publisher": "Solar Power Portal",
+     "date": "2026-09-24",
+     "opened_by_auditor": true
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "10535",
+     "site_name": "Hunterston Grid Services Complex - Energy Storage Facility"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E3",
+   "project": "Morgan and Morecambe Offshore Wind Farms Transmission Assets",
+   "event": "Development consent order granted for joint offshore and onshore transmission assets (export cables, landfall, substations, connection to Penwortham, Lancashire)",
+   "date": "2026-09-14",
+   "decided_by": "Secretary of State for Energy Security and Net Zero (decision taken by Baroness Curran, Lords Minister), DESNZ; Planning Inspectorate case EN020032",
+   "sources": [
+    {
+     "title": "Morgan and Morecambe Offshore Wind Farms Transmission Assets development consent decision announced",
+     "link": "https://www.gov.uk/government/news/morgan-and-morecambe-offshore-wind-farms-transmission-assets-development-consent-decision-announced",
+     "publisher": "GOV.UK (Planning Inspectorate)",
+     "date": "2026-09-14",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "UK Approves Transmission Infrastructure for Morecambe and Re-Tendered Morgan Offshore Wind Farm",
+     "link": "https://offshorewind.biz/2026/09/15/uk-approves-transmission-infrastructure-for-morecambe-and-re-tendered-morgan-offshore-wind-farm",
+     "publisher": "offshoreWIND.biz",
+     "date": "2026-09-15",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [],
+   "rule_outcome": "none",
+   "rule_note": "No REPD row identified.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E4",
+   "project": "Soay Solar Farm (east of Thornton, East Yorkshire), 49.9 MW / 76 MWp",
+   "event": "First panels installed (construction milestone); expected operational in 2027",
+   "date": "2026-09-09",
+   "decided_by": "Developer (Statkraft)",
+   "sources": [
+    {
+     "title": "Statkraft hits key milestone at first UK solar scheme in Yorkshire",
+     "link": "https://www.statkraft.co.uk/newsroom/2026/key-milestone-at-first-uk-solar-scheme/",
+     "publisher": "Statkraft UK",
+     "date": "2026-09-09",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "Statkraft hits key milestone at first UK solar scheme in Yorkshire",
+     "link": "https://www.energyglobal.com/solar/10092026/statkraft-hits-key-milestone-at-first-uk-solar-scheme-in-yorkshire/",
+     "publisher": "Energy Global",
+     "date": "2026-09-10",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "9014",
+     "site_name": "Soay Solar Farm and Greener Grid Park"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E2",
+   "project": "Abbotshaugh Energy Storage (BESS)",
+   "event": "Section 36 consent granted (500MW, about 2GWh), near New Deer, Aberdeenshire",
+   "date": "2026-09-07",
+   "decided_by": "Scottish Ministers (Energy Consents Unit)",
+   "sources": [
+    {
+     "title": "Island Green Power secures consent for 500MW Aberdeenshire BESS",
+     "link": "https://www.solarpowerportal.co.uk/energy-storage/island-green-power-secures-consent-for-500mw-aberdeenshire-bess",
+     "publisher": "Solar Power Portal",
+     "date": "2026-09-09",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "Scottish government approves two BESS projects totaling 10 GWh in one day",
+     "link": "https://www.ess-news.com/2026/09/10/scottish-government-approves-two-bess-projects-totaling-10-gwh-in-one-day/",
+     "publisher": "ESS News",
+     "date": "2026-09-10",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "IGP secures consent for a 500 MW BESS project in Scotland (UK)",
+     "link": "https://www.enerdata.net/publications/daily-energy-news/igp-secures-consent-500-mw-bess-project-scotland-uk.html",
+     "publisher": "Enerdata",
+     "date": "2026-09-11",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "17552",
+     "site_name": "Abbotshaugh Battery Storage"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E2",
+   "project": "Fyrish BESS",
+   "event": "Section 36 consent granted (200MW, about 16.5-hour duration), near Alness, Highland",
+   "date": "2026-09-07",
+   "decided_by": "Scottish Government Energy Consents Unit",
+   "sources": [
+    {
+     "title": "Scottish government approves two BESS projects totaling 10 GWh in one day",
+     "link": "https://www.ess-news.com/2026/09/10/scottish-government-approves-two-bess-projects-totaling-10-gwh-in-one-day/",
+     "publisher": "ESS News",
+     "date": "2026-09-10",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "17150",
+     "site_name": "Fyrish Battery Energy Storage System"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E2",
+   "project": "New Deer 2 BESS",
+   "event": "Section 36 consent granted (400MW, about 18-hour duration), Aberdeenshire",
+   "date": "2026-09-07",
+   "decided_by": "Scottish Government Energy Consents Unit",
+   "sources": [
+    {
+     "title": "Scottish government approves two BESS projects totaling 10 GWh in one day",
+     "link": "https://www.ess-news.com/2026/09/10/scottish-government-approves-two-bess-projects-totaling-10-gwh-in-one-day/",
+     "publisher": "ESS News",
+     "date": "2026-09-10",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "18084",
+     "site_name": "Upper Greenfield, Cuminestown - New Deer 2 Battery Energy Storage"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E2",
+   "project": "Spittal BESS",
+   "event": "Section 36 consent granted (300MW), near Spittal, Caithness",
+   "date": "2026-09-07",
+   "decided_by": "Scottish Government Energy Consents Unit",
+   "sources": [
+    {
+     "title": "Scottish government approves two BESS projects totaling 10 GWh in one day",
+     "link": "https://www.ess-news.com/2026/09/10/scottish-government-approves-two-bess-projects-totaling-10-gwh-in-one-day/",
+     "publisher": "ESS News",
+     "date": "2026-09-10",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "16381",
+     "site_name": "Spittal Mains, Spittal - Battery Energy Storage System"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E4",
+   "project": "Chads Solar Farm (Tushingham, Cheshire), 15 MW",
+   "event": "Planning permission granted by planning committee",
+   "date": "2026-09-03",
+   "decided_by": "Cheshire West and Chester Council planning committee",
+   "sources": [
+    {
+     "title": "Planning committee approves 15MW Cheshire solar farm",
+     "link": "https://www.solarpowerportal.co.uk/solar-projects/planning-committee-approves-15mw-cheshire-solar-farm",
+     "publisher": "Solar Power Portal",
+     "date": "2026-09-04",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "UK: Renewable Connections secures consent for Cheshire Solar Farm",
+     "link": "https://www.energy-pedia.com/news/united-kingdom/renewable-connections-secures-consent-for-cheshire-solar-farm-205183",
+     "publisher": "energy-pedia",
+     "date": "2026-09-03",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "10728",
+     "site_name": "Chads Farm - Photovoltaic Arrays & Battery Storage"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E2",
+   "project": "High Marnham BESS",
+   "event": "Planning approval (400MW), Nottinghamshire",
+   "date": "2026-09-01",
+   "decided_by": "Bassetlaw District Council",
+   "sources": [
+    {
+     "title": "Field's 400MW High Marnham BESS secures planning approval",
+     "link": "https://www.solarpowerportal.co.uk/energy-storage/field-s-400mw-high-marnham-bess-secures-planning-approval",
+     "publisher": "Solar Power Portal",
+     "date": "2026-09-01",
+     "opened_by_auditor": true
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "18638",
+     "site_name": "Polly Taylors Road, High Marnham  - Battery Energy Storage System"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E2",
+   "project": "Rigifa BESS",
+   "event": "Planning consent granted (200MW/3.6GWh, 18-hour duration), connecting at Gills Bay substation near Thurso",
+   "date": "2026-08-24",
+   "decided_by": "Not stated in the articles (Scottish Government Energy Consents Unit is credited only for the planning documents)",
+   "sources": [
+    {
+     "title": "A 3.6 GWh, 18-hour lithium-ion BESS project has secured planning consent in Scotland",
+     "link": "https://www.ess-news.com/2026/08/24/a-3-6-gwh-18-hour-lithium-ion-bess-project-has-secured-planning-consent-in-scotland/",
+     "publisher": "ESS News",
+     "date": "2026-08-24",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "Field's 200MW/3.6GWh BESS project secures planning approval",
+     "link": "https://www.solarpowerportal.co.uk/battery-storage/field-s-200mw-3-6gwh-bess-project-secures-planning-approval",
+     "publisher": "Solar Power Portal",
+     "date": "2026-08-25",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [],
+   "rule_outcome": "none",
+   "rule_note": "No REPD row identified.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E4",
+   "project": "Longpasture Solar Farm (County Durham), 68 MWp",
+   "event": "Construction started; £100,000 community fund launched; energisation targeted for autumn 2027",
+   "date": "2026-08-24",
+   "decided_by": "Developer (Enviromena)",
+   "sources": [
+    {
+     "title": "Enviromena begins works and launches £100,000 community fund at County Durham solar farm",
+     "link": "https://theenergyst.com/enviromena-begins-works-and-launches-100000-community-fund-at-county-durham-solar-farm/",
+     "publisher": "The Energyst",
+     "date": "2026-08-24",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "UK: Work starts and £100,000 community fund launches at County Durham solar farm",
+     "link": "https://www.energy-pedia.com/news/united-kingdom/work-starts-and-%C2%A3100-000-community-fund-launches-at-county-durham-solar-farm-205097",
+     "publisher": "energy-pedia",
+     "date": "2026-08-26",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [],
+   "rule_outcome": "none",
+   "rule_note": "No REPD row identified.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E1",
+   "project": "Beacon Fen Energy Park",
+   "event": "Development consent granted (400 MW solar plus battery storage of up to 600 MVA; east of Sleaford, Lincolnshire). Applicant Beacon Fen Energy Park Limited (Low Carbon).",
+   "date": "2026-08-21",
+   "decided_by": "Baroness Curran on behalf of the Secretary of State for Energy Security and Net Zero (DESNZ)",
+   "sources": [
+    {
+     "title": "Beacon Fen Energy Park development consent decision announced",
+     "link": "https://www.gov.uk/government/news/beacon-fen-energy-park-development-consent-decision-announced",
+     "publisher": "GOV.UK (Planning Inspectorate)",
+     "date": "2026-08-21",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "Low Carbon wins DCO for Beacon Fen Energy Park in Lincolnshire",
+     "link": "https://www.power-technology.com/news/low-carbon-wins-dco-beacon-fen-energy-park/",
+     "publisher": "Power Technology",
+     "date": "2026-08-24",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "13599",
+     "site_name": "Beacon Fen Energy Park"
+    },
+    {
+     "ref": "13600",
+     "site_name": "Beacon Fen Energy Park"
+    }
+   ],
+   "rule_outcome": "ambiguous",
+   "rule_note": "Exact name plus developer (Low Carbon) in the Power Technology headline, but two REPD rows carry this name (13599 solar, 13600 battery); a single possible match is not defensible.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E2",
+   "project": "Skeeby BESS",
+   "event": "Energised (35MW/70MWh), near Richmond, North Yorkshire; preparing for commercial operation",
+   "date": "2026-08-20",
+   "decided_by": "Harmony Energy",
+   "sources": [
+    {
+     "title": "UK: Harmony Energy energises Skeeby battery energy storage project in North Yorkshire",
+     "link": "https://www.energy-pedia.com/news/united-kingdom/harmony-energy-energises-skeeby-battery-energy-storage-project-in-north-yorkshire-205024",
+     "publisher": "energy-pedia",
+     "date": "2026-08-20",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "Harmony Energy switches on 70 MWh Skeeby BESS in UK",
+     "link": "https://www.ess-news.com/2026/08/24/harmony-energy-switches-on-70-mwh-skeeby-bess-in-uk/",
+     "publisher": "ESS News",
+     "date": "2026-08-24",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "14205",
+     "site_name": "Darlington Road, Skeeby - Battery Energy Storage"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E3",
+   "project": "Bears Down Wind Farm repowering, St Eval, Cornwall",
+   "event": "Planning permission approved by Cornwall Council strategic planning committee (8 votes to 1) to replace 16 x 57 m turbines with 4 x 150 m turbines",
+   "date": "2026-08-20",
+   "decided_by": "Cornwall Council strategic planning committee",
+   "sources": [
+    {
+     "title": "Plans to repower wind farm approved despite community concerns",
+     "link": "https://www.holsworthy-today.co.uk/news/planning/newquay-news-plans-repower-wind-farm-approved-concerns-bears-down-939630",
+     "publisher": "Holsworthy Today",
+     "date": "2026-08-21",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "15407",
+     "site_name": "Bears Down Wind Farm"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E4",
+   "project": "Lassington solar and battery project (Lassington Lane, Highnam, near Gloucester), 40 MW",
+   "event": "Planning permission granted by planning committee",
+   "date": "2026-08-19",
+   "decided_by": "Tewkesbury Borough Council planning committee",
+   "sources": [
+    {
+     "title": "PACE Secures Approval for 40 MW Lassington Solar and Battery Project",
+     "link": "https://ippjournal.com/update/pace-secures-approval-for-40-mw-lassington-solar-and-battery-project",
+     "publisher": "IPP Journal",
+     "date": "2026-08-21",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "19389",
+     "site_name": "Lassington Lane, Highnam - Solar Farm"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E3",
+   "project": "East Anglia THREE offshore wind farm (1.4 GW, off Suffolk)",
+   "event": "Construction milestone: all 95 monopile foundations and transition pieces installed; turbine installation under way; full operation expected end 2026",
+   "date": "2026-08-17",
+   "decided_by": "ScottishPower Renewables and Masdar (developers)",
+   "sources": [
+    {
+     "title": "UK: East Anglia THREE reaches major milestone with 95 foundations installed",
+     "link": "https://www.energy-pedia.com/news/united-kingdom/east-anglia-three-reaches-a-major-milestone-with-95-foundations-installed--advancing-our-%C2%A34-billion-joint-venture-with-masdar-and-marking-a-major-2049",
+     "publisher": "energy-pedia",
+     "date": "2026-08-17",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "ScottishPower and Masdar mark engineering milestone at East Anglia THREE offshore wind farm",
+     "link": "https://www.energyglobal.com/wind/17082026/scottishpower-and-masdar-mark-engineering-milestone-at-east-anglia-three-offshore-wind-farm/",
+     "publisher": "Energy Global",
+     "date": "2026-08-17",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "2470",
+     "site_name": "East Anglia 3 (EA 3)"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E2",
+   "project": "Axminster Energy Hub (BESS)",
+   "event": "Planning appeal dismissed (150MW BESS) after East Devon District Council refusal in May 2025",
+   "date": "2026-08-13",
+   "decided_by": "Planning Inspectorate (Inspector Helen Heward, for the Secretary of State)",
+   "sources": [
+    {
+     "title": "Blocked BESS in Britain: Clearstone's appeal fails for 150 MW site at Axminster [UPDATED]",
+     "link": "https://www.ess-news.com/2026/08/19/blocked-bess-in-britain-clearstones-appeal-fails-for-150-mw-site-at-axminster/",
+     "publisher": "ESS News",
+     "date": "2026-08-19",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [],
+   "rule_outcome": "none",
+   "rule_note": "No REPD row identified.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E2",
+   "project": "Coalburn 1 BESS",
+   "event": "Commercial operation reached (500MW/1GWh), South Lanarkshire",
+   "date": "2026-08-12",
+   "decided_by": "Copenhagen Infrastructure Partners with Alcemi",
+   "sources": [
+    {
+     "title": "CIP commissions Europe's 'largest operational battery' in Scotland",
+     "link": "https://www.ess-news.com/2026/08/12/cip-commissions-europes-largest-operational-battery-in-scotland/",
+     "publisher": "ESS News",
+     "date": "2026-08-12",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "1GWh Coalburn 1 battery energy storage enters operations in Scotland",
+     "link": "https://www.solarpowerportal.co.uk/battery-storage/1gwh-coalburn-1-battery-energy-storage-enters-operationsscotland",
+     "publisher": "Solar Power Portal",
+     "date": "2026-08-13",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "11034",
+     "site_name": "Coalburn Energy -  Battery Storage"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false
+  },
+  {
+   "lane": "E4",
+   "project": "Trerice Solar Farm (St Dennis, Cornwall), 32 MW plus BESS",
+   "event": "Planning appeal allowed; Cornwall Council's refusal of 10 July 2025 overturned",
+   "date": "2026-08-12",
+   "decided_by": "Planning Inspectorate (appointed inspector), on appeal against Cornwall Council",
+   "sources": [
+    {
+     "title": "TRERICE SOLAR FARM - UPDATE",
+     "link": "https://stdennisparishcouncil.gov.uk/Contents/ContentItems/47x5dfqqy7d1cwm39wha4g4en1",
+     "publisher": "St Dennis Parish Council",
+     "date": "2026-08-12",
+     "opened_by_auditor": false
+    },
+    {
+     "title": "Statkraft’s Cornish solar farm secures planning permission after appeal",
+     "link": "https://www.solarpowerportal.co.uk/utility-scale-solar/statkraft-s-cornish-solar-farm-secures-planning-permission-after-appeal",
+     "publisher": "Solar Power Portal",
+     "date": "2026-08-18",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "Planning consent granted for Statkraft Cornwall solar project",
+     "link": "https://www.statkraft.co.uk/newsroom/2026/consent-for-trerice-solar-farm/",
+     "publisher": "Statkraft UK",
+     "date": "2026-08-17",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [],
+   "rule_outcome": "none",
+   "rule_note": "No REPD row identified.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E3",
+   "project": "Llŷr Wind Farm (Celtic Sea floating test and demonstration project, off Pembrokeshire)",
+   "event": "Section 36 consent granted by Welsh Ministers (described as the first major offshore wind approval by the new Welsh Government)",
+   "date": "2026-08-07",
+   "decided_by": "Welsh Ministers (Welsh Government)",
+   "sources": [
+    {
+     "title": "First offshore wind project approved by new Welsh Government",
+     "link": "https://www.gov.wales/first-offshore-wind-project-approved-new-welsh-government",
+     "publisher": "Welsh Government",
+     "date": "2026-08-07",
+     "opened_by_auditor": true
+    },
+    {
+     "title": "Llyr offshore wind farm secures Section 36 Consent from Welsh Ministers",
+     "link": "https://www.energyglobal.com/wind/07082026/llr-offshore-wind-farm-secures-section-36-consent-from-welsh-ministers/",
+     "publisher": "Energy Global",
+     "date": "2026-08-07",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "13422",
+     "site_name": "Llyr 1 Wind Farm"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": true
+  },
+  {
+   "lane": "E1",
+   "project": "Rogerhill Solar and Battery Energy Storage System",
+   "event": "Section 36 consent from Scottish Ministers for 98 MW solar plus 100 MW battery storage near Kirkmuirhill, South Lanarkshire (Qair / Green Switch Capital), described as Scotland's largest approved solar farm. Consent was dated 30 July 2026, just before the window, but was announced inside it.",
+   "date": "2026-07-30",
+   "decided_by": "Scottish Ministers (Scottish Government Energy Consents Unit, Electricity Act 1989 s36)",
+   "sources": [
+    {
+     "title": "UK: Qair secures consent for Scotland's largest approved solar farm at Rogerhill",
+     "link": "https://www.energy-pedia.com/news/united-kingdom/qair-secures-consent-for-scotland%E2%80%99s-largest-approved-solar-farm-at-rogerhill-205435",
+     "publisher": "energy-pedia",
+     "date": "2026-09-24",
+     "opened_by_auditor": false
+    }
+   ],
+   "repd_reference": [
+    {
+     "ref": "14193",
+     "site_name": "Rogerhill Solar and Battery Energy Storage System"
+    }
+   ],
+   "rule_outcome": "none",
+   "rule_note": "No source headline contains the REPD site name exactly.",
+   "auditor_checked": false,
+   "window_note": "Decision dated 30 July 2026, before the window; the report (24 September 2026) is inside it."
+  }
+ ],
+ "dropped": [
+  {
+   "lane": "E1",
+   "project": "Steeple Renewables Project",
+   "source": "https://now.solar/2026/11/14/totalenergies-acquires-450mw-solar-150mw-bess-nsip-project-solar-power-portal/",
+   "why": "republication; replaced by the original publisher link seen in the publisher feed"
+  },
+  {
+   "lane": "E2",
+   "project": "Fyrish BESS",
+   "source": "https://www.thegazette.co.uk/notice/4874316",
+   "why": "2025 application notice, not a report of the decision"
+  },
+  {
+   "lane": "E2",
+   "project": "New Deer 2 BESS",
+   "source": "https://www.thegazette.co.uk/notice/4886122",
+   "why": "2025 application notice, not a report of the decision"
+  },
+  {
+   "lane": "E2",
+   "project": "Raymond's Hill BESS, Axminster (Sky UK Development)",
+   "source": "https://www.sustainableconstruction-now.com/article/554140/appeal-for-major-energy-storage-system-rejected",
+   "why": "aggregator copy"
+  },
+  {
+   "lane": "E2",
+   "project": "Beacon Fen Energy Park (400MW solar + 600MW co-located BESS)",
+   "why": "duplicate of the Beacon Fen decision in lane E1; merged (REPD 13600 added there)"
+  },
+  {
+   "lane": "E3",
+   "project": "Bears Down Wind Farm repowering, St Eval, Cornwall",
+   "source": "https://www.wind-watch.org/news/2026/08/21/cornwall-planning-wind-farm-to-be-replaced-by-turbines-almost-three-times-as-big/",
+   "why": "campaign-site repost; original not opened"
+  },
+  {
+   "lane": "E3",
+   "project": "Carrick Forest wind farm (proposed 12 turbines, near Galloway Dark Sky Park)",
+   "why": "single source is a court opinion, not a news headline; no REPD row"
+  }
+ ]
+}

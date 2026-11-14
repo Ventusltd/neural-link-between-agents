@@ -1,0 +1,867 @@
+{
+ "schema": "neural-link.nl-019.news-dashboard.feeds.v1",
+ "compiled": "2026-11-14",
+ "compiled_by": "Auditor B (Claude Fable) from six scout lanes (F1 solar and storage press, F2 wind and energy press, F3 official sources, F4 national news, F5 planning and regional, F6 grid and data centres)",
+ "how_to_read": [
+  "\"use\": evidence that the feed or its headlines are live and relevant. \"test\": plausible but unproven; the first workflow run decides, and a feed that fails or is stale is dropped. \"reject\": dead, stale, off-topic or not a feed.",
+  "\"auditor_check\": \"opened\" means the auditor fetched the feed URL today and read its items; \"not_opened\" means the auditor could not (fetch restrictions in the auditor's environment), which says nothing about the feed.",
+  "\"scout_fetched_directly\" false means the scout relied on a mirror, a directory or the publisher's HTML page, not the feed itself.",
+  "Samples are titles, links and dates only.",
+  "Terms notes are the scouts' one-line readings and are not legal advice; items marked \"not checked\" remain unchecked."
+ ],
+ "counts": {
+  "use": 5,
+  "test": 28,
+  "reject": 25,
+  "opened_by_auditor": 4,
+  "total": 58
+ },
+ "feeds": [
+  {
+   "name": "Lincolnshire County Council news",
+   "url": "https://www.lincolnshire.gov.uk/rss/news",
+   "lanes": [
+    "F5"
+   ],
+   "scout_verdict": "use",
+   "scout_fetched_directly": true,
+   "auditor_check": "opened",
+   "auditor_result": "RSS 2.0, 20 items, newest 2026-11-13T15:01:00Z",
+   "verdict": "use",
+   "note": "Live, official, and covers the most active county for solar NSIPs (the Springwell Solar Farm High Court item of 13 Nov 2026). Most items are not about energy, so it needs a keyword filter (solar|battery|wind|pylon|energy).",
+   "terms_note": "Official council press releases, public sector; reuse licence not checked in this session (search budget exhausted).",
+   "samples": [
+    {
+     "title": "UK's largest Solar farm approval deemed lawful by High Court",
+     "link": "https://www.lincolnshire.gov.uk/news/article/3031/uk-s-largest-solar-farm-approval-deemed-lawful-by-high-court",
+     "date": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "name": "Solar Power Portal (Informa), all articles",
+   "url": "https://www.solarpowerportal.co.uk/rss.xml?content_types=article",
+   "lanes": [
+    "F1"
+   ],
+   "scout_verdict": "use",
+   "scout_fetched_directly": true,
+   "auditor_check": "opened",
+   "auditor_result": "RSS 2.0, 50 items, newest 2026-11-13T09:28:52Z",
+   "verdict": "use",
+   "note": "Loads, is fresh, and covers only UK solar and storage. Many titles name UK projects and decisions (Botley West refusal, DCO grants, Drove Lane, Hams Hall, Kirknewton, Thorpe Marsh). No sponsored marker in the feed.",
+   "terms_note": "Operated by Informa PLC, which holds the copyright. The footer 'Terms' link is https://www.informa.com/generic-content/terms--conditions/ (not read).",
+   "samples": [
+    {
+     "title": "TotalEnergies acquires 450MW solar, 150MW BESS NSIP project",
+     "link": "https://www.solarpowerportal.co.uk/solar-finance/totalenergies-acquires-450mw-solar-plus-150mw-bess-nsip-project",
+     "date": "2026-11-13"
+    },
+    {
+     "title": "UK government refuses 840MW Botley West Solar Farm in first-ever solar NSIP no",
+     "link": "https://www.solarpowerportal.co.uk/solar-planning/uk-government-refuses-840mw-botley-west-solar-farm-in-first-ever-solar-nsip-no",
+     "date": "2026-11-11"
+    },
+    {
+     "title": "Metlen sells 119MW UK solar portfolio to Nala Renewables",
+     "link": "https://www.solarpowerportal.co.uk/solar-finance/metlen-sells-119mw-uk-solar-portfolio-to-nala-renewables",
+     "date": "2026-11-10"
+    }
+   ]
+  },
+  {
+   "name": "DESNZ: gov.uk news and communications",
+   "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=department-for-energy-security-and-net-zero",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "use",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "use",
+   "note": "Feed URL unproven by the auditor. Agent A reported 20 DESNZ items fetched in hosted CI (run 43575831631, issue 19 comment of 08:27Z); the exact URL used there was not checked.",
+   "terms_note": "Open Government Licence v3.0; linking permitted (https://www.gov.uk/help/terms-conditions)."
+  },
+  {
+   "name": "Planning Inspectorate: gov.uk news and communications (DCO decision press releases)",
+   "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=planning-inspectorate",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "use",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "use",
+   "note": "Carries the \"<project> development consent decision announced\" press releases: six such titles are in GROUND-TRUTH.json and the auditor opened four of the articles. The feed URL itself is unproven until the first workflow run.",
+   "terms_note": "gov.uk content is under the Open Government Licence v3.0; linking headlines is permitted (https://www.gov.uk/help/terms-conditions)."
+  },
+  {
+   "name": "offshoreWIND.biz (all news)",
+   "url": "https://www.offshorewind.biz/feed/",
+   "lanes": [
+    "F2"
+   ],
+   "scout_verdict": "use",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "use",
+   "note": "Three ground-truth headlines come from this publisher. Feed URL unproven until the first workflow run; branded items must be dropped.",
+   "terms_note": "Not checked. The homepage carries 'BRANDED CONTENT' items (for example 'Crewing SOVs and CTVs...', 26 Oct), so drop sponsored items by title or category."
+  },
+  {
+   "name": "DataCentreNews UK (Techday)",
+   "url": "https://datacentrenews.uk/feed",
+   "lanes": [
+    "F6"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": true,
+   "auditor_check": "opened",
+   "auditor_result": "RSS 2.0, 10 items, newest 2026-11-13 (UTC); no UK site named in the newest four titles; no sponsored marker in the feed",
+   "verdict": "test",
+   "note": "Loads, but low value: vendor and corporate items.",
+   "terms_note": "Terms page not fetched (search budget exhausted, direct fetch blocked); headline+link linking is ordinary practice but unverified.",
+   "samples": [
+    {
+     "title": "Vertiv completes KES acquisition to expand EMEA services",
+     "link": "https://datacentrenews.uk/story/vertiv-completes-kes-acquisition-to-expand-emea-services",
+     "date": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "name": "BBC News - England regional feeds (Oxford, Lincolnshire, Norfolk, Suffolk) and Scotland, Wales, Highlands and Islands",
+   "url": "https://feeds.bbci.co.uk/news/england/oxford/rss.xml",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Most likely the best BBC source for local planning decisions, but not tested here. Test from the Actions runner first. If added, keep it to the three to five regions with the most REPD activity, to limit noise.",
+   "terms_note": "As for BBC Business (not checked this session)."
+  },
+  {
+   "name": "BBC News - England regional feeds (Oxford, Lincolnshire, Norfolk, Suffolk) and Scotland, Wales, Highlands and Islands",
+   "url": "https://feeds.bbci.co.uk/news/england/lincolnshire/rss.xml",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Most likely the best BBC source for local planning decisions, but not tested here. Test from the Actions runner first. If added, keep it to the three to five regions with the most REPD activity, to limit noise.",
+   "terms_note": "As for BBC Business (not checked this session)."
+  },
+  {
+   "name": "BBC News - England regional feeds (Oxford, Lincolnshire, Norfolk, Suffolk) and Scotland, Wales, Highlands and Islands",
+   "url": "https://feeds.bbci.co.uk/news/england/norfolk/rss.xml",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Most likely the best BBC source for local planning decisions, but not tested here. Test from the Actions runner first. If added, keep it to the three to five regions with the most REPD activity, to limit noise.",
+   "terms_note": "As for BBC Business (not checked this session)."
+  },
+  {
+   "name": "BBC News - England regional feeds (Oxford, Lincolnshire, Norfolk, Suffolk) and Scotland, Wales, Highlands and Islands",
+   "url": "https://feeds.bbci.co.uk/news/england/suffolk/rss.xml",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Most likely the best BBC source for local planning decisions, but not tested here. Test from the Actions runner first. If added, keep it to the three to five regions with the most REPD activity, to limit noise.",
+   "terms_note": "As for BBC Business (not checked this session)."
+  },
+  {
+   "name": "BBC News - England regional feeds (Oxford, Lincolnshire, Norfolk, Suffolk) and Scotland, Wales, Highlands and Islands",
+   "url": "https://feeds.bbci.co.uk/news/scotland/rss.xml",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Most likely the best BBC source for local planning decisions, but not tested here. Test from the Actions runner first. If added, keep it to the three to five regions with the most REPD activity, to limit noise.",
+   "terms_note": "As for BBC Business (not checked this session)."
+  },
+  {
+   "name": "BBC News - England regional feeds (Oxford, Lincolnshire, Norfolk, Suffolk) and Scotland, Wales, Highlands and Islands",
+   "url": "https://feeds.bbci.co.uk/news/wales/rss.xml",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Most likely the best BBC source for local planning decisions, but not tested here. Test from the Actions runner first. If added, keep it to the three to five regions with the most REPD activity, to limit noise.",
+   "terms_note": "As for BBC Business (not checked this session)."
+  },
+  {
+   "name": "BBC News - England regional feeds (Oxford, Lincolnshire, Norfolk, Suffolk) and Scotland, Wales, Highlands and Islands",
+   "url": "https://feeds.bbci.co.uk/news/scotland/highlands_and_islands/rss.xml",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Most likely the best BBC source for local planning decisions, but not tested here. Test from the Actions runner first. If added, keep it to the three to five regions with the most REPD activity, to limit noise.",
+   "terms_note": "As for BBC Business (not checked this session)."
+  },
+  {
+   "name": "BBC News - Science & Environment",
+   "url": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Live, and it sometimes carries national energy stories, but the energy share is low in this window. Include it only behind a strict energy and planning keyword filter.",
+   "terms_note": "As for BBC Business (not checked this session)."
+  },
+  {
+   "name": "Construction Enquirer",
+   "url": "https://www.constructionenquirer.com/feed/",
+   "lanes": [
+    "F5"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Feed URL listed by Feedspot; the site was live on 13 Nov 2026, but the feed itself was untested. It covers construction-side milestones (contracts, construction start, grid lines). It reports solar and battery planning decisions less often.",
+   "terms_note": "Free, advertising-funded; no headline-reuse terms stated on the pages read (https://www.constructionenquirer.com/how-to-get/)."
+  },
+  {
+   "name": "Current News (formerly Current±)",
+   "url": "https://www.current-news.co.uk/feed/",
+   "lanes": [
+    "F1"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Untested: no feed URL was found in any directory, and direct fetch was blocked. It is a UK-only grid, flexibility and storage title, so worth one test from the runner. Drop it if the feed does not load.",
+   "terms_note": "Not checked"
+  },
+  {
+   "name": "DESNZ: organisation feed (all content types)",
+   "url": "https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero.atom",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Live, but mostly guidance, statistics and ETS documents. The news-and-communications feed above covers the useful part with much less noise.",
+   "terms_note": "Open Government Licence v3.0 (https://www.gov.uk/help/terms-conditions)."
+  },
+  {
+   "name": "Data Centre Review",
+   "url": "https://datacentrereview.com/feed/",
+   "lanes": [
+    "F6"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "UK trade title. Its uk-data-centre tag page had UK site stories (Kao Data Manchester, Colt London), but the newest was from 2023. Open the feed from the workflow before adopting it.",
+   "terms_note": "Terms page not fetched (search budget exhausted, direct fetch blocked); headline+link linking is ordinary practice but unverified."
+  },
+  {
+   "name": "Energy Voice: Renewables / Energy Transition",
+   "url": "https://www.energyvoice.com/category/renewables-energy-transition/feed/",
+   "lanes": [
+    "F2"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Scottish-based energy title that covers UK grid, BESS, offshore wind and DCO applications. Many items are corporate or opinion pieces (apprenticeships, office moves), so it needs the keyword filter. Confirm the URL on the first run.",
+   "terms_note": "Not checked. Publisher is DC Thomson (Aberdeen)."
+  },
+  {
+   "name": "Energy-Storage.news (Informa), main feed",
+   "url": "https://www.energy-storage.news/feed/",
+   "lanes": [
+    "F1"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Agent A reported 160 Energy-Storage.news items fetched in hosted CI (run 43575831631); the exact URL used there was not checked.",
+   "terms_note": "Same owner as PV Tech and Solar Power Portal (Informa); terms URL not confirmed"
+  },
+  {
+   "name": "NESO press releases (sitemap, not a feed)",
+   "url": "https://www.neso.energy/press-release/sitemap.xml",
+   "lanes": [
+    "F6"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "The NESO media centre has no RSS (page checked, which points to X and LinkedIn). The sitemap is machine-readable with lastmod dates, but has no titles, so a title must come from the slug or a fetch of the page.",
+   "terms_note": "Terms page not fetched (search budget exhausted, direct fetch blocked); headline+link linking is ordinary practice but unverified."
+  },
+  {
+   "name": "Ofgem: site RSS",
+   "url": "https://www.ofgem.gov.uk/rss.xml",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Live. OFTO licence decisions name offshore wind projects (Dogger Bank A/B, Hornsea 3), but most items are code modifications and consumer consultations. Use it only with a keyword filter (wind, solar, OFTO, licence, project names).",
+   "terms_note": "Ofgem's own terms page was not checked in this session; linking to a public title is low-risk, but confirm on https://www.ofgem.gov.uk before use."
+  },
+  {
+   "name": "PV Tech (Informa), main feed",
+   "url": "https://www.pv-tech.org/feed/",
+   "lanes": [
+    "F1"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Live and frequent according to the feeder.co mirror, but global. None of the 12 visible titles is about a UK project. Direct fetch was blocked here. Use only with a strict UK keyword filter.",
+   "terms_note": "Informa Markets terms of use: https://www.informamarkets.com/en/terms-of-use.html (not read in full)"
+  },
+  {
+   "name": "Planning Inspectorate: organisation feed (all content types)",
+   "url": "https://www.gov.uk/government/organisations/planning-inspectorate.atom",
+   "lanes": [
+    "F3",
+    "F5"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Live, but dominated by appeals service notices, s62A cases and transparency data. It would need a filter on 'development consent'. Prefer the news-and-communications feed.",
+   "terms_note": "Open Government Licence v3.0 (https://www.gov.uk/help/terms-conditions)."
+  },
+  {
+   "name": "Planning Resource news (Haymarket)",
+   "url": "https://www.planningresource.co.uk/rss/news",
+   "lanes": [
+    "F5"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "URL from Feedspot only; untested. Articles are paywalled, but RSS headlines usually still come through. It reports DCO and appeal decisions by name. Run a direct fetch on first workflow run and drop the feed if it is empty.",
+   "terms_note": "Subscription title (https://shop.haymarket.com/PLW/PLTSUBPAGE/); feed terms not seen."
+  },
+  {
+   "name": "Recharge News",
+   "url": "https://services.rechargenews.com/api/feed/rss",
+   "lanes": [
+    "F2"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Global wind and energy-transition coverage, with UK project items a minority. Low priority; add only if the UK filter keeps a useful share.",
+   "terms_note": "Not checked. Recharge is metered or paywalled, but feed titles and links are enough for headlines only."
+  },
+  {
+   "name": "Scottish Government news (PRgloo newsroom RSS)",
+   "url": "https://news.gov.scot/feed/rss",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Not verified live: blocked here. The feed existed in 2019-2020 archives, and a sister PRgloo feed (sgmarketing-newsroom.prgloo.com/feed/rss) loads with Nov 2026 items, so the platform pattern is current.",
+   "terms_note": "gov.scot content is generally under the Open Government Licence; terms not checked in this session (https://www.gov.scot/copyright/)."
+  },
+  {
+   "name": "The Construction Index - UK news",
+   "url": "https://www.theconstructionindex.co.uk/feeds/news-uk.xml",
+   "lanes": [
+    "F5"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "The publisher's own feed list (fetched) confirms the URL. The feed itself was untested here; samples come from a third-party mirror and are not real article links. Energy items appear occasionally and name projects (Uskmouth BESS).",
+   "terms_note": "Publisher lists the feeds openly at https://www.theconstructionindex.co.uk/rss ; no specific headline-linking terms seen."
+  },
+  {
+   "name": "The Guardian - Environment / Energy",
+   "url": "https://www.theguardian.com/environment/energy/rss",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "use",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Scout read it through a third-party mirror, not directly; publisher terms to be confirmed for company use.",
+   "terms_note": "Not checked this session. The Guardian's open-licence terms (theguardian.com/help/terms-of-service) allow non-commercial use of RSS headlines and links with attribution."
+  },
+  {
+   "name": "The Guardian: Wind power",
+   "url": "https://www.theguardian.com/environment/windpower/rss",
+   "lanes": [
+    "F2"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "General press, not trade, but it covers major UK wind planning and politics stories. Low volume and reliable infrastructure. A useful backstop if the trade feeds fail.",
+   "terms_note": "Not checked. The Guardian publishes public section RSS feeds, and headline-plus-link use is the normal use."
+  },
+  {
+   "name": "gov.uk keyword search feed: development consent",
+   "url": "https://www.gov.uk/search/news-and-communications.atom?keywords=development+consent&order=updated-newest",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Not testable here (gov.uk .atom is blocked in this sandbox and not listed in the feed directory). The gov.uk finder supports keywords plus .atom, so it should catch DESNZ and PINS DCO items across organisations.",
+   "terms_note": "Open Government Licence v3.0 (https://www.gov.uk/help/terms-conditions)."
+  },
+  {
+   "name": "pv magazine International, main feed",
+   "url": "https://www.pv-magazine.com/feed/",
+   "lanes": [
+    "F1"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Live and high volume, but global, with no UK titles among the samples. The UK region page (https://www.pv-magazine.com/region/united-kingdom/) is mostly old or general news, and its feed could not be fetched.",
+   "terms_note": "Terms not checked in this session"
+  },
+  {
+   "name": "reNEWS (FeedBurner)",
+   "url": "https://feeds.feedburner.com/Renews-RenewableEnergyNews",
+   "lanes": [
+    "F1",
+    "F2"
+   ],
+   "scout_verdict": "maybe",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "test",
+   "note": "Outside this lane (it is mainly wind), but UK-focused and covers DCO and planning decisions. Untested here, and FeedBurner feeds are often abandoned, so check that the newest item is recent.",
+   "terms_note": "Not checked; reNEWS is partly paywalled, but feed titles are normally public"
+  },
+  {
+   "name": "Energy Global: Wind",
+   "url": "https://www.energyglobal.com/rss/wind.xml",
+   "lanes": [
+    "F2"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "opened",
+   "auditor_result": "RSS 2.0, 20 items, newest 2026-05-08 as served to the auditor, although the site has later articles; stale as a feed",
+   "verdict": "reject",
+   "note": "The feed opened, but its newest item is dated 8 May 2026, so as fetched it is stale or cached. Reconsider only if a live run from GitHub shows November items.",
+   "terms_note": "Not checked"
+  },
+  {
+   "name": "BBC News - Business",
+   "url": "https://feeds.bbci.co.uk/news/business/rss.xml",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "High volume with almost no project-level energy items. The keyword filter would drop nearly everything.",
+   "terms_note": "Not checked this session. BBC feed terms (bbc.co.uk/news/10628494) have historically allowed headlines with attribution and links back. Confirm the commercial-use position."
+  },
+  {
+   "name": "DESNZ: policy papers and consultations",
+   "url": "https://www.gov.uk/search/policy-papers-and-consultations.atom?organisations%5B%5D=department-for-energy-security-and-net-zero",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Live, but these are policy documents, not project events. Optional for a 'politics' strand only.",
+   "terms_note": "Open Government Licence v3.0 (https://www.gov.uk/help/terms-conditions)."
+  },
+  {
+   "name": "Datacentres.com Market Intelligence",
+   "url": "https://www.datacentres.com/feed.xml",
+   "lanes": [
+    "F6"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Nothing new for five weeks, the focus is the US and global, and none of the 50 items is UK-specific.",
+   "terms_note": "Terms page not fetched (search budget exhausted, direct fetch blocked); headline+link linking is ordinary practice but unverified."
+  },
+  {
+   "name": "Energy Global - solar",
+   "url": "https://www.energyglobal.com/rss/solar.xml",
+   "lanes": [
+    "F5"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Feed has not updated for 6 months and is mostly international.",
+   "terms_note": "Not checked."
+  },
+  {
+   "name": "Energy Global: Other renewables",
+   "url": "https://www.energyglobal.com/rss/other-renewables.xml",
+   "lanes": [
+    "F2"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Stale (newest item 7 May 2026) and mostly non-UK.",
+   "terms_note": "Not checked"
+  },
+  {
+   "name": "Google News RSS search (e.g. \"solar farm\" refused, en-GB)",
+   "url": "https://news.google.com/rss/search?q=%22solar+farm%22+refused&hl=en-GB&gl=GB&ceid=GB:en",
+   "lanes": [
+    "F5"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "WebFetch allowlist blocked it, so it was not loaded here. Links are opaque news.google.com/rss/articles/CBMi... redirects that need decoding, and the encoding has changed without notice. The terms forbid automated monitoring.",
+   "terms_note": "Personal non-commercial use only; robots that monitor or copy content are prohibited. https://www.google.com/intl/en_us/terms_google_news.html"
+  },
+  {
+   "name": "MHCLG: all content (for called-in planning decisions)",
+   "url": "https://www.gov.uk/search/all.atom?organisations%5B%5D=ministry-of-housing-communities-local-government",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Live, but almost all housing and local government items. Called-in renewables decisions are rare and would be swamped. A keyword feed on 'called-in' or 'solar farm' is the better route.",
+   "terms_note": "Open Government Licence v3.0 (https://www.gov.uk/help/terms-conditions)."
+  },
+  {
+   "name": "NESO media centre",
+   "url": "https://www.neso.energy/news-and-events/media-centre",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "No RSS or Atom link was found on the media centre page. NESO is not a gov.uk organisation, so there is no gov.uk .atom feed. Low frequency and system-level, not project-level.",
+   "terms_note": "Not checked."
+  },
+  {
+   "name": "National Grid media centre press releases (no feed)",
+   "url": "https://www.nationalgrid.com/media-centre/press-releases",
+   "lanes": [
+    "F6"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "No feed found. The fetched copy was months old and gave no item links (the sample links are the listing page). Half the items are about the US.",
+   "terms_note": "Terms page not fetched (search budget exhausted, direct fetch blocked); headline+link linking is ordinary practice but unverified."
+  },
+  {
+   "name": "New Power (newpower.info) main feed",
+   "url": "https://www.newpower.info/feed/",
+   "lanes": [
+    "F2",
+    "F6"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "A UK grid and policy trade title, but the feed's newest item is nearly six months old, so it is stale or no longer updated. Not worth a slot unless a live run shows recent items.",
+   "terms_note": "Not checked. Site has a 'sponsored-post' category feed, so drop that category."
+  },
+  {
+   "name": "Oxfordshire County Council news, environment tag",
+   "url": "https://news.oxfordshire.gov.uk/tagfeed/en/tags/environment",
+   "lanes": [
+    "F5"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Stale (newest Nov 2025) and no project decisions; nothing on Botley West.",
+   "terms_note": "Council press office; not checked."
+  },
+  {
+   "name": "PINS National Infrastructure project updates (per project)",
+   "url": "https://national-infrastructure-consenting.planninginspectorate.gov.uk/projects/EN010142/project-updates",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "No RSS or Atom feed, and one page per project. Use the PINS gov.uk news feed instead, which issues a press release on each DCO decision.",
+   "terms_note": "Open Government Licence v3.0 (gov.uk family)."
+  },
+  {
+   "name": "Planning Inspectorate blog",
+   "url": "https://planninginspectorate.blog.gov.uk/feed/",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "The feed link was found on the blog page, but the posts are about process, not projects.",
+   "terms_note": "Open Government Licence v3.0 (https://www.gov.uk/help/terms-conditions)."
+  },
+  {
+   "name": "Planning Inspectorate legacy NSIP site feed",
+   "url": "https://infrastructure.planninginspectorate.gov.uk/cy/feed/",
+   "lanes": [
+    "F5"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Dead: the newest item is from 2017, even though lastBuildDate says Dec 2025. The format was ideal ('<Project>: Decision is made'), but the old site has been retired.",
+   "terms_note": "Crown copyright / OGL."
+  },
+  {
+   "name": "SP Energy Networks news (HTML listing, no feed)",
+   "url": "https://www.spenergynetworks.co.uk/pages/news.aspx?year=2026",
+   "lanes": [
+    "F6"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "No feed, and the listing truncates titles. Corporate news rather than named-project decisions.",
+   "terms_note": "Terms page not fetched (search budget exhausted, direct fetch blocked); headline+link linking is ordinary practice but unverified."
+  },
+  {
+   "name": "SSEN Transmission news & views (HTML listing, no feed)",
+   "url": "https://www.ssen-transmission.co.uk/news/news--views/",
+   "lanes": [
+    "F6"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "The best UK grid project signal in the lane (consents and energisation of named projects), but it has no feed. Including it would need an HTML scraper, which goes against 'simple'. The same stories reach trade press and GOV.UK/BBC feeds.",
+   "terms_note": "Terms page not fetched (search budget exhausted, direct fetch blocked); headline+link linking is ordinary practice but unverified."
+  },
+  {
+   "name": "Scottish Government Marketing newsroom RSS",
+   "url": "https://sgmarketing-newsroom.prgloo.com/feed/rss",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Live, but contains only marketing campaigns, no energy content.",
+   "terms_note": "Not checked."
+  },
+  {
+   "name": "Sky News - UK",
+   "url": "https://feeds.skynews.com/feeds/rss/uk.xml",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Mostly general news; energy items are rare and handled at national level.",
+   "terms_note": "Not checked this session (news.sky.com terms and conditions)."
+  },
+  {
+   "name": "The Guardian - Climate crisis",
+   "url": "https://www.theguardian.com/environment/climate-change/rss",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Covers climate politics and science, not project planning. Overlaps the energy tag.",
+   "terms_note": "As for Guardian Energy above (not checked this session)."
+  },
+  {
+   "name": "The Guardian - Environment (US edition stream, mirrors UK environment content)",
+   "url": "https://www.theguardian.com/us/environment/rss",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Mostly duplicates the energy tag and adds a lot of off-topic items. The energy tag is enough.",
+   "terms_note": "As for Guardian Energy above (not checked this session)."
+  },
+  {
+   "name": "The Independent - Climate change news",
+   "url": "https://www.independent.co.uk/climate-change/news/rss",
+   "lanes": [
+    "F4"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "Could not be tested here, and showed no sign of covering the owner's example story. Re-test only if the other sources leave gaps.",
+   "terms_note": "Not checked this session."
+  },
+  {
+   "name": "The Register data centre section",
+   "url": "https://www.theregister.com/data_centre/",
+   "lanes": [
+    "F6"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "No working feed URL confirmed, and only 1 of 8 items was UK-related (policy, not a site).",
+   "terms_note": "Terms page not fetched (search budget exhausted, direct fetch blocked); headline+link linking is ordinary practice but unverified."
+  },
+  {
+   "name": "UK Power Networks media centre (no feed)",
+   "url": "https://ukpowernetworks.co.uk/news/media-centre",
+   "lanes": [
+    "F6"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": true,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "No feed and no dated headlines in the page.",
+   "terms_note": "Terms page not fetched (search budget exhausted, direct fetch blocked); headline+link linking is ordinary practice but unverified."
+  },
+  {
+   "name": "Welsh Government / PEDW",
+   "url": "https://gov.wales/planning-appeals",
+   "lanes": [
+    "F3"
+   ],
+   "scout_verdict": "reject",
+   "scout_fetched_directly": false,
+   "auditor_check": "not_opened",
+   "auditor_result": "not on the auditor's fetch allowlist; not opened",
+   "verdict": "reject",
+   "note": "No feed link on the gov.wales planning appeals page. The Welsh Government newsroom (media.service.gov.wales) runs on the same PRgloo platform as the Scottish one, so /feed/rss may exist, but that is unverified.",
+   "terms_note": "Not checked."
+  }
+ ]
+}
