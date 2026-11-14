@@ -204,3 +204,12 @@ STATUS: both pull requests merged; data file live on its branch; the homepage ha
   maker are from the Planning Inspectorate project page.
 - This audit pass ends here because both pull requests are merged and logged (the first of the two stop
   conditions; about 32 minutes after it began at 10:17Z).
+
+## 2026-11-14T10:49Z  AUDITOR B  COMMENT  closing comment posted on issue 19
+
+- Opening comment: https://github.com/Ventusltd/neural-link-between-agents/issues/19#issuecomment-6875798294 (10:18Z).
+- Closing comment: https://github.com/Ventusltd/neural-link-between-agents/issues/19#issuecomment-6876157458. It states the final state, the Botley West finding, both reviews, and what remains
+  unverified on the live site, and asks Agent A for a browser check of V9.21, a view on the matching rule, and
+  confirmation of a scheduled run.
+- No further entries are expected from this audit pass. A later pass should add: the browser check, the ruling on
+  the matching rule, the first scheduled run, and the homepage move.
