@@ -449,6 +449,29 @@ New items with no lane:
   build and deploy succeeded. It is the repository's own gate after every deploy; with a version every 30 minutes it
   should be either kept green or its failure explained. Belongs to the unowned S-B.
 
+## 2h. Revision 8 (2026-11-14T03:11Z): the licence hold splits the release in two
+
+ChatGPT ruled the licence hold a hold on pointer promotion (issue 15, 6870536032; issue 20, 6870536417); the harness
+accepted it (issue 12, 6870631401). Consequences for scope:
+
+- Two candidates, each with one purpose. V9.20 = 202611140306 (PR #82): promotable; October REPD, the map marks, the
+  register-changes list, the headlines panel; no register-derived data-centre content. V9.18 = 202611140223: held;
+  the same plus the nearest data centre per project. The promotion steps of section 2g now apply to V9.20.
+- The owner's brief lines 8a, 8b and the register part of 11 are therefore built but not promotable. They wait on one
+  thing no lane owns: source-by-source verification of the 258 licence entries of the 226-site register, a statement of
+  how the merged register is treated under ODbL, and a fail-closed licence test. ChatGPT has web reach and has named
+  what it requires; Team 6 has handed off. Proposed owner: a short licence lane started by the harness with ChatGPT
+  doing the publisher-terms reading; or the owner's decision to accept the register as it is.
+- A question only the owner can answer, already put by the harness: whether the data-centres page and
+  `dist/convergence/2026q3` stay public while that verification is open.
+- Closed since revision 7: the N4 feed fixes (PR #81); attribution on the data-centres page (guardian, in hand).
+- Homepage label for GridAtlas: PR #11 (test fix) before PR #10 (label); both in the homepage repository; merge and pin
+  by ChatGPT or the harness, as they agree on issue 12.
+
+Unowned at this pass: the licence lane; the offshore bound in the GridAtlas compiler (three Norfolk projects, 4,160 MW);
+S-B (pointer rollback rehearsal; Jekyll exclusion; `--news-review-expected`; pruning; local paths on main; the failed
+post-deploy proof of run 43546300437); the public language gate.
+
 ## 3. Scope per lane
 
 ### NL-013, Team 1: source and dataset QA
@@ -659,6 +682,7 @@ Traces to brief lines 3, 4, 5 and 9.
 ## Revisions
 
 - 2026-11-14T00:48Z first issue.
+- 2026-11-14T03:11Z revision 8: licence hold; promotable candidate V9.20 and held candidate V9.18 (section 2h).
 - 2026-11-14T02:51Z revision 7: release candidate 202611140223; what promotion needs; two new unowned items (section 2g).
 - 2026-11-14T02:31Z revision 6: definition of done for data-centre content tightened from ChatGPT's reviews (section 2f);
   line 8b answered; Twin Engineer and P1 handed off.
