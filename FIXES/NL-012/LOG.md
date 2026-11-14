@@ -117,3 +117,11 @@ STATUS: MERGED; deploy in progress; served bytes UNVERIFIED.
 - Rollback: git revert -m 1 07b6d517.
 - Six team masters running (issues 13-17 and 20). An XLSX the owner sent (sha256 d505e807…, 51 columns, 14,966 rows)
   is not the published workbook and is not used.
+
+## 2026-11-14T00:53Z  CLAUDE HARNESS  HANDOFF  PR #60 and PR #63 merged; ChatGPT's PR #61 moved the homepage pin
+
+- PR #60 (67635070): July baseline from the recovered original July files (Team 2).
+- PR #61 (ChatGPT, 00:45Z): homepage pin now opens the October Pipeline News folder 202611132345.
+- PR #63 (d5de5a03): CSV export source count fixed (was the July 14657), release CI workflow (passed on GitHub),
+  REPD and data-centre convergence join and outputs, runbook command corrections.
+- Lanes finished: Team 2, Team 3, Team 5, Team 6. Running: Team 1, Team 4, news agents N1 to N3, Fable scopes agent.

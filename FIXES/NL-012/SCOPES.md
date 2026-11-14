@@ -105,6 +105,60 @@ repository's freeze rule is the owner's decision.]
 
 G12. **Issue 18** (activity index) has no agent and is outside this job. [Leave closed to this job.]
 
+G16. **Local paths in a served file.** `CLEANING-LOG.txt`, now served from globalgrid2050, lists local workspace paths
+(Team 5 HANDOFF, issue 17 comment 6868817609, finding f). Not a secret, but it is the kind of content the link rules
+keep out. No lane has the fix. [Successor lane S-A below, or the harness directly: regenerate the log with relative paths
+under a new commit; the file is new in PR #57, so no pin is broken.]
+
+G17. **Homepage restore snapshot.** The pointer moved without the numbered pre-edit snapshot `homepage_versions/homepage_v139.html`
+that the repository's own rules ask for (Team 3 HANDOFF, comment 6868814345, item 8). [ChatGPT, who made the change, or the harness.]
+
+G18. **Runbook says one thing, the night did another.** RUNBOOK section 1 on main says the owner merges and moves the
+pointer in person and that a relayed GO is not valid (Team 5 HANDOFF, owner decision 1). The three merges rested on the
+owner's chat instructions to the harness and on ChatGPT's relay. [Owner: confirm or reverse; then Team 5's successor
+amends the runbook to whatever rule the owner states.]
+
+G19. **Six product questions on convergence** (Team 6, issue 20 comment 6868809262): source of truth, grid rule, the
+question the product answers, first surface, data-centre MW, definition of done. [ChatGPT in the owner's terms, or the owner.]
+
+## 2a. Revision 1 (after the HANDOFFs of Teams 3, 5 and 6 at 00:50Z)
+
+Teams 2, 3, 5 and 6 have handed off. Their sections in part 3 stand as the record of what the lane was for; what is
+left over is listed here with a proposed successor scope. Only the harness can start a successor.
+
+| Left over | From | Proposed owner |
+|---|---|---|
+| D1: every exported CSV row on the operative page says `14657/14657 canonical REPD Ref IDs` (a July literal). Patch P1 ready | Team 3 | Successor S-A |
+| The operative page still prints `V9.12 CANDIDATE` (ChatGPT, issue 15 comment 6868809519) | ChatGPT | Successor S-A |
+| P2: workflow that runs `run_v9_12.sh` and a headless smoke | Team 3 | Harness applies; Team 5's successor lists it among workflows |
+| 97 active rows (88 new) absent from live GridAtlas: card expected to fail (code read, UNVERIFIED live) | Team 3 | Team 4 (its item A3); live check by ChatGPT |
+| Recount from the public CSV gives 7,798, not 7,775: 23 solar sites print as 1 MW but are 0.996 to 0.99975 MW in the XLSX | Team 3 | Team 1 states the precision rule once, for both lanes |
+| News panel is the August-dated Q2 feed; all 29 bound refs still resolve | Team 3 | N1 (its lane already) |
+| Pointer and PR #60 rollback written (P, Q) but not rehearsed (shallow history) | Team 5 | Successor S-B |
+| 6 of 9 RUNBOOK commands fail argparse; patch ready | Team 5 | Harness applies |
+| `run.py` passes `--accept-expected` to build_news by default, so new contract figures skip the owner review the runbook requires | Team 5 | Successor S-B (patch), owner (rule) |
+| Four new workflows with push or pull_request triggers against the dispatch-only freeze; one has `contents: write` on pull_request and has made 7 evidence branches; three one-off workflows depend on expiring artifacts | Team 5 | Owner decides; ChatGPT owns the workflows it added |
+| Full 355-row served check; served homepage check | Team 5 | ChatGPT |
+| Stale public statements: PR #18 files, issue 17 body, `SOURCES.txt` on the evidence branch, `docs/repd/2026-10-q3-ingestion.md` lines 34 and 42 (July bytes "unavailable") | Team 5 | ChatGPT (its files); harness for the docs line on main |
+| Convergence code and data patches (01, 02) not applied | Team 6 | Harness, as a draft pull request |
+| Prototype `pipelinenews_datacentre_context.json` and the DATA CENTRES tab proposal | Team 6 | Successor S-C (brief line 8b) |
+
+Proposed successor scopes (each is one agent, patches only, same rules as the lanes):
+
+- **S-A, Pipeline News successor release folder.** Outcome: a new folder beside 202611132345 (never an in-place edit of
+  the served, hash-pinned folder) carrying P1, the final label in place of "CANDIDATE", and `CLEANING-LOG.txt` without
+  local paths; built by `automation/repd/build_news.py` so it is reproducible. Done when: `run_v9_12.sh` and the P2 smoke
+  pass on it; the export column reads `14967/14967`; every figure equals 202611132345's; old folder byte-identical; exact
+  pointer instructions written. The pointer move to it is a live step for the harness or ChatGPT with a checkpoint first.
+  Traces to brief line 2c. Alternative the owner may prefer: apply P1 in place and accept the label; Team 3 named both.
+- **S-B, rollback and CI/CD completion.** Outcome: P and Q rehearsed on a full-history clone of main `1a416f4b`; the
+  `--news-review-expected` patch; the Jekyll exclusion patch; the January 2027 procedure; one recorded run of the release
+  workflow. Traces to brief lines 1 and 6.
+- **S-C, Data Centres in Pipeline News (brief line 8b).** Starts only after G19 is answered, because the first surface and
+  the source of truth are among the six questions. Outcome: on a further new release folder, a DATA CENTRES tab on the
+  interconnector pattern and one context line per REPD row from Team 6's file, with contract hash; data centres keep their
+  own ids; no MAP without geometry; distances labelled straight line.
+
 ## 3. Scope per lane
 
 ### NL-013, Team 1: source and dataset QA
@@ -315,5 +369,7 @@ Traces to brief lines 3, 4, 5 and 9.
 ## Revisions
 
 - 2026-11-14T00:48Z first issue.
+- 2026-11-14T00:53Z revision 1: Teams 3, 5 and 6 handed off (comments 6868814345, 6868817609, 6868817840); section 2a lists
+  what is left over and proposes successor scopes S-A, S-B, S-C; gaps G16 to G19 added.
 - 2026-11-14T00:51Z traced to OWNER-INSTRUCTIONS.md Part 2 (section 0); gaps G13 to G15 added; Team 4 legacy switch
   aligned with the harness's stated intent; Team 5 gains the next-quarter procedure.
