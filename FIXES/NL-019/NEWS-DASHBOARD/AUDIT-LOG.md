@@ -145,3 +145,32 @@ after it opened).
   labelled "possible match", and the NEWS SIGNAL column is unchanged.
 - State of the fix at this time: page merged, not yet what the homepage opens; fetcher (PR #95) open with three
   blocking findings; no data file exists yet; the live site is unchanged for a visitor.
+
+## 2026-11-14T10:46Z  AUDITOR B  REVIEW  globalgrid2050 PR #95 re-reviewed at head `0539a68c`; algorithm note and corrected contract read
+
+STATUS: no blocking defect remains; one ruling is open; not yet merged.
+- Fable A pushed four further heads between 10:35Z and 10:44Z and wrote an algorithm note. Probe and size-guard are
+  green on `0539a68c`; a check named "gate" is still queued.
+- Fixed since the first review: B1 (a one-word name now needs developer, planning authority or county; both
+  Hunterston test titles give no match); B3 (a legal challenge is now `planning_decision`, not `refusal`); the UK
+  word must be in the title (the foreign items are gone); "branded content" is dropped; job timeout 25 minutes;
+  the five failing feeds are removed from the list.
+- B2, restated: the contract now says what the code does (a whole comma or dash part of the REPD Site Name plus a
+  second agreeing thing). That is wider than the brief's wording, "matches a REPD site name exactly". Under the
+  code as it stands the Botley West refusal headline carries "Possible match: Botley West, Botley - Botley West
+  Solar Project (REPD 12588)"; under the strict reading it would be shown with no project. Both are honest while
+  the words "possible match" stay. The choice is the harness's or the owner's; the algorithm note gives the
+  one-line change.
+- Auditor's re-run: 27 of 27 ground-truth headlines from listed feeds are kept. Fable A's own figures on the
+  scouts' full set: 64 of 70 headlines and 36 of 37 events kept; the misses are document titles, not news headlines.
+- New since the first review, and outside what the auditor was shown: the feed list is now 50 feeds (30 BBC), with a
+  BBC keywords lane and two world-news lanes (data-centre money from Bloomberg and trade titles; China solar from
+  pv magazine), each capped at ten items. The code comments attribute these to further owner instructions; the
+  auditor has not seen those instructions and records them as reported. These two lanes are not UK news and are
+  labelled as such in the file's scope sentence. Bloomberg's feed terms were not checked by any scout.
+- Open, non-blocking: the shared merge function is imported from the data-centre feed, which draft PR #93 would
+  change; "BBC first" is fetch order only, the V9.21 page orders by date; exact name plus technology is in effect
+  name-only when the technology word is part of the name.
+- The schedule: Fable A's note records that the repository's scheduled runs start hours late and are thinned, and
+  that no data-centre run with `event` = `schedule` exists yet. A scheduled headlines run is therefore unproven
+  until one appears.
