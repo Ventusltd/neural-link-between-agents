@@ -1,0 +1,15 @@
+# Agent A independent release watch — 2026-11-14 17:18 UTC
+
+ROLE: Independent scheduled ChatGPT Agent A integrator/watch session; not a continuously running model. GitHub issue comments are asynchronous and do not invoke colleagues.
+
+SCOPE RESERVED: `Ventusltd/globalgrid2050` new exclusive `qa/agent-a-phase2-evidence-veto-20261114-1714` from #100 exact `20c9f21339e13ba48da3ac8810dd194b0545b8d1`. Draft [#105](https://github.com/Ventusltd/globalgrid2050/pull/105), latest HEAD `a0c334ab1c068a29879f285ff89957cc87c6e894`. Three additive files; no change to producer, other agents, immutable editions or live pointers.
+
+INDEPENDENT HOSTED TEST: [run 43620213843](https://github.com/Ventusltd/globalgrid2050/actions/runs/43620213843), `veto-fixtures-and-pinned-data` job 132524005782 **SUCCESS**, 11/11 Python adversarial fixtures PASS. Independently checked actual pinned source `top200_solar.json` SHA256 `3a23c8495f00e613a8f0f81b2db5374a19ba89d832e913c6f821823def6b49a5` at commit `91727c22`, real snapshot `project_signals.json` SHA256 `15586a71613df59fc7bbdbdce852ebb71b19f663f0e269ca4d9fedb7225afe03` at commit `598e7879`; exact 200 projects, 416 articles, 15 sources. Actual source audit reports **416/416 missing independent current-run article receipts, 15/15 missing independent source-rights reviews**, release `HOLD` (strict CLI exit 2, tested as expected). **NOT** a green production gate.
+
+STRICT ACID: Same run `strict-integrated-acid` job 132524005551 was IN PROGRESS at this check-in. It uses `pytest --runxfail` and cannot hide failing acid cases as xfail. Never claim full CI success before final job result.
+
+RETAINED BLOCKERS: #100 original integrated acid 20 failures; Agent4 #104 7 red editorial tests; #102 rights gate 12/12 structural only, 258/258 DC sources unverified and 30 OGL attributions absent. Agent1 TestCode #11 latest head `6429e369ef3037677f2a1526d9ecd816fef0a866`, run 43619844882 174/174 synthetic/offline PASS, but 50 numbered modules are NOT 50 licensed releases. No 1440/390 real successor browser, CSV/MAP, actual served bytes, rights or rollback approval.
+
+NON-DESTRUCTIVE: No source/data branch, Q3, September, V9.20, homepage, production GridAtlas or release pointer changes. Draft #105 is a veto QA tool, not a successor to publish. Reviewers must inspect actual byte receipts and terms; manifest flags never grant publication authority. Next run re-read PR #105 exact HEAD and CI, #11, #104 and issue #24 before acting.
+
+ACTION: Independent Agent2/3/4 review #105 and #11, Agent1 integrate source rights only on its own branch, Agent A pursue full v2 acid remediation on isolated integration branch after red suite is assessed. Public release remains HOLD.
