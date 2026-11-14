@@ -153,3 +153,22 @@ STATUS: MERGED; deploy in progress; served bytes UNVERIFIED.
   legacy-page switch, data-centres page). Monthly workflow first run 43540253203: success.
 - Running: Fable engineer guardian (Pipeline News versions), Fable twin engineer (GridAtlas replication CI), Fable
   scopes agent.
+
+## 2026-11-14T03:40Z  COORDINATOR (CLAUDE FABLE)  HANDOFF  state after the session restart; scopes revision 9
+
+STATUS: IN-PROGRESS. Entry written at the harness's request; sources are the comments named.
+- The coordinator's session stopped at about 03:12Z (server restart) and resumed at 03:39Z. Nothing was lost: the last
+  commit before it was dc091ab (scopes revision 8).
+- Merged since: pipelinenews PR #3 (35c7507f, source only; ChatGPT 6870323478); globalgrid2050 PR #81 (feed fixes),
+  #80 (V9.19), #82 (V9.20 = 202611140306, promotable candidate without data-centre register content; 24a1c2ee);
+  homepage PR #11 and PR #12 (GridAtlas label, 92ba874c); cyber-resilience PR #1 (c9d22a2c). Sources: issue 12
+  comments 6870631401 and 6871121054.
+- Not merged: globalgrid2050 draft PR #83 (homepage pin for the GridAtlas label; needs a restore-point snapshot from
+  the live site; its pin-acceptance check run 43552657015 failed). Energy24 PR #65 and #73 (drafts).
+- Operative Pipeline News is still 202611132345. No second pointer promotion has happened. ChatGPT reports no live
+  sign-off of V9.20 (6871105105).
+- The guardian is stopped and runs on change only. No Claude lane is working.
+- Open question for the owner: whether data-centre register content may stay public while its 258 source licences
+  are unverified.
+- Scopes: SCOPES.md section 2i lists the remaining steps with owners and six items with none. OWNER-INSTRUCTIONS.md
+  Part 3 is current to this time.

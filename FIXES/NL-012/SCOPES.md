@@ -472,6 +472,38 @@ Unowned at this pass: the licence lane; the offshore bound in the GridAtlas comp
 S-B (pointer rollback rehearsal; Jekyll exclusion; `--news-review-expected`; pruning; local paths on main; the failed
 post-deploy proof of run 43546300437); the public language gate.
 
+## 2i. Revision 9 (2026-11-14T03:40Z): every lane is stopped; what is left and whose it is
+
+The guardian is stopped and runs on change only. No Claude lane is working. ChatGPT is reviewing. The job is now a
+short list of steps, each with one owner, and a list of things with none.
+
+Steps with an owner:
+
+| Step | Owner | State |
+|---|---|---|
+| Live browser and served-byte checks of V9.20 (202611140306); second Pipeline News pointer promotion with a checkpoint | ChatGPT | Not done; ChatGPT states no live sign-off (issue 12, 6871105105) |
+| After that promotion: restore the three edited files of 202611132345 to their signed-off bytes, guarded by hash (Team 3's patch S2). ChatGPT's "immutability finding" (6871105105) is this same item, disclosed at 00:57Z (issue 15, 6868920602); both sides agree on the order: successor operative first, restore second | Harness | Waiting on the promotion |
+| GridAtlas homepage pin, globalgrid2050 draft PR #83: restore-point snapshot from the live site, then merge; its pin-acceptance check failed (run 43552657015) and needs the same kind of fix the homepage test needed if it asserts the Pipeline News-only state | Snapshot: ChatGPT. Check fix and merge: harness | Draft |
+| Live checks of GridAtlas (Twin's list a to d, issue 16, 6870008257) | ChatGPT | Not done |
+| Energy24 (PR #65, #73) | ChatGPT | Draft, held by its own gate |
+
+One question for the owner that decides the rest of brief lines 8a, 8b and 11: may data-centre register content stay
+public (the data-centres page, `dist/convergence/2026q3`, versions V9.16 to V9.19) while the licence status of its 258
+source entries is unverified. If yes with attribution: the held candidate becomes promotable and line 8b can be built.
+If no: those files come down by an additive revert and the lines wait on a licence lane.
+
+With no owner, in the order the owner's brief weights them:
+1. Licence verification of the register (see above). Brief lines 8a, 8b, 11.
+2. Three Norfolk offshore projects (refs 2484, 6483, 20218; 4,160 MW) outside the map compiler's 2.5 E bound. Line 16.
+3. S-B, brief lines 1 and 6: rehearsal of the pointer rollbacks (Pipeline News and now GridAtlas); Jekyll exclusion of
+   rendered `.md` pages; `--news-review-expected`; pruning of one-off workflows and evidence branches; local workspace
+   paths in files on main; the failed post-deploy proof (run 43546300437).
+4. The public language gate: queued on every pull request of the night, never run (runner offline). Owner.
+5. After the monthly REPD pull request (line 10), the release folder build and pointer move are by hand: fine for now,
+   but it means line 10 delivers data monthly and a page only when someone acts.
+6. Record of acceptance: the homepage records for both promotions state that no owner acceptance is recorded. The owner
+   confirming or reversing in the morning closes Team 5's decision 1.
+
 ## 3. Scope per lane
 
 ### NL-013, Team 1: source and dataset QA
@@ -682,6 +714,7 @@ Traces to brief lines 3, 4, 5 and 9.
 ## Revisions
 
 - 2026-11-14T00:48Z first issue.
+- 2026-11-14T03:40Z revision 9: all lanes stopped; remaining steps with owners, one owner question, six unowned items (section 2i).
 - 2026-11-14T03:11Z revision 8: licence hold; promotable candidate V9.20 and held candidate V9.18 (section 2h).
 - 2026-11-14T02:51Z revision 7: release candidate 202611140223; what promotion needs; two new unowned items (section 2g).
 - 2026-11-14T02:31Z revision 6: definition of done for data-centre content tightened from ChatGPT's reviews (section 2f);
