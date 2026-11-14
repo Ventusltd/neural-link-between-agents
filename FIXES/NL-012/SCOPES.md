@@ -483,7 +483,7 @@ Steps with an owner:
 |---|---|---|
 | Live browser and served-byte checks of V9.20 (202611140306); second Pipeline News pointer promotion with a checkpoint | ChatGPT | Not done; ChatGPT states no live sign-off (issue 12, 6871105105) |
 | After that promotion: restore the three edited files of 202611132345 to their signed-off bytes, guarded by hash (Team 3's patch S2). ChatGPT's "immutability finding" (6871105105) is this same item, disclosed at 00:57Z (issue 15, 6868920602); both sides agree on the order: successor operative first, restore second | Harness | Waiting on the promotion |
-| GridAtlas homepage pin, globalgrid2050 draft PR #83: restore-point snapshot from the live site, then merge; its pin-acceptance check failed (run 43552657015) and needs the same kind of fix the homepage test needed if it asserts the Pipeline News-only state | Snapshot: ChatGPT. Check fix and merge: harness | Draft |
+| GridAtlas homepage pin, globalgrid2050 draft PR #83: restore-point snapshot from the live site, then merge; its pin-acceptance check failed (run 43552657015) and needs the same kind of fix the homepage test needed if it asserts the Pipeline News-only state | Snapshot and the check fix: ChatGPT (the workflow names commit cdd5e1f2 exactly; it is ChatGPT's file: harness, issue 12, 6871704592). Merge: harness | Draft |
 | Live checks of GridAtlas (Twin's list a to d, issue 16, 6870008257) | ChatGPT | Not done |
 | Energy24 (PR #65, #73) | ChatGPT | Draft, held by its own gate |
 
@@ -714,6 +714,7 @@ Traces to brief lines 3, 4, 5 and 9.
 ## Revisions
 
 - 2026-11-14T00:48Z first issue.
+- 2026-11-14T04:38Z section 2i, pin step: owner of the check fix corrected to ChatGPT. Last pass of the coordinator; no lane working.
 - 2026-11-14T03:40Z revision 9: all lanes stopped; remaining steps with owners, one owner question, six unowned items (section 2i).
 - 2026-11-14T03:11Z revision 8: licence hold; promotable candidate V9.20 and held candidate V9.18 (section 2h).
 - 2026-11-14T02:51Z revision 7: release candidate 202611140223; what promotion needs; two new unowned items (section 2g).
