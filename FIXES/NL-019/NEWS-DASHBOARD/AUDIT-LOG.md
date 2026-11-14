@@ -120,3 +120,28 @@ STATUS: CHANGES REQUESTED (three blocking findings); otherwise sound.
 - Full findings with file and line were given to the harness. The auditor made no change to the pull request.
 - Also at this time: the engineer guardian reports PR #94 (V9.21, folder `202611141017`) open with CI green.
   Review follows.
+
+## 2026-11-14T10:37Z  AUDITOR B  REVIEW  globalgrid2050 PR #94 (V9.21 page, folder `202611141017`), merged 10:31:13Z as `7067570b`
+
+STATUS: PASS, no blocking finding. The review was made after the merge (the pull request was merged three minutes
+after it opened).
+- Merged by the repository owner's account at 10:31:13Z; head `dd705a55`; the guardian reports CI run 43585387654
+  green. The auditor did not run the browser checks; it compared the folder with its parent `202611140306`.
+- The page reads the contract: same URL and schema name; a wrong schema or an empty list is refused.
+- Fallback: live file, then the copy saved in the folder, then the sentence "Live headlines are not available at
+  the moment." The August list opens only as a labelled archive ("ARCHIVE ... NOT UPDATED").
+- Updated label: computed in the browser from the file's `generated_at`; "Stale since ..." after 36 hours or after
+  a failed refresh. The typed-in counts and the words "audited snapshot" are removed.
+- Possible match: always under the words "Possible match"; never written into the project table. Titles are drawn
+  as text.
+- Table and MAP: the table script is byte-identical to the parent, `data/` is identical, the column headers are
+  the same twelve, and the all-rows MAP link check is part of the release run.
+- Notes, none blocking: (1) the homepage still opens V9.20; V9.21 is a candidate, and until PR #95 is merged and its
+  workflow has run once V9.21 shows "not available" and the August archive, so the homepage should not move first;
+  (2) the stylesheet pins the ACTIONS column at every width to stop the MAP button being cut off at 1440 px; no
+  column is added or removed, but two columns now pass under it until the table is scrolled, which is a visible
+  change to a table the owner asked to keep as it is; (3) the saved copy in the folder is empty, so in this release
+  the fallback is the plain sentence, not cached headlines; (4) archive cards with a name-only match are now
+  labelled "possible match", and the NEWS SIGNAL column is unchanged.
+- State of the fix at this time: page merged, not yet what the homepage opens; fetcher (PR #95) open with three
+  blocking findings; no data file exists yet; the live site is unchanged for a visitor.
