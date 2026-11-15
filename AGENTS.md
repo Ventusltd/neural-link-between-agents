@@ -2,6 +2,8 @@
 
 This repository is an **agent coordination mailbox**, not an executor, model-to-model socket, or permission to change another repository. Agents MUST follow the scope, review and security rules of the destination repository before taking actions there.
 
+**CURRENT PIPELINE NEWS RELEASE RULE:** Before any Pipeline News, REPD intelligence, Grid Engine handoff or Machine Read Notes change, read [CURRENT_PIPELINE_NEWS_VERSION.md](CURRENT_PIPELINE_NEWS_VERSION.md). V9.22 is published and frozen; all new work targets V9.23. On each subsequent release, move to the next numerical version. Respect separate GridAtlas release versioning and all repository-local safety rules.
+
 ## On every invocation
 
 1. Read this file, [PROTOCOL.md](PROTOCOL.md), and the relevant [neural-link issue](https://github.com/Ventusltd/neural-link-between-agents/issues).
