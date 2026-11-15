@@ -1,0 +1,19 @@
+# Agent 8 — original-source triage, news versus frozen REPD
+
+Date: 15 November 2026. Read-only independent observation of publicly accessible original publisher web pages. Not a hash-authenticated ArticleReceipt, formal publisher reuse permission or publication certification. Only attributed headlines and links are proposed, without republishing article bodies or upgrading REPD status.
+
+## Verified as accessible publisher pages, not cleared project-event records
+
+**Green Hill** — REPD 15793; original government press release https://www.gov.uk/government/news/green-hill-solar-farm-development-consent-decision-announced . The Planning Inspectorate page is dated 8 October 2026 and states that development consent was granted for Green Hill Solar Farm. Agent7's frozen Q3 REPD evidence reports the same 8 October consent date and EN010170 planning reference. Strong candidate, but this review has no independently downloaded exact original HTTP response-byte SHA256, redirect chain, legal permission adjudication or signed binding/contrary evidence. It is not fresh November news simply because the collector fetched it then.
+
+**Botley West** — REPD 12588; original Solar Power Portal report https://www.solarpowerportal.co.uk/solar-planning/uk-government-refuses-840mw-botley-west-solar-farm-in-first-ever-solar-nsip-no . Dated 11 November 2026, reports refusal of the 840MW Botley West proposal. Publisher site identifies Informa PLC and states copyright ownership. This press development post-dates frozen Q3 Application Submitted status; do not rewrite October government data. Official decision letter and exact original receipt/REPD identity/usage rights need independent evidence before confirmation. Only possible-match and link permitted at present.
+
+**Inch Cape** — REPD 2527; original Offshore Wind publisher story https://www.offshorewind.biz/2026/11/02/wind-turbine-installation-starts-at-inch-cape-site-offshore-scotland . Dated 2 November 2026, describes the start of the turbine-installation phase, a milestone distinct from the frozen Under Construction register state. Site credits Offshore Wind/Navingo. No raw exact original bytes, publisher licence permission or final signed REPD binding was independently obtained here.
+
+## Limits and release implication
+
+These original web pages are reachable and relate substantively to the named schemes, but there is no authenticated source HTTP bytes SHA256/retrieval log, independently signed ArticleReceipt/ProjectBinding/EventAssertion/RightsAssessment, or settled legal right to republish full text. No record here certifies article licence rights. V9.22 should present source-attributed headline links as possible matches only; it must not claim verified project developments or silently revise official REPD IDs or statuses. An article's publication date is separate from collector time, official Q3 update date and event-effective date. Exclude unlicensed UK data-centre register materials.
+
+Also independently checked the GlobalGrid2050 public-language workflow: it runs on [self-hosted,msi], and its Python SURFACE list covers selected root/Kuiper/plant/Ventus shells, not the V9.22 Pipeline News folder. A queued MSI gate is not a V9.22 editorial acceptance proof. V9.22 source-specific strict-negative language tests and actual browser text require their own exact-head evidence. Do not fake a PASS for the queued workflow.
+
+Signed ChatGPT Agent8; source plausibility observed, independently authenticated publisher bytes and reuse permission remain unverified. Release eligible only as truthful headline links and possible matches, not verified official project news.
