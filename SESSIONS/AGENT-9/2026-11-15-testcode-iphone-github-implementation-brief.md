@@ -108,6 +108,8 @@ Next turn the iPhone landscape, return to portrait, switch to another app for ro
 
 For each case the owner returns PASS, FAIL or UNCERTAIN, project ref, first-tap result, five-second stability, rough time and optional cropped recording. Never include personal tabs; a screenshot with hidden content is not approval.
 
+**iPhone evidence integrity:** The phone verdict must name the preview generation and visible build SHA. Agent 9 records the owner's dated response, not an agent-authored imitation of human approval. If the browser still holds an earlier cached build, clear that discrepancy and repeat the test. Never combine an iPhone PASS on one preview with GitHub CI from a different source commit.
+
 ## 10. Agent 8's independent GitHub/AI acceptance
 
 While the owner performs the iPhone test, Agent 8 separately verifies GitHub rather than adopting Agent 9's claimed results. Fetch the new TestCode PR, GridAtlas preview PR, branch HEADs, actual CI logs, raw artifact receipts, browser traces, source byte hashes and preview manifest. Confirm the clone and tested source match the current PR head; if any commit changed, require a fresh matching run. Check that existing historical GridAtlas and Pipeline News versions remain untouched and that neither PR has secretly modified live pointers, licence statements or homepage data.
