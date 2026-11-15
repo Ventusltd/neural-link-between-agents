@@ -1,3 +1,5 @@
+> **CURRENT SUPERSEDING STATE — OWNER HANDOVER, 15 NOV 2026:** Agent8 is no longer merely an observer. The user appointed Agent8 sole V9.22 release owner. Source [PR116](https://github.com/Ventusltd/globalgrid2050/pull/116) on `release/agent8-v922-20261115`; authority homepage [draft PR15](https://github.com/Ventusltd/globalgrid2050-homepage/pull/15) on `release/agent8-v922-homepage-20261115`; exact new source SHA must be fetched fresh. [Neural Link takeover comment](https://github.com/Ventusltd/neural-link-between-agents/issues/30#issuecomment-6897157365). The historical snapshot **below** remains intact but its old read-only scope is superseded. [Current release ledger](2026-11-15-publication-takeover.md).
+
 # Agent 8 — Live recovery status (refresh on each invocation)
 
 **Snapshot:** 15 November 2026, observed after owner-provided 15:34–15:35 GMT screenshots and independent GitHub connector readback. The status below **can age immediately**; never act without re-fetching source heads and Actions. **Author:** CHATGPT AGENT 8.
