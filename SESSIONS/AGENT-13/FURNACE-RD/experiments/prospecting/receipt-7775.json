@@ -1,0 +1,78 @@
+{
+  "accepted": true,
+  "actual_producer_parity_scope": "Synthetic official_candidate scores only; CPU pre-extracted rounded capacity, technology, route/freshness; full producer validation and real inputs not tested",
+  "array_memory_conservative_bound_bytes": 3980800,
+  "array_memory_limit_bytes": 268435456,
+  "boundary_fixture_rows": 12,
+  "channels": [
+    "raw CUDA integer branches",
+    "CuPy independent expression graph"
+  ],
+  "cpu_feature_extraction_and_producer_oracle_seconds": 0.053661399986594915,
+  "cpu_oracle": "SHA-pinned official_candidate AST subset",
+  "cpu_oracle_rows": 7775,
+  "cuda_runtime": 12090,
+  "cupy_version": "14.2.0",
+  "deliberate_failure_requested": false,
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "gpu_pool_reserved_bytes": 561664,
+  "gpu_warmup_compile_seconds": 0.2521468000486493,
+  "gpu_warmup_executions": 2,
+  "injected_error_channel": "CuPy graph output copied to GPU then incremented by one hundredth",
+  "injected_order_error_detected": true,
+  "injected_score_error_detected": true,
+  "injected_score_error_witness_row": 0,
+  "input_sha256": "4b600783d08287f948e08b0e10694828dd8799d4a419fe9298dc6cb8a255cf0d",
+  "integer_score_unit": "hundredth point",
+  "known_zero_capacity_rows": 6,
+  "maximum_absolute_error_hundredths": 0,
+  "maximum_cases": 262144,
+  "median_seconds": {
+    "cpu_numpy": 0.00022860011085867882,
+    "graph": 0.00048610009253025055,
+    "raw": 0.00036170007660984993
+  },
+  "mismatches": 0,
+  "numpy_version": "2.4.6",
+  "ordering_validation": "Both GPU scoring channels share CuPy lexsort; independent Python string-key oracle witnesses every rank",
+  "processed_rows": 7775,
+  "production_enabled": false,
+  "repeated_gpu_executions": 6,
+  "repeated_gpu_row_evaluations": 46650,
+  "repeats": 3,
+  "requested_cases": 7775,
+  "schema": "furnace.prospecting-numeric-pilot.v1",
+  "scope": "Pinned official_candidate score and ID ordering on synthetic rows; CPU feature extraction; no real-corpus, news, provenance, rights, browser or publication acceptance",
+  "script_sha256": "6b1f5bde3a6fd02f0eff45955353af10718f576f57e80e819cd4f884c419e67b",
+  "seed": 20261116,
+  "source_commit": "0cb4f71e948df23e2985f189a5a1d77e88d332b2",
+  "source_sha256": {
+    "prospecting": "23c2c054a1d55b07e60af513709071476bdc6202dbf0e8b4ec87b23cf59ddf73",
+    "relevance": "8be79d5e5048b79eae425f14f749cfa439a03774c2c27fb0b1309aca3b953f43"
+  },
+  "status": "passed",
+  "synthetic_inputs": true,
+  "timing_scope": "Warm scoring+full ordering; GPU synchronized H2D+D2H included; extraction/oracle and compilation excluded and separately reported",
+  "timings_seconds": {
+    "cpu_numpy": [
+      0.0002546999603509903,
+      0.00022860011085867882,
+      0.00022169994190335274
+    ],
+    "graph": [
+      0.0006939996965229511,
+      0.00042869988828897476,
+      0.00048610009253025055
+    ],
+    "raw": [
+      0.00036170007660984993,
+      0.00038399966433644295,
+      0.00034479983150959015
+    ]
+  },
+  "tolerance_hundredths": 0,
+  "unique_numeric_feature_cases": 1863,
+  "unique_source_feature_cases": 7630,
+  "unknown_capacity_rows": 3900,
+  "whole_seconds": 0.5080944998189807
+}
