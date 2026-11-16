@@ -1,0 +1,93 @@
+name: V9.23 six-hour neural evidence cycles
+# Half-hourly, date bounded, 25 minutes max per fresh GitHub Actions job.
+# Never edits Pipeline News or GridAtlas source, never promotes homepage.
+on:
+  schedule:
+    - cron: '0,30 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: v923-neural-six-hour-window
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Enforce six-hour UTC window (no runs after end)
+        id: window
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import os
+          now=datetime.now(timezone.utc)
+          start=datetime(2026,11,16,0,0,tzinfo=timezone.utc)
+          stop=datetime(2026,11,16,6,15,tzinfo=timezone.utc)
+          enabled=start<=now<stop
+          with open(os.environ['GITHUB_OUTPUT'],'a') as output:
+              output.write('active='+str(enabled).lower()+'\n')
+          print('UTC',now.isoformat(),'window_active',enabled)
+          PY
+      - uses: actions/checkout@v4
+        if: steps.window.outputs.active == 'true'
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/checkout@v4
+        if: steps.window.outputs.active == 'true'
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: agent10/v923-six-hour-repair-20261116
+          path: product
+          persist-credentials: false
+          sparse-checkout: |
+            uk_renewables_pipeline/202611151300
+            uk_renewables_pipeline/202611160020
+            automation/v923-recovery
+          sparse-checkout-cone-mode: true
+      - uses: actions/setup-python@v5
+        if: steps.window.outputs.active == 'true'
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        if: steps.window.outputs.active == 'true'
+        with:
+          node-version: '22'
+      - name: Python source, MAP and neural failure audit
+        if: steps.window.outputs.active == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 automation/v923-recovery/audit.py
+      - name: Commit append-only audit receipt to Neural Link
+        if: steps.window.outputs.active == 'true'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          mkdir -p automation/v923-recovery/results/history
+          stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+          cp automation/v923-recovery/results/latest.json "automation/v923-recovery/results/history/${stamp}-${GITHUB_RUN_ID}.json"
+          git add automation/v923-recovery/results
+          git commit -m "audit(v923): half-hour cycle ${stamp}" || true
+          git push origin HEAD:main
+      - name: Post traceable result to neural coordination channels
+        if: steps.window.outputs.active == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment 30 --repo Ventusltd/neural-link-between-agents --body-file automation/v923-recovery/results/latest.md
+          gh issue comment 40 --repo Ventusltd/neural-link-between-agents --body-file automation/v923-recovery/results/latest.md
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.window.outputs.active == 'true'
+        with:
+          name: v923-neural-audit-${{ github.run_id }}
+          path: automation/v923-recovery/results/
+          retention-days: 14
