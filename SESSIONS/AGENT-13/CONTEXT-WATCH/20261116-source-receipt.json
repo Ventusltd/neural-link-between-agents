@@ -1,0 +1,185 @@
+{
+  "schema": "globalgrid2050.context-watch-receipt.v1",
+  "observed_at": "2026-11-16T17:34:11.374109Z",
+  "scope": "CVAA protocol reuse and public coordination handoff; no product runtime or model memory certification",
+  "source": {
+    "repository": "Ventusltd/cvaa",
+    "commit": "b124c39e5343b24dd5b546a0c279a1c06360bdad",
+    "files": [
+      {
+        "path": "README.md",
+        "sha256": "7375b382535e2398714f5debae88c08fd8ccd368c96cb46dc4b5ba4ddaf4f9ef",
+        "bytes": 4254,
+        "review": "read"
+      },
+      {
+        "path": "202608301448-upload-order.txt",
+        "sha256": "31a7d51ed2d1b383b47296119a061c43ec2756fc7567dd063de009bf5e599c6e",
+        "bytes": 4624,
+        "review": "read"
+      },
+      {
+        "path": "inoculate.mjs",
+        "sha256": "2746c2a20126ada8dbe323fe004b4936e03d8bc9bf7654d0fd1c362bb992a0ef",
+        "bytes": 38121,
+        "review": "targeted_sections"
+      },
+      {
+        "path": "tools/antibody-runner.mjs",
+        "sha256": "e95bc6374331df1aec98a40746d538a3d5ad8abd07ae3f2c828470fb11c495d6",
+        "bytes": 957,
+        "review": "read"
+      },
+      {
+        "path": "tools/selftest.mjs",
+        "sha256": "38910257aeebe8b1e1d92fd04d1d58ba8840a1cf45876fb0c20d9d0afc608352",
+        "bytes": 27322,
+        "review": "targeted_sections"
+      },
+      {
+        "path": ".github/workflows/202608301447-selftest.yml",
+        "sha256": "05dafe227e9050b492eeebb3c3ebacbe9c8af54e02b9ec4756332d8cabb3b553",
+        "bytes": 5100,
+        "review": "read"
+      },
+      {
+        "path": "vaccines.lock",
+        "sha256": "2c007aa6be0485545f3480eb83c7fb08e1ae6c49cd9d389ed0180b0de1dc840e",
+        "bytes": 5236,
+        "review": "read"
+      },
+      {
+        "path": "vaccines/202608301321-one-active-scope.md",
+        "sha256": "2b9cf9774285689f41a28cf8a198670143763dfff5577e625d11475f37ec8f27",
+        "bytes": 782,
+        "review": "read"
+      },
+      {
+        "path": "vaccines/202608301328-derived-state-not-authored.md",
+        "sha256": "9a48880dc99403c45c52f9c128809a8f76aafb71583ddd186730972d161ee58a",
+        "bytes": 1209,
+        "review": "read"
+      },
+      {
+        "path": "vaccines/202608301329-context-diet.md",
+        "sha256": "5dd01451dfcfe5f3393758fd501065abc21a91613905284c34adf4916ceb943a",
+        "bytes": 870,
+        "review": "read"
+      },
+      {
+        "path": "vaccines/202608301706-attestation-freshness.md",
+        "sha256": "af93c2aa7d3f017d9886b7ac1ed2422ba5432ccb614475aeec32cc9aff99bc62",
+        "bytes": 1959,
+        "review": "read"
+      },
+      {
+        "path": "vaccines/202609031019-memory-store-complete.md",
+        "sha256": "75a7f3b346859f3877ee6b7c3498568713d4abc85109fa3dbd283fe91c6b7963",
+        "bytes": 5067,
+        "review": "read"
+      },
+      {
+        "path": "vaccines/202609032336-source-receipt-classification.md",
+        "sha256": "956b09b992e98af57dd7c0160b71b9e99210ea0c9f3da383d939c4c7b59ec955",
+        "bytes": 1941,
+        "review": "read"
+      },
+      {
+        "path": "vaccines/202609032338-observer-data-only.md",
+        "sha256": "665150c1643b964d5d495fed825e4a8b6aaf8b806196661b6342c5e3bed4c396",
+        "bytes": 1392,
+        "review": "read"
+      },
+      {
+        "path": "vaccines/202609261425-observed-before-asserted.md",
+        "sha256": "13e04ffe5e8490da9dad1d31a6a5df03a5d74867ab0787896a1f6e8a37c3a28d",
+        "bytes": 2928,
+        "review": "read"
+      },
+      {
+        "path": "vaccines/202611021042-neural-link-post-reads-the-file.md",
+        "sha256": "6ce1349d957c015ab124dd18090c9f47b15852b4f26db05f6407cbb671c8f2bb",
+        "bytes": 1979,
+        "review": "read"
+      },
+      {
+        "path": "vaccines/202611021046-kuiper-belt-record-paths-not-prose.md",
+        "sha256": "2083bc51e8ca0e4897b1993c934327524227f218b359f474e9c5bb1097b50176",
+        "bytes": 2355,
+        "review": "read"
+      }
+    ],
+    "history_shallow": false,
+    "history_commit_count": 62,
+    "agents_file_present": false,
+    "protocol_file_present": false
+  },
+  "environment": {
+    "platform": "Windows",
+    "node": "v24.19.0",
+    "network_namespace_available": false
+  },
+  "checks": [
+    {
+      "command": "node inoculate.mjs . --no-write --json",
+      "target": "pinned CVAA source checkout",
+      "exit_code": 1,
+      "status": "not-immune",
+      "active_results": 46,
+      "error_findings": 10,
+      "failed_rules": [
+        {
+          "vaccine": "monotonic-utc-generations",
+          "count": 3
+        },
+        {
+          "vaccine": "trillion-loop",
+          "count": 7
+        }
+      ],
+      "warning_rules": [
+        {
+          "vaccine": "pinned-actions",
+          "count": 5
+        }
+      ],
+      "skipped_rules": [
+        "dead-ends-explained",
+        "quantum-star-protocol",
+        "cells-compute-or-say-programmable",
+        "gpu-reuse-before-new-infrastructure",
+        "kuiper-belt-no-private-names"
+      ]
+    },
+    {
+      "command": "node tools/selftest.mjs",
+      "target": "existing synthetic CVAA fixtures",
+      "exit_code": 0,
+      "status": "PASS",
+      "planted_vaccine_fixtures_fired": 43,
+      "terminal_message": "all antibodies fire on disease and stay silent on health",
+      "limitation": "Synthetic fixture success does not override actual self-audit findings or skipped rules."
+    }
+  ],
+  "public_checkpoint": {
+    "repository": "Ventusltd/neural-link-between-agents",
+    "commit": "33cf13b",
+    "path": "SESSIONS/AGENT-13/2026-11-16-CODEX-COMMAND-STATE.md",
+    "ack_comment_id": 6923944420
+  },
+  "capabilities": {
+    "hidden_context_gauge": false,
+    "automatic_model_reset": false,
+    "restart_stopped_window": false,
+    "continuous_daemon": false,
+    "production_authority": false,
+    "private_transcript_export": false
+  },
+  "preserved_limits": [
+    "No source-rights approval",
+    "No real evidence match or snapshot publication claimed",
+    "No native Android proof",
+    "No complete estate or transcript coverage claim",
+    "No additional Pipeline release counted"
+  ]
+}
