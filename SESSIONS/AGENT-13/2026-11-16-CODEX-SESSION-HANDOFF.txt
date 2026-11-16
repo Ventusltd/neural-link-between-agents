@@ -1,0 +1,899 @@
+GLOBALGRID2050 V9.25 - COMPLETE AVAILABLE SESSION CONTEXT / CODEX HANDOFF
+Date: 2026-11-16
+Format: UTF-8 plain text
+Prepared for: Codex engineering dispatcher and up to five concurrent agents.
+
+IMPORTANT EXPORT LIMITATION
+This is a consolidated export of the conversation content accessible to this assistant,
+the original committed 200-task engineering board (FULL TEXT in Appendix A), and the
+GitHub issue #42 implementation brief (FULL TEXT in Appendix B).
+The very first user message was an extensive ~30-section scope, which is available to
+this assistant as a detailed conversation summary, not as verbatim text. Its requirements
+are preserved below and in the committed execution board, but this is NOT a byte-for-byte
+verbatim export of that initial message. The Deep Research report was displayed in the
+research UI; its engineering findings and checklist are captured below, not its entire
+verbatim formatted UI output. No live V9.25 deployment is claimed by this export.
+For absolute provenance, use the linked GitHub sources and the original chat.
+
+================================================================================
+1. USER DIRECTIVES, IN CHRONOLOGICAL ORDER
+================================================================================
+
+INITIAL OWNER REQUEST (summarized, exact original long message not available):
+"Please study this scope, comment a works scope into neutral agents repo via @GitHub.
+Estimate how long it will take and breakdown each step into max 15 minute chunks.
+Study the approach for it and commit it, then I'll use different agents to implement
+each part."
+
+The accompanying 30-section GlobalGrid2050 Agent 13 / V9.25 scope requested:
+- Universal Project Intelligence and News Aggregation Engine.
+- Preserve immutable V9.24 numeric Solar-1000 baseline and full REPD dataset.
+- Research >20MW priority solar+BESS cohort separately from Solar-1000.
+- Both project-first and news-first independent evidence discovery.
+- Conservative project identity matching, chronology, duplicates, source conflicts.
+- Evidence provenance and independent legal/rights/verification review.
+- Six infrastructure categories with distinct identities, including data centres.
+- Source registry, HTTP safety, bounded collection, freshness and incremental scans.
+- SQLite persistence, weekly immutable data-branch snapshots, GeoJSON and UI.
+- GitHub Actions integration without breaking existing headlines/datacentre workflows.
+- Release/version registry and homepage owner integrity, actual browser/GridAtlas tests,
+  public readback, rollback, and coordination through neutral issue #41.
+- No invented facts, no fabricated project dates/coordinates, no automatic VERIFIED.
+
+USER: "This is best done via codex?"
+ASSISTANT: "Yes. Codex is better suited to implementing V9.25, particularly Python
+development, GitHub Actions, automated testing and pull requests." Recommended
+Codex as engineering workforce, GitHub Actions for CI/CD, ChatGPT agents for
+coordination/independent review, and Agent 13 as sole release integrator.
+Suggested approximately 25 logical Codex assignments instead of 200 separate
+sessions, 4-6 parallel tasks at that point, isolated branches and tested PRs.
+
+USER: "@Deep research deeply study the scope for overnight engineering by codex
+be technical and exact and focus on computer science discipline needed for it
+will allocate near unlimited budget for codex to run it via max 5 agents at a time"
+ASSISTANT: Started Deep Research into rigorous architecture, real repo audit,
+critical path, exact tests, five-agent limit, coordination, release integrity,
+bounded source ingestion, SQLite, provenance, concurrency and rollback.
+
+USER: "Is there a way to shorten it to max 12 hours and focus in the highest
+priority tasks?"
+ASSISTANT: "Yes. I recommend reducing V9.25 to a 12-hour engineering sprint
+with five Codex agents running in parallel. The objective should be one working,
+tested intelligence pipeline—not the entire universal platform."
+Five roles: integrator, research, intelligence, data, interface/QA.
+Timeline: 00-01 freeze interfaces; 01-04 core pipeline; 04-08 real evidence;
+08-10 integration/regression; 10-11 release candidate; 11-12 publish only
+if gates pass, otherwise preserve candidate. Defer six-category engine,
+comprehensive data-centre integration, nationwide planning adapters,
+advanced scoring, historical backfill and extensive UI redesign.
+Success: repeatable weekly Solar-1000 research, sourced provisional remarks
+where found, honest no-evidence attempts, no baseline regressions.
+
+USER: "@Deep research deeply research how it can be made into a dry technical
+execution and check mark list for 4-12 hours maximum using 5 concurrent agents,
+GitHub and CuPY"
+ASSISTANT: Steered Deep Research to produce <=15-minute checkboxes with exact
+owners, paths, test evidence, 4-hour and 12-hour variants, five Codex prompts,
+GitHub PR and release gates, and critical assessment of CuPy.
+
+USER: "please place this entire session into a simple txt file download to
+hand to codex"
+ASSISTANT: This file was prepared for handoff. See limitations at the top.
+
+================================================================================
+2. COMPLETED GITHUB WORK (PLAN ONLY; NOT IMPLEMENTATION)
+================================================================================
+
+Repositories studied:
+  https://github.com/Ventusltd/globalgrid2050
+  https://github.com/Ventusltd/globalgrid2050-homepage
+  https://github.com/Ventusltd/neural-link-between-agents
+
+Existing coordination:
+  https://github.com/Ventusltd/neural-link-between-agents/issues/41
+Dedicated V9.25 implementation issue:
+  https://github.com/Ventusltd/neural-link-between-agents/issues/42
+Full committed 200-task execution board:
+  https://github.com/Ventusltd/neural-link-between-agents/blob/0da2ba75f1eb27f8571ec6bb14a418d488615c7d/SESSIONS/AGENT-13/2026-11-16-V925-EXECUTION-PLAN-15MIN.md
+Coordination comment:
+  https://github.com/Ventusltd/neural-link-between-agents/issues/41#issuecomment-6921311349
+Plan commit:
+  0da2ba75f1eb27f8571ec6bb14a418d488615c7d
+
+The original plan contains 200 tasks, each timeboxed to 15 minutes maximum,
+in 25 phases. Estimated 50 focused engineer-hours plus 12.5h contingency =
+62.5 engineer-hours, previously estimated 3-6 working days with parallel agents.
+That is a FULL-SCOPE estimate, not a 12-hour sprint promise.
+
+The original board proposed agents 13-21 as potential workstream labels.
+OVERRIDE FOR CURRENT SPRINT: MAXIMUM FIVE CONCURRENT CODEX AGENTS TOTAL,
+INCLUDING ONE integrator. These labels do not imply running agents.
+
+================================================================================
+3. VERIFIED BASELINE AND ENGINEERING HAZARDS AT PRIOR AUDIT
+================================================================================
+
+Main repository commit inspected:
+  42fdb5af4b1479507b38cf8142dba5da1a238fa0
+Re-check latest main SHA, branches, PRs, CI and issue #41 BEFORE any code write.
+
+Dataset invariants at inspection:
+  REPD selected records: 7,775
+  Solar records: 3,604
+  V9.24 numeric Solar-1000 pilot: exactly 1,000, refs 1018-2325,
+    selected by numeric REPD reference order.
+  V9.24 provisional findings: 2
+  V9.24 independently verified findings: 0
+  >20 MW solar+BESS research cohort: SEPARATE from immutable Solar-1000.
+
+Known existing paths to inspect (do not assume architecture remains unchanged):
+  AGENTS.md
+  automation/news/DESIGN.md
+  automation/news/binder.py
+  automation/news/events.py
+  automation/news/evidence_ledger.py
+  automation/news/pipeline_headlines.py
+  automation/news/pipeline_feeds.json
+  automation/news/datacentre_feed.py
+  automation/news/relevance.py
+  .github/workflows/pipeline-headlines.yml
+  .github/workflows/datacentre-news.yml
+  .github/workflows/v924-public-readback.yml
+  .github/workflows/deploy-pages.yml
+  automation/pipeline_release/new_version.py
+  automation/pipeline_release/registry.json
+  uk_renewables_pipeline/versions.json
+  uk_renewables_pipeline/202611161244/README.md
+  uk_renewables_pipeline/202611161244/index.html
+  scripts/import_homepage_owner.py
+  catalogue/homepage-owner.json
+
+Hazards discovered:
+- The V9.24 registry entry had state 'release_candidate_known_unverified_sources'
+  and null ci/merge_commit despite a reported merged PR #123. Audit before change.
+- versions.json listed V9.24 as top PASS but stale release_candidate.operative
+  pointed at V9.23. Never silently rewrite historical records.
+- new_version.py derives its parent from the last registry entry; check parent.
+- import_homepage_owner.py transforms asset/catalogue paths and newline endings,
+  so SHA of source index.html need not equal SHA of deployed root index.html.
+  Integrity checks must compare the correct stage bytes and transformations.
+- evidence_ledger.assess() returned accepted_for_publication=False even for
+  structurally valid inputs. Machine evidence is NOT independent verification.
+- Existing headlines and datacentre workflows update different data branches;
+  do not break them or assume separate concurrency groups serialize writes.
+- Recheck Agent 12 reservations before any V9.25 publication metadata changes.
+
+================================================================================
+4. 4-12 HOUR HIGH-PRIORITY ENGINEERING SPRINT
+================================================================================
+
+OBJECTIVE:
+Ship the smallest honest, testable V9.25 evidence increment, not the entire
+universal intelligence platform. Timebox 4h for a demonstrable local MVP,
+12h maximum elapsed for integrated release candidate, not guaranteed public
+publication. Do not bypass release gates to meet a clock deadline.
+
+P0 / MUST:
+[ ] Freeze exact REPD 7,775 and Solar-1000 1,000 IDs and ordering.
+[ ] Reuse existing news modules and approved source registry where possible.
+[ ] One genuinely accessible, permitted solar news/official source adapter.
+[ ] Safe bounded HTTP fetch, parse, normalization, ETag/cache where supported.
+[ ] Conservative project binding, reject ambiguity, no automatic VERIFIED.
+[ ] Event provenance with article URL, publisher, retrieval timestamp, source
+    date precision, canonical project ID, method, provisional review state.
+[ ] SQLite unique constraints, transactions, migrations, idempotent reruns.
+[ ] Deterministic JSON/CSV snapshot, immutable run folder, validated pointer.
+[ ] UI evidence display or minimal static panel with escaped source text.
+[ ] pytest + CI + browser checks; existing maps and GridAtlas links intact.
+[ ] Review existing release registry and operative pointer inconsistencies.
+[ ] Public readback only after tested PR, approval and release gates.
+[ ] Document no-match, blocked, rights-unknown and failed-fetch outcomes honestly.
+
+P1 / ONLY IF P0 IS GREEN:
+[ ] Second approved independent source and source-coverage report.
+[ ] >20 MW solar+BESS cohort as a separate manifest and research priority.
+[ ] Robust event duplicate clustering and conflict timelines.
+[ ] More source adapters, stronger UI search and accessible filters.
+[ ] Extra adversarial/property-based tests, replay/rollback drill.
+
+DEFER:
+  Full six-category production rollout, comprehensive data-centre registry,
+  national planning-authority scraping, full historical backfill, heavy ML,
+  elaborate scoring, cross-category entity graph, UI redesign.
+
+FIVE CONCURRENT SLOTS, NOT NINE:
+  Slot 1: INTEGRATOR / RELEASE OWNER
+    Owns branches, contracts, PR sequence, CI, release metadata, readback.
+    Sole publisher; no one else touches release pointers or main.
+  Slot 2: SOURCES / RESEARCH
+    Owns source registry, safe transport, approved adapters, queue.
+  Slot 3: MATCHING / EVENT INTELLIGENCE
+    Owns conservative binder, event schema/chronology, dedup, tests.
+  Slot 4: DATA / SNAPSHOTS
+    Owns SQLite schema, migration, persistence, exports, atomic publication.
+  Slot 5: UI / ADVERSARIAL QA
+    Owns evidence display, Playwright, security/negative tests, GridAtlas.
+
+No two agents edit the same path simultaneously. Each uses its own feature
+branch and PR. Integrator owns shared interfaces and merges in dependency order.
+
+DEPENDENCY DAG:
+  freeze baseline + API/schema contract
+      |----> approved sources + fetch + normalize ----|
+      |----> binder + event semantics ---------------|----> SQLite/store
+      |----> immutable cohort manifest --------------|       + export
+      |-----------------------------------------------|          |
+      |------------------------------------------ UI consumer ---|
+                                                               |
+                                           CI + browser + readback
+                                                               |
+                                        guarded release OR no-go
+
+CHECKLIST / ATOMIC <=15-MINUTE TICKETS (PROPOSED SPRINT, NOT EXECUTED):
+T+00-15 [ ] Slot1: inspect main HEAD/PRs/issue #41/#42; publish ownership ACK.
+         Evidence: commit SHA, conflicting reservations and five branches.
+T+00-15 [ ] Slot2: locate authoritative V9.24 pilot manifest, pin 1000 IDs.
+         Evidence: SHA256 manifest, exact count and order test.
+T+00-15 [ ] Slot3: inspect binder/events/evidence_ledger; list safe reuse points.
+         Evidence: module contract and false-positive negative fixtures.
+T+00-15 [ ] Slot4: inspect current data branch/snapshot formats and SQLite deps.
+         Evidence: schema/IO contract; no mutation.
+T+00-15 [ ] Slot5: inspect real UI entrypoints and existing browser test commands.
+         Evidence: actual paths and runnable smoke command.
+
+T+15-30 [ ] Slot1: publish frozen JSON schema and field ownership.
+         Gate: all agents ACK identical contract; no conflicting edits.
+T+15-30 [ ] Slot2: confirm source terms/robots/allowed usage; approved allowlist.
+         Gate: source disabled if legal or access status uncertain.
+T+15-30 [ ] Slot3: write deterministic binder fixtures, ambiguous-name rejection.
+         Gate: all machine matches provisional.
+T+15-30 [ ] Slot4: implement initial SQLite migration + unique keys.
+         Gate: transactional creation, repeat migration no-op.
+T+15-30 [ ] Slot5: add UI fixture for zero/provisional/failed evidence.
+         Gate: no invented count, HTML escaped.
+
+T+30-60 [ ] Slot2: implement safe fetch/parse with timeout, byte caps, allowlist,
+         redirects/SSRF checks, retries/backoff and bounded item count.
+         Gate: offline mock fixtures and denial tests pass.
+T+30-60 [ ] Slot3: implement conservative binding + source date precision.
+         Gate: disambiguation negatives, deterministic results.
+T+30-60 [ ] Slot4: implement idempotent article/event/project persistence.
+         Gate: duplicate rerun yields no new rows.
+T+30-60 [ ] Slot5: wire read-only evidence view to fixture JSON.
+         Gate: desktop/mobile smoke and GridAtlas link preserved.
+T+30-60 [ ] Slot1: configure CI read-only PR checks; no auto-publish on PR.
+         Gate: workflow lints, permissions minimal.
+
+T+60-120 [ ] Slot2: run one approved source probe and store real receipts.
+          Gate: publisher URL/status/date/terms captured; do not invent a match.
+T+60-120 [ ] Slot3: integrate normalization, binder and events using real fixtures.
+          Gate: unmatched/ambiguous outcomes explicit, zero auto-VERIFIED.
+T+60-120 [ ] Slot4: export stable ordered JSON/CSV with schema/hash manifest.
+          Gate: reruns same inputs produce identical logical outputs.
+T+60-120 [ ] Slot5: add browser tests for empty, provisional, malformed data.
+          Gate: UI works at 375px and desktop, links and escaping verified.
+T+60-120 [ ] Slot1: review registry/versions.json drift and release procedure.
+          Gate: historical metadata changes require independent review.
+
+T+120-180 [ ] Slot1: merge compatible source/binder/store PRs in dependency order.
+           Gate: clean rebase and full integration tests.
+T+120-180 [ ] Slot2: negative source test: 429, timeout, redirect, 5xx, ETag.
+           Gate: bounded failure, no unsafe retries or silent partial publish.
+T+120-180 [ ] Slot3: test duplicate URLs, conflicting dates, wrong-project names.
+           Gate: no false VERIFIED, provenance retained.
+T+120-180 [ ] Slot4: immutable snapshot + pointer publish in one Git commit,
+           optimistic head check, no force push, rollback reference retained.
+           Gate: stale HEAD push fails rather than overwrites.
+T+120-180 [ ] Slot5: run Playwright and inspect console/network failures.
+           Gate: zero critical browser errors and no map regression.
+
+T+180-240 [ ] Slot1: integrated pytest/CI and candidate build; inspect artifacts.
+           Gate: all P0 tests pass; otherwise STOP at candidate.
+T+180-240 [ ] Slot2-5: fix only P0 blockers, review diffs, write receipts.
+           Gate: 4-hour MVP = tested local pipeline, not promised deployment.
+
+T+240-360 [ ] All: targeted hardening and approved second source only if P0
+           green; run full CI, repeatability tests and dry-run release.
+           Gate at 6h: one complete integration CI run, no P0 red.
+T+360-480 [ ] All: adversarial, failure injection, concurrency, export/replay,
+           browser/mobile, permission and license checks; fix P0.
+           Gate at 8h: reproducible candidate with evidence receipts.
+T+480-600 [ ] Slot1: exact-head PR checks and release candidate validation;
+           Slot5 independent browser/readback; others regression repairs.
+           Gate at 10h: no critical failed tests, no unreviewed pointer change.
+T+600-660 [ ] Slot1: prepare version metadata only if approved, validate
+           source -> imported owner -> public-root transform hashes.
+           Gate at 11h: independent signoff and rollback plan.
+T+660-720 [ ] Slot1: publish ONLY if every release gate passes; otherwise
+           leave PR/candidate with blockers and no live changes.
+           Gate at 12h: public readback + recorded hashes OR explicit NO-GO.
+
+4-HOUR MVP DEFINITION:
+  Reproducible fixture-backed ingestion + one real source probe, exact
+  Solar-1000 preservation, provisional-only binding, SQLite idempotence,
+  deterministic snapshot, local UI smoke and tests. No live release promise.
+
+12-HOUR CANDIDATE DEFINITION:
+  The 4-hour MVP plus reviewed CI/PRs, safe weekly workflow, browser/mobile
+  verification, independent release review, source terms checks, public
+  readback if and only if safely deployed. Otherwise preserve candidate.
+
+RELEASE HARD STOPS:
+  - Wrong REPD count/ID/order, unexpected Solar-1000 changes.
+  - Fabricated, ambiguous or automatically VERIFIED evidence.
+  - Unapproved source rights or insecure URL fetch.
+  - Failed critical fetch or schema validation causing partial snapshot.
+  - Unresolved version registry/operative pointer drift.
+  - Conflicting release owner/Agent 12 reservation.
+  - Missing CI, browser, exact-head, hash or readback evidence.
+  - Failed optimistic push, missing rollback reference, hidden data loss.
+
+================================================================================
+5. DRY CODEX DISPATCH PROMPT (PASTE INTO CODEX)
+================================================================================
+
+You are implementing GlobalGrid2050 V9.25 under a HARD 12-HOUR WALL-CLOCK
+LIMIT and at most FIVE concurrent Codex agents TOTAL. The target is the
+smallest safe working solar evidence pipeline, not full universal rollout.
+
+Read this entire file, especially Appendix A (the committed 200-task plan)
+and Appendix B (GitHub issue #42). First inspect live repository state,
+AGENTS.md, existing news modules, V9.24 pilot, registry and workflows.
+Revalidate all historical SHAs and paths. Report any conflict with Agent 12
+before any publication change. Never infer that a planning document proves
+code was implemented.
+
+Use exactly five exclusive roles:
+1 INTEGRATOR, 2 SOURCES, 3 MATCHING, 4 DATA, 5 UI/QA.
+No sixth agent. Allocate branches and file ownership before coding.
+One integrator alone may merge or publish. Every implementation task must
+fit a <=15-minute checkpoint; if incomplete, split and report BLOCKED.
+Prioritize runnable code, real source receipts and deterministic tests.
+
+P0: exact V9.24 REPD/Solar-1000 preservation; safe approved source intake;
+conservative provisional evidence; SQLite idempotent store; immutable
+snapshot; UI readback; CI/browser regression. Do not attempt P1 until P0 green.
+CPU first. Do not introduce CuPy without measured benefit and CPU parity.
+At 4h produce a tested MVP or a precise blocker report; at 12h STOP all new
+feature work and produce tested candidate/PRs, hashes, logs and NO-GO if
+publication gates are not met. Never publish unverified facts or change
+historical release trees. Use issue #42 for status receipts.
+
+================================================================================
+6. ROLE-SPECIFIC CODEX PROMPTS
+================================================================================
+
+SLOT 1 / INTEGRATOR:
+Inspect current main, issue #41/#42, Agent 12, AGENTS.md, workflows and release
+scripts. Freeze exact contracts and baseline, assign exclusive branches,
+implement CI guardrails, review PRs, audit V9.24 metadata drift, run integration
+tests and exact-head release. Only you may change version pointers. Do not
+modify historical immutable release directories. Preserve a rollback ref.
+Provide commit SHA, CI run URL, source/import/public hashes, browser receipts.
+Stop on any release gate failure. No force pushes.
+
+SLOT 2 / SOURCES:
+Own approved source registry, safe bounded HTTP transport and one actual
+publisher/official source adapter, using existing automation/news modules.
+Validate allowlisted hosts and redirects; defend against SSRF, huge responses,
+timeouts, 429/5xx, bad dates, duplicates and HTML injection. Respect rights.
+Use deterministic offline fixtures and report one real source probe with
+publisher, URL, timestamp and response receipt. Do not assert a real match
+unless independently reproduced. Do not touch release metadata or UI.
+
+SLOT 3 / MATCHING:
+Own canonical article/event normalization, conservative Solar-1000 binding,
+precision-aware dates, dedupe, conflicts and provenance. Reuse binder.py,
+events.py and evidence_ledger.py where safe. Reject ambiguous names and
+cross-project false positives. Machine-found evidence must be PROVISIONAL.
+Write positive/negative/adversarial pytest fixtures and prove repeatability.
+Do not touch source transport, SQLite schema, UI or release metadata.
+
+SLOT 4 / DATA:
+Own SQLite schema, migrations, unique constraints, transactions, replay and
+deterministic JSON/CSV export. Maintain immutable weekly snapshots and a
+latest pointer only after complete validation. Never confuse local atomic
+rename with atomic remote Git pointer publication. Use optimistic Git head
+checks, one commit for snapshot+pointer, no force pushes, rollback ref.
+Test rerun idempotency, partial-source failure, concurrent writer conflict,
+null geospatial fields and exact project identity preservation.
+
+SLOT 5 / UI + INDEPENDENT QA:
+Inspect actual existing UI implementation (do not assume Flask or React).
+Add the smallest read-only evidence display with provisional labels and
+source links. Preserve GridAtlas and mobile behavior. Test desktop/mobile
+375px and 1440px, empty/provisional/failed states, XSS-safe escaping,
+broken links, console/network errors and snapshot mismatch. Independently
+challenge release evidence. Do not touch release pointers or publish.
+
+================================================================================
+7. CUPY / GPU DECISION
+================================================================================
+
+CuPy is the CUDA/NumPy-like GPU array library, not a general accelerator for
+HTTP fetching, RSS parsing, text matching or GitHub operations.
+
+For 1,000 pilot records and 7,775 total REPD rows, workload is mostly network
+I/O, parsing, string matching and SQLite writes. CPU is simpler and likely
+faster end-to-end after GPU initialization and host-device transfer costs.
+Do NOT install CuPy, add CUDA, provision GPU runners or make GPU required for
+P0. Standard GitHub-hosted runners do not include GPU by default. If later
+dense vectorized scoring is truly the bottleneck, benchmark CuPy against
+NumPy/CPU on identical data and outputs, with optional dependency and fallback.
+GPU use requires demonstrable speedup including data-transfer overhead,
+deterministic parity tests, and runner cost/availability review.
+
+================================================================================
+8. GITHUB ISSUE #42 STATUS COMMENT TEMPLATE
+================================================================================
+
+[AGENT 13 / V9.25 / 4-12H CODEX SPRINT]
+UTC checkpoint:
+Integrator:
+Concurrent active slots: N / 5 (MUST N <= 5)
+Base main SHA:
+Current integration SHA:
+Scope: P0 ONLY / P1 ALLOWED / NO-GO
+
+[ ] Baseline 7775 + Solar-1000 exact 1000 pinned (manifest hash):
+[ ] Approved source and real probe (receipt URL):
+[ ] Safe fetch and normalization (pytest command + result):
+[ ] Conservative provisional-only binding (negative tests):
+[ ] SQLite idempotent store and migration (pytest command):
+[ ] Immutable deterministic snapshot (hash, branch, HEAD):
+[ ] UI evidence panel and GridAtlas/mobile smoke (Playwright receipt):
+[ ] CI green at exact PR head (run URL):
+[ ] V9.24 registry/operative pointer independently audited:
+[ ] Publication gate + legal/source rights approved:
+[ ] Public root + version + evidence readback and hashes OR NO-GO:
+
+Branches/PRs:
+Blockers:
+Next <=15m tasks (owner, path, test):
+Rollback ref:
+Decision: CONTINUE / STOP / RELEASE / NO-GO
+
+================================================================================
+9. SOURCE AND RESEARCH REFERENCES
+================================================================================
+
+GitHub Actions concurrency:
+  https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency
+GitHub hosted runners and optional GPU:
+  https://docs.github.com/en/actions/concepts/runners/github-hosted-runners
+  https://github.blog/changelog/2024-07-08-github-actions-gpu-hosted-runners-are-now-generally-available/
+CuPy documentation:
+  https://docs.cupy.dev/en/stable/
+GitHub issue #42:
+  https://github.com/Ventusltd/neural-link-between-agents/issues/42
+
+IMPORTANT CORRECTIONS TO SIMPLIFIED RESEARCH EXAMPLES:
+- Proposed paths like automation/news/acquisition/fetch.py, sources.yaml,
+  match.py, evidence_store.py or server/main.py are NOT verified existing
+  files; inspect the repository and reuse current modules before creating.
+- Do not assume an RSS source is legally approved or currently reachable.
+- A missing match is not automatically a 'research attempted' result unless
+  that project was actually researched.
+- Do not assert that an article mentioning a REPD number is sufficient proof.
+- Do not call an unreviewed machine match VERIFIED.
+- A successful Git push protects a single ref update, not arbitrary
+  multi-ref/multi-repository publication transactions.
+- Cross-workflow GitHub concurrency must be designed around shared resources,
+  actual branch refs and optimistic updates, not vague workflow names.
+- If there is no qualifying real match, report ZERO, do not manufacture one.
+- The 4h/12h times are scheduling ceilings, not quality guarantees.
+
+================================================================================
+APPENDIX A - FULL COMMITTED 200-TASK V9.25 EXECUTION BOARD
+================================================================================
+# GLOBALGRID2050 — Agent 13 / V9.25 engineering execution board
+**Date:** 2026-11-16 (UTC)  
+**Type:** OWNER-REQUESTED IMPLEMENTATION PLAN; no V9.25 code or deployment is claimed here.  
+**Primary coordination:** https://github.com/Ventusltd/neural-link-between-agents/issues/41  
+**Baseline:** GlobalGrid2050 main `42fdb5af4b1479507b38cf8142dba5da1a238fa0` at inspection. Revalidate immediately before work.  
+**Task discipline:** All tasks are independent **15-minute maximum timeboxes**. A partial task is BLOCKED/IN-PROGRESS, *never PASS*; split the remaining work into another <=15 minute ticket with fresh ID and evidence. Task completion means committed code/test/config/receipt, not conversational assertion.
+
+## Executive assessment and recommended strategy
+
+**Recommendation:** Publish a *small working universal kernel* in V9.25: preserve the frozen 1,000 solar pilot; add one separate <=1,000 solar+BESS >20 MW research cohort; implement approved source-first and project-first acquisition, strict independent review and immutable weekly data snapshots; expose solar, BESS, data-centre and generic remaining-category views without asserting speculative evidence. Do not wait for 100% source coverage. A source adapter that lacks verified legal/technical access stays disabled. All six categories share schemas, with narrowly supported official-source adapters first; adding comprehensive sources later is a separate increment.
+
+**Verified from current source:** `automation/news/` has `binder.py`, `pipeline_headlines.py`, `events.py`, `relevance.py`, `evidence_ledger.py`, `datacentre_feed.py` and `pipeline_feeds.json`. `.github/workflows/pipeline-headlines.yml` and `datacentre-news.yml` already refresh dedicated data branches. The `new_version.py` builder chooses the last registry entry as its parent. `scripts/import_homepage_owner.py` intentionally rewrites asset and catalogue paths and normalises newlines: owner index hashes must *not* be compared blindly with built root index hashes.
+
+**Two specific pre-release defects (inspected 16 Nov):** `automation/pipeline_release/registry.json` V9.24 (`202611161244`) is still `release_candidate_known_unverified_sources` with `ci:null` and `merge_commit:null`, although merge PR #123 has been reported; `uk_renewables_pipeline/versions.json` lists V9.24 at top with PASS but its separate `release_candidate.operative` still identifies V9.23. Reconcile exact authoritative receipts and repair *mutable metadata only*, not the V9.24 historical tree.
+
+**Evidence limitation:** `evidence_ledger.assess()` explicitly returns `accepted_for_publication: False` even after structural validation. No agent may redefine machine confidence as independent proof. The V9.24 pilot has 2 provisional leads (1019, 1020), 998 not researched, **0 independently verified findings**. Real reviewer/rights acceptance is mandatory for VERIFIED.
+
+**Ownership and collision control:** Agent 13 alone owns integrating/releasing V9.25 and any homepage promotion. Implementation agents (suggested Agent 14 data contracts, 15 sources, 16 matching/history, 17 persistence, 18 CI, 20 DC/categories, 21 UI) own **separate topic branches** and work in named scopes; Agent 19 provides read-only independent verification. Do not assert Agent 12 is inactive merely because no matching V9.25 PR or branch was returned in inspection; recheck issue #41, GitHub and owner instructions immediately before code/release writes. No concurrent writers to registry, homepage pointer or final release branch. GitHub comments do not wake agents; each must ACK when next invoked.
+
+**Effort estimate:** 200 x 15 minutes = **50 focused engineering hours** maximum planned task budgets, plus **25% integration/rework reserve (12.5 h)** = **62.5 engineer-hours** of planned work. This is an *effort*, not a promise of delivery time. With 4–6 truly concurrent scoped agents, a plausible critical-path elapsed range is **3–6 working days**, dependent on CI queue, owner coordination and third-party licensing. Publisher permissions, CAPTCHA-blocked sources, missing data or late GitHub schedules add unbounded waiting and must be logged explicitly. First functional evidence refresh can precede the V9.25 live release.
+
+**Stages:** A = prerequisites and SHA integrity (01–04); B = verified contracts and acquisition (05–16); C = persistence, exports and category adapters (17–21); D = workflows/UI (22–23); E = QA, integration, public proof (24–25). Every track submits a small reviewed PR. Parallelise only after interfaces and identity contracts are frozen.
+
+## Hard contracts / exit gates
+
+1. **No source facts changed:** 7,775 official records, 3,604 solar count, immutable V9.24 and V9.23 bytes, existing MAP/CSV functionality.
+2. **No conflation:** Solar-1000 remains sorted numerically, IDs 1018..2325; the separate research cohort uses strict `capacity_mw > 20` and may contain at most 1,000 solar+BESS projects. Stable manifests + SHA in exports.
+3. **Evidence provenance:** original receipt, rights, project binding and event assertion distinct. `VERIFIED` needs an independent review decision and attributable receipt. Time precision maintained. Explicit negative research attempts.
+4. **No speculative coordinates or connections:** preserve null geometry and do not infer grid capacity/contract from proximity.
+5. **No silent side effects:** weekly data branch only; write-once snapshots, atomic latest pointer, fail-closed freshness/rights, branch-leased writes. No scheduled write to V9.25 release folder or home.
+6. **Publishing:** actual source and transformed byte hashes, exact-head tests, original browser flows, Pages deployment and public served-byte readback. Declared GridAtlas mobile defect cannot become a fabricated PASS.
+
+## Agent assignment and integration protocol
+
+| Agent / proposed branch scope | Responsibilities | Forbidden writes |
+| --- | --- | --- |
+| 13 `release/v925-agent13` (create only after collision check) | release owner, integration, registry/pointer, public proof | other agents' branches |
+| 14 `agent14/v925-contracts` | identity/schema, reviews contract, pilot manifests | homepage/registry |
+| 15 `agent15/v925-sources` | source audits, RSS/API fetcher, incremental collection | release folder |
+| 16 `agent16/v925-research` | research queue, official adapters, binder/event history | published data branch |
+| 17 `agent17/v925-store` | SQLite, exports, snapshots, metrics | homepage |
+| 18 `agent18/v925-release-qa` | metadata repair + CI workflow; propose PR, do not promote | operative pointer without Agent 13 |
+| 19 `agent19/v925-independent-review` | independent source/rights/editorial/browser QA, read-only against producers | producer code or approval spoofing |
+| 20 `agent20/v925-categories` | dcuk, grid, wind and relationships | REPD immutable facts |
+| 21 `agent21/v925-ui` | additive panels, fullscreen, MAP/CSV compatibility | historical release trees |
+
+Proposed labels are *handoff slots*, not evidence these agents currently run. Separate PRs must declare their exact ownership path and dependency; Agent 13 cherry-picks or merges accepted PRs only after exact-head checks. Every task report: `ID | scope | branch | SHA | CI URL | PASS/FAIL/BLOCKED | next 15-minute task`. No silent takeover of Agent 12/11 work.
+
+## Granular execution board — 200 tasks, 15 minutes or less each
+
+
+### 01 — Coordination, exclusive ownership and source pinning
+Owner: **Agent 13 — integrator**. Dependencies: none. Planned budget: 120 min.
+
+- [ ] **T001 — 15 min:** Read issue #41 plus newest comments; capture any superseding owner decisions in a dated note; attach a small commit, test or signed receipt.
+- [ ] **T002 — 15 min:** Search main, V9.25 branches, open PRs and Agent 12 activity; record actual query evidence; attach a small commit, test or signed receipt.
+- [ ] **T003 — 15 min:** Read AGENTS.md and Neural Link PROTOCOL.md; extract write and ACK restrictions; attach a small commit, test or signed receipt.
+- [ ] **T004 — 15 min:** Record a single V9.25 release owner; reserve all other agents to non-publishing branches; attach a small commit, test or signed receipt.
+- [ ] **T005 — 15 min:** Pin current globalgrid2050 main commit, homepage-owner commit and TestCode PR #16 head; attach a small commit, test or signed receipt.
+- [ ] **T006 — 15 min:** Create per-agent exclusive branch/path ownership table and prohibited shared-file list; attach a small commit, test or signed receipt.
+- [ ] **T007 — 15 min:** Write a one-screen decision log: MVP, deferred source coverage and no fake VERIFIED rows; attach a small commit, test or signed receipt.
+- [ ] **T008 — 15 min:** Post owner/branch declaration and require each agent's explicit ACK before coding; attach a small commit, test or signed receipt.
+
+### 02 — Baseline and immutable identity contracts
+Owner: **Agent 14 — data contracts**. Dependencies: 01. Planned budget: 120 min.
+
+- [ ] **T009 — 15 min:** Load V9.24 release and check immutable folder 202611161244 exists without modification; attach a small commit, test or signed receipt.
+- [ ] **T010 — 15 min:** Record release counts 7,775 REPD and 3,604 solar from pinned artifacts; attach a small commit, test or signed receipt.
+- [ ] **T011 — 15 min:** Locate and SHA256-pin V9.24 numeric Solar-1000 manifest, IDs 1018–2325; attach a small commit, test or signed receipt.
+- [ ] **T012 — 15 min:** Write regression test asserting exactly those 1,000 distinct numeric REPD references; attach a small commit, test or signed receipt.
+- [ ] **T013 — 15 min:** Write test preserving all below/at-20 MW pilot records without exclusion; attach a small commit, test or signed receipt.
+- [ ] **T014 — 15 min:** Capture existing two provisional candidates and zero independently verified as baseline; attach a small commit, test or signed receipt.
+- [ ] **T015 — 15 min:** Identify official REPD columns, canonical status vocabulary and capacity units; attach a small commit, test or signed receipt.
+- [ ] **T016 — 15 min:** Save baseline fixture hashes and a no-mutation assertion for historical release directories; attach a small commit, test or signed receipt.
+
+### 03 — Registry and release-pointer repair
+Owner: **Agent 18 — CI/release engineer**. Dependencies: 01,02. Planned budget: 120 min.
+
+- [ ] **T017 — 15 min:** Read registry tail and compare V9.24 entry with merged PR #123 receipt; attach a small commit, test or signed receipt.
+- [ ] **T018 — 15 min:** Verify exact V9.24 merge SHA c2a12518 against the merge record before editing metadata; attach a small commit, test or signed receipt.
+- [ ] **T019 — 15 min:** Check V9.24 full verification and Pages run conclusions; capture run URLs and timestamps; attach a small commit, test or signed receipt.
+- [ ] **T020 — 15 min:** Identify missing registry CI and merge fields without changing stored tree hashes; attach a small commit, test or signed receipt.
+- [ ] **T021 — 15 min:** Inspect versions.json head V9.24 and stale release_candidate operative V9.23; attach a small commit, test or signed receipt.
+- [ ] **T022 — 15 min:** Find source of versions.json generation and define one authoritative operative pointer; attach a small commit, test or signed receipt.
+- [ ] **T023 — 15 min:** Write a failing test for contradictory candidate/operative/version-list metadata; attach a small commit, test or signed receipt.
+- [ ] **T024 — 15 min:** Create metadata-only repair PR with tests; leave all V9.24 frozen files untouched; attach a small commit, test or signed receipt.
+
+### 04 — Homepage transformation and served-byte integrity
+Owner: **Agent 18 — CI/release engineer**. Dependencies: 03. Planned budget: 120 min.
+
+- [ ] **T025 — 15 min:** Verify seven owner files and SHA256 pins in catalogue/homepage-owner.json; attach a small commit, test or signed receipt.
+- [ ] **T026 — 15 min:** Trace index.html rewrites in scripts/import_homepage_owner.py; attach a small commit, test or signed receipt.
+- [ ] **T027 — 15 min:** Record transformed asset paths and final newline rules as deterministic operations; attach a small commit, test or signed receipt.
+- [ ] **T028 — 15 min:** Implement test computing expected output SHA from pinned owner index bytes; attach a small commit, test or signed receipt.
+- [ ] **T029 — 15 min:** Implement test comparing built homepage artifact hash with expected transformed hash; attach a small commit, test or signed receipt.
+- [ ] **T030 — 15 min:** Implement served-byte check for public root and release HTML with cache headers; attach a small commit, test or signed receipt.
+- [ ] **T031 — 15 min:** Write negative tests for wrong path, wrong pinned SHA and wrong release pointer; attach a small commit, test or signed receipt.
+- [ ] **T032 — 15 min:** Record three separate receipts: source pins, build transform and public served bytes; attach a small commit, test or signed receipt.
+
+### 05 — Canonical evidence and project schemas
+Owner: **Agent 14 — data contracts**. Dependencies: 02. Planned budget: 120 min.
+
+- [ ] **T033 — 15 min:** Enumerate existing evidence_ledger.py ArticleReceipt, ProjectBinding, EventAssertion and RightsAssessment keys; attach a small commit, test or signed receipt.
+- [ ] **T034 — 15 min:** Define namespaced project IDs: repd:<id>, dcuk:<id>, grid:<id>, wind where applicable; attach a small commit, test or signed receipt.
+- [ ] **T035 — 15 min:** Specify nullable dates with explicit day, month, year or unknown precision; attach a small commit, test or signed receipt.
+- [ ] **T036 — 15 min:** Define research statuses NOT_RESEARCHED, RESEARCH_ATTEMPTED_NO_EVIDENCE, PROVISIONAL, VERIFIED, REJECTED; attach a small commit, test or signed receipt.
+- [ ] **T037 — 15 min:** Define distinct confidence, acceptance, research-priority and event-impact fields; attach a small commit, test or signed receipt.
+- [ ] **T038 — 15 min:** Add JSON schema for article receipt and source provenance with safe URL rules; attach a small commit, test or signed receipt.
+- [ ] **T039 — 15 min:** Add JSON schema for project binding and event assertion without conflating identities; attach a small commit, test or signed receipt.
+- [ ] **T040 — 15 min:** Add round-trip schema fixtures and reject invented timestamps or coordinates; attach a small commit, test or signed receipt.
+
+### 06 — Rights, genuine independent review and acceptance
+Owner: **Agent 14 — data contracts + Agent 19 reviewer**. Dependencies: 05. Planned budget: 120 min.
+
+- [ ] **T041 — 15 min:** Document that evidence_ledger.assess currently never returns publishable acceptance; attach a small commit, test or signed receipt.
+- [ ] **T042 — 15 min:** Define independent review register keyed to immutable receipt and binding hash; attach a small commit, test or signed receipt.
+- [ ] **T043 — 15 min:** Separate review of source authenticity, legal rights, project identity and event claim; attach a small commit, test or signed receipt.
+- [ ] **T044 — 15 min:** Reject self-review where proposing and reviewing roles are identical; attach a small commit, test or signed receipt.
+- [ ] **T045 — 15 min:** Design revocation behaviour so a withdrawn decision cannot stay VERIFIED; attach a small commit, test or signed receipt.
+- [ ] **T046 — 15 min:** Test a structurally complete but unauthenticated record remains PROVISIONAL; attach a small commit, test or signed receipt.
+- [ ] **T047 — 15 min:** Test rights-only approval does not grant event acceptance or publication eligibility; attach a small commit, test or signed receipt.
+- [ ] **T048 — 15 min:** Require externally attributable review evidence before the verified counter increments; attach a small commit, test or signed receipt.
+
+### 07 — Source registry and safe configuration
+Owner: **Agent 15 — acquisition**. Dependencies: 05,06. Planned budget: 120 min.
+
+- [ ] **T049 — 15 min:** Inventory pipeline_feeds.json to reuse accepted feed entries and ownership; attach a small commit, test or signed receipt.
+- [ ] **T050 — 15 min:** Choose additive evidence source registry format; avoid duplicate YAML/JSON competing owners; attach a small commit, test or signed receipt.
+- [ ] **T051 — 15 min:** Define source ID, host allowlist, category, interval, timeout, bytes and rights policy; attach a small commit, test or signed receipt.
+- [ ] **T052 — 15 min:** Create three approved-source test fixtures and one disabled/unlicensed-source fixture; attach a small commit, test or signed receipt.
+- [ ] **T053 — 15 min:** Add validation for duplicate IDs and invalid URL schemes or hostnames; attach a small commit, test or signed receipt.
+- [ ] **T054 — 15 min:** Add validation for malformed intervals, incompatible kind and unsupported output policy; attach a small commit, test or signed receipt.
+- [ ] **T055 — 15 min:** Specify GitHub Actions secret references without storing credentials in source configuration; attach a small commit, test or signed receipt.
+- [ ] **T056 — 15 min:** Add tests rejecting all redirect destinations absent from each source allowlist; attach a small commit, test or signed receipt.
+
+### 08 — Publisher and public-register live probe
+Owner: **Agent 15 — acquisition**. Dependencies: 07. Planned budget: 120 min.
+
+- [ ] **T057 — 15 min:** Probe PV Magazine global feed status, date fields and link policy; save a health receipt; attach a small commit, test or signed receipt.
+- [ ] **T058 — 15 min:** Probe PV-Tech source interface and document whether a permissioned endpoint exists; attach a small commit, test or signed receipt.
+- [ ] **T059 — 15 min:** Probe Solar Power Portal public feed/API and record host, robots and attribution; attach a small commit, test or signed receipt.
+- [ ] **T060 — 15 min:** Probe Energy Storage News public feed/API and record host, robots and attribution; attach a small commit, test or signed receipt.
+- [ ] **T061 — 15 min:** Probe reNEWS or another renewable publisher and record actual supported endpoint; attach a small commit, test or signed receipt.
+- [ ] **T062 — 15 min:** Probe one accessible Planning Inspectorate or GOV.UK public dataset/API; attach a small commit, test or signed receipt.
+- [ ] **T063 — 15 min:** Probe one public local authority planning portal without bypassing access restrictions; attach a small commit, test or signed receipt.
+- [ ] **T064 — 15 min:** Save rights-and-coverage matrix; keep uncertain sources disabled by default; attach a small commit, test or signed receipt.
+
+### 09 — Transport: bounded HTTP fetching
+Owner: **Agent 15 — acquisition**. Dependencies: 07. Planned budget: 120 min.
+
+- [ ] **T065 — 15 min:** Implement shared HTTP request with identifiable User-Agent and explicit accept headers; attach a small commit, test or signed receipt.
+- [ ] **T066 — 15 min:** Add connect/read timeouts and maximum downloaded response bytes; attach a small commit, test or signed receipt.
+- [ ] **T067 — 15 min:** Constrain HTTPS and reject private/local hosts, credentials and unsafe schemes; attach a small commit, test or signed receipt.
+- [ ] **T068 — 15 min:** Validate resolved addresses and every redirect hop against approved public endpoints; attach a small commit, test or signed receipt.
+- [ ] **T069 — 15 min:** Classify HTTP 200, 304, 403, 404, 429 and 5xx outcomes; attach a small commit, test or signed receipt.
+- [ ] **T070 — 15 min:** Add deterministic unit tests for denied redirect, oversized body and timeout; attach a small commit, test or signed receipt.
+- [ ] **T071 — 15 min:** Parse RSS and Atom via the existing feed conventions, preserving canonical URLs; attach a small commit, test or signed receipt.
+- [ ] **T072 — 15 min:** Add JSON/API adapter interface with an offline fixture and bounded response parser; attach a small commit, test or signed receipt.
+
+### 10 — Incremental collection and source resilience
+Owner: **Agent 15 — acquisition**. Dependencies: 09. Planned budget: 120 min.
+
+- [ ] **T073 — 15 min:** Persist per-source ETag and Last-Modified only after successful validation; attach a small commit, test or signed receipt.
+- [ ] **T074 — 15 min:** Send conditional requests and count HTTP 304 as a healthy unchanged fetch; attach a small commit, test or signed receipt.
+- [ ] **T075 — 15 min:** Implement capped exponential backoff for 429 and transient 5xx; attach a small commit, test or signed receipt.
+- [ ] **T076 — 15 min:** Stop retries immediately for 401/403/robots/licence restrictions; attach a small commit, test or signed receipt.
+- [ ] **T077 — 15 min:** Store per-source last attempt, last success, next due and cursor metadata; attach a small commit, test or signed receipt.
+- [ ] **T078 — 15 min:** Ensure one source failure retains previously accepted evidence unchanged; attach a small commit, test or signed receipt.
+- [ ] **T079 — 15 min:** Implement stale-source warning and dry-run source health summary; attach a small commit, test or signed receipt.
+- [ ] **T080 — 15 min:** Test idempotent second fetch creates no new logical article or false research-negative; attach a small commit, test or signed receipt.
+
+### 11 — Solar-1000 and >20 MW priority manifests
+Owner: **Agent 14 — data contracts**. Dependencies: 02,05. Planned budget: 120 min.
+
+- [ ] **T081 — 15 min:** Reproduce the fixed numeric Solar-1000 manifest without rewriting it; attach a small commit, test or signed receipt.
+- [ ] **T082 — 15 min:** Implement strict >20.0 MW test, excluding exactly 20.0 MW from priority research; attach a small commit, test or signed receipt.
+- [ ] **T083 — 15 min:** Create deterministic eligible solar candidate listing from the frozen official register; attach a small commit, test or signed receipt.
+- [ ] **T084 — 15 min:** Create deterministic eligible BESS candidate listing from the same pinned register; attach a small commit, test or signed receipt.
+- [ ] **T085 — 15 min:** Define technology, capacity, status and evidence-gap priority weights with reasons; attach a small commit, test or signed receipt.
+- [ ] **T086 — 15 min:** Merge and cap priority solar+BESS cohort at 1,000 stable unique IDs; attach a small commit, test or signed receipt.
+- [ ] **T087 — 15 min:** Store both manifest source hashes, selection rules and per-category counts; attach a small commit, test or signed receipt.
+- [ ] **T088 — 15 min:** Test reordering source CSV rows leaves priority IDs and output order unchanged; attach a small commit, test or signed receipt.
+
+### 12 — Project-first search queue and budgets
+Owner: **Agent 16 — project research**. Dependencies: 07,11. Planned budget: 120 min.
+
+- [ ] **T089 — 15 min:** Define query seed using exact planning reference plus authority and REPD identity; attach a small commit, test or signed receipt.
+- [ ] **T090 — 15 min:** Add distinctive project name plus local authority query variant; attach a small commit, test or signed receipt.
+- [ ] **T091 — 15 min:** Add developer, county, capacity and known aliases query variant; attach a small commit, test or signed receipt.
+- [ ] **T092 — 15 min:** Suppress ambiguous one-word project names unless independently corroborated; attach a small commit, test or signed receipt.
+- [ ] **T093 — 15 min:** Add per-project query budget, per-source budget and request cost ceiling; attach a small commit, test or signed receipt.
+- [ ] **T094 — 15 min:** Persist query string hash, attempt timestamp, source and search outcome; attach a small commit, test or signed receipt.
+- [ ] **T095 — 15 min:** Implement cooldown so identical valid attempts are not immediately repeated; attach a small commit, test or signed receipt.
+- [ ] **T096 — 15 min:** Test NOT_RESEARCHED changes to attempted-no-evidence only after real permitted queries finish; attach a small commit, test or signed receipt.
+
+### 13 — Historical and official-source adapters
+Owner: **Agent 16 — project research**. Dependencies: 09,12. Planned budget: 120 min.
+
+- [ ] **T097 — 15 min:** Implement a permitted public API adapter for one planning-reference lookup; attach a small commit, test or signed receipt.
+- [ ] **T098 — 15 min:** Store planning authority identity beside planning reference to prevent collisions; attach a small commit, test or signed receipt.
+- [ ] **T099 — 15 min:** Implement one Planning Inspectorate project-query adapter or permitted download reader; attach a small commit, test or signed receipt.
+- [ ] **T100 — 15 min:** Implement a GOV.UK public planning/energy publication query adapter; attach a small commit, test or signed receipt.
+- [ ] **T101 — 15 min:** Parse committee recommendation separately from final granted or refused consent; attach a small commit, test or signed receipt.
+- [ ] **T102 — 15 min:** Preserve partial historical dates exactly as published, with precision field; attach a small commit, test or signed receipt.
+- [ ] **T103 — 15 min:** Record unavailable or CAPTCHA-protected planning portals as unsupported, not empty evidence; attach a small commit, test or signed receipt.
+- [ ] **T104 — 15 min:** Test historical planning event retains original event date despite new article publication; attach a small commit, test or signed receipt.
+
+### 14 — News-first intake and shared article normalisation
+Owner: **Agent 15 — acquisition + Agent 16**. Dependencies: 09,13. Planned budget: 120 min.
+
+- [ ] **T105 — 15 min:** Reuse pipeline_headlines.py dedupe and filter interfaces without changing its schedule; attach a small commit, test or signed receipt.
+- [ ] **T106 — 15 min:** Read datacentre_feed.py to reuse accepted article and site index conventions; attach a small commit, test or signed receipt.
+- [ ] **T107 — 15 min:** Normalise source title, publisher, retrieval URL, canonical URL and timestamps; attach a small commit, test or signed receipt.
+- [ ] **T108 — 15 min:** Separate syndicated copies from independent publisher owners in article receipts; attach a small commit, test or signed receipt.
+- [ ] **T109 — 15 min:** Hash lawfully retained original response bytes or allowed metadata consistently; attach a small commit, test or signed receipt.
+- [ ] **T110 — 15 min:** Merge news-first and project-first receipts using stable article keys; attach a small commit, test or signed receipt.
+- [ ] **T111 — 15 min:** Test same publisher article from both pathways creates one article receipt; attach a small commit, test or signed receipt.
+- [ ] **T112 — 15 min:** Test one article can maintain multiple separate project-binding proposals; attach a small commit, test or signed receipt.
+
+### 15 — False-positive-resistant identity matching
+Owner: **Agent 16 — project research**. Dependencies: 05,14. Planned budget: 120 min.
+
+- [ ] **T113 — 15 min:** Wrap existing binder.py EXACT/STRONG/PROBABLE/CANDIDATE/UNBOUND results; attach a small commit, test or signed receipt.
+- [ ] **T114 — 15 min:** Require same authority with planning-reference comparison, not reference string alone; attach a small commit, test or signed receipt.
+- [ ] **T115 — 15 min:** Add county and technology contradiction veto before accepting a match; attach a small commit, test or signed receipt.
+- [ ] **T116 — 15 min:** Add test for same farm name in two different English counties; attach a small commit, test or signed receipt.
+- [ ] **T117 — 15 min:** Add test for multi-project developer, adjacent sites and separate project phases; attach a small commit, test or signed receipt.
+- [ ] **T118 — 15 min:** Add renamed developer and ownership transfer fixtures without silently changing REPD; attach a small commit, test or signed receipt.
+- [ ] **T119 — 15 min:** Write persistent rejected-binding reason so a later run does not resuggest unchanged matches; attach a small commit, test or signed receipt.
+- [ ] **T120 — 15 min:** Test geography-only and developer-only signals never count as independent project verification; attach a small commit, test or signed receipt.
+
+### 16 — Event chronology, deduplication and conflict handling
+Owner: **Agent 16 — project research**. Dependencies: 13,15. Planned budget: 120 min.
+
+- [ ] **T121 — 15 min:** Map event assertions onto existing events.py event classes without replacing REPD events; attach a small commit, test or signed receipt.
+- [ ] **T122 — 15 min:** Create stable event IDs from project identity, type, reference and dated basis; attach a small commit, test or signed receipt.
+- [ ] **T123 — 15 min:** Group multiple publisher articles supporting one actual planning event; attach a small commit, test or signed receipt.
+- [ ] **T124 — 15 min:** Separate two events when titles match but event dates or stages differ; attach a small commit, test or signed receipt.
+- [ ] **T125 — 15 min:** Record historical actual-event date separately from article publication date; attach a small commit, test or signed receipt.
+- [ ] **T126 — 15 min:** Preserve contradicting sources as independent competing assertions with status; attach a small commit, test or signed receipt.
+- [ ] **T127 — 15 min:** Add progression tests for approval, finance, construction, energisation as distinct events; attach a small commit, test or signed receipt.
+- [ ] **T128 — 15 min:** Test syndicated articles count as one development but retain all attribution links; attach a small commit, test or signed receipt.
+
+### 17 — SQLite evidence store and review persistence
+Owner: **Agent 17 — persistence/export**. Dependencies: 05,06,16. Planned budget: 120 min.
+
+- [ ] **T129 — 15 min:** Create schema migration for source records and acquisition cursors; attach a small commit, test or signed receipt.
+- [ ] **T130 — 15 min:** Create schema migration for article receipts and canonical URL keys; attach a small commit, test or signed receipt.
+- [ ] **T131 — 15 min:** Create schema migration for project identities and article-project bindings; attach a small commit, test or signed receipt.
+- [ ] **T132 — 15 min:** Create schema migration for event assertions, links and conflict sets; attach a small commit, test or signed receipt.
+- [ ] **T133 — 15 min:** Create schema migration for independent review decisions and revocations; attach a small commit, test or signed receipt.
+- [ ] **T134 — 15 min:** Create schema migration for research attempts, cooldowns and source health; attach a small commit, test or signed receipt.
+- [ ] **T135 — 15 min:** Implement transaction-based upsert plus deterministic sort/export order; attach a small commit, test or signed receipt.
+- [ ] **T136 — 15 min:** Test crash/retry preserves previous review decisions and prevents duplicate rows; attach a small commit, test or signed receipt.
+
+### 18 — Immutable evidence snapshots and GeoJSON
+Owner: **Agent 17 — persistence/export**. Dependencies: 11,17. Planned budget: 120 min.
+
+- [ ] **T137 — 15 min:** Define snapshot ID UTC format and snapshot manifest schema with input hashes; attach a small commit, test or signed receipt.
+- [ ] **T138 — 15 min:** Implement deterministic per-project summary JSON and separate source receipts JSON; attach a small commit, test or signed receipt.
+- [ ] **T139 — 15 min:** Implement stable CSV with all selected IDs and explicit research status; attach a small commit, test or signed receipt.
+- [ ] **T140 — 15 min:** Use authenticated WGS84 project geometry from source; keep unknown geometry null; attach a small commit, test or signed receipt.
+- [ ] **T141 — 15 min:** Export solar-only and BESS-only GeoJSON plus a size-limited combined GeoJSON; attach a small commit, test or signed receipt.
+- [ ] **T142 — 15 min:** Assert every GeoJSON feature ID exists in an official or approved site manifest; attach a small commit, test or signed receipt.
+- [ ] **T143 — 15 min:** Write immutable snapshot directory and verify all contained hashes before promotion; attach a small commit, test or signed receipt.
+- [ ] **T144 — 15 min:** Update one compatible latest.json pointer atomically only after validation; attach a small commit, test or signed receipt.
+
+### 19 — Independent data-centre project identities
+Owner: **Agent 20 — data-centre lane**. Dependencies: 05,17. Planned budget: 120 min.
+
+- [ ] **T145 — 15 min:** Pin existing datacentre_pinned.json and current dcuk site identifiers; attach a small commit, test or signed receipt.
+- [ ] **T146 — 15 min:** Record source data-centre register total, coordinate reliability and rights limitations; attach a small commit, test or signed receipt.
+- [ ] **T147 — 15 min:** Define DC power units: IT MW, site demand MW and connection MW separately; attach a small commit, test or signed receipt.
+- [ ] **T148 — 15 min:** Write fixture for same operator at two locations and same site with multiple phases; attach a small commit, test or signed receipt.
+- [ ] **T149 — 15 min:** Implement additive data-centre intake adapter using permitted source registry; attach a small commit, test or signed receipt.
+- [ ] **T150 — 15 min:** Link DC articles to dcuk IDs without generating REPD reference numbers; attach a small commit, test or signed receipt.
+- [ ] **T151 — 15 min:** Export independent DC project JSON with provisional/verified evidence states; attach a small commit, test or signed receipt.
+- [ ] **T152 — 15 min:** Test public DC site list preserves original IDs, status and map identity; attach a small commit, test or signed receipt.
+
+### 20 — Other technologies and cross-project relationships
+Owner: **Agent 20 — other-category adapters**. Dependencies: 05,19. Planned budget: 120 min.
+
+- [ ] **T153 — 15 min:** Implement existing-REPD onshore wind identity adapter using common receipt contract; attach a small commit, test or signed receipt.
+- [ ] **T154 — 15 min:** Implement existing-REPD offshore wind identity adapter using same contract; attach a small commit, test or signed receipt.
+- [ ] **T155 — 15 min:** Define grid scheme identity namespace from approved official identifiers; attach a small commit, test or signed receipt.
+- [ ] **T156 — 15 min:** Implement grid project adapter for one permitted official infrastructure source; attach a small commit, test or signed receipt.
+- [ ] **T157 — 15 min:** Define typed relationships: co-located, developer-linked, proximity, connection-evidenced; attach a small commit, test or signed receipt.
+- [ ] **T158 — 15 min:** Ensure proximity edges cannot become electrical or commercial connection assertions; attach a small commit, test or signed receipt.
+- [ ] **T159 — 15 min:** Add empty-but-valid category outputs for sources not approved in V9.25; attach a small commit, test or signed receipt.
+- [ ] **T160 — 15 min:** Test all six category outputs share schemas without merging unrelated identities; attach a small commit, test or signed receipt.
+
+### 21 — Research priority, coverage and observability
+Owner: **Agent 17 — persistence/export**. Dependencies: 11,17,19,20. Planned budget: 120 min.
+
+- [ ] **T161 — 15 min:** Reuse relevance.py additive scoring; isolate research priority from article-match confidence; attach a small commit, test or signed receipt.
+- [ ] **T162 — 15 min:** Expose distinct verified impact and age/freshness dimensions; attach a small commit, test or signed receipt.
+- [ ] **T163 — 15 min:** Compute selected, attempted, unresearched, provisional, verified and rejected per category; attach a small commit, test or signed receipt.
+- [ ] **T164 — 15 min:** Count independent events separately from syndicated article copies; attach a small commit, test or signed receipt.
+- [ ] **T165 — 15 min:** Compute source success, unchanged, failed, stale and disabled totals; attach a small commit, test or signed receipt.
+- [ ] **T166 — 15 min:** Compute previous-snapshot coverage deltas without counting timeouts as attempted-negative; attach a small commit, test or signed receipt.
+- [ ] **T167 — 15 min:** Generate machine-readable audit report and human-readable bounded summary; attach a small commit, test or signed receipt.
+- [ ] **T168 — 15 min:** Add threshold warnings for stale operative snapshot and consecutive collection failure; attach a small commit, test or signed receipt.
+
+### 22 — Weekly GitHub Actions refresh and branch integrity
+Owner: **Agent 18 — CI/release engineer**. Dependencies: 09,17,18,21. Planned budget: 120 min.
+
+- [ ] **T169 — 15 min:** Create pipeline-project-evidence-weekly.yml with Monday 02:00 UTC and manual dispatch; attach a small commit, test or signed receipt.
+- [ ] **T170 — 15 min:** Pin checkout commit/actions/python dependencies and least-privilege token permissions; attach a small commit, test or signed receipt.
+- [ ] **T171 — 15 min:** Validate source config, owner inputs, output paths and snapshot ID before fetching; attach a small commit, test or signed receipt.
+- [ ] **T172 — 15 min:** Restore accepted prior SQLite state and all cursors from isolated evidence-data branch; attach a small commit, test or signed receipt.
+- [ ] **T173 — 15 min:** Run deterministic selection, bounded fetch, binding, events and export pipeline; attach a small commit, test or signed receipt.
+- [ ] **T174 — 15 min:** Run network-free tests and a separate bounded approved live-source probe; attach a small commit, test or signed receipt.
+- [ ] **T175 — 15 min:** Commit snapshot plus pointer using non-forcing branch lease with retry on races; attach a small commit, test or signed receipt.
+- [ ] **T176 — 15 min:** Upload receipt/health artifacts and guard against any V9.25, homepage or historical-file write; attach a small commit, test or signed receipt.
+
+### 23 — V9.25 interface and mobile acceptance
+Owner: **Agent 21 — frontend/QA**. Dependencies: 18,19,20,21. Planned budget: 120 min.
+
+- [ ] **T177 — 15 min:** Inspect frozen V9.24 table actions, SOLAR 1000 view, CSV and MAP contract; attach a small commit, test or signed receipt.
+- [ ] **T178 — 15 min:** Implement additive evidence data loader with schema/version compatibility and offline fallback; attach a small commit, test or signed receipt.
+- [ ] **T179 — 15 min:** Create prominent solar evidence panel and explicit no-evidence/unresearched statuses; attach a small commit, test or signed receipt.
+- [ ] **T180 — 15 min:** Add Data Centre Projects tab preserving current independent site IDs; attach a small commit, test or signed receipt.
+- [ ] **T181 — 15 min:** Add technology, capacity, stage, event, review-confidence and research-status filters; attach a small commit, test or signed receipt.
+- [ ] **T182 — 15 min:** Implement original-source history view with provisional/source-rights warnings and URL sanitisation; attach a small commit, test or signed receipt.
+- [ ] **T183 — 15 min:** Implement accessible full-screen project report at 390/393 mobile and 1440 desktop widths; attach a small commit, test or signed receipt.
+- [ ] **T184 — 15 min:** Run genuine UI clicks for search, sorting, CSV, source URLs, MAP and GridAtlas nearest-card caveat; attach a small commit, test or signed receipt.
+
+### 24 — Reproducible tests, release and public readback
+Owner: **Agent 13 sole integrator + Agent 19 independent reviewer**. Dependencies: all earlier phases. Planned budget: 120 min.
+
+- [ ] **T185 — 15 min:** Run offline pytest, schema, static JS, security and all inherited release tests against exact SHA; attach a small commit, test or signed receipt.
+- [ ] **T186 — 15 min:** Run bounded live-source rehearsal; record counts of actual attempts versus verified findings; attach a small commit, test or signed receipt.
+- [ ] **T187 — 15 min:** Verify previous 7,775 and 3,604 official rows, numeric pilot IDs and no historical changes; attach a small commit, test or signed receipt.
+- [ ] **T188 — 15 min:** Confirm no existing V9.25 tree; run new_version.py once from accepted V9.24 registry parent; attach a small commit, test or signed receipt.
+- [ ] **T189 — 15 min:** Integrate scoped PRs into one release branch, resolve conflicts and create one production PR; attach a small commit, test or signed receipt.
+- [ ] **T190 — 15 min:** Run real browser widths and MAP-to-GridAtlas checks; independently review known 390px failures; attach a small commit, test or signed receipt.
+- [ ] **T191 — 15 min:** Merge after required checks; promote homepage-owner pointer through its established CI/CD; attach a small commit, test or signed receipt.
+- [ ] **T192 — 15 min:** Verify public V9.25 served bytes, latest evidence pointer, rollback routes and signed handover; attach a small commit, test or signed receipt.
+
+### 25 — Handover, auditing and future iterations
+Owner: **Agent 13 sole integrator**. Dependencies: 24. Planned budget: 120 min.
+
+- [ ] **T193 — 15 min:** Record exact production, homepage and data-snapshot commits and workflow run URLs; attach a small commit, test or signed receipt.
+- [ ] **T194 — 15 min:** Publish full category coverage metrics without conflating provisional with verified; attach a small commit, test or signed receipt.
+- [ ] **T195 — 15 min:** List all Python modules, modified workflows, tests and source licences actually exercised; attach a small commit, test or signed receipt.
+- [ ] **T196 — 15 min:** Record public URL, served-byte SHA receipts, cache headers and geographic exceptions; attach a small commit, test or signed receipt.
+- [ ] **T197 — 15 min:** Document known defects, disabled sources, outstanding approvals and deliberate V9.26 deferrals; attach a small commit, test or signed receipt.
+- [ ] **T198 — 15 min:** Create one resumption command per remaining failing task with latest branch and head; attach a small commit, test or signed receipt.
+- [ ] **T199 — 15 min:** Attach independent reviewer sign-off and actual owner acceptance status without inference; attach a small commit, test or signed receipt.
+- [ ] **T200 — 15 min:** Comment final handover to V9.25 issue and cross-reference issue #41; attach a small commit, test or signed receipt.
+
+## Four mandatory hand-off gates
+**Gate A / start of coding:** issue #41 checked, release-owner reservation acknowledged, old files pinned, all V9.24 registry inconsistencies captured.  
+**Gate B / before a live collector:** source hosts + licensing audited; independent acceptance contract exists; timeout/SSRF/source failure tests pass; pilot manifests frozen.  
+**Gate C / before product PR:** real approved source fetch demonstrably produces an immutable snapshot with honest verified/provisional/negative counts; data branch lease proven; UI fallback stable.  
+**Gate D / before public claim:** main PR required checks and browser passed, homepage transforms verified, Page served V9.25 readback digest captured, rollback V9.24 and V9.23 still available. Report external GridAtlas 390 px failures as known issues.
+
+## Minimum week-one proof and incremental exclusions
+
+A good first weekly snapshot may show 1,000 selected but very few researched projects. Its success is **correct source receipts, research attempts, safe match proposals, independent acceptance boundaries, repeatable builds, and honest coverage**. Do not force 100% article matches. Defer paywalled publishers, mass council scraping, unsupported wind/grid source discovery, advanced cross-asset relationship suggestions and broad historical backfills beyond the first bounded cohort. Expand only when permissions, fixtures, cost caps and accepted tests exist.
+
+## Authoritative reading list
+- https://github.com/Ventusltd/globalgrid2050
+- https://github.com/Ventusltd/globalgrid2050-homepage
+- https://github.com/Ventusltd/neural-link-between-agents/issues/41
+- https://github.com/Ventusltd/globalgrid2050/tree/main/automation/news
+- https://github.com/Ventusltd/globalgrid2050/tree/main/automation/repd
+- https://github.com/Ventusltd/globalgrid2050/blob/main/automation/pipeline_release/new_version.py
+- https://github.com/Ventusltd/globalgrid2050/tree/main/uk_renewables_pipeline/202611161244
+- https://github.com/Ventusltd/testcode/pull/16
+- https://github.com/Ventusltd/globalgrid2050/pull/123
+- https://github.com/Ventusltd/globalgrid2050-homepage/pull/18
+- https://github.com/Ventusltd/globalgrid2050/pull/124
+- https://github.com/Ventusltd/gridatlas/issues/87
+
+**Status of this document:** scoping/assignment only, not implementation, independent verification or release. Exact code/test/link claims must be rechecked by the executing agents.
+
+
+================================================================================
+APPENDIX B - FULL GITHUB ISSUE #42 BODY
+================================================================================
+[OWNER-INSTRUCTED AGENT 13 / GLOBALGRID2050 V9.25] [2026-11-16 UTC]
+TYPE: IMPLEMENTATION WORK BOARD / EXCLUSIVE RELEASE-OWNER RESERVATION
+STATUS: PLAN COMMITTED — NO V9.25 SOURCE CODE OR LIVE RELEASE CLAIMED
+
+**Complete 200-task, 25-phase, <=15-minute work board (committed on neutral main):**
+https://github.com/Ventusltd/neural-link-between-agents/blob/0da2ba75f1eb27f8571ec6bb14a418d488615c7d/SESSIONS/AGENT-13/2026-11-16-V925-EXECUTION-PLAN-15MIN.md
+
+**Budget:** 200 x 15m = 50 focused engineer-hours + 12.5h contingency = 62.5h effort. Estimated 3–6 working days with 4–6 *truly parallel* implementation agents, contingent on CI, rights and source access. This is not a guaranteed release date.
+
+**Owner directive and branch isolation:** Agent 13 alone integrates and promotes V9.25. Proposed independent scopes: Agent 14 contracts/cohorts, Agent 15 approved sources/HTTP, Agent 16 project-first matching and events, Agent 17 SQLite/snapshots/GeoJSON, Agent 18 CI and pre-release metadata repair, Agent 19 independent source/release QA, Agent 20 DC/wind/grid adapters, Agent 21 UI/browser. Agent 13 must check for a conflicting Agent 12 reservation before touching publication metadata. No other agent merges, changes the operative pointer, or creates a second V9.25 release. All role labels are coordination names, not verified active processes.
+
+**First release gates:**
+1. Repair V9.24 registry and version-pointer inconsistencies in mutable metadata without touching immutable release trees.
+2. Preserve 7,775 REPD records, 3,604 solar, numeric 1,000-ref pilot (1018–2325) and ZERO independently verified leads at baseline.
+3. Distinguish >20 MW solar+BESS research cohort (up to 1,000) from frozen Solar-1000.
+4. Reuse news package; build both news-first and project-first acquisition; real rights and independent review gates; fail closed.
+5. Persist weekly evidence snapshots on separate data branch; never rewrite a frozen software release. Honest category counts.
+6. Add independent data-centre tab and generic six-category schema; source-dependent adapters may remain disabled rather than fabricated.
+7. Publish one V9.25 through new_version.py; validate 390/393/1440 browser and real GridAtlas action; homepage source/build/served SHA.
+8. Post exact commits, CI URLs, live page readback, coverage and rollback.
+
+**Prior facts inspected:** current globalgrid2050 main 42fdb5af; V9.24 202611161244 is top of versions.json with PASS, but release_candidate.operative metadata still points to V9.23; registry V9.24 entry still labels candidate and has null merge/CI fields. The homepage importer deliberately transforms source HTML; source index SHA must not be used as built root index SHA. Existing evidence_ledger.assess never self-grants publishable acceptance. Investigate these, don't overwrite historical files.
+
+**Implementation handshake:** agents read the immutable plan, acknowledge exact T### IDs + scope + branch in this issue, commit small atomic changes, share SHA and test URL. GitHub comments do not wake agents. Independent review needed before publication.
+
+**Coordination cross-reference:** https://github.com/Ventusltd/neural-link-between-agents/issues/41
+
+Signed: ChatGPT, preparing owner-requested Agent 13 scope.
+
+END OF CODEX SESSION HANDOFF
