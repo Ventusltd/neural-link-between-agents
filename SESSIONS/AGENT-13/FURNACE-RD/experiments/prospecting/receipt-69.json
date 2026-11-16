@@ -1,0 +1,78 @@
+{
+  "accepted": true,
+  "actual_producer_parity_scope": "Synthetic official_candidate scores only; CPU pre-extracted rounded capacity, technology, route/freshness; full producer validation and real inputs not tested",
+  "array_memory_conservative_bound_bytes": 35328,
+  "array_memory_limit_bytes": 268435456,
+  "boundary_fixture_rows": 12,
+  "channels": [
+    "raw CUDA integer branches",
+    "CuPy independent expression graph"
+  ],
+  "cpu_feature_extraction_and_producer_oracle_seconds": 0.0007078000344336033,
+  "cpu_oracle": "SHA-pinned official_candidate AST subset",
+  "cpu_oracle_rows": 69,
+  "cuda_runtime": 12090,
+  "cupy_version": "14.2.0",
+  "deliberate_failure_requested": false,
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "gpu_pool_reserved_bytes": 6656,
+  "gpu_warmup_compile_seconds": 0.2378855999559164,
+  "gpu_warmup_executions": 2,
+  "injected_error_channel": "CuPy graph output copied to GPU then incremented by one hundredth",
+  "injected_order_error_detected": true,
+  "injected_score_error_detected": true,
+  "injected_score_error_witness_row": 0,
+  "input_sha256": "9fa5e900faf5dd9f6ff173d56cdf22debe6d54b64661fc0723e9bfe54500032f",
+  "integer_score_unit": "hundredth point",
+  "known_zero_capacity_rows": 6,
+  "maximum_absolute_error_hundredths": 0,
+  "maximum_cases": 262144,
+  "median_seconds": {
+    "cpu_numpy": 1.2099742889404297e-05,
+    "graph": 0.0003714999184012413,
+    "raw": 0.00027849990874528885
+  },
+  "mismatches": 0,
+  "numpy_version": "2.4.6",
+  "ordering_validation": "Both GPU scoring channels share CuPy lexsort; independent Python string-key oracle witnesses every rank",
+  "processed_rows": 69,
+  "production_enabled": false,
+  "repeated_gpu_executions": 6,
+  "repeated_gpu_row_evaluations": 414,
+  "repeats": 3,
+  "requested_cases": 69,
+  "schema": "furnace.prospecting-numeric-pilot.v1",
+  "scope": "Pinned official_candidate score and ID ordering on synthetic rows; CPU feature extraction; no real-corpus, news, provenance, rights, browser or publication acceptance",
+  "script_sha256": "6b1f5bde3a6fd02f0eff45955353af10718f576f57e80e819cd4f884c419e67b",
+  "seed": 20261116,
+  "source_commit": "0cb4f71e948df23e2985f189a5a1d77e88d332b2",
+  "source_sha256": {
+    "prospecting": "23c2c054a1d55b07e60af513709071476bdc6202dbf0e8b4ec87b23cf59ddf73",
+    "relevance": "8be79d5e5048b79eae425f14f749cfa439a03774c2c27fb0b1309aca3b953f43"
+  },
+  "status": "passed",
+  "synthetic_inputs": true,
+  "timing_scope": "Warm scoring+full ordering; GPU synchronized H2D+D2H included; extraction/oracle and compilation excluded and separately reported",
+  "timings_seconds": {
+    "cpu_numpy": [
+      3.389967605471611e-05,
+      1.2099742889404297e-05,
+      1.109996810555458e-05
+    ],
+    "graph": [
+      0.00038109999150037766,
+      0.00030820025131106377,
+      0.0003714999184012413
+    ],
+    "raw": [
+      0.00027849990874528885,
+      0.0002529001794755459,
+      0.0003609997220337391
+    ]
+  },
+  "tolerance_hundredths": 0,
+  "unique_numeric_feature_cases": 39,
+  "unique_source_feature_cases": 68,
+  "unknown_capacity_rows": 25,
+  "whole_seconds": 0.42692389991134405
+}

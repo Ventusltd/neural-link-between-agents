@@ -1,0 +1,4 @@
+# Producer pins refer to exact snapshot bytes; portable code and JSON use LF.
+*.source -text
+*.py text eol=lf
+*.json text eol=lf
