@@ -100,7 +100,7 @@ def evaluate():
             if not passed:result["blockers"].append("FAIL_"+name.upper())
         for name,command in [
            ("python_candidate_structure",["python3","automation/v923-recovery/repair.py","check"]),
-           ("candidate_js_syntax",["node","--check",f"uk_renewables_pipeline/{TARGET_ID}/scripts/plugins/machine-read-notes-v923.js"])
+           ("candidate_js_syntax",["node","--check",f"uk_renewables_pipeline/{TARGET_ID}/scripts/plugins/machine-notes-v923.js"])
         ]:
             p=subprocess.run(command,cwd=PRODUCT,capture_output=True,text=True,timeout=90)
             result["checks"][name]=p.returncode==0
