@@ -1,0 +1,86 @@
+name: Overnight five / 04-map / All-row MAP and GridAtlas contracts
+# Read-only tests on current product main. No auto-merge, publication or unsupported evidence claims.
+on:
+  schedule:
+    - cron: '13 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/overnight-v928-04-map.yml'
+permissions:
+  contents: read
+concurrency:
+  group: overnight-v928-04-map
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Hard UTC timebox - expires 17 November 2026 08:00 UTC
+        id: window
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from datetime import datetime, timezone
+          import os
+          now = datetime.now(timezone.utc)
+          active = now < datetime(2026, 11, 17, 8, tzinfo=timezone.utc)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('active=' + str(active).lower() + '\n')
+          print('ACTIVE' if active else 'EXPIRED_NOT_TESTED', now.isoformat())
+          PY
+      - name: Read exact current GlobalGrid2050 source
+        if: steps.window.outputs.active == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: main
+          filter: blob:none
+          persist-credentials: false
+          path: product
+          sparse-checkout: |
+            automation/pipeline_release
+            uk_renewables_pipeline
+      - uses: actions/setup-python@v5
+        if: steps.window.outputs.active == 'true'
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        if: steps.window.outputs.active == 'true'
+        with:
+          node-version: '22'
+      - name: Source identity
+        if: steps.window.outputs.active == 'true'
+        working-directory: product
+        run: git rev-parse HEAD | tee "$RUNNER_TEMP/checkout-sha.txt"
+      - name: All-row MAP and GridAtlas contracts
+        if: steps.window.outputs.active == 'true'
+        working-directory: product
+        shell: bash
+        run: |
+          set -euo pipefail
+          node automation/pipeline_release/check_deeplinks.mjs uk_renewables_pipeline/202611161244 "$RUNNER_TEMP/v924-links.json"
+          node automation/pipeline_release/check_deeplinks.mjs uk_renewables_pipeline/202611161747 "$RUNNER_TEMP/v927-links.json"
+          python -c 'import json,os,pathlib; p=pathlib.Path(os.environ["RUNNER_TEMP"]); a=json.loads((p/"v924-links.json").read_text()); b=json.loads((p/"v927-links.json").read_text()); assert len(a)==len(b)==7775, (len(a),len(b)); assert a==b, "MAP links changed"; print("PASS: 7,775 unchanged MAP links")'
+      - name: Auditable verdict
+        if: always()
+        shell: bash
+        run: |
+          echo '## All-row MAP and GridAtlas contracts' >> "$GITHUB_STEP_SUMMARY"
+          echo "Execution gate: ${{ steps.window.outputs.active }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Job status: ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Source SHA: $(cat "$RUNNER_TEMP/checkout-sha.txt" 2>/dev/null || echo not-checked-out)" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Read-only tests; never a public release or verified project-evidence assertion.' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.window.outputs.active == 'true'
+        with:
+          name: overnight-04-map-receipt
+          path: |
+            ${{ runner.temp }}/checkout-sha.txt
+            ${{ runner.temp }}/v924-links.json
+            ${{ runner.temp }}/v927-links.json
+            ${{ runner.temp }}/public-receipt.json
+          if-no-files-found: ignore
+          retention-days: 5
