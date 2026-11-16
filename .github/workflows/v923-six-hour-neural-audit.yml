@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/v923-six-hour-neural-audit.yml'
+      - 'automation/v923-recovery/audit.py'
   schedule:
     - cron: '0,30 * * * *'
   workflow_dispatch:
@@ -69,8 +70,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 automation/v923-recovery/audit.py
-      - name: Commit append-only audit receipt to Neural Link
+      - name: Hard stop before writing audit receipts
+        id: write_window
         if: steps.window.outputs.active == 'true'
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from datetime import datetime, timezone
+          now=datetime.now(timezone.utc)
+          print('audit_commit_gate_utc',now.isoformat())
+          if now >= datetime(2026,11,16,6,15,tzinfo=timezone.utc):
+              raise SystemExit('AUDIT WRITE BLOCKED: owner six-hour cutoff passed')
+          PY
+      - name: Commit append-only audit receipt to Neural Link
+        if: steps.write_window.outcome == 'success'
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
@@ -82,7 +95,7 @@ jobs:
           git commit -m "audit(v923): half-hour cycle ${stamp}" || true
           git push origin HEAD:main
       - name: Post traceable result to neural coordination channels
-        if: steps.window.outputs.active == 'true'
+        if: steps.write_window.outcome == 'success'
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
