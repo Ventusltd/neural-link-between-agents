@@ -35,6 +35,25 @@ def product_head():
     except Exception:
         return "UNVERIFIED"
 
+def latest_real_map_run():
+    """Read hosted GridAtlas browser verdict; URL success is not engine evidence."""
+    uri=("repos/Ventusltd/globalgrid2050/actions/workflows/"
+         "v923-gridatlas-real-map-qa.yml/runs?per_page=20")
+    try:
+        p=subprocess.run(["gh","api",uri],capture_output=True,text=True,timeout=25)
+        if p.returncode:
+            return {"state":"UNVERIFIED","error":p.stderr[:250]}
+        rows=json.loads(p.stdout).get("workflow_runs",[])
+        finished=[v for v in rows if v.get("status")=="completed"]
+        if not finished:return {"state":"UNVERIFIED","error":"no completed hosted run"}
+        # Reruns of older workflows may have a newer updated_at timestamp.
+        v=max(finished,key=lambda a:(a.get("updated_at") or "",a.get("created_at") or ""))
+        return {"state":"COMPLETED","conclusion":v.get("conclusion") or "UNVERIFIED",
+                "run_id":v.get("id"),"run_attempt":v.get("run_attempt"),
+                "updated_at":v.get("updated_at"),"url":v.get("html_url")}
+    except Exception as ex:
+        return {"state":"UNVERIFIED","error":str(ex)[:250]}
+
 def evaluate():
     now=dt.datetime.now(dt.timezone.utc)
     result={"schema":"globalgrid2050.neural.v923-six-hour-audit.v1","recorded_utc":now.isoformat(),
@@ -109,6 +128,12 @@ def evaluate():
     result["neural"]["coordination_30"]=issue_comments("Ventusltd/neural-link-between-agents",30)
     result["neural"]["agent10_40"]=issue_comments("Ventusltd/neural-link-between-agents",40)
     result["neural"]["gridatlas_87"]=issue_comments("Ventusltd/gridatlas",87)
+    result["external_ci"]={"real_map":latest_real_map_run()}
+    map_state=result["external_ci"]["real_map"]
+    if map_state.get("state")=="COMPLETED" and map_state.get("conclusion")=="failure":
+        result["blockers"].append("REAL_MAP_MOBILE_LATEST_HOSTED_FAILURE")
+    # A successful three-project run is never 7,775-record acceptance.
+
     # Source integrity is not a visual MAP acceptance.
     result["not_proven"]=["real 390px first-restore nearest result","full 7775 rendered MAP href/CSV parity",
        "original publisher/REPD receipts","physical iPhone Safari","served V9.23 bytes and homepage acceptance"]
@@ -125,6 +150,10 @@ def main():
               "## Structural gates"]
     for name,val in r["checks"].items():markdown.append(f"- {'PASS' if val else 'FAIL'} {name}")
     markdown+=["","## Unresolved evidence"]+[f"- {x}" for x in r["blockers"]+r["not_proven"]]
+    markdown+=["","## Latest real MAP browser check",
+       "- Hosted result: " + json.dumps(r.get("external_ci",{}).get("real_map",{}),
+                                         ensure_ascii=False,sort_keys=True),
+       "- Three sampled projects never establish the whole 7,775-row fleet. Hidden DOM is not user-visible acceptance."]
     markdown+=["","## Coordination", "- Read latest Neural #30, Agent 10 #40 and GridAtlas #87 from the public GitHub API; source comments retained by id in the JSON receipt.","- GitHub Actions runs the deterministic checks. An issue comment does not start or continue a ChatGPT session.","- NO HOMEPAGE PROMOTION OR PRODUCT WRITES."]
     (out/"latest.md").write_text("\n".join(markdown)+"\n")
     return 0 # failures are visible findings, not a reason to lose receipts
