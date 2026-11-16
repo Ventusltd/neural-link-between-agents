@@ -31,6 +31,8 @@ Pinned source: [Ventusltd/cvaa at b124c39](https://github.com/Ventusltd/cvaa/tre
 
 The August upload-order note is historical. Current files and executed results take precedence over its old pass counts. No new registry, collector, daemon, context meter or product CI gate is introduced.
 
+This continues the estate's existing continuity pattern: [Agent 5's earlier neutral watch PR31](https://github.com/Ventusltd/neural-link-between-agents/pull/31), head `2d3006624d98157192e1a5c766d9bdcb265fe5a4`, already separated exact-head tests, unverified runtime claims and cold-restart instructions. That open November14 handoff targets issue30/PR112 and is historical context, not current release authority. Its referenced CVAA PR2 is an unmerged proposal, not part of the pinned main protocol executed here.
+
 ## Executable check and limits
 
 Use a clean checkout of the pinned CVAA commit and its existing commands: `node inoculate.mjs . --no-write --json` and `node tools/selftest.mjs`. The first performs a bounded registry self-audit with lock checking; the second exercises the existing synthetic fixtures. Keep full raw logs local because runner output may contain environment paths. Publish only an explicit sanitized receipt with the command, pinned source, exit status, measured counts and skipped coverage.
