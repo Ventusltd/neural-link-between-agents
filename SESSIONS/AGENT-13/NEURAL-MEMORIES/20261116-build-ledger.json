@@ -1,0 +1,863 @@
+{
+  "schema": "globalgrid2050.neural-build-ledger.v1",
+  "observed_at": "2026-11-16T17:52:14Z",
+  "purpose": "Bounded build handoff, not an executor or release approval.",
+  "coverage": {
+    "kind": "declared_current_sprint_handoffs",
+    "complete_transcript": false,
+    "source_issues": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      49
+    ],
+    "last_issue42_comment": 6924410756,
+    "local_git_objects_checked": 23,
+    "missing": [
+      "Private STONES material was not read or exported.",
+      "No complete seven-month or all-workflow estate traversal is claimed.",
+      "Unacknowledged cross-window work is not counted as running.",
+      "Later comments and branch movement require a new observation.",
+      "Root reports three Support assignments and ten-minute idle-poll direction in comment6924410756; ACKs pending at this observation."
+    ]
+  },
+  "protocol_sources": {
+    "repository": "Ventusltd/cvaa",
+    "commit": "b124c39e5343b24dd5b546a0c279a1c06360bdad",
+    "paths": [
+      "vaccines/202609031019-memory-store-complete.md",
+      "vaccines/202609032336-source-receipt-classification.md"
+    ],
+    "application": "Declare the input inventory and bind each claim to a source. This is not CVAA's transcript Parquet store; no transcript completeness or immunity claim."
+  },
+  "invariants": {
+    "repd_records": 7775,
+    "solar_records": 3604,
+    "solar1000_count": 1000,
+    "solar1000_sha256": "c625edbb9c471a1e9a9034a1afe99881fbfabb1fcadcf0623355931f5b6aed1f",
+    "automatic_verified": false,
+    "critical_evidence_failure_blocks_publication": true
+  },
+  "public_observation": {
+    "url": "https://www.globalgrid2050.com/homepage-shell/data/homepage.json",
+    "http_status": 200,
+    "sha256": "2f7d84813d03ba567d001a1fddf803702be92309b32359239785ca8fd5e96fc3",
+    "pipeline_operative": "202611161244",
+    "gridatlas_homepage_label": "202611132345",
+    "kind": "HTTP configuration read only; not browser or GridAtlas runtime acceptance"
+  },
+  "public_pipeline_count": 0,
+  "prerequisite_releases": [
+    {
+      "id": "map_v9191",
+      "repository": "Ventusltd/gridatlas",
+      "pr": 92,
+      "head": "fceb852ddb54d46c027f364429641cde2295fae6",
+      "generation": "202611161720",
+      "status": "merged_pending_public_readback",
+      "ci": {
+        "status": "observed_pass",
+        "tested_head": "fceb852ddb54d46c027f364429641cde2295fae6",
+        "urls": [
+          "https://github.com/Ventusltd/gridatlas/actions/runs/43921559147"
+        ]
+      },
+      "tooling_merge": "1b2e9bec016029b908022f4961ecb75c546a6de9",
+      "next_command": "node tools/release/check-live.mjs --generation 202611161720 --wait",
+      "condition": "PR92 merge independently confirmed. Require current live-byte run and actual public MAP browser matrix; do not repeat the merge.",
+      "rollback": "Route-C rollback-generation.mjs with the actual merged release SHA; predecessor 202611132345.",
+      "limits": [
+        "Old PR90 failed and is closed, not relabelled green.",
+        "Three inherited data-contract failure rows remain, zero new.",
+        "Geographic distance is not grid capacity or a connection."
+      ],
+      "merge_commit": "1de35f9eca360a5d80d81542230fef546917f5c5"
+    }
+  ],
+  "components": [
+    {
+      "id": "news_rank",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "c2b89326ab55424c4ea10ff5921d9c2bf31073dd"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/news/news_algorithm.py",
+        "automation/news/tests/test_news_algorithm.py"
+      ],
+      "integration": "candidate_integrated",
+      "integrated_as": [
+        "8aef1d141676041b61dbae0ec65ac0bdbee8408c"
+      ],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_news_algorithm.py",
+        "detail": "30 ranking tests; wider 102-test handoff includes inherited tests.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6923677736"
+      },
+      "next_action": {
+        "kind": "covered_by_consumer",
+        "command": null,
+        "condition": "Already integrated; do not replay."
+      },
+      "limits": [
+        "Publisher brand does not establish originality or independence. Superseded exclusion d91ecd73 is not part of this build."
+      ]
+    },
+    {
+      "id": "news_consumer",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "20c0023ccbd6ed34bb2648caf95ea1a6e22491eb"
+      ],
+      "code_requires": [
+        "news_rank"
+      ],
+      "owned_paths": [
+        "automation/news/build_news_priority.py",
+        "automation/news/acquisition/browser/news-priority*",
+        ".github/workflows/pipeline-headlines.yml",
+        "uk_renewables_pipeline/202611161734/"
+      ],
+      "integration": "candidate_integrated",
+      "integrated_as": [
+        "c7779b2ac5ef31d6c49580d1f94a9bd81ca21b1c"
+      ],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_news_priority_export.py automation/news/tests/test_news_algorithm.py automation/news/tests/test_pipeline_headlines.py",
+        "detail": "123 Python, 8 inherited Node, 54 Chrome cases reported.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6924311347"
+      },
+      "next_action": {
+        "kind": "candidate_ci_then_refresh",
+        "command": "gh workflow run pipeline-headlines.yml --repo Ventusltd/globalgrid2050 --ref main",
+        "condition": "Only after this exact implementation is merged and its CI passes; then verify data-branch head and raw input/sidecar hash in the real UI."
+      },
+      "limits": [
+        "Implemented sidecar schema is globalgrid2050.news.headline-priority.v1; the advisor's pipeline-editorial example was illustrative.",
+        "Missing/mismatched sidecar means labelled date fallback, not applied priority.",
+        "Same Git commit cannot eliminate two-request HTTP races; consumer hash check remains required."
+      ]
+    },
+    {
+      "id": "prospecting_core",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "2ac95439225f440c4b2e35adb1ea51229354b6f1",
+        "7b45a05f1677c72c563ed114b96e05899d741c26",
+        "dc09aa85679bd995298c552617bd3ddbe2a77dfa",
+        "fda83cd966348080f3f911cb534a40b4962019dd"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/news/prospecting.py",
+        "automation/news/tests/test_prospecting.py",
+        "automation/news/PROSPECTING.md"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_prospecting.py",
+        "detail": "79-test component handoff; actual observation-freshness regression exercised in TestCode PR21.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6924288420"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 2ac95439225f440c4b2e35adb1ea51229354b6f1 7b45a05f1677c72c563ed114b96e05899d741c26 dc09aa85679bd995298c552617bd3ddbe2a77dfa fda83cd966348080f3f911cb534a40b4962019dd",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "Do not stop at older 7b45a05f: its empty-feed freshness bug is retained as a negative control.",
+        "Research rank is not verified event strength or an investment recommendation."
+      ]
+    },
+    {
+      "id": "prospecting_ui",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "fb7dc5610656ea757611d5941f86f28d5613e9e6"
+      ],
+      "code_requires": [
+        "prospecting_core"
+      ],
+      "owned_paths": [
+        "automation/news/prospecting-ui/"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "node --test automation/news/prospecting-ui/tests/adapter.test.mjs",
+        "detail": "Prototype handoff reported 31 Node tests and local Chrome widths.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6924288843"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick fb7dc5610656ea757611d5941f86f28d5613e9e6",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": []
+    },
+    {
+      "id": "prospecting_export",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "19d5634bbd86f2082f6bc1aed251d453ec80fa58"
+      ],
+      "code_requires": [
+        "prospecting_core",
+        "prospecting_ui"
+      ],
+      "owned_paths": [
+        "automation/news/build_prospecting_priority.py",
+        "automation/news/tests/test_prospecting_export.py",
+        "automation/news/prospecting-ui/"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_prospecting_export.py automation/news/tests/test_prospecting.py",
+        "detail": "97 Python, 41 Node, installed Chrome 375/768/1440 reported; actual 7775-row CSV/MAP retained.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6924288843"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 19d5634bbd86f2082f6bc1aed251d453ec80fa58",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "Complete official identity inventory and fixed numeric Solar-1000 differ from the capped 1000-row research ranking.",
+        "Missing news/momentum/funding remain UNKNOWN.",
+        "Do not cherry-pick equivalent UI dependency 64be28e1 as an extra feature."
+      ]
+    },
+    {
+      "id": "dc_expansion",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "35facd949c033dbf1915cc0f32d7e82b3b49cf22"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/news/tests/test_global_datacentres.py",
+        "uk_renewables_pipeline/202611161630/global-datacentres/",
+        "uk_renewables_pipeline/202611161630/scripts/plugins/global-datacentres-v925.js"
+      ],
+      "integration": "transplant_required",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_global_datacentres.py",
+        "detail": "11 tests and repeated DuckDB 1.3.2 compilation reported.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6923471215"
+      },
+      "next_action": {
+        "kind": "transplant",
+        "command": "git show 35facd949c033dbf1915cc0f32d7e82b3b49cf22 -- uk_renewables_pipeline/202611161630/global-datacentres/NEXT_INCREMENT.md",
+        "condition": "Read migration note, then transplant only DC changes into the NEW formal V9.28 folder; never cherry-pick old candidate paths."
+      },
+      "limits": [
+        "100 leads / 22 countries, 38 quarantined; not 100 verified operating facilities.",
+        "Preserve original 12 IDs. All capacity null; 61 leads lack geometry."
+      ]
+    },
+    {
+      "id": "dc_official",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "034be1d116ac3115192bbeb6aec6ab30d96ecadb"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/news/datacentre_sources/",
+        "automation/news/tests/test_datacentre_sources.py"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_datacentre_sources.py",
+        "detail": "57 tests; three actual official source receipts reported.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6923741374"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 034be1d116ac3115192bbeb6aec6ab30d96ecadb",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "Three source records are not three verified facilities.",
+        "Historical planning/tax qualification does not establish current operation; no canonical site crosswalk."
+      ]
+    },
+    {
+      "id": "dc_parent_groups",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "6a198894bc780ddeeef2d839eb43f2de9ce76955"
+      ],
+      "code_requires": [
+        "dc_expansion"
+      ],
+      "owned_paths": [
+        "automation/news/dc_project_groups/",
+        "automation/news/tests/test_dc_project_groups.py"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_dc_project_groups.py",
+        "detail": "58 combined tests reported; source cohort depends on the expansion.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6923484114"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 6a198894bc780ddeeef2d839eb43f2de9ce76955",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "Three provisional group links, not current site ownership/capacity verification.",
+        "Tests need new release path after DC transplant."
+      ]
+    },
+    {
+      "id": "figures",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "e0deabac45d35240f6c38f4303b8d50c90412e06"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/news/filings/contracts.py",
+        "automation/news/tests/test_filing_figures.py"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_filing_figures.py",
+        "detail": "82 tests reported.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6923662327"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick e0deabac45d35240f6c38f4303b8d50c90412e06",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "Exact quantity/unit/entity/receipt consistency does not authenticate an issuer or extract numerical truth.",
+        "NSE ampersand identifiers remain unsupported by this v1 contract."
+      ]
+    },
+    {
+      "id": "filings_west",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "6553e1f45be0ab589f9e84679eeccf98454c8d31"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/news/filings/west/",
+        "automation/news/tests/test_filings_west.py"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_filings_west.py",
+        "detail": "49 tests reported; SEC probe returned 403.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6923662327"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 6553e1f45be0ab589f9e84679eeccf98454c8d31",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "Live collectors disabled. Accessible landing pages are not filings.",
+        "Reuse Companies House owner; do not create a competing collector."
+      ]
+    },
+    {
+      "id": "filings_asia",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "5be0814c73f75bcf5d46e12c8f9c0f54bb3aa01b",
+        "011af57ee30fca3e4913c26405393cbfb0e7ce89"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/news/filings/asia/",
+        "automation/news/tests/test_filings_asia.py"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_filings_asia.py",
+        "detail": "48 tests reported; source-specific access failures retained.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6923565875"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 5be0814c73f75bcf5d46e12c8f9c0f54bb3aa01b 011af57ee30fca3e4913c26405393cbfb0e7ce89",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "Six systems / five markets, not enabled live coverage.",
+        "HEAD response body hash remains null; a landing response is not a filing receipt."
+      ]
+    },
+    {
+      "id": "grid_context",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "2664b886685485ea46c8ce2978a22aed718cd9ec"
+      ],
+      "code_requires": [
+        "figures"
+      ],
+      "owned_paths": [
+        "automation/news/dc_context/grid.py",
+        "automation/news/dc_context/GRID_CONTEXT.md",
+        "automation/news/tests/test_grid_dc_context.py"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_grid_dc_context.py automation/news/tests/test_filing_figures.py",
+        "detail": "156 combined tests reported.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6923687276"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 2664b886685485ea46c8ce2978a22aed718cd9ec",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "480 MW is requested demand in a rejected amendment, not accepted capacity.",
+        "Two historical contexts; zero canonical project links."
+      ]
+    },
+    {
+      "id": "solar_context",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "9d088dbdd201dd9afdfc2bce42bda05a45c53fd2"
+      ],
+      "code_requires": [
+        "figures"
+      ],
+      "owned_paths": [
+        "automation/news/dc_context/solar.py",
+        "automation/news/dc_context/SOLAR.md",
+        "automation/news/tests/test_solar_dc_context.py"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_solar_dc_context.py automation/news/tests/test_filing_figures.py",
+        "detail": "125 combined tests reported.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6923800483"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 9d088dbdd201dd9afdfc2bce42bda05a45c53fd2",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "Four provisional contexts; two typed historical claims; delivery/current binding unknown.",
+        "Do not turn portfolio PPA or upper bound into site supply."
+      ]
+    },
+    {
+      "id": "covenant_history",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "80631c260418dc41eedf4e815dbbfbeca6ccf94d"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/news/policy_commitments/historical_sources.json"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": null,
+        "detail": "Ten bounded primary-source history records; validation is in covenant ledger tests.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/43#issuecomment-6923919158"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 80631c260418dc41eedf4e815dbbfbeca6ccf94d",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": []
+    },
+    {
+      "id": "covenant_ledger",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "38f9c66c9aa0ded04a8809827ae2bb2f0c47b02b"
+      ],
+      "code_requires": [
+        "figures",
+        "covenant_history"
+      ],
+      "owned_paths": [
+        "automation/news/policy_commitments/",
+        "automation/news/tests/test_policy_commitments.py"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_policy_commitments.py automation/news/tests/test_filing_figures.py",
+        "detail": "124 combined tests reported.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/43#issuecomment-6923919158"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 38f9c66c9aa0ded04a8809827ae2bb2f0c47b02b",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "Eight sample commitments: seven UNKNOWN, one REPORTED_PROGRESS; all measurements UNKNOWN and legal compliance NOT_ASSESSED.",
+        "COP31 remains ongoing at source observation; agenda is not final agreement.",
+        "Challenge/403 response bytes are not original-document receipts."
+      ]
+    },
+    {
+      "id": "grid_estate",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "5e3149dcff809bb8a9f065a6a1b5d51cb2ff029f",
+        "76cbcf12d4b816be37803a11416cd21ada691e10"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/news/grid_intelligence/",
+        "automation/news/tests/test_grid_intelligence.py"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m pytest -q automation/news/tests/test_grid_intelligence.py",
+        "detail": "24 tests on DuckDB 1.3.2 and 1.5.5; identical catalogue; owner engine 23 proofs / 571 checks reported.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/44#issuecomment-6923980167"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 5e3149dcff809bb8a9f065a6a1b5d51cb2ff029f 76cbcf12d4b816be37803a11416cd21ada691e10",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "32 inputs / six repositories / 60 declared layers, not all estate coverage.",
+        "56 source rows / 541282 source features are not unique project counts.",
+        "ETYS planned year and equipment MVA do not establish actual commissioned capacity or a project connection.",
+        "LinkedIn reference guide and global forecast coverage remain missing."
+      ]
+    },
+    {
+      "id": "android_check",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "8363d99c70d954641cf40422e9738ab945d84c96"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/news/acquisition/browser/android-check.mjs",
+        "automation/news/acquisition/browser/android-check.test.mjs"
+      ],
+      "integration": "component_ready",
+      "integrated_as": [],
+      "checks": {
+        "status": "reported_pass",
+        "command": "node --test automation/news/acquisition/browser/android-check.test.mjs",
+        "detail": "19 tests reported; actual device check UNAVAILABLE / adb_unavailable.",
+        "evidence_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6923815438"
+      },
+      "next_action": {
+        "kind": "integrate_then_test",
+        "command": "git cherry-pick 8363d99c70d954641cf40422e9738ab945d84c96",
+        "condition": "Only in a clean, owned successor branch after listed dependencies; recheck source and scope first."
+      },
+      "limits": [
+        "No native Android acceptance, emulator/device installation or configuration changes claimed."
+      ]
+    },
+    {
+      "id": "public_readback",
+      "repository": "Ventusltd/globalgrid2050",
+      "authored_commits": [
+        "06bc78da7e5714f20ae045e42b8e00c1133a29dc"
+      ],
+      "code_requires": [],
+      "owned_paths": [
+        "automation/v924_public/",
+        ".github/workflows/v924-public-readback.yml"
+      ],
+      "integration": "candidate_integrated",
+      "integrated_as": [
+        "425338b6488de4da9203f97b5e9c7740157d554e"
+      ],
+      "checks": {
+        "status": "reported_pass",
+        "command": "python -m unittest discover -s automation/v924_public -p 'test*.py'",
+        "detail": "Root reports 21 tests passed; fresh whole-release CI required.",
+        "evidence_url": "https://github.com/Ventusltd/globalgrid2050/pull/125"
+      },
+      "next_action": {
+        "kind": "candidate_ci",
+        "command": "python -m unittest discover -s automation/v924_public -p 'test*.py'",
+        "condition": "Already integrated. Do not repeat cherry-pick; verify new six-workflow composition and later actual served bytes."
+      },
+      "limits": [
+        "Pinned homepage owner operative release drives readback, not registry tail.",
+        "Original failed historical receipts remain failed."
+      ]
+    }
+  ],
+  "milestones": [
+    {
+      "version": "V9.25",
+      "release_id": "202611161630",
+      "head": "425338b6488de4da9203f97b5e9c7740157d554e",
+      "repository": "Ventusltd/globalgrid2050",
+      "pr": 125,
+      "status": "software_candidate",
+      "components": [
+        "public_readback"
+      ],
+      "requires_release": [],
+      "ci": {
+        "status": "pending",
+        "tested_head": null,
+        "urls": []
+      },
+      "published": false,
+      "public_receipts": [],
+      "next_command": "python3 automation/pipeline_release/verify.py --browser --check",
+      "conditions": [
+        "Readback repair is integrated. Require all six fresh workflows at the new exact head; the five passes at 063adcae do not cover this composition.",
+        "Complete separate MAP public acceptance.",
+        "Merge source, read served version bytes, promote via homepage owner and pin with measured restore, then public readback."
+      ],
+      "rollback": "Preserve exact V9.24 route 202611161244 and V9.23 route 202611160020; restore previous owner pin via normal tested PR.",
+      "limits": [
+        "Source disabled, rights unknown, zero real strict matches; original real-match/snapshot criterion unmet.",
+        "Candidate application tree 6eb586d58f886dcaffcfc8983e3c5b3922c67e96 remains unchanged.",
+        "Readback authored 06bc78da7e5714f20ae045e42b8e00c1133a29dc is integrated as 425338b6488de4da9203f97b5e9c7740157d554e; parent reports 21 unit tests passed."
+      ]
+    },
+    {
+      "version": "V9.26",
+      "release_id": "202611161734",
+      "head": "f4d222844915438fba9323daba1808ce31c375a0",
+      "repository": "Ventusltd/globalgrid2050",
+      "pr": 126,
+      "status": "finalized_candidate",
+      "components": [
+        "news_rank",
+        "news_consumer"
+      ],
+      "requires_release": [
+        "V9.25"
+      ],
+      "ci": {
+        "status": "pending",
+        "tested_head": null,
+        "urls": []
+      },
+      "published": false,
+      "public_receipts": [],
+      "next_command": "python3 automation/pipeline_release/verify.py --browser --check",
+      "conditions": [
+        "Full candidate CI at its current head, including existing headline workflow's new browser job.",
+        "Successful post-merge existing headline refresh and input/sidecar pair readback before claiming public priority.",
+        "Same homepage/pin/served-byte/Chrome sequence as V9.25."
+      ],
+      "rollback": "V9.25 route and prior homepage owner pin; keep old v1 headline input compatible.",
+      "limits": [
+        "Local finalized branch observed; no hosted or public acceptance yet.",
+        "Inherit Solar-1000 migration from V9.25; declaring it again causes duplicate-migration failure.",
+        "API still reported PR base SHA 063adcae at observation; recheck parent composition after readback integration."
+      ]
+    },
+    {
+      "version": "V9.27",
+      "release_id": "202611161747",
+      "head": "eb252f79c21b5217f3d38c4032c31b2d1ae159a8",
+      "repository": "Ventusltd/globalgrid2050",
+      "pr": null,
+      "status": "consumer_in_progress",
+      "components": [
+        "prospecting_core",
+        "prospecting_ui",
+        "prospecting_export"
+      ],
+      "requires_release": [
+        "V9.26"
+      ],
+      "ci": {
+        "status": "pending",
+        "tested_head": null,
+        "urls": []
+      },
+      "published": false,
+      "public_receipts": [],
+      "next_command": "python -m automation.news.build_prospecting_priority --as-of 2026-11-16T17:40:00Z --out-dir tmp/prospecting-review",
+      "conditions": [
+        "Run in new clean review directory after authored dependencies; preserve original as_of for repeatability.",
+        "Formal V9.27 folder is created; actual inline consumer wiring is now owned by PROSPECTING_V927. Recheck current branch head before integration.",
+        "Test actual table/CSV/MAP, all 7775 identities, unknown fields and exact pilot ordering; then release CI/readback."
+      ],
+      "rollback": "Previous tested V9.26 route; no official data or shared evidence pointer mutation.",
+      "limits": [
+        "The command produces a historical reproducibility review bundle, not a current/live timestamp.",
+        "1000 returned ranks are a separate subset, not replacement Solar-1000 membership."
+      ]
+    },
+    {
+      "version": "V9.28",
+      "release_id": null,
+      "head": null,
+      "repository": "Ventusltd/globalgrid2050",
+      "pr": null,
+      "status": "components_ready",
+      "components": [
+        "dc_expansion",
+        "dc_official",
+        "dc_parent_groups"
+      ],
+      "requires_release": [
+        "V9.27"
+      ],
+      "ci": {
+        "status": "pending",
+        "tested_head": null,
+        "urls": []
+      },
+      "published": false,
+      "public_receipts": [],
+      "next_command": "git show 35facd949c033dbf1915cc0f32d7e82b3b49cf22 -- uk_renewables_pipeline/202611161630/global-datacentres/NEXT_INCREMENT.md",
+      "conditions": [
+        "Transplant delta into NEW formal folder; adapt tests/generation to it.",
+        "Keep official document grain separate from facility leads; retain source dates and unknown values.",
+        "Actual UI search/country/null-geometry/source-link tests plus full release CI/readback."
+      ],
+      "rollback": "Previous V9.27 route; preserve original 12 DC identities and old source files.",
+      "limits": [
+        "Do not directly cherry-pick old V9.25 file changes.",
+        "100 leads and three official records do not mean 103 verified facilities."
+      ]
+    },
+    {
+      "version": "V9.29",
+      "release_id": null,
+      "head": null,
+      "repository": "Ventusltd/globalgrid2050",
+      "pr": null,
+      "status": "components_ready",
+      "components": [
+        "figures",
+        "grid_context",
+        "solar_context",
+        "covenant_history",
+        "covenant_ledger",
+        "grid_estate"
+      ],
+      "requires_release": [
+        "V9.28"
+      ],
+      "ci": {
+        "status": "pending",
+        "tested_head": null,
+        "urls": []
+      },
+      "published": false,
+      "public_receipts": [],
+      "next_command": "python -m pytest -q automation/news/tests/test_filing_figures.py automation/news/tests/test_grid_dc_context.py automation/news/tests/test_solar_dc_context.py automation/news/tests/test_policy_commitments.py automation/news/tests/test_grid_intelligence.py",
+      "conditions": [
+        "Integrate FIGURES once before context consumers; historical sources before covenant ledger.",
+        "Add useful visible dated context in existing News/Pipeline blocks; unlinked context stays explicitly unlinked.",
+        "Require relevant real browser flows, final candidate CI and public readback."
+      ],
+      "rollback": "Previous V9.28 route; no inferred project connections or source status changes.",
+      "limits": [
+        "This is source-grounded research context, not measured legal compliance, current delivery, site capacity or complete global coverage."
+      ]
+    }
+  ],
+  "supporting_handoffs": [
+    {
+      "role": "Context Watch",
+      "repository": "Ventusltd/neural-link-between-agents",
+      "pr": 47,
+      "merged_commit": "23a9646e8db3e34e14b71386d86c990abed39bf5",
+      "scope": "Continuity audit; ten inherited CVAA findings and five skipped rules preserved."
+    },
+    {
+      "role": "Integration Advisor",
+      "repository": "Ventusltd/neural-link-between-agents",
+      "pr": 48,
+      "merged_commit": "f17a1f83fa14bf261359c3544817b414b898ec15",
+      "scope": "Recipe and old-boundary incompatibility proof; final consumer schema differs from illustrative example."
+    },
+    {
+      "role": "Prospecting TestCode",
+      "repository": "Ventusltd/testcode",
+      "pr": 21,
+      "head": "35018e018449f10a091f8ebc65abe516b7c837f1",
+      "ci_url": "https://github.com/Ventusltd/testcode/actions/runs/43920550208",
+      "scope": "Reported hosted 5 Git / 15 Node / 36 composition checks; eight old-producer failures detected. Not DOM/public acceptance."
+    },
+    {
+      "role": "Filings TestCode",
+      "repository": "Ventusltd/testcode",
+      "pr": 18,
+      "head": "cd95fb8c14947da2c0de1b1d76acf41928ad90f0",
+      "ci_url": "https://github.com/Ventusltd/testcode/actions/runs/43918525013",
+      "scope": "PR independently read; reported 48 hosted tests. Provisional issuer/document bytes consistency only."
+    },
+    {
+      "role": "Cartographer",
+      "repository": "Ventusltd/testcode",
+      "pr": 19,
+      "head": "f98a5a986db92366a640fea9be5d1b712c42415d",
+      "scope": "Reported 12 tests and 14 source pins / five repositories; no runtime acceptance."
+    },
+    {
+      "role": "Archivist",
+      "repository": "Ventusltd/testcode",
+      "pr": 17,
+      "head": "e73baca76d9928dac715e2dea7aa42bbd423c67a",
+      "scope": "Reported six tests; 79/568 local commits and 36 bodies sampled; incomplete coverage."
+    },
+    {
+      "role": "News boundary lab",
+      "repository": "Ventusltd/testcode",
+      "pr": 20,
+      "head": "b3e8423071bf9844b6bf7b763ad2ebc76c03521a",
+      "scope": "Reported 12 observations pass by reproducing the OLD consumer incompatibility; release_compatible=false."
+    }
+  ],
+  "forbidden_replays": [
+    "Do not replay merged GridAtlas PR89 or PR91.",
+    "Do not reuse closed failed GridAtlas PR90 as production release.",
+    "Do not integrate superseded hard publisher exclusion d91ecd73.",
+    "Do not cherry-pick duplicate equivalent dependency commits instead of authored commits.",
+    "Do not count previews, metadata commits, GridAtlas releases or tests as public Pipeline editions."
+  ]
+}
