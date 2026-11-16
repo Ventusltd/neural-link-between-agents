@@ -1,8 +1,8 @@
 # V9.23 six-hour repair audit
-Time (UTC): 2026-11-16T01:06:33.498364+00:00
-Exact PRODUCT checkout SHA: 0b0b97084e4a6bd31e8d714284d50441ba966b88
-Result: **STRUCTURAL_PASS_RELEASE_NOT_ACCEPTED**
-GitHub run: https://github.com/Ventusltd/neural-link-between-agents/actions/runs/43784224008
+Time (UTC): 2026-11-16T01:14:24.541897+00:00
+Exact PRODUCT checkout SHA: b6e519f3644541cef1f86fa6bc4341462d6bcd68
+Result: **BLOCKED**
+GitHub run: https://github.com/Ventusltd/neural-link-between-agents/actions/runs/43785046104
 
 ## Structural gates
 - PASS machine_notes_heading
@@ -20,11 +20,16 @@ GitHub run: https://github.com/Ventusltd/neural-link-between-agents/actions/runs
 - PASS candidate_js_syntax
 
 ## Unresolved evidence
+- REAL_MAP_MOBILE_LATEST_HOSTED_FAILURE
 - real 390px first-restore nearest result
 - full 7775 rendered MAP href/CSV parity
 - original publisher/REPD receipts
 - physical iPhone Safari
 - served V9.23 bytes and homepage acceptance
+
+## Latest real MAP browser check
+- Hosted result: {"conclusion": "failure", "run_attempt": 2, "run_id": 43780789109, "state": "COMPLETED", "updated_at": "2026-11-16T01:07:39Z", "url": "https://github.com/Ventusltd/globalgrid2050/actions/runs/43780789109"}
+- Three sampled projects never establish the whole 7,775-row fleet. Hidden DOM is not user-visible acceptance.
 
 ## Coordination
 - Read latest Neural #30, Agent 10 #40 and GridAtlas #87 from the public GitHub API; source comments retained by id in the JSON receipt.
