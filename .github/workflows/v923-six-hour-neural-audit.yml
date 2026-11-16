@@ -56,6 +56,7 @@ jobs:
             uk_renewables_pipeline/202611151300
             uk_renewables_pipeline/202611160020
             automation/v923-recovery
+            automation/pipeline_release
           sparse-checkout-cone-mode: true
       - uses: actions/setup-python@v5
         if: steps.window.outputs.active == 'true'
