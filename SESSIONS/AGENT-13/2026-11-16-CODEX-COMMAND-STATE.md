@@ -2,6 +2,18 @@
 
 This is an operational handoff, not a deployment claim. Read the latest issue comments and resolve every branch, PR and CI result again before acting. Project repositories remain authoritative.
 
+## Command delta — 17:35 UTC
+
+This section supersedes older states below. V9.25 PR125 now at `063adcaecdfaae0903192153ca389352319435f9`, adding audited mutable metadata `a83743e9` and DuckDB 1.3.2 documentation. Both release trees unchanged. Correct summary: V9.24 operative, V9.25 software-only candidate with evidence disabled. Five fresh workflows started; do not reuse the previous head's pass as final approval.
+
+GridAtlas PR89 merged `fb0825fb0e757142dbf469456ef0a731a09d9c49`. Actual seven release gates passed, creating pointer-only PR90 `c4b0333c8c608a57c26b7d5a0bf4776600e2ce8a`. **Production PR CI43919364124 FAILED**: the proof depends on Git commit76653e40 absent from the shallow checkout, and twin-offline lacks a builder for the new SLD cartridge. Fourteen of seventeen gates passed. Live remains202611132345; no pointer merged. MAP producer is actively repairing the complete promoted-composition gate; do not suppress tests or mistake preview success for release success.
+
+GRID authored pair `5e3149dcff809bb8a9f065a6a1b5d51cb2ff029f`, `76cbcf12d4b816be37803a11416cd21ada691e10` is delivered. Locked DuckDB1.3.2 and1.5.5 both24testsPASS and identical catalogue bytes. Covenant authored `80631c260418dc41eedf4e815dbbfbeca6ccf94d` then `38f9c66c9aa0ded04a8809827ae2bb2f0c47b02b` after FIGURES:124combinedtests, eight commitments with7UNKNOWN/1REPORTED_PROGRESS and no measured/legal-compliance claim.
+
+Formal V9.26 scaffold created by existing builder, folder202611161734, branchv9.26-codex-integration head `16d96a9bfa79f045fbda66cee2f40a1e24322ef2`; news producer integrated as8aef1d14. It is not finalized, pushed or released. Integration Advisor found existing v1 schema rejects ranking extensions and client both filters policy items and resorts dates. Prepare a separate exact-input-bound ranking sidecar/consumer; do not break the old schema.
+
+Local running roles after GRID/metadata handoff: COMMAND, CONTEXT-WATCH, INTEGRATION ADVISOR ([issue46](https://github.com/Ventusltd/neural-link-between-agents/issues/46)), MAP repair. Context Watch reads actual CVAA protocols atb124c39e5343b24dd5b546a0c279a1c06360bdad; no hidden-context meter or automatic restart claim. Third/Additional next consumer assignments are in comment6923962347 but lack fresh ACK. Direct cross-window resume failed with active-writer locks even where latest turns appeared completed; do not count them as woken. Public Pipeline release count remains0.
+
 ## Recovery sequence
 
 1. Read this file, repository `AGENTS.md`, `PROTOCOL.md`, and `CURRENT_PIPELINE_NEWS_VERSION.md`. The latter's V9.22/V9.23 pointers are historical; inspect current project metadata and the newer owner instructions below.
