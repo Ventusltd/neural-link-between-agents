@@ -1,0 +1,114 @@
+name: V9.23 public homepage and archived V9.22 served-byte readback
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v923-public-readback.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  public-readback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify public V9.23 homepage pointer, source and immutable V9.22 HTTP bytes
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,time,urllib.request,urllib.error
+          from pathlib import Path
+          root='https://globalgrid2050.com/'
+          prefix=root+'uk_renewables_pipeline/'
+          token=os.getenv('GITHUB_RUN_ID','v923')
+          stamp='?publish_readback='+token
+          path=Path('v923-public-receipt.json')
+          expected='6da0e8c403dbffbcf94c025077ff47bb8c7087ad9053e9367143bdcdbb708aa3'
+          historical='https://raw.githubusercontent.com/Ventusltd/globalgrid2050/0719ddc28f2a418281594549d4667c9916ff6b20/uk_renewables_pipeline/202611151300/index.html'
+          def get(url):
+              req=urllib.request.Request(url,headers={'Cache-Control':'no-cache','User-Agent':'GlobalGrid2050-V923-Github-Actions-Readback'})
+              with urllib.request.urlopen(req,timeout=25) as response: return response.status,response.read(400000)
+          previous_hash=None
+          failed=''
+          for attempt in range(1,19):
+              try:
+                  home_status,home=get(root+stamp)
+                  json_status,data=get(root+'homepage-shell/data/homepage.json'+stamp)
+                  v23_status,v23=get(prefix+'202611160020/index.html'+stamp)
+                  v22_status,v22=get(prefix+'202611151300/index.html'+stamp)
+                  original_status,original=get(historical)
+                  report={
+                    'run':token,'attempt':attempt,'source_sha':'1559f40e73a4e454c39b23d5172cf4c5e96ef3ea',
+                    'home_status':home_status,'json_status':json_status,'v23_status':v23_status,
+                    'v22_status':v22_status,'original_status':original_status,
+                    'owner_json_sha256':hashlib.sha256(data).hexdigest(),
+                    'v22_sha256':hashlib.sha256(v22).hexdigest(),
+                    'v22_original_sha256':hashlib.sha256(original).hexdigest(),
+                    'v23_sha256':hashlib.sha256(v23).hexdigest(),
+                  }
+                  catalog=json.loads(data)
+                  product=next(e for e in catalog['entities'] if e['id']=='pipeline-news')
+                  ids=[r['id'] for r in product['releases']]
+                  report['operative']=product['operative_release_id']
+                  report['old_release_retained']='202611151300' in ids
+                  report['home_v923_link']=(prefix+'202611160020/' in home.decode('utf-8'))
+                  report['native_notes_heading']=(b'MACHINE READ NOTES' in v23)
+                  report['candidate_label']=(b'V9.23' in v23)
+                  report['v22_unchanged']=(report['v22_sha256']==report['v22_original_sha256'])
+                  passed=(
+                    home_status==json_status==v23_status==v22_status==original_status==200
+                    and report['owner_json_sha256']==expected
+                    and report['operative']=='202611160020'
+                    and report['old_release_retained'] and report['home_v923_link']
+                    and report['native_notes_heading'] and report['candidate_label'] and report['v22_unchanged']
+                  )
+                  report['verdict']='PUBLIC_PASS' if passed else 'PUBLIC_NOT_READY'
+                  path.write_text(json.dumps(report,indent=2)+'\n')
+                  print(json.dumps(report,indent=2),flush=True)
+                  if passed:break
+                  failed='Not all conditions passed on HTTPS-served bytes'
+              except Exception as err:
+                  failed=str(err)
+                  print('attempt',attempt,'failure',failed,flush=True)
+              if attempt<18:time.sleep(15)
+          else:
+              raise SystemExit('PUBLIC_V923_ACCEPTANCE_FAIL: '+failed)
+          PY
+      - name: Post precise status with evidence to neural coordination
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('v923-public-receipt.json')
+          lines=['[AGENT 10 RELEASE READBACK] V9.23 owner requested iterative publication',
+                 'Action: https://github.com/Ventusltd/neural-link-between-agents/actions/runs/'+os.getenv('GITHUB_RUN_ID','unknown')]
+          if p.exists():
+              r=json.loads(p.read_text())
+              lines += ['Public HTTP/served-byte result: '+r['verdict'],'Public homepage V9.23: '+str(r.get('operative')),
+                        'V9.22 source index byte-identical: '+str(r.get('v22_unchanged')),
+                        'V9.23 native notes heading: '+str(r.get('native_notes_heading'))]
+          else: lines+=['Public live readback did not complete successfully: no receipt']
+          lines+=['External GridAtlas 390px first-restore still known RED in independent previous browser run; not changed in this publication.']
+          Path('v923-public-comment.md').write_text('\n'.join(lines)+'\n')
+          PY
+          gh issue comment 30 --repo Ventusltd/neural-link-between-agents --body-file v923-public-comment.md
+          gh issue comment 40 --repo Ventusltd/neural-link-between-agents --body-file v923-public-comment.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-v923-http-readback-${{ github.run_id }}
+          path: |
+            v923-public-receipt.json
+            v923-public-comment.md
+          retention-days: 30
