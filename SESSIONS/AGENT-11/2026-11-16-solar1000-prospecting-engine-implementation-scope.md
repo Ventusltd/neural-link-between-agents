@@ -45,7 +45,14 @@ Provide RED-to-GREEN Python and Chrome/WebKit evidence pinned to SHA. Test sort,
 ## 8. Acceptance measurements
 Publish a 1,000-row ledger: researched, independently sourced, verified, accepted, candidate, no-source, blocked and actionable. Measure source diversity, categories, timestamps, false matches, cost and throughput. Audit **100 stratified rows** and **50 collision/negative controls**. Aim for **≥98% correct attribution** among accepted audited remarks and zero known cross-project leaks; disclose denominators. Benchmark credible meeting opportunities per 100 rows and minutes per qualified lead against manual prospecting. Never claim unmeasured ROI.
 
-## 9. Handover and release boundary
+## 9. Execution order and decision gates
+Start by comparing the current V9.23 Python and JavaScript notes implementations with the historical release contract. Reuse functioning collectors, adapters and matching code; do not create a second live headline producer. Record current limitations and ownership before writing anything. Produce a baseline report containing the 1,000 selected IDs, how many currently have native V9.23 notes, and how many of those notes possess truly independent evidence. Avoid treating a possible headline-name association as verified.
+
+Run a small, deliberately varied 25-project pilot first: operational and pre-construction sites, large and small schemes, multiple planning authorities, duplicate names, recent decisions and silent projects. Approve extraction and identity rules against the actual underlying URLs; record corrections in regression fixtures. Expand to 100, then 250, then 1,000 only if precision remains acceptable. A source fetch failure must pause or mark only its own record, never reset the whole dataset or fill the gap with invented content.
+
+Keep a separate reviewer queue for ambiguous matches. In the UI, visibly distinguish accepted evidence, candidates and not researched. Report *independent-source coverage*, *decision-ready opportunity coverage* and *coverage including honest fallback* as three different percentages. Maintain a simple rollback that removes the optional notes sidecar without affecting any published official REPD record, filter, MAP route or page.
+
+## 10. Handover and release boundary
 Commit manifest, code, licence registry, schemas, fixtures, CI, evidence receipts, metrics and failure log. Bound GitHub Actions costs and refresh cadence; automated workflows execute scripts, not independent AI invention. Post exact PR/SHA/CI receipts in Neural Link. Prepare **V9.24 as non-live candidate only**. Never overwrite V9.22/V9.23, change homepage or GridAtlas. Public promotion requires separate owner authorisation.
 
 **Done:** 1,000 deterministic IDs, one evidenced remark or honest fallback per row, auditable source matches, tested mobile/export behaviour and a filterable list of defensible next conversations.
