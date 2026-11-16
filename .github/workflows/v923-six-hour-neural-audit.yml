@@ -2,6 +2,10 @@ name: V9.23 six-hour neural evidence cycles
 # Half-hourly, date bounded, 25 minutes max per fresh GitHub Actions job.
 # Never edits Pipeline News or GridAtlas source, never promotes homepage.
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v923-six-hour-neural-audit.yml'
   schedule:
     - cron: '0,30 * * * *'
   workflow_dispatch:
