@@ -1,0 +1,87 @@
+name: Overnight five / 03-evidence / Evidence matching and source safeguards
+# Read-only tests on current product main. No auto-merge, publication or unsupported evidence claims.
+on:
+  schedule:
+    - cron: '13 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/overnight-v928-03-evidence.yml'
+permissions:
+  contents: read
+concurrency:
+  group: overnight-v928-03-evidence
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Hard UTC timebox - expires 17 November 2026 08:00 UTC
+        id: window
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from datetime import datetime, timezone
+          import os
+          now = datetime.now(timezone.utc)
+          active = now < datetime(2026, 11, 17, 8, tzinfo=timezone.utc)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('active=' + str(active).lower() + '\n')
+          print('ACTIVE' if active else 'EXPIRED_NOT_TESTED', now.isoformat())
+          PY
+      - name: Read exact current GlobalGrid2050 source
+        if: steps.window.outputs.active == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: main
+          filter: blob:none
+          persist-credentials: false
+          path: product
+          sparse-checkout: |
+            automation/news
+            automation/repd
+            automation/pipeline_release
+            uk_renewables_pipeline
+            dist/news
+      - uses: actions/setup-python@v5
+        if: steps.window.outputs.active == 'true'
+        with:
+          python-version: '3.12'
+      - name: Source identity
+        if: steps.window.outputs.active == 'true'
+        working-directory: product
+        run: git rev-parse HEAD | tee "$RUNNER_TEMP/checkout-sha.txt"
+      - name: Install test dependencies
+        if: steps.window.outputs.active == 'true'
+        working-directory: product
+        run: python -m pip install -r automation/news/acquisition/requirements.txt
+      - name: Evidence matching and source safeguards
+        if: steps.window.outputs.active == 'true'
+        working-directory: product
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pytest -q automation/news/tests/test_acquisition.py automation/news/tests/test_acquisition_run.py automation/news/tests/test_evidence_publish.py automation/news/tests/test_evidence_store.py automation/news/tests/test_binder.py
+      - name: Auditable verdict
+        if: always()
+        shell: bash
+        run: |
+          echo '## Evidence matching and source safeguards' >> "$GITHUB_STEP_SUMMARY"
+          echo "Execution gate: ${{ steps.window.outputs.active }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Job status: ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Source SHA: $(cat "$RUNNER_TEMP/checkout-sha.txt" 2>/dev/null || echo not-checked-out)" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Read-only tests; never a public release or verified project-evidence assertion.' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.window.outputs.active == 'true'
+        with:
+          name: overnight-03-evidence-receipt
+          path: |
+            ${{ runner.temp }}/checkout-sha.txt
+            ${{ runner.temp }}/v924-links.json
+            ${{ runner.temp }}/v927-links.json
+            ${{ runner.temp }}/public-receipt.json
+          if-no-files-found: ignore
+          retention-days: 5
