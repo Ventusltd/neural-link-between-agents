@@ -64,7 +64,7 @@ def evaluate():
         notes_js=notes_path.read_text() if notes_path.exists() else ""
         map_test_path=newer/"tests/browser_real_map_to_engine_agent7.mjs"
         map_test=map_test_path.read_text() if map_test_path.exists() else ""
-        marker="\\nfunction projectRowHtml(project) {"
+        marker="\nfunction projectRowHtml(project) {"
         if pj.count(marker) == 1:
             inter,repd=pj.split(marker,1)
         else:
