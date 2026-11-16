@@ -26,11 +26,21 @@ def issue_comments(repo,number):
         rows=[json.loads(x) for x in p.stdout.splitlines() if x.strip()]
         return [{"id":x[0],"created_at":x[1],"snippet":x[2][:260]} for x in rows[-3:]]
     except Exception as ex:return [{"error":str(ex)}]
+def product_head():
+    """GitHub Actions GITHUB_SHA is the *Neural* checkout, not the product commit."""
+    try:
+        p=subprocess.run(["git","-C",str(PRODUCT),"rev-parse","HEAD"],
+                         capture_output=True,text=True,timeout=10)
+        return p.stdout.strip() if p.returncode == 0 else "UNVERIFIED"
+    except Exception:
+        return "UNVERIFIED"
+
 def evaluate():
     now=dt.datetime.now(dt.timezone.utc)
     result={"schema":"globalgrid2050.neural.v923-six-hour-audit.v1","recorded_utc":now.isoformat(),
             "repository":"Ventusltd/globalgrid2050","target":"V9.23",
             "window_active":START <= now <= CUTOFF,"sha":os.environ.get("GITHUB_SHA"),
+            "product_head_sha":product_head(),
             "source":{},"checks":{},"blockers":[],"neural":{}}
     parent=PRODUCT/"uk_renewables_pipeline"/BASE_ID
     newer=PRODUCT/"uk_renewables_pipeline"/TARGET_ID
@@ -50,8 +60,33 @@ def evaluate():
         live=(newer/"scripts/plugins/live-news.js").read_text()
         pj=(newer/"scripts/plugins/projects-v9-8.js").read_text()
         old=(parent/"scripts/plugins/projects-v9-8.js").read_text()
+        notes_path=newer/"scripts/plugins/machine-notes-v923.js"
+        notes_js=notes_path.read_text() if notes_path.exists() else ""
+        map_test_path=newer/"tests/browser_real_map_to_engine_agent7.mjs"
+        map_test=map_test_path.read_text() if map_test_path.exists() else ""
+        marker="\\nfunction projectRowHtml(project) {"
+        if pj.count(marker) == 1:
+            inter,repd=pj.split(marker,1)
+        else:
+            inter,repd="",""
         checks={
           "machine_notes_heading":"MACHINE READ NOTES" in html and "data-note-ref" in pj,
+          "exactly_one_note_column_per_vertical":(
+              inter.count('class="machine-note-cell"')==1
+              and repd.count('class="machine-note-cell"')==1
+              and 'data-note-ref' not in inter
+              and 'data-note-ref' in repd),
+          "headline_summary_visible_without_click":(
+              "headlineSummaryV923" in notes_js
+              and "REFUSAL REPORTED" in notes_js
+              and "Possible, unverified project headline" in notes_js),
+          "notes_rebound_on_search_sort_and_paging":(
+              "pipeline-projects-rendered" in pj
+              and "pipeline-projects-rendered" in notes_js),
+          "late_gridatlas_visibility_test_retained":(
+              "visibility_stability" in map_test
+              and "visibilityStability.every" in map_test
+              and "1700, 4000, 4400" in map_test),
           "one_visible_news_feed":"id=\"liveNews\"" in html and "id=\"newsArchive\" hidden" in html and "datacentre-news.js?v=1" not in html,
           "show_table_removed":"function showProject(" not in live and "chip.addEventListener('click'" not in live,
           "no_politics_panel":"datacentre-news.js?v=1" not in html,
@@ -85,7 +120,7 @@ def main():
     out=ROOT/"automation/v923-recovery/results"
     out.mkdir(parents=True,exist_ok=True)
     (out/"latest.json").write_text(json.dumps(r,indent=2,ensure_ascii=False)+"\n")
-    markdown=["# V9.23 six-hour repair audit",f"Time (UTC): {r['recorded_utc']}",
+    markdown=["# V9.23 six-hour repair audit",f"Time (UTC): {r['recorded_utc']}",f"Exact PRODUCT checkout SHA: {r['product_head_sha']}",
               f"Result: **{r['verdict']}**",f"GitHub run: {os.environ.get('GITHUB_SERVER_URL','https://github.com')}/{os.environ.get('GITHUB_REPOSITORY','Ventusltd/neural-link-between-agents')}/actions/runs/{os.environ.get('GITHUB_RUN_ID','LOCAL')}","",
               "## Structural gates"]
     for name,val in r["checks"].items():markdown.append(f"- {'PASS' if val else 'FAIL'} {name}")
