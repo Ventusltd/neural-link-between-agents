@@ -1,0 +1,20 @@
+{
+  "schema": "neural.overnight-command.v1",
+  "checked_at_utc": "2026-11-17T23:51:29Z",
+  "cutoff_utc": "2026-11-18T08:00:00Z",
+  "owner_authorized": true,
+  "publication_target": {"pipeline_news": 3, "gridatlas": 2},
+  "verified_new_publications": {"pipeline_news": 0, "gridatlas": 0},
+  "homepage": "https://globalgrid2050.com/",
+  "preserve_history": true,
+  "delegated_worker_limit": 6,
+  "observed_runtime_concurrency": 4,
+  "steps": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10"],
+  "releases": [
+    {"id":"PN-01","owner":"Grid Analyser","state":"INVESTIGATING","version":"V9.42","edition":"202611172355","branch":"analyser/pn-mobile-v942-20261118","baseline":"c46d932827c0f9a404725ace0bf60153fc446e56","depends_on":[],"source_commit":null,"ci":[],"review":null,"public_receipt":null},
+    {"id":"GA-01","owner":"Train Conductor","state":"PENDING_IMPLEMENTATION_INTEGRATION","depends_on":[],"source_commit":null,"ci":[],"review":null,"public_receipt":null},
+    {"id":"PN-02","owner":"Grid Analyser","state":"PENDING_IMPLEMENTATION","depends_on":["PN-01","GA-01"],"source_commit":null,"ci":[],"review":null,"public_receipt":null},
+    {"id":"GA-02","owner":"Train Conductor","state":"PENDING_IMPLEMENTATION","depends_on":["GA-01"],"source_commit":null,"ci":[],"review":null,"public_receipt":null},
+    {"id":"PN-03","owner":"Grid Analyser","state":"PENDING_IMPLEMENTATION","depends_on":["PN-02"],"source_commit":null,"ci":[],"review":null,"public_receipt":null}
+  ]
+}
