@@ -1,8 +1,6 @@
 name: Overnight five / 01-release / Release contracts and browser
 # Read-only tests on current product main. No auto-merge, publication or unsupported evidence claims.
 on:
-  schedule:
-    - cron: '13 * * * *'
   workflow_dispatch:
   push:
     branches: [main]

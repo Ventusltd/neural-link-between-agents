@@ -7,8 +7,6 @@ on:
     paths:
       - '.github/workflows/v923-six-hour-neural-audit.yml'
       - 'automation/v923-recovery/audit.py'
-  schedule:
-    - cron: '0,30 * * * *'
   workflow_dispatch:
 
 permissions:
