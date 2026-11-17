@@ -1,0 +1,261 @@
+{
+  "schema": "ventus.neural.vicinity-scope.v1",
+  "snapshot_utc": "2026-11-17T23:40:00Z",
+  "status": "planning-only",
+  "repo": "Ventusltd/neural-link-between-agents",
+  "baseline_main_sha": "02168064dfea4929e28c04d4e9c3d6c78e148b41",
+  "canonical_report": "SESSIONS/VICINITY-FAMILIARISATION/2026-11-17-CONSOLIDATED-SCOPE-AND-NEURAL-BACKLOG.md",
+  "published_pipeline_claim": {
+    "version": "V9.41",
+    "edition": "202611171940",
+    "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6960671622",
+    "product_separate_from_vicinity": true
+  },
+  "neural_backlog": {
+    "open_issue_count": 34,
+    "open_pr_count": 18,
+    "draft_pr_count": 16,
+    "issue_groups": {
+      "command_release": [
+        42,
+        45,
+        30,
+        32,
+        19,
+        24,
+        21
+      ],
+      "specialist": [
+        43,
+        44,
+        46,
+        49,
+        51,
+        34,
+        37,
+        40,
+        41
+      ],
+      "repd_q3": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        20
+      ],
+      "legacy": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "pr_groups": {
+      "current": [
+        58,
+        57,
+        56,
+        55,
+        54
+      ],
+      "historical": [
+        39,
+        38,
+        36,
+        35,
+        33,
+        31,
+        29,
+        28,
+        27,
+        26,
+        25,
+        23,
+        18
+      ]
+    },
+    "pr_ready": [
+      23,
+      58
+    ],
+    "duplicate_document_archives": [
+      56,
+      57
+    ],
+    "notes": "Open state is not evidence of unfinished code or active workers. Review each issue and PR before action."
+  },
+  "grid_journey_prs": [
+    {
+      "id": "GJ-01",
+      "repo": "Ventusltd/data-grid-gb",
+      "pr": 12,
+      "head": "d090de5fbe08bb268f66f7250389c000099a1b99",
+      "merged": false,
+      "real_approved_edges": 0
+    },
+    {
+      "id": "GJ-02",
+      "repo": "Ventusltd/ventus-grid-engine",
+      "pr": 4,
+      "head": "65d48a851fc2ac74b13f939a0184e11298e7e5bd",
+      "merged": false
+    },
+    {
+      "id": "GJ-03",
+      "repo": "Ventusltd/gridatlas",
+      "pr": 93,
+      "head": "0cf8680d421f2cb659aa9924291c211466394490",
+      "merged": false,
+      "preview": "synthetic"
+    },
+    {
+      "id": "GJ-04",
+      "repo": "Ventusltd/gridatlas",
+      "pr": 94,
+      "head": "177d87aee22bf3773eb284f5996eff3c3285958a",
+      "merged": false,
+      "base": "GJ-03"
+    },
+    {
+      "id": "GJ-05",
+      "repo": "Ventusltd/data-grid-gb",
+      "pr": 13,
+      "head": "af5baa1cc8336feeb07214efb366cd0055450413",
+      "merged": false,
+      "base": "GJ-01",
+      "local_circuit_flow": "unknown"
+    }
+  ],
+  "increments": [
+    {
+      "id": "VF-01",
+      "name": "reviewed source and real pilot",
+      "owner": "agents 1-2",
+      "repo": "Ventusltd/data-grid-gb",
+      "requires": [
+        "source rights",
+        "source rows",
+        "geometry/identity review"
+      ],
+      "release_allowed_without_real_edges": false
+    },
+    {
+      "id": "VF-02",
+      "name": "bounded graph and 1-50km routing",
+      "owner": "agent 3",
+      "repo": "Ventusltd/ventus-grid-engine",
+      "requires": [
+        "GJ-02",
+        "VF-01 contract"
+      ]
+    },
+    {
+      "id": "VF-03",
+      "name": "native MapLibre Layers UX",
+      "owner": "agent 4",
+      "repo": "Ventusltd/gridatlas",
+      "requires": [
+        "GJ-03",
+        "GJ-04 optional",
+        "VF-02 schema"
+      ],
+      "live_pointer_edit": false
+    },
+    {
+      "id": "VF-04",
+      "name": "Kuiper sunflower and Faraday/See Through/Solar Design visualisers",
+      "owner": "agent 5",
+      "repo": "Ventusltd/gridatlas",
+      "requires": [
+        "VF-03 renderer contract",
+        "source code audit"
+      ]
+    },
+    {
+      "id": "VF-05",
+      "name": "feedback, GlobalGrid2050 adapter and NUAR gate",
+      "owner": "agents 6-8",
+      "repo": "Ventusltd/globalgrid2050",
+      "requires": [
+        "rights approval",
+        "privacy review",
+        "independent QA"
+      ],
+      "nuar_ingest_enabled": false
+    }
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "owner": "root",
+      "action": "pin heads, current live map, ownership and plugin source inventory"
+    },
+    {
+      "n": 2,
+      "owner": "agent1",
+      "action": "source and licensing/NUAR feasibility ledger"
+    },
+    {
+      "n": 3,
+      "owner": "agent2",
+      "action": "independently reviewed topology/geometry pilot and withheld cases"
+    },
+    {
+      "n": 4,
+      "owner": "agent3",
+      "action": "deterministic 1-50km shortest/edge-cover engine"
+    },
+    {
+      "n": 5,
+      "owner": "agent4",
+      "action": "native GridAtlas Layers and preview"
+    },
+    {
+      "n": 6,
+      "owner": "agent5",
+      "action": "Kuiper/Faraday/See Through/Solar Design visualisers"
+    },
+    {
+      "n": 7,
+      "owner": "agent6",
+      "action": "moderated feedback and public-safe GlobalGrid2050 adapter"
+    },
+    {
+      "n": 8,
+      "owner": "agent7",
+      "action": "adversarial security/geometry/mobile tests"
+    },
+    {
+      "n": 9,
+      "owner": "agent8",
+      "action": "independent integration and release-gate review"
+    },
+    {
+      "n": 10,
+      "owner": "root",
+      "action": "owner-approved staged promotion and rollback evidence only after gates"
+    }
+  ],
+  "negative_gates": [
+    "nearest substation is not electrical connection",
+    "geometric crossing is not junction",
+    "co-located buses are not transformer",
+    "11kV underground geometry cannot be invented",
+    "NUAR public export prohibited without documented permission",
+    "SCOTEX boundary scalar is not circuit flow",
+    "optical lightning flash is not circuit fault",
+    "user suggestion is not verified circuit",
+    "live pointers and immutable releases untouched"
+  ],
+  "public_data_warning": "This manifest contains no NUAR asset locations, customer data, privileged URLs or private material.",
+  "execution_notice": "No Codex agents have been launched and no GridAtlas/GlobalGrid2050 product release is claimed by this planning commit."
+}
