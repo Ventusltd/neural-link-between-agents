@@ -40,10 +40,9 @@ jobs:
           filter: blob:none
           persist-credentials: false
           path: product
+          # Frozen pages also load accepted cartridges outside their edition.
           sparse-checkout: |
-            automation/pipeline_release
-            automation/news
-            automation/v924_public
+            automation
             uk_renewables_pipeline
             dist/news
       - uses: actions/setup-python@v5
@@ -69,7 +68,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pytest -q automation/news/tests/test_release_audit.py automation/news/tests/test_release_feature_migrations.py
-          python automation/pipeline_release/verify.py --browser --check
+          python automation/pipeline_release/verify.py --browser --check 2>&1 | tee "$RUNNER_TEMP/overnight-release-verify.log"
       - name: Auditable verdict
         if: always()
         shell: bash
@@ -85,6 +84,7 @@ jobs:
           name: overnight-01-release-receipt
           path: |
             ${{ runner.temp }}/checkout-sha.txt
+            ${{ runner.temp }}/overnight-release-verify.log
             ${{ runner.temp }}/v924-links.json
             ${{ runner.temp }}/v927-links.json
             ${{ runner.temp }}/public-receipt.json
