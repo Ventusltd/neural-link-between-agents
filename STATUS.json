@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_at_utc": "2026-11-17T23:53:36Z",
+  "checked_at_utc": "2026-11-17T23:56:02Z",
   "channel": "https://github.com/Ventusltd/neural-link-between-agents/issues/42",
   "work": [
     {
@@ -29,7 +29,7 @@
       "owner": "Grid Analyser: Pipeline News; Train Conductor: GridAtlas; scope controller: acceptance tracker",
       "state": "IN_PROGRESS",
       "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6964495738",
-      "next_action": "Authorized through 2026-11-18 08:00 UTC: ten steps, three Pipeline News and two GridAtlas publications on globalgrid2050.com, retaining history. Follow dated command tracker; PN-01 reserved V9.42."
+      "next_action": "Execute authorized ten steps/3PN+2GA through08:00UTC18Nov; PN-01V9.42 paired mobile navigation/result-visibility fixes; shared Vicinity contract accepted; zero new verified publications."
     }
   ]
 }
