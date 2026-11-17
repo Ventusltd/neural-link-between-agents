@@ -1,0 +1,30 @@
+name: Validate agent operations index
+on:
+  pull_request:
+    paths:
+      - 'STATUS.json'
+      - 'OPERATIONS.md'
+      - 'automation/validate_operations.py'
+      - '.github/workflows/operations-index.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'STATUS.json'
+      - 'automation/validate_operations.py'
+      - '.github/workflows/operations-index.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: operations-index-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate compact index without dependency installation
+        run: python3 automation/validate_operations.py

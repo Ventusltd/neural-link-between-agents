@@ -1,8 +1,6 @@
 name: Overnight five / 04-map / All-row MAP and GridAtlas contracts
 # Read-only tests on current product main. No auto-merge, publication or unsupported evidence claims.
 on:
-  schedule:
-    - cron: '13 * * * *'
   workflow_dispatch:
   push:
     branches: [main]

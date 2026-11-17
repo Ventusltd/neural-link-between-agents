@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-11-17T23:37:34Z",
+  "channel": "https://github.com/Ventusltd/neural-link-between-agents/issues/42",
+  "work": [
+    {
+      "id": "PN-V941",
+      "owner": "Agent A publication; Agent B independent support",
+      "state": "HISTORICAL_ACCEPTANCE",
+      "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6960671622",
+      "next_action": "Preserve accepted checkpoint; verify current heads before new work."
+    },
+    {
+      "id": "CPU-DATA",
+      "owner": "Agent B",
+      "state": "HISTORICAL_ACCEPTANCE",
+      "evidence": "https://github.com/Ventusltd/data-grid-gb/actions/runs/44144090894",
+      "next_action": "Offline CPU tooling only; no production format switch inferred."
+    },
+    {
+      "id": "VICINITY-INTAKE",
+      "owner": "Agent Train Conductor",
+      "state": "REPORTED_DRAFT",
+      "evidence": "https://github.com/Ventusltd/neural-link-between-agents/pull/56",
+      "next_action": "Conductor owns document publication; inspect PR before relying on merge state."
+    },
+    {
+      "id": "TONIGHT-SCOPE",
+      "owner": "User scope; agent assignments pending",
+      "state": "PENDING_OWNER_SCOPE",
+      "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42",
+      "next_action": "Await ten steps and five-version scope; no implementation or release numbers assigned."
+    }
+  ]
+}
