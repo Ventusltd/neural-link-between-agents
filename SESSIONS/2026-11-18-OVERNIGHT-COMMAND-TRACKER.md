@@ -2,7 +2,7 @@
 
 Checkpoint checked 2026-11-17 23:51 UTC. Cutoff: **2026-11-18 08:00 UTC**.
 
-The owner explicitly authorized implementation, integration, CI, independent review and publication without further routine approval. Required delivery: **three new Pipeline News publications and two new GridAtlas publications**, both discoverable on **globalgrid2050.com**, retaining historical versions. The earlier pending-scope wording in efficiency PR58 is superseded by this instruction. No new overnight publication is yet verified at this checkpoint.
+The owner explicitly authorized implementation, integration, CI, independent review and publication without further routine approval. Required delivery: **three new Pipeline News publications and two new GridAtlas publications**, both discoverable on **globalgrid2050.com**, retaining historical versions. [Authorization/start receipt6964495738](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6964495738). No new overnight publication is yet verified at this checkpoint.
 
 ## Command and capacity
 
@@ -28,7 +28,7 @@ Historical V9.41 acceptance is [receipt6960671622](https://github.com/Ventusltd/
 
 | Work ID | Deliverable | Lead | Dependencies | Current evidence/state |
 |---|---|---|---|---|
-| PN-01 | Mobile REPD MAP reliability, project handoff, useful loading/failure/retry and real grid result | Grid Analyser | Reproduction; Atlas receiver contract; homepage publisher | INVESTIGATING; owner reports failure; no new candidate verified |
+| PN-01 | Mobile REPD MAP reliability, project handoff, useful loading/failure/retry and real grid result | Grid Analyser | Reproduction; Atlas receiver contract; homepage publisher | INVESTIGATING; V9.42/edition202611172355 reserved on analyser/pn-mobile-v942-20261118 from c46d932; no product cause or new candidate verified |
 | GA-01 | Reliable mobile arrival plus native Journey preview, existing engine integration and Layers activation | Train Conductor | Existing data12/engine4/Atlas93; shared origin contract | PENDING_IMPLEMENTATION_INTEGRATION; existing PRs open/unmerged |
 | PN-02 | JOURNEY next to MAP for REPD/data centres/substations with stable identity/provenance | Grid Analyser | PN-01 and GA-01 accepted entry contract | PENDING_IMPLEMENTATION |
 | GA-02 | Vicinity1–50km, available voltage filters, generation/demand/substation context and optional Vogel schematic | Train Conductor | GA-01; rights/identity-qualified inputs | PENDING_IMPLEMENTATION |
@@ -39,7 +39,7 @@ Every row requires exact source commit, meaningful change, local contracts, requ
 ## Ten tracked steps
 
 1. **S01 Baseline/coordination:** remote pins checked above; duplicate intake and publisher ownership unresolved.
-2. **S02 Mobile reproduction:** actual tap→destination→composer→identity→engine→nearest result; preserve first-attempt failures; Chromium/WebKit, portrait/landscape, cold/warm/background-tab cases.
+2. **S02 Mobile reproduction:** actual tap→destination→composer→identity→engine→nearest result; preserve first-attempt failures; Chromium/WebKit, portrait/landscape, cold/warm/background-tab cases. Initial diagnostic timeout was a harness default-technology-filter problem, not an established product cause; producer is correcting the diagnostic. [Reservation6964496687](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6964496687).
 3. **S03 Mobile repair/publication:** resolve demonstrated emitter/receiver fault, review and publish PN-01 with GA-01 coordination where required.
 4. **S04 Existing foundations:** integrate/review data ledger, bounded multigraph engine and native preview without rebuilding historical work.
 5. **S05 Shared entries:** REPD/DC/substation JOURNEY actions and equivalent Layers activation; preserve origin across loading and retries.
@@ -54,7 +54,7 @@ Every row requires exact source commit, meaningful change, local contracts, requ
 - [Data12](https://github.com/Ventusltd/data-grid-gb/pull/12) `d090de5fbe08bb268f66f7250389c000099a1b99`, [engine4](https://github.com/Ventusltd/ventus-grid-engine/pull/4) `65d48a851fc2ac74b13f939a0184e11298e7e5bd`, [Atlas93](https://github.com/Ventusltd/gridatlas/pull/93) `0cf8680d421f2cb659aa9924291c211466394490`, [Atlas94](https://github.com/Ventusltd/gridatlas/pull/94) `177d87aee22bf3773eb284f5996eff3c3285958a` and [data13](https://github.com/Ventusltd/data-grid-gb/pull/13) `af5baa1cc8336feeb07214efb366cd0055450413` remain open/unmerged at this check. Preserve stacked dependency closure and validate new exact heads before integration.
 - [Neural56](https://github.com/Ventusltd/neural-link-between-agents/pull/56) and [Neural57](https://github.com/Ventusltd/neural-link-between-agents/pull/57) are overlapping draft document archives. Train Conductor must choose one canonical intake and reconcile the duplicate.
 - [Neural55](https://github.com/Ventusltd/neural-link-between-agents/pull/55) is an older draft planning reconciliation. Its provisional release labels are not current allocations.
-- [Neural58](https://github.com/Ventusltd/neural-link-between-agents/pull/58) exact head `fa07d3ff2bd89b4bba68742ef465ea21c8add1b7`: controller independently reran Python validator PASS and inspected schedule-only removals. Hosted [validator44201079862](https://github.com/Ventusltd/neural-link-between-agents/actions/runs/44201079862) is SUCCESS. Technical review is SCOPED PASS; pending-owner-scope language is superseded here and should be updated in the compact index when merged. No product CI speedup is measured or claimed.
+- [Neural58](https://github.com/Ventusltd/neural-link-between-agents/pull/58) exact head `fa07d3ff2bd89b4bba68742ef465ea21c8add1b7`: controller independently reran Python validator PASS and inspected schedule-only removals. Hosted [validator44201079862](https://github.com/Ventusltd/neural-link-between-agents/actions/runs/44201079862) is SUCCESS. Technical review is SCOPED PASS; this tracker branch updates the existing compact index and operations guide to authorized scope. No product CI speedup is measured or claimed.
 
 ## Guardrails and final report
 

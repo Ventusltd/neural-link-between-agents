@@ -6,7 +6,7 @@ Start with [STATUS.json](STATUS.json), then [PROTOCOL.md](PROTOCOL.md) and the n
 
 Reserve one owner, repository, isolated branch, input commit and acceptance criteria per work package before editing. Reuse existing producer outputs and test harnesses. Stage helpers within the shared concurrency limit; release slots explicitly. One integrator owns each publication and ledger writer. A reviewer checks the exact proposed commit independently.
 
-Tonight's ten steps and five versions remain PENDING OWNER SCOPE. Do not assign release numbers, start collectors, reactivate expired schedules or infer deployment authority from this guide. After scope arrives, record ten stable work IDs, dependencies and exclusive owners; map five release candidates separately to their acceptance gates.
+The owner explicitly authorized tonight's ten steps and five publications: three Pipeline News and two GridAtlas versions, both discoverable on globalgrid2050.com, retaining history, through 08:00 UTC on 18 November 2026. See the [command tracker](SESSIONS/2026-11-18-OVERNIGHT-COMMAND-TRACKER.md) and [authorization receipt](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6964495738). Routine implementation, review, CI, merge and publication within that scope need no further owner prompt. Assign versions through fresh reservations and keep all release gates. This does not authorize unrelated collectors or reactivation of expired schedules.
 
 ## Python and CI execution
 
