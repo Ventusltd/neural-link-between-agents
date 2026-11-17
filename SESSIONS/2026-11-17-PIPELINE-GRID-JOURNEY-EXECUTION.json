@@ -1,0 +1,309 @@
+{
+  "schema": "ventus.pipeline-grid-journey.execution.v1",
+  "baseline_utc": "2026-11-17T12:45:17Z",
+  "status": "coordination_and_read_only_audits_only",
+  "predecessor_commit": "02168064dfea4929e28c04d4e9c3d6c78e148b41",
+  "coordination_issue": 42,
+  "pipeline_history_issue": 45,
+  "release_authority": "Existing Agent A owner-authorized release lane; this manifest grants no publication authority",
+  "future_version_reservations": [],
+  "parallelism": {
+    "shared_cap": 4,
+    "parent_terminals": 2,
+    "max_simultaneous_helpers": 2,
+    "distinct_support_audits_completed": 3,
+    "roles": [
+      "Pipeline schedule/current-code audit",
+      "Graph/API/electrical-evidence audit",
+      "Geometry/rights/preview-integration audit"
+    ]
+  },
+  "repository_heads": {
+    "Ventusltd/globalgrid2050": "c9af4d32ca87eada56738232c409a8a6f65ddc2b",
+    "Ventusltd/globalgrid2050-homepage": "46bb917f98a57fb7a58b6aa0aabd29bb6005c69f",
+    "Ventusltd/gridatlas": "1de35f9eca360a5d80d81542230fef546917f5c5",
+    "Ventusltd/ventus-grid-engine": "65fa88a7766b3c0a219b4a18f786e100c3c408c7",
+    "Ventusltd/data-grid-gb": "10f210d36e5fe33522ad973ece2e7aff30390a16"
+  },
+  "actual_release_reconciliation": {
+    "V934": {
+      "edition": "202611171141",
+      "scope": "Submission/update dates, sorting/year filters and expanded analytics",
+      "homepage_selected_at_baseline": true
+    },
+    "V935": {
+      "edition": "202611171217",
+      "scope": "Operational date with existing date controls",
+      "source_pr": 159,
+      "source_merged": true,
+      "final_public_acceptance": "Refresh Agent A receipts; not established by this audit"
+    },
+    "provisional_scope_labels": "Old proposal headings do not reserve versions and are not completed by unrelated releases"
+  },
+  "inputs": [
+    {
+      "repository": "Ventusltd/data-grid-gb",
+      "path": "derived/gb-transmission-network.v1.json",
+      "bytes": 10069966,
+      "sha256": "b26b324c3b6637ddb00f7f80941e036a0d453c06b525d3fd733736bffe7377e4",
+      "counts": {
+        "sites": 921,
+        "nodes": 2679,
+        "circuit_rows": 1392,
+        "transformer_rows": 1472,
+        "planned_changes": 2230
+      },
+      "rights_state": "ETYS-specific licence applicability unconfirmed in owner README"
+    },
+    {
+      "repository": "Ventusltd/data-grid-gb",
+      "path": "derived/connection-points.v3.json",
+      "bytes": 2934509,
+      "sha256": "8db7171d94763399d85c819e522dcb83ef1ecedc93fbeff032fb45ca02f81f35",
+      "counts": {
+        "sites": 886,
+        "located_automated_joins": 489,
+        "unlocated": 397,
+        "exact_name": 450,
+        "distinctive_tokens": 39
+      },
+      "manual_approval_count": "not_established"
+    },
+    {
+      "repository": "Ventusltd/data-grid-gb",
+      "path": "sources/sources-manifest.json",
+      "bytes": 1600,
+      "sha256": "edc9727fc5ae23777a00e3971fd5f4ccfda262fdddfb946a4390dc0ff646cb2d"
+    },
+    {
+      "repository": "Ventusltd/ventus-grid-engine",
+      "path": "engine/network-topology.js",
+      "bytes": 12661,
+      "sha256": "cf04c754e550e594ddd09096ec2b2c04c0082058126897c6e7afdeee92f7561c"
+    },
+    {
+      "repository": "Ventusltd/ventus-grid-engine",
+      "path": "engine/electrical-distance.js",
+      "bytes": 10958,
+      "sha256": "b6b55e2207e29a7078f0ab9a1ee0575125a0252386907e93434b78aeead2c4a3"
+    },
+    {
+      "repository": "Ventusltd/gridatlas",
+      "path": "atlas/current.json",
+      "bytes": 69086,
+      "sha256": "5f7c3fafc789f2b779a9bc7352d8619e7cb9f9ca06724287614dfc73113b27e8",
+      "generation": "202611161720"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Ventusltd/globalgrid2050/pipeline-news-data/dist/pipeline_headlines.json",
+      "bytes": 39620,
+      "sha256": "f19f17df1780f118b4d7823a88dddc03264626888418a50369df722507ab6c26",
+      "generated_at": "2026-11-17T00:27:34Z",
+      "observed_items": 72,
+      "observed_publisher_labels": 15,
+      "feeds_ok": 50,
+      "feeds_failed": 0,
+      "acceptance": "observed feed only; rights and verified intelligence not implied"
+    },
+    {
+      "description": "Frozen V9.35 news fallback",
+      "sha256": "9a98193b5d8903cf33d5655ffa3acf4eab1ec3a92ca1a6d23f5eeb4df7d9f217",
+      "generated_at": "2026-11-16T18:08:01Z",
+      "observed_items": 71
+    }
+  ],
+  "engineering_corrections": {
+    "graph_landing_wrappers": "Two wrappers share one source row; do not count wrappers as independent edges",
+    "edge_uid": "Exact bundle digest + kind + source-array index; row digest and physical-identity review state separate",
+    "multiplicity": "Preserve input rows; repeated rows do not independently prove physical parallel units",
+    "voltage_evidence": {
+      "untrusted_or_undeclared_nodes": 726,
+      "circuit_rows_with_undeclared_endpoint": 76,
+      "transformer_rows_with_undeclared_endpoint": 690,
+      "policy": "Journey explicitly refuses/classifies insufficient voltage evidence; existing BFS API remains unchanged"
+    },
+    "geometry": "No reviewed ETYS-to-polyline crosswalk found in audited trees; geography alone is not circuit identity",
+    "nearby_assets": "Vicinity selection does not establish connectivity, transformers, available capacity or power-flow direction",
+    "journey": "Educational itinerary, not measured current or solved flow",
+    "determinism": "Explicit structural budgets determine repeatable output; wall-clock abort cannot be relabelled deterministic complete coverage",
+    "cartridge_budget": {
+      "default_per_file_bytes": 500000,
+      "journey_named_budget": "not_approved",
+      "existing_overrides": {
+        "lightning": 64781,
+        "offtakers": 80000
+      },
+      "not_aggregate_composition_budget": true
+    }
+  },
+  "work_packages": [
+    {
+      "id": "PN-NEWS",
+      "stream": "pipeline",
+      "repository": "Ventusltd/globalgrid2050",
+      "status": "existing_producer_reuse_and_evidence_audit_needed",
+      "depends_on": [],
+      "paths": [
+        "automation/news/"
+      ],
+      "deliverable": "Pinned real corpus/source-clock/rights/binding audit; reuse collector and evidence ledger",
+      "gate": "Independent source and adversarial identity acceptance; no auto-VERIFIED"
+    },
+    {
+      "id": "PN-TICKER",
+      "stream": "pipeline",
+      "repository": "Ventusltd/globalgrid2050",
+      "status": "recommended_first_bounded_candidate_not_assigned",
+      "depends_on": [],
+      "paths": [
+        "NEW_EDITION/scripts/layers/model.mjs",
+        "NEW_EDITION/scripts/layers/ticker.mjs",
+        "NEW_EDITION/styles/",
+        "focused candidate acceptance"
+      ],
+      "deliverable": "Static manually paged <=100 actual eligible headlines, original credits, no auto-motion/Pause",
+      "gate": "0/1/10/71/72/100 and unsafe/duplicate/stale/unavailable cases; preserve 12-item main list and all data/date/CSV/MAP/expand flows"
+    },
+    {
+      "id": "PN-MAP",
+      "stream": "pipeline",
+      "repository": "Ventusltd/gridatlas",
+      "status": "verification_first_existing_V9191_repair",
+      "depends_on": [],
+      "paths": [
+        "Existing issue87 and MAP runtime harnesses"
+      ],
+      "deliverable": "Current click/composer/engine/visible-result verification before any new repair",
+      "gate": "Exact identity/first-tap/restore evidence; browser emulation and physical Safari separate"
+    },
+    {
+      "id": "PN-GRID",
+      "stream": "pipeline",
+      "repository": "Ventusltd/globalgrid2050",
+      "status": "existing_adapter_real_source_acceptance_needed",
+      "depends_on": [
+        "PN-NEWS"
+      ],
+      "paths": [
+        "automation/news/grid_watch/"
+      ],
+      "deliverable": "One qualifying permitted real official notice through existing adapter",
+      "gate": "Clocks/identity/corrections and negative cases; zero accepted events valid"
+    },
+    {
+      "id": "PN-DOCS",
+      "stream": "pipeline",
+      "repository": "Ventusltd/globalgrid2050",
+      "status": "source_specific_extractor_not_implemented_by_existing_contract",
+      "depends_on": [
+        "PN-NEWS"
+      ],
+      "paths": [
+        "automation/news/filings/",
+        "existing primary-note host"
+      ],
+      "deliverable": "One permitted source-specific typed-fact extractor with precise locators",
+      "gate": "Independent units/date/edition/OCR/identity/rights negatives; no automatic circuit joins"
+    },
+    {
+      "id": "GJ-01",
+      "stream": "grid_journey",
+      "repository": "Ventusltd/data-grid-gb",
+      "status": "baseline_audited_reviewed_crosswalk_and_rights_open",
+      "depends_on": [],
+      "paths": [
+        "Proposed pipelines/grid_journey_crosswalk.py",
+        "Proposed derived/grid-journey-crosswalk.v1.json",
+        "source rights/review ledger"
+      ],
+      "deliverable": "Pinned review ledger/schema and conservative crosswalk prototype",
+      "gate": "No inferred joins; exact/ambiguous/unlocated/withheld counts with source-row locators and rights"
+    },
+    {
+      "id": "GJ-02",
+      "stream": "grid_journey",
+      "repository": "Ventusltd/ventus-grid-engine",
+      "status": "existing_API_audited_new_algorithm_not_implemented",
+      "depends_on": [
+        "GJ-01"
+      ],
+      "parallel_fixture_exception": "Synthetic contract tests may precede real crosswalk acceptance; not real-route proof",
+      "paths": [
+        "Proposed engine/edge-cover-journey.js",
+        "Proposed engine/journey-evidence.js",
+        "focused fixtures/tests"
+      ],
+      "deliverable": "Bounded iterative source-row multigraph edge-cover with review/refusal ledger",
+      "gate": "Wrapper/parallel/duplicate/cycle/disconnected/voltage/transformer/planned/orphan/seed/bounds negatives; continuous deterministic plans"
+    },
+    {
+      "id": "GJ-03",
+      "stream": "grid_journey",
+      "repository": "Ventusltd/gridatlas",
+      "status": "preview_only_contract_budget_and_hooks_needed",
+      "depends_on": [
+        "GJ-01",
+        "GJ-02"
+      ],
+      "conditional_dependencies": [
+        {
+          "work_id": "PN-MAP",
+          "condition": "Claiming Pipeline-to-Journey integrated entry acceptance"
+        }
+      ],
+      "paths": [
+        "Proposed tools/journey/src/",
+        "isolated immutable preview manifests/proofs"
+      ],
+      "deliverable": "Native MapLibre removable preview cartridge, evidence labels, bounded learning cursor",
+      "gate": "Approved named cartridge budget/slot; verified geometry or dotted schematic; mobile/lifecycle/reduced-motion/removal proof; no current pointer edit"
+    },
+    {
+      "id": "GJ-04",
+      "stream": "grid_journey",
+      "repository": "Agreed source data owners and GridAtlas",
+      "status": "real_regional_source_review_pending",
+      "depends_on": [
+        "GJ-03"
+      ],
+      "conditional_dependencies": [
+        {
+          "work_id": "PN-GRID",
+          "condition": "Consuming accepted grid-notice annotations"
+        },
+        {
+          "work_id": "PN-DOCS",
+          "condition": "Consuming accepted extracted document facts"
+        }
+      ],
+      "paths": [
+        "Source-specific reviewed adapters",
+        "preview evidence/coverage UI"
+      ],
+      "deliverable": "One eligible hand-reviewed regional example with honest geometry gaps",
+      "gate": "Rights/electrical identity and existing-layer regressions; annotations are not circuit proof"
+    },
+    {
+      "id": "GJ-05",
+      "stream": "grid_journey",
+      "repository": "Agreed flow-data owners and GridAtlas",
+      "status": "optional_source_sign_rights_gate_pending",
+      "depends_on": [
+        "GJ-04"
+      ],
+      "paths": [
+        "Separate NESO boundary/Elexon interconnector/qualified UKPN transformer adapters",
+        "release-readiness dossier"
+      ],
+      "deliverable": "Optional source-granular direction context and distinct release/rollback dossier",
+      "gate": "Sign/time/units/corrections/rights; unknown UKPN polarity=no arrow; owner acceptance separate"
+    }
+  ],
+  "audit_limitations": [
+    "No new product implementation, source enablement, workflow schedule, preview or deployment created by this manifest",
+    "No real circuit/polyline match or physical-unit identity acceptance established",
+    "Source accessibility and repository code licence do not establish third-party data rights",
+    "Read-only GridAtlas lint/state attempt blocked by missing scope-of-works in sparse audit checkout; not a product failure",
+    "No new physical handset/Safari/assistive or public runtime acceptance performed in these schedule audits"
+  ]
+}
