@@ -1,12 +1,12 @@
 # Overnight command tracker: 18 November 2026
 
-Baseline checked 2026-11-17 23:51 UTC; command milestone updated 23:55 UTC. Cutoff: **2026-11-18 08:00 UTC**.
+Baseline checked 2026-11-17 23:51 UTC; publication milestone recorded 2026-11-18 00:57:46 UTC. Cutoff: **2026-11-18 08:00 UTC**.
 
 **Owner signature: SIGNED IN CONVERSATION; execution authorized through08:00UTC.** The [full signed scope copy](2026-11-18-OVERNIGHT-SCOPE-SIGNOFF.md) preserves the agreed ten steps, three Pipeline News/two GridAtlas deliverables, eight roles and publication gates. Exact owner sign-off relayed by Grid Analyser: “SIGNED LIVE LONG AND PROSPER AND UNDER NO CIRCUMSTANCES IDLE TILL 8AM UTC”. Controller UTC recording time2026-11-18 00:16:16; conversation sign-off, not a cryptographic signature. Route available capacity to useful authorized work during genuine CI/deployment waits without weakening gates or expanding scope.
 
 **Research-informed amendment authorized; continue working and publishing through cutoff.** Read the [bounded amendment in the existing signed scope](2026-11-18-OVERNIGHT-SCOPE-SIGNOFF.md#research-informed-amendment--execution-continues): existing static MapLibre/reviewed VGE, shared IDs/source/precision/unknowns, one integer1–50km radius, actual eligible generation/demand/substation coverage and source-grounded upgrade context, with accessible Android/WebKit interaction and unchanged evidence/rights gates. New national/backend/3D/cost programmes remain deferred. Final PR63 report bytes were still pending at the last independent00:37:16UTC check; conversation receipt does not establish committed source verification. No renewed signature gate.
 
-The owner explicitly authorized implementation, integration, CI, independent review and publication without further routine approval. Required delivery: **three new Pipeline News publications and two new GridAtlas publications**, both discoverable on **globalgrid2050.com**, retaining historical versions. [Authorization/start receipt6964495738](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6964495738). No new overnight publication is yet verified at this checkpoint.
+The owner explicitly authorized implementation, integration, CI, independent review and publication without further routine approval. Required delivery: **three new Pipeline News publications and two new GridAtlas publications**, both discoverable on **globalgrid2050.com**, retaining historical versions. [Authorization/start receipt6964495738](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6964495738). **Verified count: Pipeline News1/3; GridAtlas0/2.** PN-01/V9.42 is formally accepted; Atlas1 homepage publishing has the serialized writer turn. Continue the remaining programme through cutoff.
 
 ## Command and capacity
 
@@ -32,7 +32,7 @@ Historical V9.41 acceptance is [receipt6960671622](https://github.com/Ventusltd/
 
 | Work ID | Deliverable | Lead | Dependencies | Current evidence/state |
 |---|---|---|---|---|
-| PN-01 | Mobile REPD MAP reliability, project handoff, useful loading/failure/retry and real grid result | Grid Analyser | Reproduction; Atlas receiver contract; homepage publisher | INVESTIGATING; V9.42/edition202611172355 reserved on analyser/pn-mobile-v942-20261118 from c46d932; command reports touch2470 reaches engine but collapsed card hides result; paired Atlas compact result and PN native same-tab-touch fix in progress, desktop preserved |
+| PN-01 | Mobile REPD MAP reliability, project handoff, useful loading/failure/retry and real grid result | Grid Analyser | Reproduction; Atlas receiver contract; homepage publisher | PUBLIC READBACK VERIFIED / V9.42 accepted; source33da779, publisher05c820; actual homepage and scoped Android/WebKit/nativeBack/JS-on-off, history and rollback gates PASS |
 | GA-01 | Reliable mobile arrival plus native Journey preview, existing engine integration and Layers activation | Train Conductor | Existing data12/engine4/Atlas93; shared origin contract | PENDING_IMPLEMENTATION_INTEGRATION; existing PRs open/unmerged |
 | PN-02 | JOURNEY next to MAP for REPD/data centres/substations with stable identity/provenance | Grid Analyser | PN-01 and GA-01 accepted entry contract | PENDING_IMPLEMENTATION |
 | GA-02 | Vicinity1–50km, available voltage filters, generation/demand/substation context and optional Vogel schematic | Train Conductor | GA-01; rights/identity-qualified inputs | PENDING_IMPLEMENTATION |
@@ -52,6 +52,14 @@ Every row requires exact source commit, meaningful change, local contracts, requ
 8. **S08 News/Journey links:** improve useful original-attributed eligible news and defensible asset links; unknown associations remain unknown.
 9. **S09 Official intelligence:** Python distillation and GRID/DOCS context, document hashes/pages and typed dates/units; Covenant is policy context, not assessed compliance.
 10. **S10 Acceptance/handover:** CI efficiency, cross-product deployed functional checks, preserved artifacts/rollback and final published/tested/blocked ledger by cutoff.
+
+## PN-01 publication acceptance, recorded 00:57:46 UTC
+
+[Official command acceptance milestone](https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6965675861); [independent final public Android/WebKit receipt](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6965642470). Source `33da7796caf6d9db6eacb1893d52ef8c89666ad8`, source merge `f2a29a5bdca8fcf87368d9d83d3a2d13b53cfd0b`; owner pin `d760e9902698f7c01e0019d40d8b501dfafb5b44`, owner merge `d7032b1473ae525891ab87dc80b1df18703b56c3`; publisher exact head `91398b172d7b7242d0ad5125f798d70b2c51b8c9`, merged `05c8206518087b93983fc3562149cc3b86ccb4e5`.
+
+All five final [Pages44210248847](https://github.com/Ventusltd/globalgrid2050/actions/runs/44210248847) jobs independently read SUCCESS. Root and producer report actual root57,690B/SHA256 `05dc6efd607fac2cf06ad7641fd3d7f7007f860e6a3f062b8e4f14e38b2307f6`, seven owner pins,31distinctPASS/browser ledger,20visible retained releases and native JS-on/off acceptance00:53:56. Actual V154 rollback57,468B/SHA256 `24bd7fab530ef7d61c222b348f7058772a3363a88d242a314880279679c97bff` preserves V9.41. Initial JS-off harness container failure was corrected without product edits and retained separately.
+
+Independent final actual homepage touch checks reached V9.42 then actually served Atlas2355 with visible nearest result,44px Details, native Journey, rotation and Back; Android/WebKit final completed00:54:06.559944Z. Earlier dated6case device matrix and129/129Atlas byte verifier remain separate. Known evidence404 remains qualified; no physical-handset or all7775runtime coverage is asserted. Atlas source acceptance does not count as an Atlas homepage publication. Writer lock released to Train Conductor's reviewed owner34 for GA-01; final producer summary URL may supplement the existing durable acceptance receipts.
 
 ## Open dependencies and conflicts
 
