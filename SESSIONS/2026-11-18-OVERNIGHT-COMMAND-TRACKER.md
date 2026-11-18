@@ -107,3 +107,8 @@ Accepted shared entry contract: `journey=vicinity`, `origin_type`, `origin_id`, 
 Neutral branding: **Grid Journeys — exploring the patterns of energy**. Retain relevant Vogel/code attribution; no Turing/Enigma/military framing. Preserve7775REPD rows, frozen Solar-1000 and historical releases. No new paid service, restricted NUAR import, GPU setup, unlicensed data or public suggestions backend. Nearby assets are not electrical connections; schematic links are not surveyed routes; synthetic motion is not measured current.
 
 Continue useful accepted-scope improvements after target five until cutoff. Do not weaken CI/review or create trivial releases for count. At cutoff preserve in-flight work safely and report counts plus exact evidence, limitations and next action. This tracker is a checkpoint and does not schedule or wake inactive agents.
+
+
+### Recovery refresh - 02:29 UTC
+
+[Sanitized recovery checkpoint](2026-11-18-GRID-ANALYSER-RECOVERY.md#material-local-journey-checkpoint---0229-utc) separates unpublished local code, component verdicts and renderer holds from the PRE-LAW green PR97. Count remains2/5; GA2 publisher reserved, PN943 frozen waiting served consumer, PN3 preparatory. Existing watch and exact release gates continue.
