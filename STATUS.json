@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_at_utc": "2026-11-18T00:57:46Z",
+  "checked_at_utc": "2026-11-18T01:33:07Z",
   "channel": "https://github.com/Ventusltd/neural-link-between-agents/issues/42",
   "work": [
     {
@@ -29,14 +29,21 @@
       "owner": "Grid Analyser: Pipeline News; Train Conductor: GridAtlas; scope controller: acceptance tracker",
       "state": "IN_PROGRESS",
       "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6964495738",
-      "next_action": "Continue authorized ten steps through08UTC18Nov; verified1/3PipelineNews,0/2GridAtlas; Atlas1homepage writerturn active; remaining GA2/PN2/PN3 proceed."
+      "next_action": "Continue through08UTC18Nov; verified1/3PN+1/2GA. Conductor owns next GA2 homepage turn after corrected hosted gate; PN2 source all-five-green held for served GA2 consumer."
     },
     {
       "id": "PN-V942",
       "owner": "Grid Analyser publication; Train Conductor independent public QA",
       "state": "PUBLICLY_VERIFIED",
-      "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6965675861",
-      "next_action": "Accepted PN-01; count1/3PN,0/2Atlas. Atlas1 owns serialized homepage publishing turn; continue PN2/GA2/PN3."
+      "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6966151622",
+      "next_action": "Accepted PN-01; verified1/3PN+1/2GA; continue GA2/PN2/PN3."
+    },
+    {
+      "id": "GA-V9192",
+      "owner": "Train Conductor publication; independent public and command review",
+      "state": "PUBLICLY_VERIFIED",
+      "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6966249335",
+      "next_action": "Accepted GA-01; verified1/3PN+1/2GA. Next publisher turn Conductor/GA-02 after hosted browser failure corrected and accepted."
     }
   ],
   "owner_signoff": {
