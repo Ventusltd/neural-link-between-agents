@@ -1,0 +1,52 @@
+{
+  "source_repository": "Ventusltd/gridatlas",
+  "source_commit": "9db8a027a6d15256d4be501707c36d1934c6e2ef",
+  "archive_branch": "archive/overnight-grid-journeys-20261118",
+  "files": [
+    {
+      "path": "atlas/modules/202611172355-grid-journey-preview.js",
+      "git_blob_sha": "455c32ec542a2ac0bb637361093742af8e6e7ede"
+    },
+    {
+      "path": "atlas/modules/202611180026-grid-vicinity.js",
+      "git_blob_sha": "419758cc50731538e44cf604067a2ef2ecf67950"
+    },
+    {
+      "path": "tools/train/src/itinerary.mjs",
+      "git_blob_sha": "684046121091b3a805533c8df85f5bc55b44aed2"
+    },
+    {
+      "path": "tools/train/src/route-plan.mjs",
+      "git_blob_sha": "29870a71af8d6cb7132ce3cacf1aae5edd3e72ef"
+    },
+    {
+      "path": "tools/train/src/station-index.mjs",
+      "git_blob_sha": "8b0356eef605aff46042a28a524754c5475339f6"
+    },
+    {
+      "path": "tools/train/src/train-motion.mjs",
+      "git_blob_sha": "4a8f0d803d20e9dff2c6d258048cbb6e823e0422"
+    },
+    {
+      "path": "tools/train/src/scenario-stations.mjs",
+      "git_blob_sha": "ee40d1df93fd321b9b8666cda03b4f76669a6468"
+    },
+    {
+      "path": "tools/train/src/place-bridge.mjs",
+      "git_blob_sha": "8796efdced60ed25b9de0fc5fbb6af8a73398cc4"
+    },
+    {
+      "path": "tools/train/README.md",
+      "git_blob_sha": "87a6380b49dc6385b74c19210ab4a3828282f9c0"
+    },
+    {
+      "path": "LICENSE",
+      "git_blob_sha": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+    },
+    {
+      "path": "NOTICE",
+      "git_blob_sha": "a4b2c1dba578ec27d6a626f0f5182a749fd8709f"
+    }
+  ],
+  "status": "BETA_NOT_ACCEPTED_ON_PHYSICAL_IPHONE"
+}
