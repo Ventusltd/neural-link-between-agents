@@ -6,7 +6,7 @@ Refreshed **02:29 UTC**; historical release receipts remain identified below. Th
 
 The owner signed the [full scope and bounded research amendment](2026-11-18-OVERNIGHT-SCOPE-SIGNOFF.md): **“SIGNED LIVE LONG AND PROSPER AND UNDER NO CIRCUMSTANCES IDLE TILL 8AM UTC”**, then directed continued work/publication. Cutoff **08:00 UTC, 18 November 2026**. Ten steps; target **three new Pipeline News and two new GridAtlas publications**, both discoverable from globalgrid2050.com with history retained. Scoped implementation, testing, independent review, merges and publication need no further routine approval. Do not weaken gates or expand to new backend/national/3D/cost programmes.
 
-**Accepted count: PN1/3; Atlas1/2 (2/5total).** See [command tracker](2026-11-18-OVERNIGHT-COMMAND-TRACKER.md) and [JSON](2026-11-18-OVERNIGHT-COMMAND-TRACKER.json). Count only reviewed exact source + required CI + product/domain publication + actual homepage/native browser/served-byte/rollback acceptance.
+**Accepted count: PN1/3; Atlas2/2 (3/5total), refreshed04:44 UTC.** See [command tracker](2026-11-18-OVERNIGHT-COMMAND-TRACKER.md) and [JSON](2026-11-18-OVERNIGHT-COMMAND-TRACKER.json). Count only reviewed exact source + required CI + product/domain publication + actual homepage/native browser/served-byte/rollback acceptance.
 
 ## Command roles and live publishing turn
 
@@ -58,3 +58,11 @@ The latest signed scope governs: selected stops are canonical substations or opt
 PN943 remains frozen at413fa072 with all-five source gates green, waiting for the actual served new GA2 consumer. PN3 remains preparatory/frozen atb61cbf9: [independent bounded code/fact PASS](https://github.com/Ventusltd/globalgrid2050/pull/172#issuecomment-6964865823), with successor integration and release acceptance still pending. Accepted programme count remains PN1/3 + Atlas1/2. Conductor owns the reserved next GA2 publishing turn; no competing owner/domain writes.
 
 Conductor confirmed the native correction worker was reactivated after a dispatch lapse. A message alone may not reactivate an idle worker: verify actual status and use the existing worker follow-up action rather than duplicate spawning. No restart of live workers or new commander is authorized by this recovery note. Continue lane65 every5-10minutes and read fresh42/65/research63 before acting.
+
+## Accepted GA2 and corrective Pipeline checkpoint - 04:44 UTC
+
+GA2 is formally accepted: [command receipt](https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6969290949). Domain44235262695 allfiveSUCCESS, exact homepage58318B SHA2562c3465cc186c326873280083d560fc04388ac0f14321dfb252344082eecc25f8, V156 exact prior58093B/826d, currentV9.193 and immutableV9.192/V9.191 archives; four nativehomepage cases and actual currentChromium/hostedWebKit complete. Source97 mergedb1265b6, pointer98 merged9db8a02, owner35 mergedbb381d1, domain177 merged94420b9. Earlier local/hosted failures, Windows incomplete and APT timeout remain retained historical evidence, superseded by exact successful gates, not waived.
+
+All earlier dated pending-GA2 statements above are superseded by this acceptance. Conductor durable closure and explicit serial handoff requested; PN2 has not begun homepage writes. Read latest42/65 before taking lock.
+
+PN2 V9.43 source175 merged9781cd2 and23servedpins/+32ledgerPASS, but actual coldBack failed full filter equality: saved Solar category activation overwrites technology all after URL restoration (query12588 restores). It remains uncounted/unpromoted. Mobile prepares immutable V9.43.1 corrective successor; never rewrite served V9.43 or weaken Back assertions. PN3 privateV944 must rebase/use a fresh actual stamp on accepted corrective PN2. No private prototype adds a publication. Physical production routing remains NOT_INSTALLED without a reviewed rights-pinned Atlas-bus crosswalk and real geometry; honest explicitly simulated rides remain distinct.

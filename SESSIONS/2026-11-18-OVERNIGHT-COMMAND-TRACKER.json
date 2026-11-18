@@ -1,6 +1,6 @@
 {
   "schema": "neural.overnight-command.v1",
-  "checked_at_utc": "2026-11-18T01:33:07Z",
+  "checked_at_utc": "2026-11-18T04:44:00Z",
   "cutoff_utc": "2026-11-18T08:00:00Z",
   "owner_authorized": true,
   "publication_target": {
@@ -9,7 +9,7 @@
   },
   "verified_new_publications": {
     "pipeline_news": 1,
-    "gridatlas": 1
+    "gridatlas": 2
   },
   "homepage": "https://globalgrid2050.com/",
   "preserve_history": true,
@@ -68,10 +68,10 @@
     {
       "id": "PN-02",
       "owner": "Grid Analyser",
-      "state": "TESTED_PENDING_RECEIVER",
+      "state": "CORRECTIVE_SUCCESSOR_REQUIRED",
       "depends_on": [
         "PN-01",
-        "GA-01"
+        "GA-02"
       ],
       "source_commit": "413fa072d42945dbafa31c6957b35f8681858984",
       "ci": [
@@ -84,21 +84,31 @@
       "review": null,
       "public_receipt": null,
       "version": "V9.43",
-      "edition": "202611180058"
+      "edition": "202611180058",
+      "source_merge": "9781cd21cace64478926ad9fbcd2d620863bc537",
+      "blocker": "Actual cold Back restores Solar category but overwrites technology all; preserve V9.43 and validate immutable V9.43.1 corrective successor before promotion."
     },
     {
       "id": "GA-02",
       "owner": "Train Conductor",
-      "state": "BLOCKED",
+      "state": "PUBLIC_READBACK_VERIFIED",
       "depends_on": [
         "GA-01"
       ],
-      "source_commit": "0dc509d3ec40816b5b79f501fab81e891f2e2703",
+      "source_commit": "2834131b017ebfbb3b4b6b5fe755d72bfb11b074",
       "ci": [
-        "https://github.com/Ventusltd/gridatlas/actions/runs/44215442987"
+        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44235262695",
+        "https://github.com/Ventusltd/gridatlas/actions/runs/44234110592"
       ],
-      "review": null,
-      "public_receipt": null
+      "review": "https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6969290949",
+      "public_receipt": "https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6969290949",
+      "version": "V9.193",
+      "edition": "202611180026",
+      "source_merge": "b1265b6b19212a188d20ff79bea4ebf0c0834187",
+      "pointer_merge": "9db8a027a6d15256d4be501707c36d1934c6e2ef",
+      "owner_merge": "bb381d1d3090cd56c2a6d0a23b3844df70cb669b",
+      "publisher_merge": "94420b906cc831caf147f594150e209378d9f6f8",
+      "command_acceptance": "https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6969290949"
     },
     {
       "id": "PN-03",
@@ -146,6 +156,6 @@
   "publisher_turn": {
     "owner": "Train Conductor",
     "release": "GA-02",
-    "condition": "Correct/review/accept exact hosted browser failure before publishing; no concurrent homepage writers"
+    "condition": "GA2 accepted; explicit serial handoff to Pipeline command pending durable Conductor closure; no concurrent homepage writers."
   }
 }
