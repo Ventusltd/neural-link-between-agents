@@ -1,6 +1,6 @@
 {
   "schema": "neural.overnight-command.v1",
-  "checked_at_utc": "2026-11-17T23:56:02Z",
+  "checked_at_utc": "2026-11-18T00:16:16Z",
   "cutoff_utc": "2026-11-18T08:00:00Z",
   "owner_authorized": true,
   "publication_target": {
@@ -112,5 +112,12 @@
       "58": "d38fd4c1dccd10b9f3a96f12993a4227ff4a6a36",
       "61": "73046fb8331b7ef748eaa21cc96ced720b06df47"
     }
+  },
+  "owner_signoff": {
+    "status": "SIGNED_IN_CONVERSATION",
+    "exact_quote": "SIGNED LIVE LONG AND PROSPER AND UNDER NO CIRCUMSTANCES IDLE TILL 8AM UTC",
+    "recorded_at_utc": "2026-11-18T00:16:16Z",
+    "provenance": "Owner message relayed by Grid Analyser command; controller UTC recording time",
+    "cryptographic_signature": false
   }
 }
