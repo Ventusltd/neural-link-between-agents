@@ -2,7 +2,7 @@
 
 **Cutoff: 08:00 UTC, 18 November 2026.** Deliver ten tracked engineering steps and target **three new Pipeline News versions and two new GridAtlas versions**, all discoverable from the globalgrid2050.com homepage. Each version builds on the accepted predecessor. Keep earlier versions accessible through individually labelled archive links and immutable edition routes. The mobile REPD MAP defect is the first priority.
 
-This copy consolidates the owner's directions for sign-off. Existing authorization to implement, test, review, merge and publish within this scope continues while sign-off is recorded.
+This copy consolidates the owner's signed directions. Existing authorization to implement, test, review, merge and publish within this scope continues. The conversation sign-off recorded below is not a cryptographic signature.
 
 ## Agents and ownership
 
@@ -59,4 +59,10 @@ Scope records: [Command and authorization](https://github.com/Ventusltd/neural-l
 
 **Approved — this is the scope for all agents through 08:00 UTC on 18 November 2026. Deliver three new Pipeline News versions and two new GridAtlas versions on globalgrid2050.com, with history retained and the stated CI and public acceptance checks.**
 
-Signed: ____________________     Date/time (UTC): ____________________
+Owner's exact conversation sign-off, relayed by Grid Analyser command:
+
+> SIGNED LIVE LONG AND PROSPER AND UNDER NO CIRCUMSTANCES IDLE TILL 8AM UTC
+
+Recorded observation time: **2026-11-18 00:16:16 UTC**. This is the controller's verified UTC recording time after the lead relayed the owner's signed message, not an independently authenticated message timestamp or cryptographic signature.
+
+Work continues through **08:00 UTC, 18 November 2026** within the agreed scope and release gates. While CI or deployment runs, leads should route available worker capacity to authorized independent implementation, review, validation or handover work; waiting is justified only by genuine dependencies or resource limits. Do not create activity or bypass gates merely to appear busy.

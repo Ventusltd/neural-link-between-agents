@@ -2,7 +2,7 @@
 
 Baseline checked 2026-11-17 23:51 UTC; command milestone updated 23:55 UTC. Cutoff: **2026-11-18 08:00 UTC**.
 
-**Owner signature: PENDING; execution already authorized.** The [full scope copy for owner sign-off](2026-11-18-OVERNIGHT-SCOPE-SIGNOFF.md) preserves the agreed ten steps, three Pipeline News/two GridAtlas deliverables, eight roles and publication gates. Blank signature/date fields are an unsigned template, not an assertion that the owner has signed. Existing authorized work continues.
+**Owner signature: SIGNED IN CONVERSATION; execution authorized through08:00UTC.** The [full signed scope copy](2026-11-18-OVERNIGHT-SCOPE-SIGNOFF.md) preserves the agreed ten steps, three Pipeline News/two GridAtlas deliverables, eight roles and publication gates. Exact owner sign-off relayed by Grid Analyser: “SIGNED LIVE LONG AND PROSPER AND UNDER NO CIRCUMSTANCES IDLE TILL 8AM UTC”. Controller UTC recording time2026-11-18 00:16:16; conversation sign-off, not a cryptographic signature. Route available capacity to useful authorized work during genuine CI/deployment waits without weakening gates or expanding scope.
 
 The owner explicitly authorized implementation, integration, CI, independent review and publication without further routine approval. Required delivery: **three new Pipeline News publications and two new GridAtlas publications**, both discoverable on **globalgrid2050.com**, retaining historical versions. [Authorization/start receipt6964495738](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6964495738). No new overnight publication is yet verified at this checkpoint.
 
