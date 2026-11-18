@@ -1,6 +1,6 @@
 {
   "schema": "neural.overnight-command.v1",
-  "checked_at_utc": "2026-11-18T00:16:16Z",
+  "checked_at_utc": "2026-11-18T00:57:46Z",
   "cutoff_utc": "2026-11-18T08:00:00Z",
   "owner_authorized": true,
   "publication_target": {
@@ -8,7 +8,7 @@
     "gridatlas": 2
   },
   "verified_new_publications": {
-    "pipeline_news": 0,
+    "pipeline_news": 1,
     "gridatlas": 0
   },
   "homepage": "https://globalgrid2050.com/",
@@ -31,16 +31,21 @@
     {
       "id": "PN-01",
       "owner": "Grid Analyser",
-      "state": "INVESTIGATING",
+      "state": "PUBLIC_READBACK_VERIFIED",
       "version": "V9.42",
       "edition": "202611172355",
       "branch": "analyser/pn-mobile-v942-20261118",
       "baseline": "c46d932827c0f9a404725ace0bf60153fc446e56",
       "depends_on": [],
-      "source_commit": null,
-      "ci": [],
-      "review": null,
-      "public_receipt": null
+      "source_commit": "33da7796caf6d9db6eacb1893d52ef8c89666ad8",
+      "ci": [
+        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44210248847"
+      ],
+      "review": "https://github.com/Ventusltd/globalgrid2050/pull/173#issuecomment-6964886912",
+      "public_receipt": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6965642470",
+      "source_merge": "f2a29a5bdca8fcf87368d9d83d3a2d13b53cfd0b",
+      "publisher_merge": "05c8206518087b93983fc3562149cc3b86ccb4e5",
+      "command_acceptance": "https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6965675861"
     },
     {
       "id": "GA-01",
