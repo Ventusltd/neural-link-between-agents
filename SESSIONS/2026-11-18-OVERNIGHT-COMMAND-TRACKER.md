@@ -14,6 +14,8 @@ Mandatory owner priority, **Great Grid Journeys**: preserve existing Vicinity/Li
 
 Selecting/editing stops builds the native-map ride; users may explicitly shape hypothetical legs where existing lightweight road/rail/cable drawing hooks support it. Keep user-drawn/simulated provenance and missing documented-connection explanations; no inference that a physical line exists and no separate general renderer.
 
+Owner topology emphasis: original London Underground-inspired local/interchange, Eurostar-inspired express and railway branch/junction demonstrators; no railway feeds/maps imported. User-defined declarative journey rules cover must-visit ordered stops, existing voltage restrictions and documented-only/explicitly permitted hypothetical legs in the same tool. No route means explanation plus editable options, not invented connectivity. Native400/132kV layers, canonical station lookup/colours/caps/gates unchanged.
+
 The owner explicitly authorized implementation, integration, CI, independent review and publication without further routine approval. Required delivery: **three new Pipeline News publications and two new GridAtlas publications**, both discoverable on **globalgrid2050.com**, retaining historical versions. [Authorization/start receipt6964495738](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6964495738). **Verified count: Pipeline News1/3; GridAtlas1/2 (2/5total).** PN-01/V9.42 and GA-01/V9.192 are formally accepted. Next serialized publishing turn: Train Conductor/GA-02, only after its failed hosted browser gate is corrected and accepted. PN-02 source can progress after GA2 is served; no competing homepage writer. Continue through cutoff.
 
 ## Command and capacity
