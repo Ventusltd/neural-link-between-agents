@@ -6,7 +6,7 @@ Refreshed **02:29 UTC**; historical release receipts remain identified below. Th
 
 The owner signed the [full scope and bounded research amendment](2026-11-18-OVERNIGHT-SCOPE-SIGNOFF.md): **“SIGNED LIVE LONG AND PROSPER AND UNDER NO CIRCUMSTANCES IDLE TILL 8AM UTC”**, then directed continued work/publication. Cutoff **08:00 UTC, 18 November 2026**. Ten steps; target **three new Pipeline News and two new GridAtlas publications**, both discoverable from globalgrid2050.com with history retained. Scoped implementation, testing, independent review, merges and publication need no further routine approval. Do not weaken gates or expand to new backend/national/3D/cost programmes.
 
-**Accepted count: PN2/3; Atlas2/2 (4/5 total), refreshed 06:19 UTC.** See [command tracker](2026-11-18-OVERNIGHT-COMMAND-TRACKER.md) and [JSON](2026-11-18-OVERNIGHT-COMMAND-TRACKER.json). Count only reviewed exact source + required CI + product/domain publication + actual homepage/native browser/served-byte/rollback acceptance.
+**Accepted count: PN3/3; Atlas2/2 (5/5 total), refreshed 07:32 UTC.** See [command tracker](2026-11-18-OVERNIGHT-COMMAND-TRACKER.md) and [JSON](2026-11-18-OVERNIGHT-COMMAND-TRACKER.json). Count only reviewed exact source + required CI + product/domain publication + actual homepage/native browser/served-byte/rollback acceptance.
 
 ## Command roles and live publishing turn
 
@@ -73,3 +73,14 @@ PN2 V9.43 source175 merged9781cd2 and23servedpins/+32ledgerPASS, but actual cold
 V9.44 is accepted once as PN-02: [full closure](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6970819801). All five final Pages44248671123 jobs passed after the exact historical retry; earlier failures remain retained. Exact root58,584 bytes SHA25663a21992f8ab2de4e281ac8373a924a94b908f7eb537706e96206ce869188cc2, V157 prior58,318 bytes/2c3465cc,21 links,12 actual product cases, native homepage JavaScript on/off and33-row ledger are verified. V9.43 remains immutable, available and uncounted; the proposed patch label was replaced by normal V9.44. This supersedes earlier pending-PN2 statements.
 
 V9.45/202611180520 source PR179 exact58b25710 merged396ff312298c1452aeb2ccdbce34dc19fc823962 after all six source checks. Normal Pages44249999490 and34-row ledger44249999470 are active; actual38-pin/public News-return proof and final homepage/rollback acceptance remain. Current homepage stays V9.44. Grid Analyser/mobile owns the sole final publisher; V158 preparation is reversible and does not count as publication. Signed target stays three Pipeline plus two Atlas, cutoff08UTC. Read current42/65 before resuming.
+
+
+## Five releases accepted - 07:32 UTC
+
+The signed programme is achieved: Pipeline V9.42, V9.44 and V9.46; GridAtlas V9.192 and V9.193. [Final producer closure](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6972107676) and [command acceptance](https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6972120294). Final V9.46 source52894934b2c8bdd591170f5245461332575dd290, owner3c742467ab54f503a3af62fdde322eba8fb4579b and domain04bb01e205ab439ec6e39cd3ef78265039f9d532 are merged. All five final Pages44257502737 jobs passed, including historical V9.22/V9.7 and report.
+
+Actual root58,849 bytes SHA256c84281274eb73343511f72b8983e0b9eed413b7efb478be03933509023a822be, V158 exact prior58,584 bytes/63a21992, all target and22 Pipeline links,35-row ledger and native homepage JavaScript on/off are verified. Actual product proof44256162292/artifact14405454905 covers39 pins,12 native Journeys,12 actual News popups/return/reset andthree second cold reloads with exact visible state and no errors. Browser evidence uses emulation, not physical handset certification.
+
+V9.43 and V9.45 remain immutable, available, unselected and uncounted. Preserve their failures, the corrected QA-only harness artifacts, Windows incomplete probe, installation timeouts and successful exact retries; no assertion was waived. Physical tracing remains NOT_INSTALLED without a reviewed rights-pinned topology/Atlas crosswalk; explicitly simulated rides are labelled.
+
+This final acceptance supersedes all dated pending-gate/version/lock notes above. The sole homepage publisher is released inactive. No additional versions, homepage writes or repeated heavy browser loops. Continue lightweight read-only verification and scope/research watch through08UTC, then stop launching work, preserve receipts and report accepted versus deferred scope. Do not create a replacement lead, restart workers or interpret optional research as new publication authority.

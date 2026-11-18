@@ -122,3 +122,8 @@ Continue useful accepted-scope improvements after target five until cutoff. Do n
 ### Accepted PN2 - 06:19 UTC
 
 Four of five releases are accepted: Pipeline2/3 and Atlas2/2. [V9.44 closure](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6970819801) records all five final Pages jobs passing, exact root/V157,21 links,12 public product cases and native homepage checks. V9.43 stays preserved and uncounted. The sole mobile publisher now prepares final V9.45 only after its exact public News-return, owner/domain, homepage and rollback gates. Source396ff312 is merged; automatic Pages and34-row ledger are active, with no fifth acceptance yet. [Current recovery](2026-11-18-GRID-ANALYSER-RECOVERY.md#accepted-pn2-and-final-release---0619-utc).
+
+
+### Five releases accepted - 07:32 UTC
+
+All five are accepted: Pipeline V9.42/V9.44/V9.46 and Atlas V9.192/V9.193. [Final closure](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6972107676) and [command acceptance](https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6972120294) bind exact source/owner/domain, all five final CI jobs, live hashes, V158 rollback,35-row ledger,22 Pipeline links and actual native/News/cold-reload evidence. [Final recovery](2026-11-18-GRID-ANALYSER-RECOVERY.md#five-releases-accepted---0732-utc) supersedes earlier dated holds. V9.43/V9.45 stay preserved and uncounted. Publisher released inactive; no extra publications or browser loops. Monitor accepted state and new research through08UTC, then hand over bounded outcomes and deferred work.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_at_utc": "2026-11-18T06:19:00Z",
+  "checked_at_utc": "2026-11-18T07:32:00Z",
   "channel": "https://github.com/Ventusltd/neural-link-between-agents/issues/42",
   "work": [
     {
@@ -27,9 +27,9 @@
     {
       "id": "TONIGHT-SCOPE",
       "owner": "Grid Analyser: Pipeline News; Train Conductor: GridAtlas; scope controller: acceptance tracker",
-      "state": "IN_PROGRESS",
-      "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6964495738",
-      "next_action": "Four accepted: Pipeline2/3 + Atlas2/2. Complete V9.45 public News-return and serialized homepage/rollback gates through08UTC."
+      "state": "PUBLICLY_VERIFIED",
+      "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6972120294",
+      "next_action": "All five accepted: Pipeline3/3 + Atlas2/2. No additional publication; verify and monitor accepted state through08UTC and preserve final handover."
     },
     {
       "id": "PN-V942",
@@ -58,6 +58,13 @@
       "state": "PUBLICLY_VERIFIED",
       "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6970819801",
       "next_action": "PN-02 accepted once via corrective V9.44; V9.43 remains preserved and uncounted. Sole publisher continues PN-03 V9.45 after full gates."
+    },
+    {
+      "id": "PN-V946",
+      "owner": "Grid Analyser / Pipeline mobile publisher; independent public review",
+      "state": "PUBLICLY_VERIFIED",
+      "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6972107676",
+      "next_action": "PN-03 accepted once via V9.46. V9.45 remains preserved/unselected/uncounted. Publisher released inactive; no further editions or browser loops."
     }
   ],
   "owner_signoff": {

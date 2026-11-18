@@ -1,6 +1,6 @@
 {
   "schema": "neural.overnight-command.v1",
-  "checked_at_utc": "2026-11-18T06:19:00Z",
+  "checked_at_utc": "2026-11-18T07:32:00Z",
   "cutoff_utc": "2026-11-18T08:00:00Z",
   "owner_authorized": true,
   "publication_target": {
@@ -8,7 +8,7 @@
     "gridatlas": 2
   },
   "verified_new_publications": {
-    "pipeline_news": 2,
+    "pipeline_news": 3,
     "gridatlas": 2
   },
   "homepage": "https://globalgrid2050.com/",
@@ -111,20 +111,23 @@
     {
       "id": "PN-03",
       "owner": "Grid Analyser",
-      "state": "SOURCE_MERGED_PUBLIC_GATES_PENDING",
+      "state": "PUBLIC_READBACK_VERIFIED",
       "depends_on": [
         "PN-02"
       ],
-      "source_commit": "58b25710320e0c887ac95f6c28795c8bb02bc69c",
+      "source_commit": "169fe4e196741971c3cb380ddb49344977026b82",
       "ci": [
-        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44249999490",
-        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44249999470"
+        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44257502737",
+        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44256162292"
       ],
-      "review": null,
-      "public_receipt": null,
-      "version": "V9.45",
-      "edition": "202611180520",
-      "source_merge": "396ff312298c1452aeb2ccdbce34dc19fc823962"
+      "review": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6972107676",
+      "public_receipt": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6972107676",
+      "version": "V9.46",
+      "edition": "202611180633",
+      "source_merge": "52894934b2c8bdd591170f5245461332575dd290",
+      "owner_merge": "3c742467ab54f503a3af62fdde322eba8fb4579b",
+      "publisher_merge": "04bb01e205ab439ec6e39cd3ef78265039f9d532",
+      "command_acceptance": "https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6972120294"
     }
   ],
   "milestone": {
@@ -158,8 +161,8 @@
     "cryptographic_signature": false
   },
   "publisher_turn": {
-    "owner": "Grid Analyser / Pipeline mobile publisher",
-    "release": "PN-03",
-    "condition": "Sole final publisher; V158 reversible prep only until exact V9.45 public functional, owner/domain, homepage and rollback gates pass."
+    "owner": "NONE_RELEASED",
+    "release": null,
+    "condition": "Five accepted publications complete; no additional editions or homepage writes. Verify and monitor accepted state through08UTC, then bounded handover."
   }
 }
