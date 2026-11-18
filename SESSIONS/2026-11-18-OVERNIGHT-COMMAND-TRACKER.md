@@ -2,6 +2,8 @@
 
 Baseline checked 2026-11-17 23:51 UTC; publication milestone recorded 2026-11-18 00:57:46 UTC. Cutoff: **2026-11-18 08:00 UTC**.
 
+Restart aid: [Grid Analyser recovery checkpoint](2026-11-18-GRID-ANALYSER-RECOVERY.md). Read latest lane65/42 and verify current heads, served state and publisher ownership before acting; do not start duplicate writers or revive completed jobs from dated notes.
+
 **Owner signature: SIGNED IN CONVERSATION; execution authorized through08:00UTC.** The [full signed scope copy](2026-11-18-OVERNIGHT-SCOPE-SIGNOFF.md) preserves the agreed ten steps, three Pipeline News/two GridAtlas deliverables, eight roles and publication gates. Exact owner sign-off relayed by Grid Analyser: “SIGNED LIVE LONG AND PROSPER AND UNDER NO CIRCUMSTANCES IDLE TILL 8AM UTC”. Controller UTC recording time2026-11-18 00:16:16; conversation sign-off, not a cryptographic signature. Route available capacity to useful authorized work during genuine CI/deployment waits without weakening gates or expanding scope.
 
 **Research-informed amendment authorized; continue working and publishing through cutoff.** Read the [bounded amendment in the existing signed scope](2026-11-18-OVERNIGHT-SCOPE-SIGNOFF.md#research-informed-amendment--execution-continues): existing static MapLibre/reviewed VGE, shared IDs/source/precision/unknowns, one integer1–50km radius, actual eligible generation/demand/substation coverage and source-grounded upgrade context, with accessible Android/WebKit interaction and unchanged evidence/rights gates. New national/backend/3D/cost programmes remain deferred. Final PR63 report bytes were still pending at the last independent00:37:16UTC check; conversation receipt does not establish committed source verification. No renewed signature gate.
