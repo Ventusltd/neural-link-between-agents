@@ -1,6 +1,6 @@
 {
   "schema": "neural.overnight-command.v1",
-  "checked_at_utc": "2026-11-18T00:57:46Z",
+  "checked_at_utc": "2026-11-18T01:33:07Z",
   "cutoff_utc": "2026-11-18T08:00:00Z",
   "owner_authorized": true,
   "publication_target": {
@@ -9,7 +9,7 @@
   },
   "verified_new_publications": {
     "pipeline_news": 1,
-    "gridatlas": 0
+    "gridatlas": 1
   },
   "homepage": "https://globalgrid2050.com/",
   "preserve_history": true,
@@ -50,35 +50,53 @@
     {
       "id": "GA-01",
       "owner": "Train Conductor",
-      "state": "PENDING_IMPLEMENTATION_INTEGRATION",
+      "state": "PUBLIC_READBACK_VERIFIED",
       "depends_on": [],
-      "source_commit": null,
-      "ci": [],
-      "review": null,
-      "public_receipt": null
+      "source_commit": "49f1b348bcb8bdc229d1d88ad7e3420b9ab8a602",
+      "ci": [
+        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44214501585"
+      ],
+      "review": "https://github.com/Ventusltd/globalgrid2050/pull/176#issuecomment-6966223847",
+      "public_receipt": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6966249335",
+      "version": "V9.192",
+      "edition": "202611172355",
+      "pointer_merge": "b52693aaf513e63240acd8ab99a698df5b738cc6",
+      "owner_merge": "0b29bf5fe6c3f536f3caadb73a027eb9941bbcbb",
+      "publisher_merge": "484b404fa4c4f5e6c92b408f00765df52ff7d296",
+      "command_acceptance": "https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6966280733"
     },
     {
       "id": "PN-02",
       "owner": "Grid Analyser",
-      "state": "PENDING_IMPLEMENTATION",
+      "state": "TESTED_PENDING_RECEIVER",
       "depends_on": [
         "PN-01",
         "GA-01"
       ],
-      "source_commit": null,
-      "ci": [],
+      "source_commit": "413fa072d42945dbafa31c6957b35f8681858984",
+      "ci": [
+        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44215031696",
+        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44215031686",
+        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44215031778",
+        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44215031922",
+        "https://github.com/Ventusltd/globalgrid2050/actions/runs/44215031770"
+      ],
       "review": null,
-      "public_receipt": null
+      "public_receipt": null,
+      "version": "V9.43",
+      "edition": "202611180058"
     },
     {
       "id": "GA-02",
       "owner": "Train Conductor",
-      "state": "PENDING_IMPLEMENTATION",
+      "state": "BLOCKED",
       "depends_on": [
         "GA-01"
       ],
-      "source_commit": null,
-      "ci": [],
+      "source_commit": "0dc509d3ec40816b5b79f501fab81e891f2e2703",
+      "ci": [
+        "https://github.com/Ventusltd/gridatlas/actions/runs/44215442987"
+      ],
       "review": null,
       "public_receipt": null
     },
@@ -124,5 +142,10 @@
     "recorded_at_utc": "2026-11-18T00:16:16Z",
     "provenance": "Owner message relayed by Grid Analyser command; controller UTC recording time",
     "cryptographic_signature": false
+  },
+  "publisher_turn": {
+    "owner": "Train Conductor",
+    "release": "GA-02",
+    "condition": "Correct/review/accept exact hosted browser failure before publishing; no concurrent homepage writers"
   }
 }
