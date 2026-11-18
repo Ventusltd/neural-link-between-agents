@@ -6,7 +6,7 @@ Refreshed **02:29 UTC**; historical release receipts remain identified below. Th
 
 The owner signed the [full scope and bounded research amendment](2026-11-18-OVERNIGHT-SCOPE-SIGNOFF.md): **“SIGNED LIVE LONG AND PROSPER AND UNDER NO CIRCUMSTANCES IDLE TILL 8AM UTC”**, then directed continued work/publication. Cutoff **08:00 UTC, 18 November 2026**. Ten steps; target **three new Pipeline News and two new GridAtlas publications**, both discoverable from globalgrid2050.com with history retained. Scoped implementation, testing, independent review, merges and publication need no further routine approval. Do not weaken gates or expand to new backend/national/3D/cost programmes.
 
-**Accepted count: PN1/3; Atlas2/2 (3/5total), refreshed04:44 UTC.** See [command tracker](2026-11-18-OVERNIGHT-COMMAND-TRACKER.md) and [JSON](2026-11-18-OVERNIGHT-COMMAND-TRACKER.json). Count only reviewed exact source + required CI + product/domain publication + actual homepage/native browser/served-byte/rollback acceptance.
+**Accepted count: PN2/3; Atlas2/2 (4/5 total), refreshed 06:19 UTC.** See [command tracker](2026-11-18-OVERNIGHT-COMMAND-TRACKER.md) and [JSON](2026-11-18-OVERNIGHT-COMMAND-TRACKER.json). Count only reviewed exact source + required CI + product/domain publication + actual homepage/native browser/served-byte/rollback acceptance.
 
 ## Command roles and live publishing turn
 
@@ -66,3 +66,10 @@ GA2 is formally accepted: [command receipt](https://github.com/Ventusltd/neural-
 All earlier dated pending-GA2 statements above are superseded by this acceptance. Conductor durable closure and explicit serial handoff requested; PN2 has not begun homepage writes. Read latest42/65 before taking lock.
 
 PN2 V9.43 source175 merged9781cd2 and23servedpins/+32ledgerPASS, but actual coldBack failed full filter equality: saved Solar category activation overwrites technology all after URL restoration (query12588 restores). It remains uncounted/unpromoted. Mobile prepares immutable V9.43.1 corrective successor; never rewrite served V9.43 or weaken Back assertions. PN3 privateV944 must rebase/use a fresh actual stamp on accepted corrective PN2. No private prototype adds a publication. Physical production routing remains NOT_INSTALLED without a reviewed rights-pinned Atlas-bus crosswalk and real geometry; honest explicitly simulated rides remain distinct.
+
+
+## Accepted PN2 and final release - 06:19 UTC
+
+V9.44 is accepted once as PN-02: [full closure](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6970819801). All five final Pages44248671123 jobs passed after the exact historical retry; earlier failures remain retained. Exact root58,584 bytes SHA25663a21992f8ab2de4e281ac8373a924a94b908f7eb537706e96206ce869188cc2, V157 prior58,318 bytes/2c3465cc,21 links,12 actual product cases, native homepage JavaScript on/off and33-row ledger are verified. V9.43 remains immutable, available and uncounted; the proposed patch label was replaced by normal V9.44. This supersedes earlier pending-PN2 statements.
+
+V9.45/202611180520 source PR179 exact58b25710 merged396ff312298c1452aeb2ccdbce34dc19fc823962 after all six source checks. Normal Pages44249999490 and34-row ledger44249999470 are active; actual38-pin/public News-return proof and final homepage/rollback acceptance remain. Current homepage stays V9.44. Grid Analyser/mobile owns the sole final publisher; V158 preparation is reversible and does not count as publication. Signed target stays three Pipeline plus two Atlas, cutoff08UTC. Read current42/65 before resuming.
