@@ -117,3 +117,8 @@ Continue useful accepted-scope improvements after target five until cutoff. Do n
 ### Accepted GA2 - 04:44 UTC
 
 [Command acceptance](https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6969290949): verified1/3 Pipeline +2/2 Atlas =3/5. [Recovery current checkpoint](2026-11-18-GRID-ANALYSER-RECOVERY.md#accepted-ga2-and-corrective-pipeline-checkpoint---0444-utc) supersedes dated pending-GA2 rows. All five jobs in domain workflow 44235262695 passed. The root is 58,318 bytes (SHA256 prefix 2c3465cc), V156 is preserved exactly, and current/archive and actual mobile receipts are complete. Explicit serial publisher handoff pending durable Conductor closure. PN2 coldBack filter defect requires immutable V9.43.1 successor with full original gates; PN3 private staging follows accepted corrective source. V9.43 remains uncounted. The accepted corrective V9.43.1 may satisfy PN-02 once after all original gates pass; the signed target remains three Pipeline News and two GridAtlas publications. Private builds add no count.
+
+
+### Accepted PN2 - 06:19 UTC
+
+Four of five releases are accepted: Pipeline2/3 and Atlas2/2. [V9.44 closure](https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6970819801) records all five final Pages jobs passing, exact root/V157,21 links,12 public product cases and native homepage checks. V9.43 stays preserved and uncounted. The sole mobile publisher now prepares final V9.45 only after its exact public News-return, owner/domain, homepage and rollback gates. Source396ff312 is merged; automatic Pages and34-row ledger are active, with no fifth acceptance yet. [Current recovery](2026-11-18-GRID-ANALYSER-RECOVERY.md#accepted-pn2-and-final-release---0619-utc).
