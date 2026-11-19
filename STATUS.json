@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_at_utc": "2026-11-18T07:32:00Z",
+  "checked_at_utc": "2026-11-19T16:34:22Z",
   "channel": "https://github.com/Ventusltd/neural-link-between-agents/issues/42",
   "work": [
     {
@@ -27,9 +27,9 @@
     {
       "id": "TONIGHT-SCOPE",
       "owner": "Grid Analyser: Pipeline News; Train Conductor: GridAtlas; scope controller: acceptance tracker",
-      "state": "PUBLICLY_VERIFIED",
+      "state": "TESTED",
       "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6972120294",
-      "next_action": "All five accepted: Pipeline3/3 + Atlas2/2. No additional publication; verify and monitor accepted state through08UTC and preserve final handover."
+      "next_action": "Dated overnight automation and publication checkpoint. The owner did not approve GridAtlas V9.192 or V9.193. No current release authority follows from the overnight scope."
     },
     {
       "id": "PN-V942",
@@ -41,16 +41,16 @@
     {
       "id": "GA-V9192",
       "owner": "Train Conductor publication; independent public and command review",
-      "state": "PUBLICLY_VERIFIED",
+      "state": "BLOCKED",
       "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6966249335",
-      "next_action": "Accepted1/3 Pipeline +2/2 Atlas =3/5. Continue corrective immutable PN2 successor and PN3 through08UTC; coordinate explicit serial publisher handoff."
+      "next_action": "Experimental edition broken in owner testing and never owner-approved for release. Preserve the archived source and keep the V9.191 rollback live."
     },
     {
       "id": "GA-V9193",
       "owner": "Train Conductor publication; independent public and command review",
-      "state": "PUBLICLY_VERIFIED",
+      "state": "BLOCKED",
       "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/65#issuecomment-6969290949",
-      "next_action": "GA-02 accepted. Preserve exact root58318B SHA2562c3465cc186c326873280083d560fc04388ac0f14321dfb252344082eecc25f8 and V15658093B/826d; hand off sole publisher explicitly."
+      "next_action": "Experimental edition broken in owner testing and never owner-approved for release. Homepage label is stale. Verify the live V9.191 composition before any separately scoped reconciliation."
     },
     {
       "id": "PN-V944",
@@ -62,9 +62,30 @@
     {
       "id": "PN-V946",
       "owner": "Grid Analyser / Pipeline mobile publisher; independent public review",
-      "state": "PUBLICLY_VERIFIED",
+      "state": "HISTORICAL_ACCEPTANCE",
       "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/42#issuecomment-6972107676",
-      "next_action": "PN-03 accepted once via V9.46. V9.45 remains preserved/unselected/uncounted. Publisher released inactive; no further editions or browser loops."
+      "next_action": "Superseded as homepage selection by V9.56. Keep the immutable edition and archived homepage link."
+    },
+    {
+      "id": "PN-V956",
+      "owner": "Pipeline News continuation and homepage publication",
+      "state": "PUBLICLY_VERIFIED",
+      "evidence": "https://github.com/Ventusltd/globalgrid2050/pull/195#issuecomment-7015330130",
+      "next_action": "Start with SESSIONS/2026-11-19-PIPELINE-NEWS-V956-PUBLICATION-DIARY.md. Preserve V9.46 and older dated editions. Verify new heads and owner scope before further release work."
+    },
+    {
+      "id": "GA-V9191-ROLLBACK",
+      "owner": "GridAtlas release owner",
+      "state": "PUBLICLY_VERIFIED",
+      "evidence": "https://github.com/Ventusltd/gridatlas/commit/839435104e0fdfb059c407a2e49cb9ad540d8f5f",
+      "next_action": "Served composition 202611161720. Reconcile the stale V9.193 homepage label only under a separate authorised scope. Do not reactivate the experimental Journey controls."
+    },
+    {
+      "id": "PN-UK-ENERGY-PRICE",
+      "owner": "Pipeline News acquisition",
+      "state": "TESTED",
+      "evidence": "https://github.com/Ventusltd/globalgrid2050/pull/194",
+      "next_action": "Collector and legacy staging CI passed. PR is still open. Verify the exact head and current owner scope before publishing collector changes."
     }
   ],
   "owner_signoff": {
