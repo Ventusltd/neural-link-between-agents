@@ -22,6 +22,39 @@ export const REPD_SKIN_CONTRACT_V1 = Object.freeze({
     'styles/hud-v955.css',
     'styles/repd-reports.css'
   ]),
+  secondaryScadaReference: Object.freeze({
+    repository: 'Ventusltd/gridatlas',
+    edition: 'atlas/releases/202608300453-atlas-v9/',
+    css: 'ventusv8.css',
+    shell: 'index.html',
+    liveGenerationAtStudy: '202611222343',
+    visualRoles: Object.freeze({
+      shell: '#000000',
+      hud: '#0a0a0a',
+      instrument: '#00ffff',
+      news: '#ffae00',
+      active: '#00ffff',
+      panel: '#050505'
+    }),
+    constraint: 'SCADA is a secondary stylistic reference; never replace established native REPD table or physics-significant GridAtlas voltage colours.'
+  }),
+  crossDisciplineAudit: Object.freeze({
+    datacentres: Object.freeze({
+      source: 'automation/news/datacentre-ui/styles.css',
+      mismatch: 'yellow (#f4df73) headers, alternate teal (#62e7ed) and #142328 headings; different input/border colours',
+      action: 'new scoped adapter must inherit REPD table header cyan, row text, dark substrate and controls'
+    }),
+    gridAndOfftakers: Object.freeze({
+      source: 'uk_renewables_pipeline/202611222330/scripts/layers/pipeline-layers.css',
+      mismatch: 'selected button amber (#ffd24a), unlike native REPD cyan; source counts also amber',
+      action: 'normalise controls/labels only; preserve true kV and engineering-layer encoding'
+    }),
+    prices: Object.freeze({
+      source: 'automation/price_daily_ui/78d5360239e1a5fcffa83fcb30d5937c5521acb9/styles.css',
+      mismatch: '10px rounded/glowing cards and red (#ff5555) statistical labels unlike REPD restrained cockpit',
+      action: 'adopt REPD borders, radii, header and neutral data-label hierarchy; keep genuine alarms red'
+    })
+  }),
   unchangedTechnologyColors: Object.freeze({
     solar: '#ffff00',
     bess: '#ffae00',
