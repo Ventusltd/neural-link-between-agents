@@ -1,0 +1,64 @@
+name: SatNav isolated cross-repo audit
+on:
+  push:
+    branches: [agent22/satnav-cartridge-audit-20261124]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Retrieve exact public source pins (isolated)
+        shell: bash
+        run: |
+          set -eu
+          mkdir -p audit-inputs audit-receipts
+          fetch_pin() {
+            git init -q "audit-inputs/$1"
+            git -C "audit-inputs/$1" remote add origin "https://github.com/Ventusltd/$1.git"
+            git -C "audit-inputs/$1" fetch -q --depth=1 --filter=blob:none origin "$2"
+            git -C "audit-inputs/$1" sparse-checkout set --no-cone "${@:3}"
+            git -C "audit-inputs/$1" checkout -q --detach "$2"
+          }
+          fetch_pin satnav 1865b9051894d9e89cf5720e091b62c9041a567b '/*'
+          fetch_pin gridatlas 1c9ed251ea31de67cc9d7e3b3d7908ea6aa39779 '/atlas/current.json' '/atlas/cartridges/*.js' '/atlas/modules/*.js'
+          fetch_pin stars 7c90d879688ca80c7ed63982eec0894fe75d67a3 '/modular-star/**' '/package.json' '/table.html' '/blocks/blocks.json' '/blocks/presets.json'
+          fetch_pin cvaa b124c39e5343b24dd5b546a0c279a1c06360bdad '/*'
+          fetch_pin spiders c6fccc802c3534286c167bb7e96bbf5f4962f6bd '/codex/build-plan/*.mjs'
+          fetch_pin code-generator 857ea81244848b1da8fe21fffaed74cab568a3b4 '/apps/substation-finder/parts.json'
+          npm --prefix audit-inputs/stars install --ignore-scripts --no-audit --no-fund --save-exact acorn@8.14.0 acorn-loose@8.4.0 acorn-walk@8.3.4
+      - name: Independent tests plus original CVAA, Stars and Spider suites
+        shell: bash
+        run: |
+          set +e
+          set -o pipefail
+          fail=0
+          run_check() {
+            name="$1"; shift
+            "$@" 2>&1 | tee "audit-receipts/$name.log"
+            code=${PIPESTATUS[0]}
+            echo "$name=$code" >> audit-receipts/exit-codes.txt
+            if [ "$code" -ne 0 ]; then fail=1; fi
+          }
+          run_check stars node --test audit-inputs/stars/modular-star/test.mjs
+          run_check cvaa-selftest node audit-inputs/cvaa/tools/selftest.mjs
+          run_check cvaa-satnav node audit-inputs/cvaa/inoculate.mjs audit-inputs/satnav --json
+          run_check spider node --test audit-inputs/spiders/codex/build-plan/federation.test.mjs
+          run_check independent node SESSIONS/AGENT-22/CARTRIDGE-AUDIT/audit.mjs audit-inputs audit-receipts
+          cat audit-receipts/exit-codes.txt
+          exit "$fail"
+      - name: Preserve receipts including failures
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: satnav-independent-audit
+          path: audit-receipts/
+          retention-days: 14
