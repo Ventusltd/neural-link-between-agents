@@ -871,8 +871,24 @@
   ],
   "published_scope_baseline": "50828bc39e0eb329da56b171eb40bcdd6f7997ce",
   "priorities": [
-    "preserve concept scope",
-    "field compass and validated route following",
-    "authorised last-mile pilot"
-  ]
+    "preserve immutable P1 and public scope",
+    "destination-first search/map with optional signed coordinates",
+    "route following and authorised last-mile after review"
+  ],
+  "destination_increment": {
+    "status": "CONTRACT_PROPOSED_IMPLEMENTATION_PENDING",
+    "directive": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7138850753",
+    "branch": "agent22/satnav-destination-20261124",
+    "base": "f4ce7ccdc9e8f4bc15915605a07071b9363d5dfb",
+    "contract_head": "41b2b21f52c911bb9d51b1ed804f04cec578c3b7",
+    "work_board_head": "c3a2c93a3041f5cfe8371370007c33f528799085",
+    "gridatlas_revision": "1c9ed251ea31de67cc9d7e3b3d7908ea6aa39779",
+    "blockers": [
+      "reviewed gazetteer provider terms and interface",
+      "reviewed isolated map selection and explicit handoff",
+      "browser and physical Safari acceptance"
+    ],
+    "p1_immutable": "9698781539e549deaa6ecaa4a2b34610c1f9fd29",
+    "publication_approved": false
+  }
 }
