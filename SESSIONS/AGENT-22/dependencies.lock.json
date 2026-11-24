@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "candidate_for_independent_review",
+  "files": [
+    {
+      "repo": "Ventusltd/grid-distance-maths",
+      "commit": "8e91b07d8312acca5bcaef43e839f06a3b1d642a",
+      "path": "src/geodesy.mjs",
+      "blob": "5a0320ca6db05273fae14f786b20223b088bc60b",
+      "target": "vendor/grid-distance-maths/src/geodesy.mjs",
+      "licence": "Apache-2.0"
+    },
+    {
+      "repo": "Ventusltd/grid-distance-maths",
+      "commit": "8e91b07d8312acca5bcaef43e839f06a3b1d642a",
+      "path": "test/verify.mjs",
+      "blob": "b79958191494b5a169ae685217ec6ddb60014bc9",
+      "target": "vendor/grid-distance-maths/test/verify.mjs",
+      "licence": "Apache-2.0"
+    },
+    {
+      "repo": "Ventusltd/grid-distance-maths",
+      "commit": "8e91b07d8312acca5bcaef43e839f06a3b1d642a",
+      "path": "LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "target": "vendor/grid-distance-maths/LICENSE",
+      "licence": "Apache-2.0"
+    },
+    {
+      "repo": "Ventusltd/grid-distance-maths",
+      "commit": "8e91b07d8312acca5bcaef43e839f06a3b1d642a",
+      "path": "NOTICE",
+      "blob": "3d54041a6f9a814cea138d9b2a4b098995992644",
+      "target": "vendor/grid-distance-maths/NOTICE",
+      "licence": "Apache-2.0"
+    }
+  ]
+}
