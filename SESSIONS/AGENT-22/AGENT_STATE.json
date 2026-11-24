@@ -1,0 +1,745 @@
+{
+  "schema_version": 1,
+  "project": "SatNav",
+  "coordination_issue": 84,
+  "scope_status": "PLANNING_HOLD",
+  "agent22": "SELF_RESERVED",
+  "roles": [
+    {
+      "id": 22,
+      "role": "Scope and contracts",
+      "ack": "SELF_RESERVED"
+    },
+    {
+      "id": 23,
+      "role": "Terrain/vector",
+      "ack": "AWAITING_ACK"
+    },
+    {
+      "id": 24,
+      "role": "Hybrid router",
+      "ack": "AWAITING_ACK"
+    },
+    {
+      "id": 25,
+      "role": "Mobile HUD",
+      "ack": "AWAITING_ACK"
+    },
+    {
+      "id": 26,
+      "role": "Offline cache",
+      "ack": "AWAITING_ACK"
+    },
+    {
+      "id": 27,
+      "role": "Independent QA",
+      "ack": "AWAITING_ACK"
+    }
+  ],
+  "next_proposed_id": 28,
+  "verified_count": 0,
+  "implementation_authorised": false,
+  "product_baseline": "6113a9b5ce53f4ebcfe76be644a6e0ce5516b70c",
+  "tasks": [
+    {
+      "id": "T001",
+      "owner": 22,
+      "task": "Create SatNav coordination state and proposed contracts (not locked).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T002",
+      "owner": 22,
+      "task": "Audit actual GridAtlas exports, active layers and deep links; pin source SHA.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T003",
+      "owner": 22,
+      "task": "Audit simulator LiDAR fetcher, CRS, nodata and elevation buffer; do not assume availability.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T004",
+      "owner": 22,
+      "task": "Audit Overpass helpers and data/usage rights; define feature schema.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T005",
+      "owner": 22,
+      "task": "Define CostGridSpec: CRS, origin, dimensions, resolution, masks and typed arrays.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T006",
+      "owner": 22,
+      "task": "Define Worker request/response, errors, cancellation and route metadata.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T007",
+      "owner": 22,
+      "task": "Define TelemetryPacket including fix age and uncertainty.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T008",
+      "owner": 22,
+      "task": "Define OfflinePackManifest, hashes, licences, coverage and expiry.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T009",
+      "owner": 22,
+      "task": "Audit and lock native SCADA tokens only after parity review.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T010",
+      "owner": 27,
+      "task": "Independently validate proposed schemas, rights and exact pinned inputs; approve contract lock only on evidence.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T011",
+      "owner": 22,
+      "task": "Prepare compact <4k-token handoffs and dependency/ownership reservations.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T012",
+      "owner": 23,
+      "task": "Scaffold cost-grid-builder.js on exclusive SatNav branch.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T013",
+      "owner": 24,
+      "task": "Scaffold hybrid-router-worker.js with typed messages, cancellation and errors.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T014",
+      "owner": 25,
+      "task": "Scaffold scada-nav-hud.js and CSS with existing SCADA parity.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T015",
+      "owner": 26,
+      "task": "Scaffold offline-corridor-cache.js and nav-sw.js.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T016",
+      "owner": 23,
+      "task": "Implement and validate local metric CRS transforms against reference points; <0.5m target.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T017",
+      "owner": 23,
+      "task": "Allocate Float32 grid and separate known/unknown, access and hazard masks; no default permission.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T018",
+      "owner": 23,
+      "task": "Resample licensed EA DTM to adaptive 5/10m cells; preserve nodata.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T019",
+      "owner": 23,
+      "task": "Evaluate licensed terrain fallback, resolution/coverage and offline packaging.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T020",
+      "owner": 23,
+      "task": "Implement Horn slope with nodata and edge handling.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T021",
+      "owner": 23,
+      "task": "Rasterise road vectors with road access/profile constraints (0.15x proposed).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T022",
+      "owner": 23,
+      "task": "Rasterise tracks/bridleways with mode-specific rights (0.35x proposed).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T023",
+      "owner": 23,
+      "task": "Rasterise footways/paths for FOOT_SURVEY (0.4x proposed).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T024",
+      "owner": 23,
+      "task": "Rasterise buildings as hard obstacles.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T025",
+      "owner": 23,
+      "task": "Rasterise waterways; only evidenced mode-compatible crossings, not generic fords.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T026",
+      "owner": 23,
+      "task": "Rasterise hedges/fences/walls; protect hard obstacle mask.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T027",
+      "owner": 23,
+      "task": "Model mode-compatible gates/stiles with permission evidence; never punch unrelated obstacle.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T028",
+      "owner": 23,
+      "task": "Generate indicative verge/margin buffers; 2–5m requires appropriate resolution.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T029",
+      "owner": 23,
+      "task": "Audit and ingest licensed ALC/flood layers; proposed 2.5x and 3x penalties.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T030",
+      "owner": 23,
+      "task": "Compile modes and configurable slope assumptions; unknown/access restrictions fail closed for navigation.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T031",
+      "owner": 23,
+      "task": "Snap only to authorised reachable access points; report offset, refuse unsafe snaps.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T032",
+      "owner": 27,
+      "task": "Test river/bridge, fence/gate, corner cutting, cliff and missing/access data negatives.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T033",
+      "owner": 27,
+      "task": "Benchmark 600x600 construction, device and p50/p95; <80ms aspirational.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T034",
+      "owner": 23,
+      "task": "Implement transferable buffers without losing retained offline source.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T035",
+      "owner": 27,
+      "task": "Publish Phase 2 test receipt only after exact-head tests and independent review.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T036",
+      "owner": 24,
+      "task": "Implement typed-array binary min heap, stale-entry handling and deterministic tie breaks.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T037",
+      "owner": 24,
+      "task": "Implement 8-connected search with diagonal cost and corner-cut prevention.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T038",
+      "owner": 24,
+      "task": "Implement admissible octile heuristic using actual lower-bound cost, verify against Dijkstra.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T039",
+      "owner": 24,
+      "task": "Implement bounded parent backtracking and no-route error.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T040",
+      "owner": 24,
+      "task": "Implement obstacle- and cost-preserving smoothing; retain hazard/transition points.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T041",
+      "owner": 24,
+      "task": "Attach vertex arrays for elevation, slope, surface, cumulative 2D/3D distance; valid GeoJSON.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T042",
+      "owner": 24,
+      "task": "Implement optional >5km OSRM road leg after terms/privacy review; verified access-point handoff within 1.5km when feasible.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T043",
+      "owner": 24,
+      "task": "Use licensed cached offline road graph; otherwise clearly stop outside coverage; no DEM road substitute.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T044",
+      "owner": 24,
+      "task": "Generate >30-degree turns, surface transitions and configurable grade alerts.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T045",
+      "owner": 24,
+      "task": "Generate evidence-based manoeuvres, no fabricated gate access or street names.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T046",
+      "owner": 24,
+      "task": "Emit GeoJSON FeatureCollection route, waypoints, hazards with provenance.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T047",
+      "owner": 24,
+      "task": "Implement debounced reroute based on GPS accuracy, 25m alert/30m proposed reroute thresholds.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T048",
+      "owner": 27,
+      "task": "Test five permitted rural journeys using public or synthetic access fixtures; no restricted-site entry.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T049",
+      "owner": 27,
+      "task": "Benchmark worker peak memory and p50/p95 latency; <25MB/<150ms targets not claims.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T050",
+      "owner": 27,
+      "task": "Publish Phase 3 exact-head verification receipt.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T051",
+      "owner": 25,
+      "task": "Implement geolocation permission, high-accuracy and stale-fix state.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T052",
+      "owner": 25,
+      "task": "Implement accuracy-aware smoothing and stationary jitter handling.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T053",
+      "owner": 25,
+      "task": "Implement iOS/Android compass permission, heading reliability and fallback.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T054",
+      "owner": 25,
+      "task": "Implement wake lock acquisition/release/visibility lifecycle.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T055",
+      "owner": 25,
+      "task": "Implement distance, bearing and segment-aware signed cross-track error.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T056",
+      "owner": 25,
+      "task": "Implement waypoint advancement with accuracy, route progress and passed-plane guards.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T057",
+      "owner": 25,
+      "task": "Implement heading-up 3D chase and north-up 2D; disable when unsafe or heading unknown.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T058",
+      "owner": 25,
+      "task": "Implement route/breadcrumb/tether/accuracy layers using audited style tokens.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T059",
+      "owner": 25,
+      "task": "Implement concise next manoeuvre banner.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T060",
+      "owner": 25,
+      "task": "Implement remaining distance, XTE, elevation, grade and accuracy readout.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T061",
+      "owner": 25,
+      "task": "Implement 48px thumb controls and separation of planning mode from active navigation.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T062",
+      "owner": 25,
+      "task": "Implement local speech voice discovery and deduplicated utterances; visual fallback.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T063",
+      "owner": 25,
+      "task": "Implement 100m/25m prompts and configurable 25m off-course alert with hysteresis.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T064",
+      "owner": 25,
+      "task": "Implement daylight/high contrast mode and reduced motion.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T065",
+      "owner": 27,
+      "task": "Test touch, safe areas, denied permissions and Safari/Chrome layouts; distinguish physical testing.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T066",
+      "owner": 27,
+      "task": "Publish Phase 4 receipt with exact source and device matrix.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T067",
+      "owner": 26,
+      "task": "Implement versioned IndexedDB stores and migration/rollback.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T068",
+      "owner": 26,
+      "task": "Enumerate corridor tiles only for licensed self-hosted/packaged sources; enforce coverage and size budgets.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T069",
+      "owner": 26,
+      "task": "Implement scoped service worker for app shell and permitted assets; version and invalidate.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T070",
+      "owner": 26,
+      "task": "Implement atomic corridor pack with cost/elevation/vector/route hashes and completeness.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T071",
+      "owner": 26,
+      "task": "Implement quota estimates, storage persistence capability and purge UI.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T072",
+      "owner": 26,
+      "task": "Test offline reload and reroute within complete cached coverage; missing pack fails explicitly.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T073",
+      "owner": 27,
+      "task": "Publish Phase 5 receipt including airplane-mode/browser tests and physical-device distinction.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T074",
+      "owner": 22,
+      "task": "Propose GridAtlas Navigate Here adapter using stable asset ID and authorised access point; audit count; preserve existing MAP/Vicinity.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T075",
+      "owner": 22,
+      "task": "Propose Pipeline News Navigate to Site adapter; preserve REPD and immutable releases.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T076",
+      "owner": 22,
+      "task": "Propose simulator/Solar Design Studio handoff; verify actual interfaces and permissions.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T077",
+      "owner": 22,
+      "task": "Implement validated deep links and coordinate privacy warning after integration approval.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T078",
+      "owner": 23,
+      "task": "Implement local opt-in GPX/GeoJSON/CSV track recorder; no automatic sharing.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T079",
+      "owner": 22,
+      "task": "Define cable estimator adapter for indicative 3D distance, grade and land breakdown; no engineering certification.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T080",
+      "owner": 22,
+      "task": "Define local field-note pins with opt-in export and no public upload.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T081",
+      "owner": 27,
+      "task": "Run integration tests GridAtlas → SatNav → offline → cable planning, preserve MAP/A4 and Vicinity.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T082",
+      "owner": 27,
+      "task": "Audit privacy, third-party coordinate disclosure, local retention and purge.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T083",
+      "owner": 27,
+      "task": "Verify static deployment and no paid keys or runtime bundler dependency.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T084",
+      "owner": 22,
+      "task": "Prepare homepage catalogue change only as separate owner-authorised release candidate.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T085",
+      "owner": 27,
+      "task": "Replay steep Highland synthetic/authorised terrain fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T086",
+      "owner": 27,
+      "task": "Replay Fenland flood/ditch fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T087",
+      "owner": 27,
+      "task": "Replay Somerset hedge maze fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T088",
+      "owner": 27,
+      "task": "Replay urban-to-authorised-site transition fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T089",
+      "owner": 27,
+      "task": "Replay GPS loss fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T090",
+      "owner": 27,
+      "task": "Replay mid-walk reroute fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T091",
+      "owner": 27,
+      "task": "Replay low-battery/wake-lock fallback fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T092",
+      "owner": 27,
+      "task": "Replay iOS orientation permission fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T093",
+      "owner": 27,
+      "task": "Replay Android local TTS availability fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T094",
+      "owner": 27,
+      "task": "Replay 3G tile timeout fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T095",
+      "owner": 27,
+      "task": "Consolidate ten replay receipts and regression matrix (additional explicit step to remove 85–95 ambiguity).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T096",
+      "owner": 27,
+      "task": "Log defects to state, route bounded repairs to owners; retest exact heads.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T097",
+      "owner": 27,
+      "task": "Verify applicable steps with evidence; no fictitious 100/100 pass; gate final deployment separately.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T098",
+      "owner": 22,
+      "task": "Prepare v1.0.0 tag only after all prerequisite gates and explicit owner approval.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T099",
+      "owner": 22,
+      "task": "Prepare accessible static about/learning page; include in release candidate before tagging (ordering dependency).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T100",
+      "owner": 27,
+      "task": "Verify owner-approved live Pages bytes, rollback and actual mobile field readiness; no self-certification.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    }
+  ]
+}
