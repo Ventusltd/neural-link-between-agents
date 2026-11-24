@@ -11,7 +11,7 @@ mkdirSync(out,{recursive:true});
 const read=(repo,path)=>readFileSync(resolve(root,repo,path));
 const json=(repo,path)=>JSON.parse(read(repo,path));
 const load=(repo,path)=>import(pathToFileURL(resolve(root,repo,path)).href);
-const pins={"satnav":"1865b9051894d9e89cf5720e091b62c9041a567b","gridatlas":"1c9ed251ea31de67cc9d7e3b3d7908ea6aa39779","stars":"7c90d879688ca80c7ed63982eec0894fe75d67a3","cvaa":"b124c39e5343b24dd5b546a0c279a1c06360bdad","spiders":"c6fccc802c3534286c167bb7e96bbf5f4962f6bd","code-generator":"857ea81244848b1da8fe21fffaed74cab568a3b4"};
+const pins={"satnav":"5b6988949e5a8b259aec4b8116878d23eed3501a","gridatlas":"1c9ed251ea31de67cc9d7e3b3d7908ea6aa39779","stars":"7c90d879688ca80c7ed63982eec0894fe75d67a3","cvaa":"b124c39e5343b24dd5b546a0c279a1c06360bdad","spiders":"c6fccc802c3534286c167bb7e96bbf5f4962f6bd","code-generator":"857ea81244848b1da8fe21fffaed74cab568a3b4"};
 const receipt={schema:'satnav.independent-cartridge-audit.v1',pins,checks:[],scope:'isolated fixtures, not deployment or operational navigation'};
 let bad=0;
 async function check(name,fn){
@@ -19,19 +19,47 @@ async function check(name,fn){
   catch(e){bad++;receipt.checks.push({name,status:'FAIL',detail:String(e.message)});console.error('FAIL',name,e.message);}
 }
 await check('exact source checkout pins',()=>{for(const [repo,sha] of Object.entries(pins))assert.equal(execFileSync('git',['-C',resolve(root,repo),'rev-parse','HEAD'],{encoding:'utf8'}).trim(),sha);});
-await check('all active GridAtlas cartridge bytes match composition',()=>{
-  const manifest=json('gridatlas','atlas/current.json');
-  assert.equal(manifest.generation,'202611222343');
-  assert.equal(manifest.cartridges.length,9);
-  assert.deepEqual(manifest.cartridges.map(x=>x.id),manifest.cartridge_order);
-  const selected=manifest.cartridges.map(c=>{
+await check('GridAtlas unique cartridge membership and declared loader anchor order',()=>{
+  const m=json('gridatlas','atlas/current.json');
+  assert.equal(m.generation,'202611222343');assert.equal(m.cartridges.length,9);
+  const stored=m.cartridges.map(x=>x.id),ordered=m.cartridge_order;
+  assert.equal(new Set(stored).size,9);assert.equal(ordered.length,9);
+  assert.equal(new Set(ordered).size,9);
+  assert.deepEqual([...stored].sort(),[...ordered].sort());
+  const loader=read('gridatlas','atlas/index.html').toString('utf8');
+  assert.match(loader,/for \(const id of current\.cartridge_order\)/);
+  assert.match(loader,/tailTag\.has\(cartridge\.after\)/);
+  const shell=read('gridatlas','atlas/'+m.shell.index.slice(2)).toString('utf8');
+  const slots=[...shell.matchAll(/<script\b[^>]*\bsrc=(["'])([^"']+)\1[^>]*>\s*<\/script>/gi)].map(x=>x[2].split('/').pop());
+  const seen=new Set(),replaced=new Set();
+  for(const id of ordered){
+    const c=m.cartridges.find(x=>x.id===id);
+    assert.equal(c.type,'script',id);
+    if(c.slot==='replace-script'){
+      assert.equal(slots.filter(x=>x===c.replace_script).length,1,id+' shell slot');
+      assert.ok(!replaced.has(c.replace_script),id+' duplicate shell replacement');
+      replaced.add(c.replace_script);
+    }else{
+      assert.equal(c.slot,'after-cartridge',id);
+      assert.ok(seen.has(c.after),id+' anchor not yet composed');
+    }
+    seen.add(id);
+  }
+  return {stored,ordered,scope:'declared composition traversal and shell/anchor structure; not browser execution'};
+});
+const activeManifest=json('gridatlas','atlas/current.json');
+for(const c of activeManifest.cartridges){
+  await check('GridAtlas cartridge digest and syntax: '+c.id,()=>{
     assert.match(c.path,/^\.\/(?:cartridges|modules)\/[A-Za-z0-9._-]+\.js$/);
     const bytes=read('gridatlas','atlas/'+c.path.slice(2));
     assert.equal(createHash('sha256').update(bytes).digest('hex'),c.sha256,c.id);
     execFileSync(process.execPath,['--check',resolve(root,'gridatlas','atlas',c.path)]);
-    return {id:c.id,path:c.path,sha256:c.sha256,bytes:bytes.length};
+    return {id:c.id,path:c.path,sha256:c.sha256,actualBytes:bytes.length};
   });
-  return selected;
+}
+await check('GridAtlas declared cartridge byte metadata agrees with actual bytes',()=>{
+  const discrepancies=activeManifest.cartridges.filter(c=>Number.isInteger(c.bytes)).map(c=>({id:c.id,declared:c.bytes,actual:read('gridatlas','atlas/'+c.path.slice(2)).length})).filter(x=>x.declared!==x.actual);
+  assert.deepEqual(discrepancies,[],'metadata discrepancies: '+JSON.stringify(discrepancies));
 });
 await check('current manifest does not activate historical vicinity or newer resolver by assumption',()=>{
   const m=json('gridatlas','atlas/current.json');
@@ -52,7 +80,8 @@ await check('picker explicit confirmation and no mode promotion',async()=>{
 await check('picker invalid map replacement cannot leave previous pending confirmation',async()=>{
   const {createPicker}=await load('satnav','nav/picker.mjs');
   const p=createPicker();p.chooseMapPoint({at:[-2,53],label:'old'});
-  assert.throws(()=>p.chooseMapPoint({at:[999,53],label:'invalid'}));
+  const invalid=p.chooseMapPoint({at:[999,53],label:'invalid'});
+  assert.equal(invalid.status,'invalid');assert.equal(invalid.pending,null);
   assert.equal(p.snapshot().pending,null,'invalid replacement retains a stale pending point');
   assert.throws(()=>p.confirm());
 });
