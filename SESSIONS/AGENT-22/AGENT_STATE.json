@@ -2,23 +2,28 @@
   "schema_version": 1,
   "project": "SatNav",
   "coordination_issue": 84,
-  "scope_status": "PLANNING_HOLD",
+  "scope_status": "PHASE_1_AUTHORISED",
   "agent22": "SELF_RESERVED",
   "roles": [
     {
       "id": 22,
       "role": "Scope and contracts",
-      "ack": "SELF_RESERVED"
+      "ack": "SELF_RESERVED",
+      "branch": "agent22/satnav-contracts-20261124"
     },
     {
       "id": 23,
       "role": "Terrain/vector",
-      "ack": "AWAITING_ACK"
+      "ack": "ACKNOWLEDGED",
+      "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131132068",
+      "branch": "agent23/satnav-terrain-20261124"
     },
     {
       "id": 24,
       "role": "Hybrid router",
-      "ack": "AWAITING_ACK"
+      "ack": "ACKNOWLEDGED",
+      "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131138743",
+      "branch": "agent24/satnav-hybrid-router-20261124"
     },
     {
       "id": 25,
@@ -38,70 +43,70 @@
   ],
   "next_proposed_id": 28,
   "verified_count": 0,
-  "implementation_authorised": false,
+  "implementation_authorised": true,
   "product_baseline": "6113a9b5ce53f4ebcfe76be644a6e0ce5516b70c",
   "tasks": [
     {
       "id": "T001",
       "owner": 22,
       "task": "Create SatNav coordination state and proposed contracts (not locked).",
-      "status": "NOT_STARTED",
+      "status": "RESERVED",
       "evidence": []
     },
     {
       "id": "T002",
       "owner": 22,
       "task": "Audit actual GridAtlas exports, active layers and deep links; pin source SHA.",
-      "status": "NOT_STARTED",
+      "status": "RESERVED",
       "evidence": []
     },
     {
       "id": "T003",
       "owner": 22,
       "task": "Audit simulator LiDAR fetcher, CRS, nodata and elevation buffer; do not assume availability.",
-      "status": "NOT_STARTED",
+      "status": "RESERVED",
       "evidence": []
     },
     {
       "id": "T004",
       "owner": 22,
       "task": "Audit Overpass helpers and data/usage rights; define feature schema.",
-      "status": "NOT_STARTED",
+      "status": "RESERVED",
       "evidence": []
     },
     {
       "id": "T005",
       "owner": 22,
       "task": "Define CostGridSpec: CRS, origin, dimensions, resolution, masks and typed arrays.",
-      "status": "NOT_STARTED",
+      "status": "RESERVED",
       "evidence": []
     },
     {
       "id": "T006",
       "owner": 22,
       "task": "Define Worker request/response, errors, cancellation and route metadata.",
-      "status": "NOT_STARTED",
+      "status": "RESERVED",
       "evidence": []
     },
     {
       "id": "T007",
       "owner": 22,
       "task": "Define TelemetryPacket including fix age and uncertainty.",
-      "status": "NOT_STARTED",
+      "status": "RESERVED",
       "evidence": []
     },
     {
       "id": "T008",
       "owner": 22,
       "task": "Define OfflinePackManifest, hashes, licences, coverage and expiry.",
-      "status": "NOT_STARTED",
+      "status": "RESERVED",
       "evidence": []
     },
     {
       "id": "T009",
       "owner": 22,
       "task": "Audit and lock native SCADA tokens only after parity review.",
-      "status": "NOT_STARTED",
+      "status": "RESERVED",
       "evidence": []
     },
     {
@@ -741,5 +746,10 @@
       "status": "NOT_STARTED",
       "evidence": []
     }
-  ]
+  ],
+  "authorization": {
+    "date": "2026-11-24",
+    "scope": "Owner requested handshakes and commencement; isolated SatNav development only; no publication or cross-product edits",
+    "phase_gate": "Phase 1 first; independent contract review before routing integration"
+  }
 }
