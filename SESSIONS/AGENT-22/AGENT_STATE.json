@@ -72,9 +72,16 @@
       "role": "Codex context preservation and cross-agent assistance",
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes"
+    },
+    {
+      "id": 33,
+      "role": "MSI Codex source extraction, compatibility and bounded CUDA research",
+      "ack": "ACKNOWLEDGED",
+      "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139472333",
+      "write_scope": "detached scratch; no product or release writes"
     }
   ],
-  "next_proposed_id": 33,
+  "next_proposed_id": 34,
   "verified_count": 0,
   "implementation_authorised": true,
   "product_baseline": "6113a9b5ce53f4ebcfe76be644a6e0ce5516b70c",
@@ -895,12 +902,13 @@
   ],
   "published_scope_baseline": "50828bc39e0eb329da56b171eb40bcdd6f7997ce",
   "priorities": [
-    "preserve immutable P1 and public scope",
-    "destination-first search/map with optional signed coordinates",
-    "route following and authorised last-mile after review"
+    "preserve immutable P1 and all existing public applications",
+    "MVP: reuse GridAtlas satellite/map and place selection, explicit destination confirmation, existing GPS compass; optional signed coordinates",
+    "physical and desktop acceptance before successor preview",
+    "validated routing, LiDAR, terrain and offline packs deferred; no CUDA dependency for MVP"
   ],
   "destination_increment": {
-    "status": "CONTRACT_AND_FIXTURES_CI_PASS_SELECTOR_PENDING",
+    "status": "REUSE_COMPATIBILITY_EVIDENCE_RECEIVED_IMPLEMENTATION_PENDING",
     "directive": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7138850753",
     "branch": "agent22/satnav-contracts-20261124",
     "base": "f4ce7ccdc9e8f4bc15915605a07071b9363d5dfb",
@@ -908,9 +916,10 @@
     "work_board_head": "c3a2c93a3041f5cfe8371370007c33f528799085",
     "gridatlas_revision": "1c9ed251ea31de67cc9d7e3b3d7908ea6aa39779",
     "blockers": [
-      "reviewed gazetteer provider terms and interface",
-      "reviewed isolated map selection and explicit handoff",
-      "browser and physical Safari acceptance"
+      "implement actual integrated selector and explicit handoff on sole PR2 branch",
+      "provider terms/coverage and failure boundary; local REPD rights/attribution review",
+      "isolated map handoff approval and tile terms if separate embed",
+      "exact successor browser/physical Safari acceptance and owner preview approval"
     ],
     "p1_immutable": "9698781539e549deaa6ecaa4a2b34610c1f9fd29",
     "publication_approved": false,
@@ -924,6 +933,20 @@
       45446601788,
       45446601804
     ],
-    "coordination_agent32": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139000013"
+    "coordination_agent32": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139000013",
+    "reuse_evidence": [
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139540243",
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139547766",
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139582076",
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139520491"
+    ]
+  },
+  "msi_research": {
+    "runner": "0af9d121aa725b4b91ee690d336b071b84d360fd",
+    "original_self_test": "FAIL",
+    "candidate_stoplist": "DETACHED_PASS_NOT_COMMITTED",
+    "candidate_evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7140143569",
+    "cuda_parity": "52532 exact matches, 48 identical ranked entries; numerical parity only",
+    "mvp_dependency": false
   }
 }
