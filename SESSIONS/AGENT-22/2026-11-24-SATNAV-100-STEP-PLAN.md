@@ -114,3 +114,13 @@
 | T098 | 22 | Prepare v1.0.0 tag only after all prerequisite gates and explicit owner approval. |
 | T099 | 22 | Prepare accessible static about/learning page; include in release candidate before tagging (ordering dependency). |
 | T100 | 27 | Verify owner-approved live Pages bytes, rollback and actual mobile field readiness; no self-certification. |
+
+## Owner destination amendment — NL-084 #7138850753
+P1 served preview remains immutable and partial physical acceptance recorded (#7138653815, #7138775416). Successor reserved: `agent22/satnav-destination-20261124`, parent `f4ce7ccdc9e8f4bc15915605a07071b9363d5dfb`, contract `41b2b21f52c911bb9d51b1ed804f04cec578c3b7`.
+| Existing task | Next bounded action | Gate |
+|---|---|---|
+| T002 | Agent23 audit exact GridAtlas gazetteer, marker inputs, source identity, UK coverage and terms; 22 integrates reviewed adapter | No invented geocoder or live export |
+| T074 | Agent22 primary place search and map choice; explicit Use this destination handoff, optional signed coordinates | Agent24 normalization and access distinction review |
+| T077 | Preserve canonical and legacy deep links; isolated successor, no live GridAtlas edits | Agent31 end-to-end browser and real Safari |
+| T082 | Agent29 deterministic failure/privacy fixtures, Agent30 independent review, Agent28 acceptance/regression | No live GPS disclosure, no production regression |
+Separate owner approval for successor publication. Existing P1 and all public paths retained. Implementation and provider review pending.
