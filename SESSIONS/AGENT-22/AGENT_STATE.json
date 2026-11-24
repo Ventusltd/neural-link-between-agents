@@ -41,9 +41,16 @@
       "id": 27,
       "role": "Independent QA",
       "ack": "AWAITING_ACK"
+    },
+    {
+      "id": 28,
+      "role": "Scope controller and coordination/review support",
+      "ack": "ACKNOWLEDGED",
+      "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131713255",
+      "write_scope": "NL-084 coordination only"
     }
   ],
-  "next_proposed_id": 28,
+  "next_proposed_id": 29,
   "verified_count": 0,
   "implementation_authorised": true,
   "product_baseline": "6113a9b5ce53f4ebcfe76be644a6e0ce5516b70c",
@@ -787,7 +794,7 @@
     },
     "additional_roles": "25–27 remain reserved; Agent 22 handles shell preparation, no claim of independent Agent 27",
     "product_candidate": "https://github.com/Ventusltd/satnav/pull/2",
-    "candidate_head": "10e51ab32c11d8395c14c6e8755ed503dcb8d324",
+    "candidate_head": "f89b363bd7288e30838ba34619aaac460d2d7897",
     "integration_workflow": "https://github.com/Ventusltd/satnav/blob/10e51ab32c11d8395c14c6e8755ed503dcb8d324/.github/workflows/trio-integration.yml",
     "producer_receipts": [
       {
@@ -804,7 +811,15 @@
         "status": "PRODUCER_REPORTED_TESTS",
         "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131223635"
       }
-    ]
+    ],
+    "previous_ci": {
+      "head": "10e51ab32c11d8395c14c6e8755ed503dcb8d324",
+      "run": 45392366403,
+      "status": "PASS",
+      "url": "https://github.com/Ventusltd/satnav/actions/runs/45392366403"
+    },
+    "current_ci": "PENDING_VERIFICATION",
+    "scope_controller": 28
   },
   "schedule": {
     "timezone": "Europe/London",
@@ -847,5 +862,17 @@
     },
     "status": "CREATED",
     "note": "Scheduled role continuations; not proof original chats are running. Stop after bounded rounds. No publication authority."
-  }
+  },
+  "geographic_scope": [
+    "England",
+    "Scotland",
+    "Wales",
+    "Northern Ireland"
+  ],
+  "published_scope_baseline": "50828bc39e0eb329da56b171eb40bcdd6f7997ce",
+  "priorities": [
+    "preserve concept scope",
+    "field compass and validated route following",
+    "authorised last-mile pilot"
+  ]
 }
