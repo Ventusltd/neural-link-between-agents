@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 
 BASE = 'http://127.0.0.1:8767/gridatlas/'
 DEMO = BASE + 'atlas/v/agent33-satnav-demo/'
-COMPASS = BASE + 'proof/agent33/compass/nav/'
+COMPASS = 'https://ventusltd.github.io/satnav/preview/9698781539e549deaa6ecaa4a2b34610c1f9fd29/nav/'
 CARD = DEMO + '?' + urlencode({
     'repd_ref': 12588, 'latitude': 51.8132088, 'longitude': -1.3489728,
     'project': 'Botley West', 'technology': 'solar', 'journey': 'vicinity',

@@ -1,8 +1,8 @@
 /* Detached GridAtlas/SatNav compatibility proof. */
 void async function () {
   const proofRoot = new URL('../../../proof/agent33/', location.href);
-  const compass = new URL('compass/nav/', proofRoot);
-  const { buildDestination } = await import(new URL('place.mjs', compass));
+  const compass = new URL('https://ventusltd.github.io/satnav/preview/9698781539e549deaa6ecaa4a2b34610c1f9fd29/nav/');
+  const { buildDestination } = await import(new URL('compass/nav/place.mjs', proofRoot));
   const { normaliseOrigin } = await import(new URL('../../../tools/vicinity/src/model.mjs', location.href));
   const style = document.createElement('style');
   style.textContent = `
