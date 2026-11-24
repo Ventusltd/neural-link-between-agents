@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 550" role="img" aria-labelledby="title desc">
+<title id="title">GlobalGrid2050 public field intelligence concept</title><desc id="desc">Synthetic diagram of a public observer, a mapped overhead line and proposed infrastructure with uncertainty and explanatory labels. No actual location or navigation route.</desc>
+<rect width="760" height="550" rx="12" fill="#080e16"/>
+<g font-family="system-ui,sans-serif"><text x="24" y="34" font-size="17" fill="#00cddc" font-weight="bold">GLOBALGRID2050 — FIELD INTELLIGENCE</text>
+<rect x="24" y="54" width="712" height="306" rx="7" fill="#15251d"/>
+<g stroke="#344638" stroke-width="1" opacity=".65"><path d="M24 80H736"/><path d="M24 130H736"/><path d="M24 180H736"/><path d="M24 230H736"/><path d="M24 280H736"/><path d="M24 330H736"/><path d="M80 54V360"/><path d="M160 54V360"/><path d="M240 54V360"/><path d="M320 54V360"/><path d="M400 54V360"/><path d="M480 54V360"/><path d="M560 54V360"/><path d="M640 54V360"/><path d="M720 54V360"/></g>
+<path d="M40 260L250 156L470 106L720 66" fill="none" stroke="#ff5555" stroke-width="5"/>
+<g stroke="#ff8888" stroke-width="3"><path d="M92 222l16 16m0 -16l-16 16"/><path d="M242 148l16 16m0 -16l-16 16"/><path d="M462 98l16 16m0 -16l-16 16"/><path d="M622 72l16 16m0 -16l-16 16"/></g>
+<text x="42" y="124" fill="#ff8888" font-size="18">400 kV overhead line (illustrative)</text>
+<path d="M40 316Q220 296 385 300T720 320" fill="none" stroke="#c2c7c0" stroke-width="6" stroke-dasharray="12 8"/>
+<text x="42" y="344" fill="#c2c7c0" font-size="14">Illustrative public path</text>
+<circle cx="385" cy="300" r="28" fill="#23aaff" fill-opacity=".15" stroke="#23aaff" stroke-dasharray="4 4"/>
+<circle cx="385" cy="300" r="8" fill="#23aaff" stroke="white" stroke-width="2"/>
+<text x="421" y="295" font-size="18" fill="#d3edff">You / GPS uncertainty</text>
+<rect x="570" y="180" width="128" height="64" rx="5" fill="#ffd500" fill-opacity=".12" stroke="#ffd500" stroke-dasharray="6 4"/>
+<text x="634" y="208" text-anchor="middle" fill="#ffd500" font-size="15">Proposed</text><text x="634" y="228" text-anchor="middle" fill="#ffd500" font-size="15">substation</text>
+<g font-size="15" fill="#aab6c8"><text x="28" y="393">MAPPED VOLTAGE</text><text x="395" y="393">GPS ACCURACY (EXAMPLE)</text><text x="28" y="465">SOURCE STATUS</text><text x="395" y="465">ELECTRICAL CONTEXT</text></g>
+<g font-weight="bold" font-size="25"><text x="28" y="425" fill="#ff5555">400 kV</text><text x="395" y="425" fill="#00ffff">±6 m</text><text x="28" y="496" fill="#ffd500">Existing / planned</text><text x="395" y="496" fill="#00ffff">Explore in Vicinity</text></g>
+<text x="28" y="532" font-size="13" fill="#aab6c8">Synthetic concept only. Not a real map, surveyed position, access route or safety clearance.</text></g></svg>

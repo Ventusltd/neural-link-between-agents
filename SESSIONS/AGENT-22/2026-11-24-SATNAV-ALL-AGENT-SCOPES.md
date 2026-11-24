@@ -2,6 +2,10 @@
 
 24 November 2026. Owner instruction: allocate all remaining SatNav programme work to Agent 33 and Agent 31 only; MSI is running now. This section supersedes **all earlier active assignments and reservations below** for this programme; prior text and receipts are retained as history. Other SatNav agents cease new work/writes and hand off any in-flight work without pushing competing commits. Scheduled SatNav Agents 22, 23, 24 have been paused; unrelated automations untouched. No new public release approval implied.
 
+## Public purpose and hybrid navigation — owner scope extension
+
+See [Public electrical navigation, learning and grid exploration](2026-11-24-SATNAV-PUBLIC-GRID-EXPLORATION.md), including three editable SVG concept diagrams. Preserve ordinary legitimately public GridAtlas data and refer restricted underground detail to NUAR for eligible users. Google Maps complements SatNav, GridAtlas, Pipeline News and Vicinity; enable public learning walks, electrical context and orientation from permitted locations. Stage after current M1 acceptance; Agent33 implementation, Agent31 independent QA, owner release approval. This extension does not alter current test pins or production releases.
+
 ## Agent 33 — MSI implementation lead (sole product writer)
 
 Take over existing GridAtlas PR110 branch `feature/satnav-native-vicinity-m1-20261124` at `99ff9f6f1d722d8868e51d5f361bdd08592accdd`, SatNav PR2 `agent22/satnav-contracts-20261124` at `5b6988949e5a8b259aec4b8116878d23eed3501a`, and assigned Neural Link audit/scope PR86/85. Before first write ACK transfer on NL-084 and NL-081, re-read branch tips and local worktrees, reconcile any in-flight changes, and use expected-head/non-force updates. If an earlier writer is still active or branch moved, stop competing writes and resolve with owner. Preserve original branches and receipts, no duplicate PRs. Existing PR1/3 metric/data work becomes reference input; do not promote terrain/router or reopen separate writer lanes.
