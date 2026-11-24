@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "SatNav",
   "coordination_issue": 84,
-  "scope_status": "M1_NATIVE_CANDIDATE_AVAILABLE_INDEPENDENT_PAIRED_QA_PENDING",
+  "scope_status": "OWNER_DIRECTIVE_TWO_AGENT_TEAM_M1_FIX_AND_QA",
   "agent22": "SELF_RESERVED",
   "roles": [
     {
@@ -10,8 +10,8 @@
       "role": "Scope and contracts",
       "ack": "SELF_RESERVED",
       "branch": "agent22/satnav-contracts-20261124",
-      "current_scope": "SatNav integration / PR2",
-      "next_action": "Confirm paired codec, resolve remaining own CVAA issue without schedule activation, review native fixes and acceptance; no GridAtlas writes",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
       "current_write_boundary": "PR2 sole branch agent22/satnav-contracts-20261124; PR86 sole audit branch; no GridAtlas writes."
     },
     {
@@ -21,8 +21,8 @@
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131132068",
       "branch": "agent23/satnav-terrain-20261124",
       "trio_ack": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131192076",
-      "current_scope": "Data and geometry / PR3",
-      "next_action": "Validate available substation name/address/coords/identity and planned project status/coordinate basis in actual feeds, no fabricated fields; report provider GO/HOLD. Pin active line partitions and source rights, continuity and snapshot-local identity; coordinate 24/33.",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
       "current_write_boundary": "agent23/satnav-terrain-20261124; bounded data/geometry only; no terrain promotion."
     },
     {
@@ -32,27 +32,30 @@
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131138743",
       "branch": "agent24/satnav-hybrid-router-20261124",
       "trio_ack": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131201894",
-      "current_scope": "Selected-line metrics / PR1",
-      "next_action": "Deliver bounded LineString nearest foot, lateral distance, endpoint clamp, direction/progress and ambiguity policy; validate against independent numerical oracle and source pins; no route/access inference.",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
       "current_write_boundary": "agent24/satnav-hybrid-router-20261124; isolated metric component, no product integration."
     },
     {
       "id": 25,
       "role": "Mobile HUD",
       "ack": "AWAITING_ACK",
-      "current_scope": "RESERVED_INACTIVE_NO_MVP_ASSIGNMENT"
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31"
     },
     {
       "id": 26,
       "role": "Offline cache",
       "ack": "AWAITING_ACK",
-      "current_scope": "RESERVED_INACTIVE_NO_MVP_ASSIGNMENT"
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31"
     },
     {
       "id": 27,
       "role": "Independent QA",
       "ack": "AWAITING_ACK",
-      "current_scope": "RESERVED_INACTIVE_NO_MVP_ASSIGNMENT"
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31"
     },
     {
       "id": 28,
@@ -60,8 +63,8 @@
       "ack": "ACKNOWLEDGED",
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131713255",
       "write_scope": "NL-084 coordination only",
-      "current_scope": "Acceptance and publication",
-      "next_action": "Review native paired evidence and arrange owner-approved isolated HTTPS field-test candidate; keep live release and landing activation separate",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
       "current_write_boundary": "Review/coordination; separately authorised landing-only publication already exercised; no new release authority."
     },
     {
@@ -69,8 +72,8 @@
       "role": "Python R&D advice",
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes",
-      "current_scope": "Python fixtures and regression",
-      "next_action": "Produce small deterministic fixtures for existing substation duplicate names, planned record, anonymous dropped pin, manual signed coordinates, cancel/re-pick and moving fixes; parallel/off-end/ambiguous line and poor GPS; numerical oracles with actual results.",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
       "current_write_boundary": "Scratch/test only; no product writes or extra GPU benchmarks."
     },
     {
@@ -78,8 +81,8 @@
       "role": "Independent review",
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes",
-      "current_scope": "Independent review",
-      "next_action": "Review named/planned/anonymous identity, permission/privacy and measured-vs-projected positions. Triage CVAA applicability and proposed Stars AST/span correction; preserve historical IDs; review real changes without conflating warnings and errors.",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
       "current_write_boundary": "Read-only/scratch; no catalogue or competing product writes."
     },
     {
@@ -87,17 +90,17 @@
       "role": "Codex desktop and handset verification",
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes",
-      "current_scope": "Independent desktop/device QA",
-      "next_action": "Run exact native PR110 with immutable P1 and protected regression, including hidden armed close and named station receiver handover; physical acceptance separately",
-      "current_write_boundary": "Detached test worktrees only; report emulation separately; no production writes."
+      "current_scope": "INDEPENDENT_QA_ACCEPTANCE_RECOMMENDATION_COORDINATION",
+      "next_action": "Verify exact corrected sender, protected regressions, CVAA/source review, approved physical iPhone and Android where available; owner acceptance recommendation",
+      "current_write_boundary": "Detached QA and coordination only; no product writes"
     },
     {
       "id": 32,
       "role": "Codex context preservation and cross-agent assistance",
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes",
-      "current_scope": "Cross-repo controller",
-      "next_action": "Track exact native PR110 pair, independent QA and HTTPS acceptance; use roster label; do not open competing implementation",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
       "current_write_boundary": "Coordination/read-only inventory; do not compete for write branches."
     },
     {
@@ -106,9 +109,9 @@
       "ack": "ACKNOWLEDGED",
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139472333",
       "write_scope": "detached scratch; no product or release writes",
-      "current_scope": "MSI reuse and compatibility",
-      "next_action": "Demo transfer complete; support M2 source/metric compatibility only as needed",
-      "current_write_boundary": "Detached scratch/demo branch agent33/gridatlas-satnav-demo-20261124; no product or release writes."
+      "current_scope": "SOLE_PRODUCT_IMPLEMENTATION_LEAD_MSI",
+      "next_action": "Fix native PR110 placeholder, desktop visibility, mobile occlusion, hidden arm; run CI; hand exact successor to 31; then remaining M2 and audit",
+      "current_write_boundary": "Existing product/scope/audit branches after ACK/head reconciliation; no unapproved production release"
     }
   ],
   "next_proposed_id": 34,
@@ -880,7 +883,8 @@
       "url": "https://github.com/Ventusltd/satnav/actions/runs/45392366403"
     },
     "current_ci": "EXACT_HEAD_FOUR_WORKFLOWS_SUCCESS",
-    "scope_controller": 28
+    "scope_controller": 31,
+    "current_owner": 33
   },
   "schedule": {
     "timezone": "Europe/London",
@@ -921,8 +925,13 @@
       "max_changed_lines": 400,
       "target_tokens_per_dependency_bundle": 4000
     },
-    "status": "CREATED",
-    "note": "Scheduled role continuations; not proof original chats are running. Stop after bounded rounds. No publication authority."
+    "status": "PAUSED_AGENTS_22_23_24_OWNER_TWO_AGENT_DIRECTIVE",
+    "note": "Scheduled role continuations; not proof original chats are running. Stop after bounded rounds. No publication authority.",
+    "paused_agents": [
+      22,
+      23,
+      24
+    ]
   },
   "geographic_scope": [
     "England",
@@ -938,7 +947,7 @@
     "No new routing engine, terrain, LiDAR, offline packs or GPU dependency"
   ],
   "destination_increment": {
-    "status": "NATIVE_DRAFT_CANDIDATE_IMPLEMENTED_PRODUCER_TESTS_PASS_INDEPENDENT_PAIRED_QA_PENDING",
+    "status": "INDEPENDENT_QA_HOLD_THREE_REPRODUCED_BLOCKERS",
     "directive": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7138850753",
     "branch": "agent22/satnav-contracts-20261124",
     "base": "f4ce7ccdc9e8f4bc15915605a07071b9363d5dfb",
@@ -946,10 +955,11 @@
     "work_board_head": "c3a2c93a3041f5cfe8371370007c33f528799085",
     "gridatlas_revision": "1c9ed251ea31de67cc9d7e3b3d7908ea6aa39779",
     "blockers": [
-      "independent paired Chromium/WebKit and protected regression, targeted hidden-arm and station handoff tests",
-      "review ordinary place/address/postcode selection and human-readable UI",
-      "owner-approved isolated HTTPS entry and physical iPhone walking acceptance; Android where available",
-      "review remaining CVAA findings and owner release approval"
+      "mapped:false project 10603 launches placeholder",
+      "Chromium desktop launcher hidden/offscreen",
+      "Chromium mobile Vicinity card intercepts launcher",
+      "arm-on-close and plain-language place lookup review",
+      "paired independent corrected-head QA and approved HTTPS physical test"
     ],
     "p1_immutable": "9698781539e549deaa6ecaa4a2b34610c1f9fd29",
     "publication_approved": false,
@@ -994,7 +1004,7 @@
       "pr": 110,
       "head": "99ff9f6f1d722d8868e51d5f361bdd08592accdd",
       "branch": "feature/satnav-native-vicinity-m1-20261124",
-      "owner": "GridAtlas M1 Implementation Owner",
+      "owner": "Agent 33 MSI (owner-directed transfer; ACK pending)",
       "entry": "node tools/satnav/serve.mjs 8768; local /atlas/v/satnav-native-m1/",
       "status": "PRODUCER_PASS_INDEPENDENT_QA_PENDING",
       "codec_blob": "546272b50712ba2f2f3b73f0fe148aa8e2535f1c",
@@ -1014,14 +1024,12 @@
   "milestone_2": {
     "status": "DETACHED_COMPONENT_COMPATIBILITY_PASS_REAL_DATA_AND_NATIVE_UI_HOLD",
     "owners": [
-      23,
-      24,
       33
     ],
-    "integration": 22,
-    "gridatlas_owner": "existing maintainer; reservation pending",
+    "integration": 33,
+    "gridatlas_owner": "Agent33",
     "qa": 31,
-    "acceptance": 28,
+    "acceptance": 31,
     "source_features": 4106,
     "geometrically_accepted": 3483,
     "zero_length": 609,
@@ -1079,5 +1087,54 @@
     "rollback": "19737b9975495aebb4bd247e39c6509151fb576f",
     "m1_m2_enabled": false
   },
-  "current_role_roster": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7143607205"
+  "current_role_roster": "Revision 3 two-agent directive in SESSIONS/AGENT-22/2026-11-24-SATNAV-ALL-AGENT-SCOPES.md",
+  "active_agents": [
+    33,
+    31
+  ],
+  "ownership_transfer": {
+    "status": "OWNER_DIRECTED_ACK_AND_HEAD_RECONCILIATION_REQUIRED",
+    "sole_writer": 33,
+    "independent_qa_and_coordination": 31,
+    "release_authority": "owner; Agent33 executes only after approval",
+    "retired_satnav_write_lanes": [
+      22,
+      23,
+      24,
+      28,
+      29,
+      30,
+      32,
+      "GridAtlas M1 Implementation Owner",
+      "Codex Continuity Helper",
+      "performance reviewer except Agent31 QA coverage"
+    ],
+    "branches": [
+      {
+        "repo": "Ventusltd/gridatlas",
+        "pr": 110,
+        "branch": "feature/satnav-native-vicinity-m1-20261124",
+        "head": "99ff9f6f1d722d8868e51d5f361bdd08592accdd"
+      },
+      {
+        "repo": "Ventusltd/satnav",
+        "pr": 2,
+        "branch": "agent22/satnav-contracts-20261124",
+        "head": "5b6988949e5a8b259aec4b8116878d23eed3501a"
+      },
+      {
+        "repo": "Ventusltd/neural-link-between-agents",
+        "pr": 86,
+        "branch": "agent22/satnav-cartridge-audit-20261124",
+        "head": "9e3f0909d89bdd1467f9c80f6bf04eb9ec6b1992"
+      },
+      {
+        "repo": "Ventusltd/neural-link-between-agents",
+        "pr": 85,
+        "branch": "agent22/satnav-scope-20261124",
+        "head": "91beb3217b24a7c80fc7730de394d0d606211ca8"
+      }
+    ],
+    "priority": "M1 three reproduced blockers, arm-on-close and plain-language UI; independent QA then approved HTTPS"
+  }
 }
