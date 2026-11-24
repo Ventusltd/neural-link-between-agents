@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "SatNav",
   "coordination_issue": 84,
-  "scope_status": "MILESTONE_1_NATIVE_HANDOFF_MILESTONE_2_LINE_VIEW_PARALLEL",
+  "scope_status": "M1_NATIVE_SENDER_CRITICAL_PATH_M2_PARALLEL_LANDING_PUBLISHED",
   "agent22": "SELF_RESERVED",
   "roles": [
     {
@@ -10,9 +10,9 @@
       "role": "Scope and contracts",
       "ack": "SELF_RESERVED",
       "branch": "agent22/satnav-contracts-20261124",
-      "current_scope": "SatNav integration",
-      "next_action": "Coordinate exact selected-point codec and native sender with GridAtlas maintainer; address applicable CVAA findings and repeat regression on exact successor; no competing GridAtlas edits.",
-      "current_write_boundary": "SatNav PR #2, agent22/satnav-contracts-20261124"
+      "current_scope": "SatNav integration / PR2",
+      "next_action": "Verify all current CI and fresh pinned CVAA; resolve genuine scheduler/rule contract without masking failure; preserve deterministic tests. Correct combined audit on own PR86, using exact reviewed pins; integrate receiver only; coordinate native sender and four destination types.",
+      "current_write_boundary": "PR2 sole branch agent22/satnav-contracts-20261124; PR86 sole audit branch; no GridAtlas writes."
     },
     {
       "id": 23,
@@ -21,9 +21,9 @@
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131132068",
       "branch": "agent23/satnav-terrain-20261124",
       "trio_ack": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131192076",
-      "current_scope": "Data and geometry",
-      "next_action": "Pin existing line geometry and stable IDs, voltage, provenance, coverage and rights; review GB/NI gazetteer and REPD projection restrictions; agree bounded line selection with 24/33. Do not resume terrain as MVP dependency.",
-      "current_write_boundary": "SatNav PR #3, agent23/satnav-terrain-20261124; only assigned data/geometry scope"
+      "current_scope": "Data and geometry / PR3",
+      "next_action": "Validate available substation name/address/coords/identity and planned project status/coordinate basis in actual feeds, no fabricated fields; report provider GO/HOLD. Pin active line partitions and source rights, continuity and snapshot-local identity; coordinate 24/33.",
+      "current_write_boundary": "agent23/satnav-terrain-20261124; bounded data/geometry only; no terrain promotion."
     },
     {
       "id": 24,
@@ -32,9 +32,9 @@
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131138743",
       "branch": "agent24/satnav-hybrid-router-20261124",
       "trio_ack": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131201894",
-      "current_scope": "Geometry calculations",
-      "next_action": "Reuse canonical geodesy/follower for nearest point, sideways distance, endpoint clamp, bends, progress on oriented contiguous section; reject ambiguous/disconnected lines; no turn-by-turn routing.",
-      "current_write_boundary": "SatNav PR #1, agent24/satnav-hybrid-router-20261124; isolated selected-line core"
+      "current_scope": "Selected-line metrics / PR1",
+      "next_action": "Deliver bounded LineString nearest foot, lateral distance, endpoint clamp, direction/progress and ambiguity policy; validate against independent numerical oracle and source pins; no route/access inference.",
+      "current_write_boundary": "agent24/satnav-hybrid-router-20261124; isolated metric component, no product integration."
     },
     {
       "id": 25,
@@ -60,45 +60,45 @@
       "ack": "ACKNOWLEDGED",
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131713255",
       "write_scope": "NL-084 coordination only",
-      "current_scope": "Acceptance and scope control",
-      "next_action": "Review picker fix and CVAA findings; require real GridAtlas sender, independent browser/physical iPhone and protected-surface checks before successor approval. Review evidence, not self-certification.",
-      "current_write_boundary": "Review and coordination only unless separately authorised"
+      "current_scope": "Acceptance and publication",
+      "next_action": "Landing PR6 complete: verify physical launch/disabled controls via 31; maintain M1/M2 HOLD until paired native implementation and exact-head independent tests, CVAA disposition and owner release. Keep candidate/production separate.",
+      "current_write_boundary": "Review/coordination; separately authorised landing-only publication already exercised; no new release authority."
     },
     {
       "id": 29,
       "role": "Python R&D advice",
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes",
-      "current_scope": "Python optimisation and deterministic fixtures",
-      "next_action": "Supply original versus swiped asset, stale/cancel, signed coordinates, parallel lines, endpoints, poor fixes and Stop fixtures. Correct relevance scoring candidate with 33 only in scratch; no extra GPU experiment required.",
-      "current_write_boundary": "Assigned scratch/test-only work; no product write"
+      "current_scope": "Python fixtures and regression",
+      "next_action": "Produce small deterministic fixtures for existing substation duplicate names, planned record, anonymous dropped pin, manual signed coordinates, cancel/re-pick and moving fixes; parallel/off-end/ambiguous line and poor GPS; numerical oracles with actual results.",
+      "current_write_boundary": "Scratch/test only; no product writes or extra GPU benchmarks."
     },
     {
       "id": 30,
       "role": "Independent review",
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes",
-      "current_scope": "Independent engineering and code review",
-      "next_action": "Review Stars ASI and nested span collisions with permanent-ID migration constraints, CVAA applicability, selected-feature identity, device privacy and safe interpretation; no changes to catalogue without owner-side review.",
-      "current_write_boundary": "Read-only review/scratch"
+      "current_scope": "Independent review",
+      "next_action": "Review named/planned/anonymous identity, permission/privacy and measured-vs-projected positions. Triage CVAA applicability and proposed Stars AST/span correction; preserve historical IDs; review real changes without conflating warnings and errors.",
+      "current_write_boundary": "Read-only/scratch; no catalogue or competing product writes."
     },
     {
       "id": 31,
       "role": "Codex desktop and handset verification",
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes",
-      "current_scope": "Codex desktop and iPhone QA",
-      "next_action": "Retest 9aa6ac1a for reselection, focus, invalid replacement, SVG coordinate parity; then native sender and line view when exact candidates exist. Chromium/WebKit, real iPhone separately; preserve Pipeline News MAP/A4, Layers, Vicinity.",
-      "current_write_boundary": "Detached exact-head test worktrees; no product writes"
+      "current_scope": "Independent desktop/device QA",
+      "next_action": "Published landing actual iPhone launch; compare latest receiver with independently green e3c8acc. Pair maintainer native sender and immutable receiver SHA; exercise all four inputs and origin/swipe/cancel, Chromium/WebKit, physical iPhone Safari walking and Android Chrome where available. Protect MAP/A4, Layers, Vicinity.",
+      "current_write_boundary": "Detached test worktrees only; report emulation separately; no production writes."
     },
     {
       "id": 32,
       "role": "Codex context preservation and cross-agent assistance",
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes",
-      "current_scope": "Codex coordination",
-      "next_action": "Maintain handoffs and identify GridAtlas maintainer reservation via NL-081; correct audit manifest storage-versus-execution-order assumption in coordination with 22 (audit branch writer only); track exact checks, avoid duplicated work.",
-      "current_write_boundary": "Read-only inventory and coordination; no competing writes"
+      "current_scope": "Cross-repo controller",
+      "next_action": "Urgently obtain GridAtlas maintainer ACK/exclusive branch/native sender SHA/test entry in NL-081/084; track M1 dependency and active geometry manifest with 23/33. Route audit/acceptance evidence; stop duplicate work.",
+      "current_write_boundary": "Coordination/read-only inventory; do not compete for write branches."
     },
     {
       "id": 33,
@@ -106,9 +106,9 @@
       "ack": "ACKNOWLEDGED",
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139472333",
       "write_scope": "detached scratch; no product or release writes",
-      "current_scope": "MSI Codex reuse and compatibility",
-      "next_action": "Find existing line-selection and position-overlay cartridges via Stars/Periodic Table/Spiders/Kuiper; minimal compatibility example for GridAtlas maintainer, 23/24; CPU sufficient, optional CuPy only for measured useful batch.",
-      "current_write_boundary": "Detached scratch; no product or release writes"
+      "current_scope": "MSI reuse and compatibility",
+      "next_action": "Detached adapter already demonstrated real map handover. Hand it to maintainer; assist source/ID render mirror, active line partition and bounded section checks with 23/24. Do not reimplement native UI or repeat CUDA benchmarks.",
+      "current_write_boundary": "Detached scratch/demo branch agent33/gridatlas-satnav-demo-20261124; no product or release writes."
     }
   ],
   "next_proposed_id": 34,
@@ -855,7 +855,7 @@
     },
     "additional_roles": "25–27 remain reserved; Agent 22 handles shell preparation, no claim of independent Agent 27",
     "product_candidate": "https://github.com/Ventusltd/satnav/pull/2",
-    "candidate_head": "9aa6ac1ae4104a89d65155fe88eb4e0ed943149b",
+    "candidate_head": "a256212193fbb7a2ec98e77cbbe685ab77675ee8",
     "integration_workflow": "https://github.com/Ventusltd/satnav/blob/10e51ab32c11d8395c14c6e8755ed503dcb8d324/.github/workflows/trio-integration.yml",
     "producer_receipts": [
       {
@@ -879,7 +879,7 @@
       "status": "PASS",
       "url": "https://github.com/Ventusltd/satnav/actions/runs/45392366403"
     },
-    "current_ci": "EXACT_HEAD_THREE_WORKFLOWS_SUCCESS",
+    "current_ci": "EXACT_HEAD_FOUR_WORKFLOWS_SUCCESS",
     "scope_controller": 28
   },
   "schedule": {
@@ -932,13 +932,13 @@
   ],
   "published_scope_baseline": "50828bc39e0eb329da56b171eb40bcdd6f7997ce",
   "priorities": [
-    "M1: GridAtlas arbitrary point/Vicinity to explicit selected destination and existing compass",
-    "M2: selected transmission line visual reference with measured GPS/accuracy and separate nearest point, independent parallel build",
-    "Independent QA and owner approval; preserve immutable P1 and live apps",
-    "LiDAR, terrain, routing and offline packs deferred; no CUDA dependency"
+    "M1 four destination inputs: named mapped substation, planned project, arbitrary satellite pin, manual signed coords; explicit confirmed native sender and live compass",
+    "M2 selected-line actual GPS/accuracy plus separate nearest point and progress when supported",
+    "Published landing verified; physical walkthrough, exact-head independent QA and owner approval for M1/M2",
+    "No new routing engine, terrain, LiDAR, offline packs or GPU dependency"
   ],
   "destination_increment": {
-    "status": "FIXTURE_PICKER_CORRECTED_HOSTED_CI_PASS_NATIVE_HANDOFF_AND_INDEPENDENT_QA_PENDING",
+    "status": "SYNTHETIC_RECEIVER_PASS_DETACHED_NATIVE_MAP_DEMO_PASS_NATIVE_MAINTAINER_AND_DEVICE_ACCEPTANCE_PENDING",
     "directive": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7138850753",
     "branch": "agent22/satnav-contracts-20261124",
     "base": "f4ce7ccdc9e8f4bc15915605a07071b9363d5dfb",
@@ -946,10 +946,10 @@
     "work_board_head": "c3a2c93a3041f5cfe8371370007c33f528799085",
     "gridatlas_revision": "1c9ed251ea31de67cc9d7e3b3d7908ea6aa39779",
     "blockers": [
-      "native GridAtlas maintainer candidate with explicit point selection and selected-item sender",
-      "real place provider terms/coverage and failure boundary",
-      "independent exact-head desktop and physical Safari acceptance",
-      "CVAA applicable findings and owner preview approval"
+      "GridAtlas maintainer ACK and native candidate SHA/test entry; real substation/planned/point Vicinity handoff",
+      "reviewed source identity/address/status and provider rights/coverage",
+      "fresh CVAA and independent latest-head native desktop/physical iPhone/Android where available",
+      "owner acceptance for M1; landing approval not M1 approval"
     ],
     "p1_immutable": "9698781539e549deaa6ecaa4a2b34610c1f9fd29",
     "publication_approved": false,
@@ -959,9 +959,10 @@
       "status": "FROZEN_REFERENCE_NO_FURTHER_WRITES"
     },
     "ci": [
-      45465740738,
-      45465740888,
-      45465740934
+      45476177583,
+      45476177562,
+      45476177764,
+      45476177551
     ],
     "coordination_agent32": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139000013",
     "reuse_evidence": [
@@ -970,7 +971,25 @@
       "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139582076",
       "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139520491"
     ],
-    "candidate_head": "9aa6ac1ae4104a89d65155fe88eb4e0ed943149b"
+    "candidate_head": "a256212193fbb7a2ec98e77cbbe685ab77675ee8",
+    "ci_status": "ALL_FOUR_COMPLETED_SUCCESS",
+    "independent_receipt": {
+      "head": "e3c8acc77d3cb97e4ac75c4c6ddb42799e5ee874",
+      "contracts": "12/12",
+      "browser": "6/6",
+      "url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142774340"
+    },
+    "inputs": [
+      "mapped named substation (address only if sourced)",
+      "planned project/asset with known coordinate basis",
+      "arbitrary satellite pin (anonymous or labelled)",
+      "signed manual WGS84"
+    ],
+    "detached_demo": {
+      "head": "f624bfeed8c8a0cb5c1d5f9cf0c812f87ce9fe96",
+      "status": "DETACHED_DESKTOP_PASS_NOT_NATIVE_ACCEPTANCE",
+      "receipt": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142709033"
+    }
   },
   "msi_research": {
     "runner": "0af9d121aa725b4b91ee690d336b071b84d360fd",
@@ -982,7 +1001,7 @@
   },
   "current_scope_file": "SESSIONS/AGENT-22/2026-11-24-SATNAV-ALL-AGENT-SCOPES.md",
   "milestone_2": {
-    "status": "SCOPED_IMPLEMENTATION_NOT_EVIDENCED",
+    "status": "DETACHED_COMPONENT_COMPATIBILITY_PASS_REAL_DATA_AND_NATIVE_UI_HOLD",
     "owners": [
       23,
       24,
@@ -991,17 +1010,47 @@
     "integration": 22,
     "gridatlas_owner": "existing maintainer; reservation pending",
     "qa": 31,
-    "acceptance": 28
+    "acceptance": 28,
+    "source_features": 4106,
+    "geometrically_accepted": 3483,
+    "zero_length": 609,
+    "overlong_features": 14,
+    "receipts": [
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142331230",
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142936925",
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142709033"
+    ]
   },
   "audit": {
     "pr": 86,
     "run": 45459688676,
-    "status": "FAIL",
+    "status": "HISTORICAL_FAIL_SUCCESSOR_PENDING",
+    "historical_receiver": "1865b9051894d9e89cf5720e091b62c9041a567b",
+    "latest_independent_cvaa": {
+      "head": "e3c8acc77d3cb97e4ac75c4c6ddb42799e5ee874",
+      "errors": 6,
+      "warnings": 18,
+      "skips": 5,
+      "exit": 1
+    },
+    "new_head_rerun": "PENDING",
     "findings": [
       "two Stars identity collisions",
-      "seven CVAA errors plus warnings",
-      "audit storage-order assertion invalid; nine cartridge hashes unverified"
+      "scheduler static rule and deterministic metadata; new test refactor awaiting CVAA",
+      "separate membership/loader order; independent nine hash/syntax PASS, declared byte metadata discrepancy"
     ],
     "permanent_ids": "preserve"
+  },
+  "landing": {
+    "status": "MERGED_DEPLOYED_SERVED_VERIFIED_PHYSICAL_WALKTHROUGH_PENDING",
+    "pr": 6,
+    "main": "665faa0a19ca0a5a19a297e74bc5aae4020e9fd5",
+    "ci": [
+      45474039987,
+      45474041071,
+      45474040892
+    ],
+    "rollback": "19737b9975495aebb4bd247e39c6509151fb576f",
+    "m1_m2_enabled": false
   }
 }
