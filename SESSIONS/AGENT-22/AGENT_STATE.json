@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "SatNav",
   "coordination_issue": 84,
-  "scope_status": "M1_NATIVE_SENDER_CRITICAL_PATH_M2_PARALLEL_LANDING_PUBLISHED",
+  "scope_status": "M1_NATIVE_CANDIDATE_AVAILABLE_INDEPENDENT_PAIRED_QA_PENDING",
   "agent22": "SELF_RESERVED",
   "roles": [
     {
@@ -11,7 +11,7 @@
       "ack": "SELF_RESERVED",
       "branch": "agent22/satnav-contracts-20261124",
       "current_scope": "SatNav integration / PR2",
-      "next_action": "Verify all current CI and fresh pinned CVAA; resolve genuine scheduler/rule contract without masking failure; preserve deterministic tests. Correct combined audit on own PR86, using exact reviewed pins; integrate receiver only; coordinate native sender and four destination types.",
+      "next_action": "Confirm paired codec, resolve remaining own CVAA issue without schedule activation, review native fixes and acceptance; no GridAtlas writes",
       "current_write_boundary": "PR2 sole branch agent22/satnav-contracts-20261124; PR86 sole audit branch; no GridAtlas writes."
     },
     {
@@ -61,7 +61,7 @@
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131713255",
       "write_scope": "NL-084 coordination only",
       "current_scope": "Acceptance and publication",
-      "next_action": "Landing PR6 complete: verify physical launch/disabled controls via 31; maintain M1/M2 HOLD until paired native implementation and exact-head independent tests, CVAA disposition and owner release. Keep candidate/production separate.",
+      "next_action": "Review native paired evidence and arrange owner-approved isolated HTTPS field-test candidate; keep live release and landing activation separate",
       "current_write_boundary": "Review/coordination; separately authorised landing-only publication already exercised; no new release authority."
     },
     {
@@ -88,7 +88,7 @@
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes",
       "current_scope": "Independent desktop/device QA",
-      "next_action": "Published landing actual iPhone launch; compare latest receiver with independently green e3c8acc. Pair maintainer native sender and immutable receiver SHA; exercise all four inputs and origin/swipe/cancel, Chromium/WebKit, physical iPhone Safari walking and Android Chrome where available. Protect MAP/A4, Layers, Vicinity.",
+      "next_action": "Run exact native PR110 with immutable P1 and protected regression, including hidden armed close and named station receiver handover; physical acceptance separately",
       "current_write_boundary": "Detached test worktrees only; report emulation separately; no production writes."
     },
     {
@@ -97,7 +97,7 @@
       "ack": "ACKNOWLEDGED",
       "write_scope": "coordination and assigned verification; no competing integration writes",
       "current_scope": "Cross-repo controller",
-      "next_action": "Urgently obtain GridAtlas maintainer ACK/exclusive branch/native sender SHA/test entry in NL-081/084; track M1 dependency and active geometry manifest with 23/33. Route audit/acceptance evidence; stop duplicate work.",
+      "next_action": "Track exact native PR110 pair, independent QA and HTTPS acceptance; use roster label; do not open competing implementation",
       "current_write_boundary": "Coordination/read-only inventory; do not compete for write branches."
     },
     {
@@ -107,7 +107,7 @@
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139472333",
       "write_scope": "detached scratch; no product or release writes",
       "current_scope": "MSI reuse and compatibility",
-      "next_action": "Detached adapter already demonstrated real map handover. Hand it to maintainer; assist source/ID render mirror, active line partition and bounded section checks with 23/24. Do not reimplement native UI or repeat CUDA benchmarks.",
+      "next_action": "Demo transfer complete; support M2 source/metric compatibility only as needed",
       "current_write_boundary": "Detached scratch/demo branch agent33/gridatlas-satnav-demo-20261124; no product or release writes."
     }
   ],
@@ -855,7 +855,7 @@
     },
     "additional_roles": "25–27 remain reserved; Agent 22 handles shell preparation, no claim of independent Agent 27",
     "product_candidate": "https://github.com/Ventusltd/satnav/pull/2",
-    "candidate_head": "a256212193fbb7a2ec98e77cbbe685ab77675ee8",
+    "candidate_head": "5b6988949e5a8b259aec4b8116878d23eed3501a",
     "integration_workflow": "https://github.com/Ventusltd/satnav/blob/10e51ab32c11d8395c14c6e8755ed503dcb8d324/.github/workflows/trio-integration.yml",
     "producer_receipts": [
       {
@@ -938,7 +938,7 @@
     "No new routing engine, terrain, LiDAR, offline packs or GPU dependency"
   ],
   "destination_increment": {
-    "status": "SYNTHETIC_RECEIVER_PASS_DETACHED_NATIVE_MAP_DEMO_PASS_NATIVE_MAINTAINER_AND_DEVICE_ACCEPTANCE_PENDING",
+    "status": "NATIVE_DRAFT_CANDIDATE_IMPLEMENTED_PRODUCER_TESTS_PASS_INDEPENDENT_PAIRED_QA_PENDING",
     "directive": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7138850753",
     "branch": "agent22/satnav-contracts-20261124",
     "base": "f4ce7ccdc9e8f4bc15915605a07071b9363d5dfb",
@@ -946,10 +946,10 @@
     "work_board_head": "c3a2c93a3041f5cfe8371370007c33f528799085",
     "gridatlas_revision": "1c9ed251ea31de67cc9d7e3b3d7908ea6aa39779",
     "blockers": [
-      "GridAtlas maintainer ACK and native candidate SHA/test entry; real substation/planned/point Vicinity handoff",
-      "reviewed source identity/address/status and provider rights/coverage",
-      "fresh CVAA and independent latest-head native desktop/physical iPhone/Android where available",
-      "owner acceptance for M1; landing approval not M1 approval"
+      "independent paired Chromium/WebKit and protected regression, targeted hidden-arm and station handoff tests",
+      "review ordinary place/address/postcode selection and human-readable UI",
+      "owner-approved isolated HTTPS entry and physical iPhone walking acceptance; Android where available",
+      "review remaining CVAA findings and owner release approval"
     ],
     "p1_immutable": "9698781539e549deaa6ecaa4a2b34610c1f9fd29",
     "publication_approved": false,
@@ -959,10 +959,10 @@
       "status": "FROZEN_REFERENCE_NO_FURTHER_WRITES"
     },
     "ci": [
-      45476177583,
-      45476177562,
-      45476177764,
-      45476177551
+      45480167578,
+      45480167679,
+      45480167579,
+      45480167581
     ],
     "coordination_agent32": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139000013",
     "reuse_evidence": [
@@ -971,7 +971,7 @@
       "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139582076",
       "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139520491"
     ],
-    "candidate_head": "a256212193fbb7a2ec98e77cbbe685ab77675ee8",
+    "candidate_head": "5b6988949e5a8b259aec4b8116878d23eed3501a",
     "ci_status": "ALL_FOUR_COMPLETED_SUCCESS",
     "independent_receipt": {
       "head": "e3c8acc77d3cb97e4ac75c4c6ddb42799e5ee874",
@@ -989,6 +989,17 @@
       "head": "f624bfeed8c8a0cb5c1d5f9cf0c812f87ce9fe96",
       "status": "DETACHED_DESKTOP_PASS_NOT_NATIVE_ACCEPTANCE",
       "receipt": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142709033"
+    },
+    "native_sender": {
+      "pr": 110,
+      "head": "99ff9f6f1d722d8868e51d5f361bdd08592accdd",
+      "branch": "feature/satnav-native-vicinity-m1-20261124",
+      "owner": "GridAtlas M1 Implementation Owner",
+      "entry": "node tools/satnav/serve.mjs 8768; local /atlas/v/satnav-native-m1/",
+      "status": "PRODUCER_PASS_INDEPENDENT_QA_PENDING",
+      "codec_blob": "546272b50712ba2f2f3b73f0fe148aa8e2535f1c",
+      "sender_blob": "ec334cd054c9b852700b3135fb7d8a978c305197",
+      "receipt": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7143568322"
     }
   },
   "msi_research": {
@@ -1024,7 +1035,7 @@
   "audit": {
     "pr": 86,
     "run": 45459688676,
-    "status": "HISTORICAL_FAIL_SUCCESSOR_PENDING",
+    "status": "SUCCESSOR_EXECUTED_FAIL_REMAINING_FINDINGS_ROUTED",
     "historical_receiver": "1865b9051894d9e89cf5720e091b62c9041a567b",
     "latest_independent_cvaa": {
       "head": "e3c8acc77d3cb97e4ac75c4c6ddb42799e5ee874",
@@ -1033,13 +1044,28 @@
       "skips": 5,
       "exit": 1
     },
-    "new_head_rerun": "PENDING",
+    "new_head_rerun": "FAIL_SCHEDULER_STATIC_RULE",
     "findings": [
       "two Stars identity collisions",
       "scheduler static rule and deterministic metadata; new test refactor awaiting CVAA",
       "separate membership/loader order; independent nine hash/syntax PASS, declared byte metadata discrepancy"
     ],
-    "permanent_ids": "preserve"
+    "permanent_ids": "preserve",
+    "successor": {
+      "head": "9e3f0909d89bdd1467f9c80f6bf04eb9ec6b1992",
+      "run": 45480229883,
+      "pass": [
+        "membership",
+        "declared order",
+        "nine hashes and syntax",
+        "picker invalid replacement"
+      ],
+      "fail": [
+        "scheduler static rule",
+        "off-takers byte metadata",
+        "two Stars collisions"
+      ]
+    }
   },
   "landing": {
     "status": "MERGED_DEPLOYED_SERVED_VERIFIED_PHYSICAL_WALKTHROUGH_PENDING",
@@ -1052,5 +1078,6 @@
     ],
     "rollback": "19737b9975495aebb4bd247e39c6509151fb576f",
     "m1_m2_enabled": false
-  }
+  },
+  "current_role_roster": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7143607205"
 }
