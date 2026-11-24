@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "SatNav",
   "coordination_issue": 84,
-  "scope_status": "PHASE_1_AUTHORISED",
+  "scope_status": "TRIO_STANDALONE_DEVELOPMENT",
   "agent22": "SELF_RESERVED",
   "roles": [
     {
@@ -16,14 +16,16 @@
       "role": "Terrain/vector",
       "ack": "ACKNOWLEDGED",
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131132068",
-      "branch": "agent23/satnav-terrain-20261124"
+      "branch": "agent23/satnav-terrain-20261124",
+      "trio_ack": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131192076"
     },
     {
       "id": 24,
       "role": "Hybrid router",
       "ack": "ACKNOWLEDGED",
       "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131138743",
-      "branch": "agent24/satnav-hybrid-router-20261124"
+      "branch": "agent24/satnav-hybrid-router-20261124",
+      "trio_ack": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131201894"
     },
     {
       "id": 25,
@@ -50,8 +52,11 @@
       "id": "T001",
       "owner": 22,
       "task": "Create SatNav coordination state and proposed contracts (not locked).",
-      "status": "RESERVED",
-      "evidence": []
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "https://github.com/Ventusltd/satnav/blob/77c1f6ce9adf35c3675c10f0aa0cd8e2f2260cc9/nav/CONTRACTS.md"
+      ],
+      "note": "Candidate only; lock and independent validation pending."
     },
     {
       "id": "T002",
@@ -78,29 +83,41 @@
       "id": "T005",
       "owner": 22,
       "task": "Define CostGridSpec: CRS, origin, dimensions, resolution, masks and typed arrays.",
-      "status": "RESERVED",
-      "evidence": []
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "https://github.com/Ventusltd/satnav/blob/77c1f6ce9adf35c3675c10f0aa0cd8e2f2260cc9/nav/CONTRACTS.md"
+      ],
+      "note": "Candidate only; lock and independent validation pending."
     },
     {
       "id": "T006",
       "owner": 22,
       "task": "Define Worker request/response, errors, cancellation and route metadata.",
-      "status": "RESERVED",
-      "evidence": []
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "https://github.com/Ventusltd/satnav/blob/77c1f6ce9adf35c3675c10f0aa0cd8e2f2260cc9/nav/CONTRACTS.md"
+      ],
+      "note": "Candidate only; lock and independent validation pending."
     },
     {
       "id": "T007",
       "owner": 22,
       "task": "Define TelemetryPacket including fix age and uncertainty.",
-      "status": "RESERVED",
-      "evidence": []
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "https://github.com/Ventusltd/satnav/blob/77c1f6ce9adf35c3675c10f0aa0cd8e2f2260cc9/nav/CONTRACTS.md"
+      ],
+      "note": "Candidate only; lock and independent validation pending."
     },
     {
       "id": "T008",
       "owner": 22,
       "task": "Define OfflinePackManifest, hashes, licences, coverage and expiry.",
-      "status": "RESERVED",
-      "evidence": []
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "https://github.com/Ventusltd/satnav/blob/77c1f6ce9adf35c3675c10f0aa0cd8e2f2260cc9/nav/CONTRACTS.md"
+      ],
+      "note": "Candidate only; lock and independent validation pending."
     },
     {
       "id": "T009",
@@ -749,7 +766,27 @@
   ],
   "authorization": {
     "date": "2026-11-24",
-    "scope": "Owner requested handshakes and commencement; isolated SatNav development only; no publication or cross-product edits",
-    "phase_gate": "Phase 1 first; independent contract review before routing integration"
+    "scope": "Autonomous trio in standalone SatNav; no GridAtlas/Pipeline News writes or production promotion; retain independent review",
+    "handshake": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131189190"
+  },
+  "trio": {
+    "integrator": 22,
+    "terrain": 23,
+    "router": 24,
+    "review": {
+      "22": [
+        23,
+        24
+      ],
+      "23": [
+        24
+      ],
+      "24": [
+        23
+      ]
+    },
+    "additional_roles": "25–27 remain reserved; Agent 22 handles shell preparation, no claim of independent Agent 27",
+    "product_candidate": "https://github.com/Ventusltd/satnav/pull/2",
+    "candidate_head": "8e8bae48e95cd2e766af3d7434e76aafe0e8bd6a"
   }
 }
