@@ -2,6 +2,8 @@ name: SatNav isolated cross-repo audit
 on:
   push:
     branches: [agent22/satnav-cartridge-audit-20261124]
+  pull_request:
+    paths: ['SESSIONS/AGENT-22/CARTRIDGE-AUDIT/**', '.github/workflows/satnav-isolated-cartridge-audit.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -29,6 +31,7 @@ jobs:
             git -C "audit-inputs/$1" checkout -q --detach "$2"
           }
           fetch_pin satnav 1865b9051894d9e89cf5720e091b62c9041a567b '/*'
+          git -C audit-inputs/satnav fetch -q --unshallow --filter=blob:none origin 1865b9051894d9e89cf5720e091b62c9041a567b
           fetch_pin gridatlas 1c9ed251ea31de67cc9d7e3b3d7908ea6aa39779 '/atlas/current.json' '/atlas/cartridges/*.js' '/atlas/modules/*.js'
           fetch_pin stars 7c90d879688ca80c7ed63982eec0894fe75d67a3 '/modular-star/**' '/package.json' '/table.html' '/blocks/blocks.json' '/blocks/presets.json'
           fetch_pin cvaa b124c39e5343b24dd5b546a0c279a1c06360bdad '/*'
