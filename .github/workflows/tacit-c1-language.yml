@@ -1,0 +1,115 @@
+name: TACIT C1 independent VEDIC language witness
+on:
+  pull_request:
+    paths:
+      - 'automation/tacit_c1_language.py'
+      - '.github/workflows/tacit-c1-language.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/kuiper-belt
+          ref: 2a58ed137bef42022a5fca8020d320b96fc47fd6
+          path: _peer_e1
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/vedic-
+          ref: 2ccc717933f97e7d191dae85360559a12de7ed21
+          path: e1-acquire/factory
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/vedic-
+          ref: e0a094c8c672643f0b8a9967dea93c6ef7e4518a
+          path: e1-acquire/b
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/vedic-
+          ref: c4d6d309940d131d2a1ae6181701086aa7221839
+          path: e1-acquire/a1
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '18'
+      - name: Acquire fixed reviewed inputs, never caller-selected
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          s="$RUNNER_TEMP/e1-stage"
+          p="$RUNNER_TEMP/e1-input"
+          mkdir -p "$s" "$p" "$s/browser-home" evidence
+          mv e1-acquire/{factory,b,a1} "$s/"
+          gh api repos/Ventusltd/vedic-/actions/artifacts/15140897950/zip > "$s/impact.zip"
+          gh api repos/Ventusltd/vedic-/actions/artifacts/15140134078/zip > "$s/b-final.zip"
+          gh api repos/Ventusltd/vedic-/actions/artifacts/15142906371/zip > "$s/b1.zip"
+          gh api repos/Ventusltd/kuiper-belt/actions/artifacts/15141534328/zip > "$s/e1.zip"
+          rmdir e1-acquire
+          gh api repos/Ventusltd/vedic-/actions/artifacts/15143370771/zip > "$s/a1.zip"
+          echo "5b3dc6d98ea6f3dec757263869d77a6261ce29d57ddce8a8659dfcd633ab1a86  $s/a1.zip" | sha256sum -c -
+          python - "$s" <<'PY'
+          import pathlib,sys,zipfile,hashlib
+          s=pathlib.Path(sys.argv[1])
+          with zipfile.ZipFile(s/"a1.zip") as z:
+              hits=[x for x in z.infolist() if x.filename.split("/")[-1]=="property-impact.json"]
+              assert len(hits)==1 and hits[0].file_size<=2_000_000
+              raw=z.read(hits[0]);assert hashlib.sha256(raw).hexdigest()=="1233591210b19b006bb5970ecc85bdf0e5951cc3bef92e5e670871a4da0ca9e3"
+              s.joinpath("a1-property-impact.json").write_bytes(raw)
+          PY
+          gh api repos/Ventusltd/vedic-/actions/artifacts/15138897783/zip > "$s/bonds.zip"
+          echo "649209e8723af1efd4c73f85ebd90b524a2312907d8a5e24759c8bf72ad1f72a  $s/bonds.zip" | sha256sum -c -
+          gh api repos/Ventusltd/vedic-/actions/artifacts/15126683549/zip > "$p/producer.zip"
+          python - "$p" <<'PY'
+          import pathlib,sys,zipfile,hashlib
+          p=pathlib.Path(sys.argv[1])
+          assert p.joinpath("producer.zip").stat().st_size<=8_000_000
+          with zipfile.ZipFile(p/"producer.zip") as z:
+              for src,dest,digest in [("source-receipt/receipt.json","receipt.json","83147e90c0f0831ee1f82ce5e721a3521dc843421a96ae9cba3425343d0b3c19"),("source-receipt/v9-geodesy.mjs","module.mjs","af9b5a8796b51a1e4368491b98961a197adec539f2fa0f3ed226552a876864bb")]:
+                  assert z.namelist().count(src)==1 and z.getinfo(src).file_size<=2_000_000
+                  raw=z.read(src);assert hashlib.sha256(raw).hexdigest()==digest
+                  p.joinpath(dest).write_bytes(raw)
+          PY
+          python -B "$s/a1/tools/tacit_a1_semantics.py" acquire --root "$s/semantic"
+          curl -fsSL --max-time 60 --max-filesize 2097152 https://raw.githubusercontent.com/Ventusltd/ventus-grid-engine/487ec7bd38dfa5aecb1c75da53b4a866ab2101cb/LICENSE -o "$p/LICENSE"
+          curl -fsSL --max-time 60 --max-filesize 2097152 https://raw.githubusercontent.com/Ventusltd/vedic-/2adc1fa9c52f1d242e601b1580927996e7cb31da/tools/package_builder.py -o "$p/prototype.py"
+          test "$(git hash-object "$p/LICENSE")" = d645695673349e3947e8e5ae42332d0ac3164cd7
+          test "$(git hash-object "$p/prototype.py")" = 63849940adf32580e5c3aab4ea9dc2b36a35c319
+      - name: Reproduce archive and independently execute language offline
+        run: |
+          set -euo pipefail
+          s="$RUNNER_TEMP/e1-stage"
+          p="$RUNNER_TEMP/e1-input"
+          mkdir "$p/out"
+          sudo unshare --net -- bash -c '
+            set -euo pipefail
+            ip link set lo up
+            exec setpriv --reuid "$1" --regid "$2" --clear-groups env -i PATH="$3" HOME=/nonexistent PYTHONDONTWRITEBYTECODE=1 bash -c "
+              set -euo pipefail
+              python -B \"\$1/factory/tools/package_factory.py\" build --descriptor \"\$1/factory/packages/factory/admissions/orient.json\" --inputs \"\$2\" --out \"\$2/out/package.zip\" > \"\$1/build-receipt.json\"
+              mv \"\$2/out/package.zip\" \"\$1/package.zip\"
+              python -B automation/tacit_c1_language.py \"\$1\" _peer_e1 evidence/language.json
+            " bash "$4" "$5"
+          ' bash "$(id -u)" "$(id -g)" "$PATH" "$s" "$p"
+          sha256sum "$s/package.zip" evidence/language.json
+          echo 'No live endpoint, source bytes, or package archive published.'
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: tacit-c1-language-proof
+          path: |
+            evidence/language.json
+          if-no-files-found: error
