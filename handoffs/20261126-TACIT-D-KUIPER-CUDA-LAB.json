@@ -1,0 +1,735 @@
+{
+    "schema":  "kuiper.offline-cuda-lab.handoff.v1",
+    "date_utc":  "2026-11-26",
+    "recipient":  "TACIT D",
+    "scope":  "Bounded offline laboratory measurements on pinned actual inputs",
+    "repository_pins":  [
+                            {
+                                "repository":  "elements",
+                                "commit":  "f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf"
+                            },
+                            {
+                                "repository":  "energy-transition-simulator",
+                                "commit":  "a6b5ae63cc0eeb4d619f154c7e116616c997af77"
+                            },
+                            {
+                                "repository":  "kuiper-belt",
+                                "commit":  "f7a4cb9e3a764a72b7133bb275bb5387ea083be2"
+                            },
+                            {
+                                "repository":  "neural-link-between-agents",
+                                "commit":  "5098bc538d40f31577dee36c9f9736b5ab43233e"
+                            },
+                            {
+                                "repository":  "spiders",
+                                "commit":  "830e86ea65e98b03df7250d2dd55d2753799687a"
+                            },
+                            {
+                                "repository":  "stars",
+                                "commit":  "1cf9c7530c7d287ccf9b3cffd70f693fb83c8402"
+                            },
+                            {
+                                "repository":  "vedic-",
+                                "commit":  "faf6ec6e1473ff869dc00849c6c2681fd76da4ab"
+                            },
+                            {
+                                "repository":  "ventus-grid-engine",
+                                "commit":  "7c2a7b42905674fdcd3aa4bb50af14bc352a7747"
+                            }
+                        ],
+    "wafer":  {
+                  "commit":  "f7a4cb9e3a764a72b7133bb275bb5387ea083be2",
+                  "input_sha256":  {
+                                       "repos.tsv":  "e795027aa3e0243712b7b6ebfeb8a78a6ac6ac6240c470bc11f1354e9b658bf2",
+                                       "wafer-meta.json":  "ad5a703b7fde5ba670680dad55d7aeb48a0b6ab315922c56e2368642aec95b81",
+                                       "wafer.tsv":  "10241925b7ae4011649a7c744e5f66a81c9096f0519d5aa489f9b90a859f2ae8"
+                                   },
+                  "reference_law_git_blob":  "c506a252f27fa8b80e849eb63bbb6699eaf674f0",
+                  "historical_live_law_commit":  "7a65dd315b0c60b1baf9a7090206c900b2cfd0a1",
+                  "operational_law":  {
+                                          "coordinates":  "(radius*cos(theta), radius*sin(theta))",
+                                          "mod":  "(key * 2654435769) mod 2^32",
+                                          "radius":  "sqrt(key + 0.5)",
+                                          "theta":  "2*pi*mod/2^32"
+                                      },
+                  "verified_totals":  {
+                                          "address_space":  116449247985,
+                                          "commit_boundary_sample_count":  66146,
+                                          "commits":  16774,
+                                          "first_unix":  1748560273,
+                                          "issued_keys":  97540883985,
+                                          "last_unix":  1795712578,
+                                          "repositories":  101,
+                                          "unissued_keys":  18908364000,
+                                          "used_repository_count":  101,
+                                          "wraps_within_address_space":  27
+                                      }
+              },
+    "environment":  {
+                        "machine_model":  "Alienware Aurora R9",
+                        "gpu_name":  "NVIDIA GeForce RTX 2070 SUPER",
+                        "device_index":  0,
+                        "driver_release":  "610.60",
+                        "cuda_driver_api":  13030,
+                        "cuda_runtime_api":  12090,
+                        "nvrtc_wheel":  "12.9.86",
+                        "cuPy":  "14.2.0",
+                        "numPy":  "2.3.5",
+                        "gpu_free_bytes_initial":  7477395456,
+                        "gpu_total_bytes":  8589606912,
+                        "runtime_install":  "Isolated hash-pinned local wheels"
+                    },
+    "baseline":  {
+                     "status":  "GPU_PARITY_PASS",
+                     "seed":  42,
+                     "repetitions":  3,
+                     "rtol":  1E-12,
+                     "atol":  1E-08,
+                     "largest_cpu_only_peak_working_set_bytes":  156143616,
+                     "batches":  [
+                                     {
+                                         "sampled_addresses":  76151,
+                                         "numPy_median_ms":  7.127899909391999,
+                                         "gpu_resident_median_ms":  0.7863999344408512,
+                                         "gpu_transfer_inclusive_median_ms":  2.174000022932887,
+                                         "retained_pool_high_water_bytes_sampled":  6708736,
+                                         "max_abs_error_rxy":  [
+                                                                   0.0,
+                                                                   5.8207660913467407E-11,
+                                                                   5.8207660913467407E-11
+                                                               ],
+                                         "python_oracle_count":  256,
+                                         "parity":  "PASS"
+                                     },
+                                     {
+                                         "sampled_addresses":  166151,
+                                         "numPy_median_ms":  17.931800102815032,
+                                         "gpu_resident_median_ms":  0.924200052395463,
+                                         "gpu_transfer_inclusive_median_ms":  3.660900052636862,
+                                         "retained_pool_high_water_bytes_sampled":  14092800,
+                                         "max_abs_error_rxy":  [
+                                                                   0.0,
+                                                                   5.8207660913467407E-11,
+                                                                   5.8207660913467407E-11
+                                                               ],
+                                         "python_oracle_count":  256,
+                                         "parity":  "PASS"
+                                     },
+                                     {
+                                         "sampled_addresses":  1066151,
+                                         "numPy_median_ms":  118.94969991408288,
+                                         "gpu_resident_median_ms":  1.8047001212835312,
+                                         "gpu_transfer_inclusive_median_ms":  12.301400071009994,
+                                         "retained_pool_high_water_bytes_sampled":  79361024,
+                                         "max_abs_error_rxy":  [
+                                                                   0.0,
+                                                                   5.8207660913467407E-11,
+                                                                   5.8207660913467407E-11
+                                                               ],
+                                         "python_oracle_count":  256,
+                                         "parity":  "PASS"
+                                     }
+                                 ]
+                 },
+    "fusion":  {
+                   "compiler":  {
+                                    "backend":  "NVRTC",
+                                    "kernel_source_sha256":  "0b3c7c195c0938f5070ae4780830e1121b7fb6120c41f1d7eb4746f49a498ca4",
+                                    "nvrtc_version":  [
+                                                          12,
+                                                          9
+                                                      ],
+                                    "nvrtc_wheel":  "12.9.86",
+                                    "options":  [
+                                                    "--std=c++11",
+                                                    "--fmad=false"
+                                                ],
+                                    "threads_per_block":  256,
+                                    "warmup_first_batch_may_include_jit":  true
+                                },
+                   "initial_largest":  {
+                                           "status":  "CUDA_FUSED_PARITY_PASS",
+                                           "keys":  2066227,
+                                           "cpu_median_ms":  233.4151000250131,
+                                           "cpu_samples_ms":  [
+                                                                  230.48619995824993,
+                                                                  234.30490004830062,
+                                                                  233.4151000250131
+                                                              ],
+                                           "wrap_points":  27,
+                                           "python_oracle_count":  337,
+                                           "unfused":  {
+                                                           "resident_wall_ms":  [
+                                                                                    4.4570001773536205,
+                                                                                    3.7627997808158398,
+                                                                                    3.1758002005517483
+                                                                                ],
+                                                           "resident_wall_median_ms":  3.7627997808158398,
+                                                           "device_event_ms":  [
+                                                                                   3.0282559394836426,
+                                                                                   3.397792100906372,
+                                                                                   3.056447982788086
+                                                                               ],
+                                                           "device_event_median_ms":  3.056447982788086,
+                                                           "transfer_inclusive_wall_ms":  [
+                                                                                              23.106599925085902,
+                                                                                              23.517300141975284,
+                                                                                              22.959500085562468
+                                                                                          ],
+                                                           "transfer_inclusive_wall_median_ms":  23.106599925085902,
+                                                           "retained_pool_high_water_bytes_sampled":  153365504,
+                                                           "max_abs_error_rxy":  [
+                                                                                     0.0,
+                                                                                     5.8207660913467407E-11,
+                                                                                     5.8207660913467407E-11
+                                                                                 ]
+                                                       },
+                                           "fused":  {
+                                                         "resident_wall_ms":  [
+                                                                                  3.22819990105927,
+                                                                                  1.0227998718619347,
+                                                                                  3.004099940881133
+                                                                              ],
+                                                         "resident_wall_median_ms":  3.004099940881133,
+                                                         "device_event_ms":  [
+                                                                                 0.9168959856033325,
+                                                                                 0.9561600089073181,
+                                                                                 4.914463996887207
+                                                                             ],
+                                                         "device_event_median_ms":  0.9561600089073181,
+                                                         "transfer_inclusive_wall_ms":  [
+                                                                                            48.271399922668934,
+                                                                                            21.17680013179779,
+                                                                                            37.83259983174503
+                                                                                        ],
+                                                         "transfer_inclusive_wall_median_ms":  37.83259983174503,
+                                                         "retained_pool_high_water_bytes_sampled":  132684288,
+                                                         "max_abs_error_rxy":  [
+                                                                                   0.0,
+                                                                                   5.8207660913467407E-11,
+                                                                                   5.8207660913467407E-11
+                                                                               ]
+                                                     }
+                                       },
+                   "largest_repeat":  {
+                                          "status":  "CUDA_FUSED_PARITY_PASS",
+                                          "keys":  2066227,
+                                          "cpu_median_ms":  240.55650015361607,
+                                          "cpu_samples_ms":  [
+                                                                 228.9235999342054,
+                                                                 241.13440001383424,
+                                                                 234.77049986831844,
+                                                                 240.55650015361607,
+                                                                 240.06110010668635,
+                                                                 247.28130013681948,
+                                                                 240.59229996055365
+                                                             ],
+                                          "wrap_points":  27,
+                                          "python_oracle_count":  337,
+                                          "unfused":  {
+                                                          "resident_wall_ms":  [
+                                                                                   4.926200024783611,
+                                                                                   4.000399960204959,
+                                                                                   3.484899876639247,
+                                                                                   3.0461999122053385,
+                                                                                   3.159699961543083,
+                                                                                   3.8409000262618065,
+                                                                                   3.0944000463932753
+                                                                               ],
+                                                          "resident_wall_median_ms":  3.484899876639247,
+                                                          "device_event_ms":  [
+                                                                                  3.04313588142395,
+                                                                                  3.466207981109619,
+                                                                                  3.527071952819824,
+                                                                                  3.064703941345215,
+                                                                                  3.0459840297698975,
+                                                                                  3.459007978439331,
+                                                                                  3.0499839782714844
+                                                                              ],
+                                                          "device_event_median_ms":  3.064703941345215,
+                                                          "transfer_inclusive_wall_ms":  [
+                                                                                             22.39009994082153,
+                                                                                             22.55899994634092,
+                                                                                             23.204300086945295,
+                                                                                             22.234200034290552,
+                                                                                             27.899099979549646,
+                                                                                             24.474799865856767,
+                                                                                             26.002199854701757
+                                                                                         ],
+                                                          "transfer_inclusive_wall_median_ms":  23.204300086945295,
+                                                          "retained_pool_high_water_bytes_sampled":  153365504,
+                                                          "max_abs_error_rxy":  [
+                                                                                    0.0,
+                                                                                    5.8207660913467407E-11,
+                                                                                    5.8207660913467407E-11
+                                                                                ]
+                                                      },
+                                          "fused":  {
+                                                        "resident_wall_ms":  [
+                                                                                 3.4062000922858715,
+                                                                                 1.5334999188780785,
+                                                                                 1.0910001583397388,
+                                                                                 1.0917000472545624,
+                                                                                 0.9894999675452709,
+                                                                                 3.284499980509281,
+                                                                                 4.104000050574541
+                                                                             ],
+                                                        "resident_wall_median_ms":  1.5334999188780785,
+                                                        "device_event_ms":  [
+                                                                                0.9096639752388,
+                                                                                0.9437119960784912,
+                                                                                0.91184002161026,
+                                                                                0.9023039937019348,
+                                                                                3.054271936416626,
+                                                                                3.1979520320892334,
+                                                                                3.2427520751953125
+                                                                            ],
+                                                        "device_event_median_ms":  0.9437119960784912,
+                                                        "transfer_inclusive_wall_ms":  [
+                                                                                           20.89949999935925,
+                                                                                           21.27150003798306,
+                                                                                           20.84050001576543,
+                                                                                           21.66690002195537,
+                                                                                           40.07220012135804,
+                                                                                           36.9293000549078,
+                                                                                           38.32910000346601
+                                                                                       ],
+                                                        "transfer_inclusive_wall_median_ms":  21.66690002195537,
+                                                        "retained_pool_high_water_bytes_sampled":  132684288,
+                                                        "max_abs_error_rxy":  [
+                                                                                  0.0,
+                                                                                  5.8207660913467407E-11,
+                                                                                  5.8207660913467407E-11
+                                                                              ]
+                                                    }
+                                      },
+                   "transfer_ranking":  "Varied between runs"
+               },
+    "spider":  {
+                   "commit":  "830e86ea65e98b03df7250d2dd55d2753799687a",
+                   "input_sha256":  {
+                                        "species/genome-spider/data/edges.json":  "ddcc74d2a81936aa0bfb0bd628d4e3246ce08b4fe5a4b3479509ad2e4ed44612",
+                                        "species/genome-spider/data/genome.json":  "c400033a0cefe62485449da7a7a3e2c818ecd003904cd6939e0e495043f359c8",
+                                        "species/genome-spider/data/manifest.json":  "cf2ddd0182c5ded7b6408c48af628ab25d8b733c3fda268b6faef91be61a8365",
+                                        "species/genome-spider/data/nodes.json":  "8467adaf1ac7c77e1a61db5ce0915cbb36f58c950d46735a325433023a90d1c1",
+                                        "spider_printer_v1/data/topology.json":  "968bc7ef6fbfecb8dc6b55bf90a4ce4eb83d8ded86e9af6e0b5929ee6c15737d"
+                                    },
+                   "status":  "PASS",
+                   "edge_rate_scope":  "Neighbor queries examine each directed record once per orientation. Reverse BFS counts every incoming record from each reached vertex, separately for each seed.",
+                   "graphs":  {
+                                  "genome":  {
+                                                 "nodes":  1379,
+                                                 "edge_records":  3249,
+                                                 "edge_counts":  {
+                                                                     "fetch":  2,
+                                                                     "imports":  101,
+                                                                     "json-provenance":  65,
+                                                                     "manifest-path":  2037,
+                                                                     "pinned-action":  1006,
+                                                                     "workflow-checkout":  38
+                                                                 },
+                                                 "queries":  {
+                                                                 "neighbors":  {
+                                                                                   "edge_records_examined":  6498,
+                                                                                   "parity":  "PASS",
+                                                                                   "cpu":  {
+                                                                                               "edge_records_per_second":  17402258.15244865,
+                                                                                               "median_ms":  0.3733998164534569,
+                                                                                               "sample_ms":  [
+                                                                                                                 0.3904001787304878,
+                                                                                                                 0.37370016798377037,
+                                                                                                                 0.3621000796556473,
+                                                                                                                 0.3741001710295677,
+                                                                                                                 0.3733998164534569,
+                                                                                                                 0.3597000613808632,
+                                                                                                                 0.35990006290376186
+                                                                                                             ]
+                                                                                           },
+                                                                                   "gpu_resident":  {
+                                                                                                        "edge_records_per_second":  4814759.814806483,
+                                                                                                        "median_ms":  1.3496000319719315,
+                                                                                                        "sample_ms":  [
+                                                                                                                          1.8992000259459019,
+                                                                                                                          1.3759001158177853,
+                                                                                                                          1.3496000319719315,
+                                                                                                                          1.3731000944972038,
+                                                                                                                          1.3341999147087336,
+                                                                                                                          1.3441999908536673,
+                                                                                                                          1.3344001490622759
+                                                                                                                      ]
+                                                                                                    },
+                                                                                   "gpu_with_transfers":  {
+                                                                                                              "edge_records_per_second":  3168210.601662077,
+                                                                                                              "median_ms":  2.051000017672777,
+                                                                                                              "sample_ms":  [
+                                                                                                                                2.105599967762828,
+                                                                                                                                2.024400047957897,
+                                                                                                                                2.164799952879548,
+                                                                                                                                2.051000017672777,
+                                                                                                                                1.9823999609798193,
+                                                                                                                                1.9894000142812729,
+                                                                                                                                2.2425998467952013
+                                                                                                                            ]
+                                                                                                          }
+                                                                               },
+                                                                 "reverse_impact":  {
+                                                                                        "edge_records_examined":  1666,
+                                                                                        "parity":  "PASS",
+                                                                                        "cpu":  {
+                                                                                                    "edge_records_per_second":  2309078.237591805,
+                                                                                                    "median_ms":  0.7215000223368406,
+                                                                                                    "sample_ms":  [
+                                                                                                                      0.7329999934881926,
+                                                                                                                      0.6975000724196434,
+                                                                                                                      0.7058000192046165,
+                                                                                                                      0.7229000329971313,
+                                                                                                                      0.72310003452003,
+                                                                                                                      0.7145998533815145,
+                                                                                                                      0.7215000223368406
+                                                                                                                  ]
+                                                                                                },
+                                                                                        "gpu_resident":  {
+                                                                                                             "edge_records_per_second":  80068.0530552592,
+                                                                                                             "median_ms":  20.807299995794892,
+                                                                                                             "sample_ms":  [
+                                                                                                                               20.807299995794892,
+                                                                                                                               20.487000001594424,
+                                                                                                                               20.516399992629886,
+                                                                                                                               21.043499931693077,
+                                                                                                                               21.331100026145577,
+                                                                                                                               21.632199874147773,
+                                                                                                                               20.696100080385804
+                                                                                                                           ]
+                                                                                                         },
+                                                                                        "gpu_with_transfers":  {
+                                                                                                                   "edge_records_per_second":  77985.30113265464,
+                                                                                                                   "median_ms":  21.363000152632594,
+                                                                                                                   "sample_ms":  [
+                                                                                                                                     21.363000152632594,
+                                                                                                                                     20.846399944275618,
+                                                                                                                                     23.530800128355622,
+                                                                                                                                     22.00170001015067,
+                                                                                                                                     20.56610002182424,
+                                                                                                                                     21.182300057262182,
+                                                                                                                                     21.441600052639842
+                                                                                                                                 ]
+                                                                                                               }
+                                                                                    }
+                                                             }
+                                             },
+                                  "printer":  {
+                                                  "nodes":  30,
+                                                  "edge_records":  164,
+                                                  "edge_counts":  {
+                                                                      "reference":  164
+                                                                  },
+                                                  "queries":  {
+                                                                  "neighbors":  {
+                                                                                    "edge_records_examined":  328,
+                                                                                    "parity":  "PASS",
+                                                                                    "cpu":  {
+                                                                                                "edge_records_per_second":  4823525.714371803,
+                                                                                                "median_ms":  0.06800005212426186,
+                                                                                                "sample_ms":  [
+                                                                                                                  0.067099928855896,
+                                                                                                                  0.06800005212426186,
+                                                                                                                  0.07860013283789158,
+                                                                                                                  0.06500002928078175,
+                                                                                                                  0.06489991210401058,
+                                                                                                                  0.07229996845126152,
+                                                                                                                  0.07489998824894428
+                                                                                                              ]
+                                                                                            },
+                                                                                    "gpu_resident":  {
+                                                                                                         "edge_records_per_second":  248052.60304167675,
+                                                                                                         "median_ms":  1.322300173342228,
+                                                                                                         "sample_ms":  [
+                                                                                                                           1.3657000381499529,
+                                                                                                                           1.6102998051792383,
+                                                                                                                           1.322300173342228,
+                                                                                                                           1.3062001671642065,
+                                                                                                                           1.335199922323227,
+                                                                                                                           1.3109000865370035,
+                                                                                                                           1.3172999024391174
+                                                                                                                       ]
+                                                                                                     },
+                                                                                    "gpu_with_transfers":  {
+                                                                                                               "edge_records_per_second":  163542.07094670564,
+                                                                                                               "median_ms":  2.0056001376360655,
+                                                                                                               "sample_ms":  [
+                                                                                                                                 2.025499939918518,
+                                                                                                                                 2.3322999477386475,
+                                                                                                                                 1.9257001113146544,
+                                                                                                                                 1.9115000031888485,
+                                                                                                                                 2.0437000785022974,
+                                                                                                                                 2.0056001376360655,
+                                                                                                                                 1.9396999850869179
+                                                                                                                             ]
+                                                                                                           }
+                                                                                },
+                                                                  "reverse_impact":  {
+                                                                                         "edge_records_examined":  1200,
+                                                                                         "parity":  "PASS",
+                                                                                         "cpu":  {
+                                                                                                     "edge_records_per_second":  1265555.7868310479,
+                                                                                                     "median_ms":  0.9482000023126602,
+                                                                                                     "sample_ms":  [
+                                                                                                                       0.9431999642401934,
+                                                                                                                       0.9605998639017344,
+                                                                                                                       1.0565000120550394,
+                                                                                                                       0.9623998776078224,
+                                                                                                                       0.9482000023126602,
+                                                                                                                       0.942799961194396,
+                                                                                                                       0.9188998956233263
+                                                                                                                   ]
+                                                                                                 },
+                                                                                         "gpu_resident":  {
+                                                                                                              "edge_records_per_second":  35279.38321968743,
+                                                                                                              "median_ms":  34.014200093224645,
+                                                                                                              "sample_ms":  [
+                                                                                                                                32.755699940025806,
+                                                                                                                                34.41039985045791,
+                                                                                                                                33.693999983370304,
+                                                                                                                                33.730699913576245,
+                                                                                                                                34.89789995364845,
+                                                                                                                                34.014200093224645,
+                                                                                                                                36.580700194463134
+                                                                                                                            ]
+                                                                                                          },
+                                                                                         "gpu_with_transfers":  {
+                                                                                                                    "edge_records_per_second":  32220.56057638108,
+                                                                                                                    "median_ms":  37.24329988472164,
+                                                                                                                    "sample_ms":  [
+                                                                                                                                      37.24329988472164,
+                                                                                                                                      38.16520003601909,
+                                                                                                                                      36.042300052940845,
+                                                                                                                                      39.12749979645014,
+                                                                                                                                      35.657200030982494,
+                                                                                                                                      34.30499997921288,
+                                                                                                                                      38.29560009762645
+                                                                                                                                  ]
+                                                                                                                }
+                                                                                     }
+                                                              }
+                                              }
+                              }
+               },
+    "vedic":  {
+                  "artifact_pin":  {
+                                       "run_id":  45863337360,
+                                       "artifact_id":  15138897783,
+                                       "zip_sha256":  "649209e8723af1efd4c73f85ebd90b524a2312907d8a5e24759c8bf72ad1f72a",
+                                       "manifest_sha256":  "821abf96d3e4c2f42e61d578dcefdfbda366c145b067f9cc9206fdaa91b6cf2d"
+                                   },
+                  "source_replay":  {
+                                        "status":  "PASS",
+                                        "producer_commit":  "eec3f1891294af9e93ce6613c10cdf71806802f2",
+                                        "grid_engine_source_commit":  "487ec7bd38dfa5aecb1c75da53b4a866ab2101cb",
+                                        "verified_A_matches":  8,
+                                        "original_request_rows":  49,
+                                        "historical_key_matches":  40,
+                                        "unrelated_missing_git_blobs":  {
+                                                                            "globalgrid2050":  40,
+                                                                            "gridatlas":  18
+                                                                        }
+                                    },
+                  "sparse_overlay":  {
+                                         "status":  "PASS",
+                                         "cohort":  8,
+                                         "runtime_effects":  {
+                                                                 "UNKNOWN":  8
+                                                             },
+                                         "meaning_equals_explicit_machine_predicate":  true,
+                                         "selections":  {
+                                                            "explicit_Vg":  {
+                                                                                "color_counts":  {
+                                                                                                     "#2563EB":  0,
+                                                                                                     "#6B7280":  0,
+                                                                                                     "#D97706":  2
+                                                                                                 },
+                                                                                "geometry_max_abs_error_rxy":  [
+                                                                                                                   0.0,
+                                                                                                                   0.0,
+                                                                                                                   1.4551915228366852E-11
+                                                                                                               ],
+                                                                                "selected_count":  2
+                                                                            },
+                                                            "needs_with_declared_ports_and_unknown_effects":  {
+                                                                                                                  "color_counts":  {
+                                                                                                                                       "#2563EB":  2,
+                                                                                                                                       "#6B7280":  4,
+                                                                                                                                       "#D97706":  2
+                                                                                                                                   },
+                                                                                                                  "geometry_max_abs_error_rxy":  [
+                                                                                                                                                     0.0,
+                                                                                                                                                     5.8207660913467407E-11,
+                                                                                                                                                     1.4551915228366852E-11
+                                                                                                                                                 ],
+                                                                                                                  "selected_count":  8
+                                                                                                              },
+                                                            "optional_MEASURE_BEARING":  {
+                                                                                             "color_counts":  {
+                                                                                                                  "#2563EB":  0,
+                                                                                                                  "#6B7280":  0,
+                                                                                                                  "#D97706":  2
+                                                                                                              },
+                                                                                             "geometry_max_abs_error_rxy":  [
+                                                                                                                                0.0,
+                                                                                                                                0.0,
+                                                                                                                                1.4551915228366852E-11
+                                                                                                                            ],
+                                                                                             "selected_count":  2
+                                                                                         },
+                                                            "standalone_with_unknown_effects":  {
+                                                                                                    "color_counts":  {
+                                                                                                                         "#2563EB":  0,
+                                                                                                                         "#6B7280":  0,
+                                                                                                                         "#D97706":  0
+                                                                                                                     },
+                                                                                                    "geometry_max_abs_error_rxy":  [
+                                                                                                                                       0.0,
+                                                                                                                                       0.0,
+                                                                                                                                       0.0
+                                                                                                                                   ],
+                                                                                                    "selected_count":  0
+                                                                                                }
+                                                        },
+                                         "performance":  "NOT_RUN"
+                                     },
+                  "conditional_csr":  {
+                                          "status":  "PASS",
+                                          "typed_conditional_records":  5,
+                                          "endpoints":  10,
+                                          "full_record_parity":  "PASS",
+                                          "reverse_hop_parity":  "PASS",
+                                          "observed_runtime_edges":  "UNESTABLISHED_FOR_THIS_COHORT",
+                                          "independently_reviewed_edge_count":  "UNESTABLISHED_FOR_THESE_RECORDS",
+                                          "admitted_edge_count":  "UNESTABLISHED_FOR_THESE_RECORDS",
+                                          "reachability_scope":  "Possible paths on the five typed conditional records, with conditions unevaluated",
+                                          "performance":  "NOT_RUN"
+                                      }
+              },
+    "local_receipts":  [
+                           {
+                               "file":  "wafer-preflight.json",
+                               "status":  "PASS",
+                               "sha256":  "40613836694c303ccdd322b1022dc5c90c5eae6727867d19c5d38da19335e01f"
+                           },
+                           {
+                               "file":  "synthetic-cpu.json",
+                               "status":  "CPU_ONLY_PASS_GPU_NOT_RUN",
+                               "sha256":  "e9002efba6a717207947ef138a895f5d979cb3e7c5dfee09c72982b86b79df9f"
+                           },
+                           {
+                               "file":  "cpu.json",
+                               "status":  "CPU_ONLY_PASS_GPU_NOT_RUN",
+                               "sha256":  "737b86a94c0cd6f6da753d7910bf31eecc500d66dffbc38b6ddf902c6f7d8847"
+                           },
+                           {
+                               "file":  "cpu-instrumented.json",
+                               "status":  "CPU_ONLY_PASS_GPU_NOT_RUN",
+                               "sha256":  "51437b194e263342b6ec1fe317162d34f9d0746c3028210dc8a896d7806cab03"
+                           },
+                           {
+                               "file":  "gpu.json",
+                               "status":  "GPU_PARITY_PASS",
+                               "sha256":  "c2a85fd9a09f64ea0874e87e779639b9a0c507756c635597c40fa515eb9322bd"
+                           },
+                           {
+                               "file":  "gpu-instrumented.json",
+                               "status":  "GPU_PARITY_PASS",
+                               "sha256":  "cb9933198ecb6d6627f3358a5b2877d9ec0d53ba1801e82dbdd2b5eab1414ebd"
+                           },
+                           {
+                               "file":  "exact-source-replay-20261126-172551-642051.json",
+                               "status":  "PASS_A_SOURCE_REPLAY_PARTIAL_ORIGINAL_COHORT",
+                               "sha256":  "35e3eb9181756e9d909ebd12b847003097d26fe6f2000f7df188dc00f23b12ed"
+                           },
+                           {
+                               "file":  "sparse-overlay-verified.json",
+                               "status":  "PASS",
+                               "sha256":  "0cbe1140295b6b02b027ee561efe2c6c99bb15f9e236687934efcbc78399742d"
+                           },
+                           {
+                               "file":  "spider-csr.json",
+                               "status":  "PASS",
+                               "sha256":  "fc07567f20c6265dfd4ed664eb6a98d01fcef3b6caae7a583ce4c6be2cf5b761"
+                           },
+                           {
+                               "file":  "vedic-conditional-csr.json",
+                               "status":  "PASS",
+                               "sha256":  "0f50a0eb23ed11855996e5240bb3472d0513ed1527bd45971088d3e07b914a0c"
+                           },
+                           {
+                               "file":  "fused-small.json",
+                               "status":  "CUDA_FUSED_PARITY_PASS",
+                               "sha256":  "eb1ba471fb51b11210f719cf0fd5c561f3db15051e7901aa331a48ae0f782690"
+                           },
+                           {
+                               "file":  "fused.json",
+                               "status":  "CUDA_FUSED_PARITY_PASS",
+                               "sha256":  "2c1b0ff85ad93c370bf4438400e2336bef677699c73ecc56727a61c075066633"
+                           },
+                           {
+                               "file":  "fused-largest-repeat.json",
+                               "status":  "CUDA_FUSED_PARITY_PASS",
+                               "sha256":  "f2751c2f4df81a66d83204f681c972b404e80ec376e3464463692b0cef56c46c"
+                           }
+                       ],
+    "local_failure_receipts":  [
+                                   {
+                                       "file":  "exact-source-replay-20261126-172430-143890.json",
+                                       "sha256":  "d977afc784c800cb99c6f32c01f4c9683ff95cf3d54f6ffa778a807048a22bca"
+                                   },
+                                   {
+                                       "file":  "sparse-overlay.json",
+                                       "sha256":  "177efffd03cd130fac3ee7cd201c4f0788de6c210154cc6201d60622f55c8415"
+                                   },
+                                   {
+                                       "file":  "sparse-overlay-retry.json",
+                                       "sha256":  "177efffd03cd130fac3ee7cd201c4f0788de6c210154cc6201d60622f55c8415"
+                                   },
+                                   {
+                                       "file":  "fused-static-probe-failure.json",
+                                       "sha256":  "4362756660886fd39458de72c098a3317e52607adb5f55943f363d2edeb3fc3d"
+                                   }
+                               ],
+    "lab_script_pins":  [
+                            {
+                                "file":  "fused_lab.py",
+                                "sha256":  "98795574b38187ba3f9082480a4d2a1791b57e815e7c5fb1b58a365b1e0bc795"
+                            },
+                            {
+                                "file":  "inspect_python.py",
+                                "sha256":  "f16ddecb4b9113abc0ad10c1d56bb5659cb3d49177b455a20a7751620882cf85"
+                            },
+                            {
+                                "file":  "kuiper_cuda_lab.py",
+                                "sha256":  "0a2581a30ba01b0fee1d4a2f6d12e2f4d08dab4d9ddfde1c5a5f4a311be985bd"
+                            },
+                            {
+                                "file":  "measure_lab.py",
+                                "sha256":  "41bc3b510cc8c9a8120dd11f6a0c6203700c471feb2068cd7eb81edf046a3504"
+                            },
+                            {
+                                "file":  "run_kuiper_lab.ps1",
+                                "sha256":  "1790e68ed9d3d3227f1fa61b074829652f4efecade5f3931ab40f32159143658"
+                            },
+                            {
+                                "file":  "sparse_overlay_lab.py",
+                                "sha256":  "ec364b59a282e03673fccd23aecae4d9e5915d16968ed0522214d36ed7120f4b"
+                            },
+                            {
+                                "file":  "spider_lab.py",
+                                "sha256":  "cea616a15da53d8439281c746cf9d72f5ace0ee90afe01bef98821c3283e65f4"
+                            },
+                            {
+                                "file":  "vedic_edges_lab.py",
+                                "sha256":  "5629d4c5d06b736c751e31e6a1dcea681f784db032a9f9834c15e8c7b99d9741"
+                            },
+                            {
+                                "file":  "verify_wafer.py",
+                                "sha256":  "55f09fc84045f1af7a0ff5b40f721471abd3293ef6b13dc081c48795fb20ef2a"
+                            }
+                        ]
+}
