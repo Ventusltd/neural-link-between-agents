@@ -1,0 +1,218 @@
+TACIT A, B, C AND D — JOINT DEVELOPMENT MANDATE
+EIGHTH, NINTH AND TENTH TURNS — 26 NOVEMBER 2026
+Issued by TACIT b t b. Neural Link issue 87 is the common coordination channel.
+
+1. THE CORE MISSION
+
+GlobalGrid2050 is an energy-infrastructure computational estate, not simply a collection of applications. Our next objective is to develop Kuiper into a programmable computational environment in which existing mathematical and engineering intelligence can be found, classified, connected, executed and independently tested. VEDIC is one instrument operating within that environment; it translates supported human intentions into typed selections and candidate computational patterns. It does not replace Kuiper, the Periodic Table, Modular Star, Spider, the Package Factory or the verification estate.
+
+The next three turns must advance operational relationships rather than merely describe them. The eight already verified computational addresses, thirty-two properties and five conditional bonds are the common research cohort. Do not start a larger census merely to increase the numbers. First make these existing capabilities work together with traceable selection, actual execution, proper refusal, independent verification and reversible visual representation. Once the process is reliable, the same architecture can be extended without replacing the underlying identities.
+
+Kuiper's historical address space is not physical processing hardware. A deterministic coordinate is an address of a source occurrence, not an executable transistor or a promise of computation. The actual CPU or GPU executes authorised software through an appropriate runtime. The potential is to reduce discovery, composition and validation costs by selecting relevant sparse address sets and their verified relationships rather than scanning the entire estate. Measure this potential experimentally.
+
+Four active workstreams are now authorised for this cycle: TACIT A, source and identity; TACIT B, package and runtime; TACIT C, independent verification; TACIT D, Kuiper computational selection and interaction. All other TACIT work is historical producer evidence. Do not reactivate earlier agents, create competing agents or use their silence as a blocker. The supervisor remains the coordination writer, not a fifth implementation agent.
+
+2. VERIFIED STARTING POSITION
+
+The preceding three-turn cycle completed nineteen successful exact-head workflows: eight for A, three for B and eight for C. B's actual nearest-to-ORIENT experiment returned the selected synthetic ID eligible, distance 111.31949079327356 kilometres and initial bearing 90 degrees. Independent review recorded thirty-three passes, zero failures and one open formal-admission obligation. The original farther-eligible falsifier is now rejected even when its receipt is rehashed. Ties preserve caller order in the original producer; this must not be silently changed.
+
+The electrical experiment executed the four existing exports and returned 34.64101615137755 V, 8.660254037844387 percent, 6000 W and 26280 kWh using synthetic declared engineering inputs. C's corrected electrical review recorded twenty-eight passes, zero failures and two open obligations. These are verified experimental results, not an approved electrical installation design. Both additional families remain pre-admission. Only ORIENT has existing internal admission.
+
+A has recovered eight deterministic Kuiper source keys, module classifications Vg number 17, Vn number 18 and Vd number 31, and the original Modular Star parser recognises all eight functions. Exact function-level occurrence membership remains zero of eight because the historical target revision was absent from the producer inventory. A's candidate remedy concerns three exact historical paths. Same content in another revision is not the missing occurrence. No new permanent identities have been allocated.
+
+A's recovery capsule contains a bounded typed property and relationship manifest. Spider Genome has 1379 historical nodes and 3249 relationships in the inspected evidence; Spider Printer has 30 nodes and 164 URL references. The latter references are not executable edges. Candidate integrations are tested read-only, not live production consumers. C's independent cold reconciliation has eleven passes and six open obligations; no historical ledger obligation was falsely settled.
+
+D has independently learned the original Kuiper application and tested its Chromium exercises. The refreshed register contains 97,540,883,985 issued historical occurrence keys, 116,449,247,985 total address positions, 16,774 commits and 101 repositories. These are recorded occurrences, not unique functions. The latest bounded selection prototype passes thirty-six checks twice, using eight addresses, thirty-two properties and five conditional bonds. It demonstrates VEDIC and machine-predicate selection parity for a supported family. Chromium learning exercised Canvas fallback, not every WebGL path. No GPU acceleration claim has been established.
+
+VEDIC V3 is publicly deployed, with fifty existing dictionary meanings and an evidence-only capability register. Its GlobalGrid2050 homepage promotion and exact public readback passed. Do not start an alternative publication path or add downloadable packages to V3.
+
+3. EXACT RECOVERY REFERENCES AND BRANCH OWNERSHIP
+
+A: Ventusltd/vedic-, PR20, existing branch agent/tacit-a-source-closure-fourth-turn-20261126. Starting checkpoint bb637d3a32173de8b3892380af4c6166f969412c. Final capsule artifact 15138968008; capsule JSON SHA256 ae4ef39ac1886e2b1eadd57ffeebe7d08099efa38d3f6594ed1dcfd4a771bf7d. Typed bonds artifact 15138897783; JSON SHA256 821abf96d3e4c2f42e61d578dcefdfbda366c145b067f9cc9206fdaa91b6cf2d. Recovery instructions and actual CLI are in the existing PR.
+
+B: Ventusltd/vedic-, PR21, existing branch agent/tacit-b-composition-fourth-turn-20261126. Starting checkpoint 827dc15ffebc236954ee4aa40ba0141cd7c23fa4. Final artifact 15138544629; A-B-C bond intake JSON SHA256 536358fe3271c87fcd13118b9f467415509a6af1b6a998437925846b8a6f7fe1. ORIENT immutable archive SHA256 e83937c040499a7060b03ca2c4969e4414cdca48cb7f28a3ef9039f002486787. Actual browser and factory jobs passed in run 45863594546. Preserve the original archive.
+
+C: Ventusltd/neural-link-between-agents, PR93, existing branch agent/tacit-c-verification-fourth-turn-20261126. Starting checkpoint 3939778679a21c2e7fa487827129c6c886fd0351. Ranking review artifact 15138009925; receipt f73a064c910e69334a4b1a2c57f1cb86642b51843d6a59ff149c4a9c561b1e90. Electrical review artifact 15140305069; receipt 20d577d7b4e74cbdc0059dd3ea4950ecc3c0e11ed1c0cafe0b328dfdce5b1e67. Cold reconciliation artifact 15138893931; witness 6a3110164560f14e814d4e8e321440e577b6f599bc7d73e6ba31768e42bb3a6c. Review A and B's exact artifacts, not rewritten narratives.
+
+D: Ventusltd/kuiper-belt, PR1, existing branch agent/tacit-d-computational-space-20261126. Starting checkpoint 4859abbdd7166ecab566ecc86337b56e0bd75125. Sparse computation run 45864983070; sanitised proof artifact 15139971725, ZIP SHA256 1de39adaedf73af7cbc4e6ded69f71b82bd0c02ef8799376c20b3bad69a2b661. Learning run 45864074528; original Kuiper law module blob c506a252f27fa8b80e849eb63bbb6699eaf674f0. Keep existing placement and identity laws intact.
+
+These pins identify starting evidence, not perpetual current heads. At every invocation read the destination repository rules, Neural Link AGENTS, PROTOCOL and OPERATIONS, current issue comments, actual peer commits and CI outcomes. A, B, C and D retain exclusive write scopes on their existing branches. Do not edit peer branches, allocate competing repository paths, alter production pointers or rely on a shared account name as proof of independent agent identity.
+
+4. COORDINATED SCHEDULE AND OUTPUTS
+
+Execute three turns each, numbered eighth, ninth and tenth. Use the previously established ten-minute planning envelope per turn: approximately eight minutes development and two minutes finalisation. All four work concurrently when invoked. The first ten-minute cycle establishes trusted inputs, explicit gates and visible sparse selection. The second executes and verifies additional software and connects selection to a real pattern. The third protects the combined estate and demonstrates cold recovery. This is a planning budget, not an assurance of wall-clock completion, hosted CI latency or continuous background availability.
+
+Every turn begins with an acknowledgement of this instruction and an exact current head. First run the narrow relevant existing tests; commit an early safe checkpoint; implement the smallest meaningful increment. Finalise with immutable commit and artifact identifiers, input digests, exact replay commands, job IDs, observed numerical results, explicit unresolved states and a clear next recipient. If a hosted job is still running, state PENDING, not PASS. Avoid repetitive polling. When a peer input is absent, prepare the smallest fail-closed adapter and continue independent work. Never block all four sessions on a single owner decision.
+
+The primary collective demonstration is: select relevant Kuiper addresses by a VEDIC meaning and an equivalent explicit machine predicate; inspect their typed conditional bonds; resolve the same pinned source and dependency closure to the existing package path; execute actual authorised mathematics; return independent verification status and source provenance to the Kuiper display. The electrical family is the second demonstration. Nearest remains geographical distance, never cable route length. Both must retain honest internal admission and rights states.
+
+5. TACIT A — EIGHTH TURN: HISTORICAL OCCURRENCE REPAIR PLAN
+
+Investigate the producer inventory gap using the original Modular Star parser, original revision inventory, exact path and blob pins and existing read-only crosswalk. Reproduce the absence of the target revision and the eight recognised callable spans. Identify the precise existing ingest operation that could add only the missing historical occurrences. A missing record is not permission to allocate an invented identity, nor evidence that a source function never existed.
+
+Construct a producer-compatible dry-run for the three exact historical paths, with deterministic proposed inputs, duplicate detection, revision ancestry checks and an explicit non-allocation mode. Use original producer contracts and a disposable isolated test store where allowed. Establish the expected occurrence count from actual parsing rather than assuming eight entries exhaust a file. Compare existing identity namespace and counters before and after the dry-run. Test changed and unchanged parent paths, same blob in a different path, missing revision, merge ambiguity, stale parser offsets and attempted overwriting of an existing key.
+
+Deliver a machine-readable reconciliation receipt to B, C and D: verified Kuiper address, original source tuple, module classification, exact occurrence status, producer-compatible repair input and unresolved obligations. Include separate owner decision text specifying repository, revision, paths, intended write and impact if actual allocation is required. No production ingest or new permanent IDs under this instruction alone.
+
+Acceptance: original producer recognises the functions, dry-run is repeatable, no existing identity changes, zero false matches and a precise narrow repair plan. If exact membership remains absent, retain UNKNOWN or MISSING with its evidence. D can still select the verified Kuiper keys with this limitation visible.
+
+6. TACIT B — EIGHTH TURN: FORMAL INTERNAL ADMISSION PATH
+
+Recover actual source, closure and independently reviewed receipts for electrical and nearest. Inspect the existing factory registry and descriptor validation code before extending it. Identify precisely which fields and approvals are required for an additional internal admission at the documented GIT_SOURCE_VERIFIED_STARS_INCOMPLETE tier. Do not rewrite the factory or convert an experimental success into formal authority.
+
+Implement candidate descriptors and handlers that bind the reviewed source receipt, closure receipt, exact producer module, export list, input/output types, deterministic archive specification and independent review. Distinguish candidate, reviewed, admitted and redistributed states. C's technical review is evidence; it is not automatically owner authority. Produce a minimal owner decision packet listing the exact descriptor and receipt digests, permitted internal execution scope, known limitations, rights state and rollback. This mandate authorises building and testing that admission mechanism, not bypassing a required approval.
+
+If the existing explicit internal rules allow a family to be admitted without further authority, document the exact rule and evidence; otherwise keep it pre-admission and make the gate executable. Preserve genuine pre-admission mathematics and immutable ORIENT. Reject unknown, stale, forged or mismatched reviewed receipts, incompatible units, unreviewed closure and attempts to enable redistribution through an internal decision.
+
+Acceptance: actual factory validator consumes the reviewed candidate evidence, the precise remaining reason is observable, permitted internal state transitions are tested, and C receives exact reproducible inputs. Do not manufacture an archive labelled admitted merely to satisfy the schedule.
+
+7. TACIT C — EIGHTH TURN: INDEPENDENT GATE AND IDENTITY REVIEW
+
+Recover A's dry-run inputs and B's actual candidate admission implementation. Independently inspect the source occurrence and parser boundaries, original namespace behavior and historical inventory. Verify proposed additions cannot overwrite or renumber an established identity. Challenge duplicate, parent-only and same-blob-elsewhere occurrences. Do not run a production allocation or issue an identity number yourself.
+
+Test B's actual factory candidate path against its real registry. Separate the evidence needed for source, static closure, runtime closure, admission authority, archive integrity, mathematical verification and rights. Attempt a rehashed false review, a valid review for the wrong family, a stale descriptor, a different source occurrence and a purported owner approval embedded in an ordinary artifact. An untrusted file cannot confer authority.
+
+Prepare an independent structured verdict and an actionable owner decision summary. Retain the historic six ledger obligations with their original states unless a legitimate settlement event is actually observed. Do not create a replacement CVAA ledger or make balanced counts proof of truth. Use existing witness and falsifier contracts and exact GitHub Actions runs.
+
+Acceptance: actual admission refusal and permitted candidate cases independently reproduced, A's identity remedy reviewed against original evidence, explicit unresolved authority and rights, and separate C receipts consumable by B and D.
+
+8. TACIT D — EIGHTH TURN: PROGRAMMABLE KUIPER SELECTION
+
+Develop within the existing Kuiper PR1. Learn and exercise the actual edition interface and layer extension points before modifying it. Reuse the current sparse prototype and original placement module. A's eight verified addresses and thirty-two properties are the only initial cohort. Do not instantiate billions of objects, copy a producer index or replace the law with a visually similar approximation.
+
+Provide a small, inspectable layer that selects by a supported VEDIC meaning and by equivalent explicit machine predicates. Support intersection of known properties, family, address range and evidence state using existing validated field definitions. Keep UNKNOWN distinct from false, zero and observed values. Project the selected existing keys using the original Kuiper law. Colours should indicate selection and evidence status, not imply execution or certification.
+
+Use a visible count, selected key list, source provenance and conditional bond details. Retain original navigation, touch controls, existing layers and address lookup. Provide a clear selection reset. Do not introduce a new full-screen dashboard when the existing Kuiper interface can host the layer. Validate high keys safely using exact integer arithmetic and avoid truncation by JavaScript bitwise operators.
+
+Acceptance: two query modes select identical keys for at least one agreed supported operation; known and unknown properties behave distinctly; invalid query and altered evidence are refused; existing Chromium learning interactions remain intact. Browser visual proof must identify which rendering path ran. No WebGL, GPU or live release claim from Canvas-only tests.
+
+9. TACIT A — NINTH TURN: BONDS, INVALIDATION AND PROVENANCE
+
+Extend the existing typed property and bond manifest for actual selection consumption by D and execution consumption by B. Each bond must name the existing source endpoints, direction, typed ports, unit and quantity, required data, source/closure pins, review status and reason for compatibility. Keep static import, semantic compatibility, conditional graph edge, observed runtime and independent verification distinct. Never promote a Spider Printer URL reference into an execution dependency.
+
+Implement a bounded reverse-dependency impact query using existing Spider Genome or compatible graph contracts. A changed source occurrence or closure pin should identify affected patterns and receipts; a changed display colour or classification description should not change the permanent address. Preserve old evidence as historical, with an explicit stale status. Do not pretend to wire live consumers if the integration is only a read-only candidate.
+
+Use the existing five conditional bonds and six incompatible relationships. Explicitly reject geographical kilometres as conductor route length, incompatible coordinate systems, power as energy, mean current as peak current and ordinary load factor as loss load factor. Deliver exact evidence-linked properties and an impact manifest usable without the original chat.
+
+Acceptance: deterministic selection metadata and reverse-impact output, mutation and unknown-state tests, typed incompatibilities retained, and actual compatibility with B and D's interfaces. No new identity registry or bulk estate traversal.
+
+10. TACIT B — NINTH TURN: EXECUTABLE SOFTWARE THROUGH EXISTING FACTORY
+
+Consume C's gate review and any separately authorised narrow internal admission decision. Implement the approved family handler in the existing factory, not another packaging mechanism. Build an additional internal archive twice from exact authorised inputs and compare hashes; if admission still cannot proceed, demonstrate the actual pre-admission runtime with an exact refusal reason. Never bundle rights-held source in public Actions artifacts or distribute it through the public site.
+
+Connect D's supported typed selection request to existing VEDIC and factory contracts through a narrow adapter. D may request a known operation and supply validated inputs; it may not execute arbitrary source strings. For nearest, run the original ranking against the ordered caller dataset, bind origin, threshold, selected ID, coordinates and source receipt, then invoke actual ORIENT. Preserve tie behavior and reject forged nearer or farther candidates. For electrical, run the four original exports with explicit conductor route length and model current, units and loss factor. Maintain the independent synthetic reference results and test alternative fixtures.
+
+Record actual node execution, input digest, descriptor and archive digest if available, runtime environment, output and limitations. Distinguish a pre-admission runtime receipt from an admitted package build. Preserve immutable ORIENT bytes.
+
+Acceptance: at least one additional family advances through a genuine admissible path if authority allows; otherwise an exact executable candidate demonstrates what the remaining gate blocks. Produce deterministic evidence, not mock output. Deliver B's actual artifact to C and the sanitised execution status contract to D.
+
+11. TACIT C — NINTH TURN: INDEPENDENT EXECUTION AND KUIPER PARITY
+
+Reproduce B's exact actual archive and execution if available, otherwise independently replay the pre-admission experiment and verify the genuine refusal. Use separate mathematical reference calculations and independent fixtures. Test ranking ties, caller-order sensitivity, missing eligible points, duplicate identifiers, changed threshold, invalid coordinates and rehashed forged receipts. Test electrical units, phase assumptions, power factor, route length and peak-current context. Do not certify a real installation from synthetic fixtures.
+
+Independently consume A's impact manifest and D's actual selection interface. Verify that a VEDIC selection and explicit machine predicate resolve to the same intended set where declared equivalent. Confirm selected keys have genuine source provenance; visual proximity or colour must not imply eligibility, dependency or execution permission. Challenge source, property and relationship mutation and make sure the correct affected receipts become stale.
+
+Inspect actual browser output and run an independent browser replay where available, distinct from D or B's own browser checks. Verify both desktop and phone-sized cases, strict overflow, focus, stale selection invalidation and retained original functionality. Do not describe viewport emulation as physical iPhone testing.
+
+Acceptance: exact independent evidence for source, selection, execution and refusal, with a separate review result per family and per interface. C retains authority to report a failure or OPEN even when producer CI is green.
+
+12. TACIT D — NINTH TURN: COMPUTATIONAL PATTERNS AND REAL EXECUTION BRIDGE
+
+Build a small pattern inspector within Kuiper showing selected source occurrences and their legitimate typed conditional bonds. Use A's manifest and B's actual request/receipt contract. A visual pattern is a projection of a pinned directed graph, not a proof that arbitrary neighbouring dots communicate. Display which nodes are callable, what input is required, what is refused and which execution status is observed.
+
+Provide a bounded handoff to B's existing runtime or an explicit staging export of the typed request if no authorised live interface exists. Do not embed another electrical or geographical engine. Keep the selected source keys and pattern digest connected to the actual request. Show the execution result and independent review only after consuming the exact corresponding receipt; if unavailable, display NOT EXECUTED or REVIEW PENDING. A static link to an artifact is not live execution.
+
+Measure CPU selection and projection costs on the actual eight-key cohort and, if useful, a clearly labelled synthetic larger sparse cohort. Separate acquisition, parsing, selection, projection and rendering timings; record memory and repeat counts. A synthetic workload is not a census of real functions. Use existing NumPy or CuPy tools only where available and appropriate. Do not change drivers or install unauthorised hardware services. GPU benchmarks are optional and must include data transfer and CPU comparison, never invented speedups.
+
+Acceptance: inspectable pattern and actual bounded request/receipt linkage, stable source addresses, independently checkable status, and measured evidence. Preserve the original Kuiper renderer and all baseline controls.
+
+13. TACIT A — TENTH TURN: RECOVERY AND SHARED ESTATE INTELLIGENCE
+
+Consolidate the identity, sparse properties, conditional bonds and reverse-impact work into the existing read-only adapter and recovery capsule. Verify that another session can reproduce the eight addresses, producer classifications, exact membership status, reviewed source and closure digests and dependency evidence from immutable inputs.
+
+Connect existing Spider Genome and Printer observation contracts, Periodic Table classification and Modular Star source evidence where compatibility is established. Preserve the distinction between historical graph, candidate consumer and live producer connection. Avoid reimplementing any of the original intelligence. Add tests for stale commits, unknown relationship types, missing endpoints, malformed metadata and changed source without corresponding evidence invalidation.
+
+Deliver one small durable machine-readable manifest and one concise recovery document, with full links and commands. If the owner separately approves the narrow historical ingest, use only the existing authorised producer procedure and C-reviewed inputs; record old and new namespace state, never renumber old records, and require actual readback. If not approved, leave the dry-run and unresolved occurrence state intact.
+
+Acceptance: byte-identical cold recovery of the same verified facts, documented live-versus-candidate distinctions and a precise next action rather than an open-ended research programme.
+
+14. TACIT B — TENTH TURN: REUSABLE APPLICATION AND PACKAGE HANDOFF
+
+Integrate only genuinely authorised and admitted software into the existing standalone application or approved isolated staging. Show supported plain-English operation, typed inputs, actual output, source provenance, package and descriptor identity, runtime receipt and evidence limitations. Distinguish candidate experimental execution visibly. Unsupported meanings and missing admission must refuse without arbitrary code evaluation.
+
+Re-run strict Chromium and WebKit desktop/mobile tests, including stale input invalidation, focus, overflow, unknown key, empty candidate set, successful execution and refusal. Preserve every baseline ORIENT test. Prepare the existing package documentation and reproducible install or invocation path for internal use subject to rights. Do not add public download links or ship rights-held archive bytes.
+
+Deliver exact final package and consumer hashes, a small capability matrix and one actual reproducible receipt per family. If the new archive remains blocked, state which gate remains open, demonstrate the real pre-admission capability and provide the specific owner decision needed. Do not claim a second admitted package until the registry and actual archive substantiate it.
+
+Acceptance: reusable software, independently challengeable results, stable prior archive and no regression. Provide D the existing typed handoff rather than duplicating the interface.
+
+15. TACIT C — TENTH TURN: FINAL INDEPENDENT RECONCILIATION
+
+Reconcile final A, B and D artifacts using existing CVAA, Quantum Twin, Faraday and Neural Link recovery contracts. Re-run the material historical counterexamples, actual execution or refusal, address and evidence mutation, selection parity, dependency invalidation, archive tampering and independent browser checks. Preserve the prior failed CVAA registry audit and C's corrected harness failures. Do not discard or silently overwrite historical results.
+
+Report each obligation as PASS, FAIL or OPEN with exact evidence and witness. Keep separate fields for exact source occurrence, module family, exact Stars membership, candidate closure, independent closure review, internal admission, reproducibility, execution, independent mathematics, browser replay, physical handset acceptance, live integration and redistribution rights. Do not settle an obligation from a mere receipt or healthy build.
+
+Deliver a final cold-recovery witness, a bounded independent scorecard, exact replay commands and the strongest remaining falsifier or blocker. Verify that A's identity and D's display states do not change B's runtime authorisation. Only actual legitimate evidence may close a ledger obligation.
+
+Acceptance: independent cross-estate replay with retained history, no unearned settlement, no rights overreach and one precise next owner decision if needed.
+
+16. TACIT D — TENTH TURN: KUIPER AS A REUSABLE COMPUTATIONAL ENVIRONMENT
+
+Consolidate the sparse overlay and pattern inspector in the existing Kuiper interface. VEDIC is a selectable instrument, not the sole method of interaction. Preserve a non-language predicate path, original navigation and mathematical placement law. Allow a user to select known properties, inspect the relevant verified keys, display compatible conditional bonds and view a receipt-linked computation when genuinely available.
+
+Make the different states clear: selected, known source, conditional bond, runtime observed, independently verified, refused or stale. Never use colour alone to convey status. Preserve original accessibility, responsive layout, high-key precision, offline fallback and clear reset. Test actual Chromium and supported WebGL or Canvas paths separately, with honest limitations. Invite C to replay the actual artifact independently.
+
+Document the next scalable research direction: sparse index and typed graph queries, bounded caching by immutable pins, dependency impact rather than full refresh, CPU/GPU measurement before acceleration. Do not expand to all historical keys or claim billions of operations from eight selections. No new live release or homepage pointer under this development instruction.
+
+Acceptance: a user can explore the initial computational cohort in Kuiper using either VEDIC or machine selection, inspect provenance and distinguish actual execution from conditional patterns. Deliver screenshots, exact artifacts, test results and recovery instructions.
+
+17. COLLECTIVE EXIT AND AUTHORITY
+
+All four agents must post final handoffs linking one another's exact relevant receipts. The supervisor will reconcile the actual status, not simply total test counts. Primary deliverables are a usable Kuiper sparse selection and pattern layer, reproducible existing computation, the strongest lawful internal package progress, independent verification and durable recovery.
+
+This mandate authorises isolated candidate development, actual bounded experiments and independent review. It does not authorise permanent identity allocation, formal authority changes, source redistribution, public package publication or production promotion. Present any indispensable owner decision with exact scope and impact. Continue useful unaffected work rather than waiting for inactive agents. Preserve VEDIC V3 and all historical releases.
+
+Use GitHub Actions for builds and evidence. Public Neural Link contains no secrets, private source bytes or personal information. Use full HTTPS links and immutable commits. Keep new implementations small; maximise the reuse of producer code, mathematical functions, parsers, registries, renderers and regression tests. The mission is a coherent computational estate, not separate new software empires.
+
+Begin eighth turn on invocation. Proceed through ninth and tenth within available sessions or subsequent owner invocation. Do not promise unattended execution. Four agents, twelve scoped work packages, three common milestones. One computational estate.
+
+FOCUS ON THE CORE MISSION.
+
+Live long and prosper.
+TACIT b t b
+
+CONTEXT AND RECOVERY LINKS
+Prior joint mandate:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198182606
+Neural Link:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87
+A final recovery:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198331997
+https://github.com/Ventusltd/vedic-/pull/20
+https://github.com/Ventusltd/vedic-/blob/bb637d3a32173de8b3892380af4c6166f969412c/docs/TACIT-A-TURNS-5-7.md
+https://github.com/Ventusltd/vedic-/actions/runs/45863536954/artifacts/15138968008
+https://github.com/Ventusltd/vedic-/actions/runs/45863337360/artifacts/15138897783
+B final recovery:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198343994
+https://github.com/Ventusltd/vedic-/pull/21
+https://github.com/Ventusltd/vedic-/actions/runs/45863594546
+https://github.com/Ventusltd/vedic-/actions/runs/45863594546/artifacts/15138544629
+C final independent review:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198436998
+https://github.com/Ventusltd/neural-link-between-agents/pull/93
+https://github.com/Ventusltd/neural-link-between-agents/actions/runs/45863326577
+https://github.com/Ventusltd/neural-link-between-agents/actions/runs/45863739124
+https://github.com/Ventusltd/neural-link-between-agents/actions/runs/45864131902
+D Kuiper prototype:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198551415
+https://github.com/Ventusltd/kuiper-belt/pull/1
+https://github.com/Ventusltd/kuiper-belt/actions/runs/45864983070
+https://github.com/Ventusltd/kuiper-belt/actions/runs/45864074528
+https://github.com/Ventusltd/kuiper-belt/actions/runs/45864009760
+https://github.com/Ventusltd/kuiper-belt/blob/main/cosmos/wafer-meta.json
+https://ventusltd.github.io/kuiper-belt/learn-the-kuiper/202610050609/
+https://globalgrid2050.com/kuiper/
+Published VEDIC:
+https://ventusltd.github.io/vedic-/releases/20261126-v3/
+https://github.com/Ventusltd/globalgrid2050/actions/runs/45863124786
+https://globalgrid2050.com/
