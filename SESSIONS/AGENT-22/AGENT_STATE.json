@@ -1,0 +1,1140 @@
+{
+  "schema_version": 1,
+  "project": "SatNav",
+  "coordination_issue": 84,
+  "scope_status": "OWNER_DIRECTIVE_TWO_AGENT_TEAM_M1_FIX_AND_QA",
+  "agent22": "SELF_RESERVED",
+  "roles": [
+    {
+      "id": 22,
+      "role": "Scope and contracts",
+      "ack": "SELF_RESERVED",
+      "branch": "agent22/satnav-contracts-20261124",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
+      "current_write_boundary": "PR2 sole branch agent22/satnav-contracts-20261124; PR86 sole audit branch; no GridAtlas writes."
+    },
+    {
+      "id": 23,
+      "role": "Terrain/vector",
+      "ack": "ACKNOWLEDGED",
+      "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131132068",
+      "branch": "agent23/satnav-terrain-20261124",
+      "trio_ack": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131192076",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
+      "current_write_boundary": "agent23/satnav-terrain-20261124; bounded data/geometry only; no terrain promotion."
+    },
+    {
+      "id": 24,
+      "role": "Hybrid router",
+      "ack": "ACKNOWLEDGED",
+      "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131138743",
+      "branch": "agent24/satnav-hybrid-router-20261124",
+      "trio_ack": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131201894",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
+      "current_write_boundary": "agent24/satnav-hybrid-router-20261124; isolated metric component, no product integration."
+    },
+    {
+      "id": 25,
+      "role": "Mobile HUD",
+      "ack": "AWAITING_ACK",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31"
+    },
+    {
+      "id": 26,
+      "role": "Offline cache",
+      "ack": "AWAITING_ACK",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31"
+    },
+    {
+      "id": 27,
+      "role": "Independent QA",
+      "ack": "AWAITING_ACK",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31"
+    },
+    {
+      "id": 28,
+      "role": "Scope controller and coordination/review support",
+      "ack": "ACKNOWLEDGED",
+      "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131713255",
+      "write_scope": "NL-084 coordination only",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
+      "current_write_boundary": "Review/coordination; separately authorised landing-only publication already exercised; no new release authority."
+    },
+    {
+      "id": 29,
+      "role": "Python R&D advice",
+      "ack": "ACKNOWLEDGED",
+      "write_scope": "coordination and assigned verification; no competing integration writes",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
+      "current_write_boundary": "Scratch/test only; no product writes or extra GPU benchmarks."
+    },
+    {
+      "id": 30,
+      "role": "Independent review",
+      "ack": "ACKNOWLEDGED",
+      "write_scope": "coordination and assigned verification; no competing integration writes",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
+      "current_write_boundary": "Read-only/scratch; no catalogue or competing product writes."
+    },
+    {
+      "id": 31,
+      "role": "Codex desktop and handset verification",
+      "ack": "ACKNOWLEDGED",
+      "write_scope": "coordination and assigned verification; no competing integration writes",
+      "current_scope": "INDEPENDENT_QA_ACCEPTANCE_RECOMMENDATION_COORDINATION",
+      "next_action": "Verify exact corrected sender, protected regressions, CVAA/source review, approved physical iPhone and Android where available; owner acceptance recommendation",
+      "current_write_boundary": "Detached QA and coordination only; no product writes"
+    },
+    {
+      "id": 32,
+      "role": "Codex context preservation and cross-agent assistance",
+      "ack": "ACKNOWLEDGED",
+      "write_scope": "coordination and assigned verification; no competing integration writes",
+      "current_scope": "STAND_DOWN_HISTORICAL_ROLE",
+      "next_action": "No new SatNav tasks/writes; hand off in-flight evidence to 33/31",
+      "current_write_boundary": "Coordination/read-only inventory; do not compete for write branches."
+    },
+    {
+      "id": 33,
+      "role": "MSI Codex source extraction, compatibility and bounded CUDA research",
+      "ack": "ACKNOWLEDGED",
+      "ack_url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139472333",
+      "write_scope": "detached scratch; no product or release writes",
+      "current_scope": "SOLE_PRODUCT_IMPLEMENTATION_LEAD_MSI",
+      "next_action": "Fix native PR110 placeholder, desktop visibility, mobile occlusion, hidden arm; run CI; hand exact successor to 31; then remaining M2 and audit",
+      "current_write_boundary": "Existing product/scope/audit branches after ACK/head reconciliation; no unapproved production release"
+    }
+  ],
+  "next_proposed_id": 34,
+  "verified_count": 0,
+  "implementation_authorised": true,
+  "product_baseline": "6113a9b5ce53f4ebcfe76be644a6e0ce5516b70c",
+  "tasks": [
+    {
+      "id": "T001",
+      "owner": 22,
+      "task": "Create SatNav coordination state and proposed contracts (not locked).",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "https://github.com/Ventusltd/satnav/blob/77c1f6ce9adf35c3675c10f0aa0cd8e2f2260cc9/nav/CONTRACTS.md"
+      ],
+      "note": "Candidate only; lock and independent validation pending."
+    },
+    {
+      "id": "T002",
+      "owner": 22,
+      "task": "Audit actual GridAtlas exports, active layers and deep links; pin source SHA.",
+      "status": "RESERVED",
+      "evidence": []
+    },
+    {
+      "id": "T003",
+      "owner": 22,
+      "task": "Audit simulator LiDAR fetcher, CRS, nodata and elevation buffer; do not assume availability.",
+      "status": "RESERVED",
+      "evidence": []
+    },
+    {
+      "id": "T004",
+      "owner": 22,
+      "task": "Audit Overpass helpers and data/usage rights; define feature schema.",
+      "status": "RESERVED",
+      "evidence": []
+    },
+    {
+      "id": "T005",
+      "owner": 22,
+      "task": "Define CostGridSpec: CRS, origin, dimensions, resolution, masks and typed arrays.",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "https://github.com/Ventusltd/satnav/blob/77c1f6ce9adf35c3675c10f0aa0cd8e2f2260cc9/nav/CONTRACTS.md"
+      ],
+      "note": "Candidate only; lock and independent validation pending."
+    },
+    {
+      "id": "T006",
+      "owner": 22,
+      "task": "Define Worker request/response, errors, cancellation and route metadata.",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "https://github.com/Ventusltd/satnav/blob/77c1f6ce9adf35c3675c10f0aa0cd8e2f2260cc9/nav/CONTRACTS.md"
+      ],
+      "note": "Candidate only; lock and independent validation pending."
+    },
+    {
+      "id": "T007",
+      "owner": 22,
+      "task": "Define TelemetryPacket including fix age and uncertainty.",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "https://github.com/Ventusltd/satnav/blob/77c1f6ce9adf35c3675c10f0aa0cd8e2f2260cc9/nav/CONTRACTS.md"
+      ],
+      "note": "Candidate only; lock and independent validation pending."
+    },
+    {
+      "id": "T008",
+      "owner": 22,
+      "task": "Define OfflinePackManifest, hashes, licences, coverage and expiry.",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "https://github.com/Ventusltd/satnav/blob/77c1f6ce9adf35c3675c10f0aa0cd8e2f2260cc9/nav/CONTRACTS.md"
+      ],
+      "note": "Candidate only; lock and independent validation pending."
+    },
+    {
+      "id": "T009",
+      "owner": 22,
+      "task": "Audit and lock native SCADA tokens only after parity review.",
+      "status": "RESERVED",
+      "evidence": []
+    },
+    {
+      "id": "T010",
+      "owner": 27,
+      "task": "Independently validate proposed schemas, rights and exact pinned inputs; approve contract lock only on evidence.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T011",
+      "owner": 22,
+      "task": "Prepare compact <4k-token handoffs and dependency/ownership reservations.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T012",
+      "owner": 23,
+      "task": "Scaffold cost-grid-builder.js on exclusive SatNav branch.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T013",
+      "owner": 24,
+      "task": "Scaffold hybrid-router-worker.js with typed messages, cancellation and errors.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T014",
+      "owner": 25,
+      "task": "Scaffold scada-nav-hud.js and CSS with existing SCADA parity.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T015",
+      "owner": 26,
+      "task": "Scaffold offline-corridor-cache.js and nav-sw.js.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T016",
+      "owner": 23,
+      "task": "Implement and validate local metric CRS transforms against reference points; <0.5m target.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T017",
+      "owner": 23,
+      "task": "Allocate Float32 grid and separate known/unknown, access and hazard masks; no default permission.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T018",
+      "owner": 23,
+      "task": "Resample licensed EA DTM to adaptive 5/10m cells; preserve nodata.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T019",
+      "owner": 23,
+      "task": "Evaluate licensed terrain fallback, resolution/coverage and offline packaging.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T020",
+      "owner": 23,
+      "task": "Implement Horn slope with nodata and edge handling.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T021",
+      "owner": 23,
+      "task": "Rasterise road vectors with road access/profile constraints (0.15x proposed).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T022",
+      "owner": 23,
+      "task": "Rasterise tracks/bridleways with mode-specific rights (0.35x proposed).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T023",
+      "owner": 23,
+      "task": "Rasterise footways/paths for FOOT_SURVEY (0.4x proposed).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T024",
+      "owner": 23,
+      "task": "Rasterise buildings as hard obstacles.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T025",
+      "owner": 23,
+      "task": "Rasterise waterways; only evidenced mode-compatible crossings, not generic fords.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T026",
+      "owner": 23,
+      "task": "Rasterise hedges/fences/walls; protect hard obstacle mask.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T027",
+      "owner": 23,
+      "task": "Model mode-compatible gates/stiles with permission evidence; never punch unrelated obstacle.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T028",
+      "owner": 23,
+      "task": "Generate indicative verge/margin buffers; 2–5m requires appropriate resolution.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T029",
+      "owner": 23,
+      "task": "Audit and ingest licensed ALC/flood layers; proposed 2.5x and 3x penalties.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T030",
+      "owner": 23,
+      "task": "Compile modes and configurable slope assumptions; unknown/access restrictions fail closed for navigation.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T031",
+      "owner": 23,
+      "task": "Snap only to authorised reachable access points; report offset, refuse unsafe snaps.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T032",
+      "owner": 27,
+      "task": "Test river/bridge, fence/gate, corner cutting, cliff and missing/access data negatives.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T033",
+      "owner": 27,
+      "task": "Benchmark 600x600 construction, device and p50/p95; <80ms aspirational.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T034",
+      "owner": 23,
+      "task": "Implement transferable buffers without losing retained offline source.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T035",
+      "owner": 27,
+      "task": "Publish Phase 2 test receipt only after exact-head tests and independent review.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T036",
+      "owner": 24,
+      "task": "Implement typed-array binary min heap, stale-entry handling and deterministic tie breaks.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T037",
+      "owner": 24,
+      "task": "Implement 8-connected search with diagonal cost and corner-cut prevention.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T038",
+      "owner": 24,
+      "task": "Implement admissible octile heuristic using actual lower-bound cost, verify against Dijkstra.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T039",
+      "owner": 24,
+      "task": "Implement bounded parent backtracking and no-route error.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T040",
+      "owner": 24,
+      "task": "Implement obstacle- and cost-preserving smoothing; retain hazard/transition points.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T041",
+      "owner": 24,
+      "task": "Attach vertex arrays for elevation, slope, surface, cumulative 2D/3D distance; valid GeoJSON.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T042",
+      "owner": 24,
+      "task": "Implement optional >5km OSRM road leg after terms/privacy review; verified access-point handoff within 1.5km when feasible.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T043",
+      "owner": 24,
+      "task": "Use licensed cached offline road graph; otherwise clearly stop outside coverage; no DEM road substitute.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T044",
+      "owner": 24,
+      "task": "Generate >30-degree turns, surface transitions and configurable grade alerts.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T045",
+      "owner": 24,
+      "task": "Generate evidence-based manoeuvres, no fabricated gate access or street names.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T046",
+      "owner": 24,
+      "task": "Emit GeoJSON FeatureCollection route, waypoints, hazards with provenance.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T047",
+      "owner": 24,
+      "task": "Implement debounced reroute based on GPS accuracy, 25m alert/30m proposed reroute thresholds.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T048",
+      "owner": 27,
+      "task": "Test five permitted rural journeys using public or synthetic access fixtures; no restricted-site entry.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T049",
+      "owner": 27,
+      "task": "Benchmark worker peak memory and p50/p95 latency; <25MB/<150ms targets not claims.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T050",
+      "owner": 27,
+      "task": "Publish Phase 3 exact-head verification receipt.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T051",
+      "owner": 25,
+      "task": "Implement geolocation permission, high-accuracy and stale-fix state.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T052",
+      "owner": 25,
+      "task": "Implement accuracy-aware smoothing and stationary jitter handling.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T053",
+      "owner": 25,
+      "task": "Implement iOS/Android compass permission, heading reliability and fallback.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T054",
+      "owner": 25,
+      "task": "Implement wake lock acquisition/release/visibility lifecycle.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T055",
+      "owner": 25,
+      "task": "Implement distance, bearing and segment-aware signed cross-track error.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T056",
+      "owner": 25,
+      "task": "Implement waypoint advancement with accuracy, route progress and passed-plane guards.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T057",
+      "owner": 25,
+      "task": "Implement heading-up 3D chase and north-up 2D; disable when unsafe or heading unknown.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T058",
+      "owner": 25,
+      "task": "Implement route/breadcrumb/tether/accuracy layers using audited style tokens.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T059",
+      "owner": 25,
+      "task": "Implement concise next manoeuvre banner.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T060",
+      "owner": 25,
+      "task": "Implement remaining distance, XTE, elevation, grade and accuracy readout.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T061",
+      "owner": 25,
+      "task": "Implement 48px thumb controls and separation of planning mode from active navigation.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T062",
+      "owner": 25,
+      "task": "Implement local speech voice discovery and deduplicated utterances; visual fallback.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T063",
+      "owner": 25,
+      "task": "Implement 100m/25m prompts and configurable 25m off-course alert with hysteresis.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T064",
+      "owner": 25,
+      "task": "Implement daylight/high contrast mode and reduced motion.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T065",
+      "owner": 27,
+      "task": "Test touch, safe areas, denied permissions and Safari/Chrome layouts; distinguish physical testing.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T066",
+      "owner": 27,
+      "task": "Publish Phase 4 receipt with exact source and device matrix.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T067",
+      "owner": 26,
+      "task": "Implement versioned IndexedDB stores and migration/rollback.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T068",
+      "owner": 26,
+      "task": "Enumerate corridor tiles only for licensed self-hosted/packaged sources; enforce coverage and size budgets.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T069",
+      "owner": 26,
+      "task": "Implement scoped service worker for app shell and permitted assets; version and invalidate.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T070",
+      "owner": 26,
+      "task": "Implement atomic corridor pack with cost/elevation/vector/route hashes and completeness.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T071",
+      "owner": 26,
+      "task": "Implement quota estimates, storage persistence capability and purge UI.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T072",
+      "owner": 26,
+      "task": "Test offline reload and reroute within complete cached coverage; missing pack fails explicitly.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T073",
+      "owner": 27,
+      "task": "Publish Phase 5 receipt including airplane-mode/browser tests and physical-device distinction.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T074",
+      "owner": 22,
+      "task": "Propose GridAtlas Navigate Here adapter using stable asset ID and authorised access point; audit count; preserve existing MAP/Vicinity.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T075",
+      "owner": 22,
+      "task": "Propose Pipeline News Navigate to Site adapter; preserve REPD and immutable releases.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T076",
+      "owner": 22,
+      "task": "Propose simulator/Solar Design Studio handoff; verify actual interfaces and permissions.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T077",
+      "owner": 22,
+      "task": "Implement validated deep links and coordinate privacy warning after integration approval.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T078",
+      "owner": 23,
+      "task": "Implement local opt-in GPX/GeoJSON/CSV track recorder; no automatic sharing.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T079",
+      "owner": 22,
+      "task": "Define cable estimator adapter for indicative 3D distance, grade and land breakdown; no engineering certification.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T080",
+      "owner": 22,
+      "task": "Define local field-note pins with opt-in export and no public upload.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T081",
+      "owner": 27,
+      "task": "Run integration tests GridAtlas → SatNav → offline → cable planning, preserve MAP/A4 and Vicinity.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T082",
+      "owner": 27,
+      "task": "Audit privacy, third-party coordinate disclosure, local retention and purge.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T083",
+      "owner": 27,
+      "task": "Verify static deployment and no paid keys or runtime bundler dependency.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T084",
+      "owner": 22,
+      "task": "Prepare homepage catalogue change only as separate owner-authorised release candidate.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T085",
+      "owner": 27,
+      "task": "Replay steep Highland synthetic/authorised terrain fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T086",
+      "owner": 27,
+      "task": "Replay Fenland flood/ditch fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T087",
+      "owner": 27,
+      "task": "Replay Somerset hedge maze fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T088",
+      "owner": 27,
+      "task": "Replay urban-to-authorised-site transition fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T089",
+      "owner": 27,
+      "task": "Replay GPS loss fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T090",
+      "owner": 27,
+      "task": "Replay mid-walk reroute fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T091",
+      "owner": 27,
+      "task": "Replay low-battery/wake-lock fallback fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T092",
+      "owner": 27,
+      "task": "Replay iOS orientation permission fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T093",
+      "owner": 27,
+      "task": "Replay Android local TTS availability fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T094",
+      "owner": 27,
+      "task": "Replay 3G tile timeout fixture.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T095",
+      "owner": 27,
+      "task": "Consolidate ten replay receipts and regression matrix (additional explicit step to remove 85–95 ambiguity).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T096",
+      "owner": 27,
+      "task": "Log defects to state, route bounded repairs to owners; retest exact heads.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T097",
+      "owner": 27,
+      "task": "Verify applicable steps with evidence; no fictitious 100/100 pass; gate final deployment separately.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T098",
+      "owner": 22,
+      "task": "Prepare v1.0.0 tag only after all prerequisite gates and explicit owner approval.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T099",
+      "owner": 22,
+      "task": "Prepare accessible static about/learning page; include in release candidate before tagging (ordering dependency).",
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "id": "T100",
+      "owner": 27,
+      "task": "Verify owner-approved live Pages bytes, rollback and actual mobile field readiness; no self-certification.",
+      "status": "NOT_STARTED",
+      "evidence": []
+    }
+  ],
+  "authorization": {
+    "date": "2026-11-24",
+    "scope": "Autonomous trio in standalone SatNav; no GridAtlas/Pipeline News writes or production promotion; retain independent review",
+    "handshake": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131189190"
+  },
+  "trio": {
+    "integrator": 22,
+    "terrain": 23,
+    "router": 24,
+    "review": {
+      "22": [
+        23,
+        24
+      ],
+      "23": [
+        24
+      ],
+      "24": [
+        23
+      ]
+    },
+    "additional_roles": "25–27 remain reserved; Agent 22 handles shell preparation, no claim of independent Agent 27",
+    "product_candidate": "https://github.com/Ventusltd/satnav/pull/2",
+    "candidate_head": "5b6988949e5a8b259aec4b8116878d23eed3501a",
+    "integration_workflow": "https://github.com/Ventusltd/satnav/blob/10e51ab32c11d8395c14c6e8755ed503dcb8d324/.github/workflows/trio-integration.yml",
+    "producer_receipts": [
+      {
+        "agent": 23,
+        "pr": 3,
+        "head": "eb5384bddde11e0139ec0588f01f4039c9531653",
+        "status": "PRODUCER_REPORTED_TESTS",
+        "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131221791"
+      },
+      {
+        "agent": 24,
+        "pr": 1,
+        "head": "807b6e36f90293d21037e7b71ab5fbf67360229c",
+        "status": "PRODUCER_REPORTED_TESTS",
+        "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7131223635"
+      }
+    ],
+    "previous_ci": {
+      "head": "10e51ab32c11d8395c14c6e8755ed503dcb8d324",
+      "run": 45392366403,
+      "status": "PASS",
+      "url": "https://github.com/Ventusltd/satnav/actions/runs/45392366403"
+    },
+    "current_ci": "EXACT_HEAD_FOUR_WORKFLOWS_SUCCESS",
+    "scope_controller": 31,
+    "current_owner": 33
+  },
+  "schedule": {
+    "timezone": "Europe/London",
+    "rounds": 4,
+    "interval_hours": 3,
+    "dates": "24–25 November 2026",
+    "roles": [
+      {
+        "id": 22,
+        "times": [
+          "13:00",
+          "16:00",
+          "19:00",
+          "22:00"
+        ]
+      },
+      {
+        "id": 23,
+        "times": [
+          "14:00",
+          "17:00",
+          "20:00",
+          "23:00"
+        ]
+      },
+      {
+        "id": 24,
+        "times": [
+          "15:00",
+          "18:00",
+          "21:00",
+          "00:00"
+        ]
+      }
+    ],
+    "context_budget": {
+      "max_changed_source_files": 3,
+      "max_changed_lines": 400,
+      "target_tokens_per_dependency_bundle": 4000
+    },
+    "status": "PAUSED_AGENTS_22_23_24_OWNER_TWO_AGENT_DIRECTIVE",
+    "note": "Scheduled role continuations; not proof original chats are running. Stop after bounded rounds. No publication authority.",
+    "paused_agents": [
+      22,
+      23,
+      24
+    ]
+  },
+  "geographic_scope": [
+    "England",
+    "Scotland",
+    "Wales",
+    "Northern Ireland"
+  ],
+  "published_scope_baseline": "50828bc39e0eb329da56b171eb40bcdd6f7997ce",
+  "priorities": [
+    "M1 four destination inputs: named mapped substation, planned project, arbitrary satellite pin, manual signed coords; explicit confirmed native sender and live compass",
+    "M2 selected-line actual GPS/accuracy plus separate nearest point and progress when supported",
+    "Published landing verified; physical walkthrough, exact-head independent QA and owner approval for M1/M2",
+    "No new routing engine, terrain, LiDAR, offline packs or GPU dependency"
+  ],
+  "destination_increment": {
+    "status": "INDEPENDENT_QA_HOLD_THREE_REPRODUCED_BLOCKERS",
+    "directive": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7138850753",
+    "branch": "agent22/satnav-contracts-20261124",
+    "base": "f4ce7ccdc9e8f4bc15915605a07071b9363d5dfb",
+    "contract_head": "64d1aa75f922522866e84ab1cc7e173f9e305845",
+    "work_board_head": "c3a2c93a3041f5cfe8371370007c33f528799085",
+    "gridatlas_revision": "1c9ed251ea31de67cc9d7e3b3d7908ea6aa39779",
+    "blockers": [
+      "mapped:false project 10603 launches placeholder",
+      "Chromium desktop launcher hidden/offscreen",
+      "Chromium mobile Vicinity card intercepts launcher",
+      "arm-on-close and plain-language place lookup review",
+      "paired independent corrected-head QA and approved HTTPS physical test"
+    ],
+    "p1_immutable": "9698781539e549deaa6ecaa4a2b34610c1f9fd29",
+    "publication_approved": false,
+    "retired_contract_reference": {
+      "branch": "agent22/satnav-destination-20261124",
+      "head": "41b2b21f52c911bb9d51b1ed804f04cec578c3b7",
+      "status": "FROZEN_REFERENCE_NO_FURTHER_WRITES"
+    },
+    "ci": [
+      45480167578,
+      45480167679,
+      45480167579,
+      45480167581
+    ],
+    "coordination_agent32": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139000013",
+    "reuse_evidence": [
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139540243",
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139547766",
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139582076",
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7139520491"
+    ],
+    "candidate_head": "5b6988949e5a8b259aec4b8116878d23eed3501a",
+    "ci_status": "ALL_FOUR_COMPLETED_SUCCESS",
+    "independent_receipt": {
+      "head": "e3c8acc77d3cb97e4ac75c4c6ddb42799e5ee874",
+      "contracts": "12/12",
+      "browser": "6/6",
+      "url": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142774340"
+    },
+    "inputs": [
+      "mapped named substation (address only if sourced)",
+      "planned project/asset with known coordinate basis",
+      "arbitrary satellite pin (anonymous or labelled)",
+      "signed manual WGS84"
+    ],
+    "detached_demo": {
+      "head": "f624bfeed8c8a0cb5c1d5f9cf0c812f87ce9fe96",
+      "status": "DETACHED_DESKTOP_PASS_NOT_NATIVE_ACCEPTANCE",
+      "receipt": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142709033"
+    },
+    "native_sender": {
+      "pr": 110,
+      "head": "99ff9f6f1d722d8868e51d5f361bdd08592accdd",
+      "branch": "feature/satnav-native-vicinity-m1-20261124",
+      "owner": "Agent 33 MSI (owner-directed transfer; ACK pending)",
+      "entry": "node tools/satnav/serve.mjs 8768; local /atlas/v/satnav-native-m1/",
+      "status": "PRODUCER_PASS_INDEPENDENT_QA_PENDING",
+      "codec_blob": "546272b50712ba2f2f3b73f0fe148aa8e2535f1c",
+      "sender_blob": "ec334cd054c9b852700b3135fb7d8a978c305197",
+      "receipt": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7143568322"
+    }
+  },
+  "msi_research": {
+    "runner": "0af9d121aa725b4b91ee690d336b071b84d360fd",
+    "original_self_test": "FAIL",
+    "candidate_stoplist": "DETACHED_PASS_NOT_COMMITTED",
+    "candidate_evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7140143569",
+    "cuda_parity": "52532 exact matches, 48 identical ranked entries; numerical parity only",
+    "mvp_dependency": false
+  },
+  "current_scope_file": "SESSIONS/AGENT-22/2026-11-24-SATNAV-ALL-AGENT-SCOPES.md",
+  "milestone_2": {
+    "status": "DETACHED_COMPONENT_COMPATIBILITY_PASS_REAL_DATA_AND_NATIVE_UI_HOLD",
+    "owners": [
+      33
+    ],
+    "integration": 33,
+    "gridatlas_owner": "Agent33",
+    "qa": 31,
+    "acceptance": 31,
+    "source_features": 4106,
+    "geometrically_accepted": 3483,
+    "zero_length": 609,
+    "overlong_features": 14,
+    "receipts": [
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142331230",
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142936925",
+      "https://github.com/Ventusltd/neural-link-between-agents/issues/84#issuecomment-7142709033"
+    ]
+  },
+  "audit": {
+    "pr": 86,
+    "run": 45459688676,
+    "status": "SUCCESSOR_EXECUTED_FAIL_REMAINING_FINDINGS_ROUTED",
+    "historical_receiver": "1865b9051894d9e89cf5720e091b62c9041a567b",
+    "latest_independent_cvaa": {
+      "head": "e3c8acc77d3cb97e4ac75c4c6ddb42799e5ee874",
+      "errors": 6,
+      "warnings": 18,
+      "skips": 5,
+      "exit": 1
+    },
+    "new_head_rerun": "FAIL_SCHEDULER_STATIC_RULE",
+    "findings": [
+      "two Stars identity collisions",
+      "scheduler static rule and deterministic metadata; new test refactor awaiting CVAA",
+      "separate membership/loader order; independent nine hash/syntax PASS, declared byte metadata discrepancy"
+    ],
+    "permanent_ids": "preserve",
+    "successor": {
+      "head": "9e3f0909d89bdd1467f9c80f6bf04eb9ec6b1992",
+      "run": 45480229883,
+      "pass": [
+        "membership",
+        "declared order",
+        "nine hashes and syntax",
+        "picker invalid replacement"
+      ],
+      "fail": [
+        "scheduler static rule",
+        "off-takers byte metadata",
+        "two Stars collisions"
+      ]
+    }
+  },
+  "landing": {
+    "status": "MERGED_DEPLOYED_SERVED_VERIFIED_PHYSICAL_WALKTHROUGH_PENDING",
+    "pr": 6,
+    "main": "665faa0a19ca0a5a19a297e74bc5aae4020e9fd5",
+    "ci": [
+      45474039987,
+      45474041071,
+      45474040892
+    ],
+    "rollback": "19737b9975495aebb4bd247e39c6509151fb576f",
+    "m1_m2_enabled": false
+  },
+  "current_role_roster": "Revision 3 two-agent directive in SESSIONS/AGENT-22/2026-11-24-SATNAV-ALL-AGENT-SCOPES.md",
+  "active_agents": [
+    33,
+    31
+  ],
+  "ownership_transfer": {
+    "status": "OWNER_DIRECTED_ACK_AND_HEAD_RECONCILIATION_REQUIRED",
+    "sole_writer": 33,
+    "independent_qa_and_coordination": 31,
+    "release_authority": "owner; Agent33 executes only after approval",
+    "retired_satnav_write_lanes": [
+      22,
+      23,
+      24,
+      28,
+      29,
+      30,
+      32,
+      "GridAtlas M1 Implementation Owner",
+      "Codex Continuity Helper",
+      "performance reviewer except Agent31 QA coverage"
+    ],
+    "branches": [
+      {
+        "repo": "Ventusltd/gridatlas",
+        "pr": 110,
+        "branch": "feature/satnav-native-vicinity-m1-20261124",
+        "head": "99ff9f6f1d722d8868e51d5f361bdd08592accdd"
+      },
+      {
+        "repo": "Ventusltd/satnav",
+        "pr": 2,
+        "branch": "agent22/satnav-contracts-20261124",
+        "head": "5b6988949e5a8b259aec4b8116878d23eed3501a"
+      },
+      {
+        "repo": "Ventusltd/neural-link-between-agents",
+        "pr": 86,
+        "branch": "agent22/satnav-cartridge-audit-20261124",
+        "head": "9e3f0909d89bdd1467f9c80f6bf04eb9ec6b1992"
+      },
+      {
+        "repo": "Ventusltd/neural-link-between-agents",
+        "pr": 85,
+        "branch": "agent22/satnav-scope-20261124",
+        "head": "91beb3217b24a7c80fc7730de394d0d606211ca8"
+      }
+    ],
+    "priority": "M1 three reproduced blockers, arm-on-close and plain-language UI; independent QA then approved HTTPS"
+  }
+}
