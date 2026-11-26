@@ -1,0 +1,31 @@
+name: TACIT supervisor evidence snapshot
+on:
+  pull_request:
+    paths:
+      - automation/tacit_supervisor_snapshot.py
+      - .github/workflows/tacit-supervisor-snapshot.yml
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test classification and exact-head filters
+        run: python3 automation/tacit_supervisor_snapshot.py --self-test
+      - name: Collect live five-agent evidence in one bounded Python invocation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 automation/tacit_supervisor_snapshot.py | tee tacit-supervisor-snapshot.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tacit-supervisor-snapshot
+          path: tacit-supervisor-snapshot.json
+          if-no-files-found: warn
+          retention-days: 30
