@@ -1,0 +1,103 @@
+{
+  "schema": "cvaa.vedic-core-mission.v1",
+  "mission": "Recover, reuse and independently verify existing computational capabilities for the energy grid; preserve working behaviour and deterministic identity before expansion.",
+  "scope_commit": "5098bc538d40f31577dee36c9f9736b5ab43233e",
+  "recovery": {
+    "commit": "e0c1d7ea6bf1ecd211dbfc25fd3ac8e31dcc71a1",
+    "blob": "fccb8e6220106da016aa482fc414ca37e39342bf",
+    "path": ".cvaa/contracts/vedic-third-turn-recovery.json"
+  },
+  "channels": [
+    {
+      "id": "neural-link",
+      "repo": "Ventusltd/neural-link-between-agents",
+      "path": ".cvaa/contracts/vedic-third-turn-recovery.json",
+      "blob": "fccb8e6220106da016aa482fc414ca37e39342bf",
+      "role": "durable owner scope and recovery",
+      "state": "OBSERVED_SOURCE"
+    },
+    {
+      "id": "cvaa",
+      "repo": "Ventusltd/cvaa",
+      "path": "vaccines/202611261340-vedic-context-conservation.md",
+      "blob": "62a9dcb87ff6bff88bf4cd3dd0c4f9ad02bbb7ff",
+      "role": "fail-closed context conservation",
+      "state": "CANDIDATE_NOT_ACTIVE"
+    },
+    {
+      "id": "spider-genome",
+      "repo": "Ventusltd/spiders",
+      "path": "species/genome-spider/data/nodes.json",
+      "blob": "6fb7867bf6bf3abce14930f72dbfe5f8a323d86c",
+      "role": "show source topology; not proof of executable relationships",
+      "state": "OBSERVED_SOURCE"
+    },
+    {
+      "id": "maths-genome",
+      "repo": "Ventusltd/ventus-grid-engine",
+      "path": "genome/engine-graph.json",
+      "blob": "7a9dd9774f4e4e876c3cd299c397309592860ea2",
+      "role": "existing import and drift relationships",
+      "state": "OBSERVED_SOURCE"
+    },
+    {
+      "id": "spider-receiver",
+      "repo": "Ventusltd/ventus-grid-engine",
+      "path": "spider/manifest.json",
+      "blob": "e6854fdfd49b59c1bac99535d3205ff7dc2b21a3",
+      "role": "existing registered genome, periodic-table, modular and proof-of-work views",
+      "state": "OBSERVED_SOURCE"
+    },
+    {
+      "id": "periodic-table",
+      "repo": "Ventusltd/stars",
+      "path": "blocks/graph.json",
+      "blob": "0effdf62ccf1472480464843e8e4b15ec560f1bd",
+      "role": "existing functional categories; not new identities",
+      "state": "OBSERVED_SOURCE"
+    },
+    {
+      "id": "spider-printer",
+      "repo": null,
+      "path": null,
+      "blob": null,
+      "role": "render and print same evidence with explicit unknowns and source links",
+      "state": "UNRESOLVED",
+      "next": "Locate actual existing implementation and receiver contract; do not invent or replace it."
+    }
+  ],
+  "gates": [
+    {
+      "id": "identity",
+      "rule": "No new permanent IDs or name-only equivalence."
+    },
+    {
+      "id": "regression",
+      "rule": "No prior passing result transferred to a changed head; cancelled or missing checks remain unresolved."
+    },
+    {
+      "id": "execution",
+      "rule": "No real nearest-to-ORIENT composition claim without admitted packages and typed same-dataset lookup."
+    },
+    {
+      "id": "rights",
+      "rule": "No redistribution or release without clearance and authority."
+    },
+    {
+      "id": "evidence",
+      "rule": "No graph colour, printer rendering, catalogue membership or balanced ledger constitutes independent execution proof."
+    }
+  ],
+  "publication": "not-authorised-by-7c",
+  "consumer_state": "PROPOSED_NOT_WIRED",
+  "focus": [
+    "nearest",
+    "selected-coordinate lookup",
+    "ORIENT"
+  ],
+  "limits": [
+    "Historical source blobs are observations, not live producer revalidation.",
+    "No producer files modified; no automatic cross-repository propagation.",
+    "Printer implementation unknown; no fabricated paths or graph edges."
+  ]
+}

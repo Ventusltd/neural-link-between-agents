@@ -1,0 +1,274 @@
+{
+  "schema": "cvaa.vedic-third-turn-recovery.v1",
+  "sequence": 1,
+  "previous": null,
+  "channel": "https://github.com/Ventusltd/neural-link-between-agents/issues/87",
+  "last_seen_comment": "https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7197419915",
+  "scope": {
+    "commit": "5098bc538d40f31577dee36c9f9736b5ab43233e",
+    "path": "SESSIONS/2026-11-26-TACIT-1b-TO-7bt-VEDIC-KUIPER-THIRD-TURN.md",
+    "blob": "5b765ba1942b45ee452c4d5c85bbaff1e682f9e0"
+  },
+  "predecessor_ledger_capsule": {
+    "commit": "3c4fb61da353384c0fe48d628cd73bd760f1d6b4",
+    "path": ".cvaa/contracts/vedic-context.json",
+    "blob": "6589d29acd37b812949f0fe07906da59c19b5074",
+    "sequence": 2,
+    "totals": {
+      "whole": 6,
+      "resolved": 0,
+      "held": 6,
+      "outside": 0,
+      "open": 1,
+      "partial": 4,
+      "disputed": 1,
+      "settled": 0
+    }
+  },
+  "writer": "TACIT 7c",
+  "resume_policy": "read-only-until-revalidated",
+  "authority": "context preservation only; no product writes, identity allocation, admission, review substitution or publication",
+  "workstreams": [
+    {
+      "role": "1b",
+      "pr": "https://github.com/Ventusltd/vedic-/pull/14",
+      "observed_head": "2ccc717933f97e7d191dae85360559a12de7ed21",
+      "historical_second_turn_head": "bd4bb65eb1b4e10106c74b9e41add066f14a067b",
+      "scope": "Package factory and typed execution",
+      "unsettled": "Electrical receipt/closure, second-family admission, independent acceptance, rights",
+      "observed_runs": [
+        {
+          "id": 45857210164,
+          "name": "TACIT 1b package factory",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 45857210244,
+          "name": "VEDIC anatomy checks",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 45857210235,
+          "name": "VEDIC release rehearsal",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ],
+      "run_lookup": "metadata_only",
+      "context": "held",
+      "settlement": "OPEN"
+    },
+    {
+      "role": "2b",
+      "pr": "https://github.com/Ventusltd/vedic-/pull/16",
+      "observed_head": "6a673d7a91adeeb3cc69de8d0d8814279abc764e",
+      "historical_second_turn_head": "9439ccccc3c99e02a13494810c3fe05d2b5eceeb",
+      "scope": "Electrical source proof",
+      "unsettled": "TACIT10 genuine four-export receipt, TACIT13 closure, rights",
+      "observed_runs": [
+        {
+          "id": 45857141885,
+          "name": "TACIT 2b electrical development evidence",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 45857141664,
+          "name": "VEDIC release rehearsal",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 45857141602,
+          "name": "VEDIC anatomy checks",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ],
+      "run_lookup": "metadata_only",
+      "context": "held",
+      "settlement": "OPEN"
+    },
+    {
+      "role": "3b",
+      "pr": "https://github.com/Ventusltd/vedic-/pull/17",
+      "observed_head": "dd13013c5944ba94115f62f0eeac67c34956eb2c",
+      "historical_second_turn_head": "54ff2c0a057a77616037de1ef25fa41bd6218ef8",
+      "scope": "Kuiper identity and nearest graph",
+      "unsettled": "Exact source joins, typed selected-ID lookup, admission",
+      "observed_runs": [
+        {
+          "id": 45857114244,
+          "name": "VEDIC anatomy checks",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 45857114300,
+          "name": "VEDIC release rehearsal",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 45857114662,
+          "name": "TACIT 3b VEDIC Kuiper bond",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 45857114386,
+          "name": "TACIT 3b nearest candidate",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "run_lookup": "metadata_only",
+      "context": "held",
+      "settlement": "OPEN"
+    },
+    {
+      "role": "4b",
+      "pr": "https://github.com/Ventusltd/vedic-/pull/15",
+      "observed_head": "7fd2aae156ddafd931c5168a76b1b1cecfb4723f",
+      "historical_second_turn_head": "e6d32f8889183101a7dc5503989b1df808cb727a",
+      "scope": "Seed properties and solar proof",
+      "unsettled": "Receipt/licence, provenance, shared factory admission",
+      "observed_runs": [
+        {
+          "id": 45857151980,
+          "name": "VEDIC anatomy checks",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 45857152040,
+          "name": "TACIT 4b seed property proof",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 45857151834,
+          "name": "TACIT 4b solar shape development proof",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 45857151910,
+          "name": "VEDIC release rehearsal",
+          "status": "completed",
+          "conclusion": "cancelled"
+        }
+      ],
+      "run_lookup": "metadata_only",
+      "context": "held",
+      "settlement": "OPEN"
+    },
+    {
+      "role": "5b",
+      "pr": "https://github.com/Ventusltd/vedic-/pull/18",
+      "observed_head": "3dd21a0d0cd506230a186b7e85aa7ec14e6486f7",
+      "historical_second_turn_head": "7995ea817221af6d826e487766df5521ad4870d3",
+      "scope": "Semantic activation and consumer",
+      "unsettled": "Real admitted nearest composition or explicit refusal; independent/browser proof",
+      "observed_runs": [
+        {
+          "id": 45857135007,
+          "name": "VEDIC anatomy checks",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 45857135013,
+          "name": "VEDIC release rehearsal",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 45857134795,
+          "name": "TACIT 5b standalone consumer",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ],
+      "run_lookup": "metadata_only",
+      "context": "held",
+      "settlement": "OPEN"
+    },
+    {
+      "role": "6b",
+      "pr": "https://github.com/Ventusltd/vedic-/pull/19",
+      "observed_head": "481eecb457d8ffe8f28d07e0d4b31aedba1cc7ed",
+      "historical_second_turn_head": null,
+      "scope": "Release evidence and separately owner-authorised V3",
+      "unsettled": "Public served-byte verification not observed; no package distribution",
+      "observed_runs": [
+        {
+          "id": 45856684252,
+          "name": "VEDIC release rehearsal",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 45856684264,
+          "name": "VEDIC anatomy checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "run_lookup": "metadata_only",
+      "context": "held",
+      "settlement": "OPEN"
+    },
+    {
+      "role": "7bt",
+      "pr": "https://github.com/Ventusltd/neural-link-between-agents/pull/91",
+      "scope": "Supervision and experimental contract",
+      "unsettled": "Reconcile current evidence; no independent acceptance substitution",
+      "context": "held",
+      "settlement": "OPEN",
+      "run_lookup": "not_queried"
+    }
+  ],
+  "totals": {
+    "whole": 7,
+    "held": 7,
+    "resolved": 0,
+    "outside": 0
+  },
+  "historical_baseline": {
+    "second_turn_ci": "15/15 reported by supervisor; only at historical heads",
+    "meaning_count": 50,
+    "orient_archive_sha256": "e83937c040499a7060b03ca2c4969e4414cdca48cb7f28a3ef9039f002486787",
+    "orient_keys": [
+      "86415575118",
+      "86415575222"
+    ],
+    "identity_tier": "PINNED_PRODUCER_RECEIPT_MATCH_NOT_WAFER_REPLAY"
+  },
+  "cvaa": {
+    "pr": "https://github.com/Ventusltd/cvaa/pull/3",
+    "head": "57b104a24be3094844c7fa511f725933584aa09a",
+    "run": 45831696890,
+    "reported_conclusion": "failure",
+    "reported_lock": "PASS",
+    "reported_antibody_selftest": "PASS",
+    "reported_registry_selfaudit": "FAIL",
+    "limitations": "Historical report #7193796581, not independently replayed by 7c; no baseline relaxation or activation."
+  },
+  "recovery": [
+    "Read Neural Link AGENTS.md, PROTOCOL.md and OPERATIONS.md, then exact pinned third-turn scope and predecessor capsule.",
+    "Read all NL-087 comments after last_seen_comment, confirm owner authority, current branches and exact head workflows; never reuse old green on a new head.",
+    "Reconcile seven workstreams and six predecessor obligations separately; preserve all failed, open, disputed and superseded receipts.",
+    "Verify source identity, dependency closure, admission, actual runtime, independent witness, rights and publication separately; missing evidence is UNKNOWN or held.",
+    "For nearest -> unique caller-data ID lookup -> ORIENT, refuse if admission or input compatibility absent; never equate geographic distance with route length.",
+    "Keep 7c changes on its exclusive context branch, preserve old capsule, append recovery checkpoint with immutable prior commit and blob."
+  ],
+  "limitations": [
+    "PR metadata and workflow statuses observed only, not detailed third-turn log replay.",
+    "All seven context obligations held; this is not a package acceptance ledger or fresh release authorisation.",
+    "6b V3 candidate PR open at inspection; public V3 not verified by 7c.",
+    "No agent wake or automatic monitoring; no independent scientific validation or GPU claims."
+  ]
+}
