@@ -23,7 +23,7 @@ jobs:
         if: matrix.mode == 'runtime'
         with:
           repository: Ventusltd/vedic-
-          ref: e0a094c8c672643f0b8a9967dea93c6ef7e4518a
+          ref: 0bd6879d4c3c857e70529eef2bb69127416537ad
           path: _peer_b
           persist-credentials: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -47,7 +47,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: Ventusltd/vedic-
-          ref: c4d6d309940d131d2a1ae6181701086aa7221839
+          ref: 8e3dff7c905095349843c6b5341766019a67ee82
           path: _semantic_a
           persist-credentials: false
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
