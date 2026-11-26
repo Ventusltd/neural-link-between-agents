@@ -54,7 +54,8 @@
       "evidence": {
         "head": "bd4bb65eb1b4e10106c74b9e41add066f14a067b",
         "run": 45847746988,
-        "archive_sha256": "e83937c040499a7060b03ca2c4969e4414cdca48cb7f28a3ef9039f002486787"
+        "archive_sha256": "e83937c040499a7060b03ca2c4969e4414cdca48cb7f28a3ef9039f002486787",
+        "archive_kind": "SHARED_FACTORY_INTERNAL"
       }
     },
     {
@@ -80,7 +81,8 @@
       "evidence": {
         "head": "9439ccccc3c99e02a13494810c3fe05d2b5eceeb",
         "run": 45847748321,
-        "archive_sha256": null
+        "archive_sha256": null,
+        "archive_kind": null
       }
     },
     {
@@ -116,7 +118,8 @@
       "evidence": {
         "head": "54ff2c0a057a77616037de1ef25fa41bd6218ef8",
         "run": 45847802153,
-        "archive_sha256": null
+        "archive_sha256": null,
+        "archive_kind": null
       }
     },
     {
@@ -126,7 +129,7 @@
         {
           "repo": "Ventusltd/globalgrid2050",
           "commit": "2f4b7cb82ee154fa3c684cba634d45f2183c6e7d",
-          "path": null,
+          "path": "energy-transition-simulator/202609282123/mod/engine/structures.mjs",
           "blob": "52619f60fea35e05d7634d760b7c19b6712f9b97",
           "sha256": "1712c5a131e857f0a2747a7ed82f95d1a9fab04e9cf5602fe260443b2be2a13d"
         }
@@ -142,7 +145,8 @@
       "evidence": {
         "head": "e6d32f8889183101a7dc5503989b1df808cb727a",
         "run": 45847783485,
-        "archive_sha256": "085174ded39a792f4910d15c935fa58dd7a3a2e77cc65fef1a235d0328ae7881"
+        "archive_sha256": "085174ded39a792f4910d15c935fa58dd7a3a2e77cc65fef1a235d0328ae7881",
+        "archive_kind": "PRIVATE_DEVELOPMENT_NOT_FACTORY"
       }
     }
   ],
