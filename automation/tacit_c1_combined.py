@@ -60,18 +60,21 @@ def main():
                 page.wait_for_function("KY.modules.layers.api.get('computation')?.status === 'OK'",timeout=60000)
                 page.locator('[data-menu="wafer"] button').first.click()
                 panel=page.locator("#ky-computation");panel.wait_for(state="visible")
+                for name in ("Instrument","Family / operation"):
+                    control=panel.get_by_label(name)
+                    require("unique-select-"+suffix+"-"+name,control.count()==1 and control.evaluate("e=>e.tagName")== "SELECT" and control.is_visible())
                 select=panel.get_by_role("button",name="Select",exact=True)
                 execute=panel.get_by_role("button",name="Execute ORIENT")
                 def inspect():return page.evaluate("KY.modules.computation.api.inspect()")
                 def settled():page.wait_for_function("!KY.modules.computation.api.inspect().status.startsWith('SELECTING')",timeout=30000)
                 for fam,keys in expected.items():
                     for mode in ("machine","vedic"):
-                        panel.get_by_label("Instrument",exact=True).select_option(mode)
-                        panel.get_by_label("Family / operation",exact=True).select_option(fam)
+                        panel.get_by_label("Instrument").select_option(mode)
+                        panel.get_by_label("Family / operation").select_option(fam)
                         select.click();settled()
                         state=inspect();check("browser-"+suffix+"-"+fam+"-"+mode,[str(k) for k in state["keys"]]==keys and execute.is_enabled()==(fam=="Vg"))
-                panel.get_by_label("Family / operation",exact=True).select_option("Vg")
-                panel.get_by_label("Instrument",exact=True).select_option("machine")
+                panel.get_by_label("Family / operation").select_option("Vg")
+                panel.get_by_label("Instrument").select_option("machine")
                 select.click();settled()
                 require("ready-"+suffix,execute.is_enabled())
                 results=[]
