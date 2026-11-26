@@ -30,7 +30,7 @@ jobs:
         run: |
           set -euo pipefail
           p="$RUNNER_TEMP/c1-a1"
-          mkdir -p "$p" "$RUNNER_TEMP/evidence"
+          mkdir -p "$RUNNER_TEMP/evidence"
           python _peer_a1/tools/tacit_a1_properties.py acquire --root "$p"
           gh api repos/Ventusltd/vedic-/actions/artifacts/15143370771/zip > "$p/producer.zip"
       - name: Producer repeat and independent oracle offline

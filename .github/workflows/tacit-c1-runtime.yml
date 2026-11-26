@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - automation/tacit_c1_fresh.py
+      - automation/tacit_c1_b1.py
       - .github/workflows/tacit-c1-runtime.yml
 permissions:
   contents: read
@@ -44,6 +45,12 @@ jobs:
           ref: c6ded836fa9d88c9bcb3d779401aa4c6c0373876
           path: _peer_a
           persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/vedic-
+          ref: 988e2293fd740ca434a9cf087fa873f841b7dc6f
+          path: _peer_b1
+          persist-credentials: false
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
@@ -72,6 +79,8 @@ jobs:
             python "$p/peer-a/tools/tacit_a_impact.py" acquire --root "$p/impact"
           else
             mv _peer_b "$p/peer-b"
+            mv _peer_b1 "$p/peer-b1"
+            gh api "repos/$v/actions/artifacts/15142906371/zip" > "$p/B1.zip"
             mv _peer_d "$p/peer-d"
             mkdir -p "$p/factory/tools" "$p/factory/packages/factory/admissions" "$p/factory/packages/factory/pending" "$p/inputs" "$p/nearest/packages/nearest-candidate" "$p/nearest-source" "$p/electrical" "$p/oracle"
             for file in tools/package_factory.py tools/typed_package_execution.py packages/factory/admissions/orient.json packages/factory/pending/electrical.json packages/factory/pending/nearest-substation.json; do
@@ -115,6 +124,7 @@ jobs:
           fi
           offline python automation/tacit_c_ninth.py "$MODE" "$p" "$RUNNER_TEMP/evidence/inherited-$MODE.json"
           offline python automation/tacit_c1_fresh.py "$p" "$RUNNER_TEMP/evidence/fresh-orient.json"
+          offline python automation/tacit_c1_b1.py "$p" "$RUNNER_TEMP/evidence/b1-review.json"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
