@@ -36,7 +36,7 @@ def verify(root,obs):
     import tacit_b_electrical as peer
     original=member(root,"B");b=json.loads(original)
     a=json.loads(member(root,"A"));c=json.loads(member(root,"C"))
-    intake_raw=member(root,"B","tacit-b-candidate-intake.json","62704c84e7b242312772311f5dae9f8f25107d92c4bd30a6c4dfe101000349f0")
+    intake_raw=member(root,"B","tacit-b-reviewed-intake.json","3bbc8f816deb978e338287ae4b33a365d3c1cb0f37a8d073dbd96eacc548fd41")
     desc=f.strict((froot/"packages/factory/pending/electrical.json").read_bytes())
     input_root=root/"electrical"
     def refuse(label,fn,reason):
