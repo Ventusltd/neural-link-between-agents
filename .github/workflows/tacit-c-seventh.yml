@@ -1,0 +1,85 @@
+name: TACIT C seventh-turn cold reconciliation
+on:
+  pull_request:
+    paths:
+      - 'automation/tacit_c_seventh.py'
+      - '.github/workflows/tacit-c-seventh.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/vedic-
+          ref: bb637d3a32173de8b3892380af4c6166f969412c
+          path: _peer_a
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Acquire exact final artifacts and existing verification contracts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-c-seventh"
+          mkdir -p "$p/factory/tools" "$RUNNER_TEMP/evidence"
+          get() { curl -fsSL --max-time 60 --max-filesize 32000000 "https://raw.githubusercontent.com/$1/$2/$3" -o "$4"; }
+          v=Ventusltd/vedic-
+          n=Ventusltd/neural-link-between-agents
+          g=Ventusltd/ventus-grid-engine
+          b=827dc15ffebc236954ee4aa40ba0141cd7c23fa4
+          for file in tacit_b_ranking.py tacit_b_electrical.py tacit_b_composition.py tacit_b_candidate_intake.py tacit_b_bond_intake.py; do
+            get "$v" "$b" "tools/$file" "$p/$file"
+          done
+          get "$v" 2ccc717933f97e7d191dae85360559a12de7ed21 tools/package_factory.py "$p/factory/tools/package_factory.py"
+          for file in v9-geodesy.js v9-nearest-search.js voltage-drop.js; do
+            get "$g" 487ec7bd38dfa5aecb1c75da53b4a866ab2101cb "engine/$file" "$p/$file"
+          done
+          for pair in A-final:15138968008 A-bonds:15138897783 B-final:15138544629 browser:15139381570; do
+            gh api "repos/$v/actions/artifacts/${pair#*:}/zip" > "$p/${pair%:*}.zip"
+          done
+          for pair in C-source:15138980638 C-rank:15138009925 C-electrical:15140305069 C-prior-falsifier:15137349637; do
+            gh api "repos/$n/actions/artifacts/${pair#*:}/zip" > "$p/${pair%:*}.zip"
+          done
+          get "$n" 3c4fb61da353384c0fe48d628cd73bd760f1d6b4 .cvaa/contracts/vedic-context.json "$p/ledger.json"
+          get "$n" a77aab1376f5e6db236f3b89d352dbfb18a6bcb9 SESSIONS/2026-11-26-TACIT-14-QUANTUM-TWIN-LEDGER.md "$p/ledger.md"
+          get Ventusltd/star-quantum-twin 715f19d2d657df6f3dce0db05d0b35d8d0f4d36e twins/README.md "$p/quantum.md"
+          get Ventusltd/kuiper-belt 9d82d98cc78cfa89e861f0fc30535cd887e80ecd LAWS.md "$p/laws.md"
+          gh api repos/Ventusltd/cvaa/actions/jobs/139949829074 > "$p/cvaa-job.json"
+          python - "$p" <<'PY'
+          import pathlib,sys,urllib.request
+          sys.path.insert(0,"automation")
+          from tacit_c_verify import PINS,blob,need
+          p=pathlib.Path(sys.argv[1])
+          for name,(repo,commit,path,pin) in PINS.items():
+              with urllib.request.urlopen(f"https://raw.githubusercontent.com/{repo}/{commit}/{path}",timeout=60) as r:raw=r.read(32*1024**2+1)
+              need(len(raw)<=32*1024**2 and blob(raw)==pin,"GRAPH_PIN:"+name)
+              (p/name).write_bytes(raw)
+          PY
+          test "$(git -C _peer_a rev-parse HEAD)" = bb637d3a32173de8b3892380af4c6166f969412c
+          python _peer_a/tools/tacit_a_recovery.py acquire --root "$p/a-input"
+      - name: Actual cold recovery and repeatable witness offline
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-c-seventh"
+          offline() { sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env -i PATH="$PATH" HOME="$HOME" python "$@"; }
+          offline _peer_a/tools/tacit_a_recovery.py verify --root "$p/a-input" --out "$p/a-cold.json"
+          offline _peer_a/tools/tacit_a_recovery.py verify --root "$p/a-input" --out "$p/a-repeat.json"
+          offline automation/tacit_c_seventh.py "$p" "$RUNNER_TEMP/evidence/seventh-witness.json"
+          offline automation/tacit_c_seventh.py "$p" "$p/repeat-witness.json"
+          cmp "$RUNNER_TEMP/evidence/seventh-witness.json" "$p/repeat-witness.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: tacit-c-seventh-witness
+          path: ${{ runner.temp }}/evidence/
+          if-no-files-found: warn
+          retention-days: 30

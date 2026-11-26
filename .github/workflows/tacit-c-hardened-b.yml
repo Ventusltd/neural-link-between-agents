@@ -1,0 +1,79 @@
+name: TACIT C hardened B independent replay
+on:
+  pull_request:
+    paths:
+      - 'automation/tacit_c_hardened_b.py'
+      - '.github/workflows/tacit-c-hardened-b.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  peers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '18'
+      - name: Acquire bounded exact evidence and peer source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-c-peers"
+          mkdir -p "$p/inputs" "$p/factory/tools" "$p/factory/packages/factory/admissions" "$p/factory/packages/factory/pending" "$p/app/tools" "$p/nearest/packages/nearest-candidate" "$p/activation" "$p/oracle" "$RUNNER_TEMP/evidence"
+          get() { curl -fsSL --max-time 60 --max-filesize 10000000 "https://raw.githubusercontent.com/$1/$2/$3" -o "$4"; }
+          v=Ventusltd/vedic-
+          g=Ventusltd/ventus-grid-engine
+          f=2ccc717933f97e7d191dae85360559a12de7ed21
+          s=487ec7bd38dfa5aecb1c75da53b4a866ab2101cb
+          for file in tools/package_factory.py tools/typed_package_execution.py packages/factory/admissions/orient.json packages/factory/pending/electrical.json; do
+            get "$v" "$f" "$file" "$p/factory/$file"
+          done
+          get "$v" 9431c1c704d7812b67eb85963a8310a86350ee87 tools/tacit_b_composition.py "$p/b.py"
+          get "$v" 443312611ec1469fe2af173fc1c63e21bdf2e50f tools/tacit5b_activation.py "$p/app/tools/tacit5b_activation.py"
+          for name in kuiper_bond.py consumer-fixture.json; do
+            get "$v" dd13013c5944ba94115f62f0eeac67c34956eb2c "packages/nearest-candidate/$name" "$p/nearest/packages/nearest-candidate/$name"
+          done
+          for file in tools/conversational_execution.py tools/semantic_retrieval.py tools/stars_retrieval.py data/dictionary.json data/translation-geodesy.json; do
+            get "$v" 9330897d89214602077806a3915054b4afc301c5 "$file" "$p/activation/$(basename "$file")"
+          done
+          get Ventusltd/stars ed657689ca187d8cd237f8f4bd3307a020a5eb8a library/standalone.mjs "$p/activation/standalone.mjs"
+          get "$v" 1aa2b9d1ab3bf9c6963b68b20ea608e826162e15 tools/tacit9/acceptance.py "$p/oracle/acceptance.py"
+          get "$v" 2adc1fa9c52f1d242e601b1580927996e7cb31da tools/package_builder.py "$p/inputs/prototype.py"
+          get "$g" "$s" LICENSE "$p/inputs/LICENSE"
+          for name in v9-geodesy.js v9-nearest-search.js voltage-drop.js; do
+            get "$g" "$s" "engine/$name" "$p/$name"
+          done
+          for name in dictionary.json translation-geodesy.json; do
+            get "$v" 0ee52af60036f32358759a67836578dce6d7da51 "data/$name" "$p/$name"
+          done
+          get "$v" 9431c1c704d7812b67eb85963a8310a86350ee87 tools/tacit_b_candidate_intake.py "$p/intake.py"
+          get "$v" "$f" packages/factory/pending/nearest-substation.json "$p/factory/packages/factory/pending/nearest-substation.json"
+          for pair in A:15137841195 B:15137938108 identity:15126683549; do
+            gh api "repos/$v/actions/artifacts/${pair#*:}/zip" > "$p/${pair%:*}.zip"
+          done
+          python - "$p" <<'PY'
+          import pathlib,sys
+          sys.path.insert(0,"automation")
+          from tacit_c_peer_verify import member
+          p=pathlib.Path(sys.argv[1])
+          for src,dst in [("source-receipt/receipt.json","receipt.json"),("source-receipt/v9-geodesy.mjs","module.mjs")]:
+              (p/"inputs"/dst).write_bytes(member(p,"identity",src))
+          PY
+      - name: Offline independent hardened B replay and falsification
+        run: |
+          sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env -i PATH="$PATH" HOME="$HOME" python automation/tacit_c_hardened_b.py "$RUNNER_TEMP/tacit-c-peers" "$RUNNER_TEMP/evidence/b-corrective-review.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: tacit-c-hardened-b-review
+          path: ${{ runner.temp }}/evidence/
+          if-no-files-found: warn
+          retention-days: 30

@@ -1,0 +1,19 @@
+# TACIT C — fourth-turn cold-session recovery
+
+Scope: [NL-087 exact mandate](https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7197676838).
+This branch is a candidate verification consumer, not an executor service or release authority.
+
+## Existing intelligence recovered
+- [TACIT 7c recovery and guard](https://github.com/Ventusltd/neural-link-between-agents/pull/92), exact e9ae30bfebc62425e2a1d3e40e0e6643339da03a; hosted run 45857561958 success. Its predecessor ledger, disputed obligation and historic CVAA failure are not replaced.
+- [TACIT 9 independent oracle](https://github.com/Ventusltd/vedic-/pull/11), exact 1aa2b9d1ab3bf9c6963b68b20ea608e826162e15, previously 11 source comparisons, 18 input and 19 audit-side mutation controls. Here used against actual typed package, not merely the audit guard.
+- [TACIT 1b factory](https://github.com/Ventusltd/vedic-/pull/14), exact 2ccc717933f97e7d191dae85360559a12de7ed21, run 45857210164 / job 140038602779 success; archive SHA256 e83937c040499a7060b03ca2c4969e4414cdca48cb7f28a3ef9039f002486787. No archive uploaded by producer; reconstruct from exact source artifact 15126683549 and approved factory, then compare digest. Cross-repo artifact access may be denied; no bypass.
+- [TACIT 5b corrected consumer](https://github.com/Ventusltd/vedic-/pull/18), 443312611ec1469fe2af173fc1c63e21bdf2e50f, consumer job 140042599347 success observed; browser independent replay remains open.
+- [TACIT 14 CVAA candidate](https://github.com/Ventusltd/cvaa/pull/3), 57b104a24be3094844c7fa511f725933584aa09a, not active. Faraday README requires questions/apparatus/observations and refutations; CVAA requires fail-closed executable controls; Quantum Twin README distinguishes principal and measured twin. Merchant of Venice exact estate implementation unresolved (repository and scoped code search returned no match). No replacement ledger.
+- Spider Printer original discovered at [exact source](https://github.com/Ventusltd/spiders/tree/9801c73e8fd290d621bcf980fcc3fd6851229bf0/spider_printer_v1). Generator tools/build_topology.py b29fad975daadf82fe13e22e57e8b7b1df66d5d2, viewer index.html 423320db36be0e4daa669af727df1ddbc48978b6, cartridge data/topology.json 71e098e5095c444196095080efe74c37df4add25. Historical cartridge: 30 nodes, 164 edges, 5938 URL references, no VEDIC repository. It is screening topology, not proof of executable dependencies. No broad scan or change to actual printer.
+- Actual Spider receiver at 487ec7bd38dfa5aecb1c75da53b4a866ab2101cb registers genome-spider, engine-graph, modular and periodic-table. Its manifest blob 79ec584f5040a0002da2a00b06defbeb3b510e03 differs from earlier 7c observation; do not substitute silently. Candidate graph adapter explicitly pins this snapshot.
+
+## Replay
+PR workflow independently runs channels and ORIENT jobs. No archive/source uploaded. Receipts contain exact pins, observations and separate test/rights/identity/admission/publication states. A failed acquisition is not acceptance. Negative cases and failures are retained in receipts when apparatus executes, otherwise Actions log records failure. Do not transfer passing result to changed head. Graph identity projection is intentionally only producer-local existing IDs; synthetic property edits do not prove cross-version permanent line identity.
+
+## Outstanding
+TACIT A/B actual fourth-turn artifacts not yet admitted/pinned at this snapshot; request exact heads and build receipts. Nearest and electrical remain OPEN, no admission bypass. Actual browser independent replay, cross-version occurrence identity, CVAA registry, Printer live integration, Merchant of Venice and formal review remain OPEN. V3 PR19 481eecb457d8ffe8f28d07e0d4b31aedba1cc7ed rehearsal/anatomy succeeded; not evidence of served publication. Resume read-only until each exact pin and authority are revalidated.

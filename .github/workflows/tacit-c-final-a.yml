@@ -1,0 +1,68 @@
+name: TACIT C final A source closure review
+on:
+  pull_request:
+    paths:
+      - 'automation/tacit_c_final_a.py'
+      - 'automation/tacit_c_nearest.mjs'
+      - '.github/workflows/tacit-c-final-a.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '18'
+      - name: Acquire exact candidate and original evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-c-final-a"
+          mkdir -p "$p/producer/tools" "$p/producer/cosmos" "$p/roots/ventus-grid-engine" "$RUNNER_TEMP/evidence"
+          get() { curl -fsSL --max-time 60 --max-filesize 10000000 "https://raw.githubusercontent.com/$1/$2/$3" -o "$4"; }
+          v=Ventusltd/vedic-
+          g=Ventusltd/ventus-grid-engine
+          k=Ventusltd/kuiper-belt
+          s=487ec7bd38dfa5aecb1c75da53b4a866ab2101cb
+          for file in v9-geodesy.js v9-nearest-search.js voltage-drop.js; do
+            get "$g" "$s" "engine/$file" "$p/$file"
+          done
+          for file in dictionary.json translation-geodesy.json nearest-spider.json; do
+            get "$v" 5ae1e8d4d0f5d9f852aa589a0894e52f112eed6e "data/$file" "$p/$file"
+          done
+          get "$v" 70d08339226f052f0da64fcb1b7d59f53286b58c tools/identity_bridge.py "$p/identity_bridge.py"
+          get "$v" 558257cbb5b9bea8b3fc16df84da7de5d8e86222 tools/spider_evidence.py "$p/spider_evidence.py"
+          get "$v" 6a673d7a91adeeb3cc69de8d0d8814279abc764e packages/electrical/source-parse.mjs "$p/electrical-parse.mjs"
+          get "$v" 1a153127baedcdc89776331dc6beb2967d07f791 tools/tacit4b/seed/parse.mjs "$p/seed-parse.mjs"
+          for file in tools/edition_keys.py cosmos/wafer.tsv cosmos/repos.tsv; do
+            get "$k" eec3f1891294af9e93ce6613c10cdf71806802f2 "$file" "$p/producer/$file"
+          done
+          git -C "$p/roots/ventus-grid-engine" init -q
+          git -C "$p/roots/ventus-grid-engine" fetch --depth=1 "https://github.com/$g.git" "$s"
+          test "$(git -C "$p/roots/ventus-grid-engine" rev-parse FETCH_HEAD)" = "$s"
+          for pair in A:15137841195 identity:15126683549; do
+            gh api "repos/$v/actions/artifacts/${pair#*:}/zip" > "$p/${pair%:*}.zip"
+          done
+          cp automation/tacit_c_nearest.mjs "$p/independent-nearest.mjs"
+          cd "$p"
+          npm install --no-save --ignore-scripts --package-lock=false acorn@8.15.0
+      - name: Offline independent source and closure review
+        run: |
+          sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env -i PATH="$PATH" HOME="$HOME" python automation/tacit_c_final_a.py "$RUNNER_TEMP/tacit-c-final-a" "$RUNNER_TEMP/evidence/a-review.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: tacit-c-final-a-review
+          path: ${{ runner.temp }}/evidence/
+          if-no-files-found: warn
+          retention-days: 30

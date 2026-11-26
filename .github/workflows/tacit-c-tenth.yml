@@ -1,0 +1,85 @@
+name: TACIT C tenth-turn cold reconciliation and independent browser
+on:
+  pull_request:
+    paths:
+      - automation/tacit_c_tenth.py
+      - automation/tacit_c_browser.py
+      - .github/workflows/tacit-c-tenth.yml
+permissions:
+  contents: read
+  actions: read
+jobs:
+  witness:
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [cold, browser]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: matrix.mode == 'cold'
+        with:
+          repository: Ventusltd/vedic-
+          ref: 72e9bedaa16a3be6d607e37f083ee2365798a5ea
+          path: _peer_a
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: matrix.mode == 'browser'
+        with:
+          repository: Ventusltd/kuiper-belt
+          ref: e625da97e76a7d3b99361e01767e0fef0984c445
+          path: _peer_d
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Acquire pinned artefacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MODE: ${{ matrix.mode }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-c-tenth"
+          mkdir -p "$p" "$RUNNER_TEMP/evidence"
+          v=Ventusltd/vedic-
+          c=Ventusltd/neural-link-between-agents
+          for pair in A-bonds:15138897783 B-old:15140148659 B-final:15140134078; do
+            gh api "repos/$v/actions/artifacts/${pair#*:}/zip" > "$p/${pair%:*}.zip"
+          done
+          if [ "$MODE" = cold ]; then
+            for pair in A-final:15139999214 B-browser:15139854561; do
+              gh api "repos/$v/actions/artifacts/${pair#*:}/zip" > "$p/${pair%:*}.zip"
+            done
+            for pair in identity:15140568401 gate:15141600096 runtime:15140598584 impact:15140064164 prior:15138893931; do
+              gh api "repos/$c/actions/artifacts/${pair#*:}/zip" > "$p/${pair%:*}.zip"
+            done
+            python _peer_a/tools/tacit_a_final.py acquire --root "$p/peer-input"
+          else
+            pip install playwright==1.51.0
+            python -m playwright install chromium
+          fi
+      - name: Independent actual replay
+        env:
+          MODE: ${{ matrix.mode }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-c-tenth"
+          offline() { sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env -i PATH="$PATH" HOME="$HOME" "$@"; }
+          if [ "$MODE" = cold ]; then
+            for n in first second; do offline python _peer_a/tools/tacit_a_final.py verify --root "$p/peer-input" --out "$p/A-$n.json"; done
+            offline python automation/tacit_c_tenth.py "$p" "$RUNNER_TEMP/evidence/tenth-cold.json"
+            offline python automation/tacit_c_tenth.py "$p" "$p/repeat.json"
+            cmp "$p/repeat.json" "$RUNNER_TEMP/evidence/tenth-cold.json"
+          else
+            env -u GH_TOKEN -u GITHUB_TOKEN python automation/tacit_c_browser.py "$p" "$PWD/_peer_d" "$RUNNER_TEMP/evidence/tenth-browser.json"
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: tacit-c-tenth-${{ matrix.mode }}
+          path: ${{ runner.temp }}/evidence/
+          retention-days: 30

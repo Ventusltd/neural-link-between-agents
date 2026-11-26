@@ -1,0 +1,56 @@
+name: TACIT C eighth-turn baseline adversarial gates
+on:
+  pull_request:
+    paths:
+      - automation/tacit_c_eighth.py
+      - .github/workflows/tacit-c-eighth.yml
+permissions:
+  contents: read
+  actions: read
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/vedic-
+          ref: 2ccc717933f97e7d191dae85360559a12de7ed21
+          path: _factory
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/kuiper-belt
+          ref: 4859abbdd7166ecab566ecc86337b56e0bd75125
+          path: _kuiper
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Acquire exact inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-c-eighth"
+          mkdir -p "$p" "$RUNNER_TEMP/evidence"
+          mv _factory "$p/factory"
+          mv _kuiper "$p/kuiper"
+          gh api repos/Ventusltd/vedic-/actions/artifacts/15138897783/zip > "$p/A-bonds.zip"
+          gh api repos/Ventusltd/vedic-/actions/artifacts/15137841195/zip > "$p/A-original.zip"
+          gh api repos/Ventusltd/neural-link-between-agents/actions/artifacts/15138980638/zip > "$p/C-source.zip"
+      - name: Independently challenge actual gates and original law offline
+        run: |
+          sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env -i PATH="$PATH" HOME="$HOME" python automation/tacit_c_eighth.py "$RUNNER_TEMP/tacit-c-eighth" "$RUNNER_TEMP/evidence/eighth-baseline.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: tacit-c-eighth-baseline
+          path: ${{ runner.temp }}/evidence/
+          retention-days: 30

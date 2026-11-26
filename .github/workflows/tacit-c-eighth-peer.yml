@@ -1,0 +1,101 @@
+name: TACIT C eighth-turn independent A B review
+on:
+  pull_request:
+    paths:
+      - automation/tacit_c_eighth_peer.py
+      - .github/workflows/tacit-c-eighth-peer.yml
+permissions:
+  contents: read
+  actions: read
+jobs:
+  review:
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [identity, gate]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: matrix.mode == 'identity'
+        with:
+          repository: Ventusltd/vedic-
+          ref: 98d1c4580f307c6db40d511ab8d86f1ec692aaa1
+          path: _peer_a
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: matrix.mode == 'gate'
+        with:
+          repository: Ventusltd/vedic-
+          ref: 2ccc717933f97e7d191dae85360559a12de7ed21
+          path: _factory
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: matrix.mode == 'gate'
+        with:
+          repository: Ventusltd/vedic-
+          ref: e273402c75e99438b31b37c9a2ff73a24c0f7fe0
+          path: _peer_b
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Acquire exact peer inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MODE: ${{ matrix.mode }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-c-eighth-peer"
+          mkdir -p "$p" "$RUNNER_TEMP/evidence"
+          v=Ventusltd/vedic-
+          n=Ventusltd/neural-link-between-agents
+          g=Ventusltd/ventus-grid-engine
+          s=487ec7bd38dfa5aecb1c75da53b4a866ab2101cb
+          get() { curl -fsSL --max-time 60 --max-filesize 10000000 "https://raw.githubusercontent.com/$1/$2/$3" -o "$4"; }
+          if [ "$MODE" = identity ]; then
+            test "$(git -C _peer_a rev-parse HEAD)" = 98d1c4580f307c6db40d511ab8d86f1ec692aaa1
+            gh api "repos/$v/actions/artifacts/15141151895/zip" > "$p/A-repair.zip"
+            cd _peer_a
+            python tools/tacit_a_repair.py --root "$p/repair"
+            npm install --no-save --ignore-scripts --package-lock=false acorn@8.15.0 acorn-loose@8.5.2 acorn-walk@8.3.4
+            cp "$p/repair/producer-lib.mjs" .
+          else
+            mv _factory "$p/factory"
+            mv _peer_b "$p/peer-b"
+            cp "$p/factory/tools/package_factory.py" "$p/factory-original.py"
+            python "$p/peer-b/tools/tacit_b_stage_factory.py" "$p/factory"
+            mkdir "$p/nearest" "$p/electrical"
+            get "$g" "$s" engine/v9-geodesy.js "$p/nearest/v9-geodesy.js"
+            get "$g" "$s" engine/v9-nearest-search.js "$p/nearest/v9-nearest-search.js"
+            get "$g" "$s" engine/voltage-drop.js "$p/electrical/module.mjs"
+            for pair in A-original:15137841195 B-admission:15141365045; do
+              gh api "repos/$v/actions/artifacts/${pair#*:}/zip" > "$p/${pair%:*}.zip"
+            done
+            gh api "repos/$n/actions/artifacts/15138980638/zip" > "$p/C-source.zip"
+          fi
+      - name: Independent actual replay and adversarial checks offline
+        env:
+          MODE: ${{ matrix.mode }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-c-eighth-peer"
+          offline() { sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env -i PATH="$PATH" HOME="$HOME" "$@"; }
+          if [ "$MODE" = identity ]; then
+            (cd _peer_a; offline node tools/tacit_a_producer_ast.mjs "$p/repair" > "$p/repair/producer-ast.json"
+              offline python tools/tacit_a_index_grain.py verify --root "$p/repair" --out "$p/repair/grain.json"
+              for r in first second; do offline node tools/tacit_a_repair.mjs "$p/repair" "$p/a-$r.json"; done)
+          fi
+          offline python automation/tacit_c_eighth_peer.py "$MODE" "$p" "$RUNNER_TEMP/evidence/eighth-$MODE.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: tacit-c-eighth-${{ matrix.mode }}
+          path: ${{ runner.temp }}/evidence/
+          retention-days: 30
