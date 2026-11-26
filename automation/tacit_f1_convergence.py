@@ -123,11 +123,60 @@ def graph(root,r):
     r["checks"]=["all real Genome seeds","all Printer seeds","exact A1/B1 source impact parity","Periodic Table endpoints","bounded replicated workload parity"]
     r["open"]=["static source applicability not live receipt invalidation","no GPU rerun; no estate-scale extrapolation","independent release acceptance separate"]
 
+def invalidation(root,r):
+    sys.path.insert(0,str(root/"a1"/"tools"))
+    code=root/"a1"/"tools"/"tacit_a1_invalidation.py"
+    check(blob(code.read_bytes())=="d6b3179d6c69a775c4b32fafcaa2f9a3a93d7e40","A1_CODE")
+    from tacit_a1_properties import Space
+    from tacit_a1_invalidation import Ledger
+    p=("870cb08e74fe792266981e10e2c2161685d330b18a7881ba3ee8f40d57c54600","invalidation.json","6715688acd8178daad0f2eb1759a80c4ba3f878d57001439148516733bf6cf43")
+    witness=json.loads(pinned(root/"a1-proof.zip",p))
+    r["producer_artifact"]={"id":15144085082,"zip_sha256":p[0],"member_sha256":p[2]}
+    s=Space(root)
+    def new():
+        return Ledger(s,root)
+    initial=new().snapshot()
+    check(len(initial["receipts"])==8,"RECEIPT_COUNT")
+    r["baseline_receipts"]=len(initial["receipts"])
+    expected={"Vg":["nearest-orient","orient"],"Vn":["nearest-orient"],"Vd":["electrical"]}
+    cases=[]
+    ops=("orient","nearest-orient","electrical")
+    init_times=[]
+    for k,row in sorted(s.rows.items(),key=lambda x:int(x[0])):
+        source=row["source"]
+        affected=expected[row["module_classification"]["symbol"]]
+        events=[({"kind":"source","source":source,"new_blob":"0"*40},affected),
+                ({"kind":"presentation","source":source,"field":"display_colour"},[])]
+        for event,want in events:
+            durations=[];replays=[];hashes=[]
+            for i in range(5):
+                t=now();l=new();init_times.append(ms(t))
+                before=l.snapshot();epochs={op:l.begin(op) for op in ops}
+                t=now();res=l.apply(event);durations.append(ms(t))
+                check(res["impact"]["affected_patterns"]==want and not res["impact"]["addresses_changed"],"EXACT_IMPACT")
+                after=l.snapshot();check(after["blocked"]==want,"BLOCKED")
+                check({x["receipt_sha256"] for x in before["receipts"]}=={x["receipt_sha256"] for x in after["receipts"]},"HISTORICAL_BYTES")
+                check(all(x["state"]==("STALE" if x["operation"] in want else "CURRENT") for x in after["receipts"]),"RECEIPT_APPLICABILITY")
+                for op in ops:
+                    try:l.assert_current(op,epochs[op])
+                    except ValueError:check(op in want,"UNAFFECTED_REFUSED")
+                    else:check(op not in want,"STALE_ACCEPTED")
+                t=now();again=l.apply(event);replays.append(ms(t))
+                check(again==res and l.snapshot()==after,"IDEMPOTENCE")
+                hashes.append(digest(res))
+            check(len(set(hashes))==1,"DETERMINISTIC_TRANSITION")
+            cases.append({"kind":event["kind"],"key":k,"affected":want,"transition_sha256":hashes[0],"apply":samples(durations),"idempotent_replay":samples(replays)})
+    r["cases"]=cases
+    r["ledger_initialisation"]=samples(init_times)
+    r["summary"]={kind:{"apply":samples([t for x in cases if x["kind"]==kind for t in x["apply"]["samples_ms"]]),"replay":samples([t for x in cases if x["kind"]==kind for t in x["idempotent_replay"]["samples_ms"]])} for kind in ("source","presentation")}
+    r["checks"]=["8 real pinned B1/E1 receipt records","8 source events and 8 presentation controls","5 repeats each; deterministic transitions","affected epochs only; stale in-flight token refused","historical hashes retained; idempotence"]
+    r["open"]=["host-local actual ledger, simulated change events; no live HTTP invalidation claim","new authenticated E1 successor not staged","no permanent identity or production writes"]
+
 def main():
     mode,root,out=sys.argv[1],Path(sys.argv[2]),Path(sys.argv[3])
     r={"schema":"tacit-f1.convergence.v1","mode":mode,"stages":{},"production":False,"checks":[],"open":[]}
     try:
-        {"graph":graph,"browser":browser}[mode](root,r);r["status"]="PASS_BOUNDED"
+        {"graph":graph,"browser":browser,"invalidation":invalidation}[mode](root,r);r["status"]="PASS_BOUNDED"
     except Exception as e:r["status"]="FAIL";r["failure"]=type(e).__name__+":"+str(e)
     r["environment"]={"python":platform.python_version(),"cpu_count":os.cpu_count(),"parent_peak_rss_kib":resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,"child_peak_rss_kib":resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss}
     out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(canonical(r))
