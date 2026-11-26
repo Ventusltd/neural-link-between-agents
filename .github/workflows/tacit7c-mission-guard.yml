@@ -1,0 +1,19 @@
+name: TACIT 7c core mission guard
+on:
+  pull_request:
+    paths:
+      - '.cvaa/contracts/vedic-third-turn-recovery.json'
+      - '.cvaa/contracts/vedic-core-mission.json'
+      - 'automation/tacit7c_mission_guard*'
+      - '.github/workflows/tacit7c-mission-guard.yml'
+permissions:
+  contents: read
+jobs:
+  guard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - run: node automation/tacit7c_mission_guard.test.mjs
