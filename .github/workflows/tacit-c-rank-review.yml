@@ -73,7 +73,7 @@ jobs:
           PY
       - name: Offline actual B ranking receipt and independent adversarial oracle
         run: |
-          sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env -i PATH="$PATH" HOME="$HOME" python automation/tacit_c_hardened_b.py "$RUNNER_TEMP/tacit-c-peers" "$RUNNER_TEMP/evidence/ranking-review.json"
+          sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env -i PATH="$PATH" HOME="$HOME" python automation/tacit_c_rank_review.py "$RUNNER_TEMP/tacit-c-peers" "$RUNNER_TEMP/evidence/ranking-review.json"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
