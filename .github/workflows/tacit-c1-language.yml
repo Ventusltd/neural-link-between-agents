@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: Ventusltd/vedic-
-          ref: e0a094c8c672643f0b8a9967dea93c6ef7e4518a
+          ref: 0bd6879d4c3c857e70529eef2bb69127416537ad
           path: e1-acquire/b
           persist-credentials: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683

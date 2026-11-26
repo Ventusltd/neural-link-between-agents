@@ -4,9 +4,13 @@ No producer edits; independent numerical oracle, no comparison admission.
 import copy,json,sys,subprocess,hashlib
 from pathlib import Path
 from tacit_c1_fresh import independent
-from tacit_c1_combined import canonical,bh,verify,ARCH,PIN
+ARCH="e83937c040499a7060b03ca2c4969e4414cdca48cb7f28a3ef9039f002486787"
+PIN="821abf96d3e4c2f42e61d578dcefdfbda366c145b067f9cc9206fdaa91b6cf2d"
+def canonical(x):return json.dumps(x,sort_keys=True,ensure_ascii=True,allow_nan=False,separators=(",",":")).encode()
+def bh(x):return hashlib.sha256(canonical(x)+b"\n").hexdigest()
+def verify(x):return x["receipt_sha256"]==bh({k:v for k,v in x.items() if k!="receipt_sha256"})
 A="c4d6d309940d131d2a1ae6181701086aa7221839"
-B="e0a094c8c672643f0b8a9967dea93c6ef7e4518a"
+B="0bd6879d4c3c857e70529eef2bb69127416537ad"
 E="2a58ed137bef42022a5fca8020d320b96fc47fd6"
 def sha(x):return hashlib.sha256(x).hexdigest()
 def reseal(p,k):
