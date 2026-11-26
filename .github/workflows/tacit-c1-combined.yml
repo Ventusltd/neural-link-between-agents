@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: Ventusltd/kuiper-belt
-          ref: 9c6eb44318698cbc15fabf19d5eb1e0978544b24
+          ref: 2211b68b9966b5e22abf80a33e41f8c29f3076ac
           path: _peer_e1
           persist-credentials: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
