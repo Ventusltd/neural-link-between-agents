@@ -1,0 +1,140 @@
+{
+  "schema": "cvaa.vedic-context.v1",
+  "sequence": 1,
+  "previous": null,
+  "channel": "https://github.com/Ventusltd/neural-link-between-agents/issues/87",
+  "last_seen_comment": "https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7193645040",
+  "ledger": {
+    "repo": "Ventusltd/neural-link-between-agents",
+    "commit": "a77aab1376f5e6db236f3b89d352dbfb18a6bcb9",
+    "path": "SESSIONS/2026-11-26-TACIT-14-QUANTUM-TWIN-LEDGER.md",
+    "blob": "5e57840cc24f831508047e169d398480cb53edd8"
+  },
+  "producers": {
+    "quantum_twin": "715f19d2d657df6f3dce0db05d0b35d8d0f4d36e",
+    "stars": "ed657689ca187d8cd237f8f4bd3307a020a5eb8a",
+    "periodic_catalogue_blob": "38e0fbb0ead2d21467889563d31a1cbf0b306ac1",
+    "cvaa": "b124c39e5343b24dd5b546a0c279a1c06360bdad",
+    "cosmic": "983447a7eedb82efdedd02fe3f36086671099691",
+    "vedic_main": "b17a153a6c0698902bfa89516a34ec8a956c11e7"
+  },
+  "mission": "Selected GridAtlas asset to ORIENT: typed WGS84 longitude/latitude and second point; straight-line distance and initial bearing, not route or access.",
+  "release_authority": "owner-only",
+  "publication": "not-authorised",
+  "resume_policy": "read-only-until-revalidated",
+  "roles": [
+    {
+      "agent": 7,
+      "scope": "architecture",
+      "receipt": "7193645040"
+    },
+    {
+      "agent": 8,
+      "scope": "semantic retrieval",
+      "receipt": "7193533764",
+      "head": "8f29c312632f966f9bbadbc7a73027d06d747aa8"
+    },
+    {
+      "agent": 9,
+      "scope": "adversarial review",
+      "receipt": "7193460031"
+    },
+    {
+      "agent": 10,
+      "scope": "exact source identities",
+      "receipt": "7193162975",
+      "head": "98749e10b24e591935e7e1f690616f9cf572bc0a"
+    },
+    {
+      "agent": 11,
+      "scope": "independent measurement",
+      "receipt": "7193502728",
+      "head": "afffa9781f6130529ae93052604cd3d98d172a35"
+    },
+    {
+      "agent": 12,
+      "scope": "application runtime contracts",
+      "receipt": "7193475895",
+      "head": "afffa9781f6130529ae93052604cd3d98d172a35"
+    },
+    {
+      "agent": 13,
+      "scope": "dependency evidence",
+      "receipt": "7193611949",
+      "head": "4d686f49de07cd9e53458be8772a5d89ca7537b9"
+    },
+    {
+      "agent": 14,
+      "scope": "ledger reconciliation and recovery",
+      "receipt": "7193625340",
+      "head": "a77aab1376f5e6db236f3b89d352dbfb18a6bcb9"
+    }
+  ],
+  "obligations": [
+    {
+      "id": "O1",
+      "owner": 8,
+      "state": "PARTIAL",
+      "context": "held",
+      "next": "Acquire labelled held-out intent tests; verify exact PR5 head."
+    },
+    {
+      "id": "O2",
+      "owner": 9,
+      "state": "DISPUTED",
+      "context": "held",
+      "next": "Require parser exact boundaries and full typed port constraints; retain counterexamples."
+    },
+    {
+      "id": "O3",
+      "owner": 10,
+      "state": "PARTIAL",
+      "context": "held",
+      "next": "Resolve selection accessor and ORIENT components to exact source/producer IDs and Kuiper receipt."
+    },
+    {
+      "id": "O4",
+      "owner": 11,
+      "state": "PARTIAL",
+      "context": "held",
+      "next": "Replay combined interaction and known-answer geodesy on pinned input; keep Layers gap."
+    },
+    {
+      "id": "O5",
+      "owner": 12,
+      "state": "OPEN",
+      "context": "held",
+      "next": "Locate actual selection coordinate output; prove axis order, null and stale selection controls."
+    },
+    {
+      "id": "O6",
+      "owner": 13,
+      "state": "PARTIAL",
+      "context": "held",
+      "next": "Resolve actual directed handoff dependencies; separate historical reference links."
+    }
+  ],
+  "totals": {
+    "whole": 6,
+    "resolved": 0,
+    "held": 6,
+    "outside": 0,
+    "open": 1,
+    "partial": 4,
+    "disputed": 1,
+    "settled": 0
+  },
+  "limitations": [
+    "Opening journal, not a new test run.",
+    "Historical Quantum Twin and Spider evidence is not current execution evidence.",
+    "No combined runtime proof, no release, no new permanent IDs.",
+    "No automation wakes agents; re-read all subsequent Neural Link messages before writing."
+  ],
+  "recovery": [
+    "Read AGENTS.md, PROTOCOL.md, OPERATIONS.md and pinned ledger.",
+    "Fetch all subsequent NL-087 comments and confirm current owner scope and branch heads.",
+    "Verify referenced Git blobs, CI receipts and fixture digests; mark stale or missing evidence open/disputed.",
+    "Reconcile all six obligations and their context partition before editing; leave other agents' branches untouched.",
+    "Submit new append-only receipt and refresh capsule after each checkpoint. If capsule cannot be verified, refuse promotion; preserve evidence and report blocker."
+  ]
+}
