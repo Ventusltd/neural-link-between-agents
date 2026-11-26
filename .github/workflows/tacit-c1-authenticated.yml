@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: Ventusltd/kuiper-belt
-          ref: a267004012187bd91170cc53747cea91853b0a01
+          ref: 2a58ed137bef42022a5fca8020d320b96fc47fd6
           path: _peer_e1
           persist-credentials: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -30,13 +30,13 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: Ventusltd/vedic-
-          ref: 988e2293fd740ca434a9cf087fa873f841b7dc6f
+          ref: 3c921cb913d35ad8bd8a0cf94fe9ede55fa0e529
           path: e1-acquire/b
           persist-credentials: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: Ventusltd/kuiper-belt
-          ref: 3752ff5f39c3caf82129832af30523b5e79e5ab6
+          ref: af78cdec7a3adbcf13f742f80d7b654abff0f7ce
           path: e1-acquire/d1
           sparse-checkout: |
             tools/kuiper-computation/20261126-d1-computation.js
@@ -67,8 +67,8 @@ jobs:
           gh api repos/Ventusltd/vedic-/actions/artifacts/15140134078/zip > "$s/b-final.zip"
           gh api repos/Ventusltd/vedic-/actions/artifacts/15142906371/zip > "$s/b1.zip"
           gh api repos/Ventusltd/kuiper-belt/actions/artifacts/15141534328/zip > "$s/e1.zip"
-          test "$(git -C e1-acquire/d1 rev-parse HEAD)" = 3752ff5f39c3caf82129832af30523b5e79e5ab6
-          test "$(git hash-object e1-acquire/d1/tools/kuiper-computation/20261126-d1-computation.js)" = dab59acf3a1160ac3dedca4b5a08dc59d92fb4ed
+          test "$(git -C e1-acquire/d1 rev-parse HEAD)" = af78cdec7a3adbcf13f742f80d7b654abff0f7ce
+          test "$(git hash-object e1-acquire/d1/tools/kuiper-computation/20261126-d1-computation.js)" = e470d8041b9be7760cc525197b4a3c2901592665
           cp e1-acquire/d1/tools/kuiper-computation/20261126-d1-computation.js _peer_e1/tools/kuiper-computation/202611261720-computation.js
           mv e1-acquire/d1 "$RUNNER_TEMP/e1-d1"
           rmdir e1-acquire
