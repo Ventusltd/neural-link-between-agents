@@ -1,0 +1,63 @@
+name: TACIT C sixth-turn actual electrical and bonds
+on:
+  pull_request:
+    paths:
+      - 'automation/tacit_c_sixth.py'
+      - '.github/workflows/tacit-c-sixth.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  electrical:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '18'
+      - name: Acquire exact peer source and evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-c-sixth"
+          mkdir -p "$p/factory/tools" "$p/factory/packages/factory/pending" "$p/electrical" "$RUNNER_TEMP/evidence"
+          get() { curl -fsSL --max-time 60 --max-filesize 10000000 "https://raw.githubusercontent.com/$1/$2/$3" -o "$4"; }
+          v=Ventusltd/vedic-
+          g=Ventusltd/ventus-grid-engine
+          n=Ventusltd/neural-link-between-agents
+          f=2ccc717933f97e7d191dae85360559a12de7ed21
+          b=d59d62f0d29ba830cf0baa6e773ff053a86a94a2
+          s=487ec7bd38dfa5aecb1c75da53b4a866ab2101cb
+          for file in tools/package_factory.py packages/factory/pending/electrical.json packages/factory/pending/nearest-substation.json; do
+            get "$v" "$f" "$file" "$p/factory/$file"
+          done
+          for file in tacit_b_electrical.py tacit_b_composition.py tacit_b_candidate_intake.py; do
+            get "$v" "$b" "tools/$file" "$p/$file"
+          done
+          get "$g" "$s" engine/voltage-drop.js "$p/electrical/module.mjs"
+          get "$g" "$s" LICENSE "$p/electrical/LICENSE"
+          for pair in adapter.mjs:adapter.mjs test.mjs:test.mjs consumer.mjs:consumer.mjs README.md:electrical-readme.md; do
+            get "$v" 4bf9c297c0cec8452327254a297fb7bd0d48e4dd "packages/electrical/${pair%:*}" "$p/electrical/${pair#*:}"
+          done
+          get "$v" 6a673d7a91adeeb3cc69de8d0d8814279abc764e packages/electrical/typed-ports.json "$p/ports.json"
+          for pair in A:15138897783 A-original:15137841195 B:15137954846; do
+            gh api "repos/$v/actions/artifacts/${pair#*:}/zip" > "$p/${pair%:*}.zip"
+          done
+          gh api "repos/$n/actions/artifacts/15138980638/zip" > "$p/C.zip"
+      - name: Actual independent electrical execution and bond review offline
+        run: |
+          sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env -i PATH="$PATH" HOME="$HOME" python automation/tacit_c_sixth.py "$RUNNER_TEMP/tacit-c-sixth" "$RUNNER_TEMP/evidence/sixth-review.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: tacit-c-sixth-review
+          path: ${{ runner.temp }}/evidence/
+          if-no-files-found: warn
+          retention-days: 30
