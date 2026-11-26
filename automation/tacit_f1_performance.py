@@ -1,0 +1,292 @@
+"""F1: hosted CPU evidence, not an execution engine or admission mechanism."""
+import copy, hashlib, json, math, os, platform, resource, statistics, sys, time
+from collections import deque
+from pathlib import Path
+from tacit_c_verify import sha, blob, canonical, need, ARCHIVE, DESCRIPTOR
+from tacit_c_ninth import B_PIN, A_PIN
+from tacit_c_eighth_peer import pinned
+from tacit_c_seventh import member
+
+LAB_BLOB = "4273eb3d4e0715f12cce22a5ac5030cb579addcd"
+REPEATS = 5
+def check(ok, label):
+    need(ok, label)
+def digest(x):
+    return sha(canonical(x))
+def measure(report, label, fn, input_sha, cohort, n=REPEATS):
+    samples = []
+    cpu = []
+    first = None
+    expected = None
+    for i in range(n):
+        start = time.perf_counter_ns()
+        c = time.process_time_ns()
+        value = fn()
+        cpu.append((time.process_time_ns()-c)/1e6)
+        samples.append((time.perf_counter_ns()-start)/1e6)
+        d = digest(value)
+        if i == 0:
+            first, expected = value, d
+        check(d == expected, "NONDETERMINISTIC:"+label)
+    report["stages"][label] = {"input_sha256":input_sha,"cohort":cohort,
+        "samples_ms":samples,"first_ms":samples[0],"warm_median_ms":statistics.median(samples[1:]),
+        "median_ms":statistics.median(samples),"range_ms":[min(samples),max(samples)],
+        "parent_cpu_ms":cpu,"repeats":n,"output_sha256":expected,
+        "memory_scope":"process-wide peak RSS; see environment, not per-stage"}
+    return first
+
+def csr(n, edges):
+    # Convert actual published index-array records into incoming CSR, retaining duplicates.
+    buckets = [[] for _ in range(n)]
+    for a,b in edges:
+        check(type(a) is int and type(b) is int and 0 <= a < n and 0 <= b < n, "EDGE_RANGE")
+        buckets[b].append(a)
+    offsets, items = [0], []
+    for b in buckets:
+        items.extend(b); offsets.append(len(items))
+    return offsets,items
+
+def reverse(offsets,items,seed):
+    seen={seed:0}; queue=deque([seed]); visits=0
+    while queue:
+        target=queue.popleft()
+        for j in range(offsets[target],offsets[target+1]):
+            source=items[j]; visits+=1
+            if source not in seen:
+                seen[source]=seen[target]+1; queue.append(source)
+    return {"depths":sorted(seen.items()),"record_visits":visits}
+
+def graph(report, label, n, edges, input_sha, synthetic=False, seeds=None):
+    check(0<n<=12000 and len(edges)<=30000,"GRAPH_BOUND")
+    offsets, items=measure(report,label+"-csr",lambda:csr(n,edges),input_sha,n)
+    check(offsets[-1]==len(edges),"CSR_RECORD_COUNT")
+    # Fixed seeds across index domain, not a claim to scan all of the estate.
+    seeds=sorted(set([0,n//4,n//2,3*n//4,n-1])) if seeds is None else seeds
+    result=measure(report,label+"-reverse",lambda:[reverse(offsets,items,s) for s in seeds],
+        digest([input_sha,seeds]),n)
+    # Verify duplicate-preserving incoming records against the published format.
+    check(sorted((a,b) for b in range(n) for a in items[offsets[b]:offsets[b+1]])==sorted(edges),"CSR_PARITY")
+    visits=sum(r["record_visits"] for r in result)
+    report["graphs"][label]={"nodes":n,"records":len(edges),"seeds":seeds,"record_visits":visits,
+        "synthetic":synthetic,"interpretation":"static records, not execution or runtime call edges",
+        "visits_per_second":visits/(report["stages"][label+"-reverse"]["median_ms"]/1000)
+        if report["stages"][label+"-reverse"]["median_ms"] else None}
+
+def runtime(root,report):
+    raw_lab=(root/"lab.json").read_bytes()
+    check(blob(raw_lab)==LAB_BLOB,"LAB_PIN")
+    lab=json.loads(raw_lab)
+    report["historical_cuda"]={"source_git_blob":LAB_BLOB,"sha256":sha(raw_lab),
+        "status":"PRODUCER_REPORTED_NOT_REPEATED","baseline":lab["baseline"],
+        "graph_summary":lab["spider"]["graphs"],"failed_local_receipts":lab["local_failure_receipts"],
+        "raw_local_receipts":"OPEN_UNAVAILABLE","gpu_acceptance":False}
+    pins=lab["spider"]["input_sha256"]
+    data={}
+    for path in ("species/genome-spider/data/nodes.json","species/genome-spider/data/edges.json","spider_printer_v1/data/topology.json"):
+        file=root/Path(path).name
+        b=measure(report,"read-"+file.name,lambda:{"sha256":sha(file.read_bytes())},pins[path],1)
+        check(b["sha256"]==pins[path],"SPIDER_INPUT_PIN")
+        data[file.name]=json.loads(file.read_bytes())
+    n=len(data["nodes.json"]["features"])
+    edges=[(a,b) for a,b,_ in data["edges.json"]["edges"]]
+    check((n,len(edges))==(1379,3249),"GENOME_COHORT")
+    graph(report,"genome",n,edges,digest([pins["species/genome-spider/data/nodes.json"],pins["species/genome-spider/data/edges.json"]]))
+    printer=data["topology.json"]
+    ids={x["id"]:i for i,x in enumerate(printer["nodes"])}
+    pe=[(ids[x["from"]],ids[x["to"]]) for x in printer["edges"]]
+    check((len(ids),len(pe))==(30,164),"PRINTER_COHORT")
+    graph(report,"printer",len(ids),pe,pins["spider_printer_v1/data/topology.json"])
+    for scale in (2,4,8):
+        se=[(a+k*n,b+k*n) for k in range(scale) for a,b in edges]
+        seeds=[k*n+s for k in range(scale) for s in report["graphs"]["genome"]["seeds"]]
+        graph(report,"synthetic-genome-"+str(scale),n*scale,se,digest([pins["species/genome-spider/data/edges.json"],scale]),True,seeds)
+        check(report["graphs"]["synthetic-genome-"+str(scale)]["record_visits"]==scale*report["graphs"]["genome"]["record_visits"],"SYNTHETIC_WORKLOAD_SCALE")
+    # All producer acquisitions inherited from C's previously verified staging.
+    froot=root/"factory"; peer=root/"peer-b"; droot=root/"peer-d"
+    sys.path[:0]=[str(froot/"tools"),str(peer/"tools"),str(droot/"tools")]
+    for path, expected in {"factory/tools/package_factory.py":"23247de65fde04a400bb30874fc7e81cca4b7ebe","factory/tools/typed_package_execution.py":"480a0d0d1ee1af0b7a5919e307564cf597b9f8ff","peer-b/tools/tacit_b_kuiper.py":"f0762d6974c266d8cf97d3647b483aa18ee4eb02","peer-b/tools/tacit_b_ranking.py":"8a3932e42a426cbae8dcc958e4673644615e2d44","peer-b/tools/tacit_b_electrical.py":"1d8875227690e5d2c5dc1d78c36e8fc4faf2055e","peer-b/tools/tacit_b_composition.py":"a97a9c4297e45b6befbff1cc4130c395a831332a","peer-d/tools/kuiper_select.py":"409208484604ab88a94b377a009548f2a2b67964"}.items():
+        check(blob((root/path).read_bytes())==expected,"SOURCE_PIN:"+path)
+    import package_factory as f
+    import typed_package_execution as t
+    from tacit_b_kuiper import Bridge
+    from kuiper_select import Space, load
+    zip_path=root/"A-bonds.zip"
+    manifest=measure(report,"authenticated-manifest-load",lambda:load(zip_path),sha(zip_path.read_bytes()),8)
+    raw=member(root,"A-bonds")
+    check(json.loads(raw)==manifest,"MANIFEST_PARITY")
+    mhash=sha(raw)
+    space=Space(manifest)
+    measure(report,"property-validation",lambda:sorted(Space(manifest).by_key),mhash,8)
+    keys=measure(report,"property-selection",lambda:space.select(module="Vg",property_name="runtime_effects",state="UNKNOWN"),mhash,8)
+    check(len(keys)==2,"PROPERTY_SELECTION")
+    check(tuple(sorted(k for i in (1,5) for k in space.select(meaning="GG2050-VEDIC-%06d"%i)))==keys,"MEANING_MACHINE_PARITY")
+    positions=measure(report,"original-js-projection",lambda:space.project(tuple(sorted(space.by_key))),mhash,8)
+    check(len(positions)==8 and all(p["m"]==(p["key"]*2654435769)%2**32 for p in positions),"PLACEMENT_MOD")
+    check(all(abs(p["r"]-math.sqrt(p["key"]+0.5))<1e-9 for p in positions),"PLACEMENT_RADIUS")
+    # Cache is disposable, content-addressed, never an execution-result cache.
+    cache={}
+    def lookup(payload):
+        key=sha(payload)
+        if key not in cache:
+            check(key==mhash,"CACHE_UNAUTHENTICATED")
+            cache[key]=Space(json.loads(payload))
+        return cache[key]
+    def cold():
+        cache.clear();return sorted(lookup(raw).by_key)
+    measure(report,"selection-cache-empty",cold,mhash,8)
+    measure(report,"selection-cache-warm",lambda:sorted(lookup(raw).by_key),mhash,8)
+    try: lookup(raw+b" ")
+    except ValueError: pass
+    else: raise ValueError("CACHE_INVALIDATION_FAILED")
+    check(len(cache)==1,"CACHE_MUTATION")
+    archive=root/"orient.zip"
+    desc=f.strict(f.ADMISSIONS["orient"].read_bytes())
+    builds=[]
+    def fresh_build():
+        target=root/("orient-build-"+str(len(builds))+".zip")
+        result=f.build(desc,root/"inputs",target)
+        check(sha(target.read_bytes())==ARCHIVE,"REPEAT_ARCHIVE_PIN")
+        builds.append(target)
+        return result
+    build=measure(report,"factory-build",fresh_build,digest(desc),1,3)
+    archive=builds[0]
+    ar=archive.read_bytes()
+    check(sha(ar)==ARCHIVE and build["descriptor_sha256"]==DESCRIPTOR,"ORIENT_ARCHIVE_PIN")
+    b=Bridge(f,t,Space,raw,ar,build,root/"nearest",root/"nearest-source",root/"electrical")
+    rep=json.loads(pinned(root/"B-bridge.zip",B_PIN))
+    q1=rep["requests"]["orient"]; q2=copy.deepcopy(q1)
+    q2["inputs"]["point_b"]["longitude"]=2
+    rc=[]
+    for i,q in enumerate((q1,q2)):
+        r=measure(report,"actual-orient-"+str(i+1),lambda q=q:b.execute(q),digest(q),2,3)
+        check(r["state"]=="EXECUTED_INTERNAL" and r["archive_sha256"]==ARCHIVE and r["request_sha256"]==digest(q),"RUNTIME_RECEIPT")
+        check(r["receipt_sha256"]==digest({k:v for k,v in r.items() if k!="receipt_sha256"}),"RECEIPT_HASH")
+        rc.append(r)
+    check(rc[0]["request_sha256"]!=rc[1]["request_sha256"] and rc[0]["output"]!=rc[1]["output"],"FRESH_REQUEST")
+    check(rc[0]["pattern_sha256"]==rc[1]["pattern_sha256"],"STABLE_PATTERN")
+    report["runtime"]=[{k:r[k] for k in ("request_sha256","pattern_sha256","receipt_sha256","output","state","archive_sha256")} for r in rc]
+    for op in ("nearest-orient","electrical"):
+        r=b.execute(rep["requests"][op])
+        check(r["state"]=="REFUSED" and r["output"] is None and r["nodes"]==[],"DEFAULT_REFUSAL:"+op)
+
+    # New B1 verified pattern contract: execute actual producer entrypoint, not a mock.
+    from tacit_b_patterns import PatternBridge
+    check(blob((peer/"tools"/"tacit_b_patterns.py").read_bytes())=="f231fdc7014491cb63e5824f09f90d7a62c8f5fb","B1_SOURCE_PIN")
+    b1pin=("77561125ed5829483f30f84391c9998a21915654737fbfa34ca336b43686dbe5","tacit-b1-patterns.json","a5540a0978117750fd54739e423dbd4e7c0150ce1eba81d5139609ed2db7ee97")
+    bw=json.loads(pinned(root/"B1.zip",b1pin))
+    pb=PatternBridge(f,t,Space,raw,ar,build,root/"nearest",root/"nearest-source",root/"electrical")
+    patterns=measure(report,"b1-pattern-compile",lambda:[pb.pattern(op) for op in ("orient","nearest-orient","electrical")],mhash,3)
+    v2results=[]
+    for i,q in enumerate(bw["requests"]):
+        rr=measure(report,"b1-actual-wire-orient-"+str(i+1),lambda q=q:pb.execute_raw(f.canonical(q)),digest(q),2,3)
+        check(rr==bw["results"][i],"B1_EXACT_PRODUCER_REPLAY")
+        v2results.append({"request_sha256":rr["request_sha256"],"pattern_sha256":rr["pattern_sha256"],"result_sha256":rr["result_sha256"],"output":rr["result"]["output"]})
+    for op in ("nearest-orient","electrical"):
+        q=bw["candidate_requests"][op]
+        rr=pb.execute_raw(f.canonical(q))
+        check(rr==bw["refusals"][op] and rr["result"]["state"]=="REFUSED","B1_EXACT_REFUSAL")
+    check(v2results[0]["pattern_sha256"]==v2results[1]["pattern_sha256"] and v2results[0]["result_sha256"]!=v2results[1]["result_sha256"],"B1_PATTERN_REQUEST_DISTINCTION")
+    # Read-only dependency mapping from exact v2 pattern source rows. This is a
+    # candidate applicability index, not a new authority or live invalidation.
+    mapping={path:sorted(p["operation"] for p in patterns if any(x["source"]["path"]==path for x in p["sources"])) for path in ("engine/v9-geodesy.js","engine/v9-nearest-search.js","engine/voltage-drop.js")}
+    check(mapping=={"engine/v9-geodesy.js":["nearest-orient","orient"],"engine/v9-nearest-search.js":["nearest-orient"],"engine/voltage-drop.js":["electrical"]},"B1_PATTERN_SOURCE_MAPPING")
+    report["b1"]={"head":"988e2293fd740ca434a9cf087fa873f841b7dc6f","artifact_id":15142906371,"zip_sha256":b1pin[0],"member_sha256":b1pin[2],
+        "fresh_replays":v2results,"affected_pattern_candidates":mapping,"live_invalidation":False}
+    report["checks"] += ["actual B1 v2 pattern and two wire receipts matched","B1 default refusals matched","B1 source dependency mapping matched A1 expectations"]
+
+    report["checks"] += ["authenticated eight-key cohort","machine/meaning parity","original projection MOD/radius","cache tamper refusal","actual ORIENT archive","two distinct fresh requests","stable pattern","nearest and electrical refused"]
+    report["open"] += ["D1/E1 combined successor not staged; A1 and B1 measured in distinct jobs","independent oracle remains C1 scope","no physical GPU or handset replay","cold OS cache not controlled; cold means empty application cache","CPU scaling measured only on disjoint synthetic copies; not estate scaling"]
+
+def impact(root,report):
+    raw=pinned(root/"A-impact.zip",A_PIN)
+    m=json.loads(raw)
+    check((root/"impact-first.json").read_bytes()==(root/"impact-second.json").read_bytes()==raw,"ACTUAL_IMPACT_REPLAY")
+    sys.path.insert(0,str(root/"peer-a"/"tools"))
+    import tacit_a_impact as a
+    expect={"engine/v9-geodesy.js":["nearest-orient","orient"],"engine/v9-nearest-search.js":["nearest-orient"],"engine/voltage-drop.js":["electrical"]}
+    events=[]
+    for r in m["source_entries"]:
+        s=r["source"]
+        events.extend([({"kind":"source","source":s,"new_blob":"0"*40},expect[s["path"]]),
+                       ({"kind":"source","source":s,"new_blob":s["blob"]},[]),
+                       ({"kind":"presentation","source":s,"field":"display_colour"},[]),
+                       ({"kind":"presentation","source":s,"field":"classification_description"},[])])
+    for family,row in m["family_reviews"].items():
+        events.append(({"kind":"closure","family":family,"old_sha256":row["closure_sha256"],"new_sha256":"0"*64},sorted(p["operation"] for p in m["patterns"] if family in p["families"])))
+    for p in m["properties"]:
+        s=p["source_occurrence"]
+        events.append(({"kind":"property","source":s,"property":p["property"],"old_sha256":a.sha(a.canonical(p)),"new_sha256":"0"*64},sorted(x["operation"] for x in m["patterns"] if any(z["source"]==s for z in x["sources"]))))
+    before=sha(a.canonical(m))
+    got=measure(report,"actual-reverse-impact-batch",lambda:[a.impact(m,e) for e,_ in events],digest([sha(raw),[e for e,_ in events]]),len(events))
+    rows=[]
+    for i,((e,want),r) in enumerate(zip(events,got)):
+        check(r["affected_patterns"]==want and not r["addresses_changed"],"IMPACT_"+str(i))
+        expected=sorted({d for p in m["patterns"] if p["operation"] in want for d in p["receipts"]})
+        check([x["sha256"] for x in r["affected_receipts"]]==expected and all(x["state"]=="STALE_FOR_NEW_INPUT_HISTORICAL_PRESERVED" for x in r["affected_receipts"]),"RECEIPT_STALE_"+str(i))
+        rows.append({"case":i,"kind":e["kind"],"event_sha256":digest(e),"affected_patterns":want,"stale_receipt_count":len(expected),"state":r["state"]})
+    check(sha(a.canonical(m))==before and sha(raw)==A_PIN[2],"HISTORICAL_BYTES")
+    check(len(m["bond_details"])==5 and all(x["relationship_state"]=="CONDITIONAL_CANDIDATE" for x in m["bond_details"]),"CONDITIONAL")
+    summary={kind:{"events":sum(r["kind"]==kind for r in rows),"affected_events":sum(r["kind"]==kind and bool(r["affected_patterns"]) for r in rows)} for kind in ("source","closure","property","presentation")}
+    report["impact"]={"scorecard":summary,"rows":rows,"manifest_sha256":sha(raw),"actual_producer_replay":True,
+        "conditional_bonds":5,"historical_receipts_unchanged":True,"live_consumer":False}
+    successor(root,report,events)
+    report["checks"] += ["producer cold replay byte-identical","all "+str(len(rows))+" source/closure/property/presentation events","historical bytes unchanged","conditional bonds preserved"]
+    report["open"] += ["E1 integrated runtime not yet staged; successor A1 uses exact B predecessor, not B1","live receipt invalidation unverified","CVAA/Faraday/Quantum Twin inherited evidence only; no live wiring"]
+
+def successor(root,report,events):
+    # Reuse A1 actual, verified read-only adapter; no independent oracle claim.
+    import shutil
+    from tacit_a1_properties import Space
+    code=root/"peer-a"/"tools"/"tacit_a1_properties.py"
+    check(blob(code.read_bytes())=="de46c88c993a18f3c8a17ea289c936e2cd42e316","A1_SOURCE_PIN")
+    pin=("5b3dc6d98ea6f3dec757263869d77a6261ce29d57ddce8a8659dfcd633ab1a86","property-impact.json","1233591210b19b006bb5970ecc85bdf0e5951cc3bef92e5e670871a4da0ca9e3")
+    witness=json.loads(pinned(root/"A1.zip",pin))
+    check(witness["counts"]=={"PASS":106,"FAIL":0,"OPEN":3},"A1_PRODUCER_COUNTS")
+    stage=root/"a1-inputs"; stage.mkdir()
+    for origin,target in (("A-bonds.zip","bonds.zip"),("A-impact.zip","impact.zip"),("B-bridge.zip","b-final.zip")):
+        shutil.copyfile(root/origin,stage/target)
+    box=[]
+    def acquire():
+        s=Space(stage);box[:] = [s]
+        return {"keys":sorted(s.rows,key=int),"bonds":[b["receipt_sha256"] for b in s.bonds]}
+    measure(report,"a1-authenticated-selection-space",acquire,digest([pin[2],B_PIN[2],A_PIN[2]]),8)
+    s=box[0]
+    expressions=[r["expression"] for r in witness["selection_examples"]]
+    rec=measure(report,"a1-property-selection-batch",lambda:[s.select(e) for e in expressions],digest(expressions),len(expressions))
+    check(rec==witness["selection_examples"],"A1_SELECTION_ARTIFACT_REPLAY")
+    fresh=measure(report,"a1-exact-peer-reverse-impact",lambda:[s.reverse_impact(e) for e,_ in events],digest([pin[2],[e for e,_ in events]]),len(events))
+    witness_source={digest(x["event"]):x for x in witness["reverse_impacts"]}
+    for (event,want),r in zip(events,fresh):
+        check(r["affected_patterns"]==want and not r["addresses_changed"],"A1_IMPACT")
+        if event["kind"]=="source" and event["new_blob"]!=event["source"]["blob"]:
+            check(r==witness_source[digest(event)],"A1_SOURCE_IMPACT_ARTIFACT")
+        check(all(s.bridge["results"][op]["receipt_sha256"] in {x["sha256"] for x in r["affected_receipts"]} for op in want),"A1_EXACT_B_RECEIPT")
+    report["a1"]={"head":"7391b50343b7d7beecb8a32ccd748bfc00c2190b","artifact_id":15143370771,"member_sha256":pin[2],
+        "zip_sha256":pin[0],"actual_selection_examples":len(rec),"actual_events":len(fresh),"inherited_B_receipt_binding":True,
+        "producer_counts":witness["counts"],"static_spider_channels":witness["spider_channels"],"fresh_B1_receipts":"OPEN"}
+    report["checks"] += ["A1 exact selection examples replayed","A1 impact events bound to historical B receipts","A1 source impacts equal producer artifact"]
+
+
+def main():
+    mode,root,out=sys.argv[1],Path(sys.argv[2]),Path(sys.argv[3])
+    report={"schema":"tacit-f1.performance-regression.v1","mode":mode,"stages":{},"graphs":{},"checks":[],"open":[],
+      "acquisition":{"staged_network_wall_ms":int((root/"acquisition-ns.txt").read_text())/1e6,"repeats":1,"scope":"network setup in workflow; no cold/warm network claim"},
+      "environment":{"python":platform.python_version(),"platform":platform.platform(),"logical_cpus":os.cpu_count()},
+      "authority":"RESEARCH_ONLY","production":False,"redistribution":"BLOCKED",
+      "dispatch_policy":{"cpu":"Default for eight-key selection, static graph traversal and admitted runtime","gpu":"Optional only for large bounded geometry batches after same-input parity and end-to-end transfer-inclusive evidence","cache":"Key by authenticated bytes and exact code/schema pin; no stale execution-result cache","scale":"No estate-wide or crossover inference from synthetic graph copies"}}
+    try:
+        {"runtime":runtime,"impact":impact}[mode](root,report)
+        report["status"]="PASS_BOUNDED"
+    except Exception as e:
+        report["status"]="FAIL"; report["failure"]=type(e).__name__+":"+str(e)
+    report["environment"].update(parent_peak_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+                                  child_peak_rss_kib=resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss)
+    out.parent.mkdir(parents=True,exist_ok=True)
+    out.write_bytes(canonical(report))
+    print(json.dumps({"status":report["status"],"checks":len(report["checks"]),"open":len(report["open"]),
+      "sha256":sha(out.read_bytes()),"stages":{k:round(v["median_ms"],4) for k,v in report["stages"].items()},
+      "failure":report.get("failure")},sort_keys=True))
+    return int(report["status"]=="FAIL")
+
+if __name__=="__main__":
+    raise SystemExit(main())

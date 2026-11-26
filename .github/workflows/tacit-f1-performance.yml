@@ -1,0 +1,133 @@
+name: TACIT F1 CPU baseline and dependency regression
+on:
+  pull_request:
+    paths:
+      - automation/tacit_f1_performance.py
+      - .github/workflows/tacit-f1-performance.yml
+permissions:
+  contents: read
+  actions: read
+jobs:
+  witness:
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [runtime, impact]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: matrix.mode == 'runtime'
+        with:
+          repository: Ventusltd/vedic-
+          ref: 988e2293fd740ca434a9cf087fa873f841b7dc6f
+          path: _peer_b
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: matrix.mode == 'runtime'
+        with:
+          repository: Ventusltd/kuiper-belt
+          ref: e625da97e76a7d3b99361e01767e0fef0984c445
+          path: _peer_d
+          persist-credentials: false
+          sparse-checkout: |
+            tools/kuiper_select.py
+            learn-the-kuiper/202610050609/kuiper-law.js
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: matrix.mode == 'impact'
+        with:
+          repository: Ventusltd/vedic-
+          ref: 7391b50343b7d7beecb8a32ccd748bfc00c2190b
+          path: _peer_a
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '18'
+      - name: Acquire exact bridge and impact evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MODE: ${{ matrix.mode }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-f1-performance"
+          mkdir -p "$p" "$RUNNER_TEMP/evidence"
+          started=$(date +%s%N)
+          v=Ventusltd/vedic-
+          g=Ventusltd/ventus-grid-engine
+          f=2ccc717933f97e7d191dae85360559a12de7ed21
+          s=487ec7bd38dfa5aecb1c75da53b4a866ab2101cb
+          get() { curl -fsSL --max-time 60 --max-filesize 10000000 "https://raw.githubusercontent.com/$1/$2/$3" -o "$4"; }
+          for pair in A-bonds:15138897783 B-bridge:15140134078; do
+            gh api "repos/$v/actions/artifacts/${pair#*:}/zip" > "$p/${pair%:*}.zip"
+          done
+          if [ "$MODE" = impact ]; then
+            mv _peer_a "$p/peer-a"
+            gh api "repos/$v/actions/artifacts/15140897950/zip" > "$p/A-impact.zip"
+            gh api "repos/$v/actions/artifacts/15143370771/zip" > "$p/A1.zip"
+            python "$p/peer-a/tools/tacit_a_impact.py" acquire --root "$p/impact"
+          else
+            mv _peer_b "$p/peer-b"
+            mv _peer_d "$p/peer-d"
+            mkdir -p "$p/factory/tools" "$p/factory/packages/factory/admissions" "$p/factory/packages/factory/pending" "$p/inputs" "$p/nearest/packages/nearest-candidate" "$p/nearest-source" "$p/electrical" "$p/oracle"
+            for file in tools/package_factory.py tools/typed_package_execution.py packages/factory/admissions/orient.json packages/factory/pending/electrical.json packages/factory/pending/nearest-substation.json; do
+              get "$v" "$f" "$file" "$p/factory/$file"
+            done
+            get "$v" 1aa2b9d1ab3bf9c6963b68b20ea608e826162e15 tools/tacit9/acceptance.py "$p/oracle/acceptance.py"
+            get "$v" 2adc1fa9c52f1d242e601b1580927996e7cb31da tools/package_builder.py "$p/inputs/prototype.py"
+            get "$g" "$s" LICENSE "$p/inputs/LICENSE"
+            for file in v9-geodesy.js v9-nearest-search.js; do
+              get "$g" "$s" "engine/$file" "$p/nearest-source/$file"
+            done
+            get "$v" 7e81854d840abe40e97ba1567f54fc28594ea9a7 packages/nearest-candidate/index.mjs "$p/nearest-source/adapter.mjs"
+            for file in kuiper_bond.py consumer-fixture.json; do
+              get "$v" dd13013c5944ba94115f62f0eeac67c34956eb2c "packages/nearest-candidate/$file" "$p/nearest/packages/nearest-candidate/$file"
+            done
+            get "$g" "$s" engine/voltage-drop.js "$p/electrical/module.mjs"
+            cp "$p/inputs/LICENSE" "$p/electrical/LICENSE"
+            for pair in adapter.mjs:adapter.mjs test.mjs:test.mjs consumer.mjs:consumer.mjs README.md:electrical-readme.md; do
+              get "$v" 4bf9c297c0cec8452327254a297fb7bd0d48e4dd "packages/electrical/${pair%:*}" "$p/electrical/${pair#*:}"
+            done
+            gh api "repos/$v/actions/artifacts/15140148659/zip" > "$p/B-old.zip"
+            gh api "repos/$v/actions/artifacts/15126683549/zip" > "$p/identity.zip"
+            python - "$p" <<'PY'
+          import pathlib,sys
+          sys.path.insert(0,"automation")
+          from tacit_c_peer_verify import member
+          p=pathlib.Path(sys.argv[1])
+          for src,dst in [("source-receipt/receipt.json","receipt.json"),("source-receipt/v9-geodesy.mjs","module.mjs")]:
+              (p/"inputs"/dst).write_bytes(member(p,"identity",src))
+          PY
+          fi
+          if [ "$MODE" = runtime ]; then
+            gh api "repos/$v/actions/artifacts/15142906371/zip" > "$p/B1.zip"
+            get Ventusltd/neural-link-between-agents 420815d32677225267bc77ae90054973f52cd4b5 handoffs/20261126-TACIT-D-KUIPER-CUDA-LAB.json "$p/lab.json"
+            for file in species/genome-spider/data/nodes.json species/genome-spider/data/edges.json spider_printer_v1/data/topology.json; do
+              get Ventusltd/spiders 830e86ea65e98b03df7250d2dd55d2753799687a "$file" "$p/${file##*/}"
+            done
+          fi
+          ended=$(date +%s%N)
+          echo "$((ended-started))" > "$p/acquisition-ns.txt"
+      - name: Offline CPU stage benchmarks and impact scorecard
+        env:
+          MODE: ${{ matrix.mode }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/tacit-f1-performance"
+          offline() { sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env -i PATH="$PATH" HOME="$HOME" "$@"; }
+          if [ "$MODE" = impact ]; then
+            for n in first second; do offline python "$p/peer-a/tools/tacit_a_impact.py" verify --root "$p/impact" --out "$p/impact-$n.json"; done
+          fi
+          offline python automation/tacit_f1_performance.py "$MODE" "$p" "$RUNNER_TEMP/evidence/f1-$MODE.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: tacit-f1-performance-${{ matrix.mode }}
+          path: ${{ runner.temp }}/evidence/
+          retention-days: 30
