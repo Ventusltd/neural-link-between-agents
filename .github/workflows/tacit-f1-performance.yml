@@ -41,7 +41,7 @@ jobs:
         if: matrix.mode == 'impact'
         with:
           repository: Ventusltd/vedic-
-          ref: 72e9bedaa16a3be6d607e37f083ee2365798a5ea
+          ref: 7391b50343b7d7beecb8a32ccd748bfc00c2190b
           path: _peer_a
           persist-credentials: false
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -70,6 +70,7 @@ jobs:
           if [ "$MODE" = impact ]; then
             mv _peer_a "$p/peer-a"
             gh api "repos/$v/actions/artifacts/15140897950/zip" > "$p/A-impact.zip"
+            gh api "repos/$v/actions/artifacts/15143370771/zip" > "$p/A1.zip"
             python "$p/peer-a/tools/tacit_a_impact.py" acquire --root "$p/impact"
           else
             mv _peer_b "$p/peer-b"

@@ -56,12 +56,12 @@ def reverse(offsets,items,seed):
                 seen[source]=seen[target]+1; queue.append(source)
     return {"depths":sorted(seen.items()),"record_visits":visits}
 
-def graph(report, label, n, edges, input_sha, synthetic=False):
+def graph(report, label, n, edges, input_sha, synthetic=False, seeds=None):
     check(0<n<=12000 and len(edges)<=30000,"GRAPH_BOUND")
     offsets, items=measure(report,label+"-csr",lambda:csr(n,edges),input_sha,n)
     check(offsets[-1]==len(edges),"CSR_RECORD_COUNT")
     # Fixed seeds across index domain, not a claim to scan all of the estate.
-    seeds=sorted(set([0,n//4,n//2,3*n//4,n-1]))
+    seeds=sorted(set([0,n//4,n//2,3*n//4,n-1])) if seeds is None else seeds
     result=measure(report,label+"-reverse",lambda:[reverse(offsets,items,s) for s in seeds],
         digest([input_sha,seeds]),n)
     # Verify duplicate-preserving incoming records against the published format.
@@ -98,7 +98,9 @@ def runtime(root,report):
     graph(report,"printer",len(ids),pe,pins["spider_printer_v1/data/topology.json"])
     for scale in (2,4,8):
         se=[(a+k*n,b+k*n) for k in range(scale) for a,b in edges]
-        graph(report,"synthetic-genome-"+str(scale),n*scale,se,digest([pins["species/genome-spider/data/edges.json"],scale]),True)
+        seeds=[k*n+s for k in range(scale) for s in report["graphs"]["genome"]["seeds"]]
+        graph(report,"synthetic-genome-"+str(scale),n*scale,se,digest([pins["species/genome-spider/data/edges.json"],scale]),True,seeds)
+        check(report["graphs"]["synthetic-genome-"+str(scale)]["record_visits"]==scale*report["graphs"]["genome"]["record_visits"],"SYNTHETIC_WORKLOAD_SCALE")
     # All producer acquisitions inherited from C's previously verified staging.
     froot=root/"factory"; peer=root/"peer-b"; droot=root/"peer-d"
     sys.path[:0]=[str(froot/"tools"),str(peer/"tools"),str(droot/"tools")]
@@ -201,8 +203,43 @@ def impact(root,report):
     summary={kind:{"events":sum(r["kind"]==kind for r in rows),"affected_events":sum(r["kind"]==kind and bool(r["affected_patterns"]) for r in rows)} for kind in ("source","closure","property","presentation")}
     report["impact"]={"scorecard":summary,"rows":rows,"manifest_sha256":sha(raw),"actual_producer_replay":True,
         "conditional_bonds":5,"historical_receipts_unchanged":True,"live_consumer":False}
+    successor(root,report,events)
     report["checks"] += ["producer cold replay byte-identical","all "+str(len(rows))+" source/closure/property/presentation events","historical bytes unchanged","conditional bonds preserved"]
-    report["open"] += ["A1 successor contract and E1 integrated runtime not yet staged","live receipt invalidation unverified","CVAA/Faraday/Quantum Twin inherited evidence only; no live wiring"]
+    report["open"] += ["E1 integrated runtime not yet staged; successor A1 uses exact B predecessor, not B1","live receipt invalidation unverified","CVAA/Faraday/Quantum Twin inherited evidence only; no live wiring"]
+
+def successor(root,report,events):
+    # Reuse A1 actual, verified read-only adapter; no independent oracle claim.
+    import shutil
+    from tacit_a1_properties import Space
+    code=root/"peer-a"/"tools"/"tacit_a1_properties.py"
+    check(blob(code.read_bytes())=="de46c88c993a18f3c8a17ea289c936e2cd42e316","A1_SOURCE_PIN")
+    pin=("5b3dc6d98ea6f3dec757263869d77a6261ce29d57ddce8a8659dfcd633ab1a86","property-impact.json","1233591210b19b006bb5970ecc85bdf0e5951cc3bef92e5e670871a4da0ca9e3")
+    witness=json.loads(pinned(root/"A1.zip",pin))
+    check(witness["counts"]=={"PASS":106,"FAIL":0,"OPEN":3},"A1_PRODUCER_COUNTS")
+    stage=root/"a1-inputs"; stage.mkdir()
+    for origin,target in (("A-bonds.zip","bonds.zip"),("A-impact.zip","impact.zip"),("B-bridge.zip","b-final.zip")):
+        shutil.copyfile(root/origin,stage/target)
+    box=[]
+    def acquire():
+        s=Space(stage);box[:] = [s]
+        return {"keys":sorted(s.rows,key=int),"bonds":[b["receipt_sha256"] for b in s.bonds]}
+    measure(report,"a1-authenticated-selection-space",acquire,digest([pin[2],B_PIN[2],A_PIN[2]]),8)
+    s=box[0]
+    expressions=[r["expression"] for r in witness["selection_examples"]]
+    rec=measure(report,"a1-property-selection-batch",lambda:[s.select(e) for e in expressions],digest(expressions),len(expressions))
+    check(rec==witness["selection_examples"],"A1_SELECTION_ARTIFACT_REPLAY")
+    fresh=measure(report,"a1-exact-peer-reverse-impact",lambda:[s.reverse_impact(e) for e,_ in events],digest([pin[2],[e for e,_ in events]]),len(events))
+    witness_source={digest(x["event"]):x for x in witness["reverse_impacts"]}
+    for (event,want),r in zip(events,fresh):
+        check(r["affected_patterns"]==want and not r["addresses_changed"],"A1_IMPACT")
+        if event["kind"]=="source" and event["new_blob"]!=event["source"]["blob"]:
+            check(r==witness_source[digest(event)],"A1_SOURCE_IMPACT_ARTIFACT")
+        check(all(s.bridge["results"][op]["receipt_sha256"] in {x["sha256"] for x in r["affected_receipts"]} for op in want),"A1_EXACT_B_RECEIPT")
+    report["a1"]={"head":"7391b50343b7d7beecb8a32ccd748bfc00c2190b","artifact_id":15143370771,"member_sha256":pin[2],
+        "zip_sha256":pin[0],"actual_selection_examples":len(rec),"actual_events":len(fresh),"inherited_B_receipt_binding":True,
+        "producer_counts":witness["counts"],"static_spider_channels":witness["spider_channels"],"fresh_B1_receipts":"OPEN"}
+    report["checks"] += ["A1 exact selection examples replayed","A1 impact events bound to historical B receipts","A1 source impacts equal producer artifact"]
+
 
 def main():
     mode,root,out=sys.argv[1],Path(sys.argv[2]),Path(sys.argv[3])
