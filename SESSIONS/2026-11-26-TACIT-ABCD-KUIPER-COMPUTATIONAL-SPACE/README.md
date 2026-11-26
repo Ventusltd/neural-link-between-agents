@@ -11,3 +11,7 @@ Both diagrams are planning illustrations, not live telemetry or proof of full in
 ## Development findings and factory decision
 
 [Verified achievements, limitations, and decision to retain Package Factory in VEDIC](DEVELOPMENT-FINDINGS-AND-FACTORY-DECISION.md)
+
+## Supervisor cold-session transfer
+
+[Reload TACIT b t b a — complete project handover](TACIT-B-T-B-A-COLD-TRANSFER.txt)
