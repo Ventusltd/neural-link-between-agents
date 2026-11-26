@@ -1,0 +1,61 @@
+name: TACIT supervisor evidence snapshot
+on:
+  pull_request:
+    paths:
+      - automation/tacit_supervisor_snapshot.py
+      - automation/tacit_vedic_kuiper_reconcile.py
+      - automation/tacit_vedic_kuiper_experiment.json
+      - .github/workflows/tacit-supervisor-snapshot.yml
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test classification and exact-head filters
+        run: python3 automation/tacit_supervisor_snapshot.py --self-test
+      - name: Collect live five-agent evidence in one bounded Python invocation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 automation/tacit_supervisor_snapshot.py | tee tacit-supervisor-snapshot.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tacit-supervisor-snapshot
+          path: tacit-supervisor-snapshot.json
+          if-no-files-found: warn
+          retention-days: 30
+  reconciliation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test evidence contracts
+        run: python3 automation/tacit_vedic_kuiper_reconcile.py --self-test
+      - name: Acquire fixed public source pins and historical producer receipt
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          p="$RUNNER_TEMP/vedic-kuiper-inputs"
+          python3 automation/tacit_vedic_kuiper_reconcile.py --acquire "$p"
+          gh api repos/Ventusltd/vedic-/actions/artifacts/15126683549/zip > "$p/receipt.zip"
+      - name: Reconcile evidence offline without executing producer code
+        run: |
+          set -euo pipefail
+          sudo unshare --net --setgid "$(id -g)" --setuid "$(id -u)" -- env PATH="$PATH" \
+            "$(command -v python3)" automation/tacit_vedic_kuiper_reconcile.py --reconcile "$RUNNER_TEMP/vedic-kuiper-inputs" \
+            | tee vedic-kuiper-reconciliation.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vedic-kuiper-supervisor-evidence
+          path: vedic-kuiper-reconciliation.json
+          if-no-files-found: warn
+          retention-days: 30

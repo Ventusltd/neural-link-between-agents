@@ -1,0 +1,236 @@
+{
+  "schema": "tacit.vedic-kuiper-experiment.v1",
+  "scope_commit": "5098bc538d40f31577dee36c9f9736b5ab43233e",
+  "dictionary": {
+    "repo": "Ventusltd/vedic-",
+    "commit": "0ee52af60036f32358759a67836578dce6d7da51",
+    "path": "data/dictionary.json",
+    "sha256": "327803457f1528803278959ad7c107caed76489cfb2263db7143973a151b3c96"
+  },
+  "receipt": {
+    "repo": "Ventusltd/vedic-",
+    "artifact": 15126683549,
+    "path": "source-receipt/receipt.json",
+    "sha256": "83147e90c0f0831ee1f82ce5e721a3521dc843421a96ae9cba3425343d0b3c19",
+    "tier": "PINNED_PRODUCER_RECEIPT_MATCH_NOT_WAFER_REPLAY",
+    "keys": [
+      {
+        "meaning": "GG2050-VEDIC-000001",
+        "export": "distanceKm",
+        "key": 86415575118
+      },
+      {
+        "meaning": "GG2050-VEDIC-000005",
+        "export": "initialBearingDeg",
+        "key": 86415575222
+      }
+    ]
+  },
+  "cohort": [
+    {
+      "family": "orient",
+      "owner": "1b",
+      "sources": [
+        {
+          "repo": "Ventusltd/ventus-grid-engine",
+          "commit": "487ec7bd38dfa5aecb1c75da53b4a866ab2101cb",
+          "path": "engine/v9-geodesy.js",
+          "blob": "14023f06d4ef2ea806437863bd35dee954c46b11",
+          "sha256": "af9b5a8796b51a1e4368491b98961a197adec539f2fa0f3ed226552a876864bb"
+        }
+      ],
+      "meanings": [
+        "GG2050-VEDIC-000001",
+        "GG2050-VEDIC-000005",
+        "GG2050-VEDIC-000006"
+      ],
+      "key_state": "PRODUCER_RECEIPT_MATCH_NOT_WAFER_REPLAY",
+      "stars_state": "INCOMPLETE",
+      "admission": "ADMITTED_INTERNAL",
+      "execution": "DEVELOPMENT_PASS",
+      "review": "PENDING",
+      "rights": "BLOCKED",
+      "publication": "NOT_PUBLISHED",
+      "evidence": {
+        "head": "bd4bb65eb1b4e10106c74b9e41add066f14a067b",
+        "run": 45847746988,
+        "archive_sha256": "e83937c040499a7060b03ca2c4969e4414cdca48cb7f28a3ef9039f002486787",
+        "archive_kind": "SHARED_FACTORY_INTERNAL"
+      }
+    },
+    {
+      "family": "electrical",
+      "owner": "2b",
+      "sources": [
+        {
+          "repo": "Ventusltd/ventus-grid-engine",
+          "commit": "487ec7bd38dfa5aecb1c75da53b4a866ab2101cb",
+          "path": "engine/voltage-drop.js",
+          "blob": "85f48ecf7effabb47973b0a056f90e82b8196ef2",
+          "sha256": "8c3d99ca10b0d02722b54c6da21ebf1acb77936fe440cbd413b457266a994287"
+        }
+      ],
+      "meanings": [],
+      "key_state": "UNRESOLVED",
+      "stars_state": "UNRESOLVED",
+      "admission": "SOURCE_RECEIPT_PENDING",
+      "execution": "PRE_ADMISSION_DEVELOPMENT_PASS",
+      "review": "PENDING",
+      "rights": "BLOCKED",
+      "publication": "NOT_PUBLISHED",
+      "evidence": {
+        "head": "9439ccccc3c99e02a13494810c3fe05d2b5eceeb",
+        "run": 45847748321,
+        "archive_sha256": null,
+        "archive_kind": null
+      }
+    },
+    {
+      "family": "nearest",
+      "owner": "3b",
+      "sources": [
+        {
+          "repo": "Ventusltd/ventus-grid-engine",
+          "commit": "487ec7bd38dfa5aecb1c75da53b4a866ab2101cb",
+          "path": "engine/v9-nearest-search.js",
+          "blob": "d2ab3b111eb09f7af3df3a9fce9ad0a9dc1dea99",
+          "sha256": null
+        },
+        {
+          "repo": "Ventusltd/ventus-grid-engine",
+          "commit": "487ec7bd38dfa5aecb1c75da53b4a866ab2101cb",
+          "path": "engine/v9-geodesy.js",
+          "blob": "14023f06d4ef2ea806437863bd35dee954c46b11",
+          "sha256": "af9b5a8796b51a1e4368491b98961a197adec539f2fa0f3ed226552a876864bb"
+        }
+      ],
+      "meanings": [
+        "GG2050-VEDIC-000015",
+        "GG2050-VEDIC-000016"
+      ],
+      "key_state": "UNRESOLVED_FOR_NEAREST_OCCURRENCE",
+      "stars_state": "UNRESOLVED",
+      "admission": "FAMILY_NOT_ADMITTED",
+      "execution": "DEVELOPMENT_PASS",
+      "review": "PENDING",
+      "rights": "BLOCKED",
+      "publication": "NOT_PUBLISHED",
+      "evidence": {
+        "head": "54ff2c0a057a77616037de1ef25fa41bd6218ef8",
+        "run": 45847802153,
+        "archive_sha256": null,
+        "archive_kind": null
+      }
+    },
+    {
+      "family": "solar",
+      "owner": "4b",
+      "sources": [
+        {
+          "repo": "Ventusltd/globalgrid2050",
+          "commit": "2f4b7cb82ee154fa3c684cba634d45f2183c6e7d",
+          "path": "energy-transition-simulator/202609282123/mod/engine/structures.mjs",
+          "blob": "52619f60fea35e05d7634d760b7c19b6712f9b97",
+          "sha256": "1712c5a131e857f0a2747a7ed82f95d1a9fab04e9cf5602fe260443b2be2a13d"
+        }
+      ],
+      "meanings": [],
+      "key_state": "UNRESOLVED",
+      "stars_state": "UNRESOLVED",
+      "admission": "REQUIRED_INPUT_RECEIPT_LICENCE",
+      "execution": "PRIVATE_DEVELOPMENT_ARCHIVE_PASS",
+      "review": "PENDING",
+      "rights": "BLOCKED",
+      "publication": "NOT_PUBLISHED",
+      "evidence": {
+        "head": "e6d32f8889183101a7dc5503989b1df808cb727a",
+        "run": 45847783485,
+        "archive_sha256": "085174ded39a792f4910d15c935fa58dd7a3a2e77cc65fef1a235d0328ae7881",
+        "archive_kind": "PRIVATE_DEVELOPMENT_NOT_FACTORY"
+      }
+    }
+  ],
+  "property_contract": {
+    "status": "PROPOSED_COORDINATION_NOT_PRODUCER_SCHEMA",
+    "identity": "existing source occurrence tuple and export/span; never colour or derived property",
+    "fields": [
+      "source_occurrence",
+      "property",
+      "definition_version",
+      "value",
+      "unit",
+      "method",
+      "input_sha256",
+      "evidence_ref",
+      "state",
+      "unknown_reason"
+    ],
+    "allowed_states": [
+      "OBSERVED",
+      "DERIVED",
+      "UNKNOWN"
+    ],
+    "unknown_rule": "UNKNOWN has null value and reason; no inferred key, licence or verification; identity unchanged"
+  },
+  "experiment": {
+    "fixture": {
+      "repo": "Ventusltd/vedic-",
+      "commit": "54ff2c0a057a77616037de1ef25fa41bd6218ef8",
+      "path": "packages/nearest-candidate/consumer-fixture.json"
+    },
+    "instruction": "Find the nearest candidate substation at or above 132 kV, then calculate geographical distance and initial bearing to that point.",
+    "nodes": [
+      {
+        "name": "nearest",
+        "family": "nearest",
+        "inputs": [
+          "EPSG:4326 named origin",
+          "caller records",
+          "minimum kV"
+        ],
+        "output": "record_id_or_null + spherical_km"
+      },
+      {
+        "name": "lookup",
+        "family": null,
+        "inputs": [
+          "record_id",
+          "same caller records"
+        ],
+        "output": "unique named EPSG:4326 point or refusal"
+      },
+      {
+        "name": "orient",
+        "family": "orient",
+        "inputs": [
+          "same origin",
+          "selected named point"
+        ],
+        "output": "spherical_km + initial_bearing_deg"
+      }
+    ],
+    "expected": {
+      "id": "eligible",
+      "distance_km": 111.31949079327356,
+      "bearing_deg": 90,
+      "tolerance_km": 1e-8,
+      "tolerance_deg": 1e-8
+    },
+    "state": "COMPOSITION_BLOCKED_PENDING_NEAREST_ADMISSION",
+    "review_owner": "TACIT 9",
+    "negative_cases": [
+      "wrong source digest",
+      "wrong receipt digest",
+      "same blob different occurrence",
+      "unknown key",
+      "duplicate ID",
+      "null nearest",
+      "below threshold",
+      "coordinate axis mismatch",
+      "spherical km passed as cable length",
+      "unadmitted export",
+      "rights-held publication"
+    ],
+    "limits": "Synthetic fixture; no available capacity, route length, certified design, full identity, GPU or publication claim."
+  }
+}
