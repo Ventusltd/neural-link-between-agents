@@ -64,6 +64,8 @@ def graph(report, label, n, edges, input_sha, synthetic=False):
     seeds=sorted(set([0,n//4,n//2,3*n//4,n-1]))
     result=measure(report,label+"-reverse",lambda:[reverse(offsets,items,s) for s in seeds],
         digest([input_sha,seeds]),n)
+    # Verify duplicate-preserving incoming records against the published format.
+    check(sorted((a,b) for b in range(n) for a in items[offsets[b]:offsets[b+1]])==sorted(edges),"CSR_PARITY")
     visits=sum(r["record_visits"] for r in result)
     report["graphs"][label]={"nodes":n,"records":len(edges),"seeds":seeds,"record_visits":visits,
         "synthetic":synthetic,"interpretation":"static records, not execution or runtime call edges",
@@ -100,6 +102,8 @@ def runtime(root,report):
     # All producer acquisitions inherited from C's previously verified staging.
     froot=root/"factory"; peer=root/"peer-b"; droot=root/"peer-d"
     sys.path[:0]=[str(froot/"tools"),str(peer/"tools"),str(droot/"tools")]
+    for path, expected in {"factory/tools/package_factory.py":"23247de65fde04a400bb30874fc7e81cca4b7ebe","factory/tools/typed_package_execution.py":"480a0d0d1ee1af0b7a5919e307564cf597b9f8ff","peer-b/tools/tacit_b_kuiper.py":"f0762d6974c266d8cf97d3647b483aa18ee4eb02","peer-b/tools/tacit_b_ranking.py":"8a3932e42a426cbae8dcc958e4673644615e2d44","peer-b/tools/tacit_b_electrical.py":"1d8875227690e5d2c5dc1d78c36e8fc4faf2055e","peer-b/tools/tacit_b_composition.py":"a97a9c4297e45b6befbff1cc4130c395a831332a","peer-d/tools/kuiper_select.py":"409208484604ab88a94b377a009548f2a2b67964"}.items():
+        check(blob((root/path).read_bytes())==expected,"SOURCE_PIN:"+path)
     import package_factory as f
     import typed_package_execution as t
     from tacit_b_kuiper import Bridge
@@ -135,7 +139,15 @@ def runtime(root,report):
     check(len(cache)==1,"CACHE_MUTATION")
     archive=root/"orient.zip"
     desc=f.strict(f.ADMISSIONS["orient"].read_bytes())
-    build=measure(report,"factory-build",lambda:f.build(desc,root/"inputs",archive),digest(desc),1,3)
+    builds=[]
+    def fresh_build():
+        target=root/("orient-build-"+str(len(builds))+".zip")
+        result=f.build(desc,root/"inputs",target)
+        check(sha(target.read_bytes())==ARCHIVE,"REPEAT_ARCHIVE_PIN")
+        builds.append(target)
+        return result
+    build=measure(report,"factory-build",fresh_build,digest(desc),1,3)
+    archive=builds[0]
     ar=archive.read_bytes()
     check(sha(ar)==ARCHIVE and build["descriptor_sha256"]==DESCRIPTOR,"ORIENT_ARCHIVE_PIN")
     b=Bridge(f,t,Space,raw,ar,build,root/"nearest",root/"nearest-source",root/"electrical")
@@ -186,7 +198,8 @@ def impact(root,report):
         rows.append({"case":i,"kind":e["kind"],"event_sha256":digest(e),"affected_patterns":want,"stale_receipt_count":len(expected),"state":r["state"]})
     check(sha(a.canonical(m))==before and sha(raw)==A_PIN[2],"HISTORICAL_BYTES")
     check(len(m["bond_details"])==5 and all(x["relationship_state"]=="CONDITIONAL_CANDIDATE" for x in m["bond_details"]),"CONDITIONAL")
-    report["impact"]={"rows":rows,"manifest_sha256":sha(raw),"actual_producer_replay":True,
+    summary={kind:{"events":sum(r["kind"]==kind for r in rows),"affected_events":sum(r["kind"]==kind and bool(r["affected_patterns"]) for r in rows)} for kind in ("source","closure","property","presentation")}
+    report["impact"]={"scorecard":summary,"rows":rows,"manifest_sha256":sha(raw),"actual_producer_replay":True,
         "conditional_bonds":5,"historical_receipts_unchanged":True,"live_consumer":False}
     report["checks"] += ["producer cold replay byte-identical","all "+str(len(rows))+" source/closure/property/presentation events","historical bytes unchanged","conditional bonds preserved"]
     report["open"] += ["A1 successor contract and E1 integrated runtime not yet staged","live receipt invalidation unverified","CVAA/Faraday/Quantum Twin inherited evidence only; no live wiring"]
@@ -196,7 +209,8 @@ def main():
     report={"schema":"tacit-f1.performance-regression.v1","mode":mode,"stages":{},"graphs":{},"checks":[],"open":[],
       "acquisition":{"staged_network_wall_ms":int((root/"acquisition-ns.txt").read_text())/1e6,"repeats":1,"scope":"network setup in workflow; no cold/warm network claim"},
       "environment":{"python":platform.python_version(),"platform":platform.platform(),"logical_cpus":os.cpu_count()},
-      "authority":"RESEARCH_ONLY","production":False,"redistribution":"BLOCKED"}
+      "authority":"RESEARCH_ONLY","production":False,"redistribution":"BLOCKED",
+      "dispatch_policy":{"cpu":"Default for eight-key selection, static graph traversal and admitted runtime","gpu":"Optional only for large bounded geometry batches after same-input parity and end-to-end transfer-inclusive evidence","cache":"Key by authenticated bytes and exact code/schema pin; no stale execution-result cache","scale":"No estate-wide or crossover inference from synthetic graph copies"}}
     try:
         {"runtime":runtime,"impact":impact}[mode](root,report)
         report["status"]="PASS_BOUNDED"
