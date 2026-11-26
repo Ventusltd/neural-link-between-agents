@@ -1,0 +1,232 @@
+TACIT b t b a — COLD SESSION TRANSFER
+26 November 2026
+Outgoing supervisor: TACIT b t b
+Incoming supervisor: TACIT b t b a
+
+PURPOSE AND RELOAD
+
+This document preserves the substantive project working context of the outgoing supervisor for the owner to reload into a fresh ChatGPT conversation named Tacit b t b a. It is a project handover, not a dump of personal account memory, hidden reasoning, credentials, private conversations or system instructions. Neural Link is public. Use only public-safe technical evidence and authorised repository access. The owner wants continuity without depending on a long conversation or the continued availability of an earlier agent.
+
+The incoming supervisor must read this entire document, the immutable joint development mandate, the findings and factory decision, both architecture diagrams and the newest Neural Link issue 87 comments. Resolve current GitHub heads, actual CI runs, artifacts and production readbacks afresh. The references and statuses here are a dated checkpoint, not a substitute for verification. Do not merely repeat a prior agent's self-reported success or presume a newer commit has passed an older run.
+
+The mission remains: develop the GlobalGrid2050 estate as a programmable computational environment, with Kuiper as the addressable space and VEDIC as one of its instruments. Reuse the existing software rather than inventing competing systems. Make real computational results reproducible, independently challengeable and eventually usable as reusable software libraries. Maintain operational focus on energy infrastructure. Work in small coherent turns and preserve evidence in GitHub.
+
+The owner values direct execution, clear numbers, concise British-English communication, immutable references, real GitHub Actions tests, no fictional completion claims, no unnecessary agents, no unnecessary repositories and no redundant approvals. When an exact production release is explicitly authorised, proceed through existing release gates rather than needlessly asking again. An authorisation for one release does not extend to another release or to licensing and permanent identities.
+
+1. NEURAL LINK AND SUPERVISORY ROLE
+
+Repository: Ventusltd/neural-link-between-agents.
+Canonical topic: issue 87, NL-087.
+https://github.com/Ventusltd/neural-link-between-agents/issues/87
+
+Read these repository rules before working:
+https://github.com/Ventusltd/neural-link-between-agents/blob/main/AGENTS.md
+https://github.com/Ventusltd/neural-link-between-agents/blob/main/PROTOCOL.md
+https://github.com/Ventusltd/neural-link-between-agents/blob/main/OPERATIONS.md
+
+Neural Link is an append-only issue-comment coordination mailbox, not an executor or automatic inter-model socket. A comment is a request or evidence; it does not wake another conversation. Agents acknowledge on invocation. Roles are self-declared routing labels, not authenticated separate identities merely because a GitHub account wrote the message. Never claim an agent has started or received a message until actual evidence supports it.
+
+The supervisor coordinates, reads evidence, reviews exact heads, records findings and prepares bounded next mandates. Do not create competing implementations or modify peer branches. Every product repository has its own rules. A supervisor may act as a single release integrator when the owner explicitly authorises that precise action. Do not confuse technical evidence review with formal owner approval or rights clearance.
+
+Use GitHub connector operations for the owner's repositories and actual Actions evidence. Verify current tool schemas, distinguish the commit's PR-event checks from push and workflow_run checks, and inspect job logs where substantive results matter. The normal commit-workflow lookup may omit push deployments; the GitHub REST Actions endpoint with exact head_sha can reveal the actual deployment. Check the published bytes after deployment. A merge alone is not public deployment. Absence of checks is not successful CI.
+
+Preserve current source SHA, branch, files, run/job IDs, artifact and member digests, exact replay commands, output units, failure states and unresolved decisions. Record different types of state independently: candidate, tested, independently reviewed, internally admitted, merged, publicly verified, redistribution cleared. A passing refusal test does not establish successful runtime execution. A green job may explicitly report OPEN obligations.
+
+Current supervisor documentation PR94:
+https://github.com/Ventusltd/neural-link-between-agents/pull/94
+Exclusive branch agent/tacit-btb-turns-8-10-20261126. Prior head a3df3d818761b56b9db197f786bc9d37ff9c30fd. This transfer extends that branch; no new repository or competing PR. Read the exact immutable reference supplied in the transfer notification, not only the moving draft PR.
+
+Historical earlier supervisor work: TACIT 7 was architecture/semantic harvesting; TACIT 7 b t coordinated third-turn work among 1b through 7c, and TACIT b t b continued as scope controller. Their work is evidence, not active agent dependencies. The immutable third-turn scope is:
+https://github.com/Ventusltd/neural-link-between-agents/blob/5098bc538d40f31577dee36c9f9736b5ab43233e/SESSIONS/2026-11-26-TACIT-1b-TO-7bt-VEDIC-KUIPER-THIRD-TURN.md
+
+The supervisor evidence candidate PR91 and context guard PR92 are retained, not assumed installed. If inspecting an existing scheduled supervisor, check its actual current configuration before changing it. No new scheduling or continuous polling is authorised by this handover.
+
+2. OWNER'S ARCHITECTURE DIRECTION
+
+Kuiper is the computational environment, not merely a visualisation behind VEDIC. Its original deterministic spatial law places historical source occurrence keys procedurally. VEDIC translates human-readable meaning into typed, supported selections and candidate computational patterns. The Periodic Table supplies producer module classifications. Modular Star gives source provenance and permanent occurrence identities. Spider Genome and Spider Printer provide typed relationships and observations, but a historical URL reference is not an executable dependency. The Package Factory assembles and invokes explicitly admitted software. CVAA, Quantum Twin, Faraday and Merchant of Venice evidence/accounting support independent verification, falsification, regression protection and recovery. Neural Link connects the agents and retains knowledge.
+
+A permanent address is not a physical transistor or proof of executable code. Historical line-occurrence keys are not unique functions. Visual proximity is not dependency or compatibility. A colour represents a selected property or status, not automatic execution or verification. The actual CPU or GPU executes authorised software through an appropriate runtime. The research opportunity is to select sparse relevant sets of known addresses, traverse verified typed relationships, resolve callable boundaries and reuse existing mathematical code. Do not instantiate billions of individual coordinates or try to brute-force the address space. Measure CPU costs before proposing GPU acceleration, and account for transfer and memory costs. No GPU acceleration claim has yet been established for this cohort.
+
+Current Kuiper measurement was read from cosmos/wafer-meta.json (blob 6a8b198bf63e96044dbd5f289d172043b7495ef1):
+issued_keys 97540883985; unissued_keys 18908364000; address_space 116449247985; commits 16774; repositories 101; silence_share 0.1624. This is 97.54 billion issued historical occurrence keys, not 97.54 billion independent executable functions. The earlier 96.92 billion measurement was superseded by refresh run 45864009760 and Pages run 45864556283. Do not claim a refresh beyond this snapshot without checking current producer evidence.
+
+https://github.com/Ventusltd/kuiper-belt/blob/main/cosmos/wafer-meta.json
+https://globalgrid2050.com/kuiper/
+https://ventusltd.github.io/kuiper-belt/
+https://ventusltd.github.io/kuiper-belt/learn-the-kuiper/202610050609/
+https://ventusltd.github.io/kuiper-belt/editions/
+
+The measurement metadata describes the radial law r=sqrt(key) and theta=2*pi*frac(key*2654435769/2^32). D's earlier mathematical study described a half-offset radial convention r=sqrt(k+0.5) in the actual placement implementation. Do not silently reconcile these formulations or replace the original implementation with a visual approximation: inspect the pinned original module used in the applicable edition, including high-key arithmetic. Original Learn-the-Kuiper law blob c506a252f27fa8b80e849eb63bbb6699eaf674f0. Integer keys must remain exact; avoid JS bitwise truncation for high keys.
+
+Eight verified source addresses, thirty-two typed properties, five conditional bonds and six incompatible relationships form the initial bounded cohort. Prioritise reliability of selection, execution, refusal and evidence linkage before expanding it. Preserve the original five conditional bonds and versioned sidecars. Source occurrence is immutable identity; metadata, presentation, properties and evidence state can evolve separately. A source or closure mutation invalidates affected receipt applicability; previous receipts remain historical rather than deleted.
+
+3. VEDIC RELEASE HISTORY AND FACTORY POLICY
+
+VEDIC V1 publicly published 39 meanings; V2 publicly published 50, an expansion of 11 meanings (28.2 percent). V3 preserves the same 50 meanings, executable scripts and immutable historical versions and adds an evidence-only capability register. V3 does not distribute the rights-held experimental package bytes.
+
+V1 https://ventusltd.github.io/vedic-/releases/202611260135-v1/
+V2 https://ventusltd.github.io/vedic-/releases/202611261351/
+V3 https://ventusltd.github.io/vedic-/releases/20261126-v3/
+Homepage https://globalgrid2050.com/
+
+The owner explicitly asked to publish V3 and deploy it to the homepage. The outgoing supervisor merged VEDIC PR19 exact head 481eecb457d8ffe8f28d07e0d4b31aedba1cc7ed after two successful release gates and checked five summaries against historical development logs. Merge faf6ec6e1473ff869dc00849c6c2681fd76da4ab. Main Pages run 45859699709 job 140048497907 verified publication at 16:35:18 UTC. V3 source pin 9d6a3a35b12fc4709f4b65965ca1f17a87277a2d, manifest SHA256 293284eab045aab71b3747bb603d1ea1bfb43b5a08766d2aaa7d6e57e8c4fda5. Twenty-four exact public payload/manifest files verified including historical editions and alias.
+
+Homepage owner repository Ventusltd/globalgrid2050-homepage. An initial attempted generator modification at 6520d1f42e29faf4f917296ddb9d32aad6069f3e was malformed and failed before jobs. This was corrected by restoring the validated generator and changing the catalogue on the reserved existing branch. Generator run 45861304962 produced exact candidate aa9228844a588daeea0ed8dd7de965baaf86908d. Owner PR52 all three checks succeeded and merged 0c28f579562edae7e63ec53e21f9d7cf6aa74205; comparison from exact candidate to merge showed zero file differences.
+
+Custom-domain repository Ventusltd/globalgrid2050. Domain PR238 exact head 328e4c4ed087b13e7a69e0574f3addd7c1036cbe passed four checks, including restore point, hash-pinned owner bundle, prior public root and language gate. Merged 5556e09813b4f0c7cf70f0ee97260f7ebb99cc85. Domain deploy 45861762452 and post-deploy VEDIC verification 45863124786 both succeeded. Restore snapshot homepage_v163; prior owner pin 2dcdf62b7fcbc8cb0e1525cd0b795cea50db74c8. Preserve history and use actual public readback, not only an HTTP 200. Other historical Pipeline News verification workflows failed during the domain release; their specific causes were not investigated by this supervisor and must not be represented as resolved. VEDIC-specific final verification is successful.
+
+https://github.com/Ventusltd/vedic-/pull/19
+https://github.com/Ventusltd/vedic-/actions/runs/45859699709
+https://github.com/Ventusltd/globalgrid2050-homepage/pull/52
+https://github.com/Ventusltd/globalgrid2050/pull/238
+https://github.com/Ventusltd/globalgrid2050/actions/runs/45861762452
+https://github.com/Ventusltd/globalgrid2050/actions/runs/45863124786
+
+Owner's subsequent architectural decision: KEEP THE PACKAGE FACTORY IN VEDIC. Do not set up a new repository, migrate it or duplicate it. A future extraction might be appropriate if at least three independently verified and internally admitted software families, a stable package specification/typed interface, reproducible builds, established rights controls and actual cross-estate demand justify it. These are proposed separation readiness criteria, not new admission gates. Obtain separate owner agreement then, extract rather than rewrite. The existing architecture decision does not authorise new internal admission, source redistribution, identity allocation or publication.
+
+Decision and findings:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198944292
+https://github.com/Ventusltd/neural-link-between-agents/blob/a3df3d818761b56b9db197f786bc9d37ff9c30fd/SESSIONS/2026-11-26-TACIT-ABCD-KUIPER-COMPUTATIONAL-SPACE/DEVELOPMENT-FINDINGS-AND-FACTORY-DECISION.md
+
+4. COMPUTATIONAL FAMILIES AND ORIGINAL EVIDENCE
+
+ORIENT is currently the only internally admitted package. It joins MEASURE (VEDIC permanent meaning 000001, distanceKm) and BEARING (000005, initialBearingDeg) into ORIENT (000006). Source v9-geodesy.js in Ventusltd/ventus-grid-engine at commit 487ec7bd38dfa5aecb1c75da53b4a866ab2101cb, blob 14023f06d4ef2ea806437863bd35dee954c46b11, module SHA256 af9b5a8796b51a1e4368491b98961a197adec539f2fa0f3ed226552a876864bb. Original admitted archive SHA256 e83937c040499a7060b03ca2c4969e4414cdca48cb7f28a3ef9039f002486787, descriptor SHA256 b45e61e955e0d0ddde15495f9be7c3fc4943c3193dd8f318a4249524f2fb5f53. Preserve this archive. Known result origin (0,0) to (1 degree longitude,0 latitude): 111.31949079327356 km, initial bearing 90 degrees. It is geographical distance, not actual cable routing.
+
+Eight source occurrences: MEASURE, BEARING, INDEX, RANK, DROP, PERCENT, LOSS and ENERGY. A/C independently recovered deterministic addresses from original Kuiper producer. Earlier known MEASURE/BEARING keys 86415575118 and 86415575222 and INDEX/RANK 86415575280/86415575302 were producer receipt evidence before independent replay. Electrical producer keys 86415575415/86415575455/86415575478/86415575510. Use exact A artifact for authoritative full mapping and verify current pinned receipt; do not invent numbers or silently infer source identity from the abbreviated list.
+
+Original producer module classification Vg 17 (geodesy), Vn 18 (nearest, producer family geodesy), Vd 31 (voltage drop, producer family network). This is module-level metadata. Exact function-level Modular Star membership remained 0/8: an omitted historical revision, not missing source code. The original parser recognises all eight functions. Same blob at another path or parent revision does not establish the missing exact occurrence. The specific three unchanged paths are engine/v9-geodesy.js, engine/v9-nearest-search.js and engine/voltage-drop.js at the original revision above.
+
+Nearest experiment: actual original ranking selects synthetic caller record eligible at 132 kV threshold. It then retrieves the unique selected location and executes existing ORIENT. Actual result 111.31949079327356 km and 90 degrees. The old selected_location adapter accepted a below-threshold ID and arbitrary distance; B corrected that, and C then showed an eligible but farther candidate with correct distance still passed. B replaced that insufficient selection validation with actual pinned original producer ranking and receipt binding. C independently replayed actual artifacts twice, 33 PASS / 0 FAIL / 1 OPEN, rejecting farther eligible results even when rehashed. Equal-distance ties preserve caller order, so preserve ordered dataset identity, threshold, selected ID/coordinates, CRS, units, exact source, descriptor and execution receipt. Do not claim a successful nearest runtime merely from a valid selected location.
+
+Electrical experiment: original voltage drop exports voltageDropVolts, dropPercent, lossesWatts and annualLossKwh, synthetic route 1000 metres, peak model current 100 A and loss load factor 0.5. Actual outputs 34.64101615137755 V, 8.660254037844387 percent, 6000 W, 26280 kWh. C's independent review 28 PASS / 0 FAIL / 2 OPEN included seven independent numerical fixtures. Preserve 51 historical electrical tests and eight added typed-input refusals. Geographic km is not conductor route length; W is not kWh; mean current is not peak; ordinary load factor is not loss load factor. These are synthetic engineering experiments, not certified designs or field advice.
+
+Both nearest and electrical were executed and independently reviewed pre-admission. No additional internal archive is admitted unless actual registry and archive evidence establish it. Rights remain separately blocked. Historical Grid Engine module manifest UNLICENSED versus root Apache licence is unresolved; do not treat root licence alone as sufficient permission. Do not put rights-held source/archive bytes in public evidence artifacts.
+
+5. DEVELOPMENT CHRONOLOGY
+
+Fourth-turn A/B/C scopes were recorded in issue 87 comments 7197675486, 7197676234 and 7197676838. A source/closure, B assembly/runtime, C independent verification. Earlier specialist agents' source receipts and contracts remain pinned evidence; no former agent is required to wake. Initial A source keys eight of eight, module classifications valid, exact Stars occurrence membership zero. C's independent replay of original Kuiper producer over 127 files and 18,338 lines matched eight addresses and six source/closure projections. A reviewed artifact 15137841195, C review artifact 15138980638, a-review.json SHA256 76080746a09f0c3fa6693211147acfa98716be50caeb766f4ee01a68fc9ac303. Separate six candidate digests are in comment 7198061707 and existing recovery documents. Never mistake reviewed technical evidence for formal authority.
+
+The fifth-through-seventh turn joint instruction (3195 words):
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198182606
+Three concurrent agents, nine work packages. A resolved the indexing-grain diagnosis, generated 32 typed properties and five conditional bonds with six incompatibilities, then cold recovery/Spider adapter. B executed actual ranking and electrical functions in an isolated pre-admission experiment and extended the existing standalone application. C independently falsified earlier ranking, replayed actual nearest and electrical, verified cold recovery and retained obligations. Final exact-head workflow results A 8/8, B 3/3, C 8/8, nineteen successes. A sixth-turn canonical serialization failure and C wrong-harness / wrong-member failures corrected and retained, not hidden.
+
+D initially observed read-only and studied Kuiper. Owner's strategic direction made D the fourth implementation workstream in the next mandate. D's learning CI exercised desktop and phone-sized Chromium Canvas fallback, six levels, linked large key, copy, offline interaction and zero page errors. It is not full WebGL or physical device verification. D's first sparse selection prototype passed 36 tests twice, byte-identical offline: real A manifest, existing placement module, VEDIC selection and explicit machine predicate parity for Vg, property intersection, range, unknown versus observed, high-key arithmetic and mutation refusal. Sanitised proof artifact 15139971725, ZIP SHA256 1de39adaedf73af7cbc4e6ded69f71b82bd0c02ef8799376c20b3bad69a2b661; receipt a763f68e9a0efa6de3156a92e5bf45a5ce48167cd22341639c4c7b23b7cfadda.
+
+Seventh-turn historical exact checkpoints and recovery:
+A bb637d3a32173de8b3892380af4c6166f969412c:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198331997
+B 827dc15ffebc236954ee4aa40ba0141cd7c23fa4:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198343994
+C 3939778679a21c2e7fa487827129c6c886fd0351:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198436998
+D 4859abbdd7166ecab566ecc86337b56e0bd75125:
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198551415
+
+A's cold Spider evidence: historical Genome 1379 nodes and 3249 relationships; original Printer 30 nodes and 164 URL references, zero runtime edges. Printer recovered at Ventusltd/spiders commit 9801c73e8fd290d621bcf980fcc3fd6851229bf0, spider_printer_v1. No replacement Printer. Current historical Spider evidence pin 830e86ea65e98b03df7250d2dd55d2753799687a. Candidate read-only links are not live production wiring. C's seventh cold reconciliation 11 PASS / 0 FAIL / 6 OPEN; historical CVAA registry run 45831696890 failure preserved. Historical ledger whole 6, held 6, settled 0, partial 4, disputed 1, open 1. A balanced ledger does not establish truth.
+
+6. CURRENT MANDATE: TURNS EIGHT THROUGH TEN
+
+The owner requested another 4000 words of scope and architectural graphs. The outgoing supervisor issued a 4140-word joint mandate and two SVG diagrams, committed and read back at 48ad997dd9ba0993d66f6a7bb42faabdea080f5d. Every A/B/C/D acknowledged issue comment 7198662146. All four retain their exclusive branches. No other active development agents in this programme. The cadence is eight minutes development and two minutes finalisation per turn, three turns, four concurrent agents, twelve work packages. These are planned budgets, not guaranteed CI duration or background execution. Each invocation must preserve exact evidence and blockers rather than consume the remaining context polling.
+
+Mandatory full instruction:
+https://raw.githubusercontent.com/Ventusltd/neural-link-between-agents/48ad997dd9ba0993d66f6a7bb42faabdea080f5d/SESSIONS/2026-11-26-TACIT-ABCD-KUIPER-COMPUTATIONAL-SPACE/MANDATE.txt
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198662146
+
+Architecture:
+https://github.com/Ventusltd/neural-link-between-agents/blob/48ad997dd9ba0993d66f6a7bb42faabdea080f5d/SESSIONS/2026-11-26-TACIT-ABCD-KUIPER-COMPUTATIONAL-SPACE/kuiper-computational-architecture.svg
+Schedule:
+https://github.com/Ventusltd/neural-link-between-agents/blob/48ad997dd9ba0993d66f6a7bb42faabdea080f5d/SESSIONS/2026-11-26-TACIT-ABCD-KUIPER-COMPUTATIONAL-SPACE/tacit-abcd-development-schedule.svg
+
+Eighth turn: A original historical occurrence repair dry-run; B actual candidate admission mechanism and exact owner decision packet; C independent gate/identity challenge; D programmable sparse wafer selection.
+Ninth: A typed bond provenance and reverse impact; B existing-factory runtime or exact admission refusal and D request bridge; C independent execution, selection parity and browser challenges; D pattern inspector and receipt bridge.
+Tenth: A cold recovery and Spider evidence; B reusable consumer and package handoff; C final independent reconciliation; D integrate bounded research layer into existing Kuiper interface. No new production release or rights grant.
+
+7. LATEST CHECKPOINT AT TRANSFER — A
+
+Repository Ventusltd/vedic-, PR20, branch agent/tacit-a-source-closure-fourth-turn-20261126. Exact head 72e9bedaa16a3be6d607e37f083ee2365798a5ea. All eleven exact-head workflows observed completed SUCCESS, including anatomy and release rehearsal (supersedes A's earlier 9/11 pending snapshot).
+
+Turn 8 actual original Stars ingestFile tested on disposable copies inside rolled-back transaction. 45 checks twice, byte-identical. Original parser found 16 callable spans, 5 geodesy + 3 nearest + 8 electrical, and verified eight targets. Temporary occurrence rows +3 only. Other tracked line/tablet/element/family/tablet_element/scan/commit_info deltas zero. Original database bytes, sequences and namespace restored. No permanent allocation. C independent replay verified the actual dry-run twice, 13 PASS / 0 FAIL / 1 OPEN. Three exact target occurrence tuples absent; direct SQL verified eight original AST spans one match each and altered column zero. The remaining owner decision is narrowly scoped original producer ingestFile for the three exact historical path/revision tuples at 487ec7bd38dfa5aecb1c75da53b4a866ab2101cb, no whole-revision scan mark, no renumbering, no new line/tablet/element/family allocation. Refresh pins, independent review and rollback/readback required. Do not execute actual production ingest without separate explicit authority.
+
+Turn 9 39/39 twice. Actual B bond intake reproduced, D pinned selection matched exact operation key counts 2/4/4. Five enriched conditional bonds retain source endpoints, adapter AST spans, ports, review and runtime observations, plus six source/closure digest pins. Reverse impact distinguishes geodesy (ORIENT+nearest), nearest (nearest only), electrical (electrical only); source, closure and relevant property changes invalidate affected receipts, colour/description do not. Original v1 manifest digest remains unchanged. Candidate only; no live invalidation claim.
+
+Turn 10 49/49 twice plus original recovery. Pinned-only impact CLI rejects changed archive. Recovery reproduces eight addresses, 32 properties, five bonds, three actual B bridge request/pattern/receipt bindings, C source/repair/gate evidence and historical Spider/Printer context. New bridge receipts pending exact request review at A handoff. C subsequent turn-nine reviews described below. No admission or rights elevation.
+
+A final recovery and CLI:
+https://github.com/Ventusltd/vedic-/pull/20
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7199035258
+https://github.com/Ventusltd/vedic-/blob/72e9bedaa16a3be6d607e37f083ee2365798a5ea/docs/TACIT-A-TURNS-8-10.md
+https://github.com/Ventusltd/vedic-/actions/runs/45866965833/artifacts/15141151895 (repair.json e76464f5f4c70f25cf24b42ffa2ac199d5b8b3eced4189484fe5af159b1a211c)
+https://github.com/Ventusltd/vedic-/actions/runs/45867316547/artifacts/15140897950 (impact.json b49b0cbf518a7b9095339871fad585958640003e860053cfcc03562150fa2592)
+https://github.com/Ventusltd/vedic-/actions/runs/45867695341/artifacts/15139999214 (recovery.json 816fcc85b9f43a4006470652172a42cc8c219126dee01beb9520b7a749ff4efe)
+Original typed bonds artifact 15138897783, JSON SHA256 821abf96d3e4c2f42e61d578dcefdfbda366c145b067f9cc9206fdaa91b6cf2d.
+Replay python tools/tacit_a_final.py acquire --root DIR; then verify --root DIR --out recovery.json twice offline. Use pinned workflow for exact acquisition. Artifacts expire, so retain durable public-safe receipts and recovery sources.
+
+8. LATEST CHECKPOINT — B
+
+Repository Ventusltd/vedic-, PR21, branch agent/tacit-b-composition-fourth-turn-20261126. Exact head dbca4db3658850f421e8f7319b7cef7e540c1a46. Three exact-head workflow runs observed SUCCESS (integration 45867357173, anatomy 45867357142, release rehearsal 45867357775).
+
+Turn 8 twelve candidate checks passed. Actual existing factory common receipt validator extracted into isolated staging by tools/tacit_b_stage_factory.py; tools/tacit_b_admission.py validates A/C exact bytes, descriptors and actual admission/refusal. Registry remains ORIENT only. Electrical candidate descriptor SHA256 f5a406e399c66a8dbe5baa2be0cada3fae3317b5c2f5366441853472a863e456; nearest descriptor d6d42cc3babcc598b1c44e55ac134fd3fc299b0d17caa0a6a663520a8c71b0d4. Formal authority and reviewed receipt registry/locator/handler registration remain open. C independently replayed twice, 26 PASS / 0 FAIL / 2 OPEN, testing rehashed false approval, valid wrong family, stale descriptor or occurrence, wrong units, modified source and actual assembly/registry gate refusal.
+
+Turn 9 actual D Space.select used for both machine and semantic selections; 15/15 checks, exact request/receipt proof. Schema tacit-b.kuiper-request.v1, fields schema, operation, manifest_sha256, keys (exact sorted decimal strings), inputs. Supported operation orient (Vg two keys), nearest-orient (Vn+Vg four keys), electrical (Vd four keys). Actual original manifest hash pinned. Default Bridge.execute refuses nearest/electrical unadmitted; experiment=True is a trusted offline harness argument, not caller authority. Preserve separation. Actual numerical results unchanged. No arbitrary user-supplied executable code or authority. Match exact request, pattern and receipt when displaying a result; independent review status must refer to the exact request, not unrelated historical cases.
+
+Turn 10 chooser, focus, stale result invalidation and refusal checks in existing consumer. Authenticated raw manifest bytes constructor added at final head after C demonstrated an untrusted Space(manifest) could accept mutated in-range key while pinned ZIP loader refused altered bytes. C later independently confirmed B's final raw constructor rejects changed key/source/property/bond. Do not infer that every D public path is independently secure; independently replay D's actual layer.
+
+B recovery:
+https://github.com/Ventusltd/vedic-/pull/21
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198951505
+https://github.com/Ventusltd/vedic-/blob/dbca4db3658850f421e8f7319b7cef7e540c1a46/docs/TACIT-B-FOURTH-TURN.md
+https://github.com/Ventusltd/vedic-/actions/runs/45866985263/artifacts/15141365045 (admission JSON 79ca2bf68b94c2c06c4d21063cc1a4acd4442acc43bb9630f8cd32a7d01daa2a)
+https://github.com/Ventusltd/vedic-/actions/runs/45867116824/artifacts/15140148659 (bridge JSON 7bb9e81ca066cafbaeae75a358da42768bb9db6a63746710025d88b7e0701796)
+https://github.com/Ventusltd/vedic-/actions/runs/45867357173
+
+9. LATEST CHECKPOINT — C
+
+Repository Ventusltd/neural-link-between-agents, PR93, branch agent/tacit-c-verification-fourth-turn-20261126. Latest observed head 9a309a53e9d997764705a02a5016a7ce092049ff. At transfer inspection twelve workflows were running, including tenth-turn cold reconciliation and independent browser run 45868219152. Do not assert final pass until current exact head and actual job evidence are checked.
+
+Eighth independent baseline 47 PASS / 0 FAIL / 2 OPEN, run 45867057462 artifact 15139294930. Actual pinned D selection and original law matched independent oracle; mutated raw constructor identified as trust-boundary issue, not demonstrated public bypass. A dry-run independent 13 PASS / 0 FAIL / 1 OPEN, B candidate independent 26 PASS / 0 FAIL / 2 OPEN, run 45867324960. Identity witness artifact 15140568401, JSON 9dc9d328f5c55206648180acb925447306da29a09ad9dd442ef8be5b53d7bea7. Gate witness artifact 15141600096, JSON 303ad784d6d8775e7dc16b98f8dd4a9c5eef113abc7cde0c87129a3065c02b5b.
+
+Ninth actual B final and A impact reviewed at C cfb9dd83693468d205e9f201ee9de48e85d21bf7, run 45867700353 both jobs succeeded: runtime 53 PASS / 0 FAIL / 1 OPEN, artifact 15140598584 JSON 41b0ef3f97dbbdfabd417e812097bae3c956cfd7d2bd0c0deb68771691f881e8; impact 68 PASS / 0 FAIL / 1 OPEN, artifact 15140064164 JSON 39061ca737c1333e923d041ddfb5fd31edbc25d834d9002485d9a0a286710107. Actual CLI reproduced twice, independent mathematical edge-case oracles and forged/stale/authority refusals passed. All eight source and 32 property impacts checked. No production invalidation or admission. Tenth cold reconciliation and independent D browser not yet observed complete.
+
+https://github.com/Ventusltd/neural-link-between-agents/pull/93
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198972440
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7199075185
+https://github.com/Ventusltd/neural-link-between-agents/actions/runs/45867324960
+https://github.com/Ventusltd/neural-link-between-agents/actions/runs/45867700353
+https://github.com/Ventusltd/neural-link-between-agents/actions/runs/45868219152
+
+10. LATEST CHECKPOINT — D
+
+Repository Ventusltd/kuiper-belt, PR1, branch agent/tacit-d-computational-space-20261126. Exact observed head e625da97e76a7d3b99361e01767e0fef0984c445. Latest three substantive workflows succeeded: Kuiper learning 45867461529, Edition 12 research 45867461566, sparse computation 45867461689. One-time measurement refresh 45867461611 skipped by design of its conditions; not a failed or newly completed refresh. Earlier turn-eight overlay workflow 45867083918 failed, preserve history; the newer green run supersedes that particular checkpoint only. This supervisor checked CI status and head, not all latest D job logs or final screenshots. Do not overclaim complete turn 10, actual live computation, independent browser replay, WebGL, physical handset or production release. Read D's newest final handoff and C's independent report on invocation.
+
+D's actual staging server and Edition 12 layer hooks use original selector and placement, local pinned input. Earlier replay: python tools/kuiper_research.py bonds.zip --port 8765; GET /__kuiper/select?mode=machine&family=Vg versus mode=vedic. B confirmed nearest uses Vn+Vg four keys, orient Vg two, electrical Vd four; use exact schema and manifest. D should display staging export and matching actual receipt only, never execute arbitrary code or present unadmitted result as public runtime. C trust boundary finding applies to raw objects; ensure actual overlay accepts authenticated pinned evidence and refuses mutation. Latest D source commit changed tools/kuiper-computation/202611261720-computation.js. Inspect actual diff, screenshots, proof and final handoff before claiming functional scope.
+
+https://github.com/Ventusltd/kuiper-belt/pull/1
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198551415
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7198894397
+https://github.com/Ventusltd/kuiper-belt/actions/runs/45867332199/artifacts/15141615078
+https://github.com/Ventusltd/kuiper-belt/actions/runs/45867461566
+
+11. BACKLOG CLEANUP AND SCOPE PROTECTION
+
+Owner instructed close redundant Neural Link PRs. Outgoing supervisor inspected the 27 open PR changed-file inventories and closed twenty administrative/historical documentation and planning PRs unmerged: 90,89,88,63,60,59,55,54,39,38,36,35,33,31,29,28,27,26,25,18. No branches deleted, no production changes, no stale proposals merged. Earlier knowledge remains in exact historical commits and closed PRs, not necessarily main. A closure does not establish technical acceptance or cancel activity in another repository. Seven remained open at verified readback: 94 current mandate, 93 active C, 92 unique context/core mission guard candidate, 91 unique supervisor automation candidate, 86 SatNav audit candidate, 85 SatNav scope/dependency tests candidate, 23 unresolved historical news audit. Do not automatically close these merely because another agent is inactive. Keep A PR20, B PR21 and D PR1 in their own repositories undisturbed.
+
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7199034169
+https://github.com/Ventusltd/neural-link-between-agents/issues/87#issuecomment-7199071689
+https://github.com/Ventusltd/neural-link-between-agents/pulls
+
+12. SUCCESSOR'S FIRST ACTIONS AND PRIORITY DECISIONS
+
+First, ACK the transfer on issue 87 using exact notification and read the newest messages after 7199075185. Re-read all relevant current source/PR heads and workflow conclusions. At transfer A 11/11 and B 3/3 green; D 3 substantive workflows green, one skipped refresh; C twelve workflows pending. Confirm D final turn and independent browser evidence. Inspect actual C tenth-turn job logs and distinguish PASS/FAIL/OPEN. Do not create a new mandate blindly while current turns are running.
+
+Second, prepare the owner a precise decision packet, not a generic request to approve everything. Separate three historical Stars occurrence ingest tuples from internal admission of electrical and/or nearest and from licence/distribution. A/C tested actual original producer dry-run and independent review. B/C tested exact candidate descriptor/receipt and actual factory refusal. Candidate electrical and nearest descriptors and exact source/closure pins above; B must present exact artifact-member locator and registry/handler changes required by existing rules. Recommend narrowly scoped internal-only admission if supported by current evidence and owner chooses it, with independent verification of actual newly built archives and rollback. Do not pretend the owner already authorised these actions because they kept the factory in VEDIC. Exact Stars membership, formal internal admission, source redistribution, physical handset and live cross-estate integration are different obligations.
+
+Third, if owner asks for another cycle, issue one joint concise instruction, preferably with a durable text document and diagram only where useful. Four agents and existing branches; no new factory repo. Prioritise actual operational closure: A narrow producer reconciliation if authorised; B one additional genuine internal archive at a time, stable typed runtime bridge; C independently test actual new archive and actual D interface, mutation, ranking, rights and ledger; D real bounded selection and pattern/receipt interaction using existing Kuiper. No larger cohort until the eight-key architecture is reliable. Existing V3 stays immutable. Publish a later release only when specifically authorised, with existing GitHub Actions and final public bytes verified.
+
+Fourth, use meaningful progress updates, not superficial praise. The genuine achievement is independently reproducible reuse of original mathematics selected through sparse address evidence. The genuine weakness is unfinished operational integration and authority. Numerical success on synthetic fixtures is not an engineering certificate, catalogue size is not compute capacity, and many passing tests are not a finished product. Keep decisions and blockers visible to the owner.
+
+The outgoing supervisor has preserved the substantive project record, current checkpoints, historical decisions, constraints, links and recovery instructions. Continue with fresh context as TACIT b t b a. No new automated activity or product changes arise from this transfer.
+
+FOCUS ON THE CORE MISSION.
+Four agents. One computational estate.
+Live long and prosper.
+TACIT b t b
