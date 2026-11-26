@@ -9,8 +9,8 @@ PIN="821abf96d3e4c2f42e61d578dcefdfbda366c145b067f9cc9206fdaa91b6cf2d"
 def canonical(x):return json.dumps(x,sort_keys=True,ensure_ascii=True,allow_nan=False,separators=(",",":")).encode()
 def bh(x):return hashlib.sha256(canonical(x)+b"\n").hexdigest()
 def verify(x):return x["receipt_sha256"]==bh({k:v for k,v in x.items() if k!="receipt_sha256"})
-A="c4d6d309940d131d2a1ae6181701086aa7221839"
-B="0bd6879d4c3c857e70529eef2bb69127416537ad"
+A="8e3dff7c905095349843c6b5341766019a67ee82"
+B="1bdea5ffa295effa0417d22f4dd37b381da9e18b"
 E="2a58ed137bef42022a5fca8020d320b96fc47fd6"
 def sha(x):return hashlib.sha256(x).hexdigest()
 def reseal(p,k):
@@ -86,8 +86,8 @@ def main():
             bad=resolver.resolve(text,data);check(name+"-abstain",bad["state"]=="ABSTAIN" and not bad["steps"])
             rr=execute_compound(bridge,resolver,bad,ctx,guard);check(name+"-no-execution",rr["state"]=="ABSTAIN" and not rr["steps"] and rr["comparison"] is None)
         # Two different explicit origins followed by a shorthand target are ambiguous.
-        extra=copy.deepcopy(inp);extra["points"]["D"]={"longitude":5,"latitude":47}
-        ambiguous=resolver.resolve("Orient A to B and C to D and B",extra)
+        extra=copy.deepcopy(inp);extra["points"]["D"]={"longitude":5,"latitude":47};extra["points"]["E"]={"longitude":9,"latitude":52}
+        ambiguous=resolver.resolve("Orient A to B and C to D and E",extra)
         check("ambiguous-shorthand-after-origin-switch",ambiguous["state"]=="ABSTAIN",observed=[(s["from_point"],s["to_point"]) for s in ambiguous["steps"]])
         for name,mut in [("selection",lambda x:x["steps"][0]["keys"].reverse()),("operation",lambda x:x["steps"][0].update(operation="electrical")),("unit",lambda x:x["steps"][0]["outputs"].update(distance_km="miles")),("comparison",lambda x:x["comparison"].update(state="ADMITTED")),("input",lambda x:x["steps"][0]["inputs"]["point_b"].update(longitude=0))]:
             forged=copy.deepcopy(p);mut(forged);reseal(forged,"plan_sha256")
