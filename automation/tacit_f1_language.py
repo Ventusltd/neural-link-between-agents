@@ -54,6 +54,17 @@ def main(root,out):
     # Actual manual selection of two ORIENT operations; no ranking bypass.
     fixtures=[{"A":(-1.51,52.41),"B":(-2.46,53.11),"C":(0.35,51.21)},{"A":(12.4,48.1),"B":(15.2,47.5),"C":(9.8,50.3)},{"A":(151.1,-33.8),"B":(150.5,-34.4),"C":(153.2,-28.7)}]
     evidence=[]
+    sys.path.insert(0,str(root/"semantic-a"/"tools"))
+    from tacit_a1_semantics import Resolver
+    from tacit_a1_properties import Space as A1Space
+    from tacit_a1_invalidation import Ledger
+    from tacit_b_compound import execute_compound
+    init=time.perf_counter_ns();resolver=Resolver(root/"semantic");init_ms=(time.perf_counter_ns()-init)/1e6
+    ledger=Ledger(A1Space(root/"ledger"),root/"ledger")
+    epoch=ledger.begin("orient")
+    guard=lambda:ledger.assert_current("orient",epoch)
+    instruction="Calculate distance and initial bearing from point A to point B and from point A to point C, then identify the nearer destination."
+    compound=[]
     for points in fixtures:
         timings=[];receipts=None
         for repeat in range(3):
@@ -67,11 +78,23 @@ def main(root,out):
             timings.append((time.perf_counter_ns()-start)/1e6)
             if receipts is None:receipts=rr
             else:check(receipts==rr,"DETERMINISM")
+        inp={"crs":"WGS84","unit":"degrees","points":{k:dict(zip(("longitude","latitude"),v)) for k,v in points.items()}}
+        plan_times=[];exec_times=[];combined=[];previous=None
+        for repeat in range(3):
+            start=time.perf_counter_ns();plan=resolver.resolve(instruction,inp);plan_times.append((time.perf_counter_ns()-start)/1e6)
+            check(plan["state"]=="PARTIAL_PLAN" and len(plan["steps"])==2,"PLAN")
+            context={"generation":1,"selection_receipt_sha256":"a"*64,"challenge":"1"*64}
+            t0=time.perf_counter_ns();receipt=execute_compound(bridge,resolver,plan,context,guard);exec_times.append((time.perf_counter_ns()-t0)/1e6);combined.append((time.perf_counter_ns()-start)/1e6)
+            check(receipt["state"]=="PARTIAL_EXECUTED" and receipt["comparison"]["value"] is None and receipt["comparison"]["state"]=="REFUSED_NOT_ADMITTED","COMPARISON_REFUSAL")
+            check([x["values"] for x in receipt["steps"]]==[x["output"] for x in receipts],"MANUAL_COMPOUND_PARITY")
+            if previous is not None:check(previous==receipt,"COMPOUND_DETERMINISM")
+            previous=receipt
+        compound.append({"points":points,"human_instructions":1,"unique_coordinate_fields":6,"preview_count":1,"execute_count":1,"factory_calls":2,"unique_archive":1,"plan_sha256":plan["plan_sha256"],"receipt_sha256":receipt["receipt_sha256"],"results":[{"target":x["to_point"],"values":x["values"],"units":x["units"],"receipt_sha256":x["bound_receipt"]["receipt_sha256"]} for x in receipt["steps"]],"comparison":receipt["comparison"],"resolve_median_ms":statistics.median(plan_times),"compound_median_ms":statistics.median(exec_times),"total_median_ms":statistics.median(combined),"samples_ms":combined})
         evidence.append({"points":points,"manual_commands":2,"coordinate_entries":8,"unique_coordinate_fields":6,"factory_calls":2,"unique_admitted_archive":1,"comparison":"REFUSED_NOT_ADMITTED","results":receipts,"median_ms":statistics.median(timings),"samples_ms":timings})
     prior=json.loads(pinned(root/"B1.zip",("77561125ed5829483f30f84391c9998a21915654737fbfa34ca336b43686dbe5","tacit-b1-patterns.json","a5540a0978117750fd54739e423dbd4e7c0150ce1eba81d5139609ed2db7ee97")))
     for op in ("nearest-orient","electrical"):
         check(bridge.execute_v2(prior["candidate_requests"][op])==prior["refusals"][op],"REFUSAL")
-    report={"schema":"tacit-f1.vedic-reuse-evidence.v1","source_rows":rows,"manual_baseline":evidence,"instruction":"Calculate distance and initial bearing from point A to point B and from point A to point C, then identify the nearer destination.","language_target":{"human_instruction_count":1,"factory_calls":2,"unique_archive":1,"comparison":"REFUSED_NOT_ADMITTED","status":"TARGET_NOT_MEASURED"},"open":["actual peer semantic/compound integration requires exact successor pins","authenticated UI timings not yet measured for T17","source discovery is not Kuiper permanent occurrence allocation","dataset rights and exact 132kV membership before nearest admission"],"status":"PASS_BOUNDED"}
+    report={"schema":"tacit-f1.vedic-reuse-evidence.v1","source_rows":rows,"manual_baseline":evidence,"instruction":"Calculate distance and initial bearing from point A to point B and from point A to point C, then identify the nearer destination.","language_actual":{"resolver_initialisation_ms":init_ms,"fixtures":compound,"status":"ACTUAL_HOST_LOCAL_COMPOUND","origin_authentication":"NOT_MEASURED","manual_baseline":"two separate bound requests; deterministic test context not real signer"},"open":["exact A1/B1 candidate pins; independent C1 review separate","authenticated UI timings not yet measured for T17","source discovery is not Kuiper permanent occurrence allocation","dataset rights and exact 132kV membership before nearest admission"],"status":"PASS_BOUNDED"}
     out.write_bytes(canonical(report))
-    print(json.dumps({"sha256":sha(out.read_bytes()),"sources":len(rows),"manual":evidence,"graph_coverage":[{k:r[k] for k in ("repository","path","genome_id","printer_repository_present","periodic_block")} for r in rows]},sort_keys=True))
+    print(json.dumps({"sha256":sha(out.read_bytes()),"sources":len(rows),"manual":evidence,"compound":compound,"resolver_init_ms":init_ms,"graph_coverage":[{k:r[k] for k in ("repository","path","genome_id","printer_repository_present","periodic_block")} for r in rows]},sort_keys=True))
 if __name__=="__main__":main(Path(sys.argv[1]),Path(sys.argv[2]))

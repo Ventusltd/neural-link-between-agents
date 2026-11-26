@@ -23,7 +23,7 @@ jobs:
         if: matrix.mode == 'runtime'
         with:
           repository: Ventusltd/vedic-
-          ref: 3c921cb913d35ad8bd8a0cf94fe9ede55fa0e529
+          ref: e0a094c8c672643f0b8a9967dea93c6ef7e4518a
           path: _peer_b
           persist-credentials: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -43,6 +43,12 @@ jobs:
           repository: Ventusltd/vedic-
           ref: 7391b50343b7d7beecb8a32ccd748bfc00c2190b
           path: _peer_a
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/vedic-
+          ref: c4d6d309940d131d2a1ae6181701086aa7221839
+          path: _semantic_a
           persist-credentials: false
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
@@ -118,6 +124,14 @@ jobs:
           get Ventusltd/satnav 665faa0a19ca0a5a19a297e74bc5aae4020e9fd5 preview/9698781539e549deaa6ecaa4a2b34610c1f9fd29/nav/compass.mjs "$p/compass.mjs"
           get Ventusltd/satnav 665faa0a19ca0a5a19a297e74bc5aae4020e9fd5 preview/9698781539e549deaa6ecaa4a2b34610c1f9fd29/vendor/grid-distance-maths/src/geodesy.mjs "$p/satnav-geodesy.mjs"
           get "$g" "$s" engine/current-from-power.js "$p/current.js"
+          mv _semantic_a "$p/semantic-a"
+          python "$p/semantic-a/tools/tacit_a1_semantics.py" acquire --root "$p/semantic"
+          mkdir "$p/ledger"
+          cp "$p/A-bonds.zip" "$p/ledger/bonds.zip"
+          cp "$p/B-bridge.zip" "$p/ledger/b-final.zip"
+          cp "$p/B1.zip" "$p/ledger/b1.zip"
+          gh api repos/Ventusltd/vedic-/actions/artifacts/15140897950/zip > "$p/ledger/impact.zip"
+          gh api repos/Ventusltd/kuiper-belt/actions/artifacts/15141534328/zip > "$p/ledger/e1.zip"
           ended=$(date +%s%N)
           echo "$((ended-started))" > "$p/acquisition-ns.txt"
       - name: Offline CPU stage benchmarks and impact scorecard
