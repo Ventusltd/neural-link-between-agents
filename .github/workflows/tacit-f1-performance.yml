@@ -23,7 +23,7 @@ jobs:
         if: matrix.mode == 'runtime'
         with:
           repository: Ventusltd/vedic-
-          ref: dbca4db3658850f421e8f7319b7cef7e540c1a46
+          ref: 988e2293fd740ca434a9cf087fa873f841b7dc6f
           path: _peer_b
           persist-credentials: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -106,6 +106,7 @@ jobs:
           PY
           fi
           if [ "$MODE" = runtime ]; then
+            gh api "repos/$v/actions/artifacts/15142906371/zip" > "$p/B1.zip"
             get Ventusltd/neural-link-between-agents 420815d32677225267bc77ae90054973f52cd4b5 handoffs/20261126-TACIT-D-KUIPER-CUDA-LAB.json "$p/lab.json"
             for file in species/genome-spider/data/nodes.json species/genome-spider/data/edges.json spider_printer_v1/data/topology.json; do
               get Ventusltd/spiders 830e86ea65e98b03df7250d2dd55d2753799687a "$file" "$p/${file##*/}"

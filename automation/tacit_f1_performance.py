@@ -168,8 +168,34 @@ def runtime(root,report):
     for op in ("nearest-orient","electrical"):
         r=b.execute(rep["requests"][op])
         check(r["state"]=="REFUSED" and r["output"] is None and r["nodes"]==[],"DEFAULT_REFUSAL:"+op)
+
+    # New B1 verified pattern contract: execute actual producer entrypoint, not a mock.
+    from tacit_b_patterns import PatternBridge
+    check(blob((peer/"tools"/"tacit_b_patterns.py").read_bytes())=="f231fdc7014491cb63e5824f09f90d7a62c8f5fb","B1_SOURCE_PIN")
+    b1pin=("77561125ed5829483f30f84391c9998a21915654737fbfa34ca336b43686dbe5","tacit-b1-patterns.json","a5540a0978117750fd54739e423dbd4e7c0150ce1eba81d5139609ed2db7ee97")
+    bw=json.loads(pinned(root/"B1.zip",b1pin))
+    pb=PatternBridge(f,t,Space,raw,ar,build,root/"nearest",root/"nearest-source",root/"electrical")
+    patterns=measure(report,"b1-pattern-compile",lambda:[pb.pattern(op) for op in ("orient","nearest-orient","electrical")],mhash,3)
+    v2results=[]
+    for i,q in enumerate(bw["requests"]):
+        rr=measure(report,"b1-actual-wire-orient-"+str(i+1),lambda q=q:pb.execute_raw(f.canonical(q)),digest(q),2,3)
+        check(rr==bw["results"][i],"B1_EXACT_PRODUCER_REPLAY")
+        v2results.append({"request_sha256":rr["request_sha256"],"pattern_sha256":rr["pattern_sha256"],"result_sha256":rr["result_sha256"],"output":rr["result"]["output"]})
+    for op in ("nearest-orient","electrical"):
+        q=bw["candidate_requests"][op]
+        rr=pb.execute_raw(f.canonical(q))
+        check(rr==bw["refusals"][op] and rr["result"]["state"]=="REFUSED","B1_EXACT_REFUSAL")
+    check(v2results[0]["pattern_sha256"]==v2results[1]["pattern_sha256"] and v2results[0]["result_sha256"]!=v2results[1]["result_sha256"],"B1_PATTERN_REQUEST_DISTINCTION")
+    # Read-only dependency mapping from exact v2 pattern source rows. This is a
+    # candidate applicability index, not a new authority or live invalidation.
+    mapping={path:sorted(p["operation"] for p in patterns if any(x["source"]["path"]==path for x in p["sources"])) for path in ("engine/v9-geodesy.js","engine/v9-nearest-search.js","engine/voltage-drop.js")}
+    check(mapping=={"engine/v9-geodesy.js":["nearest-orient","orient"],"engine/v9-nearest-search.js":["nearest-orient"],"engine/voltage-drop.js":["electrical"]},"B1_PATTERN_SOURCE_MAPPING")
+    report["b1"]={"head":"988e2293fd740ca434a9cf087fa873f841b7dc6f","artifact_id":15142906371,"zip_sha256":b1pin[0],"member_sha256":b1pin[2],
+        "fresh_replays":v2results,"affected_pattern_candidates":mapping,"live_invalidation":False}
+    report["checks"] += ["actual B1 v2 pattern and two wire receipts matched","B1 default refusals matched","B1 source dependency mapping matched A1 expectations"]
+
     report["checks"] += ["authenticated eight-key cohort","machine/meaning parity","original projection MOD/radius","cache tamper refusal","actual ORIENT archive","two distinct fresh requests","stable pattern","nearest and electrical refused"]
-    report["open"] += ["A1/B1/D1/E1 successor candidate not staged","independent oracle remains C1 scope","no physical GPU or handset replay","cold OS cache not controlled; cold means empty application cache","CPU scaling measured only on disjoint synthetic copies; not estate scaling"]
+    report["open"] += ["D1/E1 combined successor not staged; A1 and B1 measured in distinct jobs","independent oracle remains C1 scope","no physical GPU or handset replay","cold OS cache not controlled; cold means empty application cache","CPU scaling measured only on disjoint synthetic copies; not estate scaling"]
 
 def impact(root,report):
     raw=pinned(root/"A-impact.zip",A_PIN)
