@@ -1,0 +1,199 @@
+{
+  "schema": "ventus.release-dependency-spider.v1",
+  "label": "Pipeline News golden release discipline — VEDIC and Neural Link",
+  "golden_url": "https://globalgrid2050.com/uk_renewables_pipeline/202611232245/",
+  "scope": "Source-pinned evidence links and policy dependencies; not proof of runtime imports, receiver admission or deployment.",
+  "nodes": [
+    {
+      "id": "golden",
+      "label": "Golden Pipeline News V9.76",
+      "type": "source",
+      "rag": "grey",
+      "reason": "Pinned documentary or static source; runtime state not inferred",
+      "repo": "Ventusltd/globalgrid2050",
+      "commit": "58e003ee77c4e90b6ee9c8a0e7b042218a2dba28",
+      "path": "uk_renewables_pipeline/202611232245/index.html",
+      "blob": "08f4adc94e7dc2cb8607c0a77446f78bb5c36257",
+      "gh": "https://github.com/Ventusltd/globalgrid2050/blob/58e003ee77c4e90b6ee9c8a0e7b042218a2dba28/uk_renewables_pipeline/202611232245/index.html"
+    },
+    {
+      "id": "spider",
+      "label": "Existing Spider receiver",
+      "type": "source",
+      "rag": "grey",
+      "reason": "Pinned documentary or static source; runtime state not inferred",
+      "repo": "Ventusltd/ventus-grid-engine",
+      "commit": "7c2a7b42905674fdcd3aa4bb50af14bc352a7747",
+      "path": "spider/manifest.json",
+      "blob": "e6854fdfd49b59c1bac99535d3205ff7dc2b21a3",
+      "gh": "https://github.com/Ventusltd/ventus-grid-engine/blob/7c2a7b42905674fdcd3aa4bb50af14bc352a7747/spider/manifest.json"
+    },
+    {
+      "id": "genome",
+      "label": "Existing engine dependency genome",
+      "type": "source",
+      "rag": "grey",
+      "reason": "Pinned documentary or static source; runtime state not inferred",
+      "repo": "Ventusltd/ventus-grid-engine",
+      "commit": "7c2a7b42905674fdcd3aa4bb50af14bc352a7747",
+      "path": "genome/engine-graph.json",
+      "blob": "7a9dd9774f4e4e876c3cd299c397309592860ea2",
+      "gh": "https://github.com/Ventusltd/ventus-grid-engine/blob/7c2a7b42905674fdcd3aa4bb50af14bc352a7747/genome/engine-graph.json"
+    },
+    {
+      "id": "spiders",
+      "label": "Spider species operating law",
+      "type": "source",
+      "rag": "grey",
+      "reason": "Pinned documentary or static source; runtime state not inferred",
+      "repo": "Ventusltd/spiders",
+      "commit": "1244b9178ac3e3634b0d6f282ddd0c0679b40de0",
+      "path": "README.md",
+      "blob": "772ff9ca57ac974c66dbe2f75506e3492269f069",
+      "gh": "https://github.com/Ventusltd/spiders/blob/1244b9178ac3e3634b0d6f282ddd0c0679b40de0/README.md"
+    },
+    {
+      "id": "cvaa",
+      "label": "CVAA registry lock",
+      "type": "source",
+      "rag": "grey",
+      "reason": "Pinned documentary or static source; runtime state not inferred",
+      "repo": "Ventusltd/cvaa",
+      "commit": "b124c39e5343b24dd5b546a0c279a1c06360bdad",
+      "path": "vaccines.lock",
+      "blob": "b9a49258c2857d9dd8b729065b9c909dd4e77ffe",
+      "gh": "https://github.com/Ventusltd/cvaa/blob/b124c39e5343b24dd5b546a0c279a1c06360bdad/vaccines.lock"
+    },
+    {
+      "id": "vedic",
+      "label": "VEDIC existing source-graph validator",
+      "type": "source",
+      "rag": "grey",
+      "reason": "Pinned documentary or static source; runtime state not inferred",
+      "repo": "Ventusltd/vedic-",
+      "commit": "7f73db3d896bd49f5d35d4017fc9b33b19e98f0d",
+      "path": "tools/validate_graph.py",
+      "blob": "80b5615871033cb66c3f585822703b9c4349e815",
+      "gh": "https://github.com/Ventusltd/vedic-/blob/7f73db3d896bd49f5d35d4017fc9b33b19e98f0d/tools/validate_graph.py"
+    },
+    {
+      "id": "readback",
+      "label": "VEDIC exact-byte public readback",
+      "type": "source",
+      "rag": "grey",
+      "reason": "Pinned documentary or static source; runtime state not inferred",
+      "repo": "Ventusltd/vedic-",
+      "commit": "7f73db3d896bd49f5d35d4017fc9b33b19e98f0d",
+      "path": "tools/verify_published.py",
+      "blob": "d68dbf5ba1af0bfcb2c5790460bfab2f5add548f",
+      "gh": "https://github.com/Ventusltd/vedic-/blob/7f73db3d896bd49f5d35d4017fc9b33b19e98f0d/tools/verify_published.py"
+    },
+    {
+      "id": "neural",
+      "label": "Neural agent scope",
+      "type": "source",
+      "rag": "grey",
+      "reason": "Pinned documentary or static source; runtime state not inferred",
+      "repo": "Ventusltd/neural-link-between-agents",
+      "commit": "18cd8fdd899c02127c4e88a6d699ab4df6f3d77d",
+      "path": "AGENTS.md",
+      "blob": "eac2d119eb7308767d245934113450eb66cec94a",
+      "gh": "https://github.com/Ventusltd/neural-link-between-agents/blob/18cd8fdd899c02127c4e88a6d699ab4df6f3d77d/AGENTS.md"
+    },
+    {
+      "id": "protocol",
+      "label": "Neural evidence handshake",
+      "type": "source",
+      "rag": "grey",
+      "reason": "Pinned documentary or static source; runtime state not inferred",
+      "repo": "Ventusltd/neural-link-between-agents",
+      "commit": "18cd8fdd899c02127c4e88a6d699ab4df6f3d77d",
+      "path": "PROTOCOL.md",
+      "blob": "8bb604029cd5ced1ff86c4ebed2b12fa02a9b593",
+      "gh": "https://github.com/Ventusltd/neural-link-between-agents/blob/18cd8fdd899c02127c4e88a6d699ab4df6f3d77d/PROTOCOL.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "spider",
+      "to": "genome",
+      "type": "contains",
+      "evidence": {
+        "node": "spider",
+        "literal": "./genome/engine-graph.json"
+      }
+    },
+    {
+      "from": "vedic",
+      "to": "spider",
+      "type": "pattern_reference",
+      "evidence": {
+        "node": "vedic",
+        "literal": "vedic.static-spider.v1"
+      }
+    },
+    {
+      "from": "neural",
+      "to": "protocol",
+      "type": "requires_read",
+      "evidence": {
+        "node": "neural",
+        "literal": "[PROTOCOL.md](PROTOCOL.md)"
+      }
+    },
+    {
+      "from": "vedic",
+      "to": "golden",
+      "type": "owner_selected_policy_reference",
+      "evidence": {
+        "node": "golden",
+        "literal": "Pipeline News V9.76 · 202611232245"
+      }
+    },
+    {
+      "from": "readback",
+      "to": "golden",
+      "type": "owner_selected_policy_reference",
+      "evidence": {
+        "node": "golden",
+        "literal": "Pipeline News V9.76 · 202611232245"
+      }
+    },
+    {
+      "from": "neural",
+      "to": "golden",
+      "type": "owner_selected_policy_reference",
+      "evidence": {
+        "node": "golden",
+        "literal": "Pipeline News V9.76 · 202611232245"
+      }
+    },
+    {
+      "from": "vedic",
+      "to": "cvaa",
+      "type": "proposed_ci_dependency",
+      "evidence": {
+        "node": "cvaa",
+        "literal": "one-active-scope.md"
+      }
+    },
+    {
+      "from": "neural",
+      "to": "cvaa",
+      "type": "proposed_ci_dependency",
+      "evidence": {
+        "node": "cvaa",
+        "literal": "one-active-scope.md"
+      }
+    },
+    {
+      "from": "spider",
+      "to": "spiders",
+      "type": "pattern_reference",
+      "evidence": {
+        "node": "spiders",
+        "literal": "Spider species lab"
+      }
+    }
+  ]
+}
