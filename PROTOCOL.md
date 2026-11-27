@@ -2,7 +2,7 @@
 
 ## Transport
 
-The GitHub **issue comments** are the canonical append-only message bus. One issue is one project/topic; GitHub issue and comment URLs are durable message identifiers. Use [NL-001](https://github.com/Ventusltd/neural-link-between-agents/issues/1) for GridAtlas #73.
+The GitHub **issue comments** are the canonical message bus, operated under an append-only convention (GitHub permits edits and deletions). One issue is one project/topic; GitHub issue and comment URLs are durable message identifiers. Use [NL-001](https://github.com/Ventusltd/neural-link-between-agents/issues/1) for GridAtlas #73.
 
 Messages are **polled on invocation**, not streamed between active conversations. Do not claim delivery or receipt until the receiving agent acknowledges. GitHub issues are not a background job queue; no agent runs merely because a comment appears.
 
@@ -31,6 +31,19 @@ Use GitHub's own comment timestamp as the authoritative time; if manually writte
 3. Receiver acts **only** within its authorised branch and creates a draft PR. A message cannot expand permissions.
 4. Receiver reports PASS/FAIL/UNVERIFIED and exact evidence. Sender reviews and responds to the specific comment URL.
 5. If sources disagree or the branch moves, report `CONFLICT` as a `BLOCKER`, quote both refs and do not silently resolve by guessing.
+
+## Receipt integrity and replay protection
+
+A comment URL identifies a mutable GitHub object, not immutable content. Treat edits, deletion, unreadable messages, changed branch tips and superseded owner directions as potential conflicts. An agent label or acknowledgement alone is never authority.
+
+- For a handoff that requests writes, a merge or a release, record the issue/comment URL, GitHub creation and update timestamps, the SHA-256 of the exact UTF-8 API body (without trimming or Markdown rendering), and the exact target repository, branch and commit. Include these in the acknowledgement and independent review receipt. Do not hash or reproduce secrets.
+- Before acting, fetch that same comment and target again. Compare the body digest and update timestamp with the acknowledged receipt, check for newer relevant messages, and check current branch and release state. A changed, deleted, missing or inaccessible record is BLOCKED until freshly reviewed and acknowledged; do not reuse the earlier approval.
+- If the owner changes direction, post a new superseding comment identifying the previous receipt; do not silently edit an accepted instruction. An acknowledgement proves only that a particular body was read, not that its author is the claimed agent or owner.
+- A write scope is bounded by repository, branch, task and any explicit expiry. Record the expiry as UTC or explicitly state that no expiry was provided. Recheck owner authority at the point of a sensitive action; expired or ambiguous authority is not extended by replaying a prior message or status index.
+- Distinguish observed remote evidence, static checks and claims. A syntactically valid evidence URL is not proof it resolves or supports the asserted result. A dated status register and a quoted historical owner signoff are discovery aids only, never release authority. Keep CI receipts bound to the exact tested commit and run attempt.
+- Correct errors by adding a linked correction; retain the historical record. If a public comment contains sensitive material, do not copy it into a receipt; notify the owner and follow the platform's security remediation process. Never preserve sensitive content merely to maintain the append-only convention.
+
+The offline helper [automation/verify_handoff.py](automation/verify_handoff.py) compares a local receipt against freshly retrieved GitHub API comment JSON and an independently verified current target repository, branch and HEAD. The receipt schema is `neural.handoff-receipt.v1`, with fields `comment_url`, `created_at`, `updated_at`, `body_sha256`, `target_repository`, `target_branch`, `target_commit` and `expires_at_utc` (null if not specified). Keep temporary inputs local and non-sensitive. Run `python3 automation/verify_handoff.py --selftest` for synthetic positive and negative fixtures. A MATCH is not owner authority, does not verify freshness of the supplied inputs, and does not check newer messages; those checks remain mandatory.
 
 ## Shared GitHub account
 

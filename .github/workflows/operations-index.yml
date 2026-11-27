@@ -4,13 +4,16 @@ on:
     paths:
       - 'STATUS.json'
       - 'OPERATIONS.md'
+      - 'PROTOCOL.md'
       - 'automation/validate_operations.py'
+      - 'automation/verify_handoff.py'
       - '.github/workflows/operations-index.yml'
   push:
     branches: [main]
     paths:
       - 'STATUS.json'
       - 'automation/validate_operations.py'
+      - 'automation/verify_handoff.py'
       - '.github/workflows/operations-index.yml'
   workflow_dispatch:
 permissions:
@@ -27,4 +30,6 @@ jobs:
         with:
           persist-credentials: false
       - name: Validate compact index without dependency installation
-        run: python3 automation/validate_operations.py
+        run: python3 automation/validate_operations.py --selftest
+      - name: Exercise handoff integrity and replay refusal fixtures
+        run: python3 automation/verify_handoff.py --selftest
