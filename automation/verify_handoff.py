@@ -12,7 +12,7 @@ COMMENT_URL = re.compile(r"https://github\.com/Ventusltd/neural-link-between-age
 SHA = re.compile(r"[a-f0-9]{40}")
 DIGEST = re.compile(r"[a-f0-9]{64}")
 
-def verify(receipt, comment, current_head, now):
+def verify(receipt, comment, current_repository, current_branch, current_head, now):
     require(isinstance(receipt, dict) and isinstance(comment, dict), "invalid receipt or comment")
     require(receipt.get("schema") == "neural.handoff-receipt.v1", "invalid receipt schema")
     url = receipt.get("comment_url")
@@ -28,6 +28,12 @@ def verify(receipt, comment, current_head, now):
     require(isinstance(digest, str) and DIGEST.fullmatch(digest), "invalid body digest")
     require(isinstance(comment.get("body"), str) and
             hashlib.sha256(comment["body"].encode("utf-8")).hexdigest() == digest, "comment body changed")
+    repository = receipt.get("target_repository")
+    branch = receipt.get("target_branch")
+    require(isinstance(repository, str) and re.fullmatch(r"Ventusltd/[A-Za-z0-9_.-]+", repository)
+            and repository.split("/")[-1] not in (".", "..") and repository == current_repository,
+            "target repository changed")
+    require(isinstance(branch, str) and branch and branch == current_branch, "target branch changed")
     head = receipt.get("target_commit")
     require(isinstance(head, str) and SHA.fullmatch(head) and head == current_head, "target head changed")
     require("expires_at_utc" in receipt, "expiry must be explicit")
@@ -43,19 +49,24 @@ def selftest():
                "created_at": "2026-11-27T12:00:00Z", "updated_at": "2026-11-27T12:00:00Z",
                "body": "Synthetic fixture — exact body\n"}
     head = "a" * 40
+    repository = "Ventusltd/vedic-"
+    branch = "agent/synthetic-fixture"
     receipt = {"schema": "neural.handoff-receipt.v1", "comment_url": comment["html_url"],
                "created_at": comment["created_at"], "updated_at": comment["updated_at"],
                "body_sha256": hashlib.sha256(comment["body"].encode("utf-8")).hexdigest(),
+               "target_repository": repository, "target_branch": branch,
                "target_commit": head, "expires_at_utc": "2026-11-27T13:00:00Z"}
     now = utc("2026-11-27T12:30:00Z")
-    require(verify(receipt, comment, head, now)["authority_verified"] is False, "false authority")
+    require(verify(receipt, comment, repository, branch, head, now)["authority_verified"] is False, "false authority")
     no_expiry = dict(receipt, expires_at_utc=None)
-    require(verify(no_expiry, comment, head, now)["status"] == "MATCH", "explicit unspecified expiry")
+    require(verify(no_expiry, comment, repository, branch, head, now)["status"] == "MATCH", "explicit unspecified expiry")
     cases = [
         lambda r,c: c.update(body=c["body"].strip()),
         lambda r,c: c.update(updated_at="2026-11-27T12:01:00Z"),
         lambda r,c: c.update(id=2),
         lambda r,c: c.clear(),
+        lambda r,c: r.update(target_repository="Ventusltd/gridatlas"),
+        lambda r,c: r.update(target_branch="main"),
         lambda r,c: r.update(target_commit="b"*40),
         lambda r,c: r.update(target_commit="main"),
         lambda r,c: r.update(expires_at_utc="2026-11-27T12:30:00Z"),
@@ -67,7 +78,7 @@ def selftest():
         r,c = copy.deepcopy(receipt), copy.deepcopy(comment)
         change(r,c)
         try:
-            verify(r,c,head,now)
+            verify(r,c,repository,branch,head,now)
         except ValueError:
             continue
         raise RuntimeError("negative fixture accepted: " + str(index))
@@ -80,17 +91,19 @@ def main():
     p.add_argument("--selftest", action="store_true")
     p.add_argument("--receipt", type=Path)
     p.add_argument("--comment", type=Path)
+    p.add_argument("--current-repository")
+    p.add_argument("--current-branch")
     p.add_argument("--current-head")
     args = p.parse_args()
     if args.selftest:
         selftest()
         return
-    if not (args.receipt and args.comment and args.current_head):
-        p.error("supply receipt, freshly retrieved comment JSON and exact target HEAD")
+    if not (args.receipt and args.comment and args.current_repository and args.current_branch and args.current_head):
+        p.error("supply receipt, freshly retrieved comment JSON and verified target repository, branch and HEAD")
     try:
         receipt = json.loads(args.receipt.read_text(encoding="utf-8"), object_pairs_hook=strict_object)
         comment = json.loads(args.comment.read_text(encoding="utf-8"), object_pairs_hook=strict_object)
-        print(json.dumps(verify(receipt, comment, args.current_head, datetime.now(timezone.utc))))
+        print(json.dumps(verify(receipt, comment, args.current_repository, args.current_branch, args.current_head, datetime.now(timezone.utc))))
     except (ValueError, OSError, UnicodeError):
         # Never echo API bodies or private file paths.
         raise SystemExit("BLOCKED: receipt mismatch, invalid input or unavailable evidence") from None
