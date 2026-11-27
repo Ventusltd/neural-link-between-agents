@@ -1,0 +1,65 @@
+name: CVAA full-registry audit
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cvaa-audit-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  inoculate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout complete consumer history
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: target
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Checkout immutable central CVAA registry
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/cvaa
+          ref: b124c39e5343b24dd5b546a0c279a1c06360bdad
+          path: cvaa
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '22'
+      - name: Verify exact registry and complete histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C cvaa rev-parse HEAD)" = "b124c39e5343b24dd5b546a0c279a1c06360bdad"
+          test "$(git -C target rev-parse --is-shallow-repository)" = false
+          test "$(git -C cvaa rev-parse --is-shallow-repository)" = false
+          mkdir -p "$RUNNER_TEMP/cvaa-evidence"
+          {
+            echo "Registry: $(git -C cvaa rev-parse HEAD)"
+            echo "Consumer: $(git -C target rev-parse HEAD)"
+            echo "Registry vaccine files: $(find cvaa/vaccines -maxdepth 1 -name '*.md' | wc -l)"
+          } | tee "$RUNNER_TEMP/cvaa-evidence/identities.txt"
+      - name: Prove central antibodies against disease and health
+        shell: bash
+        run: |
+          set -euo pipefail
+          node cvaa/tools/selftest.mjs | tee "$RUNNER_TEMP/cvaa-evidence/selftest.txt"
+          test "$(tail -n 1 "$RUNNER_TEMP/cvaa-evidence/selftest.txt")" = 'all antibodies fire on disease and stay silent on health'
+      - name: Run every applicable locked vaccine on consumer snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          node cvaa/inoculate.mjs target --no-write --json --sarif "$RUNNER_TEMP/cvaa-evidence/consumer.sarif" | tee "$RUNNER_TEMP/cvaa-evidence/consumer.txt"
+      - name: Preserve audit evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: cvaa-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/cvaa-evidence
+          if-no-files-found: warn
+          retention-days: 14
