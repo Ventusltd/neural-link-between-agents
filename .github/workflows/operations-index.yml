@@ -4,6 +4,7 @@ on:
     paths:
       - 'STATUS.json'
       - 'OPERATIONS.md'
+      - 'PROTOCOL.md'
       - 'automation/validate_operations.py'
       - '.github/workflows/operations-index.yml'
   push:
@@ -27,4 +28,4 @@ jobs:
         with:
           persist-credentials: false
       - name: Validate compact index without dependency installation
-        run: python3 automation/validate_operations.py
+        run: python3 automation/validate_operations.py --selftest
