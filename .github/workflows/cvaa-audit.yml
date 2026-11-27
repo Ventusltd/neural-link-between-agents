@@ -44,6 +44,11 @@ jobs:
             echo "Consumer: $(git -C target rev-parse HEAD)"
             echo "Registry vaccine files: $(find cvaa/vaccines -maxdepth 1 -name '*.md' | wc -l)"
           } | tee "$RUNNER_TEMP/cvaa-evidence/identities.txt"
+      - name: Validate golden release dependency Spider and fault fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 target/.cvaa/check_release_dependency_spider.py | tee "$RUNNER_TEMP/cvaa-evidence/dependency-spider.json"
       - name: Prove central antibodies against disease and health
         shell: bash
         run: |
