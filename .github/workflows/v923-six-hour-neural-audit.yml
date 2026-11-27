@@ -10,8 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  issues: write
+  contents: read
 
 concurrency:
   group: v923-neural-six-hour-window
@@ -42,7 +41,7 @@ jobs:
         if: steps.window.outputs.active == 'true'
         with:
           fetch-depth: 1
-          persist-credentials: true
+          persist-credentials: false
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         if: steps.window.outputs.active == 'true'
         with:
@@ -69,38 +68,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 automation/v923-recovery/audit.py
-      - name: Hard stop before writing audit receipts
-        id: write_window
-        if: steps.window.outputs.active == 'true'
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          from datetime import datetime, timezone
-          now=datetime.now(timezone.utc)
-          print('audit_commit_gate_utc',now.isoformat())
-          if now >= datetime(2026,11,16,6,15,tzinfo=timezone.utc):
-              raise SystemExit('AUDIT WRITE BLOCKED: owner six-hour cutoff passed')
-          PY
-      - name: Commit append-only audit receipt to Neural Link
-        if: steps.write_window.outcome == 'success'
-        shell: bash
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          mkdir -p automation/v923-recovery/results/history
-          stamp="$(date -u +%Y%m%dT%H%M%SZ)"
-          cp automation/v923-recovery/results/latest.json "automation/v923-recovery/results/history/${stamp}-${GITHUB_RUN_ID}.json"
-          git add automation/v923-recovery/results
-          git commit -m "audit(v923): half-hour cycle ${stamp}" || true
-          git push origin HEAD:main
-      - name: Post traceable result to neural coordination channels
-        if: steps.write_window.outcome == 'success'
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh issue comment 30 --repo Ventusltd/neural-link-between-agents --body-file automation/v923-recovery/results/latest.md
-          gh issue comment 40 --repo Ventusltd/neural-link-between-agents --body-file automation/v923-recovery/results/latest.md
+      # The owner-authorised write window ended 16 November 2026.
+      # Retain the historical audit and artifact path, but never grant new write authority.
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always() && steps.window.outputs.active == 'true'
         with:
