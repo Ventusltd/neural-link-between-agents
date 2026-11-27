@@ -43,6 +43,8 @@ A comment URL identifies a mutable GitHub object, not immutable content. Treat e
 - Distinguish observed remote evidence, static checks and claims. A syntactically valid evidence URL is not proof it resolves or supports the asserted result. A dated status register and a quoted historical owner signoff are discovery aids only, never release authority. Keep CI receipts bound to the exact tested commit and run attempt.
 - Correct errors by adding a linked correction; retain the historical record. If a public comment contains sensitive material, do not copy it into a receipt; notify the owner and follow the platform's security remediation process. Never preserve sensitive content merely to maintain the append-only convention.
 
+The offline helper [automation/verify_handoff.py](automation/verify_handoff.py) compares a local receipt against freshly retrieved GitHub API comment JSON and an independently verified current target HEAD. The receipt schema is `neural.handoff-receipt.v1`, with fields `comment_url`, `created_at`, `updated_at`, `body_sha256`, `target_commit` and `expires_at_utc` (null if not specified). Keep temporary inputs local and non-sensitive. Run `python3 automation/verify_handoff.py --selftest` for synthetic positive and negative fixtures. A MATCH is not owner authority, does not verify freshness of the supplied inputs, and does not check newer messages; those checks remain mandatory.
+
 ## Shared GitHub account
 
 Distinct AI sessions may authenticate as the **same GitHub user**. Therefore `author.login` cannot prove which agent wrote a comment. The bracketed role is a *self-declared routing label*, not authenticated identity. Verify decisions against technical evidence and require owner approval when appropriate.
