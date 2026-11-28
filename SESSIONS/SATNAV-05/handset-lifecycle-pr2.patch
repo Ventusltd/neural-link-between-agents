@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/handset-compass.yml b/.github/workflows/handset-compass.yml
+--- a/.github/workflows/handset-compass.yml
++++ b/.github/workflows/handset-compass.yml
+@@ -73,6 +73,9 @@
+                           expect(page.locator('#status')).to_have_text('Location permission denied')
+                           expect(page.locator('#start')).to_be_enabled()
+                           page.locator('#start').click()
++                          active_count = page.evaluate('window.watchCount')
++                          page.evaluate("document.getElementById('start').onclick()")
++                          assert page.evaluate('window.watchCount') == active_count
+                           page.evaluate('emitFix()')
+                           expect(page.locator('#status')).to_have_text('Location fix received')
+                           expect(page.locator('#bearing')).to_have_text('0°')
+@@ -105,6 +108,17 @@
+                           page.evaluate('emitError(2)')
+                           expect(page.locator('#status')).to_have_text('Location unavailable')
+                           page.locator('#stop').click()
++                          page.locator('#start').click()
++                          page.evaluate('emitFix()')
++                          expect(page.locator('#status')).to_have_text('Location fix received')
++                          clear_before = page.evaluate('window.clearCount')
++                          page.evaluate("window.dispatchEvent(new Event('pagehide'))")
++                          expect(page.locator('#position')).to_have_text('Position unavailable')
++                          expect(page.locator('#start')).to_be_enabled()
++                          expect(page.locator('#stop')).to_be_disabled()
++                          assert page.evaluate('window.clearCount') == clear_before + 1
++                          page.evaluate('emitFix()')
++                          expect(page.locator('#position')).to_have_text('Position unavailable')
+                           page.goto(origin+'/nav/?to=91,0')
+                           expect(page.locator('#targetError')).not_to_be_empty()
+                           expect(page.locator('#destination')).to_have_text('No destination selected')
