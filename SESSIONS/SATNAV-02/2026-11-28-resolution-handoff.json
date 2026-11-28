@@ -1,0 +1,38 @@
+{
+  "schema": "satnav02.handoff.v1",
+  "source_head": "f287b2f1ee0b6926525bd67db097f3d87ddcd75d",
+  "instrument": {
+    "commit": "22b45b02478c5b5ebe616439901e8ec93fcd9968",
+    "blob": "c65d202dab86273b0b372c86a93657ec9a72f18e",
+    "path": "SESSIONS/SATNAV-02/audit_resolution.py"
+  },
+  "mode": "PROJECTED_FIXTURE",
+  "input_sha256": {
+    "data/command-execution-bindings.json": "6b3c6d9bcee5ae54a0b24d29916c6ba0daadaaba198833dcedfc76ca536af6ce",
+    "data/dictionary.json": "2991d098e89fcb3c61251f09a903cc77b69066e94893cf2f9361e1965ce8803e",
+    "tools/semantic_compiler.py": "b32171fcc27639c67ff60ca6ff80bc7348587825567820617fc305ea627c9ddc"
+  },
+  "prior_run": {
+    "total": 18432,
+    "pass": 18432,
+    "fail": 0,
+    "expected_resolution": 384,
+    "expected_refusal": 18048
+  },
+  "prior_mutation": {
+    "total": 18432,
+    "pass": 18430,
+    "fail": 2,
+    "expected_exit": 1,
+    "mutated_compiler_sha256": "b071fac736c2dab2942de08a03fe4e1b1fe1d43c881292a880b6b88d9d81e19d"
+  },
+  "evidence": "https://github.com/Ventusltd/neural-link-between-agents/issues/106#issuecomment-7238947740",
+  "limitations": [
+    "Historical local execution receipt preserved; no new test execution in this handoff.",
+    "Reduced projection uses placeholders; full checkout not yet verified.",
+    "Script imports compiler from reviewed local checkout; no package execution. Checkpoint is evidence, not automatic resume.",
+    "No runtime admission, production change or SatNav build."
+  ],
+  "replay": "python audit_resolution.py /path/to/reviewed/vedic-checkout --out receipt.json",
+  "disposition": "Refer to VEDIC owner for exact-checkout replay and possible adoption in existing tests."
+}
