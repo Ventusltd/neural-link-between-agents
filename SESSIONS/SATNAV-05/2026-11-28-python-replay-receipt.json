@@ -1,0 +1,77 @@
+{
+  "identity": "SATNAV-05",
+  "date": "2026-11-28",
+  "status": "PASS",
+  "scope": "Historical pinned prototype; mock DOM and geolocation; two stubbed dependencies; not real browser/handset, network inspection or integration acceptance",
+  "inputs": [
+    {
+      "url": "https://github.com/Ventusltd/satnav/blob/9698781539e549deaa6ecaa4a2b34610c1f9fd29/nav/app.mjs",
+      "blob": "9ae118926d62b1bc8741ae73235e79a9e29378d1",
+      "sha256": "6158ccc01c286ddbd08da58afcbeb44f1c76256fe42149979ccd21c0bdfd6612"
+    },
+    {
+      "url": "https://github.com/Ventusltd/neural-link-between-agents/blob/63088447e88670d4fcd1647215635aeb1d722d1b/SESSIONS/SATNAV-05/2026-11-28-privacy-lifecycle.test.mjs",
+      "blob": "ffed1b7e523aff3cc0c448646f15a50deb3cb6a6",
+      "sha256": "242ecd00f6d5f7e57c7ca4c7bc3d852fd6a1611bf294a51ad345cc525f975da0"
+    }
+  ],
+  "runner": {
+    "commit": "e89e6ffddebbf951a7ed6ee3bc57f7dbea3d6329",
+    "blob": "03f21e974dbc7d2da742b95b2cef502d9e8f6a86",
+    "command": "python privacy_runner.py app.mjs privacy-lifecycle.test.mjs receipt.json"
+  },
+  "environment": {
+    "python": "3.13.5",
+    "node": "v22.16.0"
+  },
+  "cases": [
+    "No watch on module initialization",
+    "Explicit Start opens one watch",
+    "Repeated Start does not open a second watch",
+    "Simulated position appears after opt-in",
+    "Stop clears watch and displayed position",
+    "Late callback after Stop cannot restore position",
+    "Permission denial clears watch and resets controls",
+    "Pagehide clears watch and displayed position"
+  ],
+  "runs": [
+    {
+      "run": 1,
+      "passed": 8,
+      "returncode": 0,
+      "stderr": "",
+      "elapsed_ms": 68.63
+    },
+    {
+      "run": 2,
+      "passed": 8,
+      "returncode": 0,
+      "stderr": "",
+      "elapsed_ms": 79.45
+    },
+    {
+      "run": 3,
+      "passed": 8,
+      "returncode": 0,
+      "stderr": "",
+      "elapsed_ms": 68.6
+    }
+  ],
+  "negative_controls": [
+    {
+      "input": "app.mjs",
+      "mutation": "append one LF byte",
+      "expected": "refuse before execution",
+      "observed": "exit 1; runs empty; identity mismatch",
+      "status": "PASS"
+    },
+    {
+      "input": "privacy-lifecycle.test.mjs",
+      "mutation": "append one LF byte",
+      "expected": "refuse before execution",
+      "observed": "exit 1; runs empty; identity mismatch",
+      "status": "PASS"
+    }
+  ],
+  "reproduction": "Save raw bytes from pinned links as app.mjs and privacy-lifecycle.test.mjs. Run command above. For each negative control append LF to a separate copy, rerun replacing only the corresponding input, and verify exit 1 and empty runs. Local container DNS unavailable; retrieved source from GitHub connector and reconstructed byte-identical files, verified by Git blob hashes. Existing CVAA code search for sha256 yielded no matches; no exhaustive CVAA inventory claimed. No new workflow or product changes. Interrupted report persists last completed stage; replay restarts from initial identity check."
+}
